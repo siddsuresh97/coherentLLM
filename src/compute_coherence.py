@@ -36,6 +36,8 @@ def main():
                     help="subset; default = all under results/raw/")
     ap.add_argument("--human_rdm", default=None, help="path to 30x30 human similarity .npy")
     ap.add_argument("--human_embedding", default=None, help="path to 30xk human embedding .npy")
+    ap.add_argument("--ref_name", default="ref",
+                    help="column prefix for the reference (e.g. 'human', 'fasttext')")
     args = ap.parse_args()
 
     os.makedirs(OUT, exist_ok=True)
@@ -63,13 +65,14 @@ def main():
         row.update({f"cross_{k}": v for k, v in cm.items()})
         row["n_methods"] = len(rdms)
 
-        # human alignment per method (RSA) + Procrustes on triplet embedding
+        # alignment vs reference: per-method RSA + Procrustes on triplet embedding
+        ref = args.ref_name
         if human_rdm is not None:
             for m, sim in rdms.items():
-                row[f"human_rsa_{m}"] = A.rsa(sim, human_rdm)
+                row[f"{ref}_rsa_{m}"] = A.rsa(sim, human_rdm)
         if human_emb is not None and "triplet" in rdms:
             emb = A.embed_30d(rdms["triplet"], dim=human_emb.shape[1])
-            row["human_procrustes_r2_triplet"] = A.procrustes_r2(emb, human_emb)
+            row[f"{ref}_procrustes_r2_triplet"] = A.procrustes_r2(emb, human_emb)
         rows.append(row)
         print(f"[ok] {model}: methods={list(rdms)} cross_mean={cm.get('mean'):.3f}")
 
