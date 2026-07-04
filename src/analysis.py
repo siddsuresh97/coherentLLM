@@ -153,17 +153,47 @@ def feature_similarity(model, concepts):
         ci = idx.get(_norm(concept))
         if ci is None:
             continue
-        val = 1 if "true" in str(row["response"]).lower() else 0
+        val = _parse_truefalse(row["response"])
+        if val is None:
+            continue
         feats.setdefault(feat, {})[ci] = val
     feat_names = sorted(feats)
     M = np.zeros((n, len(feat_names)))
     for fj, fn in enumerate(feat_names):
         for ci, v in feats[fn].items():
             M[ci, fj] = v
+    # Guard against degenerate (near-constant) feature matrices: if a model answers
+    # almost entirely True or almost entirely False, the derived RDM is noise.
+    frac_true = M.mean() if M.size else 0.0
+    if M.shape[1] == 0 or frac_true < 0.02 or frac_true > 0.98:
+        print(f"[feature] WARNING: near-constant answers (frac_true={frac_true:.3f}); "
+              f"RDM unreliable")
     Mn = normalize(M) if M.shape[1] else M
     sim = Mn @ Mn.T
     np.fill_diagonal(sim, 1.0)
     return sim
+
+
+def _parse_truefalse(resp):
+    """Take the model's answer only. The prompt echoes 'A: True'/'A: False' few-shot
+    examples, so read the text AFTER the last 'A:' and take the first true/false."""
+    s = str(resp)
+    if "A:" in s:
+        s = s.rsplit("A:", 1)[1]
+    s = s.lower()
+    ti = s.find("true")
+    fi = s.find("false")
+    if ti < 0 and fi < 0:
+        # fall back to yes/no
+        yi, ni = s.find("yes"), s.find("no")
+        if yi < 0 and ni < 0:
+            return None
+        return 1 if (yi >= 0 and (ni < 0 or yi < ni)) else 0
+    if ti < 0:
+        return 0
+    if fi < 0:
+        return 1
+    return 1 if ti < fi else 0
 
 
 METHOD_FN = {
