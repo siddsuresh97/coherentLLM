@@ -57,13 +57,24 @@ async def run(args):
            wait=wait_exponential(multiplier=1, min=2, max=30))
     async def one(prompt, method):
         async with sem:
-            r = await client.chat.completions.create(
-                model=api_model,
-                messages=[{"role": "system", "content": SYSTEM_PROMPT},
-                          {"role": "user", "content": prompt}],
-                temperature=args.temperature,
-                max_tokens=MAX_TOKENS[method],
-            )
+            msgs = [{"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": prompt}]
+            # Some frontier models reject `temperature` and/or `max_tokens`
+            # (they use `max_completion_tokens`). Degrade gracefully.
+            kwargs = dict(model=api_model, messages=msgs)
+            if args.temperature is not None:
+                kwargs["temperature"] = args.temperature
+            kwargs["max_tokens"] = MAX_TOKENS[method]
+            try:
+                r = await client.chat.completions.create(**kwargs)
+            except Exception as e:
+                emsg = str(e).lower()
+                if "temperature" in emsg:
+                    kwargs.pop("temperature", None)
+                if "max_tokens" in emsg or "max_completion_tokens" in emsg:
+                    kwargs.pop("max_tokens", None)
+                    kwargs["max_completion_tokens"] = MAX_TOKENS[method] + 8
+                r = await client.chat.completions.create(**kwargs)
             return (r.choices[0].message.content or "").strip()
 
     outdir = os.path.join(RAW, args.model)
