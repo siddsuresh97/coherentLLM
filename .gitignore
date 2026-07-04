@@ -1,0 +1,19 @@
+# Never commit weights, envs, large outputs, or secrets
+env/
+.venv/
+*.conda
+__pycache__/
+*.pyc
+*.log
+logs/
+results/raw/
+results/embeddings/
+*.safetensors
+*.bin
+*.pth
+*.pt
+.env
+*_KEY
+*OPENROUTER*
+secrets.yaml
+.ipynb_checkpoints/
