@@ -1,301 +1,151 @@
 raw,clean
-can_be_fed,can be fed
-can_live_for_a_long_time_without_food,can live for a long time without food
-doesn't_herd,doesn't herd
-Indians_or_Afrikan,Indians or Afrikan
-is_coloured,is coloured
-is_not_a_pet,is not a pet
-is_spectacular,is spectacular
-lives_in_distant_countries,lives in distant countries
-smaller_than_a_horse,smaller than a horse
-can_do_without_water_for_long_periods,can do without water for long periods
+appears_in_fairy_tales_and_stories,appears in fairy tales and stories
+attacks,attacks
+can_be_automatized,can be automatized
+can_be_dishwashed,can be dishwashed
+can_be_electronic,can be electronic
+can_be_made_of_different_tissues,can be made of different tissues
+can_be_used_to_hit_somebody,can be used to hit somebody
+can_cut_you,can cut you
+can_hurt,can hurt
+can_hurt_you,can hurt you
+cartoon_figure,cartoon figure
+climbs_in_trees,climbs in trees
+comes_in_different_lengths,comes in different lengths
+consists_of_different_parts,consists of different parts
+cumbersome,cumbersome
+damages_delicate_surfaces,damages delicate surfaces
+dark_colour,dark colour
+digs_holes,digs holes
+does_not_weigh_much,does not weigh much
 doesn't_have_1000_paws,doesn't have 1000 paws
-has_a_head,has a head
-has_a_mouth,has a mouth
+eats_flies,eats flies
+eats_mice,eats mice
+endangered_species,endangered species
+exists_in_different_sizes,exists in different sizes
+floats_on_water,floats on water
+forces_locks,forces locks
+has_a_big_mouth,has a big mouth
+has_a_complex_shape,has a complex shape
+has_a_head.1,has a head.1
+has_a_long_tongue,has a long tongue
+has_a_metal_blade,has a metal blade
+has_a_metallic_color,has a metallic color
+has_a_sharp_edge,has a sharp edge
+has_a_tail,has a tail
+has_a_wooden_handle,has a wooden handle
+has_big_claws_,has big claws
+has_bright_colours,has bright colours
+has_camouflage,has camouflage
+has_claws,has claws
+has_great_power,has great power
+has_large_theeth,has large theeth
+has_no_taste,has no taste
+has_ribs,has ribs
+has_the_name_of_a_company_printed_on_it,has the name of a company printed on it
+has_two_eyes,has two eyes
+heavy,heavy
+is_a_freshwater_fish,is a freshwater fish
+is_a_luxury_article,is a luxury article
+is_a_reptile,is a reptile
+is_an_amphibian,is an amphibian
+is_big.1,is big.1
+is_bigger_than_a_chicken,is bigger than a chicken
+is_black.1,is black.1
+is_bloody,is bloody
+is_blue-grey,is blue-grey
+is_blue.1,is blue.1
+is_brown.1,is brown.1
+is_brown/black,is brown/black
+is_cheap,is cheap
+is_collected,is collected
+is_coloured,is coloured
+is_cylindrical,is cylindrical
+is_dangerous,is dangerous
+is_dangerous.1,is dangerous.1
+is_dangerous_for_the_fingers,is dangerous for the fingers
+is_derived_from_a__verb,is derived from a  verb
+is_easy,is easy
+is_eaten_by_birds,is eaten by birds
+is_fast,is fast
+is_flat.1,is flat.1
+is_food_for_larger_animals,is food for larger animals
+is_for_sturdy_guys,is for sturdy guys
+is_found_in_a_boat,is found in a boat
+is_found_in_a_museum,is found in a museum
+is_found_in_warm_places,is found in warm places
 is_found_mainly_in_southern_countries,is found mainly in southern countries
+is_from_the_stone_age,is from the stone age
+is_green.1,is green.1
+is_grisly,is grisly
+is_light.1,is light.1
+is_lithe,is lithe
+is_long.1,is long.1
+is_made_in_a_light_fabric,is made in a light fabric
+is_made_of_wood_or_metal,is made of wood or metal
+is_mediaeval,is mediaeval
+is_narrow,is narrow
+is_nasty,is nasty
+is_not_dangerous,is not dangerous
+is_not_expensive,is not expensive
+is_not_expensive.1,is not expensive.1
+is_not_waterproof,is not waterproof
+is_odourless,is odourless
+is_old-fashioned,is old-fashioned
+is_popular__,is popular
+is_popular_and_appreciated,is popular and appreciated
+is_primitive,is primitive
+is_sandy-coloured,is sandy-coloured
+is_silver-coloured,is silver-coloured
+is_sly,is sly
+is_terrifying,is terrifying
+is_thin,is thin
+is_tiring_to_use,is tiring to use
+is_to_be_used_outside,is to be used outside
+is_unwieldy,is unwieldy
+is_used_in_shows,is used in shows
+is_white.1,is white.1
+lasts_long,lasts long
+lays_eggs_in_sand,lays eggs in sand
+lies_in_a_garden_house,lies in a garden house
+lives_in_a_swamp,lives in a swamp
+lives_in_dry_areas,lives in dry areas
+lives_in_grass,lives in grass
+lives_in_nature,lives in nature
+lives_in_the_ocean,lives in the ocean
 lives_in_the_primaeval_forest,lives in the primaeval forest
-neutral_scent,neutral scent
-has_a_tongue,has a tongue
-has_black_eyes,has black eyes
-has_round_eyes,has round eyes
-lives_on_the_ground,lives on the ground
+lives_in_the_woods,lives in the woods
+lives_on_land__,lives on land
+lives_on_land_and_sea,lives on land and sea
+lives_under_the_ground,lives under the ground
+looks_clumsy,looks clumsy
+made_of_stone,made of stone
+made_of_synthetic_material,made of synthetic material
+moves_by_contracting,moves by contracting
+not_nice_to_use,not nice to use
+not_used_much,not used much
+often_found_to_be_frightening,often found to be frightening
+often_sits_still,often sits still
+prey,prey
+produces_noise,produces noise
+rough,rough
+runs_fast,runs fast
+shoes_and_handbags_are_made_of_it,shoes and handbags are made of it
+small_ears,small ears
+smaller_than_a_horse,smaller than a horse
+smells_neutral,smells neutral
+timid_animal,timid animal
+to_enlarge_ones_power,to enlarge ones power
+used_by_carpenters.1,used by carpenters.1
+used_by_crooks,used by crooks
+used_by_sculptors,used by sculptors
+used_for_grinding,used for grinding
+used_for_murding,used for murding
+used_in_different_cultures,used in different cultures
+used_on_a_yard,used on a yard
+used_to_attach_things,used to attach things
 wild_animal,wild animal
 you_can_boil_it,you can boil it
-fragile,fragile
-lives_in_the_open_air,lives in the open air
-lives_outdoors,lives outdoors
-is_found_in_warm_places,is found in warm places
-drinks_water,drinks water
-is_eaten_by_other_animals,is eaten by other animals
-is_found_on_animals,is found on animals
-doesn't_sting,doesn't sting
-prey,prey
-can_be_caught,can be caught
-exists_for_ages,exists for ages
-is_not_eaten,is not eaten
-lives_in_America,lives in America
-communicates_with_its_congeners,communicates with its congeners
-makes_not_much_noise,makes not much noise
-occurs_frequently,occurs frequently
-can_be_aggressive,can be aggressive
-is_cold-blooded,is cold-blooded
-does_not_migrate_in_the_winter,does not migrate in the winter
-eats_small_animals,eats small animals
-sheds_its_skin,sheds its skin
-shy,shy
-can_be_bred,can be bred
-lives_in_the_jungle,lives in the jungle
-lives_on_land__,lives on land
-has_eyes,has eyes
-has_teeth,has teeth
-does_not_taste_well,does not taste well
-has_short_paws,has short paws
-has_two_eyes,has two eyes
-can't_fly,can't fly
-lives_in_nature,lives in nature
-lives_in_grass,lives in grass
-lives_in_tropical_areas,lives in tropical areas
-dark_colour,dark colour
-is_ugly,is ugly
-eats_worms,eats worms
-lives_nearby_the_water,lives nearby the water
-lives_in_the_wild,lives in the wild
-bites,bites
-exists_in_different_sizes_and_kinds,exists in different sizes and kinds
-is_green-brown,is green-brown
-lives_in_warm_countries,lives in warm countries
-is_a_carnivore,is a carnivore
-eats_plants,eats plants
-lives_in_Africa,lives in Africa
-there_are_many_kinds_of_it,there are many kinds of it
-eats_insects,eats insects
-builds_nests,builds nests
-is_a_reptile,is a reptile
-can_swim,can swim
-has_scales,has scales
-lives_in_the_zoo,lives in the zoo
-has_a_tail,has a tail
-lays_eggs,lays eggs
-is_an_animal,is an animal
-both_large_and_small,both large and small
-bought_in_a_store,bought in a store
-can_be_dishwashed,can be dishwashed
-can_be_seen_on_television,can be seen on television
-can_be_used_several_times,can be used several times
-can_become_dirty,can become dirty
-can_break,can break
-can_sink,can sink
-comes_in_different_brands_and_models,comes in different brands and models
-comes_in_very_handy,comes in very handy
-constitutes_a_whole,constitutes a whole
-costs_money,costs money
-especially_used_by_boys,especially used by boys
-exists_in_different_brands,exists in different brands
-exists_in_different_colors,exists in different colors
-exists_in_different_colors_and_different_forms,exists in different colors and different forms
-exists_in_different_forms,exists in different forms
-exists_in_different_kinds,exists in different kinds
-exists_in_different_measurements,exists in different measurements
-exists_in_different_sizes,exists in different sizes
-exists_in_different_sizes.1,exists in different sizes.1
-exists_in_different_types,exists in different types
-has_a_plain_color,has a plain color
-has_no_roof,has no roof
-has_no_smell,has no smell
-has_no_taste,has no taste
-implement/tool,implement/tool
-is_a_handtool,is a handtool
-is_a_piece_of_equipment,is a piece of equipment
-is_a_tool,is a tool
-is_an_object,is an object
-is_available_for_each_price_range,is available for each price range
-is_durable,is durable
-is_easy_to_work_with,is easy to work with
-is_efficient,is efficient
-is_for_1_person,is for 1 person
-is_for_at_least_1_person,is for at least 1 person
-is_for_few_persons,is for few persons
-is_for_sturdy_guys,is for sturdy guys
-is_found_in_a_workplace,is found in a workplace
-is_functional,is functional
-is_hard,is hard
-is_hard_to_iron,is hard to iron
-is_invented_by_man,is invented by man
-is_lifeless,is lifeless
-is_made_in_a_factory,is made in a factory
-is_not_edible,is not edible
-is_not_for_children,is not for children
-is_not_sexy,is not sexy
-is_odourless,is odourless
-is_smaller_than_a_lorry,is smaller than a lorry
-is_useful,is useful
-needs_to_be_cleaned_sometimes,needs to be cleaned sometimes
-not_everyone_has_it,not everyone has it
-occurs_in_comic_books,occurs in comic books
-occurs_in_films,occurs in films
-smells_neutral,smells neutral
-used_by_men,used by men
-used_by_the_handyman,used by the handyman
-used_by_work_forces,used by work forces
-used_in_different_cultures,used in different cultures
-used_solo,used solo
-used_to_work_with,used to work with
-used_with_your_hands,used with your hands
-was_used_in_the_past,was used in the past
-you_don't_have_to_peddle,you don't have to peddle
-is_difficult_to_catch,is difficult to catch
-"is_grey,_brown_or_white","is grey, brown or white"
-does_not_live_in_Belgium,does not live in Belgium
-the_meat_is_eaten,the meat is eaten
-is_brown,is brown
-can_be_found_in_a_garage,can be found in a garage
-can_be_held,can be held
-can_be_made_of_different_materials,can be made of different materials
-can_get_rusty,can get rusty
-has_been_existing_for_a_long_time,has been existing for a long time
-has_the_name_of_a_company_printed_on_it,has the name of a company printed on it
-is_a_basic_tool,is a basic tool
-is_big_or_small,is big or small
-is_firm,is firm
-is_made_of_wood_or_metal,is made of wood or metal
-is_sold_in_a_hardware_store,is sold in a hardware store
-is_sold_in_Brico_(particular_hardware_store),is sold in Brico (particular hardware store)
-is_stainless,is stainless
-lasts_long,lasts long
-sold_in_Gamma_(particular_hardware_store),sold in Gamma (particular hardware store)
-stored_in_the_cellar,stored in the cellar
-used_by_handymen,used by handymen
-used_by_strong_men,used by strong men
-used_by_tradesmen,used by tradesmen
-used_by_workers,used by workers
-you_have_to_pay_for_it,you have to pay for it
-is_not_poisonous,is not poisonous
-likes_humidity,likes humidity
-can_be_seen_on_safaris,can be seen on safaris
-is_an_exotic_animal,is an exotic animal
-is_found_in_Belgium,is found in Belgium
-lives_in_a_damp_climate,lives in a damp climate
-hunts,hunts
-stinks,stinks
-crawls,crawls
-is_green,is green
-can_be_dangerous,can be dangerous
-live_alone,live alone
-is_not_very_popular_among_man,is not very popular among man
-doesn't_live_in_our_country,doesn't live in our country
-makes_a_sound,makes a sound
-is_nasty,is nasty
-is_edible,is edible
-can_be_carried,can be carried
-can_be_coloured,can be coloured
-can_break.1,can break.1
-damages_delicate_surfaces,damages delicate surfaces
-don't_have_openings_between_fingers,don't have openings between fingers
-exists_in_different_materials,exists in different materials
-has_a_grip,has a grip
-has_no_engine,has no engine
-is_blue-grey,is blue-grey
-is_easy,is easy
-is_strong.1,is strong.1
-lies_in_a_garden_house,lies in a garden house
-made_of_metal,made of metal
-used_in_construction,used in construction
-used_on_a_yard,used on a yard
-has_a_rough_skin,has a rough skin
-is_not_dangerous,is not dangerous
-lives_on_land_and_sea,lives on land and sea
-rough,rough
-is_sometimes_eaten_by_man,is sometimes eaten by man
-small_ears,small ears
-has_two_ears,has two ears
-is_grisly,is grisly
-is_slow,is slow
-has_a_long_tail,has a long tail
-is_long,is long
-consists_of_different_parts,consists of different parts
-has_a_handle,has a handle
-has_a_metallic_color,has a metallic color
-is_grey.1,is grey.1
-looks_tough,looks tough
-often_used__,often used
-lives_on_the_steppe,lives on the steppe
-has_camouflage,has camouflage
-is_well_camouflaged,is well camouflaged
-is_inconspicious,is inconspicious
-lives_in_the_woods,lives in the woods
-does_not_produce_sound,does not produce sound
-does_not_weigh_much,does not weigh much
-exists_in_different_lengths,exists in different lengths
-has_a_grip_made_of_plastic,has a grip made of plastic
-is_handy_to_transport,is handy to transport
-can_be_lethal_to_man,can be lethal to man
-can_kill_people,can kill people
-is_medium-sized,is medium-sized
-short_front_legs,short front legs
-attacks,attacks
-is_not_verry_big,is not verry big
-has_a_small_head,has a small head
-can_cause_much_hinder,can cause much hinder
-lives_in_australia,lives in australia
-incites_fear,incites fear
-small_and_large_kinds,small and large kinds
-frightens_people,frightens people
-has_legs.1,has legs.1
-is_an_animal_of_prey,is an animal of prey
-has_many_colours,has many colours
-is_beautiful,is beautiful
-is_fast,is fast
-has_four_paws,has four paws
-is_small.1,is small.1
-can_be_made_of_different_tissues,can be made of different tissues
-can_be_used_as_weapon,can be used as weapon
-can_harm,can harm
-can_hurt,can hurt
-can_injure,can injure
-has_a_dark_color,has a dark color
-is_blue.1,is blue.1
-is_dangerous_for_children,is dangerous for children
-is_made_of_iron,is made of iron
-is_popular__,is popular
-is_silver-coloured,is silver-coloured
-is_straight,is straight
+you_can_bust_things_with_it,you can bust things with it
 you_can_get_injured_by_it,you can get injured by it
-you_can_injure_someone_with_it,you can injure someone with it
-occasionally_occurs_in_films,occasionally occurs in films
-is_slippery,is slippery
-has_small_paws,has small paws
-has_little_eyes,has little eyes
-seems_mean,seems mean
-hides_easily,hides easily
-swims_in_rivers,swims in rivers
-is_bigger_than_a_chicken,is bigger than a chicken
-is_dangerous_to_people,is dangerous to people
-is_a_scavenging_animal,is a scavenging animal
-doesn't_make_a_sound,doesn't make a sound
-can_have_different_colors,can have different colors
-can_be_used_by_anyone,can be used by anyone
-has_a_head.1,has a head.1
-used_in_the_house,used in the house
-has_a_flat_head,has a flat head
-writhes_(twists),writhes (twists)
-is_elongated,is elongated
-can_be_used_to_threaten_somebody,can be used to threaten somebody
-found_in_a_tool_box,found in a tool box
-is_black.1,is black.1
-is_derived_from_a__verb,is derived from a  verb
-is_powerful,is powerful
-is_tiring_to_use,is tiring to use
-used_by_carpenters,used by carpenters
-used_by_carpenters.1,used by carpenters.1
-can_hurt_you,can hurt you
-comes_in_different_lengths,comes in different lengths
-is_dangerous_for_the_fingers,is dangerous for the fingers
-is_easy_to_wash,is easy to wash
-lives_in_Europe,lives in Europe
-is_light,is light
-protected_species,protected species
-is_a_salt-water_fish,is a salt-water fish
-digs_holes,digs holes
-lays_eggs_in_sand,lays eggs in sand
-is_fin-footed,is fin-footed
-appears_in_fairy_tales_and_stories,appears in fairy tales and stories
+you_have_to_be_strong_to_use_it,you have to be strong to use it
