@@ -91,7 +91,8 @@ async def run(args):
         if os.path.exists(out) and not args.overwrite:
             print(f"[skip] {out} exists")
             continue
-        jobs = build_jobs(method, feature_sample=args.feature_sample)
+        jobs = build_jobs(method, feature_sample=args.feature_sample,
+                          feature_file=args.feature_file)
         done = {"n": 0}
 
         async def one_logged(prompt, method, total):
@@ -118,6 +119,9 @@ def main():
     ap.add_argument("--model", required=True)
     ap.add_argument("--methods", nargs="+", default=["triplet", "pairwise", "feature"])
     ap.add_argument("--feature_sample", type=int, default=0)
+    ap.add_argument("--feature_file", default="features.csv",
+                    help="feature list under data/stimuli/ "
+                         "(e.g. features_discriminative.csv)")
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--concurrency", type=int, default=16)
     ap.add_argument("--reasoning_effort", default="low",

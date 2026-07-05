@@ -19,12 +19,15 @@ def load_concepts() -> List[str]:
         return [ln.strip() for ln in f if ln.strip()]
 
 
-def build_jobs(method: str, feature_sample: int = 0) -> List[Tuple[Tuple[str, ...], str]]:
+def build_jobs(method: str, feature_sample: int = 0,
+               feature_file: str = "features.csv") -> List[Tuple[Tuple[str, ...], str]]:
     """Return a list of ((input tuple), prompt string) for a method.
 
     triplet  -> rows of (anchor, c1, c2) from triplets.csv
     pairwise -> rows of (a, b) from pairs.csv
-    feature  -> cartesian product of features x concepts (optionally sampled)
+    feature  -> cartesian product of features x concepts. `feature_file` selects
+                which feature list (e.g. features_discriminative.csv); feature_sample
+                caps the number of features used (0 = all).
     """
     builder, arity = BUILDERS[method]
     jobs = []
@@ -38,7 +41,7 @@ def build_jobs(method: str, feature_sample: int = 0) -> List[Tuple[Tuple[str, ..
             jobs.append(((a, b), builder(a, b)))
     elif method == "feature":
         concepts = load_concepts()
-        feats = [r[0] for r in _read_rows(os.path.join(STIM, "features.csv"))]
+        feats = [r[0] for r in _read_rows(os.path.join(STIM, feature_file))]
         if feature_sample and feature_sample < len(feats):
             feats = feats[:feature_sample]
         for feat in feats:

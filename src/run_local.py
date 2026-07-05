@@ -49,7 +49,10 @@ def main():
     ap.add_argument("--model", required=True)
     ap.add_argument("--methods", nargs="+", default=["triplet", "pairwise", "feature"])
     ap.add_argument("--feature_sample", type=int, default=0,
-                    help="use only first N features (0 = all 764)")
+                    help="use only first N features (0 = all in the file)")
+    ap.add_argument("--feature_file", default="features.csv",
+                    help="feature list under data/stimuli/ "
+                         "(e.g. features_discriminative.csv)")
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--tensor_parallel", type=int, default=1)
     ap.add_argument("--max_model_len", type=int, default=4096)
@@ -103,7 +106,8 @@ def main():
     )
 
     for method in todo:
-        jobs = build_jobs(method, feature_sample=args.feature_sample)
+        jobs = build_jobs(method, feature_sample=args.feature_sample,
+                          feature_file=args.feature_file)
         prompts = [p for _, p in jobs]
         sp = SamplingParams(temperature=args.temperature, max_tokens=MAX_TOKENS[method])
 
