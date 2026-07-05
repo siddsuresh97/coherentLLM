@@ -14,6 +14,9 @@ results/embeddings/
 *.pt
 .env
 *_KEY
+*_key
+.openrouter_key
 *OPENROUTER*
+*openrouter*
 secrets.yaml
 .ipynb_checkpoints/

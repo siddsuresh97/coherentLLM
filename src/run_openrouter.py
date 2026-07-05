@@ -24,7 +24,10 @@ from stimuli import build_jobs  # noqa: E402
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW = os.path.join(HERE, "results", "raw")
-MAX_TOKENS = {"triplet": 8, "pairwise": 8, "feature": 8}
+# Reasoning models (GPT-5.x, o-series) spend output tokens on hidden reasoning
+# before emitting the answer, so a tiny cap returns empty content. Give generous
+# headroom; the answer is still parsed to a single word/number downstream.
+MAX_TOKENS = {"triplet": 2048, "pairwise": 2048, "feature": 2048}
 
 
 def load_registry():
@@ -65,6 +68,9 @@ async def run(args):
             if args.temperature is not None:
                 kwargs["temperature"] = args.temperature
             kwargs["max_tokens"] = MAX_TOKENS[method]
+            if args.reasoning_effort:
+                # OpenRouter passes this through to reasoning models; ignored by others.
+                kwargs["extra_body"] = {"reasoning": {"effort": args.reasoning_effort}}
             try:
                 r = await client.chat.completions.create(**kwargs)
             except Exception as e:
@@ -86,7 +92,18 @@ async def run(args):
             print(f"[skip] {out} exists")
             continue
         jobs = build_jobs(method, feature_sample=args.feature_sample)
-        tasks = [one(p, method) for _, p in jobs]
+        done = {"n": 0}
+
+        async def one_logged(prompt, method, total):
+            r = await one(prompt, method)
+            done["n"] += 1
+            if done["n"] % 200 == 0 or done["n"] == total:
+                print(f"[{method}] {done['n']}/{total}", flush=True)
+            return r
+
+        total = len(jobs)
+        print(f"[{method}] starting {total} calls", flush=True)
+        tasks = [one_logged(p, method, total) for _, p in jobs]
         responses = await asyncio.gather(*tasks)
         with open(out, "w", newline="") as f:
             w = csv.writer(f)
@@ -103,6 +120,9 @@ def main():
     ap.add_argument("--feature_sample", type=int, default=0)
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--concurrency", type=int, default=16)
+    ap.add_argument("--reasoning_effort", default="low",
+                    help="reasoning effort for reasoning models (low/medium/high); "
+                         "empty string to omit")
     ap.add_argument("--key_file", default=None)
     ap.add_argument("--overwrite", action="store_true")
     args = ap.parse_args()
