@@ -26,3 +26,11 @@ qwen2.5-7b-instruct,pairwise,feature,-0.0255742556083188
 qwen2.5-7b-instruct,feature,triplet,0.0771518314804456
 qwen2.5-7b-instruct,feature,pairwise,-0.025574255608318802
 qwen2.5-7b-instruct,feature,feature,1.0
+claude-opus-4.8,triplet,triplet,1.0
+claude-opus-4.8,triplet,pairwise,0.7718513160787821
+claude-opus-4.8,pairwise,triplet,0.771851316078782
+claude-opus-4.8,pairwise,pairwise,1.0
+gpt-5.5,triplet,triplet,1.0
+gpt-5.5,triplet,pairwise,0.8181580366372226
+gpt-5.5,pairwise,triplet,0.8181580366372226
+gpt-5.5,pairwise,pairwise,1.0
