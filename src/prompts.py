@@ -25,6 +25,17 @@ def pairwise_prompt(a: str, b: str) -> str:
     )
 
 
+def listing_prompt(concept: str) -> str:
+    """Free feature listing: ask the model to list the properties of a concept.
+
+    Kept close to classic feature-norm elicitation (McRae/Leuven style): ask for
+    a plain list of properties, one per line."""
+    return (
+        f"List the features and properties of a {concept}. "
+        "Give a plain list, one property per line, no explanations."
+    )
+
+
 def feature_prompt(feature: str, concept: str) -> str:
     """True/False feature verification (one-shot, matching the paper)."""
     return (
