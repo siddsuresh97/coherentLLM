@@ -52,7 +52,10 @@ def main():
                     help="use only first N features (0 = all in the file)")
     ap.add_argument("--feature_file", default="features.csv",
                     help="feature list under data/stimuli/ "
-                         "(e.g. features_discriminative.csv)")
+                         "(e.g. features_leuven300.csv)")
+    ap.add_argument("--feature_batch", type=int, default=0,
+                    help="if >0, batch this many features per call (e.g. 20) for the "
+                         "feature method to cut call count")
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--tensor_parallel", type=int, default=1)
     ap.add_argument("--max_model_len", type=int, default=4096)
@@ -105,23 +108,46 @@ def main():
         trust_remote_code=True,
     )
 
+    def run_prompts(prompts, max_tokens):
+        sp = SamplingParams(temperature=args.temperature, max_tokens=max_tokens)
+        if spec.get("chat", True):
+            convos = [[{"role": "system", "content": SYSTEM_PROMPT},
+                       {"role": "user", "content": p}] for p in prompts]
+            return llm.chat(convos, sp)
+        return llm.generate(prompts, sp)
+
     for method in todo:
+        out = os.path.join(outdir, f"{method}.csv")
+
+        if method == "feature" and args.feature_batch:
+            # Batched: one call marks True/False for a block of features per concept.
+            from feature_batch import make_batches, parse_batch
+            from stimuli import load_concepts, _read_rows
+            concepts = load_concepts()
+            feats = [r[0] for r in _read_rows(os.path.join(
+                HERE, "data", "stimuli", args.feature_file))]
+            if args.feature_sample:
+                feats = feats[:args.feature_sample]
+            batches = list(make_batches(feats, concepts, block=args.feature_batch))
+            outputs = run_prompts([p for _, _, p in batches],
+                                  max_tokens=8 * args.feature_batch + 32)
+            with open(out, "w", newline="") as f:
+                w = csv.writer(f)
+                w.writerow(["input", "prompt", "response"])
+                n = 0
+                for (concept, chunk, prompt), o in zip(batches, outputs):
+                    resp = o.outputs[0].text.strip()
+                    for feat, val in parse_batch(resp, chunk):
+                        w.writerow([f"{feat}|{concept}", prompt,
+                                    "True" if val else "False"])
+                        n += 1
+            print(f"[done] {method} (batched x{args.feature_batch}): "
+                  f"{len(batches)} calls -> {n} rows -> {out}")
+            continue
+
         jobs = build_jobs(method, feature_sample=args.feature_sample,
                           feature_file=args.feature_file)
-        prompts = [p for _, p in jobs]
-        sp = SamplingParams(temperature=args.temperature, max_tokens=MAX_TOKENS[method])
-
-        if spec.get("chat", True):
-            convos = [
-                [{"role": "system", "content": SYSTEM_PROMPT},
-                 {"role": "user", "content": p}]
-                for p in prompts
-            ]
-            outputs = llm.chat(convos, sp)
-        else:
-            outputs = llm.generate(prompts, sp)
-
-        out = os.path.join(outdir, f"{method}.csv")
+        outputs = run_prompts([p for _, p in jobs], max_tokens=MAX_TOKENS[method])
         with open(out, "w", newline="") as f:
             w = csv.writer(f)
             w.writerow(["input", "prompt", "response"])

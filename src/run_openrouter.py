@@ -86,22 +86,51 @@ async def run(args):
     outdir = os.path.join(RAW, args.model)
     os.makedirs(outdir, exist_ok=True)
 
+    done = {"n": 0}
+
+    async def one_logged(prompt, method, total):
+        r = await one(prompt, method)
+        done["n"] += 1
+        if done["n"] % 100 == 0 or done["n"] == total:
+            print(f"[{method}] {done['n']}/{total}", flush=True)
+        return r
+
     for method in args.methods:
         out = os.path.join(outdir, f"{method}.csv")
         if os.path.exists(out) and not args.overwrite:
             print(f"[skip] {out} exists")
             continue
+
+        if method == "feature" and args.feature_batch:
+            from feature_batch import make_batches, parse_batch
+            from stimuli import load_concepts, _read_rows
+            concepts = load_concepts()
+            feats = [r[0] for r in _read_rows(os.path.join(
+                HERE, "data", "stimuli", args.feature_file))]
+            if args.feature_sample:
+                feats = feats[:args.feature_sample]
+            batches = list(make_batches(feats, concepts, block=args.feature_batch))
+            done["n"] = 0
+            total = len(batches)
+            print(f"[feature] starting {total} batched calls", flush=True)
+            tasks = [one_logged(p, "feature", total) for _, _, p in batches]
+            responses = await asyncio.gather(*tasks)
+            with open(out, "w", newline="") as f:
+                w = csv.writer(f)
+                w.writerow(["input", "prompt", "response"])
+                n = 0
+                for (concept, chunk, prompt), resp in zip(batches, responses):
+                    for feat, val in parse_batch(resp, chunk):
+                        w.writerow([f"{feat}|{concept}", prompt,
+                                    "True" if val else "False"])
+                        n += 1
+            print(f"[done] feature (batched x{args.feature_batch}): "
+                  f"{total} calls -> {n} rows -> {out}")
+            continue
+
         jobs = build_jobs(method, feature_sample=args.feature_sample,
                           feature_file=args.feature_file)
-        done = {"n": 0}
-
-        async def one_logged(prompt, method, total):
-            r = await one(prompt, method)
-            done["n"] += 1
-            if done["n"] % 200 == 0 or done["n"] == total:
-                print(f"[{method}] {done['n']}/{total}", flush=True)
-            return r
-
+        done["n"] = 0
         total = len(jobs)
         print(f"[{method}] starting {total} calls", flush=True)
         tasks = [one_logged(p, method, total) for _, p in jobs]
@@ -121,7 +150,9 @@ def main():
     ap.add_argument("--feature_sample", type=int, default=0)
     ap.add_argument("--feature_file", default="features.csv",
                     help="feature list under data/stimuli/ "
-                         "(e.g. features_discriminative.csv)")
+                         "(e.g. features_leuven300.csv)")
+    ap.add_argument("--feature_batch", type=int, default=0,
+                    help="if >0, batch this many features per call for the feature method")
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--concurrency", type=int, default=16)
     ap.add_argument("--reasoning_effort", default="low",
