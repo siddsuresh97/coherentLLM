@@ -44,25 +44,35 @@ def resolve_model_path(repo_id, hf_cache):
     return repo_id
 
 
-def seq_logprob(llm, prompt, completion):
-    """Sum log-prob of `completion` tokens conditioned on `prompt`, via one
-    prompt_logprobs pass over prompt+completion."""
+def _mean_logprob(llm, prompt, completion):
+    """Mean per-token log-prob of `completion` conditioned on `prompt`.
+
+    Tokenize prompt and prompt+completion separately to get the exact completion
+    token span, then read those tokens' logprobs from a prompt_logprobs pass.
+    Returns -inf if the span is empty (so it can never spuriously win an argmax).
+    Length-normalized (mean) so completions of different token counts compare fairly.
+    """
     from vllm import SamplingParams
-    full = prompt + completion
-    sp = SamplingParams(temperature=0, max_tokens=1, prompt_logprobs=0)
-    out = llm.generate([full], sp)[0]
-    pls = out.prompt_logprobs  # list per token; first is None
-    # count tokens belonging to the prompt alone to know where completion starts
     tok = llm.get_tokenizer()
-    n_prompt = len(tok(prompt)["input_ids"])
-    total = 0.0
-    for i, d in enumerate(pls):
-        if i < n_prompt or not d:
-            continue
-        # d maps token_id -> Logprob; take the realized token's logprob
-        lp = next(iter(d.values()))
-        total += lp.logprob
-    return total
+    p_ids = tok(prompt, add_special_tokens=True)["input_ids"]
+    full_ids = tok(prompt + completion, add_special_tokens=True)["input_ids"]
+    start = len(p_ids)
+    if len(full_ids) <= start:
+        return float("-inf")
+    sp = SamplingParams(temperature=0, max_tokens=1, prompt_logprobs=0)
+    out = llm.generate([prompt + completion], sp)[0]
+    pls = out.prompt_logprobs
+    lps = []
+    for i in range(start, len(full_ids)):
+        if i < len(pls) and pls[i]:
+            lps.append(next(iter(pls[i].values())).logprob)
+    if not lps:
+        return float("-inf")
+    return sum(lps) / len(lps)
+
+
+def seq_logprob(llm, prompt, completion):
+    return _mean_logprob(llm, prompt, completion)
 
 
 def main():
