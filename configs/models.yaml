@@ -26,6 +26,7 @@ local:
     path: Qwen/Qwen2.5-7B-Instruct
     chat: true
     download: true
+    params_b: 7
   qwen2.5-14b-instruct:
     path: Qwen/Qwen2.5-14B-Instruct
     chat: true
@@ -73,6 +74,56 @@ local:
     stage: dpo
   tulu3-8b-final:
     path: allenai/Llama-3.1-Tulu-3-8B
+    chat: true
+    download: true
+    stage: rlvr
+  # --- Qwen2.5-Instruct SIZE ladder (same recipe, params vary) ---
+  qwen2.5-0.5b-instruct:
+    path: Qwen/Qwen2.5-0.5B-Instruct
+    chat: true
+    download: true
+    params_b: 0.5
+  qwen2.5-1.5b-instruct:
+    path: Qwen/Qwen2.5-1.5B-Instruct
+    chat: true
+    download: true
+    params_b: 1.5
+  qwen2.5-3b-instruct:
+    path: Qwen/Qwen2.5-3B-Instruct
+    chat: true
+    download: true
+    params_b: 3
+  # qwen2.5-7b-instruct already registered above (params_b 7)
+  qwen2.5-14b-instruct-size:
+    path: Qwen/Qwen2.5-14B-Instruct
+    chat: true
+    download: true
+    params_b: 14
+  qwen2.5-32b-instruct:
+    path: Qwen/Qwen2.5-32B-Instruct
+    chat: true
+    quantization: bitsandbytes
+    big_env: true
+    download: true
+    params_b: 32
+  # --- OLMo-2-13B lineage (size x tuning-stage) ---
+  olmo2-13b-base:
+    path: allenai/OLMo-2-1124-13B
+    chat: false
+    download: true
+    stage: base
+  olmo2-13b-sft:
+    path: allenai/OLMo-2-1124-13B-SFT
+    chat: true
+    download: true
+    stage: sft
+  olmo2-13b-dpo:
+    path: allenai/OLMo-2-1124-13B-DPO
+    chat: true
+    download: true
+    stage: dpo
+  olmo2-13b-instruct:
+    path: allenai/OLMo-2-1124-13B-Instruct
     chat: true
     download: true
     stage: rlvr
