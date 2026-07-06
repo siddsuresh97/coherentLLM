@@ -56,6 +56,9 @@ def main():
     ap.add_argument("--feature_batch", type=int, default=0,
                     help="if >0, batch this many features per call (e.g. 20) for the "
                          "feature method to cut call count")
+    ap.add_argument("--pairs_file", default=None,
+                    help="per-model (feature,concept) pairs file under the model's raw "
+                         "dir (e.g. verify_pairs.csv) for self-verification")
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--tensor_parallel", type=int, default=1)
     ap.add_argument("--max_model_len", type=int, default=4096)
@@ -123,12 +126,28 @@ def main():
             # Batched: one call marks True/False for a block of features per concept.
             from feature_batch import make_batches, parse_batch
             from stimuli import load_concepts, _read_rows
-            concepts = load_concepts()
-            feats = [r[0] for r in _read_rows(os.path.join(
-                HERE, "data", "stimuli", args.feature_file))]
-            if args.feature_sample:
-                feats = feats[:args.feature_sample]
-            batches = list(make_batches(feats, concepts, block=args.feature_batch))
+            if args.pairs_file:
+                # per-model self-verification: read (feature, concept) pairs, batch per concept
+                import collections
+                pairs_path = os.path.join(outdir, args.pairs_file)
+                by_concept = collections.OrderedDict()
+                for feat, concept in _read_rows(pairs_path):
+                    by_concept.setdefault(concept, []).append(feat)
+                batches = []
+                for concept, feats in by_concept.items():
+                    for i in range(0, len(feats), args.feature_batch):
+                        chunk = feats[i:i + args.feature_batch]
+                        from feature_batch import BATCH_INSTRUCTIONS
+                        items = "\n".join(f"{j+1}. {f}" for j, f in enumerate(chunk))
+                        batches.append((concept, chunk,
+                                        BATCH_INSTRUCTIONS.format(concept=concept, items=items)))
+            else:
+                concepts = load_concepts()
+                feats = [r[0] for r in _read_rows(os.path.join(
+                    HERE, "data", "stimuli", args.feature_file))]
+                if args.feature_sample:
+                    feats = feats[:args.feature_sample]
+                batches = list(make_batches(feats, concepts, block=args.feature_batch))
             outputs = run_prompts([p for _, _, p in batches],
                                   max_tokens=8 * args.feature_batch + 32)
             with open(out, "w", newline="") as f:
