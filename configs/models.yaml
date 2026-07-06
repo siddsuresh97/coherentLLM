@@ -58,3 +58,18 @@ openrouter:
     api_model: anthropic/claude-opus-4.8
   claude-sonnet-5:
     api_model: anthropic/claude-sonnet-5-20260630
+  # --- additional frontier / open models via OpenRouter (IDs verified 2026-07-05) ---
+  deepseek-v4-pro:
+    api_model: deepseek/deepseek-v4-pro
+  gpt-oss-120b:
+    api_model: openai/gpt-oss-120b:high
+  minimax-m3:
+    api_model: minimax/minimax-m3
+  kimi-k2.6:
+    api_model: moonshotai/kimi-k2.6
+  glm-5.2:
+    api_model: z-ai/glm-5.2
+  gemini-3.5-flash:
+    api_model: google/gemini-3.5-flash
+  mistral-medium-3:
+    api_model: mistralai/mistral-medium-3
