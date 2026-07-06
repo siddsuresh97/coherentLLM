@@ -1,0 +1,3001 @@
+input,prompt,response
+Shovel|Alligator|Spanner,logprob,Spanner
+Anvil|Caiman|Tortoise,logprob,Caiman
+Nail|Boa python|Snake,logprob,Boa python
+Paint brush|Chisel|Toad,logprob,Chisel
+Shovel|Caiman|Crocodile,logprob,Caiman
+Alligator|Gecko|Salamander,logprob,Salamander
+Cobra|Boa python|Turtle,logprob,Boa python
+Oil can|Grinding disk|Hammer,logprob,Grinding disk
+Paint brush|Lizard|Spanner,logprob,Spanner
+Gecko|Axe|Vacuum,logprob,Axe
+Toad|Caiman|Tortoise,logprob,Tortoise
+Chameleon|Cobra|Shovel,logprob,Shovel
+Anvil|Chisel|Grinding disk,logprob,Chisel
+Saw|Alligator|Caiman,logprob,Caiman
+Paint brush|Lawn Mower|Lizard,logprob,Lawn Mower
+Hammer|Blindworm|Lizard,logprob,Lizard
+Blindworm|Anvil|Axe,logprob,Anvil
+Dinosaur|Anvil|Crocodile,logprob,Crocodile
+Knife|Crocodile|Turtle,logprob,Crocodile
+Anvil|Lizard|Toad,logprob,Toad
+Lizard|Snake|Spanner,logprob,Snake
+Caiman|Gecko|Paint brush,logprob,Paint brush
+Snake|Caiman|Knife,logprob,Caiman
+Knife|Caiman|Crocodile,logprob,Crocodile
+Lawn Mower|Chameleon|Nail,logprob,Chameleon
+Lizard|Turtle|Vacuum,logprob,Turtle
+Gecko|Chisel|Knife,logprob,Chisel
+Tortoise|Blindworm|Paint brush,logprob,Blindworm
+Dinosaur|Gecko|Knife,logprob,Gecko
+Oil can|Chisel|Crocodile,logprob,Chisel
+Chisel|Alligator|Saw,logprob,Alligator
+Tortoise|Grinding disk|Oil can,logprob,Oil can
+Grinding disk|Blindworm|Oil can,logprob,Oil can
+Toad|Hammer|Lawn Mower,logprob,Lawn Mower
+Knife|Gecko|Lizard,logprob,Lizard
+Caiman|Chameleon|Spanner,logprob,Chameleon
+Oil can|Chisel|Gecko,logprob,Chisel
+Crocodile|Grinding disk|Turtle,logprob,Turtle
+Nail|Knife|Lawn Mower,logprob,Lawn Mower
+Snake|Knife|Oil can,logprob,Oil can
+Lawn Mower|Axe|Caiman,logprob,Caiman
+Anvil|Lizard|Saw,logprob,Lizard
+Shovel|Cobra|Toad,logprob,Toad
+Alligator|Blindworm|Lawn Mower,logprob,Lawn Mower
+Crocodile|Cobra|Salamander,logprob,Salamander
+Caiman|Chisel|Salamander,logprob,Salamander
+Chisel|Paint brush|Saw,logprob,Saw
+Grinding disk|Blindworm|Knife,logprob,Knife
+Saw|Gecko|Salamander,logprob,Salamander
+Knife|Lawn Mower|Vacuum,logprob,Lawn Mower
+Crocodile|Hammer|Spanner,logprob,Spanner
+Grinding disk|Hammer|Screwdriver,logprob,Screwdriver
+Toad|Paint brush|Tortoise,logprob,Tortoise
+Screwdriver|Axe|Dinosaur,logprob,Dinosaur
+Oil can|Axe|Snake,logprob,Axe
+Nail|Dinosaur|Oil can,logprob,Dinosaur
+Oil can|Snake|Toad,logprob,Toad
+Axe|Gecko|Vacuum,logprob,Gecko
+Toad|Caiman|Oil can,logprob,Caiman
+Shovel|Dinosaur|Lawn Mower,logprob,Lawn Mower
+Hammer|Anvil|Lizard,logprob,Anvil
+Salamander|Blindworm|Tortoise,logprob,Tortoise
+Chameleon|Boa python|Toad,logprob,Toad
+Crocodile|Alligator|Screwdriver,logprob,Alligator
+Lizard|Gecko|Turtle,logprob,Gecko
+Crocodile|Gecko|Turtle,logprob,Turtle
+Anvil|Crocodile|Grinding disk,logprob,Crocodile
+Anvil|Caiman|Knife,logprob,Caiman
+Salamander|Alligator|Nail,logprob,Alligator
+Grinding disk|Axe|Dinosaur,logprob,Dinosaur
+Snake|Chisel|Vacuum,logprob,Chisel
+Toad|Crocodile|Lizard,logprob,Crocodile
+Axe|Salamander|Turtle,logprob,Salamander
+Saw|Cobra|Turtle,logprob,Cobra
+Blindworm|Caiman|Cobra,logprob,Caiman
+Chameleon|Alligator|Oil can,logprob,Alligator
+Lawn Mower|Cobra|Screwdriver,logprob,Screwdriver
+Screwdriver|Paint brush|Salamander,logprob,Salamander
+Lawn Mower|Anvil|Knife,logprob,Anvil
+Snake|Boa python|Chameleon,logprob,Chameleon
+Vacuum|Lizard|Paint brush,logprob,Lizard
+Boa python|Dinosaur|Saw,logprob,Dinosaur
+Blindworm|Salamander|Snake,logprob,Salamander
+Nail|Lizard|Screwdriver,logprob,Lizard
+Chameleon|Knife|Oil can,logprob,Oil can
+Chisel|Knife|Lawn Mower,logprob,Lawn Mower
+Knife|Anvil|Axe,logprob,Anvil
+Nail|Cobra|Crocodile,logprob,Crocodile
+Lizard|Hammer|Nail,logprob,Hammer
+Nail|Spanner|Turtle,logprob,Spanner
+Crocodile|Salamander|Tortoise,logprob,Salamander
+Tortoise|Chisel|Spanner,logprob,Spanner
+Gecko|Anvil|Cobra,logprob,Anvil
+Caiman|Lizard|Shovel,logprob,Lizard
+Snake|Paint brush|Vacuum,logprob,Paint brush
+Saw|Alligator|Toad,logprob,Toad
+Chisel|Blindworm|Boa python,logprob,Boa python
+Boa python|Nail|Shovel,logprob,Shovel
+Dinosaur|Lawn Mower|Vacuum,logprob,Lawn Mower
+Oil can|Chameleon|Grinding disk,logprob,Chameleon
+Grinding disk|Blindworm|Cobra,logprob,Blindworm
+Chameleon|Grinding disk|Toad,logprob,Toad
+Toad|Gecko|Shovel,logprob,Shovel
+Toad|Axe|Salamander,logprob,Salamander
+Chisel|Alligator|Lawn Mower,logprob,Lawn Mower
+Chisel|Anvil|Oil can,logprob,Anvil
+Paint brush|Caiman|Vacuum,logprob,Caiman
+Knife|Alligator|Gecko,logprob,Alligator
+Hammer|Blindworm|Salamander,logprob,Salamander
+Nail|Crocodile|Knife,logprob,Crocodile
+Crocodile|Alligator|Grinding disk,logprob,Alligator
+Alligator|Boa python|Chameleon,logprob,Chameleon
+Saw|Toad|Tortoise,logprob,Tortoise
+Turtle|Knife|Salamander,logprob,Salamander
+Anvil|Lawn Mower|Snake,logprob,Lawn Mower
+Hammer|Chameleon|Crocodile,logprob,Crocodile
+Grinding disk|Salamander|Saw,logprob,Salamander
+Crocodile|Lizard|Shovel,logprob,Lizard
+Blindworm|Boa python|Lawn Mower,logprob,Boa python
+Dinosaur|Crocodile|Shovel,logprob,Crocodile
+Oil can|Anvil|Chameleon,logprob,Anvil
+Lizard|Caiman|Grinding disk,logprob,Caiman
+Shovel|Cobra|Spanner,logprob,Spanner
+Chameleon|Chisel|Gecko,logprob,Gecko
+Lawn Mower|Knife|Snake,logprob,Knife
+Salamander|Alligator|Blindworm,logprob,Alligator
+Tortoise|Axe|Oil can,logprob,Oil can
+Crocodile|Lawn Mower|Lizard,logprob,Lizard
+Saw|Blindworm|Boa python,logprob,Boa python
+Dinosaur|Snake|Spanner,logprob,Spanner
+Salamander|Toad|Turtle,logprob,Toad
+Vacuum|Spanner|Turtle,logprob,Spanner
+Snake|Boa python|Paint brush,logprob,Boa python
+Salamander|Axe|Oil can,logprob,Oil can
+Axe|Dinosaur|Gecko,logprob,Dinosaur
+Chameleon|Knife|Nail,logprob,Nail
+Paint brush|Knife|Oil can,logprob,Oil can
+Tortoise|Blindworm|Cobra,logprob,Blindworm
+Oil can|Dinosaur|Vacuum,logprob,Dinosaur
+Lizard|Axe|Spanner,logprob,Spanner
+Caiman|Cobra|Turtle,logprob,Turtle
+Lizard|Snake|Toad,logprob,Toad
+Saw|Nail|Salamander,logprob,Salamander
+Shovel|Dinosaur|Saw,logprob,Dinosaur
+Knife|Anvil|Gecko,logprob,Anvil
+Saw|Hammer|Turtle,logprob,Hammer
+Lawn Mower|Gecko|Snake,logprob,Snake
+Paint brush|Knife|Tortoise,logprob,Tortoise
+Turtle|Boa python|Vacuum,logprob,Boa python
+Chameleon|Hammer|Snake,logprob,Snake
+Screwdriver|Crocodile|Lizard,logprob,Lizard
+Nail|Lizard|Paint brush,logprob,Lizard
+Blindworm|Spanner|Turtle,logprob,Spanner
+Lizard|Knife|Saw,logprob,Saw
+Anvil|Chisel|Tortoise,logprob,Chisel
+Alligator|Axe|Saw,logprob,Axe
+Nail|Grinding disk|Tortoise,logprob,Tortoise
+Saw|Dinosaur|Shovel,logprob,Dinosaur
+Axe|Gecko|Turtle,logprob,Turtle
+Axe|Alligator|Oil can,logprob,Alligator
+Knife|Anvil|Paint brush,logprob,Anvil
+Blindworm|Lawn Mower|Lizard,logprob,Lizard
+Chameleon|Anvil|Vacuum,logprob,Anvil
+Boa python|Chisel|Grinding disk,logprob,Chisel
+Snake|Crocodile|Lawn Mower,logprob,Crocodile
+Oil can|Caiman|Chisel,logprob,Caiman
+Paint brush|Crocodile|Turtle,logprob,Crocodile
+Caiman|Gecko|Vacuum,logprob,Gecko
+Oil can|Cobra|Salamander,logprob,Salamander
+Nail|Dinosaur|Toad,logprob,Dinosaur
+Salamander|Blindworm|Hammer,logprob,Blindworm
+Oil can|Alligator|Paint brush,logprob,Paint brush
+Hammer|Oil can|Snake,logprob,Oil can
+Vacuum|Boa python|Shovel,logprob,Shovel
+Dinosaur|Chisel|Paint brush,logprob,Chisel
+Turtle|Axe|Hammer,logprob,Hammer
+Oil can|Cobra|Grinding disk,logprob,Grinding disk
+Nail|Anvil|Chisel,logprob,Chisel
+Hammer|Blindworm|Toad,logprob,Toad
+Toad|Blindworm|Cobra,logprob,Blindworm
+Salamander|Snake|Turtle,logprob,Snake
+Saw|Anvil|Snake,logprob,Anvil
+Chameleon|Blindworm|Boa python,logprob,Boa python
+Crocodile|Dinosaur|Vacuum,logprob,Dinosaur
+Hammer|Alligator|Nail,logprob,Alligator
+Snake|Spanner|Vacuum,logprob,Spanner
+Anvil|Chameleon|Dinosaur,logprob,Dinosaur
+Tortoise|Hammer|Screwdriver,logprob,Screwdriver
+Chisel|Salamander|Screwdriver,logprob,Screwdriver
+Spanner|Saw|Screwdriver,logprob,Screwdriver
+Shovel|Knife|Oil can,logprob,Knife
+Shovel|Blindworm|Gecko,logprob,Blindworm
+Spanner|Caiman|Screwdriver,logprob,Caiman
+Paint brush|Caiman|Crocodile,logprob,Caiman
+Anvil|Alligator|Boa python,logprob,Alligator
+Boa python|Hammer|Toad,logprob,Toad
+Gecko|Shovel|Tortoise,logprob,Tortoise
+Nail|Crocodile|Spanner,logprob,Crocodile
+Crocodile|Shovel|Snake,logprob,Shovel
+Turtle|Snake|Vacuum,logprob,Snake
+Gecko|Hammer|Oil can,logprob,Oil can
+Blindworm|Gecko|Nail,logprob,Gecko
+Anvil|Paint brush|Salamander,logprob,Salamander
+Snake|Anvil|Lawn Mower,logprob,Lawn Mower
+Screwdriver|Blindworm|Grinding disk,logprob,Blindworm
+Boa python|Caiman|Chameleon,logprob,Caiman
+Gecko|Cobra|Spanner,logprob,Spanner
+Chameleon|Dinosaur|Shovel,logprob,Dinosaur
+Tortoise|Alligator|Lizard,logprob,Lizard
+Paint brush|Boa python|Caiman,logprob,Caiman
+Caiman|Hammer|Turtle,logprob,Turtle
+Knife|Crocodile|Spanner,logprob,Crocodile
+Snake|Alligator|Chisel,logprob,Alligator
+Lizard|Axe|Nail,logprob,Axe
+Chisel|Lawn Mower|Oil can,logprob,Lawn Mower
+Knife|Anvil|Shovel,logprob,Shovel
+Chisel|Caiman|Spanner,logprob,Spanner
+Blindworm|Boa python|Grinding disk,logprob,Boa python
+Shovel|Oil can|Salamander,logprob,Salamander
+Chisel|Oil can|Toad,logprob,Toad
+Nail|Blindworm|Grinding disk,logprob,Grinding disk
+Cobra|Chameleon|Dinosaur,logprob,Chameleon
+Blindworm|Paint brush|Shovel,logprob,Shovel
+Tortoise|Dinosaur|Toad,logprob,Toad
+Grinding disk|Chisel|Lizard,logprob,Chisel
+Oil can|Hammer|Paint brush,logprob,Paint brush
+Turtle|Alligator|Shovel,logprob,Alligator
+Saw|Anvil|Chisel,logprob,Anvil
+Vacuum|Axe|Gecko,logprob,Gecko
+Nail|Anvil|Dinosaur,logprob,Dinosaur
+Oil can|Alligator|Tortoise,logprob,Tortoise
+Toad|Lawn Mower|Spanner,logprob,Lawn Mower
+Screwdriver|Chameleon|Snake,logprob,Chameleon
+Cobra|Chameleon|Shovel,logprob,Chameleon
+Dinosaur|Knife|Spanner,logprob,Spanner
+Snake|Anvil|Paint brush,logprob,Anvil
+Knife|Grinding disk|Vacuum,logprob,Grinding disk
+Boa python|Hammer|Paint brush,logprob,Paint brush
+Spanner|Boa python|Tortoise,logprob,Tortoise
+Spanner|Boa python|Shovel,logprob,Shovel
+Alligator|Caiman|Toad,logprob,Caiman
+Cobra|Chisel|Paint brush,logprob,Chisel
+Nail|Anvil|Lizard,logprob,Lizard
+Snake|Dinosaur|Screwdriver,logprob,Dinosaur
+Lizard|Cobra|Crocodile,logprob,Crocodile
+Lawn Mower|Chameleon|Saw,logprob,Chameleon
+Toad|Caiman|Chameleon,logprob,Caiman
+Cobra|Alligator|Toad,logprob,Toad
+Axe|Nail|Tortoise,logprob,Tortoise
+Vacuum|Chisel|Crocodile,logprob,Crocodile
+Vacuum|Cobra|Nail,logprob,Cobra
+Axe|Boa python|Nail,logprob,Boa python
+Knife|Alligator|Paint brush,logprob,Alligator
+Dinosaur|Boa python|Grinding disk,logprob,Boa python
+Knife|Crocodile|Gecko,logprob,Crocodile
+Oil can|Chisel|Dinosaur,logprob,Dinosaur
+Nail|Anvil|Screwdriver,logprob,Anvil
+Chisel|Nail|Salamander,logprob,Salamander
+Spanner|Caiman|Vacuum,logprob,Caiman
+Gecko|Chameleon|Nail,logprob,Chameleon
+Oil can|Lizard|Turtle,logprob,Lizard
+Turtle|Alligator|Saw,logprob,Alligator
+Gecko|Oil can|Vacuum,logprob,Oil can
+Salamander|Chisel|Gecko,logprob,Chisel
+Salamander|Axe|Dinosaur,logprob,Dinosaur
+Salamander|Chisel|Vacuum,logprob,Chisel
+Dinosaur|Grinding disk|Paint brush,logprob,Paint brush
+Lizard|Caiman|Cobra,logprob,Caiman
+Nail|Lizard|Shovel,logprob,Lizard
+Spanner|Lawn Mower|Vacuum,logprob,Lawn Mower
+Hammer|Lizard|Paint brush,logprob,Lizard
+Knife|Anvil|Chisel,logprob,Chisel
+Vacuum|Boa python|Turtle,logprob,Boa python
+Gecko|Axe|Screwdriver,logprob,Screwdriver
+Vacuum|Grinding disk|Nail,logprob,Grinding disk
+Oil can|Alligator|Grinding disk,logprob,Alligator
+Paint brush|Blindworm|Spanner,logprob,Spanner
+Shovel|Grinding disk|Toad,logprob,Toad
+Paint brush|Caiman|Spanner,logprob,Caiman
+Blindworm|Chisel|Grinding disk,logprob,Chisel
+Tortoise|Lizard|Toad,logprob,Lizard
+Saw|Lawn Mower|Paint brush,logprob,Lawn Mower
+Vacuum|Alligator|Salamander,logprob,Salamander
+Knife|Nail|Paint brush,logprob,Paint brush
+Vacuum|Axe|Boa python,logprob,Boa python
+Lizard|Caiman|Salamander,logprob,Salamander
+Chameleon|Lizard|Toad,logprob,Lizard
+Snake|Caiman|Dinosaur,logprob,Dinosaur
+Lizard|Lawn Mower|Nail,logprob,Lawn Mower
+Vacuum|Anvil|Chisel,logprob,Anvil
+Screwdriver|Knife|Tortoise,logprob,Tortoise
+Axe|Grinding disk|Salamander,logprob,Salamander
+Snake|Alligator|Knife,logprob,Alligator
+Grinding disk|Caiman|Saw,logprob,Caiman
+Alligator|Grinding disk|Tortoise,logprob,Tortoise
+Shovel|Oil can|Toad,logprob,Toad
+Hammer|Blindworm|Knife,logprob,Blindworm
+Toad|Boa python|Lizard,logprob,Lizard
+Grinding disk|Turtle|Vacuum,logprob,Vacuum
+Axe|Spanner|Turtle,logprob,Spanner
+Lizard|Alligator|Anvil,logprob,Alligator
+Snake|Gecko|Knife,logprob,Gecko
+Lawn Mower|Anvil|Gecko,logprob,Anvil
+Gecko|Chameleon|Knife,logprob,Chameleon
+Snake|Chisel|Hammer,logprob,Chisel
+Chisel|Crocodile|Spanner,logprob,Spanner
+Crocodile|Knife|Saw,logprob,Saw
+Chameleon|Lizard|Tortoise,logprob,Lizard
+Grinding disk|Chameleon|Snake,logprob,Chameleon
+Blindworm|Oil can|Snake,logprob,Snake
+Screwdriver|Chisel|Grinding disk,logprob,Chisel
+Axe|Blindworm|Dinosaur,logprob,Dinosaur
+Cobra|Paint brush|Shovel,logprob,Shovel
+Shovel|Alligator|Axe,logprob,Axe
+Vacuum|Boa python|Caiman,logprob,Caiman
+Nail|Alligator|Chisel,logprob,Alligator
+Chisel|Knife|Turtle,logprob,Knife
+Screwdriver|Spanner|Vacuum,logprob,Spanner
+Shovel|Anvil|Caiman,logprob,Anvil
+Nail|Hammer|Snake,logprob,Snake
+Shovel|Saw|Vacuum,logprob,Saw
+Alligator|Grinding disk|Screwdriver,logprob,Screwdriver
+Lawn Mower|Oil can|Paint brush,logprob,Oil can
+Cobra|Anvil|Spanner,logprob,Anvil
+Hammer|Grinding disk|Spanner,logprob,Spanner
+Shovel|Axe|Oil can,logprob,Axe
+Chisel|Hammer|Tortoise,logprob,Hammer
+Saw|Anvil|Hammer,logprob,Anvil
+Screwdriver|Knife|Snake,logprob,Knife
+Hammer|Axe|Shovel,logprob,Shovel
+Anvil|Saw|Toad,logprob,Toad
+Toad|Crocodile|Grinding disk,logprob,Crocodile
+Tortoise|Saw|Snake,logprob,Snake
+Shovel|Caiman|Grinding disk,logprob,Caiman
+Axe|Alligator|Gecko,logprob,Alligator
+Anvil|Cobra|Toad,logprob,Toad
+Screwdriver|Lawn Mower|Vacuum,logprob,Lawn Mower
+Knife|Lawn Mower|Toad,logprob,Lawn Mower
+Lizard|Alligator|Crocodile,logprob,Crocodile
+Hammer|Anvil|Knife,logprob,Anvil
+Snake|Blindworm|Vacuum,logprob,Blindworm
+Spanner|Knife|Screwdriver,logprob,Screwdriver
+Chameleon|Saw|Snake,logprob,Snake
+Chameleon|Caiman|Spanner,logprob,Caiman
+Boa python|Knife|Turtle,logprob,Turtle
+Snake|Chisel|Oil can,logprob,Chisel
+Hammer|Screwdriver|Toad,logprob,Screwdriver
+Chameleon|Grinding disk|Lawn Mower,logprob,Lawn Mower
+Anvil|Boa python|Turtle,logprob,Boa python
+Saw|Gecko|Tortoise,logprob,Tortoise
+Salamander|Gecko|Hammer,logprob,Gecko
+Knife|Anvil|Hammer,logprob,Anvil
+Blindworm|Dinosaur|Screwdriver,logprob,Dinosaur
+Lizard|Alligator|Nail,logprob,Alligator
+Nail|Hammer|Shovel,logprob,Shovel
+Shovel|Caiman|Chameleon,logprob,Caiman
+Knife|Alligator|Hammer,logprob,Alligator
+Axe|Chisel|Salamander,logprob,Chisel
+Caiman|Paint brush|Shovel,logprob,Shovel
+Nail|Screwdriver|Vacuum,logprob,Screwdriver
+Turtle|Cobra|Salamander,logprob,Salamander
+Oil can|Turtle|Vacuum,logprob,Vacuum
+Snake|Dinosaur|Shovel,logprob,Dinosaur
+Oil can|Blindworm|Knife,logprob,Blindworm
+Nail|Lizard|Turtle,logprob,Lizard
+Snake|Chameleon|Cobra,logprob,Chameleon
+Chisel|Alligator|Turtle,logprob,Alligator
+Knife|Boa python|Gecko,logprob,Boa python
+Nail|Anvil|Gecko,logprob,Anvil
+Hammer|Oil can|Toad,logprob,Toad
+Vacuum|Gecko|Knife,logprob,Knife
+Salamander|Grinding disk|Spanner,logprob,Spanner
+Oil can|Cobra|Lawn Mower,logprob,Lawn Mower
+Lawn Mower|Grinding disk|Hammer,logprob,Hammer
+Chisel|Oil can|Saw,logprob,Saw
+Blindworm|Saw|Shovel,logprob,Shovel
+Nail|Chisel|Snake,logprob,Chisel
+Spanner|Oil can|Screwdriver,logprob,Screwdriver
+Chameleon|Axe|Grinding disk,logprob,Axe
+Anvil|Hammer|Lawn Mower,logprob,Lawn Mower
+Chisel|Dinosaur|Snake,logprob,Dinosaur
+Spanner|Lizard|Toad,logprob,Toad
+Spanner|Dinosaur|Gecko,logprob,Dinosaur
+Chisel|Hammer|Nail,logprob,Hammer
+Vacuum|Blindworm|Lawn Mower,logprob,Lawn Mower
+Nail|Boa python|Screwdriver,logprob,Boa python
+Vacuum|Caiman|Tortoise,logprob,Caiman
+Screwdriver|Crocodile|Shovel,logprob,Shovel
+Lawn Mower|Axe|Saw,logprob,Axe
+Axe|Alligator|Chisel,logprob,Chisel
+Snake|Chameleon|Vacuum,logprob,Chameleon
+Axe|Anvil|Grinding disk,logprob,Anvil
+Chameleon|Hammer|Paint brush,logprob,Paint brush
+Grinding disk|Crocodile|Nail,logprob,Crocodile
+Crocodile|Alligator|Caiman,logprob,Caiman
+Anvil|Turtle|Vacuum,logprob,Turtle
+Shovel|Chameleon|Oil can,logprob,Chameleon
+Chisel|Anvil|Turtle,logprob,Anvil
+Boa python|Alligator|Dinosaur,logprob,Alligator
+Spanner|Grinding disk|Lizard,logprob,Lizard
+Screwdriver|Lawn Mower|Oil can,logprob,Lawn Mower
+Knife|Crocodile|Lizard,logprob,Crocodile
+Chisel|Crocodile|Grinding disk,logprob,Crocodile
+Grinding disk|Blindworm|Crocodile,logprob,Crocodile
+Anvil|Knife|Shovel,logprob,Shovel
+Lawn Mower|Snake|Turtle,logprob,Snake
+Snake|Anvil|Vacuum,logprob,Anvil
+Vacuum|Alligator|Saw,logprob,Alligator
+Blindworm|Axe|Boa python,logprob,Boa python
+Hammer|Screwdriver|Spanner,logprob,Screwdriver
+Chisel|Paint brush|Salamander,logprob,Salamander
+Paint brush|Nail|Salamander,logprob,Salamander
+Chameleon|Dinosaur|Toad,logprob,Toad
+Chameleon|Lizard|Snake,logprob,Lizard
+Lizard|Caiman|Toad,logprob,Caiman
+Oil can|Salamander|Shovel,logprob,Salamander
+Hammer|Blindworm|Snake,logprob,Blindworm
+Anvil|Crocodile|Paint brush,logprob,Crocodile
+Chameleon|Toad|Tortoise,logprob,Tortoise
+Chisel|Anvil|Paint brush,logprob,Anvil
+Shovel|Chisel|Salamander,logprob,Chisel
+Turtle|Cobra|Lawn Mower,logprob,Lawn Mower
+Lizard|Snake|Vacuum,logprob,Snake
+Chameleon|Axe|Saw,logprob,Saw
+Salamander|Hammer|Oil can,logprob,Oil can
+Spanner|Paint brush|Shovel,logprob,Shovel
+Turtle|Anvil|Shovel,logprob,Shovel
+Lawn Mower|Nail|Saw,logprob,Saw
+Blindworm|Lizard|Turtle,logprob,Lizard
+Lizard|Alligator|Axe,logprob,Alligator
+Boa python|Lizard|Nail,logprob,Lizard
+Crocodile|Cobra|Gecko,logprob,Gecko
+Boa python|Caiman|Toad,logprob,Caiman
+Nail|Alligator|Snake,logprob,Alligator
+Spanner|Lawn Mower|Nail,logprob,Lawn Mower
+Grinding disk|Crocodile|Lawn Mower,logprob,Lawn Mower
+Gecko|Hammer|Turtle,logprob,Turtle
+Saw|Crocodile|Dinosaur,logprob,Crocodile
+Toad|Blindworm|Crocodile,logprob,Crocodile
+Blindworm|Turtle|Vacuum,logprob,Turtle
+Hammer|Screwdriver|Vacuum,logprob,Screwdriver
+Saw|Alligator|Spanner,logprob,Alligator
+Spanner|Alligator|Boa python,logprob,Boa python
+Paint brush|Axe|Salamander,logprob,Salamander
+Snake|Cobra|Turtle,logprob,Turtle
+Crocodile|Paint brush|Saw,logprob,Paint brush
+Saw|Cobra|Gecko,logprob,Cobra
+Gecko|Knife|Snake,logprob,Snake
+Alligator|Crocodile|Knife,logprob,Crocodile
+Toad|Nail|Paint brush,logprob,Paint brush
+Chameleon|Chisel|Cobra,logprob,Chisel
+Tortoise|Caiman|Chisel,logprob,Caiman
+Lawn Mower|Dinosaur|Nail,logprob,Dinosaur
+Tortoise|Snake|Turtle,logprob,Turtle
+Crocodile|Blindworm|Salamander,logprob,Salamander
+Blindworm|Salamander|Vacuum,logprob,Salamander
+Salamander|Dinosaur|Lizard,logprob,Lizard
+Spanner|Hammer|Knife,logprob,Hammer
+Paint brush|Axe|Caiman,logprob,Caiman
+Boa python|Alligator|Gecko,logprob,Alligator
+Shovel|Boa python|Hammer,logprob,Hammer
+Lizard|Anvil|Oil can,logprob,Anvil
+Shovel|Cobra|Snake,logprob,Snake
+Cobra|Lizard|Shovel,logprob,Lizard
+Gecko|Dinosaur|Oil can,logprob,Dinosaur
+Knife|Caiman|Lizard,logprob,Caiman
+Axe|Nail|Salamander,logprob,Salamander
+Chisel|Gecko|Shovel,logprob,Shovel
+Spanner|Anvil|Saw,logprob,Anvil
+Screwdriver|Cobra|Toad,logprob,Toad
+Saw|Chisel|Dinosaur,logprob,Dinosaur
+Anvil|Alligator|Shovel,logprob,Shovel
+Blindworm|Alligator|Dinosaur,logprob,Alligator
+Lizard|Axe|Cobra,logprob,Cobra
+Anvil|Caiman|Chameleon,logprob,Caiman
+Alligator|Hammer|Tortoise,logprob,Tortoise
+Toad|Caiman|Saw,logprob,Caiman
+Nail|Caiman|Vacuum,logprob,Caiman
+Hammer|Gecko|Tortoise,logprob,Tortoise
+Chisel|Axe|Toad,logprob,Toad
+Anvil|Saw|Screwdriver,logprob,Screwdriver
+Knife|Chisel|Screwdriver,logprob,Chisel
+Hammer|Anvil|Gecko,logprob,Anvil
+Spanner|Blindworm|Oil can,logprob,Oil can
+Paint brush|Blindworm|Crocodile,logprob,Crocodile
+Chameleon|Salamander|Tortoise,logprob,Salamander
+Alligator|Lawn Mower|Shovel,logprob,Lawn Mower
+Cobra|Boa python|Salamander,logprob,Salamander
+Caiman|Axe|Blindworm,logprob,Blindworm
+Gecko|Hammer|Lizard,logprob,Lizard
+Cobra|Anvil|Vacuum,logprob,Anvil
+Crocodile|Snake|Spanner,logprob,Snake
+Crocodile|Screwdriver|Tortoise,logprob,Tortoise
+Lawn Mower|Dinosaur|Lizard,logprob,Dinosaur
+Snake|Lawn Mower|Vacuum,logprob,Lawn Mower
+Saw|Tortoise|Turtle,logprob,Tortoise
+Vacuum|Nail|Snake,logprob,Snake
+Vacuum|Boa python|Grinding disk,logprob,Boa python
+Lizard|Salamander|Snake,logprob,Salamander
+Screwdriver|Blindworm|Salamander,logprob,Salamander
+Anvil|Boa python|Tortoise,logprob,Tortoise
+Caiman|Alligator|Spanner,logprob,Alligator
+Alligator|Boa python|Hammer,logprob,Boa python
+Boa python|Snake|Turtle,logprob,Snake
+Anvil|Axe|Screwdriver,logprob,Screwdriver
+Axe|Boa python|Hammer,logprob,Boa python
+Tortoise|Grinding disk|Lawn Mower,logprob,Lawn Mower
+Chisel|Axe|Saw,logprob,Saw
+Caiman|Alligator|Knife,logprob,Alligator
+Tortoise|Shovel|Turtle,logprob,Turtle
+Lawn Mower|Crocodile|Nail,logprob,Crocodile
+Axe|Knife|Saw,logprob,Saw
+Alligator|Gecko|Lizard,logprob,Lizard
+Toad|Hammer|Paint brush,logprob,Paint brush
+Nail|Cobra|Screwdriver,logprob,Screwdriver
+Toad|Grinding disk|Turtle,logprob,Turtle
+Chisel|Chameleon|Cobra,logprob,Chameleon
+Spanner|Axe|Shovel,logprob,Shovel
+Nail|Alligator|Cobra,logprob,Alligator
+Anvil|Saw|Vacuum,logprob,Saw
+Screwdriver|Boa python|Caiman,logprob,Caiman
+Chameleon|Oil can|Salamander,logprob,Salamander
+Axe|Anvil|Tortoise,logprob,Anvil
+Turtle|Caiman|Saw,logprob,Caiman
+Lawn Mower|Axe|Snake,logprob,Axe
+Shovel|Caiman|Dinosaur,logprob,Caiman
+Oil can|Cobra|Tortoise,logprob,Tortoise
+Oil can|Caiman|Turtle,logprob,Caiman
+Hammer|Crocodile|Oil can,logprob,Crocodile
+Chisel|Crocodile|Lawn Mower,logprob,Lawn Mower
+Anvil|Chisel|Knife,logprob,Chisel
+Lizard|Anvil|Grinding disk,logprob,Anvil
+Spanner|Caiman|Chameleon,logprob,Caiman
+Oil can|Crocodile|Salamander,logprob,Salamander
+Paint brush|Hammer|Shovel,logprob,Shovel
+Turtle|Gecko|Grinding disk,logprob,Gecko
+Knife|Hammer|Oil can,logprob,Hammer
+Toad|Oil can|Shovel,logprob,Shovel
+Axe|Oil can|Screwdriver,logprob,Screwdriver
+Caiman|Gecko|Spanner,logprob,Spanner
+Dinosaur|Knife|Lawn Mower,logprob,Lawn Mower
+Dinosaur|Blindworm|Grinding disk,logprob,Blindworm
+Chisel|Anvil|Nail,logprob,Anvil
+Blindworm|Hammer|Paint brush,logprob,Paint brush
+Oil can|Dinosaur|Lizard,logprob,Dinosaur
+Alligator|Dinosaur|Grinding disk,logprob,Dinosaur
+Chameleon|Axe|Vacuum,logprob,Axe
+Gecko|Blindworm|Hammer,logprob,Blindworm
+Blindworm|Axe|Oil can,logprob,Oil can
+Saw|Axe|Screwdriver,logprob,Screwdriver
+Vacuum|Chisel|Knife,logprob,Chisel
+Caiman|Hammer|Salamander,logprob,Salamander
+Boa python|Blindworm|Grinding disk,logprob,Blindworm
+Saw|Grinding disk|Lizard,logprob,Lizard
+Boa python|Oil can|Tortoise,logprob,Tortoise
+Gecko|Dinosaur|Spanner,logprob,Dinosaur
+Turtle|Chisel|Screwdriver,logprob,Chisel
+Snake|Screwdriver|Spanner,logprob,Spanner
+Hammer|Cobra|Oil can,logprob,Oil can
+Alligator|Blindworm|Chameleon,logprob,Chameleon
+Shovel|Blindworm|Oil can,logprob,Oil can
+Dinosaur|Chisel|Turtle,logprob,Chisel
+Spanner|Gecko|Lizard,logprob,Lizard
+Salamander|Oil can|Tortoise,logprob,Tortoise
+Nail|Blindworm|Turtle,logprob,Blindworm
+Salamander|Crocodile|Toad,logprob,Crocodile
+Caiman|Salamander|Saw,logprob,Salamander
+Axe|Chisel|Lawn Mower,logprob,Chisel
+Vacuum|Alligator|Snake,logprob,Alligator
+Axe|Caiman|Lawn Mower,logprob,Lawn Mower
+Snake|Crocodile|Spanner,logprob,Crocodile
+Axe|Cobra|Dinosaur,logprob,Dinosaur
+Toad|Anvil|Chisel,logprob,Anvil
+Cobra|Crocodile|Screwdriver,logprob,Crocodile
+Saw|Dinosaur|Spanner,logprob,Dinosaur
+Turtle|Hammer|Tortoise,logprob,Tortoise
+Cobra|Grinding disk|Lizard,logprob,Lizard
+Caiman|Saw|Snake,logprob,Snake
+Grinding disk|Caiman|Lawn Mower,logprob,Lawn Mower
+Tortoise|Paint brush|Shovel,logprob,Shovel
+Lizard|Salamander|Tortoise,logprob,Salamander
+Chameleon|Anvil|Gecko,logprob,Gecko
+Anvil|Axe|Dinosaur,logprob,Dinosaur
+Lawn Mower|Anvil|Hammer,logprob,Anvil
+Salamander|Lizard|Tortoise,logprob,Lizard
+Tortoise|Alligator|Caiman,logprob,Caiman
+Boa python|Grinding disk|Vacuum,logprob,Grinding disk
+Paint brush|Boa python|Hammer,logprob,Boa python
+Grinding disk|Anvil|Crocodile,logprob,Anvil
+Oil can|Hammer|Spanner,logprob,Spanner
+Oil can|Hammer|Nail,logprob,Hammer
+Chisel|Anvil|Crocodile,logprob,Anvil
+Spanner|Blindworm|Turtle,logprob,Blindworm
+Caiman|Hammer|Paint brush,logprob,Paint brush
+Anvil|Axe|Snake,logprob,Axe
+Lizard|Blindworm|Tortoise,logprob,Tortoise
+Snake|Dinosaur|Knife,logprob,Dinosaur
+Chameleon|Blindworm|Gecko,logprob,Gecko
+Oil can|Blindworm|Gecko,logprob,Blindworm
+Toad|Cobra|Dinosaur,logprob,Dinosaur
+Turtle|Boa python|Cobra,logprob,Boa python
+Chisel|Blindworm|Lawn Mower,logprob,Lawn Mower
+Hammer|Grinding disk|Lawn Mower,logprob,Lawn Mower
+Salamander|Chisel|Knife,logprob,Chisel
+Toad|Turtle|Vacuum,logprob,Turtle
+Oil can|Screwdriver|Toad,logprob,Toad
+Chameleon|Blindworm|Shovel,logprob,Shovel
+Anvil|Knife|Vacuum,logprob,Knife
+Paint brush|Knife|Spanner,logprob,Spanner
+Shovel|Lizard|Spanner,logprob,Spanner
+Lawn Mower|Hammer|Oil can,logprob,Oil can
+Chameleon|Knife|Salamander,logprob,Salamander
+Oil can|Shovel|Spanner,logprob,Spanner
+Turtle|Caiman|Cobra,logprob,Caiman
+Gecko|Alligator|Toad,logprob,Alligator
+Cobra|Dinosaur|Lawn Mower,logprob,Lawn Mower
+Paint brush|Shovel|Vacuum,logprob,Shovel
+Salamander|Spanner|Tortoise,logprob,Tortoise
+Knife|Boa python|Caiman,logprob,Caiman
+Toad|Caiman|Vacuum,logprob,Caiman
+Screwdriver|Hammer|Lizard,logprob,Lizard
+Screwdriver|Chisel|Nail,logprob,Chisel
+Lawn Mower|Boa python|Vacuum,logprob,Vacuum
+Chameleon|Alligator|Gecko,logprob,Alligator
+Spanner|Paint brush|Saw,logprob,Paint brush
+Grinding disk|Lawn Mower|Vacuum,logprob,Lawn Mower
+Grinding disk|Lizard|Vacuum,logprob,Lizard
+Caiman|Blindworm|Screwdriver,logprob,Blindworm
+Axe|Boa python|Lizard,logprob,Lizard
+Oil can|Chisel|Snake,logprob,Chisel
+Vacuum|Blindworm|Nail,logprob,Blindworm
+Tortoise|Axe|Snake,logprob,Snake
+Hammer|Cobra|Lizard,logprob,Lizard
+Saw|Boa python|Screwdriver,logprob,Screwdriver
+Vacuum|Knife|Snake,logprob,Snake
+Anvil|Shovel|Toad,logprob,Toad
+Lawn Mower|Caiman|Hammer,logprob,Caiman
+Snake|Dinosaur|Spanner,logprob,Dinosaur
+Blindworm|Caiman|Knife,logprob,Caiman
+Turtle|Axe|Knife,logprob,Axe
+Anvil|Cobra|Lizard,logprob,Lizard
+Caiman|Axe|Crocodile,logprob,Crocodile
+Anvil|Chameleon|Lawn Mower,logprob,Lawn Mower
+Alligator|Chisel|Lawn Mower,logprob,Lawn Mower
+Vacuum|Oil can|Snake,logprob,Oil can
+Nail|Crocodile|Snake,logprob,Crocodile
+Cobra|Screwdriver|Spanner,logprob,Spanner
+Toad|Dinosaur|Saw,logprob,Dinosaur
+Paint brush|Boa python|Crocodile,logprob,Boa python
+Screwdriver|Nail|Saw,logprob,Saw
+Toad|Hammer|Nail,logprob,Hammer
+Blindworm|Grinding disk|Toad,logprob,Toad
+Boa python|Axe|Gecko,logprob,Gecko
+Axe|Knife|Turtle,logprob,Knife
+Knife|Lizard|Paint brush,logprob,Lizard
+Oil can|Chameleon|Nail,logprob,Chameleon
+Nail|Boa python|Caiman,logprob,Caiman
+Grinding disk|Crocodile|Shovel,logprob,Shovel
+Chisel|Axe|Nail,logprob,Axe
+Caiman|Anvil|Paint brush,logprob,Anvil
+Spanner|Chisel|Cobra,logprob,Chisel
+Lizard|Anvil|Tortoise,logprob,Tortoise
+Saw|Salamander|Turtle,logprob,Salamander
+Turtle|Axe|Lizard,logprob,Lizard
+Saw|Lawn Mower|Vacuum,logprob,Lawn Mower
+Chisel|Lawn Mower|Tortoise,logprob,Lawn Mower
+Vacuum|Knife|Turtle,logprob,Turtle
+Crocodile|Lawn Mower|Nail,logprob,Lawn Mower
+Chameleon|Boa python|Shovel,logprob,Boa python
+Lawn Mower|Chameleon|Toad,logprob,Toad
+Cobra|Lizard|Turtle,logprob,Lizard
+Salamander|Lawn Mower|Vacuum,logprob,Lawn Mower
+Snake|Axe|Caiman,logprob,Caiman
+Vacuum|Gecko|Turtle,logprob,Turtle
+Tortoise|Grinding disk|Screwdriver,logprob,Screwdriver
+Toad|Knife|Turtle,logprob,Turtle
+Lawn Mower|Crocodile|Tortoise,logprob,Crocodile
+Chisel|Hammer|Toad,logprob,Toad
+Axe|Knife|Vacuum,logprob,Knife
+Saw|Dinosaur|Oil can,logprob,Dinosaur
+Chameleon|Blindworm|Toad,logprob,Toad
+Snake|Chisel|Salamander,logprob,Salamander
+Shovel|Oil can|Snake,logprob,Oil can
+Saw|Hammer|Oil can,logprob,Hammer
+Caiman|Blindworm|Tortoise,logprob,Tortoise
+Axe|Paint brush|Tortoise,logprob,Tortoise
+Toad|Cobra|Oil can,logprob,Cobra
+Lawn Mower|Spanner|Turtle,logprob,Spanner
+Vacuum|Knife|Salamander,logprob,Salamander
+Blindworm|Gecko|Grinding disk,logprob,Gecko
+Cobra|Chisel|Knife,logprob,Chisel
+Alligator|Cobra|Toad,logprob,Toad
+Oil can|Caiman|Cobra,logprob,Caiman
+Chisel|Blindworm|Grinding disk,logprob,Grinding disk
+Vacuum|Chameleon|Turtle,logprob,Chameleon
+Chameleon|Salamander|Screwdriver,logprob,Salamander
+Knife|Nail|Oil can,logprob,Oil can
+Lawn Mower|Cobra|Salamander,logprob,Salamander
+Spanner|Cobra|Lawn Mower,logprob,Lawn Mower
+Cobra|Chameleon|Gecko,logprob,Chameleon
+Dinosaur|Alligator|Axe,logprob,Alligator
+Hammer|Chisel|Tortoise,logprob,Chisel
+Grinding disk|Anvil|Axe,logprob,Anvil
+Shovel|Knife|Turtle,logprob,Knife
+Dinosaur|Chisel|Oil can,logprob,Chisel
+Turtle|Caiman|Chisel,logprob,Caiman
+Axe|Chisel|Oil can,logprob,Chisel
+Paint brush|Crocodile|Salamander,logprob,Salamander
+Lizard|Nail|Saw,logprob,Saw
+Knife|Caiman|Oil can,logprob,Caiman
+Hammer|Lizard|Screwdriver,logprob,Screwdriver
+Alligator|Blindworm|Vacuum,logprob,Blindworm
+Hammer|Axe|Boa python,logprob,Axe
+Tortoise|Blindworm|Chisel,logprob,Chisel
+Gecko|Oil can|Salamander,logprob,Salamander
+Salamander|Blindworm|Paint brush,logprob,Blindworm
+Turtle|Axe|Toad,logprob,Toad
+Shovel|Knife|Lizard,logprob,Lizard
+Anvil|Screwdriver|Toad,logprob,Toad
+Lizard|Chameleon|Paint brush,logprob,Chameleon
+Gecko|Chisel|Nail,logprob,Chisel
+Oil can|Crocodile|Dinosaur,logprob,Dinosaur
+Chameleon|Paint brush|Spanner,logprob,Spanner
+Boa python|Grinding disk|Turtle,logprob,Grinding disk
+Lizard|Paint brush|Screwdriver,logprob,Screwdriver
+Nail|Caiman|Grinding disk,logprob,Caiman
+Blindworm|Knife|Vacuum,logprob,Vacuum
+Boa python|Paint brush|Screwdriver,logprob,Paint brush
+Oil can|Gecko|Shovel,logprob,Shovel
+Chameleon|Crocodile|Spanner,logprob,Crocodile
+Axe|Snake|Spanner,logprob,Spanner
+Lawn Mower|Boa python|Knife,logprob,Boa python
+Saw|Chisel|Gecko,logprob,Chisel
+Blindworm|Boa python|Oil can,logprob,Boa python
+Alligator|Caiman|Lawn Mower,logprob,Caiman
+Salamander|Tortoise|Turtle,logprob,Tortoise
+Screwdriver|Blindworm|Knife,logprob,Knife
+Dinosaur|Cobra|Grinding disk,logprob,Cobra
+Shovel|Alligator|Hammer,logprob,Alligator
+Paint brush|Cobra|Grinding disk,logprob,Grinding disk
+Blindworm|Chisel|Vacuum,logprob,Chisel
+Nail|Alligator|Boa python,logprob,Alligator
+Vacuum|Chameleon|Screwdriver,logprob,Chameleon
+Lizard|Chameleon|Toad,logprob,Chameleon
+Paint brush|Blindworm|Saw,logprob,Blindworm
+Cobra|Salamander|Turtle,logprob,Salamander
+Lawn Mower|Salamander|Screwdriver,logprob,Salamander
+Alligator|Screwdriver|Snake,logprob,Snake
+Nail|Saw|Screwdriver,logprob,Screwdriver
+Oil can|Cobra|Screwdriver,logprob,Screwdriver
+Spanner|Crocodile|Hammer,logprob,Crocodile
+Screwdriver|Salamander|Turtle,logprob,Salamander
+Paint brush|Salamander|Spanner,logprob,Salamander
+Turtle|Anvil|Blindworm,logprob,Anvil
+Lizard|Screwdriver|Shovel,logprob,Shovel
+Grinding disk|Alligator|Snake,logprob,Alligator
+Screwdriver|Grinding disk|Nail,logprob,Nail
+Toad|Cobra|Paint brush,logprob,Cobra
+Chameleon|Boa python|Caiman,logprob,Caiman
+Oil can|Axe|Toad,logprob,Toad
+Chameleon|Knife|Screwdriver,logprob,Screwdriver
+Crocodile|Axe|Dinosaur,logprob,Dinosaur
+Paint brush|Alligator|Toad,logprob,Toad
+Salamander|Axe|Grinding disk,logprob,Axe
+Shovel|Anvil|Lawn Mower,logprob,Lawn Mower
+Oil can|Paint brush|Snake,logprob,Paint brush
+Lizard|Boa python|Knife,logprob,Boa python
+Grinding disk|Axe|Shovel,logprob,Shovel
+Screwdriver|Blindworm|Saw,logprob,Saw
+Oil can|Anvil|Cobra,logprob,Anvil
+Turtle|Tortoise|Vacuum,logprob,Tortoise
+Alligator|Screwdriver|Spanner,logprob,Screwdriver
+Salamander|Blindworm|Chisel,logprob,Chisel
+Saw|Snake|Turtle,logprob,Snake
+Knife|Nail|Turtle,logprob,Nail
+Spanner|Chisel|Paint brush,logprob,Chisel
+Oil can|Hammer|Screwdriver,logprob,Screwdriver
+Grinding disk|Blindworm|Shovel,logprob,Shovel
+Chisel|Chameleon|Shovel,logprob,Shovel
+Crocodile|Chisel|Salamander,logprob,Salamander
+Crocodile|Alligator|Anvil,logprob,Alligator
+Lawn Mower|Anvil|Chisel,logprob,Chisel
+Vacuum|Saw|Tortoise,logprob,Tortoise
+Chameleon|Cobra|Vacuum,logprob,Cobra
+Saw|Chameleon|Vacuum,logprob,Chameleon
+Anvil|Axe|Hammer,logprob,Hammer
+Saw|Nail|Toad,logprob,Toad
+Screwdriver|Lawn Mower|Shovel,logprob,Lawn Mower
+Anvil|Caiman|Snake,logprob,Caiman
+Axe|Chameleon|Saw,logprob,Chameleon
+Chameleon|Grinding disk|Oil can,logprob,Oil can
+Lizard|Shovel|Spanner,logprob,Shovel
+Grinding disk|Chameleon|Saw,logprob,Chameleon
+Chameleon|Grinding disk|Saw,logprob,Saw
+Chisel|Salamander|Snake,logprob,Salamander
+Anvil|Blindworm|Cobra,logprob,Cobra
+Chameleon|Lizard|Paint brush,logprob,Lizard
+Oil can|Nail|Saw,logprob,Nail
+Grinding disk|Hammer|Paint brush,logprob,Paint brush
+Anvil|Knife|Toad,logprob,Toad
+Salamander|Caiman|Lawn Mower,logprob,Caiman
+Vacuum|Lawn Mower|Lizard,logprob,Lawn Mower
+Anvil|Cobra|Gecko,logprob,Cobra
+Turtle|Lizard|Spanner,logprob,Lizard
+Caiman|Knife|Paint brush,logprob,Paint brush
+Tortoise|Chameleon|Screwdriver,logprob,Chameleon
+Paint brush|Knife|Nail,logprob,Nail
+Vacuum|Dinosaur|Lizard,logprob,Dinosaur
+Knife|Blindworm|Chameleon,logprob,Chameleon
+Alligator|Salamander|Screwdriver,logprob,Salamander
+Lizard|Snake|Tortoise,logprob,Tortoise
+Spanner|Chisel|Toad,logprob,Toad
+Tortoise|Chisel|Lawn Mower,logprob,Lawn Mower
+Knife|Chameleon|Crocodile,logprob,Crocodile
+Dinosaur|Chisel|Lawn Mower,logprob,Lawn Mower
+Alligator|Hammer|Toad,logprob,Toad
+Chameleon|Blindworm|Salamander,logprob,Salamander
+Dinosaur|Caiman|Chisel,logprob,Caiman
+Anvil|Hammer|Snake,logprob,Hammer
+Caiman|Hammer|Screwdriver,logprob,Screwdriver
+Toad|Chameleon|Dinosaur,logprob,Chameleon
+Tortoise|Grinding disk|Nail,logprob,Nail
+Toad|Lizard|Salamander,logprob,Salamander
+Crocodile|Grinding disk|Spanner,logprob,Spanner
+Boa python|Gecko|Toad,logprob,Toad
+Salamander|Lawn Mower|Shovel,logprob,Lawn Mower
+Paint brush|Anvil|Lawn Mower,logprob,Lawn Mower
+Gecko|Snake|Spanner,logprob,Spanner
+Knife|Axe|Chisel,logprob,Chisel
+Grinding disk|Saw|Toad,logprob,Toad
+Screwdriver|Boa python|Grinding disk,logprob,Boa python
+Nail|Blindworm|Chisel,logprob,Chisel
+Hammer|Boa python|Crocodile,logprob,Crocodile
+Snake|Anvil|Nail,logprob,Anvil
+Gecko|Salamander|Saw,logprob,Salamander
+Nail|Caiman|Dinosaur,logprob,Caiman
+Axe|Caiman|Grinding disk,logprob,Caiman
+Boa python|Chameleon|Grinding disk,logprob,Chameleon
+Paint brush|Chisel|Salamander,logprob,Salamander
+Toad|Nail|Turtle,logprob,Turtle
+Knife|Cobra|Shovel,logprob,Shovel
+Paint brush|Dinosaur|Snake,logprob,Dinosaur
+Nail|Gecko|Saw,logprob,Gecko
+Paint brush|Alligator|Blindworm,logprob,Alligator
+Knife|Chameleon|Saw,logprob,Chameleon
+Axe|Nail|Screwdriver,logprob,Screwdriver
+Vacuum|Axe|Dinosaur,logprob,Dinosaur
+Shovel|Chisel|Grinding disk,logprob,Chisel
+Chisel|Knife|Lizard,logprob,Lizard
+Screwdriver|Axe|Hammer,logprob,Hammer
+Grinding disk|Spanner|Vacuum,logprob,Spanner
+Gecko|Grinding disk|Saw,logprob,Saw
+Cobra|Alligator|Lizard,logprob,Lizard
+Vacuum|Hammer|Screwdriver,logprob,Screwdriver
+Shovel|Gecko|Lizard,logprob,Lizard
+Nail|Caiman|Hammer,logprob,Caiman
+Anvil|Hammer|Vacuum,logprob,Hammer
+Chameleon|Saw|Shovel,logprob,Shovel
+Chameleon|Crocodile|Shovel,logprob,Crocodile
+Paint brush|Cobra|Knife,logprob,Knife
+Knife|Crocodile|Lawn Mower,logprob,Lawn Mower
+Lawn Mower|Paint brush|Vacuum,logprob,Vacuum
+Boa python|Oil can|Screwdriver,logprob,Oil can
+Lawn Mower|Grinding disk|Spanner,logprob,Spanner
+Dinosaur|Alligator|Caiman,logprob,Alligator
+Cobra|Axe|Salamander,logprob,Salamander
+Shovel|Axe|Screwdriver,logprob,Screwdriver
+Blindworm|Anvil|Toad,logprob,Toad
+Paint brush|Lizard|Tortoise,logprob,Tortoise
+Axe|Blindworm|Knife,logprob,Knife
+Screwdriver|Axe|Snake,logprob,Axe
+Dinosaur|Caiman|Screwdriver,logprob,Caiman
+Paint brush|Hammer|Nail,logprob,Nail
+Blindworm|Chameleon|Oil can,logprob,Chameleon
+Toad|Crocodile|Screwdriver,logprob,Crocodile
+Snake|Knife|Nail,logprob,Nail
+Blindworm|Crocodile|Dinosaur,logprob,Crocodile
+Crocodile|Paint brush|Turtle,logprob,Turtle
+Toad|Anvil|Shovel,logprob,Shovel
+Chisel|Alligator|Oil can,logprob,Alligator
+Chameleon|Oil can|Shovel,logprob,Shovel
+Oil can|Anvil|Tortoise,logprob,Anvil
+Lizard|Caiman|Gecko,logprob,Caiman
+Screwdriver|Dinosaur|Oil can,logprob,Dinosaur
+Vacuum|Axe|Tortoise,logprob,Tortoise
+Tortoise|Grinding disk|Saw,logprob,Grinding disk
+Nail|Anvil|Chameleon,logprob,Chameleon
+Crocodile|Blindworm|Tortoise,logprob,Tortoise
+Nail|Crocodile|Oil can,logprob,Crocodile
+Lizard|Grinding disk|Tortoise,logprob,Tortoise
+Chisel|Hammer|Lawn Mower,logprob,Lawn Mower
+Crocodile|Caiman|Grinding disk,logprob,Caiman
+Knife|Crocodile|Nail,logprob,Crocodile
+Paint brush|Chameleon|Spanner,logprob,Chameleon
+Caiman|Boa python|Chisel,logprob,Boa python
+Cobra|Alligator|Blindworm,logprob,Alligator
+Shovel|Alligator|Knife,logprob,Alligator
+Toad|Cobra|Tortoise,logprob,Tortoise
+Axe|Anvil|Screwdriver,logprob,Anvil
+Tortoise|Gecko|Grinding disk,logprob,Gecko
+Saw|Anvil|Lawn Mower,logprob,Lawn Mower
+Vacuum|Blindworm|Shovel,logprob,Shovel
+Chisel|Grinding disk|Oil can,logprob,Oil can
+Blindworm|Axe|Nail,logprob,Axe
+Lawn Mower|Paint brush|Toad,logprob,Toad
+Vacuum|Axe|Grinding disk,logprob,Grinding disk
+Tortoise|Dinosaur|Hammer,logprob,Dinosaur
+Saw|Lizard|Shovel,logprob,Shovel
+Alligator|Axe|Snake,logprob,Snake
+Snake|Chameleon|Gecko,logprob,Chameleon
+Salamander|Boa python|Gecko,logprob,Boa python
+Crocodile|Axe|Screwdriver,logprob,Screwdriver
+Screwdriver|Saw|Shovel,logprob,Shovel
+Hammer|Blindworm|Grinding disk,logprob,Blindworm
+Grinding disk|Knife|Saw,logprob,Knife
+Paint brush|Lawn Mower|Snake,logprob,Lawn Mower
+Shovel|Cobra|Lizard,logprob,Lizard
+Spanner|Boa python|Cobra,logprob,Boa python
+Chisel|Anvil|Chameleon,logprob,Anvil
+Oil can|Screwdriver|Turtle,logprob,Screwdriver
+Vacuum|Hammer|Lizard,logprob,Lizard
+Lawn Mower|Axe|Crocodile,logprob,Crocodile
+Turtle|Caiman|Toad,logprob,Caiman
+Oil can|Grinding disk|Toad,logprob,Toad
+Salamander|Cobra|Lawn Mower,logprob,Lawn Mower
+Turtle|Saw|Shovel,logprob,Shovel
+Nail|Alligator|Crocodile,logprob,Alligator
+Snake|Caiman|Lizard,logprob,Lizard
+Salamander|Nail|Toad,logprob,Toad
+Turtle|Blindworm|Cobra,logprob,Blindworm
+Crocodile|Shovel|Spanner,logprob,Shovel
+Axe|Chisel|Crocodile,logprob,Chisel
+Boa python|Chisel|Nail,logprob,Chisel
+Axe|Grinding disk|Lizard,logprob,Lizard
+Dinosaur|Salamander|Vacuum,logprob,Salamander
+Dinosaur|Alligator|Anvil,logprob,Alligator
+Gecko|Blindworm|Boa python,logprob,Boa python
+Hammer|Lawn Mower|Oil can,logprob,Lawn Mower
+Gecko|Crocodile|Salamander,logprob,Salamander
+Saw|Dinosaur|Lawn Mower,logprob,Lawn Mower
+Knife|Oil can|Tortoise,logprob,Tortoise
+Caiman|Cobra|Saw,logprob,Cobra
+Knife|Axe|Crocodile,logprob,Crocodile
+Screwdriver|Oil can|Shovel,logprob,Shovel
+Spanner|Knife|Salamander,logprob,Salamander
+Caiman|Axe|Nail,logprob,Axe
+Axe|Paint brush|Turtle,logprob,Paint brush
+Alligator|Dinosaur|Snake,logprob,Dinosaur
+Oil can|Axe|Lizard,logprob,Lizard
+Toad|Anvil|Hammer,logprob,Anvil
+Turtle|Saw|Spanner,logprob,Spanner
+Lizard|Boa python|Gecko,logprob,Gecko
+Snake|Knife|Toad,logprob,Toad
+Snake|Shovel|Vacuum,logprob,Shovel
+Alligator|Saw|Turtle,logprob,Turtle
+Chameleon|Gecko|Paint brush,logprob,Gecko
+Snake|Anvil|Blindworm,logprob,Blindworm
+Caiman|Crocodile|Hammer,logprob,Crocodile
+Lizard|Chisel|Saw,logprob,Chisel
+Crocodile|Lawn Mower|Turtle,logprob,Lawn Mower
+Paint brush|Axe|Tortoise,logprob,Tortoise
+Vacuum|Gecko|Toad,logprob,Toad
+Axe|Hammer|Nail,logprob,Hammer
+Chameleon|Saw|Vacuum,logprob,Saw
+Blindworm|Axe|Grinding disk,logprob,Grinding disk
+Hammer|Nail|Spanner,logprob,Spanner
+Toad|Axe|Lizard,logprob,Lizard
+Toad|Cobra|Knife,logprob,Cobra
+Dinosaur|Paint brush|Salamander,logprob,Salamander
+Chameleon|Blindworm|Lizard,logprob,Lizard
+Spanner|Knife|Turtle,logprob,Turtle
+Axe|Caiman|Snake,logprob,Caiman
+Nail|Lizard|Spanner,logprob,Lizard
+Salamander|Snake|Toad,logprob,Toad
+Anvil|Hammer|Nail,logprob,Hammer
+Turtle|Chameleon|Oil can,logprob,Chameleon
+Axe|Blindworm|Lawn Mower,logprob,Lawn Mower
+Anvil|Chameleon|Oil can,logprob,Chameleon
+Nail|Gecko|Tortoise,logprob,Tortoise
+Saw|Chameleon|Oil can,logprob,Chameleon
+Lizard|Crocodile|Spanner,logprob,Crocodile
+Tortoise|Nail|Spanner,logprob,Spanner
+Saw|Dinosaur|Screwdriver,logprob,Dinosaur
+Grinding disk|Cobra|Vacuum,logprob,Vacuum
+Snake|Boa python|Lawn Mower,logprob,Lawn Mower
+Shovel|Boa python|Lawn Mower,logprob,Lawn Mower
+Tortoise|Cobra|Knife,logprob,Cobra
+Knife|Crocodile|Oil can,logprob,Crocodile
+Gecko|Lizard|Saw,logprob,Lizard
+Shovel|Paint brush|Snake,logprob,Paint brush
+Caiman|Cobra|Shovel,logprob,Shovel
+Oil can|Knife|Lawn Mower,logprob,Lawn Mower
+Hammer|Chameleon|Turtle,logprob,Chameleon
+Knife|Chameleon|Lizard,logprob,Lizard
+Axe|Nail|Saw,logprob,Saw
+Dinosaur|Cobra|Salamander,logprob,Salamander
+Gecko|Nail|Salamander,logprob,Salamander
+Toad|Caiman|Gecko,logprob,Caiman
+Knife|Alligator|Spanner,logprob,Alligator
+Vacuum|Anvil|Crocodile,logprob,Crocodile
+Boa python|Axe|Cobra,logprob,Cobra
+Dinosaur|Blindworm|Boa python,logprob,Boa python
+Spanner|Boa python|Nail,logprob,Boa python
+Lawn Mower|Axe|Vacuum,logprob,Vacuum
+Grinding disk|Gecko|Saw,logprob,Saw
+Oil can|Hammer|Snake,logprob,Hammer
+Nail|Boa python|Chisel,logprob,Chisel
+Lizard|Caiman|Knife,logprob,Caiman
+Chameleon|Knife|Shovel,logprob,Shovel
+Gecko|Anvil|Caiman,logprob,Caiman
+Boa python|Hammer|Saw,logprob,Saw
+Chameleon|Alligator|Vacuum,logprob,Alligator
+Screwdriver|Chameleon|Saw,logprob,Chameleon
+Snake|Salamander|Shovel,logprob,Salamander
+Chameleon|Nail|Screwdriver,logprob,Screwdriver
+Alligator|Blindworm|Cobra,logprob,Blindworm
+Nail|Saw|Spanner,logprob,Spanner
+Vacuum|Screwdriver|Spanner,logprob,Spanner
+Nail|Caiman|Screwdriver,logprob,Caiman
+Dinosaur|Lizard|Salamander,logprob,Salamander
+Chameleon|Chisel|Turtle,logprob,Chisel
+Grinding disk|Gecko|Snake,logprob,Snake
+Chisel|Gecko|Toad,logprob,Toad
+Spanner|Lawn Mower|Snake,logprob,Lawn Mower
+Tortoise|Alligator|Salamander,logprob,Salamander
+Caiman|Axe|Tortoise,logprob,Tortoise
+Axe|Alligator|Crocodile,logprob,Crocodile
+Tortoise|Dinosaur|Nail,logprob,Dinosaur
+Shovel|Dinosaur|Lizard,logprob,Dinosaur
+Chameleon|Nail|Shovel,logprob,Shovel
+Screwdriver|Lizard|Turtle,logprob,Lizard
+Saw|Dinosaur|Tortoise,logprob,Tortoise
+Screwdriver|Blindworm|Caiman,logprob,Caiman
+Chameleon|Anvil|Nail,logprob,Anvil
+Axe|Cobra|Grinding disk,logprob,Cobra
+Shovel|Axe|Vacuum,logprob,Axe
+Gecko|Saw|Shovel,logprob,Shovel
+Knife|Blindworm|Lizard,logprob,Lizard
+Oil can|Dinosaur|Shovel,logprob,Dinosaur
+Knife|Hammer|Snake,logprob,Hammer
+Grinding disk|Chameleon|Toad,logprob,Chameleon
+Dinosaur|Caiman|Cobra,logprob,Caiman
+Vacuum|Lizard|Screwdriver,logprob,Lizard
+Cobra|Alligator|Nail,logprob,Alligator
+Tortoise|Crocodile|Knife,logprob,Crocodile
+Knife|Boa python|Toad,logprob,Toad
+Axe|Nail|Spanner,logprob,Spanner
+Toad|Anvil|Lawn Mower,logprob,Lawn Mower
+Axe|Paint brush|Saw,logprob,Saw
+Screwdriver|Knife|Turtle,logprob,Knife
+Crocodile|Screwdriver|Toad,logprob,Toad
+Nail|Paint brush|Salamander,logprob,Salamander
+Saw|Nail|Screwdriver,logprob,Screwdriver
+Crocodile|Gecko|Nail,logprob,Gecko
+Shovel|Axe|Knife,logprob,Axe
+Spanner|Anvil|Salamander,logprob,Salamander
+Dinosaur|Lawn Mower|Tortoise,logprob,Tortoise
+Screwdriver|Chameleon|Dinosaur,logprob,Chameleon
+Tortoise|Anvil|Shovel,logprob,Shovel
+Vacuum|Cobra|Oil can,logprob,Oil can
+Axe|Alligator|Blindworm,logprob,Alligator
+Salamander|Boa python|Chisel,logprob,Boa python
+Nail|Caiman|Snake,logprob,Caiman
+Toad|Cobra|Vacuum,logprob,Cobra
+Hammer|Gecko|Turtle,logprob,Gecko
+Oil can|Nail|Turtle,logprob,Nail
+Snake|Blindworm|Cobra,logprob,Blindworm
+Axe|Boa python|Tortoise,logprob,Tortoise
+Lawn Mower|Anvil|Crocodile,logprob,Crocodile
+Turtle|Chisel|Grinding disk,logprob,Chisel
+Paint brush|Boa python|Screwdriver,logprob,Screwdriver
+Paint brush|Lizard|Oil can,logprob,Lizard
+Gecko|Chameleon|Dinosaur,logprob,Chameleon
+Saw|Gecko|Toad,logprob,Toad
+Paint brush|Grinding disk|Nail,logprob,Nail
+Alligator|Anvil|Salamander,logprob,Salamander
+Lawn Mower|Alligator|Tortoise,logprob,Alligator
+Dinosaur|Axe|Knife,logprob,Axe
+Shovel|Cobra|Lawn Mower,logprob,Lawn Mower
+Shovel|Chisel|Vacuum,logprob,Chisel
+Toad|Anvil|Turtle,logprob,Anvil
+Oil can|Spanner|Tortoise,logprob,Tortoise
+Vacuum|Chisel|Screwdriver,logprob,Chisel
+Crocodile|Blindworm|Oil can,logprob,Blindworm
+Lawn Mower|Gecko|Oil can,logprob,Oil can
+Nail|Dinosaur|Shovel,logprob,Dinosaur
+Grinding disk|Snake|Spanner,logprob,Spanner
+Gecko|Alligator|Shovel,logprob,Alligator
+Vacuum|Cobra|Hammer,logprob,Hammer
+Hammer|Knife|Snake,logprob,Knife
+Boa python|Dinosaur|Toad,logprob,Dinosaur
+Blindworm|Hammer|Lizard,logprob,Lizard
+Boa python|Caiman|Spanner,logprob,Caiman
+Dinosaur|Chameleon|Cobra,logprob,Chameleon
+Nail|Dinosaur|Screwdriver,logprob,Dinosaur
+Crocodile|Chisel|Shovel,logprob,Shovel
+Chisel|Axe|Lizard,logprob,Lizard
+Screwdriver|Alligator|Caiman,logprob,Alligator
+Chisel|Anvil|Caiman,logprob,Anvil
+Alligator|Blindworm|Salamander,logprob,Salamander
+Salamander|Boa python|Cobra,logprob,Boa python
+Screwdriver|Caiman|Cobra,logprob,Caiman
+Turtle|Nail|Spanner,logprob,Spanner
+Spanner|Nail|Screwdriver,logprob,Screwdriver
+Chameleon|Dinosaur|Hammer,logprob,Dinosaur
+Tortoise|Dinosaur|Vacuum,logprob,Dinosaur
+Shovel|Axe|Gecko,logprob,Axe
+Chisel|Lizard|Snake,logprob,Lizard
+Shovel|Oil can|Vacuum,logprob,Oil can
+Boa python|Screwdriver|Shovel,logprob,Shovel
+Chameleon|Hammer|Turtle,logprob,Turtle
+Grinding disk|Hammer|Snake,logprob,Hammer
+Alligator|Chisel|Gecko,logprob,Chisel
+Hammer|Lizard|Oil can,logprob,Lizard
+Paint brush|Axe|Lawn Mower,logprob,Lawn Mower
+Chisel|Gecko|Lizard,logprob,Lizard
+Oil can|Alligator|Vacuum,logprob,Alligator
+Axe|Boa python|Gecko,logprob,Boa python
+Snake|Alligator|Anvil,logprob,Alligator
+Paint brush|Caiman|Dinosaur,logprob,Caiman
+Screwdriver|Nail|Turtle,logprob,Nail
+Caiman|Chisel|Spanner,logprob,Chisel
+Alligator|Hammer|Snake,logprob,Snake
+Screwdriver|Cobra|Lawn Mower,logprob,Lawn Mower
+Gecko|Salamander|Screwdriver,logprob,Salamander
+Salamander|Crocodile|Dinosaur,logprob,Crocodile
+Chisel|Axe|Snake,logprob,Axe
+Saw|Alligator|Oil can,logprob,Alligator
+Shovel|Lizard|Salamander,logprob,Salamander
+Boa python|Blindworm|Screwdriver,logprob,Blindworm
+Chameleon|Anvil|Caiman,logprob,Caiman
+Salamander|Anvil|Cobra,logprob,Anvil
+Spanner|Blindworm|Lawn Mower,logprob,Lawn Mower
+Grinding disk|Crocodile|Screwdriver,logprob,Crocodile
+Shovel|Boa python|Nail,logprob,Boa python
+Grinding disk|Anvil|Toad,logprob,Anvil
+Anvil|Saw|Tortoise,logprob,Tortoise
+Lawn Mower|Knife|Shovel,logprob,Shovel
+Chameleon|Knife|Vacuum,logprob,Vacuum
+Caiman|Lawn Mower|Spanner,logprob,Lawn Mower
+Lawn Mower|Axe|Gecko,logprob,Axe
+Toad|Caiman|Lizard,logprob,Caiman
+Toad|Boa python|Oil can,logprob,Boa python
+Alligator|Chameleon|Vacuum,logprob,Chameleon
+Paint brush|Caiman|Screwdriver,logprob,Caiman
+Nail|Chisel|Spanner,logprob,Chisel
+Lizard|Chisel|Cobra,logprob,Chisel
+Turtle|Paint brush|Toad,logprob,Toad
+Screwdriver|Saw|Vacuum,logprob,Saw
+Spanner|Cobra|Tortoise,logprob,Tortoise
+Spanner|Lawn Mower|Oil can,logprob,Lawn Mower
+Vacuum|Boa python|Dinosaur,logprob,Dinosaur
+Anvil|Boa python|Nail,logprob,Boa python
+Shovel|Crocodile|Dinosaur,logprob,Crocodile
+Chameleon|Grinding disk|Screwdriver,logprob,Screwdriver
+Gecko|Anvil|Turtle,logprob,Anvil
+Lizard|Caiman|Tortoise,logprob,Caiman
+Chisel|Lawn Mower|Nail,logprob,Lawn Mower
+Vacuum|Gecko|Lizard,logprob,Lizard
+Salamander|Dinosaur|Tortoise,logprob,Tortoise
+Turtle|Caiman|Lawn Mower,logprob,Caiman
+Paint brush|Crocodile|Gecko,logprob,Crocodile
+Lawn Mower|Caiman|Shovel,logprob,Shovel
+Crocodile|Gecko|Grinding disk,logprob,Gecko
+Hammer|Lawn Mower|Tortoise,logprob,Lawn Mower
+Saw|Lawn Mower|Spanner,logprob,Lawn Mower
+Crocodile|Alligator|Saw,logprob,Alligator
+Knife|Cobra|Screwdriver,logprob,Screwdriver
+Shovel|Axe|Saw,logprob,Axe
+Tortoise|Axe|Grinding disk,logprob,Grinding disk
+Anvil|Cobra|Salamander,logprob,Salamander
+Turtle|Axe|Saw,logprob,Saw
+Alligator|Chameleon|Crocodile,logprob,Crocodile
+Caiman|Saw|Spanner,logprob,Spanner
+Alligator|Crocodile|Turtle,logprob,Crocodile
+Caiman|Boa python|Vacuum,logprob,Boa python
+Cobra|Blindworm|Toad,logprob,Toad
+Dinosaur|Spanner|Toad,logprob,Toad
+Crocodile|Oil can|Shovel,logprob,Shovel
+Blindworm|Alligator|Paint brush,logprob,Alligator
+Paint brush|Knife|Lizard,logprob,Lizard
+Lizard|Grinding disk|Hammer,logprob,Hammer
+Axe|Chisel|Screwdriver,logprob,Chisel
+Oil can|Boa python|Gecko,logprob,Boa python
+Knife|Saw|Snake,logprob,Saw
+Alligator|Blindworm|Caiman,logprob,Caiman
+Spanner|Boa python|Gecko,logprob,Boa python
+Cobra|Gecko|Screwdriver,logprob,Screwdriver
+Chisel|Axe|Caiman,logprob,Caiman
+Snake|Paint brush|Shovel,logprob,Shovel
+Shovel|Anvil|Snake,logprob,Anvil
+Cobra|Blindworm|Salamander,logprob,Salamander
+Tortoise|Crocodile|Hammer,logprob,Crocodile
+Anvil|Blindworm|Nail,logprob,Nail
+Gecko|Screwdriver|Spanner,logprob,Spanner
+Turtle|Cobra|Oil can,logprob,Oil can
+Salamander|Saw|Spanner,logprob,Spanner
+Snake|Chameleon|Lawn Mower,logprob,Chameleon
+Paint brush|Knife|Lawn Mower,logprob,Lawn Mower
+Lawn Mower|Cobra|Knife,logprob,Knife
+Blindworm|Gecko|Saw,logprob,Gecko
+Caiman|Alligator|Vacuum,logprob,Alligator
+Paint brush|Alligator|Spanner,logprob,Spanner
+Tortoise|Nail|Vacuum,logprob,Nail
+Grinding disk|Axe|Toad,logprob,Toad
+Toad|Lizard|Oil can,logprob,Lizard
+Chisel|Chameleon|Lizard,logprob,Chameleon
+Vacuum|Grinding disk|Shovel,logprob,Shovel
+Paint brush|Axe|Saw,logprob,Saw
+Gecko|Lizard|Toad,logprob,Lizard
+Axe|Boa python|Crocodile,logprob,Crocodile
+Paint brush|Blindworm|Oil can,logprob,Oil can
+Gecko|Paint brush|Screwdriver,logprob,Screwdriver
+Anvil|Salamander|Saw,logprob,Salamander
+Knife|Cobra|Toad,logprob,Toad
+Axe|Knife|Paint brush,logprob,Paint brush
+Blindworm|Axe|Gecko,logprob,Gecko
+Knife|Blindworm|Oil can,logprob,Oil can
+Saw|Boa python|Cobra,logprob,Boa python
+Turtle|Dinosaur|Shovel,logprob,Dinosaur
+Anvil|Dinosaur|Salamander,logprob,Salamander
+Boa python|Crocodile|Grinding disk,logprob,Crocodile
+Screwdriver|Chisel|Shovel,logprob,Chisel
+Toad|Boa python|Chisel,logprob,Boa python
+Turtle|Blindworm|Grinding disk,logprob,Blindworm
+Caiman|Axe|Screwdriver,logprob,Screwdriver
+Anvil|Lizard|Nail,logprob,Lizard
+Crocodile|Blindworm|Chisel,logprob,Chisel
+Lizard|Saw|Shovel,logprob,Shovel
+Axe|Alligator|Dinosaur,logprob,Dinosaur
+Blindworm|Anvil|Crocodile,logprob,Crocodile
+Grinding disk|Alligator|Toad,logprob,Alligator
+Anvil|Oil can|Snake,logprob,Oil can
+Lizard|Hammer|Lawn Mower,logprob,Lawn Mower
+Knife|Salamander|Saw,logprob,Salamander
+Hammer|Chisel|Lizard,logprob,Chisel
+Salamander|Knife|Turtle,logprob,Turtle
+Snake|Crocodile|Screwdriver,logprob,Crocodile
+Snake|Dinosaur|Nail,logprob,Dinosaur
+Snake|Gecko|Screwdriver,logprob,Gecko
+Gecko|Shovel|Snake,logprob,Shovel
+Lawn Mower|Dinosaur|Paint brush,logprob,Dinosaur
+Dinosaur|Blindworm|Spanner,logprob,Spanner
+Lawn Mower|Gecko|Vacuum,logprob,Vacuum
+Alligator|Grinding disk|Lawn Mower,logprob,Lawn Mower
+Screwdriver|Chisel|Hammer,logprob,Chisel
+Saw|Nail|Vacuum,logprob,Nail
+Alligator|Anvil|Gecko,logprob,Anvil
+Oil can|Lawn Mower|Spanner,logprob,Lawn Mower
+Crocodile|Axe|Lizard,logprob,Lizard
+Toad|Saw|Screwdriver,logprob,Screwdriver
+Axe|Nail|Snake,logprob,Nail
+Lawn Mower|Axe|Spanner,logprob,Spanner
+Saw|Lizard|Screwdriver,logprob,Lizard
+Knife|Caiman|Grinding disk,logprob,Caiman
+Dinosaur|Nail|Shovel,logprob,Shovel
+Screwdriver|Alligator|Lawn Mower,logprob,Lawn Mower
+Anvil|Chisel|Spanner,logprob,Chisel
+Anvil|Toad|Turtle,logprob,Toad
+Hammer|Blindworm|Chisel,logprob,Chisel
+Shovel|Crocodile|Grinding disk,logprob,Crocodile
+Toad|Hammer|Vacuum,logprob,Hammer
+Oil can|Lizard|Toad,logprob,Toad
+Grinding disk|Crocodile|Dinosaur,logprob,Crocodile
+Grinding disk|Toad|Vacuum,logprob,Toad
+Chameleon|Paint brush|Salamander,logprob,Salamander
+Turtle|Paint brush|Salamander,logprob,Salamander
+Hammer|Salamander|Turtle,logprob,Salamander
+Paint brush|Snake|Turtle,logprob,Turtle
+Blindworm|Lizard|Screwdriver,logprob,Lizard
+Knife|Crocodile|Shovel,logprob,Shovel
+Cobra|Screwdriver|Toad,logprob,Toad
+Grinding disk|Lawn Mower|Saw,logprob,Lawn Mower
+Tortoise|Lawn Mower|Salamander,logprob,Salamander
+Spanner|Hammer|Paint brush,logprob,Hammer
+Grinding disk|Caiman|Cobra,logprob,Caiman
+Alligator|Caiman|Oil can,logprob,Caiman
+Salamander|Lawn Mower|Nail,logprob,Lawn Mower
+Gecko|Cobra|Lawn Mower,logprob,Lawn Mower
+Tortoise|Boa python|Toad,logprob,Toad
+Vacuum|Salamander|Screwdriver,logprob,Salamander
+Axe|Blindworm|Cobra,logprob,Cobra
+Caiman|Chameleon|Oil can,logprob,Chameleon
+Shovel|Axe|Grinding disk,logprob,Axe
+Anvil|Boa python|Knife,logprob,Boa python
+Gecko|Alligator|Caiman,logprob,Alligator
+Crocodile|Axe|Salamander,logprob,Salamander
+Vacuum|Anvil|Grinding disk,logprob,Anvil
+Saw|Dinosaur|Toad,logprob,Toad
+Alligator|Knife|Turtle,logprob,Turtle
+Snake|Crocodile|Gecko,logprob,Crocodile
+Grinding disk|Alligator|Tortoise,logprob,Alligator
+Saw|Snake|Vacuum,logprob,Snake
+Lawn Mower|Boa python|Shovel,logprob,Shovel
+Toad|Crocodile|Spanner,logprob,Crocodile
+Saw|Spanner|Vacuum,logprob,Spanner
+Spanner|Gecko|Snake,logprob,Gecko
+Lawn Mower|Knife|Vacuum,logprob,Vacuum
+Spanner|Blindworm|Crocodile,logprob,Crocodile
+Oil can|Anvil|Caiman,logprob,Caiman
+Grinding disk|Nail|Saw,logprob,Saw
+Alligator|Caiman|Tortoise,logprob,Caiman
+Toad|Knife|Paint brush,logprob,Paint brush
+Caiman|Axe|Saw,logprob,Saw
+Gecko|Oil can|Toad,logprob,Toad
+Chisel|Hammer|Spanner,logprob,Spanner
+Knife|Axe|Vacuum,logprob,Axe
+Hammer|Tortoise|Turtle,logprob,Tortoise
+Spanner|Boa python|Screwdriver,logprob,Screwdriver
+Salamander|Axe|Tortoise,logprob,Tortoise
+Gecko|Chisel|Saw,logprob,Chisel
+Lizard|Hammer|Screwdriver,logprob,Screwdriver
+Blindworm|Paint brush|Spanner,logprob,Spanner
+Vacuum|Oil can|Paint brush,logprob,Oil can
+Tortoise|Axe|Toad,logprob,Toad
+Crocodile|Anvil|Hammer,logprob,Anvil
+Lawn Mower|Chisel|Grinding disk,logprob,Chisel
+Toad|Lizard|Snake,logprob,Lizard
+Hammer|Boa python|Vacuum,logprob,Boa python
+Grinding disk|Anvil|Snake,logprob,Anvil
+Turtle|Boa python|Dinosaur,logprob,Dinosaur
+Shovel|Grinding disk|Saw,logprob,Saw
+Nail|Gecko|Oil can,logprob,Oil can
+Alligator|Oil can|Turtle,logprob,Turtle
+Vacuum|Dinosaur|Shovel,logprob,Dinosaur
+Crocodile|Boa python|Salamander,logprob,Salamander
+Lawn Mower|Caiman|Crocodile,logprob,Crocodile
+Cobra|Crocodile|Dinosaur,logprob,Crocodile
+Chameleon|Chisel|Grinding disk,logprob,Chisel
+Tortoise|Chameleon|Gecko,logprob,Chameleon
+Blindworm|Chisel|Paint brush,logprob,Chisel
+Knife|Gecko|Shovel,logprob,Shovel
+Lawn Mower|Alligator|Hammer,logprob,Alligator
+Boa python|Chameleon|Paint brush,logprob,Chameleon
+Chisel|Dinosaur|Gecko,logprob,Dinosaur
+Toad|Gecko|Lawn Mower,logprob,Lawn Mower
+Snake|Axe|Toad,logprob,Toad
+Axe|Chameleon|Spanner,logprob,Chameleon
+Spanner|Salamander|Saw,logprob,Salamander
+Blindworm|Anvil|Snake,logprob,Snake
+Tortoise|Gecko|Screwdriver,logprob,Screwdriver
+Lizard|Gecko|Tortoise,logprob,Tortoise
+Crocodile|Chisel|Tortoise,logprob,Tortoise
+Axe|Knife|Shovel,logprob,Shovel
+Screwdriver|Crocodile|Hammer,logprob,Crocodile
+Nail|Cobra|Snake,logprob,Snake
+Salamander|Alligator|Lawn Mower,logprob,Alligator
+Dinosaur|Crocodile|Lizard,logprob,Crocodile
+Boa python|Crocodile|Turtle,logprob,Crocodile
+Alligator|Hammer|Shovel,logprob,Shovel
+Saw|Oil can|Turtle,logprob,Oil can
+Boa python|Anvil|Screwdriver,logprob,Anvil
+Chisel|Screwdriver|Spanner,logprob,Screwdriver
+Screwdriver|Toad|Vacuum,logprob,Toad
+Spanner|Axe|Hammer,logprob,Hammer
+Spanner|Chisel|Nail,logprob,Chisel
+Blindworm|Axe|Crocodile,logprob,Crocodile
+Lawn Mower|Blindworm|Toad,logprob,Toad
+Toad|Anvil|Boa python,logprob,Boa python
+Dinosaur|Knife|Salamander,logprob,Salamander
+Blindworm|Alligator|Grinding disk,logprob,Alligator
+Hammer|Axe|Grinding disk,logprob,Axe
+Snake|Caiman|Chisel,logprob,Chisel
+Boa python|Dinosaur|Turtle,logprob,Dinosaur
+Turtle|Cobra|Snake,logprob,Snake
+Crocodile|Chameleon|Vacuum,logprob,Chameleon
+Crocodile|Knife|Oil can,logprob,Oil can
+Oil can|Anvil|Saw,logprob,Anvil
+Caiman|Axe|Snake,logprob,Snake
+Paint brush|Chisel|Snake,logprob,Chisel
+Toad|Dinosaur|Vacuum,logprob,Dinosaur
+Hammer|Anvil|Caiman,logprob,Anvil
+Gecko|Oil can|Tortoise,logprob,Tortoise
+Cobra|Anvil|Shovel,logprob,Anvil
+Nail|Chisel|Salamander,logprob,Salamander
+Axe|Blindworm|Screwdriver,logprob,Screwdriver
+Nail|Cobra|Turtle,logprob,Turtle
+Turtle|Caiman|Vacuum,logprob,Caiman
+Nail|Crocodile|Paint brush,logprob,Crocodile
+Dinosaur|Blindworm|Snake,logprob,Blindworm
+Caiman|Lawn Mower|Lizard,logprob,Lizard
+Turtle|Grinding disk|Oil can,logprob,Oil can
+Caiman|Hammer|Saw,logprob,Hammer
+Screwdriver|Lizard|Salamander,logprob,Salamander
+Gecko|Crocodile|Grinding disk,logprob,Crocodile
+Screwdriver|Spanner|Toad,logprob,Spanner
+Spanner|Hammer|Oil can,logprob,Hammer
+Spanner|Gecko|Paint brush,logprob,Paint brush
+Salamander|Dinosaur|Saw,logprob,Dinosaur
+Screwdriver|Boa python|Vacuum,logprob,Boa python
+Tortoise|Lizard|Snake,logprob,Lizard
+Cobra|Blindworm|Snake,logprob,Snake
+Paint brush|Nail|Spanner,logprob,Spanner
+Lizard|Boa python|Oil can,logprob,Boa python
+Blindworm|Salamander|Spanner,logprob,Salamander
+Dinosaur|Chisel|Screwdriver,logprob,Chisel
+Axe|Alligator|Caiman,logprob,Caiman
+Chameleon|Cobra|Nail,logprob,Cobra
+Lawn Mower|Paint brush|Spanner,logprob,Spanner
+Saw|Knife|Shovel,logprob,Shovel
+Boa python|Alligator|Chameleon,logprob,Alligator
+Caiman|Nail|Spanner,logprob,Spanner
+Salamander|Paint brush|Saw,logprob,Paint brush
+Crocodile|Alligator|Lizard,logprob,Lizard
+Tortoise|Caiman|Chameleon,logprob,Caiman
+Cobra|Shovel|Turtle,logprob,Shovel
+Boa python|Crocodile|Lizard,logprob,Crocodile
+Axe|Cobra|Knife,logprob,Knife
+Axe|Chameleon|Lawn Mower,logprob,Lawn Mower
+Lizard|Screwdriver|Snake,logprob,Snake
+Lizard|Anvil|Dinosaur,logprob,Dinosaur
+Toad|Chisel|Salamander,logprob,Salamander
+Salamander|Axe|Snake,logprob,Snake
+Vacuum|Lizard|Tortoise,logprob,Tortoise
+Boa python|Alligator|Chisel,logprob,Alligator
+Caiman|Boa python|Lizard,logprob,Lizard
+Nail|Anvil|Saw,logprob,Anvil
+Vacuum|Boa python|Gecko,logprob,Boa python
+Anvil|Spanner|Toad,logprob,Toad
+Cobra|Shovel|Vacuum,logprob,Shovel
+Nail|Alligator|Lizard,logprob,Lizard
+Grinding disk|Gecko|Tortoise,logprob,Tortoise
+Gecko|Caiman|Turtle,logprob,Caiman
+Nail|Grinding disk|Lawn Mower,logprob,Lawn Mower
+Snake|Lawn Mower|Turtle,logprob,Lawn Mower
+Saw|Lawn Mower|Lizard,logprob,Lawn Mower
+Nail|Caiman|Knife,logprob,Caiman
+Alligator|Lizard|Toad,logprob,Lizard
+Snake|Crocodile|Hammer,logprob,Crocodile
+Cobra|Lawn Mower|Toad,logprob,Lawn Mower
+Chameleon|Dinosaur|Saw,logprob,Dinosaur
+Cobra|Caiman|Screwdriver,logprob,Caiman
+Axe|Paint brush|Snake,logprob,Paint brush
+Anvil|Caiman|Vacuum,logprob,Caiman
+Vacuum|Paint brush|Spanner,logprob,Spanner
+Vacuum|Lizard|Shovel,logprob,Shovel
+Snake|Crocodile|Paint brush,logprob,Crocodile
+Dinosaur|Snake|Toad,logprob,Toad
+Grinding disk|Screwdriver|Spanner,logprob,Spanner
+Dinosaur|Anvil|Knife,logprob,Anvil
+Saw|Anvil|Spanner,logprob,Anvil
+Snake|Anvil|Turtle,logprob,Anvil
+Toad|Oil can|Snake,logprob,Snake
+Toad|Hammer|Screwdriver,logprob,Screwdriver
+Turtle|Lawn Mower|Nail,logprob,Lawn Mower
+Vacuum|Dinosaur|Knife,logprob,Dinosaur
+Shovel|Boa python|Chameleon,logprob,Chameleon
+Cobra|Chameleon|Hammer,logprob,Chameleon
+Lawn Mower|Saw|Toad,logprob,Toad
+Dinosaur|Anvil|Screwdriver,logprob,Anvil
+Paint brush|Dinosaur|Toad,logprob,Dinosaur
+Vacuum|Anvil|Gecko,logprob,Anvil
+Shovel|Alligator|Salamander,logprob,Salamander
+Lawn Mower|Salamander|Shovel,logprob,Shovel
+Vacuum|Paint brush|Toad,logprob,Toad
+Knife|Chameleon|Vacuum,logprob,Chameleon
+Lizard|Hammer|Turtle,logprob,Turtle
+Hammer|Anvil|Boa python,logprob,Anvil
+Screwdriver|Gecko|Snake,logprob,Snake
+Crocodile|Axe|Chisel,logprob,Chisel
+Grinding disk|Lizard|Shovel,logprob,Shovel
+Saw|Grinding disk|Shovel,logprob,Shovel
+Lawn Mower|Oil can|Tortoise,logprob,Tortoise
+Anvil|Grinding disk|Turtle,logprob,Grinding disk
+Alligator|Saw|Screwdriver,logprob,Screwdriver
+Paint brush|Crocodile|Shovel,logprob,Shovel
+Oil can|Knife|Paint brush,logprob,Paint brush
+Chameleon|Oil can|Paint brush,logprob,Paint brush
+Anvil|Crocodile|Nail,logprob,Crocodile
+Oil can|Anvil|Lizard,logprob,Anvil
+Crocodile|Lawn Mower|Screwdriver,logprob,Lawn Mower
+Anvil|Chameleon|Toad,logprob,Toad
+Tortoise|Gecko|Lizard,logprob,Lizard
+Shovel|Paint brush|Tortoise,logprob,Tortoise
+Toad|Snake|Vacuum,logprob,Snake
+Blindworm|Anvil|Chisel,logprob,Chisel
+Toad|Gecko|Lizard,logprob,Lizard
+Toad|Alligator|Screwdriver,logprob,Alligator
+Boa python|Blindworm|Snake,logprob,Blindworm
+Saw|Oil can|Snake,logprob,Snake
+Toad|Anvil|Dinosaur,logprob,Dinosaur
+Chameleon|Chisel|Spanner,logprob,Spanner
+Saw|Grinding disk|Snake,logprob,Snake
+Cobra|Gecko|Spanner,logprob,Spanner
+Snake|Crocodile|Toad,logprob,Crocodile
+Knife|Toad|Turtle,logprob,Toad
+Snake|Gecko|Nail,logprob,Gecko
+Chameleon|Crocodile|Dinosaur,logprob,Crocodile
+Anvil|Screwdriver|Vacuum,logprob,Screwdriver
+Salamander|Nail|Screwdriver,logprob,Screwdriver
+Oil can|Salamander|Tortoise,logprob,Salamander
+Crocodile|Lawn Mower|Spanner,logprob,Lawn Mower
+Caiman|Hammer|Toad,logprob,Toad
+Oil can|Lawn Mower|Paint brush,logprob,Lawn Mower
+Spanner|Paint brush|Toad,logprob,Toad
+Axe|Salamander|Spanner,logprob,Salamander
+Toad|Anvil|Salamander,logprob,Salamander
+Crocodile|Oil can|Snake,logprob,Snake
+Paint brush|Tortoise|Turtle,logprob,Tortoise
+Boa python|Alligator|Shovel,logprob,Alligator
+Axe|Chameleon|Grinding disk,logprob,Chameleon
+Chameleon|Spanner|Toad,logprob,Toad
+Vacuum|Crocodile|Salamander,logprob,Salamander
+Chameleon|Salamander|Vacuum,logprob,Salamander
+Vacuum|Saw|Screwdriver,logprob,Screwdriver
+Toad|Caiman|Hammer,logprob,Caiman
+Crocodile|Cobra|Paint brush,logprob,Paint brush
+Blindworm|Anvil|Spanner,logprob,Anvil
+Oil can|Hammer|Lawn Mower,logprob,Lawn Mower
+Anvil|Gecko|Spanner,logprob,Spanner
+Boa python|Knife|Snake,logprob,Snake
+Blindworm|Lizard|Spanner,logprob,Lizard
+Axe|Snake|Tortoise,logprob,Tortoise
+Axe|Cobra|Lizard,logprob,Lizard
+Boa python|Anvil|Blindworm,logprob,Anvil
+Paint brush|Caiman|Gecko,logprob,Caiman
+Nail|Lawn Mower|Vacuum,logprob,Lawn Mower
+Toad|Boa python|Lawn Mower,logprob,Lawn Mower
+Tortoise|Blindworm|Screwdriver,logprob,Blindworm
+Snake|Axe|Oil can,logprob,Oil can
+Shovel|Crocodile|Nail,logprob,Crocodile
+Cobra|Chisel|Turtle,logprob,Chisel
+Boa python|Caiman|Turtle,logprob,Caiman
+Cobra|Anvil|Hammer,logprob,Anvil
+Boa python|Cobra|Vacuum,logprob,Cobra
+Spanner|Nail|Salamander,logprob,Salamander
+Shovel|Blindworm|Tortoise,logprob,Tortoise
+Lawn Mower|Alligator|Shovel,logprob,Shovel
+Chameleon|Grinding disk|Shovel,logprob,Shovel
+Saw|Chameleon|Lawn Mower,logprob,Lawn Mower
+Gecko|Anvil|Grinding disk,logprob,Anvil
+Grinding disk|Lizard|Nail,logprob,Lizard
+Chisel|Grinding disk|Lawn Mower,logprob,Lawn Mower
+Salamander|Blindworm|Grinding disk,logprob,Blindworm
+Vacuum|Crocodile|Toad,logprob,Crocodile
+Cobra|Chameleon|Turtle,logprob,Chameleon
+Nail|Dinosaur|Grinding disk,logprob,Dinosaur
+Cobra|Anvil|Chameleon,logprob,Chameleon
+Vacuum|Lizard|Saw,logprob,Lizard
+Nail|Turtle|Vacuum,logprob,Turtle
+Oil can|Nail|Toad,logprob,Toad
+Shovel|Cobra|Saw,logprob,Saw
+Screwdriver|Alligator|Saw,logprob,Alligator
+Grinding disk|Anvil|Gecko,logprob,Anvil
+Oil can|Alligator|Chisel,logprob,Chisel
+Toad|Salamander|Turtle,logprob,Salamander
+Hammer|Salamander|Snake,logprob,Salamander
+Alligator|Axe|Screwdriver,logprob,Screwdriver
+Dinosaur|Crocodile|Salamander,logprob,Crocodile
+Saw|Blindworm|Nail,logprob,Blindworm
+Dinosaur|Boa python|Saw,logprob,Boa python
+Boa python|Blindworm|Nail,logprob,Blindworm
+Turtle|Chameleon|Vacuum,logprob,Chameleon
+Lizard|Chisel|Lawn Mower,logprob,Lawn Mower
+Lizard|Crocodile|Vacuum,logprob,Crocodile
+Grinding disk|Axe|Chisel,logprob,Chisel
+Nail|Chameleon|Paint brush,logprob,Chameleon
+Blindworm|Anvil|Shovel,logprob,Shovel
+Grinding disk|Alligator|Axe,logprob,Alligator
+Tortoise|Oil can|Turtle,logprob,Turtle
+Hammer|Paint brush|Tortoise,logprob,Tortoise
+Turtle|Oil can|Toad,logprob,Toad
+Boa python|Dinosaur|Paint brush,logprob,Dinosaur
+Axe|Hammer|Knife,logprob,Hammer
+Lawn Mower|Axe|Nail,logprob,Axe
+Spanner|Crocodile|Grinding disk,logprob,Crocodile
+Dinosaur|Nail|Turtle,logprob,Turtle
+Chisel|Cobra|Screwdriver,logprob,Screwdriver
+Crocodile|Knife|Nail,logprob,Nail
+Anvil|Lizard|Paint brush,logprob,Lizard
+Hammer|Nail|Toad,logprob,Toad
+Dinosaur|Blindworm|Vacuum,logprob,Blindworm
+Nail|Chisel|Oil can,logprob,Chisel
+Lizard|Anvil|Boa python,logprob,Boa python
+Salamander|Screwdriver|Turtle,logprob,Screwdriver
+Axe|Gecko|Lizard,logprob,Lizard
+Dinosaur|Gecko|Screwdriver,logprob,Gecko
+Hammer|Nail|Oil can,logprob,Nail
+Lizard|Alligator|Salamander,logprob,Salamander
+Dinosaur|Alligator|Salamander,logprob,Salamander
+Alligator|Chameleon|Toad,logprob,Chameleon
+Gecko|Lizard|Oil can,logprob,Lizard
+Crocodile|Axe|Grinding disk,logprob,Grinding disk
+Grinding disk|Blindworm|Saw,logprob,Saw
+Crocodile|Lawn Mower|Tortoise,logprob,Tortoise
+Alligator|Knife|Saw,logprob,Saw
+Cobra|Boa python|Screwdriver,logprob,Boa python
+Chisel|Alligator|Shovel,logprob,Shovel
+Chisel|Grinding disk|Vacuum,logprob,Grinding disk
+Alligator|Chameleon|Nail,logprob,Chameleon
+Boa python|Paint brush|Spanner,logprob,Spanner
+Dinosaur|Gecko|Grinding disk,logprob,Gecko
+Dinosaur|Knife|Lizard,logprob,Lizard
+Vacuum|Nail|Tortoise,logprob,Tortoise
+Boa python|Crocodile|Shovel,logprob,Crocodile
+Knife|Axe|Lawn Mower,logprob,Lawn Mower
+Blindworm|Chameleon|Gecko,logprob,Chameleon
+Shovel|Gecko|Nail,logprob,Nail
+Screwdriver|Boa python|Lizard,logprob,Lizard
+Lizard|Boa python|Chisel,logprob,Boa python
+Hammer|Alligator|Vacuum,logprob,Alligator
+Boa python|Axe|Screwdriver,logprob,Screwdriver
+Lizard|Alligator|Chameleon,logprob,Chameleon
+Lizard|Crocodile|Oil can,logprob,Crocodile
+Nail|Anvil|Turtle,logprob,Anvil
+Vacuum|Saw|Snake,logprob,Snake
+Shovel|Nail|Tortoise,logprob,Tortoise
+Anvil|Saw|Spanner,logprob,Spanner
+Tortoise|Salamander|Snake,logprob,Salamander
+Hammer|Chisel|Gecko,logprob,Chisel
+Alligator|Axe|Lawn Mower,logprob,Lawn Mower
+Salamander|Boa python|Crocodile,logprob,Crocodile
+Snake|Blindworm|Spanner,logprob,Blindworm
+Turtle|Gecko|Oil can,logprob,Gecko
+Nail|Crocodile|Screwdriver,logprob,Crocodile
+Saw|Nail|Turtle,logprob,Nail
+Tortoise|Oil can|Paint brush,logprob,Paint brush
+Salamander|Gecko|Spanner,logprob,Spanner
+Axe|Alligator|Boa python,logprob,Alligator
+Snake|Caiman|Oil can,logprob,Caiman
+Nail|Gecko|Spanner,logprob,Spanner
+Boa python|Nail|Toad,logprob,Toad
+Salamander|Axe|Paint brush,logprob,Paint brush
+Shovel|Alligator|Tortoise,logprob,Tortoise
+Chameleon|Caiman|Vacuum,logprob,Caiman
+Lawn Mower|Dinosaur|Toad,logprob,Dinosaur
+Blindworm|Anvil|Grinding disk,logprob,Anvil
+Dinosaur|Grinding disk|Knife,logprob,Grinding disk
+Tortoise|Shovel|Toad,logprob,Toad
+Caiman|Grinding disk|Snake,logprob,Snake
+Dinosaur|Lizard|Nail,logprob,Lizard
+Vacuum|Salamander|Spanner,logprob,Salamander
+Grinding disk|Boa python|Gecko,logprob,Boa python
+Snake|Chisel|Cobra,logprob,Chisel
+Saw|Chisel|Spanner,logprob,Spanner
+Crocodile|Nail|Paint brush,logprob,Paint brush
+Blindworm|Oil can|Paint brush,logprob,Paint brush
+Nail|Chameleon|Turtle,logprob,Chameleon
+Nail|Blindworm|Crocodile,logprob,Crocodile
+Hammer|Cobra|Toad,logprob,Toad
+Cobra|Gecko|Turtle,logprob,Gecko
+Tortoise|Axe|Blindworm,logprob,Blindworm
+Axe|Hammer|Vacuum,logprob,Hammer
+Snake|Oil can|Salamander,logprob,Salamander
+Nail|Chisel|Vacuum,logprob,Chisel
+Vacuum|Axe|Crocodile,logprob,Crocodile
+Turtle|Gecko|Lizard,logprob,Lizard
+Tortoise|Crocodile|Salamander,logprob,Salamander
+Paint brush|Grinding disk|Shovel,logprob,Shovel
+Hammer|Axe|Spanner,logprob,Spanner
+Hammer|Crocodile|Paint brush,logprob,Crocodile
+Toad|Knife|Shovel,logprob,Shovel
+Shovel|Axe|Dinosaur,logprob,Axe
+Anvil|Grinding disk|Salamander,logprob,Salamander
+Alligator|Hammer|Spanner,logprob,Spanner
+Turtle|Nail|Paint brush,logprob,Paint brush
+Paint brush|Chameleon|Crocodile,logprob,Chameleon
+Spanner|Nail|Saw,logprob,Saw
+Dinosaur|Cobra|Turtle,logprob,Turtle
+Nail|Dinosaur|Spanner,logprob,Dinosaur
+Dinosaur|Cobra|Snake,logprob,Snake
+Chameleon|Alligator|Axe,logprob,Alligator
+Turtle|Paint brush|Saw,logprob,Paint brush
+Lawn Mower|Nail|Shovel,logprob,Shovel
+Gecko|Spanner|Vacuum,logprob,Spanner
+Axe|Cobra|Nail,logprob,Nail
+Shovel|Alligator|Turtle,logprob,Alligator
+Knife|Lizard|Salamander,logprob,Salamander
+Shovel|Anvil|Hammer,logprob,Anvil
+Oil can|Dinosaur|Paint brush,logprob,Dinosaur
+Saw|Screwdriver|Tortoise,logprob,Tortoise
+Lawn Mower|Alligator|Toad,logprob,Toad
+Paint brush|Axe|Gecko,logprob,Axe
+Alligator|Gecko|Tortoise,logprob,Tortoise
+Screwdriver|Paint brush|Turtle,logprob,Paint brush
+Gecko|Shovel|Turtle,logprob,Shovel
+Chameleon|Axe|Knife,logprob,Axe
+Salamander|Cobra|Crocodile,logprob,Crocodile
+Dinosaur|Lizard|Screwdriver,logprob,Lizard
+Chisel|Anvil|Dinosaur,logprob,Anvil
+Vacuum|Dinosaur|Nail,logprob,Dinosaur
+Cobra|Blindworm|Dinosaur,logprob,Dinosaur
+Salamander|Chameleon|Turtle,logprob,Chameleon
+Snake|Tortoise|Turtle,logprob,Tortoise
+Caiman|Chameleon|Gecko,logprob,Chameleon
+Toad|Boa python|Dinosaur,logprob,Dinosaur
+Chisel|Shovel|Snake,logprob,Shovel
+Blindworm|Knife|Tortoise,logprob,Tortoise
+Oil can|Saw|Tortoise,logprob,Tortoise
+Hammer|Boa python|Cobra,logprob,Boa python
+Grinding disk|Toad|Turtle,logprob,Toad
+Nail|Hammer|Paint brush,logprob,Paint brush
+Hammer|Oil can|Shovel,logprob,Shovel
+Tortoise|Boa python|Chisel,logprob,Boa python
+Turtle|Chameleon|Saw,logprob,Chameleon
+Turtle|Anvil|Axe,logprob,Anvil
+Blindworm|Oil can|Spanner,logprob,Spanner
+Saw|Knife|Nail,logprob,Knife
+Anvil|Chameleon|Lizard,logprob,Lizard
+Saw|Anvil|Oil can,logprob,Anvil
+Screwdriver|Hammer|Snake,logprob,Hammer
+Dinosaur|Cobra|Oil can,logprob,Oil can
+Blindworm|Dinosaur|Shovel,logprob,Dinosaur
+Knife|Grinding disk|Paint brush,logprob,Paint brush
+Snake|Caiman|Crocodile,logprob,Crocodile
+Tortoise|Caiman|Turtle,logprob,Caiman
+Grinding disk|Caiman|Toad,logprob,Caiman
+Screwdriver|Tortoise|Vacuum,logprob,Tortoise
+Knife|Lizard|Vacuum,logprob,Lizard
+Caiman|Crocodile|Dinosaur,logprob,Crocodile
+Vacuum|Dinosaur|Hammer,logprob,Dinosaur
+Blindworm|Chisel|Screwdriver,logprob,Chisel
+Tortoise|Chisel|Knife,logprob,Chisel
+Dinosaur|Grinding disk|Turtle,logprob,Turtle
+Turtle|Gecko|Toad,logprob,Toad
+Nail|Chameleon|Spanner,logprob,Chameleon
+Axe|Grinding disk|Toad,logprob,Toad
+Blindworm|Hammer|Toad,logprob,Toad
+Salamander|Knife|Saw,logprob,Saw
+Knife|Cobra|Nail,logprob,Cobra
+Paint brush|Knife|Vacuum,logprob,Knife
+Vacuum|Lawn Mower|Shovel,logprob,Lawn Mower
+Knife|Boa python|Nail,logprob,Boa python
+Lizard|Chameleon|Crocodile,logprob,Crocodile
+Chameleon|Boa python|Vacuum,logprob,Boa python
+Lawn Mower|Alligator|Nail,logprob,Alligator
+Spanner|Axe|Lizard,logprob,Lizard
+Crocodile|Boa python|Paint brush,logprob,Boa python
+Anvil|Lizard|Tortoise,logprob,Tortoise
+Cobra|Nail|Screwdriver,logprob,Screwdriver
+Spanner|Screwdriver|Tortoise,logprob,Screwdriver
+Anvil|Cobra|Knife,logprob,Cobra
+Screwdriver|Knife|Shovel,logprob,Shovel
+Blindworm|Saw|Turtle,logprob,Turtle
+Vacuum|Alligator|Nail,logprob,Alligator
+Cobra|Boa python|Tortoise,logprob,Tortoise
+Shovel|Paint brush|Toad,logprob,Toad
+Hammer|Gecko|Vacuum,logprob,Gecko
+Paint brush|Nail|Tortoise,logprob,Tortoise
+Toad|Alligator|Saw,logprob,Alligator
+Alligator|Crocodile|Snake,logprob,Crocodile
+Spanner|Lawn Mower|Lizard,logprob,Lawn Mower
+Nail|Alligator|Anvil,logprob,Alligator
+Alligator|Chisel|Saw,logprob,Chisel
+Blindworm|Anvil|Tortoise,logprob,Tortoise
+Gecko|Caiman|Lawn Mower,logprob,Caiman
+Lawn Mower|Blindworm|Boa python,logprob,Boa python
+Anvil|Axe|Shovel,logprob,Shovel
+Crocodile|Axe|Knife,logprob,Axe
+Nail|Boa python|Saw,logprob,Boa python
+Vacuum|Nail|Turtle,logprob,Turtle
+Vacuum|Alligator|Toad,logprob,Toad
+Turtle|Chisel|Dinosaur,logprob,Dinosaur
+Turtle|Blindworm|Nail,logprob,Blindworm
+Anvil|Caiman|Shovel,logprob,Shovel
+Salamander|Grinding disk|Turtle,logprob,Turtle
+Tortoise|Lawn Mower|Lizard,logprob,Lizard
+Hammer|Nail|Saw,logprob,Nail
+Lizard|Gecko|Nail,logprob,Gecko
+Lizard|Anvil|Shovel,logprob,Anvil
+Saw|Paint brush|Toad,logprob,Toad
+Paint brush|Anvil|Axe,logprob,Anvil
+Chisel|Caiman|Screwdriver,logprob,Screwdriver
+Salamander|Saw|Snake,logprob,Snake
+Blindworm|Anvil|Caiman,logprob,Caiman
+Blindworm|Dinosaur|Salamander,logprob,Salamander
+Boa python|Caiman|Hammer,logprob,Caiman
+Anvil|Grinding disk|Lizard,logprob,Lizard
+Vacuum|Nail|Salamander,logprob,Salamander
+Shovel|Caiman|Paint brush,logprob,Caiman
+Alligator|Anvil|Knife,logprob,Anvil
+Axe|Boa python|Lawn Mower,logprob,Lawn Mower
+Lizard|Gecko|Grinding disk,logprob,Gecko
+Grinding disk|Lizard|Paint brush,logprob,Paint brush
+Shovel|Alligator|Gecko,logprob,Alligator
+Gecko|Alligator|Snake,logprob,Alligator
+Oil can|Cobra|Shovel,logprob,Shovel
+Snake|Lawn Mower|Oil can,logprob,Lawn Mower
+Salamander|Hammer|Nail,logprob,Hammer
+Hammer|Chisel|Lawn Mower,logprob,Chisel
+Shovel|Axe|Lizard,logprob,Axe
+Axe|Dinosaur|Hammer,logprob,Dinosaur
+Saw|Crocodile|Screwdriver,logprob,Crocodile
+Toad|Oil can|Tortoise,logprob,Tortoise
+Grinding disk|Lizard|Tortoise,logprob,Tortoise
+Paint brush|Cobra|Vacuum,logprob,Cobra
+Oil can|Axe|Salamander,logprob,Salamander
+Oil can|Blindworm|Paint brush,logprob,Paint brush
+Nail|Axe|Salamander,logprob,Salamander
+Lawn Mower|Gecko|Nail,logprob,Nail
+Snake|Oil can|Saw,logprob,Oil can
+Tortoise|Chameleon|Salamander,logprob,Salamander
+Crocodile|Chisel|Turtle,logprob,Chisel
+Oil can|Gecko|Grinding disk,logprob,Grinding disk
+Gecko|Blindworm|Oil can,logprob,Blindworm
+Screwdriver|Chameleon|Cobra,logprob,Chameleon
+Chameleon|Axe|Dinosaur,logprob,Dinosaur
+Caiman|Hammer|Knife,logprob,Hammer
+Caiman|Chameleon|Vacuum,logprob,Chameleon
+Anvil|Boa python|Spanner,logprob,Spanner
+Knife|Blindworm|Snake,logprob,Blindworm
+Crocodile|Oil can|Screwdriver,logprob,Screwdriver
+Anvil|Grinding disk|Spanner,logprob,Spanner
+Alligator|Dinosaur|Gecko,logprob,Dinosaur
+Chameleon|Axe|Boa python,logprob,Boa python
+Spanner|Alligator|Turtle,logprob,Alligator
+Blindworm|Grinding disk|Turtle,logprob,Turtle
+Lizard|Axe|Crocodile,logprob,Crocodile
+Boa python|Chameleon|Oil can,logprob,Chameleon
+Oil can|Boa python|Chameleon,logprob,Chameleon
+Chameleon|Screwdriver|Turtle,logprob,Screwdriver
+Snake|Anvil|Shovel,logprob,Shovel
+Anvil|Grinding disk|Paint brush,logprob,Paint brush
+Snake|Chameleon|Turtle,logprob,Chameleon
+Tortoise|Nail|Shovel,logprob,Shovel
+Anvil|Chisel|Gecko,logprob,Chisel
+Blindworm|Nail|Salamander,logprob,Salamander
+Axe|Chameleon|Gecko,logprob,Chameleon
+Screwdriver|Alligator|Axe,logprob,Alligator
+Chameleon|Lawn Mower|Toad,logprob,Toad
+Crocodile|Saw|Shovel,logprob,Shovel
+Lawn Mower|Cobra|Grinding disk,logprob,Grinding disk
+Hammer|Cobra|Snake,logprob,Cobra
+Blindworm|Alligator|Spanner,logprob,Alligator
+Screwdriver|Alligator|Turtle,logprob,Alligator
+Turtle|Screwdriver|Tortoise,logprob,Tortoise
+Boa python|Nail|Turtle,logprob,Turtle
+Tortoise|Alligator|Turtle,logprob,Alligator
+Paint brush|Boa python|Chameleon,logprob,Chameleon
+Lawn Mower|Axe|Blindworm,logprob,Axe
+Snake|Blindworm|Grinding disk,logprob,Blindworm
+Snake|Boa python|Spanner,logprob,Boa python
+Toad|Cobra|Snake,logprob,Snake
+Knife|Caiman|Saw,logprob,Caiman
+Oil can|Knife|Salamander,logprob,Salamander
+Salamander|Knife|Snake,logprob,Snake
+Nail|Chisel|Tortoise,logprob,Chisel
+Shovel|Nail|Snake,logprob,Nail
+Shovel|Lizard|Screwdriver,logprob,Screwdriver
+Hammer|Cobra|Lawn Mower,logprob,Lawn Mower
+Paint brush|Toad|Tortoise,logprob,Tortoise
+Spanner|Axe|Screwdriver,logprob,Screwdriver
+Hammer|Chisel|Cobra,logprob,Chisel
+Tortoise|Chameleon|Chisel,logprob,Chameleon
+Screwdriver|Axe|Gecko,logprob,Axe
+Knife|Axe|Grinding disk,logprob,Axe
+Saw|Toad|Vacuum,logprob,Toad
+Axe|Grinding disk|Shovel,logprob,Shovel
+Cobra|Lizard|Snake,logprob,Lizard
+Caiman|Gecko|Tortoise,logprob,Tortoise
+Gecko|Snake|Turtle,logprob,Snake
+Caiman|Chameleon|Screwdriver,logprob,Chameleon
+Blindworm|Anvil|Turtle,logprob,Anvil
+Grinding disk|Crocodile|Paint brush,logprob,Crocodile
+Toad|Paint brush|Shovel,logprob,Shovel
+Axe|Shovel|Tortoise,logprob,Shovel
+Nail|Gecko|Lawn Mower,logprob,Lawn Mower
+Caiman|Crocodile|Spanner,logprob,Crocodile
+Oil can|Boa python|Toad,logprob,Toad
+Lawn Mower|Caiman|Dinosaur,logprob,Caiman
+Salamander|Cobra|Dinosaur,logprob,Dinosaur
+Salamander|Paint brush|Turtle,logprob,Turtle
+Screwdriver|Crocodile|Lawn Mower,logprob,Lawn Mower
+Vacuum|Grinding disk|Knife,logprob,Grinding disk
+Lizard|Lawn Mower|Saw,logprob,Lawn Mower
+Paint brush|Hammer|Spanner,logprob,Spanner
+Crocodile|Cobra|Snake,logprob,Snake
+Chameleon|Caiman|Cobra,logprob,Caiman
+Saw|Snake|Toad,logprob,Toad
+Axe|Chameleon|Crocodile,logprob,Crocodile
+Chameleon|Chisel|Lawn Mower,logprob,Lawn Mower
+Crocodile|Cobra|Hammer,logprob,Cobra
+Turtle|Alligator|Axe,logprob,Alligator
+Lizard|Axe|Caiman,logprob,Caiman
+Lawn Mower|Toad|Vacuum,logprob,Toad
+Dinosaur|Axe|Snake,logprob,Snake
+Chameleon|Blindworm|Snake,logprob,Snake
+Oil can|Blindworm|Saw,logprob,Blindworm
+Grinding disk|Chameleon|Knife,logprob,Chameleon
+Oil can|Alligator|Chameleon,logprob,Alligator
+Lizard|Chameleon|Oil can,logprob,Chameleon
+Tortoise|Axe|Chisel,logprob,Chisel
+Anvil|Shovel|Tortoise,logprob,Shovel
+Lawn Mower|Knife|Spanner,logprob,Spanner
+Anvil|Nail|Screwdriver,logprob,Screwdriver
+Turtle|Axe|Vacuum,logprob,Axe
+Toad|Salamander|Shovel,logprob,Salamander
+Blindworm|Crocodile|Paint brush,logprob,Crocodile
+Alligator|Tortoise|Vacuum,logprob,Tortoise
+Lizard|Boa python|Hammer,logprob,Boa python
+Nail|Chisel|Cobra,logprob,Chisel
+Screwdriver|Anvil|Crocodile,logprob,Anvil
+Tortoise|Nail|Screwdriver,logprob,Screwdriver
+Chisel|Cobra|Spanner,logprob,Spanner
+Lawn Mower|Lizard|Spanner,logprob,Lizard
+Alligator|Nail|Saw,logprob,Saw
+Lawn Mower|Chisel|Lizard,logprob,Lizard
+Salamander|Hammer|Vacuum,logprob,Hammer
+Chameleon|Knife|Tortoise,logprob,Tortoise
+Nail|Lawn Mower|Lizard,logprob,Lawn Mower
+Caiman|Oil can|Tortoise,logprob,Tortoise
+Grinding disk|Oil can|Vacuum,logprob,Oil can
+Nail|Lawn Mower|Shovel,logprob,Lawn Mower
+Snake|Axe|Chisel,logprob,Chisel
+Boa python|Cobra|Screwdriver,logprob,Cobra
+Paint brush|Cobra|Dinosaur,logprob,Dinosaur
+Anvil|Alligator|Chisel,logprob,Chisel
+Lizard|Anvil|Hammer,logprob,Anvil
+Knife|Oil can|Saw,logprob,Saw
+Paint brush|Anvil|Saw,logprob,Anvil
+Saw|Boa python|Grinding disk,logprob,Boa python
+Oil can|Chisel|Vacuum,logprob,Chisel
+Oil can|Chameleon|Chisel,logprob,Chisel
+Anvil|Gecko|Knife,logprob,Knife
+Turtle|Lawn Mower|Saw,logprob,Lawn Mower
+Toad|Blindworm|Nail,logprob,Blindworm
+Spanner|Knife|Tortoise,logprob,Tortoise
+Nail|Saw|Vacuum,logprob,Saw
+Toad|Chisel|Gecko,logprob,Chisel
+Snake|Dinosaur|Salamander,logprob,Salamander
+Cobra|Alligator|Axe,logprob,Alligator
+Tortoise|Hammer|Toad,logprob,Toad
+Nail|Toad|Tortoise,logprob,Toad
+Chisel|Blindworm|Chameleon,logprob,Chameleon
+Grinding disk|Alligator|Crocodile,logprob,Alligator
+Grinding disk|Chisel|Crocodile,logprob,Chisel
+Paint brush|Lawn Mower|Nail,logprob,Lawn Mower
+Dinosaur|Shovel|Turtle,logprob,Shovel
+Spanner|Blindworm|Paint brush,logprob,Blindworm
+Salamander|Anvil|Lizard,logprob,Lizard
+Grinding disk|Chisel|Turtle,logprob,Chisel
+Chameleon|Gecko|Vacuum,logprob,Gecko
+Dinosaur|Salamander|Snake,logprob,Salamander
+Axe|Boa python|Paint brush,logprob,Boa python
+Turtle|Knife|Tortoise,logprob,Tortoise
+Tortoise|Paint brush|Toad,logprob,Toad
+Axe|Spanner|Toad,logprob,Toad
+Grinding disk|Chisel|Lawn Mower,logprob,Lawn Mower
+Vacuum|Lawn Mower|Oil can,logprob,Lawn Mower
+Spanner|Boa python|Snake,logprob,Boa python
+Nail|Paint brush|Toad,logprob,Toad
+Boa python|Cobra|Oil can,logprob,Cobra
+Toad|Caiman|Shovel,logprob,Caiman
+Hammer|Screwdriver|Shovel,logprob,Shovel
+Cobra|Saw|Vacuum,logprob,Saw
+Saw|Hammer|Snake,logprob,Hammer
+Spanner|Screwdriver|Toad,logprob,Toad
+Screwdriver|Gecko|Saw,logprob,Saw
+Tortoise|Dinosaur|Grinding disk,logprob,Dinosaur
+Oil can|Caiman|Spanner,logprob,Caiman
+Boa python|Chisel|Saw,logprob,Chisel
+Grinding disk|Paint brush|Toad,logprob,Toad
+Spanner|Salamander|Shovel,logprob,Salamander
+Salamander|Cobra|Hammer,logprob,Cobra
+Gecko|Lawn Mower|Nail,logprob,Lawn Mower
+Caiman|Anvil|Gecko,logprob,Anvil
+Screwdriver|Grinding disk|Lawn Mower,logprob,Lawn Mower
+Gecko|Boa python|Saw,logprob,Boa python
+Axe|Grinding disk|Screwdriver,logprob,Screwdriver
+Chisel|Lawn Mower|Turtle,logprob,Lawn Mower
+Tortoise|Toad|Vacuum,logprob,Toad
+Turtle|Crocodile|Nail,logprob,Crocodile
+Tortoise|Dinosaur|Salamander,logprob,Salamander
+Lizard|Nail|Oil can,logprob,Oil can
+Cobra|Boa python|Saw,logprob,Boa python
+Grinding disk|Alligator|Blindworm,logprob,Alligator
+Anvil|Oil can|Spanner,logprob,Spanner
+Nail|Anvil|Vacuum,logprob,Anvil
+Shovel|Alligator|Grinding disk,logprob,Alligator
+Salamander|Paint brush|Spanner,logprob,Spanner
+Shovel|Boa python|Chisel,logprob,Chisel
+Cobra|Blindworm|Shovel,logprob,Shovel
+Lawn Mower|Knife|Toad,logprob,Toad
+Alligator|Knife|Oil can,logprob,Oil can
+Snake|Nail|Vacuum,logprob,Vacuum
+Alligator|Chisel|Salamander,logprob,Salamander
+Vacuum|Alligator|Boa python,logprob,Alligator
+Hammer|Boa python|Shovel,logprob,Shovel
+Tortoise|Dinosaur|Spanner,logprob,Dinosaur
+Spanner|Nail|Toad,logprob,Toad
+Anvil|Cobra|Turtle,logprob,Cobra
+Blindworm|Lawn Mower|Paint brush,logprob,Lawn Mower
+Salamander|Dinosaur|Gecko,logprob,Dinosaur
+Alligator|Blindworm|Shovel,logprob,Shovel
+Lizard|Cobra|Nail,logprob,Cobra
+Lawn Mower|Tortoise|Turtle,logprob,Tortoise
+Alligator|Spanner|Vacuum,logprob,Spanner
+Anvil|Dinosaur|Gecko,logprob,Dinosaur
+Axe|Cobra|Spanner,logprob,Spanner
+Blindworm|Chisel|Gecko,logprob,Chisel
+Boa python|Alligator|Grinding disk,logprob,Alligator
+Hammer|Chameleon|Nail,logprob,Chameleon
+Toad|Salamander|Vacuum,logprob,Salamander
+Gecko|Axe|Caiman,logprob,Caiman
+Oil can|Saw|Toad,logprob,Toad
+Saw|Dinosaur|Lizard,logprob,Dinosaur
+Toad|Dinosaur|Knife,logprob,Dinosaur
+Turtle|Gecko|Nail,logprob,Gecko
+Axe|Knife|Snake,logprob,Knife
+Dinosaur|Lizard|Vacuum,logprob,Lizard
+Lizard|Oil can|Paint brush,logprob,Paint brush
+Lizard|Alligator|Chisel,logprob,Alligator
+Boa python|Spanner|Tortoise,logprob,Tortoise
+Snake|Chameleon|Paint brush,logprob,Chameleon
+Turtle|Paint brush|Snake,logprob,Snake
+Saw|Gecko|Paint brush,logprob,Paint brush
+Chisel|Alligator|Caiman,logprob,Caiman
+Caiman|Boa python|Spanner,logprob,Boa python
+Shovel|Saw|Toad,logprob,Toad
+Toad|Caiman|Spanner,logprob,Caiman
+Chameleon|Caiman|Snake,logprob,Caiman
+Vacuum|Lizard|Nail,logprob,Lizard
+Caiman|Boa python|Salamander,logprob,Salamander
+Snake|Crocodile|Salamander,logprob,Salamander
+Lawn Mower|Knife|Lizard,logprob,Lizard
+Boa python|Chameleon|Nail,logprob,Chameleon
+Turtle|Axe|Chisel,logprob,Chisel
+Hammer|Alligator|Knife,logprob,Alligator
+Grinding disk|Chisel|Gecko,logprob,Chisel
+Tortoise|Hammer|Lizard,logprob,Lizard
+Shovel|Blindworm|Turtle,logprob,Turtle
+Snake|Chameleon|Hammer,logprob,Chameleon
+Lawn Mower|Caiman|Screwdriver,logprob,Caiman
+Crocodile|Caiman|Hammer,logprob,Caiman
+Knife|Lawn Mower|Lizard,logprob,Lawn Mower
+Hammer|Alligator|Anvil,logprob,Anvil
+Screwdriver|Spanner|Turtle,logprob,Spanner
+Snake|Hammer|Spanner,logprob,Spanner
+Axe|Dinosaur|Lizard,logprob,Dinosaur
+Crocodile|Lizard|Snake,logprob,Lizard
+Boa python|Lawn Mower|Spanner,logprob,Lawn Mower
+Shovel|Alligator|Toad,logprob,Toad
+Snake|Axe|Vacuum,logprob,Axe
+Salamander|Spanner|Vacuum,logprob,Spanner
+Salamander|Lawn Mower|Tortoise,logprob,Tortoise
+Knife|Cobra|Paint brush,logprob,Paint brush
+Salamander|Caiman|Toad,logprob,Toad
+Paint brush|Lawn Mower|Tortoise,logprob,Lawn Mower
+Turtle|Paint brush|Screwdriver,logprob,Screwdriver
+Salamander|Anvil|Toad,logprob,Toad
+Crocodile|Hammer|Tortoise,logprob,Tortoise
+Vacuum|Axe|Cobra,logprob,Cobra
+Toad|Chameleon|Chisel,logprob,Chameleon
+Nail|Boa python|Grinding disk,logprob,Boa python
+Snake|Anvil|Gecko,logprob,Anvil
+Knife|Alligator|Toad,logprob,Toad
+Crocodile|Anvil|Toad,logprob,Toad
+Lawn Mower|Chisel|Snake,logprob,Chisel
+Snake|Dinosaur|Hammer,logprob,Dinosaur
+Salamander|Gecko|Vacuum,logprob,Gecko
+Chisel|Nail|Vacuum,logprob,Nail
+Saw|Anvil|Screwdriver,logprob,Anvil
+Lawn Mower|Cobra|Turtle,logprob,Turtle
+Oil can|Chisel|Saw,logprob,Chisel
+Axe|Chameleon|Toad,logprob,Toad
+Toad|Grinding disk|Lizard,logprob,Lizard
+Paint brush|Axe|Toad,logprob,Toad
+Screwdriver|Hammer|Tortoise,logprob,Tortoise
+Toad|Cobra|Grinding disk,logprob,Cobra
+Oil can|Knife|Nail,logprob,Nail
+Toad|Blindworm|Tortoise,logprob,Tortoise
+Dinosaur|Anvil|Nail,logprob,Anvil
+Dinosaur|Nail|Oil can,logprob,Oil can
+Boa python|Blindworm|Knife,logprob,Blindworm
+Salamander|Snake|Tortoise,logprob,Tortoise
+Gecko|Lawn Mower|Spanner,logprob,Lawn Mower
+Lawn Mower|Caiman|Paint brush,logprob,Caiman
+Nail|Boa python|Shovel,logprob,Boa python
+Paint brush|Chameleon|Saw,logprob,Chameleon
+Paint brush|Chameleon|Turtle,logprob,Chameleon
+Oil can|Boa python|Knife,logprob,Boa python
+Nail|Blindworm|Salamander,logprob,Salamander
+Alligator|Snake|Toad,logprob,Toad
+Crocodile|Snake|Vacuum,logprob,Snake
+Dinosaur|Spanner|Vacuum,logprob,Spanner
+Chameleon|Toad|Turtle,logprob,Toad
+Crocodile|Lizard|Nail,logprob,Lizard
+Tortoise|Lizard|Salamander,logprob,Lizard
+Boa python|Screwdriver|Spanner,logprob,Spanner
+Turtle|Blindworm|Lawn Mower,logprob,Lawn Mower
+Snake|Anvil|Hammer,logprob,Anvil
+Salamander|Oil can|Toad,logprob,Toad
+Tortoise|Anvil|Caiman,logprob,Caiman
+Hammer|Oil can|Spanner,logprob,Spanner
+Spanner|Axe|Nail,logprob,Nail
+Nail|Oil can|Toad,logprob,Toad
+Toad|Dinosaur|Snake,logprob,Dinosaur
+Grinding disk|Chisel|Shovel,logprob,Chisel
+Boa python|Crocodile|Saw,logprob,Crocodile
+Lizard|Blindworm|Gecko,logprob,Gecko
+Blindworm|Axe|Turtle,logprob,Turtle
+Gecko|Lizard|Spanner,logprob,Lizard
+Crocodile|Chameleon|Knife,logprob,Chameleon
+Paint brush|Cobra|Turtle,logprob,Turtle
+Cobra|Axe|Snake,logprob,Snake
+Knife|Axe|Saw,logprob,Axe
+Chameleon|Lizard|Nail,logprob,Lizard
+Chameleon|Crocodile|Vacuum,logprob,Crocodile
+Alligator|Dinosaur|Saw,logprob,Dinosaur
+Dinosaur|Lawn Mower|Oil can,logprob,Lawn Mower
+Snake|Crocodile|Knife,logprob,Crocodile
+Alligator|Gecko|Turtle,logprob,Turtle
+Chisel|Grinding disk|Shovel,logprob,Shovel
+Oil can|Caiman|Snake,logprob,Caiman
+Grinding disk|Salamander|Shovel,logprob,Salamander
+Hammer|Caiman|Paint brush,logprob,Caiman
+Gecko|Axe|Cobra,logprob,Cobra
+Toad|Lizard|Paint brush,logprob,Lizard
+Boa python|Anvil|Vacuum,logprob,Anvil
+Alligator|Chisel|Nail,logprob,Chisel
+Spanner|Lizard|Vacuum,logprob,Lizard
+Gecko|Alligator|Chisel,logprob,Alligator
+Oil can|Knife|Toad,logprob,Toad
+Toad|Anvil|Lizard,logprob,Lizard
+Hammer|Alligator|Snake,logprob,Alligator
+Dinosaur|Lizard|Toad,logprob,Lizard
+Lizard|Hammer|Toad,logprob,Toad
+Anvil|Chameleon|Nail,logprob,Chameleon
+Lizard|Anvil|Lawn Mower,logprob,Lawn Mower
+Knife|Chisel|Snake,logprob,Chisel
+Oil can|Knife|Screwdriver,logprob,Screwdriver
+Axe|Chisel|Knife,logprob,Chisel
+Chameleon|Crocodile|Toad,logprob,Crocodile
+Grinding disk|Cobra|Oil can,logprob,Oil can
+Dinosaur|Caiman|Saw,logprob,Caiman
+Lawn Mower|Shovel|Snake,logprob,Shovel
+Alligator|Dinosaur|Knife,logprob,Dinosaur
+Gecko|Hammer|Nail,logprob,Hammer
+Grinding disk|Caiman|Gecko,logprob,Caiman
+Anvil|Alligator|Tortoise,logprob,Tortoise
+Turtle|Chisel|Shovel,logprob,Shovel
+Shovel|Tortoise|Vacuum,logprob,Tortoise
+Oil can|Alligator|Caiman,logprob,Caiman
+Saw|Alligator|Nail,logprob,Alligator
+Blindworm|Dinosaur|Lizard,logprob,Lizard
+Vacuum|Paint brush|Snake,logprob,Paint brush
+Hammer|Paint brush|Saw,logprob,Saw
+Snake|Alligator|Chameleon,logprob,Chameleon
+Lawn Mower|Chisel|Toad,logprob,Toad
+Gecko|Anvil|Snake,logprob,Anvil
+Tortoise|Cobra|Hammer,logprob,Cobra
+Boa python|Gecko|Grinding disk,logprob,Gecko
+Anvil|Chisel|Saw,logprob,Chisel
+Lawn Mower|Chisel|Knife,logprob,Chisel
+Oil can|Blindworm|Chisel,logprob,Chisel
+Saw|Grinding disk|Toad,logprob,Toad
+Salamander|Axe|Lawn Mower,logprob,Lawn Mower
+Chisel|Hammer|Salamander,logprob,Salamander
+Chameleon|Cobra|Turtle,logprob,Cobra
+Chameleon|Crocodile|Tortoise,logprob,Tortoise
+Turtle|Crocodile|Snake,logprob,Crocodile
+Paint brush|Alligator|Oil can,logprob,Alligator
+Toad|Dinosaur|Paint brush,logprob,Dinosaur
+Shovel|Screwdriver|Snake,logprob,Screwdriver
+Hammer|Axe|Vacuum,logprob,Axe
+Nail|Grinding disk|Paint brush,logprob,Paint brush
+Cobra|Nail|Tortoise,logprob,Tortoise
+Knife|Chameleon|Gecko,logprob,Chameleon
+Toad|Anvil|Blindworm,logprob,Anvil
+Blindworm|Cobra|Paint brush,logprob,Paint brush
+Screwdriver|Cobra|Paint brush,logprob,Paint brush
+Anvil|Chisel|Crocodile,logprob,Chisel
+Nail|Shovel|Toad,logprob,Toad
+Chisel|Toad|Vacuum,logprob,Toad
+Spanner|Anvil|Toad,logprob,Toad
+Shovel|Axe|Chisel,logprob,Chisel
+Lizard|Boa python|Tortoise,logprob,Tortoise
+Paint brush|Alligator|Anvil,logprob,Alligator
+Vacuum|Dinosaur|Salamander,logprob,Salamander
+Chisel|Blindworm|Turtle,logprob,Blindworm
+Chameleon|Nail|Toad,logprob,Toad
+Lizard|Crocodile|Salamander,logprob,Crocodile
+Oil can|Axe|Turtle,logprob,Axe
+Dinosaur|Hammer|Paint brush,logprob,Paint brush
+Spanner|Chisel|Shovel,logprob,Chisel
+Chisel|Chameleon|Saw,logprob,Chameleon
+Toad|Blindworm|Salamander,logprob,Salamander
+Knife|Nail|Saw,logprob,Saw
+Grinding disk|Axe|Nail,logprob,Axe
+Boa python|Blindworm|Hammer,logprob,Blindworm
+Shovel|Blindworm|Nail,logprob,Blindworm
+Caiman|Oil can|Salamander,logprob,Salamander
+Screwdriver|Caiman|Grinding disk,logprob,Caiman
+Vacuum|Chisel|Oil can,logprob,Chisel
+Gecko|Paint brush|Vacuum,logprob,Paint brush
+Grinding disk|Chisel|Dinosaur,logprob,Chisel
+Shovel|Nail|Turtle,logprob,Turtle
+Vacuum|Chisel|Saw,logprob,Chisel
+Tortoise|Crocodile|Oil can,logprob,Crocodile
+Cobra|Alligator|Knife,logprob,Alligator
+Chameleon|Shovel|Vacuum,logprob,Shovel
+Paint brush|Chameleon|Knife,logprob,Chameleon
+Axe|Alligator|Chameleon,logprob,Alligator
+Nail|Oil can|Snake,logprob,Oil can
+Salamander|Crocodile|Lawn Mower,logprob,Crocodile
+Shovel|Chisel|Screwdriver,logprob,Chisel
+Anvil|Grinding disk|Saw,logprob,Saw
+Salamander|Crocodile|Nail,logprob,Crocodile
+Saw|Chameleon|Shovel,logprob,Shovel
+Chameleon|Boa python|Nail,logprob,Boa python
+Knife|Chisel|Salamander,logprob,Chisel
+Turtle|Blindworm|Salamander,logprob,Salamander
+Anvil|Axe|Crocodile,logprob,Crocodile
+Lawn Mower|Oil can|Spanner,logprob,Spanner
+Paint brush|Anvil|Dinosaur,logprob,Dinosaur
+Chisel|Alligator|Hammer,logprob,Hammer
+Lizard|Caiman|Vacuum,logprob,Caiman
+Vacuum|Snake|Spanner,logprob,Spanner
+Knife|Grinding disk|Shovel,logprob,Shovel
+Caiman|Anvil|Knife,logprob,Anvil
+Tortoise|Alligator|Chameleon,logprob,Alligator
+Axe|Cobra|Saw,logprob,Saw
+Tortoise|Boa python|Spanner,logprob,Boa python
+Anvil|Gecko|Snake,logprob,Snake
+Hammer|Lawn Mower|Shovel,logprob,Lawn Mower
+Chameleon|Nail|Paint brush,logprob,Paint brush
+Dinosaur|Lawn Mower|Saw,logprob,Lawn Mower
+Hammer|Chameleon|Lizard,logprob,Lizard
+Anvil|Lizard|Turtle,logprob,Lizard
+Blindworm|Chameleon|Hammer,logprob,Chameleon
+Lizard|Screwdriver|Tortoise,logprob,Tortoise
+Knife|Dinosaur|Paint brush,logprob,Dinosaur
+Shovel|Axe|Lawn Mower,logprob,Lawn Mower
+Vacuum|Blindworm|Hammer,logprob,Blindworm
+Screwdriver|Snake|Vacuum,logprob,Snake
+Screwdriver|Axe|Boa python,logprob,Boa python
+Saw|Anvil|Paint brush,logprob,Anvil
+Dinosaur|Crocodile|Knife,logprob,Crocodile
+Chisel|Crocodile|Paint brush,logprob,Crocodile
+Saw|Crocodile|Vacuum,logprob,Crocodile
+Caiman|Gecko|Saw,logprob,Gecko
+Lawn Mower|Alligator|Crocodile,logprob,Crocodile
+Tortoise|Knife|Oil can,logprob,Oil can
+Toad|Hammer|Tortoise,logprob,Tortoise
+Snake|Blindworm|Toad,logprob,Toad
+Screwdriver|Anvil|Nail,logprob,Anvil
+Gecko|Axe|Tortoise,logprob,Tortoise
+Turtle|Axe|Lawn Mower,logprob,Lawn Mower
+Spanner|Lizard|Screwdriver,logprob,Screwdriver
+Chameleon|Spanner|Vacuum,logprob,Spanner
+Hammer|Paint brush|Spanner,logprob,Spanner
+Snake|Alligator|Blindworm,logprob,Alligator
+Toad|Chameleon|Spanner,logprob,Chameleon
+Gecko|Chisel|Lizard,logprob,Lizard
+Paint brush|Lizard|Turtle,logprob,Lizard
+Spanner|Grinding disk|Screwdriver,logprob,Screwdriver
+Gecko|Anvil|Dinosaur,logprob,Dinosaur
+Alligator|Hammer|Vacuum,logprob,Hammer
+Lawn Mower|Cobra|Snake,logprob,Snake
+Gecko|Chameleon|Paint brush,logprob,Chameleon
+Lizard|Blindworm|Caiman,logprob,Caiman
+Shovel|Boa python|Crocodile,logprob,Crocodile
+Hammer|Dinosaur|Saw,logprob,Dinosaur
+Shovel|Dinosaur|Grinding disk,logprob,Dinosaur
+Blindworm|Alligator|Tortoise,logprob,Alligator
+Shovel|Crocodile|Lizard,logprob,Crocodile
+Lawn Mower|Chisel|Turtle,logprob,Chisel
+Hammer|Gecko|Lizard,logprob,Lizard
+Chameleon|Nail|Salamander,logprob,Salamander
+Axe|Alligator|Spanner,logprob,Alligator
+Chisel|Lawn Mower|Toad,logprob,Lawn Mower
+Cobra|Blindworm|Crocodile,logprob,Crocodile
+Hammer|Axe|Cobra,logprob,Axe
+Turtle|Alligator|Chisel,logprob,Alligator
+Hammer|Blindworm|Paint brush,logprob,Paint brush
+Lizard|Alligator|Shovel,logprob,Alligator
+Knife|Dinosaur|Shovel,logprob,Shovel
+Nail|Hammer|Lizard,logprob,Lizard
+Snake|Anvil|Caiman,logprob,Caiman
+Boa python|Crocodile|Snake,logprob,Crocodile
+Blindworm|Alligator|Anvil,logprob,Alligator
+Boa python|Lizard|Shovel,logprob,Lizard
+Shovel|Chisel|Oil can,logprob,Chisel
+Knife|Dinosaur|Screwdriver,logprob,Screwdriver
+Chisel|Nail|Oil can,logprob,Nail
+Screwdriver|Axe|Toad,logprob,Toad
+Shovel|Spanner|Tortoise,logprob,Spanner
+Salamander|Caiman|Dinosaur,logprob,Caiman
+Salamander|Chisel|Toad,logprob,Toad
+Saw|Gecko|Shovel,logprob,Shovel
+Toad|Cobra|Crocodile,logprob,Crocodile
+Chisel|Alligator|Gecko,logprob,Alligator
+Chisel|Crocodile|Dinosaur,logprob,Crocodile
+Salamander|Saw|Vacuum,logprob,Saw
+Hammer|Cobra|Screwdriver,logprob,Screwdriver
+Vacuum|Caiman|Spanner,logprob,Caiman
+Shovel|Chameleon|Lizard,logprob,Chameleon
+Gecko|Lizard|Nail,logprob,Lizard
+Lizard|Hammer|Salamander,logprob,Salamander
+Dinosaur|Boa python|Spanner,logprob,Boa python
+Boa python|Blindworm|Toad,logprob,Toad
+Oil can|Crocodile|Spanner,logprob,Crocodile
+Tortoise|Axe|Gecko,logprob,Gecko
+Snake|Chameleon|Lizard,logprob,Lizard
+Blindworm|Snake|Vacuum,logprob,Snake
+Knife|Chisel|Crocodile,logprob,Chisel
+Knife|Hammer|Toad,logprob,Toad
+Lizard|Alligator|Gecko,logprob,Alligator
+Dinosaur|Crocodile|Vacuum,logprob,Crocodile
+Grinding disk|Oil can|Salamander,logprob,Salamander
+Saw|Lawn Mower|Snake,logprob,Lawn Mower
+Cobra|Knife|Salamander,logprob,Salamander
+Alligator|Dinosaur|Vacuum,logprob,Dinosaur
+Nail|Cobra|Salamander,logprob,Salamander
+Shovel|Lizard|Oil can,logprob,Lizard
+Toad|Boa python|Saw,logprob,Boa python
+Dinosaur|Alligator|Crocodile,logprob,Crocodile
+Toad|Alligator|Gecko,logprob,Alligator
+Hammer|Alligator|Spanner,logprob,Spanner
+Toad|Alligator|Turtle,logprob,Alligator
+Vacuum|Grinding disk|Turtle,logprob,Grinding disk
+Nail|Anvil|Shovel,logprob,Anvil
+Alligator|Lizard|Screwdriver,logprob,Lizard
+Paint brush|Spanner|Tortoise,logprob,Tortoise
+Snake|Grinding disk|Knife,logprob,Grinding disk
+Spanner|Shovel|Toad,logprob,Toad
+Saw|Crocodile|Salamander,logprob,Salamander
+Knife|Cobra|Gecko,logprob,Cobra
+Saw|Chameleon|Chisel,logprob,Chameleon
+Screwdriver|Cobra|Dinosaur,logprob,Dinosaur
+Toad|Caiman|Dinosaur,logprob,Caiman
+Hammer|Lawn Mower|Nail,logprob,Lawn Mower
+Screwdriver|Anvil|Vacuum,logprob,Anvil
+Dinosaur|Anvil|Vacuum,logprob,Anvil
+Cobra|Gecko|Grinding disk,logprob,Gecko
+Lizard|Lawn Mower|Screwdriver,logprob,Lawn Mower
+Tortoise|Chameleon|Knife,logprob,Chameleon
+Tortoise|Chisel|Shovel,logprob,Shovel
+Axe|Snake|Toad,logprob,Toad
+Cobra|Boa python|Lizard,logprob,Lizard
+Anvil|Crocodile|Gecko,logprob,Crocodile
+Caiman|Blindworm|Spanner,logprob,Spanner
+Spanner|Crocodile|Paint brush,logprob,Crocodile
+Oil can|Grinding disk|Knife,logprob,Grinding disk
+Screwdriver|Dinosaur|Shovel,logprob,Shovel
+Boa python|Toad|Vacuum,logprob,Toad
+Blindworm|Lawn Mower|Oil can,logprob,Lawn Mower
+Snake|Chameleon|Nail,logprob,Chameleon
+Gecko|Cobra|Tortoise,logprob,Tortoise
+Oil can|Lawn Mower|Snake,logprob,Lawn Mower
+Oil can|Paint brush|Turtle,logprob,Paint brush
+Chameleon|Snake|Spanner,logprob,Spanner
+Screwdriver|Axe|Paint brush,logprob,Axe
+Turtle|Chisel|Spanner,logprob,Chisel
+Caiman|Grinding disk|Toad,logprob,Toad
+Toad|Nail|Spanner,logprob,Spanner
+Cobra|Spanner|Toad,logprob,Toad
+Crocodile|Cobra|Toad,logprob,Toad
+Alligator|Lawn Mower|Tortoise,logprob,Tortoise
+Snake|Salamander|Tortoise,logprob,Salamander
+Vacuum|Grinding disk|Tortoise,logprob,Tortoise
+Spanner|Grinding disk|Salamander,logprob,Salamander
+Vacuum|Chisel|Tortoise,logprob,Tortoise
+Spanner|Cobra|Dinosaur,logprob,Dinosaur
+Toad|Axe|Tortoise,logprob,Tortoise
+Axe|Nail|Shovel,logprob,Shovel
+Dinosaur|Boa python|Snake,logprob,Boa python
+Crocodile|Oil can|Saw,logprob,Oil can
+Boa python|Knife|Oil can,logprob,Oil can
+Snake|Blindworm|Chameleon,logprob,Chameleon
+Tortoise|Salamander|Screwdriver,logprob,Salamander
+Snake|Blindworm|Gecko,logprob,Blindworm
+Oil can|Cobra|Dinosaur,logprob,Dinosaur
+Lizard|Cobra|Toad,logprob,Toad
+Alligator|Lawn Mower|Snake,logprob,Lawn Mower
+Boa python|Chisel|Gecko,logprob,Chisel
+Spanner|Caiman|Shovel,logprob,Caiman
+Grinding disk|Crocodile|Toad,logprob,Crocodile
+Grinding disk|Knife|Oil can,logprob,Knife
+Toad|Chisel|Lizard,logprob,Lizard
+Snake|Saw|Spanner,logprob,Spanner
+Axe|Anvil|Chameleon,logprob,Anvil
+Tortoise|Chisel|Cobra,logprob,Chisel
+Salamander|Caiman|Nail,logprob,Caiman
+Hammer|Dinosaur|Lawn Mower,logprob,Lawn Mower
+Lawn Mower|Lizard|Shovel,logprob,Shovel
+Oil can|Hammer|Tortoise,logprob,Tortoise
+Cobra|Shovel|Snake,logprob,Snake
+Turtle|Caiman|Grinding disk,logprob,Caiman
+Oil can|Gecko|Hammer,logprob,Hammer
+Saw|Alligator|Cobra,logprob,Alligator
+Turtle|Axe|Dinosaur,logprob,Dinosaur
+Blindworm|Hammer|Vacuum,logprob,Hammer
+Caiman|Gecko|Nail,logprob,Gecko
+Spanner|Lizard|Nail,logprob,Lizard
+Anvil|Nail|Saw,logprob,Nail
+Vacuum|Axe|Hammer,logprob,Hammer
+Toad|Grinding disk|Tortoise,logprob,Tortoise
+Axe|Alligator|Snake,logprob,Alligator
+Knife|Lawn Mower|Saw,logprob,Lawn Mower
+Tortoise|Knife|Toad,logprob,Toad
+Screwdriver|Boa python|Hammer,logprob,Hammer
+Paint brush|Gecko|Saw,logprob,Saw
+Vacuum|Oil can|Tortoise,logprob,Tortoise
+Screwdriver|Hammer|Nail,logprob,Hammer
+Blindworm|Axe|Chisel,logprob,Chisel
+Lizard|Caiman|Hammer,logprob,Caiman
+Caiman|Saw|Shovel,logprob,Shovel
+Chameleon|Blindworm|Crocodile,logprob,Crocodile
+Grinding disk|Caiman|Chisel,logprob,Caiman
+Lizard|Chisel|Shovel,logprob,Chisel
+Vacuum|Boa python|Crocodile,logprob,Crocodile
+Axe|Lizard|Vacuum,logprob,Lizard
+Paint brush|Nail|Toad,logprob,Toad
+Tortoise|Grinding disk|Vacuum,logprob,Grinding disk
+Oil can|Lizard|Paint brush,logprob,Paint brush
+Snake|Chameleon|Spanner,logprob,Chameleon
+Toad|Lawn Mower|Lizard,logprob,Lizard
+Chameleon|Knife|Spanner,logprob,Spanner
+Salamander|Axe|Vacuum,logprob,Axe
+Vacuum|Dinosaur|Snake,logprob,Dinosaur
+Nail|Boa python|Knife,logprob,Boa python
+Snake|Gecko|Paint brush,logprob,Gecko
+Salamander|Axe|Nail,logprob,Axe
+Crocodile|Axe|Shovel,logprob,Shovel
+Tortoise|Crocodile|Dinosaur,logprob,Crocodile
+Oil can|Hammer|Saw,logprob,Hammer
+Gecko|Anvil|Saw,logprob,Anvil
+Chisel|Spanner|Tortoise,logprob,Spanner
+Dinosaur|Chisel|Crocodile,logprob,Crocodile
+Knife|Crocodile|Salamander,logprob,Salamander
+Screwdriver|Alligator|Gecko,logprob,Alligator
+Crocodile|Axe|Chameleon,logprob,Chameleon
+Knife|Nail|Shovel,logprob,Shovel
+Saw|Crocodile|Snake,logprob,Crocodile
+Blindworm|Chameleon|Snake,logprob,Chameleon
+Caiman|Blindworm|Snake,logprob,Blindworm
+Toad|Crocodile|Knife,logprob,Crocodile
+Paint brush|Shovel|Toad,logprob,Shovel
+Anvil|Alligator|Dinosaur,logprob,Dinosaur
+Snake|Caiman|Shovel,logprob,Shovel
+Cobra|Hammer|Vacuum,logprob,Hammer
+Shovel|Blindworm|Lizard,logprob,Lizard
+Lizard|Oil can|Turtle,logprob,Turtle
+Chameleon|Lizard|Saw,logprob,Lizard
+Blindworm|Lizard|Oil can,logprob,Lizard
+Lizard|Toad|Tortoise,logprob,Toad
+Crocodile|Axe|Boa python,logprob,Boa python
+Lizard|Blindworm|Cobra,logprob,Blindworm
+Blindworm|Boa python|Chisel,logprob,Boa python
+Dinosaur|Alligator|Saw,logprob,Alligator
+Chisel|Snake|Turtle,logprob,Turtle
+Lawn Mower|Chisel|Salamander,logprob,Salamander
+Oil can|Nail|Tortoise,logprob,Tortoise
+Crocodile|Boa python|Shovel,logprob,Shovel
+Axe|Anvil|Salamander,logprob,Salamander
+Salamander|Blindworm|Turtle,logprob,Blindworm
+Salamander|Crocodile|Grinding disk,logprob,Crocodile
+Oil can|Dinosaur|Knife,logprob,Dinosaur
+Tortoise|Lizard|Turtle,logprob,Lizard
+Vacuum|Anvil|Knife,logprob,Anvil
+Boa python|Axe|Dinosaur,logprob,Dinosaur
+Salamander|Alligator|Gecko,logprob,Alligator
+Cobra|Axe|Caiman,logprob,Caiman
+Turtle|Axe|Crocodile,logprob,Crocodile
+Saw|Gecko|Turtle,logprob,Turtle
+Dinosaur|Nail|Spanner,logprob,Spanner
+Boa python|Crocodile|Vacuum,logprob,Crocodile
+Chisel|Chameleon|Dinosaur,logprob,Chameleon
+Saw|Anvil|Tortoise,logprob,Tortoise
+Grinding disk|Alligator|Dinosaur,logprob,Alligator
+Shovel|Caiman|Vacuum,logprob,Caiman
+Knife|Blindworm|Nail,logprob,Blindworm
+Salamander|Boa python|Nail,logprob,Boa python
+Boa python|Dinosaur|Spanner,logprob,Dinosaur
+Chameleon|Chisel|Lizard,logprob,Lizard
+Snake|Chisel|Crocodile,logprob,Crocodile
+Cobra|Knife|Screwdriver,logprob,Screwdriver
+Caiman|Gecko|Toad,logprob,Toad
+Caiman|Gecko|Knife,logprob,Gecko
+Shovel|Snake|Turtle,logprob,Turtle
+Dinosaur|Knife|Oil can,logprob,Oil can
+Crocodile|Anvil|Nail,logprob,Anvil
+Lawn Mower|Nail|Vacuum,logprob,Vacuum
+Lizard|Lawn Mower|Snake,logprob,Lawn Mower
+Paint brush|Alligator|Chameleon,logprob,Chameleon
+Hammer|Alligator|Tortoise,logprob,Tortoise
+Turtle|Grinding disk|Lawn Mower,logprob,Lawn Mower
+Paint brush|Oil can|Saw,logprob,Oil can
+Knife|Cobra|Oil can,logprob,Oil can
+Knife|Screwdriver|Shovel,logprob,Shovel
+Anvil|Salamander|Vacuum,logprob,Salamander
+Turtle|Dinosaur|Vacuum,logprob,Dinosaur
+Toad|Knife|Screwdriver,logprob,Screwdriver
+Spanner|Cobra|Lizard,logprob,Lizard
+Spanner|Gecko|Saw,logprob,Saw
+Screwdriver|Crocodile|Dinosaur,logprob,Crocodile
+Crocodile|Anvil|Gecko,logprob,Anvil
+Lawn Mower|Caiman|Chisel,logprob,Caiman
+Paint brush|Hammer|Vacuum,logprob,Hammer
+Gecko|Lawn Mower|Vacuum,logprob,Lawn Mower
+Salamander|Oil can|Vacuum,logprob,Oil can
+Nail|Alligator|Oil can,logprob,Alligator
+Alligator|Knife|Spanner,logprob,Spanner
+Boa python|Lawn Mower|Tortoise,logprob,Lawn Mower
+Grinding disk|Gecko|Lawn Mower,logprob,Lawn Mower
+Crocodile|Chisel|Hammer,logprob,Chisel
+Nail|Grinding disk|Spanner,logprob,Spanner
+Blindworm|Boa python|Cobra,logprob,Boa python
+Cobra|Caiman|Saw,logprob,Caiman
+Axe|Cobra|Salamander,logprob,Salamander
+Dinosaur|Paint brush|Spanner,logprob,Spanner
+Tortoise|Blindworm|Vacuum,logprob,Blindworm
+Axe|Chameleon|Screwdriver,logprob,Screwdriver
+Nail|Lawn Mower|Tortoise,logprob,Lawn Mower
+Turtle|Grinding disk|Tortoise,logprob,Tortoise
+Snake|Lizard|Screwdriver,logprob,Lizard
+Cobra|Axe|Crocodile,logprob,Crocodile
+Cobra|Anvil|Toad,logprob,Toad
+Turtle|Oil can|Screwdriver,logprob,Screwdriver
+Axe|Gecko|Shovel,logprob,Shovel
+Spanner|Anvil|Turtle,logprob,Anvil
+Paint brush|Grinding disk|Toad,logprob,Toad
+Salamander|Chameleon|Gecko,logprob,Chameleon
+Saw|Lizard|Vacuum,logprob,Lizard
+Grinding disk|Blindworm|Snake,logprob,Blindworm
+Gecko|Anvil|Chameleon,logprob,Chameleon
+Axe|Hammer|Toad,logprob,Toad
+Crocodile|Cobra|Turtle,logprob,Turtle
+Axe|Chameleon|Chisel,logprob,Chisel
+Caiman|Grinding disk|Salamander,logprob,Salamander
+Toad|Anvil|Cobra,logprob,Anvil
+Boa python|Chisel|Screwdriver,logprob,Chisel
+Lawn Mower|Boa python|Lizard,logprob,Lizard
+Spanner|Blindworm|Shovel,logprob,Shovel
+Lawn Mower|Boa python|Snake,logprob,Boa python
+Hammer|Anvil|Grinding disk,logprob,Anvil
+Gecko|Anvil|Toad,logprob,Toad
+Shovel|Anvil|Screwdriver,logprob,Anvil
+Screwdriver|Blindworm|Cobra,logprob,Blindworm
+Axe|Hammer|Spanner,logprob,Spanner
+Blindworm|Caiman|Spanner,logprob,Caiman
+Cobra|Chameleon|Lizard,logprob,Chameleon
+Boa python|Dinosaur|Knife,logprob,Dinosaur
+Lawn Mower|Lizard|Turtle,logprob,Lizard
+Saw|Alligator|Knife,logprob,Alligator
+Knife|Boa python|Lawn Mower,logprob,Lawn Mower
+Shovel|Anvil|Axe,logprob,Anvil
+Axe|Chameleon|Tortoise,logprob,Chameleon
+Knife|Boa python|Chisel,logprob,Chisel
+Saw|Caiman|Toad,logprob,Caiman
+Lawn Mower|Chisel|Crocodile,logprob,Crocodile
+Nail|Crocodile|Turtle,logprob,Crocodile
+Nail|Screwdriver|Spanner,logprob,Spanner
+Chisel|Dinosaur|Turtle,logprob,Dinosaur
+Caiman|Crocodile|Turtle,logprob,Crocodile
+Cobra|Grinding disk|Tortoise,logprob,Tortoise
+Caiman|Anvil|Axe,logprob,Anvil
+Boa python|Caiman|Paint brush,logprob,Caiman
+Nail|Grinding disk|Shovel,logprob,Shovel
+Spanner|Hammer|Salamander,logprob,Salamander
+Saw|Alligator|Crocodile,logprob,Crocodile
+Knife|Tortoise|Turtle,logprob,Tortoise
+Axe|Shovel|Snake,logprob,Shovel
+Alligator|Anvil|Crocodile,logprob,Crocodile
+Lizard|Knife|Vacuum,logprob,Vacuum
+Paint brush|Caiman|Nail,logprob,Caiman
+Lizard|Gecko|Knife,logprob,Gecko
+Dinosaur|Boa python|Vacuum,logprob,Boa python
+Saw|Crocodile|Spanner,logprob,Crocodile
+Turtle|Dinosaur|Gecko,logprob,Dinosaur
+Screwdriver|Cobra|Oil can,logprob,Oil can
+Axe|Alligator|Lawn Mower,logprob,Lawn Mower
+Saw|Caiman|Tortoise,logprob,Tortoise
+Alligator|Anvil|Saw,logprob,Anvil
+Grinding disk|Boa python|Chameleon,logprob,Chameleon
+Screwdriver|Lawn Mower|Paint brush,logprob,Lawn Mower
+Hammer|Nail|Salamander,logprob,Salamander
+Tortoise|Axe|Nail,logprob,Nail
+Oil can|Crocodile|Shovel,logprob,Crocodile
+Caiman|Alligator|Grinding disk,logprob,Alligator
+Turtle|Lizard|Shovel,logprob,Lizard
+Lawn Mower|Hammer|Saw,logprob,Hammer
+Axe|Cobra|Crocodile,logprob,Crocodile
+Snake|Spanner|Tortoise,logprob,Tortoise
+Knife|Saw|Tortoise,logprob,Tortoise
+Lizard|Anvil|Axe,logprob,Anvil
+Chameleon|Hammer|Lizard,logprob,Lizard
+Alligator|Cobra|Paint brush,logprob,Paint brush
+Caiman|Boa python|Turtle,logprob,Boa python
+Screwdriver|Toad|Turtle,logprob,Toad
+Cobra|Caiman|Grinding disk,logprob,Caiman
+Grinding disk|Crocodile|Spanner,logprob,Crocodile
+Chameleon|Paint brush|Turtle,logprob,Paint brush
+Nail|Cobra|Grinding disk,logprob,Grinding disk
+Boa python|Axe|Lizard,logprob,Lizard
+Knife|Caiman|Spanner,logprob,Caiman
+Axe|Tortoise|Vacuum,logprob,Tortoise
+Spanner|Alligator|Tortoise,logprob,Tortoise
+Salamander|Anvil|Vacuum,logprob,Anvil
+Grinding disk|Gecko|Oil can,logprob,Oil can
+Toad|Dinosaur|Oil can,logprob,Dinosaur
+Cobra|Anvil|Blindworm,logprob,Anvil
+Blindworm|Lizard|Vacuum,logprob,Lizard
+Oil can|Chameleon|Screwdriver,logprob,Screwdriver
+Turtle|Chameleon|Dinosaur,logprob,Dinosaur
+Nail|Knife|Tortoise,logprob,Tortoise
+Chisel|Axe|Dinosaur,logprob,Dinosaur
+Lawn Mower|Tortoise|Vacuum,logprob,Tortoise
+Gecko|Blindworm|Chameleon,logprob,Chameleon
+Saw|Paint brush|Shovel,logprob,Shovel
+Lizard|Caiman|Dinosaur,logprob,Dinosaur
+Dinosaur|Axe|Cobra,logprob,Cobra
+Lawn Mower|Hammer|Knife,logprob,Knife
+Chameleon|Gecko|Oil can,logprob,Gecko
+Gecko|Chisel|Dinosaur,logprob,Dinosaur
+Spanner|Dinosaur|Saw,logprob,Dinosaur
+Tortoise|Blindworm|Gecko,logprob,Blindworm
+Boa python|Grinding disk|Knife,logprob,Grinding disk
+Crocodile|Lizard|Salamander,logprob,Lizard
+Toad|Knife|Vacuum,logprob,Vacuum
+Cobra|Chisel|Nail,logprob,Chisel
+Chameleon|Screwdriver|Spanner,logprob,Spanner
+Crocodile|Cobra|Spanner,logprob,Spanner
+Vacuum|Grinding disk|Hammer,logprob,Grinding disk
+Chameleon|Boa python|Snake,logprob,Boa python
+Tortoise|Knife|Vacuum,logprob,Vacuum
+Vacuum|Chameleon|Snake,logprob,Chameleon
+Hammer|Axe|Saw,logprob,Axe
+Lizard|Chisel|Nail,logprob,Chisel
+Turtle|Alligator|Salamander,logprob,Salamander
+Salamander|Anvil|Chameleon,logprob,Chameleon
+Shovel|Blindworm|Salamander,logprob,Salamander
+Oil can|Screwdriver|Snake,logprob,Screwdriver
+Oil can|Axe|Grinding disk,logprob,Axe
+Caiman|Grinding disk|Nail,logprob,Grinding disk
+Knife|Gecko|Saw,logprob,Saw
+Snake|Cobra|Oil can,logprob,Cobra
+Shovel|Anvil|Vacuum,logprob,Anvil
+Alligator|Shovel|Spanner,logprob,Shovel
+Nail|Paint brush|Shovel,logprob,Shovel
+Salamander|Hammer|Tortoise,logprob,Tortoise
+Paint brush|Hammer|Lawn Mower,logprob,Lawn Mower
+Dinosaur|Crocodile|Hammer,logprob,Crocodile
+Nail|Caiman|Paint brush,logprob,Caiman
+Gecko|Lawn Mower|Saw,logprob,Lawn Mower
+Caiman|Shovel|Spanner,logprob,Shovel
+Dinosaur|Screwdriver|Tortoise,logprob,Tortoise
+Salamander|Gecko|Grinding disk,logprob,Gecko
+Toad|Boa python|Salamander,logprob,Salamander
+Turtle|Chameleon|Shovel,logprob,Chameleon
+Turtle|Axe|Spanner,logprob,Spanner
+Chameleon|Grinding disk|Knife,logprob,Knife
+Gecko|Boa python|Crocodile,logprob,Crocodile
+Anvil|Gecko|Hammer,logprob,Hammer
+Lizard|Alligator|Dinosaur,logprob,Dinosaur
+Caiman|Dinosaur|Toad,logprob,Dinosaur
+Spanner|Blindworm|Lizard,logprob,Lizard
+Boa python|Axe|Chisel,logprob,Chisel
+Grinding disk|Boa python|Dinosaur,logprob,Boa python
+Spanner|Axe|Toad,logprob,Toad
+Chisel|Knife|Tortoise,logprob,Tortoise
+Screwdriver|Cobra|Nail,logprob,Nail
+Hammer|Lizard|Vacuum,logprob,Lizard
+Crocodile|Dinosaur|Toad,logprob,Dinosaur
+Snake|Alligator|Lawn Mower,logprob,Alligator
+Snake|Gecko|Vacuum,logprob,Gecko
+Cobra|Caiman|Chameleon,logprob,Caiman
+Oil can|Alligator|Dinosaur,logprob,Dinosaur
+Hammer|Caiman|Nail,logprob,Caiman
+Crocodile|Lizard|Tortoise,logprob,Lizard
+Anvil|Snake|Turtle,logprob,Turtle
+Nail|Gecko|Salamander,logprob,Salamander
+Oil can|Chisel|Screwdriver,logprob,Chisel
+Caiman|Blindworm|Paint brush,logprob,Blindworm
+Hammer|Shovel|Turtle,logprob,Shovel
+Hammer|Lizard|Toad,logprob,Lizard
+Dinosaur|Salamander|Spanner,logprob,Salamander
+Shovel|Dinosaur|Salamander,logprob,Salamander
+Chisel|Chameleon|Hammer,logprob,Hammer
+Spanner|Crocodile|Knife,logprob,Crocodile
+Knife|Alligator|Lawn Mower,logprob,Lawn Mower
+Screwdriver|Oil can|Turtle,logprob,Oil can
+Boa python|Alligator|Nail,logprob,Alligator
+Knife|Gecko|Spanner,logprob,Spanner
+Chameleon|Anvil|Screwdriver,logprob,Anvil
+Dinosaur|Oil can|Spanner,logprob,Spanner
+Grinding disk|Chameleon|Lizard,logprob,Chameleon
+Caiman|Cobra|Hammer,logprob,Hammer
+Boa python|Dinosaur|Screwdriver,logprob,Dinosaur
+Salamander|Chameleon|Dinosaur,logprob,Chameleon
+Nail|Boa python|Salamander,logprob,Salamander
+Screwdriver|Gecko|Spanner,logprob,Spanner
+Paint brush|Gecko|Screwdriver,logprob,Screwdriver
+Gecko|Alligator|Salamander,logprob,Salamander
+Paint brush|Dinosaur|Salamander,logprob,Salamander
+Lawn Mower|Dinosaur|Salamander,logprob,Salamander
+Knife|Hammer|Turtle,logprob,Hammer
+Saw|Chameleon|Gecko,logprob,Chameleon
+Crocodile|Alligator|Turtle,logprob,Alligator
+Lawn Mower|Cobra|Shovel,logprob,Shovel
+Tortoise|Salamander|Shovel,logprob,Salamander
+Alligator|Lizard|Tortoise,logprob,Lizard
+Crocodile|Dinosaur|Knife,logprob,Dinosaur
+Dinosaur|Anvil|Tortoise,logprob,Tortoise
+Turtle|Grinding disk|Lizard,logprob,Lizard
+Tortoise|Cobra|Gecko,logprob,Gecko
+Dinosaur|Chameleon|Oil can,logprob,Chameleon
+Boa python|Blindworm|Saw,logprob,Blindworm
+Chisel|Grinding disk|Saw,logprob,Saw
+Blindworm|Paint brush|Salamander,logprob,Salamander
+Spanner|Snake|Toad,logprob,Toad
+Chisel|Caiman|Gecko,logprob,Caiman
+Lizard|Oil can|Shovel,logprob,Shovel
+Axe|Hammer|Shovel,logprob,Shovel
+Grinding disk|Knife|Lizard,logprob,Lizard
+Chisel|Anvil|Blindworm,logprob,Anvil
+Hammer|Anvil|Vacuum,logprob,Anvil
+Screwdriver|Dinosaur|Tortoise,logprob,Tortoise
+Cobra|Tortoise|Turtle,logprob,Tortoise
+Crocodile|Knife|Vacuum,logprob,Vacuum
+Hammer|Knife|Shovel,logprob,Shovel
+Lizard|Anvil|Cobra,logprob,Anvil
+Salamander|Chameleon|Chisel,logprob,Chameleon
+Hammer|Knife|Paint brush,logprob,Paint brush
+Crocodile|Grinding disk|Lizard,logprob,Lizard
+Saw|Boa python|Paint brush,logprob,Boa python
+Vacuum|Lawn Mower|Screwdriver,logprob,Lawn Mower
+Gecko|Anvil|Crocodile,logprob,Crocodile
+Saw|Lizard|Snake,logprob,Lizard
+Alligator|Caiman|Gecko,logprob,Caiman
+Gecko|Alligator|Tortoise,logprob,Alligator
+Blindworm|Crocodile|Tortoise,logprob,Crocodile
+Knife|Lizard|Tortoise,logprob,Lizard
+Alligator|Chameleon|Dinosaur,logprob,Dinosaur
+Salamander|Blindworm|Snake,logprob,Snake
+Oil can|Blindworm|Lizard,logprob,Lizard
+Boa python|Blindworm|Shovel,logprob,Shovel
+Turtle|Lizard|Vacuum,logprob,Lizard
+Saw|Dinosaur|Turtle,logprob,Dinosaur
+Knife|Chisel|Gecko,logprob,Chisel
+Lizard|Chameleon|Knife,logprob,Chameleon
+Toad|Grinding disk|Snake,logprob,Snake
+Tortoise|Blindworm|Caiman,logprob,Caiman
+Snake|Alligator|Saw,logprob,Alligator
+Screwdriver|Anvil|Oil can,logprob,Anvil
+Chameleon|Dinosaur|Lawn Mower,logprob,Lawn Mower
+Toad|Boa python|Hammer,logprob,Boa python
+Hammer|Caiman|Spanner,logprob,Caiman
+Nail|Anvil|Snake,logprob,Anvil
+Dinosaur|Gecko|Toad,logprob,Toad
+Oil can|Chameleon|Turtle,logprob,Chameleon
+Axe|Lawn Mower|Toad,logprob,Lawn Mower
+Chisel|Alligator|Spanner,logprob,Spanner
+Paint brush|Cobra|Toad,logprob,Toad
+Lizard|Caiman|Crocodile,logprob,Crocodile
+Turtle|Chameleon|Nail,logprob,Chameleon
+Knife|Gecko|Salamander,logprob,Salamander
+Crocodile|Blindworm|Lizard,logprob,Lizard
+Paint brush|Lawn Mower|Saw,logprob,Lawn Mower
+Salamander|Boa python|Paint brush,logprob,Boa python
+Turtle|Knife|Snake,logprob,Snake
+Lawn Mower|Boa python|Nail,logprob,Boa python
+Alligator|Boa python|Vacuum,logprob,Boa python
+Chameleon|Axe|Shovel,logprob,Shovel
+Spanner|Chameleon|Hammer,logprob,Chameleon
+Crocodile|Boa python|Grinding disk,logprob,Boa python
+Dinosaur|Crocodile|Gecko,logprob,Crocodile
+Shovel|Alligator|Nail,logprob,Alligator
+Dinosaur|Hammer|Vacuum,logprob,Hammer
+Snake|Anvil|Screwdriver,logprob,Anvil
+Screwdriver|Alligator|Crocodile,logprob,Alligator
+Hammer|Alligator|Saw,logprob,Alligator
+Nail|Anvil|Salamander,logprob,Salamander
+Spanner|Anvil|Lizard,logprob,Anvil
+Alligator|Cobra|Screwdriver,logprob,Screwdriver
+Axe|Snake|Vacuum,logprob,Snake
+Cobra|Saw|Spanner,logprob,Spanner
+Hammer|Caiman|Turtle,logprob,Caiman
+Toad|Cobra|Lizard,logprob,Lizard
+Spanner|Lizard|Shovel,logprob,Lizard
+Chisel|Oil can|Spanner,logprob,Spanner
+Axe|Boa python|Vacuum,logprob,Boa python
+Toad|Shovel|Turtle,logprob,Shovel
+Caiman|Axe|Turtle,logprob,Turtle
+Alligator|Salamander|Snake,logprob,Salamander
+Lizard|Dinosaur|Screwdriver,logprob,Dinosaur
+Toad|Gecko|Turtle,logprob,Gecko
+Shovel|Lizard|Vacuum,logprob,Lizard
+Hammer|Axe|Blindworm,logprob,Axe
+Saw|Anvil|Boa python,logprob,Anvil
+Turtle|Blindworm|Chameleon,logprob,Chameleon
+Hammer|Grinding disk|Oil can,logprob,Oil can
+Turtle|Chisel|Salamander,logprob,Salamander
+Boa python|Cobra|Grinding disk,logprob,Cobra
+Caiman|Cobra|Dinosaur,logprob,Dinosaur
+Gecko|Chameleon|Grinding disk,logprob,Chameleon
+Lawn Mower|Spanner|Vacuum,logprob,Spanner
+Lawn Mower|Hammer|Paint brush,logprob,Paint brush
+Paint brush|Oil can|Snake,logprob,Oil can
+Chameleon|Crocodile|Lawn Mower,logprob,Crocodile
+Chisel|Dinosaur|Lizard,logprob,Lizard
+Boa python|Crocodile|Paint brush,logprob,Crocodile
+Shovel|Boa python|Paint brush,logprob,Paint brush
+Salamander|Lizard|Shovel,logprob,Lizard
+Paint brush|Cobra|Tortoise,logprob,Tortoise
+Crocodile|Boa python|Snake,logprob,Boa python
+Caiman|Anvil|Screwdriver,logprob,Anvil
+Nail|Alligator|Dinosaur,logprob,Dinosaur
+Lizard|Blindworm|Boa python,logprob,Boa python
+Crocodile|Nail|Turtle,logprob,Turtle
+Alligator|Oil can|Salamander,logprob,Salamander
+Vacuum|Knife|Lizard,logprob,Lizard
+Saw|Chameleon|Snake,logprob,Chameleon
+Chisel|Dinosaur|Nail,logprob,Dinosaur
+Grinding disk|Cobra|Crocodile,logprob,Crocodile
+Blindworm|Chameleon|Dinosaur,logprob,Dinosaur
+Crocodile|Lawn Mower|Oil can,logprob,Lawn Mower
+Saw|Boa python|Tortoise,logprob,Tortoise
+Chameleon|Caiman|Paint brush,logprob,Caiman
+Paint brush|Boa python|Vacuum,logprob,Boa python
+Saw|Paint brush|Spanner,logprob,Spanner
+Axe|Cobra|Screwdriver,logprob,Screwdriver
+Hammer|Oil can|Saw,logprob,Saw
+Oil can|Screwdriver|Shovel,logprob,Screwdriver
+Anvil|Hammer|Toad,logprob,Toad
+Paint brush|Dinosaur|Knife,logprob,Dinosaur
+Vacuum|Gecko|Shovel,logprob,Shovel
+Chisel|Oil can|Tortoise,logprob,Tortoise
+Alligator|Boa python|Caiman,logprob,Caiman
+Gecko|Boa python|Lawn Mower,logprob,Lawn Mower
+Chisel|Lizard|Spanner,logprob,Spanner
+Shovel|Chameleon|Vacuum,logprob,Chameleon
+Salamander|Cobra|Knife,logprob,Cobra
+Paint brush|Caiman|Salamander,logprob,Salamander
+Knife|Caiman|Gecko,logprob,Caiman
+Salamander|Anvil|Turtle,logprob,Anvil
+Crocodile|Anvil|Chameleon,logprob,Chameleon
+Snake|Tortoise|Vacuum,logprob,Tortoise
+Cobra|Snake|Tortoise,logprob,Tortoise
+Blindworm|Boa python|Screwdriver,logprob,Boa python
+Tortoise|Oil can|Salamander,logprob,Salamander
+Tortoise|Lawn Mower|Nail,logprob,Lawn Mower
+Screwdriver|Snake|Tortoise,logprob,Tortoise
+Paint brush|Caiman|Hammer,logprob,Caiman
+Chameleon|Hammer|Screwdriver,logprob,Screwdriver
+Lizard|Blindworm|Oil can,logprob,Blindworm
+Anvil|Hammer|Oil can,logprob,Hammer
+Alligator|Anvil|Tortoise,logprob,Tortoise
+Toad|Gecko|Screwdriver,logprob,Gecko
+Lawn Mower|Screwdriver|Shovel,logprob,Shovel
+Gecko|Anvil|Nail,logprob,Anvil
+Blindworm|Gecko|Toad,logprob,Toad
+Dinosaur|Gecko|Vacuum,logprob,Gecko
+Caiman|Nail|Toad,logprob,Toad
+Saw|Boa python|Shovel,logprob,Shovel
+Snake|Axe|Hammer,logprob,Hammer
+Spanner|Dinosaur|Tortoise,logprob,Dinosaur
+Cobra|Anvil|Tortoise,logprob,Tortoise
+Chameleon|Crocodile|Gecko,logprob,Crocodile
+Salamander|Gecko|Toad,logprob,Toad
+Chameleon|Shovel|Toad,logprob,Toad
+Saw|Shovel|Tortoise,logprob,Tortoise
+Toad|Blindworm|Grinding disk,logprob,Blindworm
+Lawn Mower|Shovel|Toad,logprob,Shovel
+Paint brush|Snake|Spanner,logprob,Spanner
+Paint brush|Chisel|Cobra,logprob,Chisel
+Crocodile|Gecko|Paint brush,logprob,Gecko
+Lawn Mower|Hammer|Tortoise,logprob,Tortoise
+Hammer|Dinosaur|Toad,logprob,Toad
+Alligator|Boa python|Nail,logprob,Boa python
+Tortoise|Crocodile|Saw,logprob,Crocodile
+Dinosaur|Blindworm|Hammer,logprob,Blindworm
+Spanner|Shovel|Turtle,logprob,Shovel
+Knife|Tortoise|Vacuum,logprob,Tortoise
+Dinosaur|Saw|Snake,logprob,Snake
+Caiman|Snake|Vacuum,logprob,Snake
+Turtle|Cobra|Hammer,logprob,Cobra
+Blindworm|Axe|Hammer,logprob,Hammer
+Saw|Boa python|Turtle,logprob,Boa python
+Boa python|Chameleon|Vacuum,logprob,Chameleon
+Lawn Mower|Saw|Spanner,logprob,Spanner
+Lizard|Anvil|Saw,logprob,Anvil
+Knife|Anvil|Snake,logprob,Anvil
+Alligator|Snake|Vacuum,logprob,Snake
+Shovel|Axe|Hammer,logprob,Axe
+Axe|Dinosaur|Grinding disk,logprob,Dinosaur
+Oil can|Paint brush|Toad,logprob,Paint brush
+Alligator|Crocodile|Screwdriver,logprob,Crocodile
+Knife|Spanner|Toad,logprob,Toad
+Lizard|Screwdriver|Spanner,logprob,Spanner
+Lizard|Caiman|Spanner,logprob,Caiman
+Chameleon|Lawn Mower|Salamander,logprob,Salamander
+Lizard|Alligator|Snake,logprob,Alligator
+Saw|Chameleon|Hammer,logprob,Chameleon
+Anvil|Lizard|Screwdriver,logprob,Lizard
+Grinding disk|Cobra|Salamander,logprob,Salamander
+Crocodile|Salamander|Snake,logprob,Salamander
+Anvil|Hammer|Lizard,logprob,Lizard
+Crocodile|Boa python|Caiman,logprob,Caiman
+Lizard|Chameleon|Tortoise,logprob,Chameleon
+Shovel|Alligator|Paint brush,logprob,Alligator
+Alligator|Salamander|Saw,logprob,Salamander
+Screwdriver|Chisel|Tortoise,logprob,Chisel
+Boa python|Grinding disk|Toad,logprob,Toad
+Paint brush|Axe|Blindworm,logprob,Blindworm
+Cobra|Chameleon|Grinding disk,logprob,Chameleon
+Salamander|Blindworm|Shovel,logprob,Shovel
+Cobra|Caiman|Lawn Mower,logprob,Caiman
+Hammer|Boa python|Dinosaur,logprob,Dinosaur
+Knife|Dinosaur|Nail,logprob,Dinosaur
+Hammer|Alligator|Salamander,logprob,Salamander
+Turtle|Chameleon|Paint brush,logprob,Chameleon
+Hammer|Anvil|Spanner,logprob,Anvil
+Salamander|Gecko|Turtle,logprob,Gecko
+Blindworm|Gecko|Hammer,logprob,Gecko
+Boa python|Crocodile|Lawn Mower,logprob,Crocodile
+Vacuum|Gecko|Hammer,logprob,Hammer
+Axe|Caiman|Dinosaur,logprob,Caiman
+Dinosaur|Lawn Mower|Shovel,logprob,Lawn Mower
+Dinosaur|Hammer|Snake,logprob,Snake
+Knife|Hammer|Spanner,logprob,Spanner
+Screwdriver|Anvil|Boa python,logprob,Anvil
+Cobra|Grinding disk|Hammer,logprob,Hammer
+Nail|Dinosaur|Gecko,logprob,Dinosaur
+Hammer|Lizard|Turtle,logprob,Lizard
+Axe|Cobra|Lawn Mower,logprob,Lawn Mower
+Snake|Nail|Shovel,logprob,Shovel
+Chameleon|Alligator|Nail,logprob,Alligator
+Caiman|Spanner|Toad,logprob,Toad
+Lawn Mower|Alligator|Chisel,logprob,Alligator
+Saw|Hammer|Tortoise,logprob,Tortoise
+Chisel|Axe|Knife,logprob,Axe
+Salamander|Blindworm|Crocodile,logprob,Crocodile
+Knife|Blindworm|Paint brush,logprob,Paint brush
+Caiman|Salamander|Spanner,logprob,Salamander
+Lizard|Crocodile|Paint brush,logprob,Crocodile
+Cobra|Blindworm|Oil can,logprob,Blindworm
+Axe|Caiman|Knife,logprob,Caiman
+Cobra|Knife|Paint brush,logprob,Paint brush
+Grinding disk|Axe|Salamander,logprob,Salamander
+Snake|Crocodile|Oil can,logprob,Crocodile
+Boa python|Screwdriver|Vacuum,logprob,Screwdriver
+Paint brush|Crocodile|Tortoise,logprob,Tortoise
+Boa python|Gecko|Saw,logprob,Gecko
+Nail|Salamander|Spanner,logprob,Salamander
+Anvil|Dinosaur|Lawn Mower,logprob,Lawn Mower
+Blindworm|Chisel|Oil can,logprob,Chisel
+Spanner|Nail|Paint brush,logprob,Paint brush
+Lizard|Lawn Mower|Oil can,logprob,Lawn Mower
+Chameleon|Saw|Tortoise,logprob,Tortoise
+Snake|Blindworm|Knife,logprob,Blindworm
+Anvil|Knife|Lizard,logprob,Lizard
+Cobra|Boa python|Hammer,logprob,Boa python
+Chameleon|Lawn Mower|Saw,logprob,Lawn Mower
+Caiman|Axe|Knife,logprob,Axe
+Spanner|Dinosaur|Hammer,logprob,Dinosaur
+Screwdriver|Blindworm|Tortoise,logprob,Tortoise
+Saw|Crocodile|Grinding disk,logprob,Crocodile
+Toad|Lawn Mower|Nail,logprob,Lawn Mower
+Boa python|Crocodile|Knife,logprob,Crocodile
+Nail|Chameleon|Crocodile,logprob,Chameleon
+Gecko|Lawn Mower|Turtle,logprob,Lawn Mower
+Dinosaur|Chisel|Cobra,logprob,Chisel
+Tortoise|Salamander|Vacuum,logprob,Salamander
+Snake|Alligator|Dinosaur,logprob,Dinosaur
+Snake|Blindworm|Paint brush,logprob,Blindworm
+Hammer|Chameleon|Shovel,logprob,Shovel
+Boa python|Chameleon|Chisel,logprob,Chameleon
+Turtle|Cobra|Spanner,logprob,Spanner
+Screwdriver|Anvil|Salamander,logprob,Salamander
+Dinosaur|Hammer|Toad,logprob,Toad
+Crocodile|Axe|Tortoise,logprob,Tortoise
+Nail|Axe|Spanner,logprob,Spanner
+Saw|Chisel|Vacuum,logprob,Chisel
+Screwdriver|Gecko|Grinding disk,logprob,Grinding disk
+Crocodile|Knife|Toad,logprob,Toad
+Chisel|Alligator|Anvil,logprob,Anvil
+Snake|Saw|Screwdriver,logprob,Screwdriver
+Grinding disk|Cobra|Lawn Mower,logprob,Lawn Mower
+Caiman|Axe|Hammer,logprob,Hammer
+Nail|Blindworm|Tortoise,logprob,Tortoise
+Caiman|Chisel|Oil can,logprob,Chisel
+Caiman|Anvil|Lawn Mower,logprob,Lawn Mower
+Lizard|Toad|Vacuum,logprob,Toad
+Caiman|Lawn Mower|Saw,logprob,Lawn Mower
+Axe|Spanner|Vacuum,logprob,Spanner
+Anvil|Alligator|Snake,logprob,Alligator
+Shovel|Oil can|Spanner,logprob,Spanner
+Oil can|Grinding disk|Tortoise,logprob,Tortoise
+Paint brush|Chameleon|Vacuum,logprob,Chameleon
+Salamander|Alligator|Crocodile,logprob,Crocodile
+Shovel|Cobra|Vacuum,logprob,Cobra
+Knife|Gecko|Vacuum,logprob,Gecko
+Hammer|Alligator|Screwdriver,logprob,Screwdriver
+Grinding disk|Hammer|Nail,logprob,Hammer
+Hammer|Lawn Mower|Paint brush,logprob,Lawn Mower
+Alligator|Paint brush|Screwdriver,logprob,Screwdriver
+Dinosaur|Boa python|Oil can,logprob,Boa python
+Hammer|Anvil|Blindworm,logprob,Anvil
+Nail|Blindworm|Saw,logprob,Blindworm
+Nail|Alligator|Blindworm,logprob,Alligator
+Chisel|Toad|Turtle,logprob,Toad
+Paint brush|Grinding disk|Lawn Mower,logprob,Lawn Mower
+Vacuum|Caiman|Snake,logprob,Caiman
+Anvil|Cobra|Shovel,logprob,Shovel
+Chisel|Gecko|Spanner,logprob,Spanner
+Turtle|Gecko|Lawn Mower,logprob,Lawn Mower
+Cobra|Spanner|Turtle,logprob,Spanner
+Oil can|Caiman|Toad,logprob,Caiman

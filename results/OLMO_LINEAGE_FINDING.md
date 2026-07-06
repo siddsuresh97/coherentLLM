@@ -38,3 +38,12 @@ Caveat: logprob-pairwise ratings for post-trained models are bimodal (many 1s an
 vs the base's smoother spread - a real behavioral shift from preference tuning, not a
 measurement artifact (ratings are non-degenerate). Both curves are saved:
 results/coherence/coherence_matrix.csv (generation) and olmo_curve_logprob.csv (logprob).
+
+## OLMo-2 vs Tulu-3 (why run both)
+- **OLMo-2-7B**: AI2's from-scratch base (open pretraining data) + Tulu-3 post-training.
+- **Tulu-3-8B**: **Llama-3.1-8B** base (Meta) + the SAME Tulu-3 post-training recipe.
+So post-training is ~constant across the two lineages; the base/pretraining differs.
+- If the "generation rises, representation flat" pattern replicates on Tulu, it's a
+  property of post-training, not of OLMo's specific (weaker) base.
+- Bonus same-base comparison: Tulu-3-8B-final (Llama-3.1 + AI2 recipe) vs
+  llama-3.1-8b-instruct (Llama-3.1 + Meta recipe) - two recipes on one base.
