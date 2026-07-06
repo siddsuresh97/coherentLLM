@@ -56,6 +56,26 @@ local:
     chat: true
     download: true
     stage: rlvr
+  # --- Tulu-3-8B lineage (Llama-3.1-8B base, different post-train recipe than OLMo) ---
+  tulu3-8b-base:
+    path: meta-llama/Llama-3.1-8B
+    chat: false
+    stage: base
+  tulu3-8b-sft:
+    path: allenai/Llama-3.1-Tulu-3-8B-SFT
+    chat: true
+    download: true
+    stage: sft
+  tulu3-8b-dpo:
+    path: allenai/Llama-3.1-Tulu-3-8B-DPO
+    chat: true
+    download: true
+    stage: dpo
+  tulu3-8b-final:
+    path: allenai/Llama-3.1-Tulu-3-8B
+    chat: true
+    download: true
+    stage: rlvr
   # --- big models: need coherence_big env (vLLM 0.8.x) + 4-bit to fit 48GB ---
   gemma-3-27b-it:
     path: google/gemma-3-27b-it
