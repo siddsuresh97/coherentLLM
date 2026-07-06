@@ -4,11 +4,17 @@
 set -uo pipefail
 cd "$(dirname "$0")/.."
 source "$(conda info --base)/etc/profile.d/conda.sh"
-conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence
+M="$1"; MM="${2:-2048}"; GM="${3:-0.85}"
+# Pick env: quantized models (big_env) need the modern vLLM env.
+if grep -A6 "^  ${M}:" configs/models.yaml | grep -q "big_env: true"; then
+  conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence_big
+  echo "[env] coherence_big (quantized model)"
+else
+  conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence
+fi
 export VLLM_LOGGING_LEVEL=WARNING PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export HF_HOME=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models
 export HF_HUB_CACHE=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models
-M="$1"; MM="${2:-2048}"; GM="${3:-0.85}"
 GPU0="${CUDA_VISIBLE_DEVICES:-0}"; GPU0="${GPU0%%,*}"
 drain() {  # wait until this GPU is actually free before loading the next model
   for i in $(seq 1 40); do
