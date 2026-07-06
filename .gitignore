@@ -24,3 +24,4 @@ secrets.yaml
 conceptual_representations_gpt/
 salmon/
 out/
+data/leuven_reverify/flan_xxl_verdicts.csv
