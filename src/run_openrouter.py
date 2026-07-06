@@ -86,13 +86,28 @@ async def run(args):
     outdir = os.path.join(RAW, args.model)
     os.makedirs(outdir, exist_ok=True)
 
-    done = {"n": 0}
+    done = {"n": 0, "fail": 0, "abort": False}
 
     async def one_logged(prompt, method, total):
-        r = await one(prompt, method)
+        # Never let one bad call abort the whole gather: on terminal failure return
+        # "" so partial results are still written. Detect out-of-credits and stop
+        # issuing new calls (they would all fail).
+        if done["abort"]:
+            return ""
+        try:
+            r = await one(prompt, method)
+        except Exception as e:
+            done["fail"] += 1
+            msg = str(e).lower()
+            if "402" in msg or "insufficient credit" in msg or "quota" in msg:
+                if not done["abort"]:
+                    print(f"[{method}] ABORT: out of credits/quota after "
+                          f"{done['n']} ok, {done['fail']} failed", flush=True)
+                done["abort"] = True
+            r = ""
         done["n"] += 1
         if done["n"] % 100 == 0 or done["n"] == total:
-            print(f"[{method}] {done['n']}/{total}", flush=True)
+            print(f"[{method}] {done['n']}/{total} (fail={done['fail']})", flush=True)
         return r
 
     for method in args.methods:
