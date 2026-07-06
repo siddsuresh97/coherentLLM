@@ -22,3 +22,5 @@ results/embeddings/
 secrets.yaml
 .ipynb_checkpoints/
 conceptual_representations_gpt/
+salmon/
+out/

@@ -40,11 +40,34 @@ def procrustes_r2(X, Y):
     return float(max(0.0, 1.0 - disp))
 
 
+TRIP_EMB = os.path.join(HERE, "data", "triplet_embeddings")
+
+
+def _triplet_rdm_from_salmon(model):
+    """Cosine-distance RDM from the model's SALMON 3D triplet embedding, if present.
+    This is the paper's method (OfflineEmbedding d=3). Returns None if not fit yet."""
+    p = os.path.join(TRIP_EMB, f"{model}.npy")
+    if not os.path.exists(p):
+        return None
+    E = np.load(p)
+    En = E / np.clip(np.linalg.norm(E, axis=1, keepdims=True), 1e-9, None)
+    d = 1.0 - En @ En.T
+    d = (d + d.T) / 2.0
+    np.fill_diagonal(d, 0.0)
+    return d
+
+
 def method_rdms(model):
-    """Return {method: NxN distance matrix (RDM)} for a model's methods."""
+    """Return {method: NxN distance matrix (RDM)} for a model's methods.
+    triplet uses the SALMON 3D embedding (paper method) when available."""
     concepts = A.load_concepts()
     rdms = {}
     for m in METHODS:
+        if m == "triplet":
+            salmon = _triplet_rdm_from_salmon(model)
+            if salmon is not None:
+                rdms[m] = salmon
+                continue
         sim = A.METHOD_FN[m](model, concepts)
         if sim is None:
             continue
