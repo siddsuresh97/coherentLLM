@@ -47,4 +47,12 @@ step python src/run_fewshot.py --model olmo2-13b-base --methods triplet pairwise
 run olmo2-13b-sft
 run olmo2-13b-dpo
 run olmo2-13b-instruct
+# OLMo-2-32B lineage (largest with full training axis) - only if downloaded
+if [ -d /mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models/models--allenai--OLMo-2-0325-32B-Instruct ]; then
+  step python src/run_base_logprob.py --model olmo2-32b-base --methods triplet pairwise --suffix _lp --overwrite --gpu_mem_util "$GM"
+  step python src/run_fewshot.py --model olmo2-32b-base --methods triplet pairwise --overwrite --gpu_mem_util "$GM"
+  run olmo2-32b-sft
+  run olmo2-32b-dpo
+  run olmo2-32b-instruct
+fi
 echo "H100 BATCH DONE"
