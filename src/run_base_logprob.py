@@ -82,12 +82,44 @@ def seq_logprob(llm, prompt, completion):
     return _mean_logprob(llm, prompt, completion)
 
 
+def batch_mean_logprob(llm, pairs):
+    """Vectorized: pairs = list of (prompt, completion). Returns list of mean
+    completion logprobs, computed in ONE vLLM pass (much faster than per-call)."""
+    from vllm import SamplingParams
+    tok = llm.get_tokenizer()
+    starts = []
+    fulls = []
+    for prompt, completion in pairs:
+        p_ids = tok(prompt, add_special_tokens=True)["input_ids"]
+        full_ids = tok(prompt + completion, add_special_tokens=True)["input_ids"]
+        s = 0
+        for a, b in zip(p_ids, full_ids):
+            if a == b:
+                s += 1
+            else:
+                break
+        starts.append((s, len(full_ids)))
+        fulls.append(prompt + completion)
+    sp = SamplingParams(temperature=0, max_tokens=1, prompt_logprobs=0)
+    outs = llm.generate(fulls, sp)
+    res = []
+    for (s, n), o in zip(starts, outs):
+        pls = o.prompt_logprobs
+        lps = [next(iter(pls[i].values())).logprob
+               for i in range(s, n) if i < len(pls) and pls[i]]
+        res.append(sum(lps) / len(lps) if lps else float("-inf"))
+    return res
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
     ap.add_argument("--methods", nargs="+", default=["triplet", "pairwise"])
     ap.add_argument("--gpu_mem_util", type=float, default=0.90)
     ap.add_argument("--max_model_len", type=int, default=2048)
+    ap.add_argument("--suffix", default="",
+                    help="output filename suffix, e.g. '_lp' -> triplet_lp.csv "
+                         "(keeps generation-based files intact)")
     ap.add_argument("--overwrite", action="store_true")
     args = ap.parse_args()
 
@@ -110,37 +142,43 @@ def main():
               trust_remote_code=True)
 
     if "triplet" in args.methods:
-        out = os.path.join(outdir, "triplet.csv")
+        out = os.path.join(outdir, f"triplet{args.suffix}.csv")
         if os.path.exists(out) and not args.overwrite:
             print(f"[skip] {out}")
         else:
             rows = _read_rows(os.path.join(STIM, "triplets.csv"))
+            pairs = []
+            for anchor, c1, c2 in rows:
+                pairs.append((f"{anchor} is more similar to", " " + c1))
+                pairs.append((f"{anchor} is more similar to", " " + c2))
+            lps = batch_mean_logprob(llm, pairs)
             with open(out, "w", newline="") as f:
                 w = csv.writer(f)
                 w.writerow(["input", "prompt", "response"])
-                for anchor, c1, c2 in rows:
-                    l1 = seq_logprob(llm, f"{anchor} is more similar to", " "+c1)
-                    l2 = seq_logprob(llm, f"{anchor} is more similar to", " "+c2)
-                    choice = c1 if l1 >= l2 else c2
-                    w.writerow([f"{anchor}|{c1}|{c2}", "logprob", choice])
+                for k, (anchor, c1, c2) in enumerate(rows):
+                    l1, l2 = lps[2 * k], lps[2 * k + 1]
+                    w.writerow([f"{anchor}|{c1}|{c2}", "logprob", c1 if l1 >= l2 else c2])
             print(f"[done] triplet (logprob): {len(rows)} rows -> {out}")
 
     if "pairwise" in args.methods:
-        out = os.path.join(outdir, "pairwise.csv")
+        out = os.path.join(outdir, f"pairwise{args.suffix}.csv")
         if os.path.exists(out) and not args.overwrite:
             print(f"[skip] {out}")
         else:
             rows = _read_rows(os.path.join(STIM, "pairs.csv"))
+            pairs = []
+            for a, b in rows:
+                for r in range(1, 8):
+                    pairs.append(
+                        (f"On a scale of 1 to 7, the similarity of {a} and {b} is",
+                         " " + str(r)))
+            lps = batch_mean_logprob(llm, pairs)
             with open(out, "w", newline="") as f:
                 w = csv.writer(f)
                 w.writerow(["input", "prompt", "response"])
-                for a, b in rows:
-                    best_r, best_lp = 4, -1e9
-                    for r in range(1, 8):
-                        lp = seq_logprob(
-                            llm, f"On a scale of 1 to 7, the similarity of {a} and {b} is", " "+str(r))
-                        if lp > best_lp:
-                            best_lp, best_r = lp, r
+                for k, (a, b) in enumerate(rows):
+                    seg = lps[7 * k:7 * k + 7]
+                    best_r = 1 + max(range(7), key=lambda i: seg[i])
                     w.writerow([f"{a}|{b}", "logprob", str(best_r)])
             print(f"[done] pairwise (logprob): {len(rows)} rows -> {out}")
 
