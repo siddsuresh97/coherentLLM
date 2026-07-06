@@ -129,6 +129,22 @@ def main():
     for method in todo:
         out = os.path.join(outdir, f"{method}.csv")
 
+        if method == "feature" and args.pairs_file and not args.feature_batch:
+            # SINGLE-PAIR self-verification (validated: batching inflates True-rate,
+            # so one (feature, concept) per call is the correct method).
+            from prompts import feature_prompt
+            from stimuli import _read_rows
+            pairs = _read_rows(os.path.join(outdir, args.pairs_file))
+            prompts = [feature_prompt(feat, concept) for feat, concept in pairs]
+            outputs = run_prompts(prompts, max_tokens=8)
+            with open(out, "w", newline="") as f:
+                w = csv.writer(f)
+                w.writerow(["input", "prompt", "response"])
+                for (feat, concept), p, o in zip(pairs, prompts, outputs):
+                    w.writerow([f"{feat}|{concept}", p, o.outputs[0].text.strip()])
+            print(f"[done] feature (single-pair): {len(pairs)} rows -> {out}")
+            continue
+
         if method == "feature" and args.feature_batch:
             # Batched: one call marks True/False for a block of features per concept.
             from feature_batch import make_batches, parse_batch

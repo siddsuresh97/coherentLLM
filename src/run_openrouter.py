@@ -119,6 +119,25 @@ async def run(args):
             print(f"[done] listing: {total} rows -> {out}")
             continue
 
+        if method == "feature" and args.pairs_file and not args.feature_batch:
+            # SINGLE-PAIR self-verification (validated correct; batching over-affirms).
+            from prompts import feature_prompt
+            from stimuli import _read_rows
+            pairs = _read_rows(os.path.join(outdir, args.pairs_file))
+            done["n"] = 0
+            total = len(pairs)
+            print(f"[feature] starting {total} single-pair calls", flush=True)
+            tasks = [one_logged(feature_prompt(f0, c0), "feature", total)
+                     for f0, c0 in pairs]
+            responses = await asyncio.gather(*tasks)
+            with open(out, "w", newline="") as f:
+                w = csv.writer(f)
+                w.writerow(["input", "prompt", "response"])
+                for (f0, c0), resp in zip(pairs, responses):
+                    w.writerow([f"{f0}|{c0}", feature_prompt(f0, c0), resp])
+            print(f"[done] feature (single-pair): {total} rows -> {out}")
+            continue
+
         if method == "feature" and args.pairs_file:
             from feature_batch import BATCH_INSTRUCTIONS, parse_batch
             from stimuli import _read_rows
