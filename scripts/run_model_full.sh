@@ -9,8 +9,16 @@ export VLLM_LOGGING_LEVEL=WARNING PYTORCH_CUDA_ALLOC_CONF=expandable_segments:Tr
 export HF_HOME=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models
 export HF_HUB_CACHE=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models
 M="$1"; MM="${2:-2048}"; GM="${3:-0.85}"
-python src/run_local.py --model "$M" --methods triplet pairwise --gpu_mem_util "$GM" --max_model_len "$MM" || echo "[$M] tp FAIL"
-python src/run_listing.py --model "$M" --repeats 5 --temperature 0.7 --max_tokens 256 --gpu_mem_util "$GM" --max_model_len "$MM" || echo "[$M] listing FAIL"
+GPU0="${CUDA_VISIBLE_DEVICES:-0}"; GPU0="${GPU0%%,*}"
+drain() {  # wait until this GPU is actually free before loading the next model
+  for i in $(seq 1 40); do
+    u=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i "$GPU0" 2>/dev/null | head -1)
+    [ "${u:-9999}" -lt 800 ] && return 0
+    sleep 3
+  done
+}
+drain; python src/run_local.py --model "$M" --methods triplet pairwise --gpu_mem_util "$GM" --max_model_len "$MM" || echo "[$M] tp FAIL"
+drain; python src/run_listing.py --model "$M" --repeats 5 --temperature 0.7 --max_tokens 256 --gpu_mem_util "$GM" --max_model_len "$MM" || echo "[$M] listing FAIL"
 python src/build_union.py --model "$M" --min_listings 1 --min_concepts 2 || true
-python src/run_local.py --model "$M" --methods feature --pairs_file verify_pairs.csv --overwrite --gpu_mem_util "$GM" --max_model_len "$MM" || echo "[$M] feat FAIL"
+drain; python src/run_local.py --model "$M" --methods feature --pairs_file verify_pairs.csv --overwrite --gpu_mem_util "$GM" --max_model_len "$MM" || echo "[$M] feat FAIL"
 echo "=== $M DONE ==="
