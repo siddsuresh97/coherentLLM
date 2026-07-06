@@ -3,7 +3,8 @@
 set -uo pipefail
 cd "$(dirname "$0")/.."
 source "$(conda info --base)/etc/profile.d/conda.sh"
-conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence
+# OLMo-2-0325-32B needs vLLM 0.8.5 (0.6.6 mis-executes it: "hidden_size found 2390")
+conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence_big
 export VLLM_LOGGING_LEVEL=WARNING PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export HF_HOME=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models
 export HF_HUB_CACHE=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models
