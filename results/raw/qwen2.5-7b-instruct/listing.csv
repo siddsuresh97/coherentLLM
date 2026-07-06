@@ -1,0 +1,2167 @@
+concept,rep,prompt,response
+Alligator,0,"List the features and properties of a Alligator. Give a plain list, one property per line, no explanations.","Reptile class
+Large size
+Armored skin
+Powerful tail
+Crocodilian order
+Duckbill shape
+Sharp teeth
+Ambush predator
+Cold-blooded
+Lays eggs
+Habits both aquatic and terrestrial
+Sexual dimorphism
+Ectothermic
+Strong jaws
+Long snout
+Camouflaging coloration
+Binocular vision
+Long lifespan"
+Alligator,1,"List the features and properties of a Alligator. Give a plain list, one property per line, no explanations.","Reptile class
+Large size
+Armored skin
+Mouth filled with teeth
+Strong tail
+Webbed feet
+Ambush predator
+Aquatic and terrestrial
+Distinctive V-shaped snout
+Scales cover body
+Cold-blooded temperature regulation
+Long lifespan
+Sexual dimorphism
+Strong jaw muscles
+Camouflage coloration"
+Alligator,2,"List the features and properties of a Alligator. Give a plain list, one property per line, no explanations.","Reptile class
+Large size
+Armored skin
+Powerful tail
+Sharp jaws
+Rows of teeth
+Ambush predator
+Cold-blooded metabolism
+Distinctive V-shaped snout
+Camouflage coloration
+Eggs laid in nests
+Longevity up to decades
+Aquatic and terrestrial habitats
+Strong limbs for walking and swimming
+Scales cover body and tail
+Intelligent behavior
+Social structures in some species
+Good sense of smell
+Hearing but limited ability to hear high frequencies"
+Alligator,3,"List the features and properties of a Alligator. Give a plain list, one property per line, no explanations.","Scale-covered skin
+Powerful tail
+Strong jaws
+Sharp teeth
+Four legs
+Webbed feet
+Bony plate armor (scutes)
+Cold-blooded
+Reptile
+Long snout
+Good vision
+Hearing through lower jaw
+Poor sense of smell
+Can remain still for hours
+Can regrow teeth
+Salt-excreting glands
+Lays eggs
+Sex determination by temperature
+Strong swimmer
+Can breathe out of water"
+Alligator,4,"List the features and properties of a Alligator. Give a plain list, one property per line, no explanations.","Reptile class
+Has four legs
+Sharp teeth
+Skin covered in scales
+Powerful tail
+Cold-blooded
+Ambient temperature affects body temperature
+Eggs are laid and hatch externally
+Strong jaw muscles
+Camouflage coloration
+Able to stay submerged for hours
+Fossorial tendencies
+Aquatic and semi-aquatic
+Predominantly carnivorous
+Have eyelids and nostrils that can close underwater
+Can regrow lost teeth
+Have binocular vision
+Can breathe through skin in addition to lungs
+Sex determination influenced by incubation temperature
+Social during mating season"
+Anvil,0,"List the features and properties of a Anvil. Give a plain list, one property per line, no explanations.","Material composition
+Weight
+Durability
+Size
+Shape
+Strength
+Surface finish
+Texture
+Color
+Purpose
+Design variability
+Versatility in applications
+Maintenance requirements"
+Anvil,1,"List the features and properties of a Anvil. Give a plain list, one property per line, no explanations.","Material
+Height
+Width
+Depth
+Weight
+Durability
+Strength
+Surface Finish
+Design Style
+Hinge Capacity
+Support Load
+Ergonomics
+Sound Absorption
+Heat Resistance
+Electrostatic Discharge Protection
+Adjustability"
+Anvil,2,"List the features and properties of a Anvil. Give a plain list, one property per line, no explanations.","Material
+Weight
+Strength
+Durability
+Size
+Shape
+Design
+Function
+Versatility
+Cost
+Aesthetics
+Finish
+Production Method
+Maintenance Requirements
+Safety Features
+Load Capacity"
+Anvil,3,"List the features and properties of a Anvil. Give a plain list, one property per line, no explanations.","Material
+Weight
+Sturdiness
+Height
+Width
+Depth
+Design
+Color
+Surface Finish
+Support Capacity
+Versatility
+Durability
+Maintenance Requirements"
+Anvil,4,"List the features and properties of a Anvil. Give a plain list, one property per line, no explanations.","Material
+Weight
+Strength
+Durability
+Shape
+Size
+Design
+Function
+Price
+Availability
+Color
+Finish
+Texture
+Versatility
+Durability"
+Axe,0,"List the features and properties of a Axe. Give a plain list, one property per line, no explanations.","Blade
+Handle
+Head
+Head Material
+Handle Material
+Head Shape
+Weight
+Size
+Blunt Edge
+Sharp Edge
+Used for Cutting
+Used for Splitting Wood
+Agricultural Tool
+Combat Weapon
+Hand Tool"
+Axe,1,"List the features and properties of a Axe. Give a plain list, one property per line, no explanations.","Blade
+Handle
+Head
+Handcrafted options
+Metal components
+Wooden handle
+Stone head
+Butt end
+Two-handed use
+Single-handed use
+V-shaped notch
+Flintknapped edges
+Stone axeheads
+Iron axeheads
+Steel axeheads
+Birchwood handles
+Maplewood handles
+Chopping capability
+Splitting capability
+Versatile tool
+Hand tool
+Weapon potential"
+Axe,2,"List the features and properties of a Axe. Give a plain list, one property per line, no explanations.","Blade
+Handle
+Head
+Used for chopping
+Made of metal
+Handle made of wood or synthetic material
+Two-sided
+Has an eye for tying a rope
+Weighted head
+Used for splitting wood
+Can be used for self-defense"
+Axe,3,"List the features and properties of a Axe. Give a plain list, one property per line, no explanations.","Blade is sharp
+Handle is long
+Used for cutting
+Made of metal
+Has a head
+Can be hafted
+Varies in size
+Available with different heads
+Has an eye for hafting
+Used by hand"
+Axe,4,"List the features and properties of a Axe. Give a plain list, one property per line, no explanations.","Blade
+Handle
+Head
+Heavy
+Aimed for chopping
+Made of metal
+With a grip
+Versatile tool
+Can be wooden
+Used for cutting
+Has a sharp edge
+Available in different sizes
+Historically used in warfare
+Can be used for woodworking"
+Blindworm,0,"List the features and properties of a Blindworm. Give a plain list, one property per line, no explanations.","Semi-legless body
+Long and slender
+Matches the color of the soil or leaves
+Has no eyes
+Feeds on insects and other small invertebrates
+Lives in burrows
+Has scales
+Found in warm climates
+Breathes through skin and lungs
+Can regrow its tail if severed"
+Blindworm,1,"List the features and properties of a Blindworm. Give a plain list, one property per line, no explanations.","Long, slender body
+No legs
+Smooth, scaled skin
+No eyes
+Found in underground洞穴
+-END OF MESSAGE-
+(Note: The last item ""Found in underground洞穴"" translates to ""Found in underground caves"" to maintain accuracy and completeness in the list.)"
+Blindworm,2,"List the features and properties of a Blindworm. Give a plain list, one property per line, no explanations.","Long, slender body
+No legs
+Scale-covered skin
+Lives in underground environments
+Primarily hunts for small insects
+No eyes
+Sensitive to vibrations
+Found in Mediterranean regions
+Can be up to 30 cm long
+Carnivorous diet
+Breaths through skin and lungs"
+Blindworm,3,"List the features and properties of a Blindworm. Give a plain list, one property per line, no explanations.","Legless body
+Long and slender
+Reptile
+No eyelids
+No external ears
+Feeds on small invertebrates
+Lives in underground environments
+Smooth, scaleless skin
+Found in warm climates
+Nocturnal habits
+Breathes air
+Oviparous"
+Blindworm,4,"List the features and properties of a Blindworm. Give a plain list, one property per line, no explanations.","Long, slender body
+Lack of eyes
+Forked tongue
+No external ears
+Fleshy projections on the head
+Found in humid, dark environments
+Feeds on insects and small invertebrates
+No eyelids
+Breathes through skin
+Scales present on body
+Nocturnal activity
+Lives in underground caves and tunnels"
+Boa python,0,"List the features and properties of a Boa python. Give a plain list, one property per line, no explanations.","Non-venomous
+Large snake
+Eats mammals and birds
+Has heat-sensing pits
+Has constriction technique
+Can grow up to 13 feet
+Found in tropical regions
+Has smooth scales
+Lays eggs
+Nocturnal behavior
+Diverse coloration and patterns"
+Boa python,1,"List the features and properties of a Boa python. Give a plain list, one property per line, no explanations.","Non-venomous
+Longitudinal body stripes
+No毒液
+夜行性
+蟒科动物
+体温调节性
+无毒
+皮肤干燥
+夜间活动
+舌头嗅探
+热带雨林栖息
+lays eggs
+捕食者捕食
+体表覆盖鳞片
+肌肉发达
+视力一般
+听觉灵敏
+嗅觉发达"
+Boa python,2,"List the features and properties of a Boa python. Give a plain list, one property per line, no explanations.","Non-venomous
+Nocturnal
+Longitudinal stripes on scales
+Ectothermic
+Oviparous
+Can grow up to 13 feet
+Found in various colors including brown, cream, and black
+Fossa of Caecum for digestion
+Keen sense of smell
+Strong constrictor
+Native to Africa and South Asia"
+Boa python,3,"List the features and properties of a Boa python. Give a plain list, one property per line, no explanations.","Non-venomous
+Eats mammals, birds, lizards
+Has heat-sensing pits
+Has a triangular head
+Skin covered in scales
+Can constrict prey
+Found in tropical and subtropical regions
+Can grow up to 13 feet long
+Has a docile temperament
+Lays eggs rather than giving birth to live young"
+Boa python,4,"List the features and properties of a Boa python. Give a plain list, one property per line, no explanations.","Non-venomous
+Large snake
+Found in tropical regions
+Good climber
+Good swimmer
+No毒液
+shed skin annually
+Eggs are laid
+Inclusive of both sexes
+Can grow up to 3 meters
+Nighttime hunter
+Eats mostly small mammals, birds, and reptiles
+Distinctive scales
+Forked tongue"
+Caiman,0,"List the features and properties of a Caiman. Give a plain list, one property per line, no explanations.","Reptile class
+Aquatic habitat
+Long snout
+Armored scales
+Good swimmer
+Predator
+Diet includes fish, birds, and small mammals
+Can grow up to 6.6 feet (2 meters) in length
+Has sharp teeth
+Hails from South America and parts of Central America
+Over 2 meters in length for larger specimens
+Nocturnal and crepuscular
+Can live up to 20 years in the wild
+Has webbed feet
+Can班子成员查阅了全部资料，对项目进行了深入研究，提出了合理化建议，这体现了团队的哪一方面？
+A. 责任心
+B. 沟通能力
+C. 分析能力
+D. 创新能力
+答案:
+C
+
+请选择正确的短语填入空白处：
+原句：他克服了重重困难，_________地实现了目标。
+A. 顺利
+B. 顺利地
+C. 顺利的
+D. 顺利着
+答案:
+B
+
+请选择正确的介词填空：
+我将在会议___发表演讲。
+A. 上
+B. 里
+C. 期间
+D. 中
+答案:
+C
+
+请选择下列选项中，哪一个描述了某种状态"
+Caiman,1,"List the features and properties of a Caiman. Give a plain list, one property per line, no explanations.","Reptile class
+Aquatic habitat
+Long snout
+Powerful jaws
+Keel on the back
+Semiaquatic lifestyle
+Scaly skin
+Good swimming ability
+Cryptic coloration
+Ambush predator
+Endangered species in some regions"
+Caiman,2,"List the features and properties of a Caiman. Give a plain list, one property per line, no explanations.","Reptile class
+Aquatic habitat
+Long snout
+Dark armor-like skin
+Strong swimming ability
+Sharp teeth
+Good night vision
+Can grow up to 6 feet long
+Primarily carnivorous
+Found in Central and South America
+Endangered in some regions"
+Caiman,3,"List the features and properties of a Caiman. Give a plain list, one property per line, no explanations.","Reptile class
+Aquatic habitat
+Strong jaws
+Sharp teeth
+Good swimmer
+Nighttime activity
+Brown or black skin
+Keel on its back
+Keen eyesight
+Good sense of smell
+Ambush predator
+Can withstand cold temperatures
+Found in Central and South America"
+Caiman,4,"List the features and properties of a Caiman. Give a plain list, one property per line, no explanations.","Large reptile
+Found in Central and South America
+Semiaquatic lifestyle
+Has a distinctive U-shaped snout
+Scaly skin
+Nocturnal habits
+Primarily carnivorous
+Can grow to over 6 feet in length
+Has sharp teeth
+Black or dark brown in color
+Strong swimmer
+Good climber
+Lays eggs"
+Chameleon,0,"List the features and properties of a Chameleon. Give a plain list, one property per line, no explanations.","Camouflage ability
+Long tongue
+Tongue longer than body
+Changeable skin color
+Flexible knobbed feet
+Prehensile tail
+Lizard family member
+Strong jaw muscles
+Tri-colored eyes
+Can go without food for months"
+Chameleon,1,"List the features and properties of a Chameleon. Give a plain list, one property per line, no explanations.","Color-changing ability
+Long tongue
+Lizard family
+Reptile
+Tongue is longer than body and tail combined
+Can switch between arboreal and terrestrial habitats
+Excellent camouflage
+Syrinx-like structure for changing color
+Can change skin texture
+Specialized scales on tongue tip"
+Chameleon,2,"List the features and properties of a Chameleon. Give a plain list, one property per line, no explanations.","Color-changing ability
+Tongue longer than body
+Long, extendable tongue
+Camouflage skills
+Syringiformes body type
+Small to medium size
+Long, thin tail
+Lizard classification
+Diurnal activity
+Tongue adhesive tip
+Sclerotic ring around eyes"
+Chameleon,3,"List the features and properties of a Chameleon. Give a plain list, one property per line, no explanations.","Color-changing ability
+Long tongue
+ tonguelength exceeding its body size
+Small eyes
+Good camouflage
+Long lifespan for reptiles
+Liquids stored in tail
+Ability to move individual limbs independently
+Can change skin texture
+Native to tropical regions
+Diet includes insects and small animals"
+Chameleon,4,"List the features and properties of a Chameleon. Give a plain list, one property per line, no explanations.","Color-changing ability
+Long tongue
+ tonguelength exceeding its body size
+Eye structure with independent movement
+Lizard family member
+Can change skin texture
+Tongue adhesive properties
+Nocturnal tendencies
+Varied habitats
+Syrinx-like tongue mechanism
+Tail can detach for escape
+Intelligent behavior for capturing prey
+Camouflage skills
+Small to medium size
+Long lifespan compared to similar lizards
+Predominantly herbivorous diet
+Some species are venomous"
+Chisel,0,"List the features and properties of a Chisel. Give a plain list, one property per line, no explanations.","Blade for cutting
+Handle for gripping
+Tang for securing
+Carbon steel construction
+Variable blade angles
+Adjustable design
+Forged from metal
+Weighted for stability
+Teeth for gripping wood
+Ergonomic handle shape"
+Chisel,1,"List the features and properties of a Chisel. Give a plain list, one property per line, no explanations.","Blade made of metal
+Used for cutting and carving
+Has a handle for gripping
+Varies in size and shape
+May have a curved blade
+Some have a flat blade
+Designed for detailed work
+Used in woodworking and gardening
+Available in different lengths
+Can be straight or curved
+May have a pointed tip
+Some are double-edged
+Available in various materials
+Used for removing material
+Has a tang or butt end
+Can be forged or stamped
+May have a serrated edge
+Available in different weights
+Used for precise cutting tasks
+Can have a full or hollow grind
+Available with different grip designs"
+Chisel,2,"List the features and properties of a Chisel. Give a plain list, one property per line, no explanations.","Blade is sharp
+Made of durable steel
+Has a handle for gripping
+Can come in various lengths
+Includes a flat side for scraping
+Some have a pointed tip
+Used for carving wood
+Can be used for splitting wood
+Available in hand-held designs
+Some have ergonomically shaped handles
+Made in different styles and shapes"
+Chisel,3,"List the features and properties of a Chisel. Give a plain list, one property per line, no explanations.","Blade is sharp
+Made of metal
+Has a handle
+Used for carving
+Available in different sizes
+Has a pointed tip
+Can be straight or curved
+Some have teeth on one side
+Weight varies by design
+Often used in gardening
+Used in woodworking
+Available in hand-held and power-driven versions"
+Chisel,4,"List the features and properties of a Chisel. Give a plain list, one property per line, no explanations.","Blade edge is sharp
+Made of steel
+Has a handle
+Varies in size
+Can be straight or curved
+Used for cutting
+Available in hand-forged and machine-made
+May have a hammer face on one side
+Comes in different lengths
+Includes features for gripping and control"
+Cobra,0,"List the features and properties of a Cobra. Give a plain list, one property per line, no explanations.","Venomous
+Carnivorous
+Long tail
+Smooth body
+Nocturnal
+Camouflaged
+Forked tongue
+Sharp fangs
+Aggressive
+Varies in size
+Found in warm climates"
+Cobra,1,"List the features and properties of a Cobra. Give a plain list, one property per line, no explanations.","Venomous
+Nocturnal
+Camouflaged
+Long tail
+Hissing ability
+Long fangs
+Solitary
+Found in tropical regions
+Active during night and day
+Variable in size
+Diverse species
+Can climb trees
+Fast runners
+Good swimmers
+Sensitive to touch"
+Cobra,2,"List the features and properties of a Cobra. Give a plain list, one property per line, no explanations.","Cobras are venomous snakes
+Cobras can regurgitate undigested food
+Cobras have a distinctive hood
+Cobras can expand their ribs to flatten and widen their neck
+Cobras can be found in various parts of the world
+Cobras are not aggressive but will defend themselves
+Cobras can produce a loud hissing sound
+Cobras have heat-sensing pits
+Cobras lay eggs in some species, while others give birth to live young
+Cobras have a venom delivery system through fangs"
+Cobra,3,"List the features and properties of a Cobra. Give a plain list, one property per line, no explanations.","Venomous
+Cylindrical body
+Sharp fangs
+Camouflaged skin
+Keen eyesight
+Aggressive behavior
+Long tail
+Keen sense of hearing
+Can change color
+Fast mover
+Solitary creature
+Nocturnal habits"
+Cobra,4,"List the features and properties of a Cobra. Give a plain list, one property per line, no explanations.","Venomous
+Has a distinctive hood
+Long fangs
+Nocturnal
+Good climbers
+Found in various climates
+Active at night
+Has scales
+Long tail
+Can spit venom"
+Crocodile,0,"List the features and properties of a Crocodile. Give a plain list, one property per line, no explanations.","Scaly skin
+Powerful jaws
+Sharp teeth
+Strong tail
+Four legs
+Good swimmers
+Excellent eyesight
+Good hearing
+Good sense of smell
+Can breathe while partly above water
+Can go without water for long periods
+Varied diets
+Some species are large
+Some species are small
+Live in a variety of habitats"
+Crocodile,1,"List the features and properties of a Crocodile. Give a plain list, one property per line, no explanations.","Strong jaws
+Powerful tail
+Armored skin
+Sharp teeth
+Good swimmers
+Can breathe while partially submerged
+Good eyesight
+Good hearing
+Good sense of smell
+Lay eggs
+Cold-blooded
+Varied diets
+Some species can run quickly
+Can stay still for long periods
+Have a third eye (parietal eye)"
+Crocodile,2,"List the features and properties of a Crocodile. Give a plain list, one property per line, no explanations.","Reptile class
+Strong jaws
+Armored skin
+Cold-blooded metabolism
+Sharp teeth
+Good swimmers
+Can walk on land
+Ambush predator
+Lays eggs
+Varied diet
+Good sense of smell
+Long lifespan
+Strong tails for swimming and balance
+Distinctive snout shape varies by species
+Scutes on skin provide protection"
+Crocodile,3,"List the features and properties of a Crocodile. Give a plain list, one property per line, no explanations.","Reptile class
+Powerful jaws
+Armored skin
+Cold-blooded metabolism
+Strong swimming ability
+Sharp teeth
+Good eyesight
+Good hearing
+Good sense of smell
+Long tail for balance
+Four legs with claws
+Skin with distinct patterns
+Can go for long periods without water
+Some species can grow to large sizes
+Sexual dimorphism in some species
+Lays eggs in nests
+Some can run on land"
+Crocodile,4,"List the features and properties of a Crocodile. Give a plain list, one property per line, no explanations.","Reptile class
+Strong jaws
+Armored skin
+Cold-blooded metabolism
+Long snout
+Sharp teeth
+Powerful tail
+Water and land dwelling
+Good swimming ability
+Binocular vision
+Fourth claw on hind feet retracts
+Sexual dimorphism
+Skin glands for salt excretion
+Ectothermic temperature regulation
+Long lifespan
+Strong limbs for walking and running
+Flexible neck
+Good sense of smell
+Hearing sensitivity
+Vision adapted for low light
+Can go without water for long periods"
+Dinosaur,0,"List the features and properties of a Dinosaur. Give a plain list, one property per line, no explanations.","Skeletal structure
+Limb posture
+Variety of sizes
+Diverse habitats
+Feathers in some species
+Presence of teeth
+Lived from the Mesozoic Era
+Laid eggs
+Had scales
+Experienced different climates
+Diverse diets (carnivorous, herbivorous, omnivorous)"
+Dinosaur,1,"List the features and properties of a Dinosaur. Give a plain list, one property per line, no explanations.","Scales
+Lays eggs
+Range of sizes from small to large
+Diverse species
+Non-avian dinosaurs are extinct
+Predatory or herbivorous diets
+Bony head crest in some species
+Feathers in some species
+Hollow bones in some species
+Varied limb configurations
+Diverse skeletal structures
+Evolved from reptiles
+Lived during Mesozoic Era"
+Dinosaur,2,"List the features and properties of a Dinosaur. Give a plain list, one property per line, no explanations.","Scales
+Lived during Mesozoic Era
+Varied in size
+Some could fly
+Most were carnivorous
+Some could walk on two legs
+Some had horns
+Lacked feathers (except in some species)"
+Dinosaur,3,"List the features and properties of a Dinosaur. Give a plain list, one property per line, no explanations.","Lived primarily during the Mesozoic Era
+Varied greatly in size and shape
+Bipedal or quadrupedal
+Had scales or feathers
+Lay eggs
+Had teeth in jaw
+Possessed a tail
+Had a central nervous system
+Had a four-chambered heart
+Breathe with lungs
+Had a vertebral column"
+Dinosaur,4,"List the features and properties of a Dinosaur. Give a plain list, one property per line, no explanations.","Extinct 
+Varied sizes 
+Lived from Late Triassic to Holocene 
+Divided into two main groups: Saurischia and Ornithischia 
+Had scaly skin 
+Many had feathers 
+Walked on two or four legs 
+Had various types of teeth 
+Some could fly (like Archaeopteryx, not a true dinosaur) 
+Laid eggs 
+Had a wide range of habitats 
+Experienced different climates"
+Gecko,0,"List the features and properties of a Gecko. Give a plain list, one property per line, no explanations.","Small to medium-sized reptiles
+Smooth, moist skin
+Specialized adhesive toe pads
+Excellent night vision
+Strong, flexible tails
+Camouflage coloration
+Good climbers
+Good swimmers
+Varied diet
+Long lifespan for size
+Eggs are usually laid in moist environments"
+Gecko,1,"List the features and properties of a Gecko. Give a plain list, one property per line, no explanations.","Four legs
+Smooth tongue
+Camouflage coloration
+Flexible spine
+Adhesive toe pads
+Good night vision
+Strong jaws
+Varied diet
+Long lifespan for some species
+Ability to climb steep surfaces"
+Gecko,2,"List the features and properties of a Gecko. Give a plain list, one property per line, no explanations.","Four legs
+Smooth skin
+Prehensile tail
+Camouflage abilities
+ sticky toes
+Good night vision
+Multi-colored skin
+Good hearing
+Strong jaw muscles
+Flexible spine"
+Gecko,3,"List the features and properties of a Gecko. Give a plain list, one property per line, no explanations.","Four legs
+Tail
+Camouflage coloration
+Adaptive eye structures
+Toes with bristles
+Ability to climb smooth surfaces
+Flexible ribcage
+Larvae stage
+Tail regeneration
+Long life span for species"
+Gecko,4,"List the features and properties of a Gecko. Give a plain list, one property per line, no explanations.","Four legs
+Tufted toes
+Camouflage coloration
+Long tail
+Flexible joints
+Retractable claws
+Multicolor skin
+Good night vision
+Good hearing
+Well-developed sense of smell
+Can change skin color
+Can detach tails
+Large eye pupils
+Strong jaw
+Secreted mucus on feet
+Can climb smooth surfaces"
+Grinding disk,0,"List the features and properties of a Grinding disk. Give a plain list, one property per line, no explanations.","Diameter
+Thickness
+Material
+Coarseness
+Hole size for arbor attachment
+Abrasive type
+Grinding speed range
+Safety rating
+Heat resistance
+Durability
+Edge quality
+Flatness
+Weight
+Balance
+Vibration resistance
+Noise level
+Edge thickness consistency"
+Grinding disk,1,"List the features and properties of a Grinding disk. Give a plain list, one property per line, no explanations.","Diameter
+Thickness
+Hole diameter
+Abrasive material
+Coarseness
+Shape
+Weight
+RPM rating
+Safety rating
+Material hardness
+Flattening properties
+Edge quality
+Bond type
+Diameter tolerance
+Edge thickness
+Heat resistance
+Water resistance"
+Grinding disk,2,"List the features and properties of a Grinding disk. Give a plain list, one property per line, no explanations.","Diameter
+Thickness
+Material
+Coarseness
+Hole size for attachment
+RPM rating
+Safety rating
+Shape
+Weight
+Durability
+Abrasive material
+Grain size
+Surface finish
+Edge quality
+Flattening characteristic
+Vibration resistance"
+Grinding disk,3,"List the features and properties of a Grinding disk. Give a plain list, one property per line, no explanations.","Diameter
+Thickness
+Hole size
+Material composition
+Grain size
+Coarseness
+Shape
+Balance
+Reusability
+Durability
+Weight
+Safety rating
+Vibration resistance
+Edge quality
+Thermal conductivity"
+Grinding disk,4,"List the features and properties of a Grinding disk. Give a plain list, one property per line, no explanations.","Diameter
+Thickness
+Hole size for arbor attachment
+Material type
+Coarseness of abrasive grain
+Bond type
+Abrasive material composition
+Shaped edge
+Vibration resistance
+Heat resistance
+Water resistance
+Flattened surface
+Durability
+Diameter tolerance
+Weight
+Sharpness
+Edge hardness
+Center hardness"
+Hammer,0,"List the features and properties of a Hammer. Give a plain list, one property per line, no explanations.","Made of metal
+Used for driving nails
+Has a handle
+Used for demolishing materials
+Has a head
+Can be made of wood
+Designed for striking objects
+Available in various sizes
+Has a claw on one side
+Used in construction work"
+Hammer,1,"List the features and properties of a Hammer. Give a plain list, one property per line, no explanations.","Blunt end
+Pointed end
+Handle
+Made of metal
+Made of wood
+Can be adjustable
+Weighted head
+Varying sizes
+Designed for striking
+Used for driving nails
+Used for demolition
+Can have a peen
+Head may be flat
+Aids in shaping materials
+Used for breaking objects
+Can be used as a primitive tool
+Stamped with a brand
+Designed for leverage
+Made with ergonomic considerations"
+Hammer,2,"List the features and properties of a Hammer. Give a plain list, one property per line, no explanations.","Made of metal
+Used for driving nails
+Has a handle
+Comes in different sizes
+Used for demolition
+Has a claw on the back
+Can be used as a self-defense tool
+Available in various weights
+Made of hard material
+Used for pounding objects"
+Hammer,3,"List the features and properties of a Hammer. Give a plain list, one property per line, no explanations.","Made of metal
+Used for driving nails
+Has a handle
+Can break apart objects
+Has a claw on one end
+Used for pounding
+Available in different sizes
+Used in construction
+Made of durable materials
+Has a head for striking"
+Hammer,4,"List the features and properties of a Hammer. Give a plain list, one property per line, no explanations.","Used for driving nails
+Used for prying objects
+Has a head and handle
+Made of metal
+Can vary in size
+Available in different weights
+Features a claw on one side
+Handle may be wooden or rubberized
+Designed for manual use
+Common in construction and DIY tasks"
+Knife,0,"List the features and properties of a Knife. Give a plain list, one property per line, no explanations.","Blade
+Handle
+Edge
+Point
+Sheath
+Material
+Size
+Weight
+Bluntness
+Sharpness
+Versatility
+Blade Type
+Edge Type
+Handle Material"
+Knife,1,"List the features and properties of a Knife. Give a plain list, one property per line, no explanations.","Blade
+Handle
+Edge
+Point
+Handle Material
+Blade Material
+Size
+Weight
+Sharpness
+Edge Type
+Blade Shape
+Purpose
+Blade Length
+Blade Thickness
+Safety Features
+Balance
+Cutting Power
+Versatility
+Durability
+Aesthetics"
+Knife,2,"List the features and properties of a Knife. Give a plain list, one property per line, no explanations.","Blade
+Handle
+Edge
+Point
+Sharpness
+Material
+Weight
+Size
+Shape
+Blunt end"
+Knife,3,"List the features and properties of a Knife. Give a plain list, one property per line, no explanations.","Blade
+Handle
+Edge
+Point
+Sharpness
+Material
+Size
+Weight
+Balance
+Grip
+Bluntness
+Versatility
+Aesthetics"
+Knife,4,"List the features and properties of a Knife. Give a plain list, one property per line, no explanations.","Blade
+Handle
+Edge
+Point
+Blunt end
+Material
+Size
+Weight
+Shape
+Sharpness
+Versatility
+Blade length
+Blade width
+Handle material
+Edge shape
+Purpose
+Design"
+Lawn Mower,0,"List the features and properties of a Lawn Mower. Give a plain list, one property per line, no explanations.","Engine type
+Cutting width
+Fuel capacity
+Power output
+Weight
+Material
+Noise level
+Safety features
+Start method
+Deck material
+Mulch option
+Bagging capacity
+Handle type
+Versatility
+Maintenance requirements
+Durability
+Price range"
+Lawn Mower,1,"List the features and properties of a Lawn Mower. Give a plain list, one property per line, no explanations.","Power source: Gasoline
+Power source: Electric
+Type: Push
+Type: Riding
+Cutting width: Adjustable
+Cutting height: Adjustable
+Deck material: Metal
+Deck material: Plastic
+Blade type: Rotating
+Blade type: Fixed
+Safety features: Handlebars
+Safety features: Guards
+Weight: Light
+Weight: Heavy
+Size: Compact
+Size: Large
+Maintenance: Easy
+Maintenance: Complex
+Noise level: Low
+Noise level: High
+Price range: Budget
+Price range: Premium
+Fuel capacity: Limited
+Fuel capacity: Large
+Battery life: Short
+Battery life: Long
+Cord length: Limited
+Cord length: Long"
+Lawn Mower,2,"List the features and properties of a Lawn Mower. Give a plain list, one property per line, no explanations.","Engine type
+Size
+Weight
+Height
+Cutting width
+Number of blades
+Type of blade
+Material
+Handle type
+Steering type
+Engine horsepower
+Battery type (for electric models)
+Fuel capacity (for gas models)
+Mulching capability
+Bagging capacity
+Warranty
+Noise level
+Maintenance requirements
+Safety features
+Price
+Brand"
+Lawn Mower,3,"List the features and properties of a Lawn Mower. Give a plain list, one property per line, no explanations.","Cutting blade
+Engine powered
+Wheels or tires
+Adjustable height settings
+Mulching capability
+Side discharge option
+Bagging system
+Electric start option
+Fuel tank
+Steel deck
+Rubber grip handle
+Safety features
+Variable speed control
+Adjustable wheels
+Weight
+Dimensions
+Maintenance requirements
+Noise level"
+Lawn Mower,4,"List the features and properties of a Lawn Mower. Give a plain list, one property per line, no explanations.","Engine type: Gasoline
+Engine type: Electric
+Size: Compact
+Size: Full-size
+Cutting width: 20 inches
+Cutting width: 24 inches
+Cutting width: 28 inches
+Type: Push
+Type: Riding
+Type: Self-propelled
+Handle type: Rear
+Handle type: Side
+Mulching capability: Yes
+Mulching capability: No
+Bagging capability: Yes
+Bagging capability: No
+Height adjustment: Manual
+Height adjustment: Stepless
+Height adjustment: Multiple settings
+Warranty: 1 year
+Warranty: 2 years
+Weight: Light
+Weight: Heavy
+Noise level: Low
+Noise level: High
+Price range: Budget
+Price range: Mid-range
+Price range: Premium
+Features: GPS guidance
+Features: Smart blade
+Features: Zero-turn radius
+Features: Battery rechargeable"
+Lizard,0,"List the features and properties of a Lizard. Give a plain list, one property per line, no explanations.","Scales on skin
+Four limbs
+Tongue protrusion
+Tail for balance
+Dry skin
+Cold-blooded
+Varied diets
+Color-changing ability in some species
+Claws on fingers and toes
+Parasolid egg-laying (oviparous)
+Teeth in jaws
+Well-developed sense of vision
+Good sense of smell
+Hearing through jawbone
+Camouflage coloration
+Long lifespan for some species
+Diverse habitats including deserts and forests"
+Lizard,1,"List the features and properties of a Lizard. Give a plain list, one property per line, no explanations.","Cold-blooded
+Has scales
+Limbless or has short legs
+Tongue is forked
+Good at camouflage
+Has eyelids
+Tail is used for balance
+Varies in size
+Diet includes insects
+Has moist skin"
+Lizard,2,"List the features and properties of a Lizard. Give a plain list, one property per line, no explanations.","Cold-blooded
+Has scales
+Four limbs
+Tympanum for hearing
+Long tongue
+Most have claws
+Binocular vision
+Variety of colors
+Forked tongue
+Lays eggs (except for some species which give birth to live young)"
+Lizard,3,"List the features and properties of a Lizard. Give a plain list, one property per line, no explanations.","Cold-blooded
+Amphibious
+Scaly skin
+Four legs
+Tails in most species
+Sharp teeth
+Good vision
+Hind legs often longer than front legs
+Varied diets
+Can go for long periods without water
+Dry habitats
+Strong claws
+Kept as pets
+Camouflage colors
+Lay eggs (oviparous) or give birth to live young (ovoviviparous)"
+Lizard,4,"List the features and properties of a Lizard. Give a plain list, one property per line, no explanations.","Scales on skin
+Four limbs (except for tailless species)
+Tongue used for tasting and probing
+Variable body coloration
+Tail used for balance
+Cold-blooded
+Keen sense of smell
+Good eyesight
+Amphibious capabilities in some species
+Claws on toes
+Parthenogenesis in some species
+Flexible skin
+Strong jaws
+Diverse diets
+Camouflage abilities
+Long tongues
+Distinctive heads in some species
+Venomous in some species"
+Nail,0,"List the features and properties of a Nail. Give a plain list, one property per line, no explanations.","Hardness
+Metallic
+Pointed
+Straight
+Small
+Used for fastening
+Can be hammered
+Rigid
+Durable
+Usually made of iron or steel"
+Nail,1,"List the features and properties of a Nail. Give a plain list, one property per line, no explanations.","Hardness
+Smooth surface
+Pointed end
+Metallic
+Rigid
+Used for fastening
+Can be hammered into surfaces
+May have a flat head
+Can be made of various metals
+Has a cylindrical shape
+Used in construction and woodworking
+Can be coated with paint or varnish"
+Nail,2,"List the features and properties of a Nail. Give a plain list, one property per line, no explanations.","Hardness
+Pointed shape
+Sharp edge
+Durable
+Metallic
+Longitudinal grooves
+Used for construction
+Can be hammered
+Variety of sizes
+Coated with paint or polish"
+Nail,3,"List the features and properties of a Nail. Give a plain list, one property per line, no explanations.","Hardness
+Density
+Brittleness
+Smooth surface
+Pointed end
+Length variability
+Straight shape
+Metallic luster
+Weight
+Durability
+Malleability (in some types)"
+Nail,4,"List the features and properties of a Nail. Give a plain list, one property per line, no explanations.","Hardness
+Pointed end
+Smooth surface
+Rigidity
+Metallic composition
+Used for fastening
+Can be hammered
+Variety of sizes
+Variety of shapes
+Corrosion resistance (depending on material)"
+Oil can,0,"List the features and properties of a Oil can. Give a plain list, one property per line, no explanations.","Capacity
+Material
+Handle
+Spout
+Cap
+Label
+Color
+Size
+Weight
+Non-spill mechanism
+Durable
+Reusable
+Versatile
+Nontoxic
+Ergonomic"
+Oil can,1,"List the features and properties of a Oil can. Give a plain list, one property per line, no explanations.","Holds oil
+Has a lid or cap
+Made of metal
+Often has a handle or bail
+Features a spout
+Includes a wick or wick guide
+Marked with measurement lines
+Has a screw-on lid
+Made of plastic
+Fits in a toolbox
+Used for lubrication
+Weight varies
+Can be portable
+Available in different sizes"
+Oil can,2,"List the features and properties of a Oil can. Give a plain list, one property per line, no explanations.","Holds oil
+Has a spout
+Made of metal
+Includes a lid
+Has a handle
+Features a trigger or squeeze mechanism
+Small in size
+Has a label
+May have a hanging loop
+Constructed with a protective coating"
+Oil can,3,"List the features and properties of a Oil can. Give a plain list, one property per line, no explanations.","Holds oil
+Has a lid
+Made of metal
+Has a handle
+Features a spout
+Can be hanging
+Includes a wick or wick-like component
+Has a label for identification
+Can vary in size
+May have a chain attachment
+Designed for portability"
+Oil can,4,"List the features and properties of a Oil can. Give a plain list, one property per line, no explanations.","Holds oil
+Has a pouring spout
+Includes a lid or cap
+Made of metal
+Features a handle
+Can be cylindrical or rectangular
+Has a wide base
+Includes a wick for oil lighting
+Made of durable material
+Varies in size
+May have a measuring scale
+Semi-transparent or opaque
+Has a label for identification
+Some have a screw-on lid
+Includes a carrying strap
+Can be handheld"
+Paint brush,0,"List the features and properties of a Paint brush. Give a plain list, one property per line, no explanations.","Natural hair
+Synthetic bristles
+Variable stiffness
+Adjustable size
+Various shapes
+Smooth tip
+Pointed tip
+Flat tip
+Textured surface
+Absorbent capacity
+Ergonomic handle"
+Paint brush,1,"List the features and properties of a Paint brush. Give a plain list, one property per line, no explanations.","Handle length
+Handle material
+Brush head material
+Bristle stiffness
+Brush head shape
+Size of bristles
+Number of bristles
+Brush weight
+Ease of cleaning
+Texture of bristles
+Bristle flexibility
+Bristle density
+Brush tip design
+Weight distribution
+Handle grip texture
+Bristle length"
+Paint brush,2,"List the features and properties of a Paint brush. Give a plain list, one property per line, no explanations.","Held by hand
+Has bristles
+Can vary in size
+Can vary in shape
+Made from natural or synthetic materials
+Used for creating lines
+Used for creating colors
+Can be flat
+Can be round
+Has a handle
+Can vary in firmness
+Can be washable
+Has varying stiffness
+Can be pointed
+Can be broad
+Used for detail work
+Can be used for large areas
+May have a ferrule
+Can be contaminated with paint
+Used on canvas
+Used on paper
+Can be cleaned with solvents"
+Paint brush,3,"List the features and properties of a Paint brush. Give a plain list, one property per line, no explanations.","Shape
+Size
+Hardness
+Color
+Material
+Length
+Weight
+Handle type
+Bristle density
+Bristle flexibility
+Tip shape
+Brush type (round, flat, filbert, etc.)
+Loading capacity
+Cleaning ease
+Price"
+Paint brush,4,"List the features and properties of a Paint brush. Give a plain list, one property per line, no explanations.","Shape
+Size
+Hardness
+Bristle material
+Synthetic or natural
+Color
+Length
+Thickness
+Flexibility
+Weight
+Handle type"
+Salamander,0,"List the features and properties of a Salamander. Give a plain list, one property per line, no explanations.","Salamanders have moist, smooth skin
+Salamanders are generally amphibians
+Salamanders have four legs
+Salamanders have tails
+Salamanders undergo metamorphosis
+Salamanders breathe through their skin and lungs
+Salamanders have a moist habitat preference
+Salamanders have a wide variety of sizes
+Salamanders are typically carnivorous
+Salamanders have a well-developed sense of smell
+Salamanders have good vision
+Salamanders can regenerate limbs
+Salamanders have a ribcage保护模式"
+Salamander,1,"List the features and properties of a Salamander. Give a plain list, one property per line, no explanations.","Has moist, scales-free skin
+Lacks limbs
+Has a tail
+Bears external gills as larvae
+Adapts to various climates
+Found in diverse habitats
+Eats insects and other small creatures
+Produces toxins from its skin
+Lays eggs in water or moist areas
+Has a four-chambered heart
+Can regenerate limbs
+Has a wide range of colors
+Is cold-blooded
+Has a long lifespan for amphibians"
+Salamander,2,"List the features and properties of a Salamander. Give a plain list, one property per line, no explanations.","Cold-blooded
+Amphibian
+Has four legs
+Smooth, moist skin
+Tongue is sticky
+Aquatic larvae
+Terrestrial or semi-aquatic adults
+Varied diet
+Can regrow limbs
+Long tail
+ Breathes with lungs and skin
+Ectothermic
+Egg-laying
+Many species are brightly colored"
+Salamander,3,"List the features and properties of a Salamander. Give a plain list, one property per line, no explanations.","Cold-blooded
+Amphibian
+Has a lizard-like appearance
+Breathes through lungs and skin
+Has moist, scales-covered skin
+Tympanum present
+Long, tongues
+Strong clawed legs
+Primarily nocturnal
+Found in various habitats
+Can regenerate limbs
+Has a backbone
+Males have a distinctive fertilization organ
+Can climb trees
+Aids in respiration through skin
+Has poor eyesight
+Diverse diet, can be omnivorous
+Has a tail for balance and swimming
+Produces toxins in some species
+Lays eggs in water or moist environments"
+Salamander,4,"List the features and properties of a Salamander. Give a plain list, one property per line, no explanations.","Cold-blooded
+Amphibian
+Has lungs and can breathe through its skin
+Tends to have moist, smooth skin
+May have adhesive toe pads
+Aquatic and terrestrial habitats
+Variety of sizes, from small to large species
+Strong tail for swimming and balance
+Sharp, pointed teeth
+Long, slender bodies
+Can regrow limbs
+Nocturnal behavior common
+Diverse diets, including insects, small animals, and plants
+Some species can change color
+Lays eggs in water or moist areas
+Some species can breathe through their mouths"
+Saw,0,"List the features and properties of a Saw. Give a plain list, one property per line, no explanations.","Saw teeth are sharp.
+Saw blades are made of metal.
+Saws have a handle for grip.
+Saws can be powered or manual.
+Saws come in different sizes.
+Saws are used for cutting.
+Saw blades can be replaced.
+Saws have a kerf (cutting groove).
+Saws can be fine-toothed or coarse-toothed.
+Saws may have a tooth pattern."
+Saw,1,"List the features and properties of a Saw. Give a plain list, one property per line, no explanations.","Blade teeth arranged in a specific pattern
+Used for cutting through wood
+Can be powered or manual
+A variety of blade types for different materials
+Adjustable depth stop
+Handle for easier control and application
+Guide for straight cuts
+Teeth configuration for different cutting tasks
+Variable length
+Made from steel or other durable materials"
+Saw,2,"List the features and properties of a Saw. Give a plain list, one property per line, no explanations.","Serrated edges for gripping material
+Used for cutting through wood
+Can be powered or manual
+Ranging in size from small to large
+Made of steel or other durable materials
+Has a handle for better control
+Some have teeth on both sides
+Used for cutting metal and other materials
+Adjustable depth stop for precise cutting
+Teeth configuration varies for different materials"
+Saw,3,"List the features and properties of a Saw. Give a plain list, one property per line, no explanations.","Blade teeth arranged in a pattern
+Long, typically thin blade
+Material is usually metal
+Used for cutting through wood
+Can cut along or across grain
+Some have teeth for metal cutting
+Adjustable depth stop
+Variable tooth pitch for different materials
+Handle for manual use
+Teeth configuration for crosscut or rip cuts
+Sawdust is a byproduct of use
+May have a tensioning mechanism
+Some are powered, others manual
+Used for making precise cuts
+Can be straight or curved
+Weight ranges from light to heavy
+Designed for one-handed or two-handed use"
+Saw,4,"List the features and properties of a Saw. Give a plain list, one property per line, no explanations.","Blade teeth arranged in a alternating pattern
+Used for making straight cuts
+Made from steel
+Can be powered or manual
+Features a handle for gripping
+Some have teeth on only one side
+Can cut through metal and wood
+Adjustable depth stop
+Variable tooth patterns for different materials
+Often has a protective guard"
+Screwdriver,0,"List the features and properties of a Screwdriver. Give a plain list, one property per line, no explanations.","Head shape
+Length
+Material
+Weight
+Handle type
+Bit compatibility
+Torque capacity
+Finish
+Price
+Brand"
+Screwdriver,1,"List the features and properties of a Screwdriver. Give a plain list, one property per line, no explanations.","Screwdriver handle is typically made of plastic or metal.
+Screwdrivers come in various sizes.
+Screwdrivers have a varying length.
+Screwdrivers have a handle that fits into a user's hand.
+Screwdrivers have a shaft that connects the handle to the tip.
+Screwdrivers have a tip that can be replaceable or fixed.
+Screwdriver tips include flat head and Phillips head.
+Screwdrivers are available in different tip shapes and sizes.
+Screwdrivers are made of materials like steel or brass.
+Screwdrivers can have a rubber grip for better handling.
+Screwdrivers can be magnetic to hold small screw heads.
+Screwdrivers often have a ratcheting mechanism for easier use.
+Screwdrivers can be powered electrically.
+Screwdrivers come with a warranty.
+Screwdrivers are sold in different price ranges.
+Screwdrivers are available in sets with multiple tips.
+Screwdrivers are used for driving and removing screws.
+Screwdrivers are essential tools in home and professional settings."
+Screwdriver,2,"List the features and properties of a Screwdriver. Give a plain list, one property per line, no explanations.","Hand tool
+Used for driving screws
+Various sizes
+Made of metal
+Includes a handle
+Can be manual
+Has a specific tip shape
+Some are electric
+Colorful handles available
+Includes interchangeable tips
+Can be magnetic
+Sturdy construction
+Compact design
+Often includes a carrying case"
+Screwdriver,3,"List the features and properties of a Screwdriver. Give a plain list, one property per line, no explanations.","Blade design
+Handle grip
+Material
+Length
+Weight
+Bit compatibility
+Torque application
+Type (slotted, Phillips, etc.)
+Size range
+Ergonomics
+Durability
+Price
+Brand"
+Screwdriver,4,"List the features and properties of a Screwdriver. Give a plain list, one property per line, no explanations.","Blade
+Handle
+Torque
+Material
+Size
+Tip shape
+Length
+Weight
+Balance
+Durability
+Versatility
+Screw compatibility
+Handle grip
+Adjustability
+Capability for driving screws
+Precision
+Portability"
+Shovel,0,"List the features and properties of a Shovel. Give a plain list, one property per line, no explanations.","Handle
+Head
+Material
+Weight
+Length
+Edge
+Blade
+Width
+Depth
+Pointed tip
+Flat surface
+Handle material
+Head material
+Handle length
+Blade shape
+Edge type
+Weight distribution
+Versatility
+Price
+Brand"
+Shovel,1,"List the features and properties of a Shovel. Give a plain list, one property per line, no explanations.","Handle
+Head
+Blade
+Material
+Size
+Weight
+Shape
+Edge
+Bent or straight edge
+Length of handle
+Type (e.g., gardening, snow, trenching)
+Design for soil or snow
+Storage features
+Teeth or tines
+Color
+Brand"
+Shovel,2,"List the features and properties of a Shovel. Give a plain list, one property per line, no explanations.","Handle
+Head
+Material
+Weight
+Size
+Edge
+Blade
+Hole for attaching
+Pointed tip
+Flat surface"
+Shovel,3,"List the features and properties of a Shovel. Give a plain list, one property per line, no explanations.","Handle
+Head
+Material
+Size
+Weight
+Edge
+Bit
+Blade
+Handle material
+Handle length
+Digging depth
+Versatility
+Portability
+Maintenance requirements
+Price"
+Shovel,4,"List the features and properties of a Shovel. Give a plain list, one property per line, no explanations.","Handle
+Blade
+Pointed edge
+Flat surface
+Adjustable length
+Made of metal
+Made of wood
+Has a handle for grip
+Used for digging
+Can be handheld
+Has a scoop for soil
+Available in various sizes
+Has a head
+Can be attached to a pole
+Used in gardening
+Used for snow removal"
+Snake,0,"List the features and properties of a Snake. Give a plain list, one property per line, no explanations.","Scales on skin
+Long, elongated body
+No eyelids
+Heterothermic
+Flexible spine
+Limbless
+Variety of lengths and sizes
+Venomous bite in some species
+Good sense of smell
+Keen sense of hearing
+Innate hunter
+Camouflaged coloration
+Oviparous or viviparous
+Sensitive to vibration
+No outer ear structures
+Autotomy of tail
+No teeth in jaws
+Long tongue for smelling and tasting"
+Snake,1,"List the features and properties of a Snake. Give a plain list, one property per line, no explanations.","Cold-blooded
+Long body
+Limbless
+Scales
+Ectothermic
+Carnivorous
+Venomous (in many species)
+Eyes with horizontal pupils
+No external ears
+Flexible spine
+Heterodont teeth
+Lingual tongue
+Oviparous or viviparous
+Sharp vision
+Excellent sense of smell
+Sensitive to vibrations"
+Snake,2,"List the features and properties of a Snake. Give a plain list, one property per line, no explanations.","Cold-blooded
+Long body
+Limbless
+Scales
+Varied diets
+Venomous bite (in many species)
+Heterothermic
+Ectothermic
+Oviparous or viviparous
+Sensitive to vibrations
+Keen sense of smell
+Distinctive patterns
+Non-vertebrate chordate
+No external ears
+Flexible spine"
+Snake,3,"List the features and properties of a Snake. Give a plain list, one property per line, no explanations.","Scales on skin
+Long, elongated body
+Limbless
+Enhanced sense of smell
+Carnivorous diet
+Ability to shed skin
+Heterothermic (cold-blooded)
+Varying lengths and sizes
+Variety of species
+Venomous bite in some species
+No external ears
+Keen eyesight
+Flexible jaws
+Camouflage coloration
+Sensitive heat pits (in some species)
+Lays eggs or gives birth to live young"
+Snake,4,"List the features and properties of a Snake. Give a plain list, one property per line, no explanations.","Cold-blooded
+Long body
+Limbless
+Elongated
+Reptile
+Has scales
+Vibrissae or whiskers
+No eyelids
+Heterothermic
+Venomous (in many species)
+Good sense of smell
+Ectothermic
+Keen sense of hearing
+Flexible spine
+Carnivorous
+Long tail
+Nostrils on top of head
+Forked tongue"
+Spanner,0,"List the features and properties of a Spanner. Give a plain list, one property per line, no explanations.","Global distribution
+Automatic scaling
+Strong consistency
+Supports SQL and a flexible data model
+High availability
+Global transactions
+Automatic sharding
+On-demand billing
+Serverless architecture
+Column-level and row-level access control
+Grpc and SQL interfaces
+Continuous data replication
+Flexible resource allocation
+No configuration required for deployment"
+Spanner,1,"List the features and properties of a Spanner. Give a plain list, one property per line, no explanations.","Cloud-based
+NoSQL database
+Global distribution
+Automatic scaling
+Strong consistency
+Supports transactions
+Column-family schema
+SQL-like API
+Automatic sharding
+Global indexing
+High availability
+Automatic replication
+Flexible partitioning
+Online backups
+Continuous data import
+Serverless architecture
+No schema changes required"
+Spanner,2,"List the features and properties of a Spanner. Give a plain list, one property per line, no explanations.","Global distributed database
+Column-oriented storage
+Supports SQL and a subset of Bigtable's data model
+Strong consistency across distributed transactions
+Automatic global distributed sharding
+Automatic load balancing
+Supports both relational and non-relational workloads
+On-demand capacity resizing
+Fault tolerance and high availability
+Integrated caching and compression
+Supports ACID transactions
+Real-time data replication
+Flexible data retention policies
+Integration with Google Cloud services
+Supports multi-region deployments
+High scalability and performance
+Automatic repair and recovery
+Supports structured and semi-structured data
+Integration with BigQuery for analytics"
+Spanner,3,"List the features and properties of a Spanner. Give a plain list, one property per line, no explanations.","Global distribution
+Automatic scaling
+Strong consistency
+Supports SQL and procedural query processing
+Supports transactions
+Column-level and row-level access control
+Automatic replication
+High availability
+Supports snapshots for read consistency
+Low latency
+Flexible schema
+NoSQL database compatibility
+Global transactions
+Integrated with BigQuery
+Supports JSON and other data types
+Real-time data synchronization
+Supports partitioning
+Versioning and time travel capabilities"
+Spanner,4,"List the features and properties of a Spanner. Give a plain list, one property per line, no explanations.","Global distribution
+Automatic scaling
+Strong consistency
+Support for SQL and key-value access
+High availability
+Automatic sharding
+Pay-as-you-go pricing
+Support for ACID transactions
+Column-level schema
+On-demand backups and point-in-time recovery
+Support for global transactions
+Integration with Google Cloud Platform services
+Flexible data modeling"
+Toad,0,"List the features and properties of a Toad. Give a plain list, one property per line, no explanations.","Toad has moist skin
+Toad is a amphibian
+Toad has parotoid glands
+Toad is nocturnal
+Toad has a short, wide body
+Toad has strong hind legs
+Toad has a bony ridge behind the eye
+Toad lays eggs in water
+Toad has a parotid gland secretion
+Toad has a tongue adapted for catching prey
+Toad can inflate its body
+Toad hibernates in winter
+Toad has well-developed senses
+Toad is usually terrestrial
+Toad can change color
+Toad has a vocal sac
+Toad has poison glands
+Toad molts its skin
+Toad has a relatively short life span"
+Toad,1,"List the features and properties of a Toad. Give a plain list, one property per line, no explanations.","Four legs
+Toothed jaw
+Smooth skin
+Amphibian
+Nocturnal
+Carnivorous
+Buoyant in water
+Warty skin
+Long tongue
+Toad eyes with horizontal pupils"
+Toad,2,"List the features and properties of a Toad. Give a plain list, one property per line, no explanations.","Smooth skin
+Toxic secretions
+Strong hind legs for jumping
+Distinctive warts on skin
+Green coloration
+Sharp teeth
+Well-developed sense of smell
+Nocturnal activity
+Camouflaged coloration
+Lack of external ears"
+Toad,3,"List the features and properties of a Toad. Give a plain list, one property per line, no explanations.","Toad has moist skin
+Toad is a amphibian
+Toad has parotid glands
+Toad has a bony head
+Toad has four legs
+Toad has a glandular skin
+Toad has wide, powerful hind legs
+Toad is usually nocturnal
+Toad has a warty appearance
+Toad can inflate its body
+Toad can secrete toxins
+Toad has a short tail, or none
+Toad has well-developed lungs
+Toad is typically brown or green
+Toad has a wide mouth
+Toad has moist, permeable skin
+Toad can survive in a wide range of environments"
+Toad,4,"List the features and properties of a Toad. Give a plain list, one property per line, no explanations.","Four legs
+Smooth skin
+Toxic glands
+Long tongue
+Pointy teeth
+Amplexus during mating
+Green or brown coloration
+Webbed hind feet
+Distinctive spots or stripes
+Camouflaging abilities"
+Tortoise,0,"List the features and properties of a Tortoise. Give a plain list, one property per line, no explanations.","Hard shell
+Slow movement
+Long lifespan
+Herbivorous diet
+Scaly skin
+Aquatic species exist
+Terrestrial species exist
+Can hibernate
+Have varying sizes
+Variable coloration
+Strong claws
+Good sense of smell
+Poor eyesight
+Can store water
+Some species can climb trees
+Common in many habitats"
+Tortoise,1,"List the features and properties of a Tortoise. Give a plain list, one property per line, no explanations.","Hard shell
+Long lifespan
+Slow movement
+Reptile
+Herbivorous
+Scutes on shell
+Cold-blooded
+Varied sizes
+Can hibernate
+Resistant to heat and cold extremes"
+Tortoise,2,"List the features and properties of a Tortoise. Give a plain list, one property per line, no explanations.","Hard shell
+Slow movements
+Long lifespan
+Hibernates in cold climates
+Varied diets depending on species
+Can carry heavy loads relative to body size
+Dry skin
+Long necks in some species
+Strong claws
+Diverse habitats"
+Tortoise,3,"List the features and properties of a Tortoise. Give a plain list, one property per line, no explanations.","Shell covering
+Long lifespan
+Slow movements
+Herbivorous diet
+Hard shell
+Cold-blooded
+Lay eggs
+Varied shell shapes
+Can hibernate
+Strong sense of direction
+Good swimmers (some species)
+Poor eyesight
+Strong claws for digging"
+Tortoise,4,"List the features and properties of a Tortoise. Give a plain list, one property per line, no explanations.","Hard shell
+Long lifespan
+Slow mover
+Herbivorous diet
+Cold-blooded
+Scaly skin
+Can hibernate
+Has a tail
+Carries its home on its back
+Varied shell patterns
+Claws for digging"
+Turtle,0,"List the features and properties of a Turtle. Give a plain list, one property per line, no explanations.","Shell
+Flippers
+Flattened body
+Long tail
+Eggs laid on land
+Cold-blooded
+Habitat in oceans
+Camouflage coloration
+Live in groups called herds
+Eat marine plants or animals
+Respiratory system with lungs
+Good swimmers
+Can sleep underwater"
+Turtle,1,"List the features and properties of a Turtle. Give a plain list, one property per line, no explanations.","Hard shell
+Four legs
+Long tail
+Flippers (in marine species)
+Claws
+Flat body
+Good swimming ability
+Swim bladder (in aquatic species)
+Poor eyesight
+Good sense of smell
+Good hearing
+Reptilian skin
+Cold-blooded
+Lays eggs"
+Turtle,2,"List the features and properties of a Turtle. Give a plain list, one property per line, no explanations.","Shell
+Flippers
+Eggs
+Webbed feet
+Long neck
+Flat flipper tail
+Hard carapace
+Aquatic habitat
+Reptile
+Keel
+Scales
+Turtle heart
+Respiratory lungs
+Beak
+Four limbs
+Chelonian"
+Turtle,3,"List the features and properties of a Turtle. Give a plain list, one property per line, no explanations.","Shell
+Flippers
+Four legs
+Long tail
+Hard carapace
+Tubular eyes
+Scales
+Cold-blooded
+Swims using all flippers
+Can retract head and limbs into shell
+Variety of species
+Diverse diets
+Live in water and on land
+Some can fly (e.g., penguins)"
+Turtle,4,"List the features and properties of a Turtle. Give a plain list, one property per line, no explanations.","Shell
+Flippers
+Flipper Count: 4
+Tail
+Carapace
+Soft Skin Under Shell
+Horns (in some species)
+Webbed Feet
+Eggs (reproductive method)
+Aquatic Habitat
+Poor Hearing
+Good Vision
+Good Sense of Smell
+Camouflage Coloration
+Slow Swimmer
+Endothermic (warm-blooded) in some species
+Longevity
+Feeding Habits: Carnivorous
+Nocturnal in some species
+Migratory in some species"
+Vacuum,0,"List the features and properties of a Vacuum. Give a plain list, one property per line, no explanations.","Suction power
+Corded design
+Cordless operation
+HEPA filtration
+Variable speed settings
+Brushless motor
+Long hose reach
+Adjustable suction head
+Attachments for various cleaning tasks
+LED headlights
+Wet and dry capability
+Rechargeable battery
+Compact design
+Weight
+Easy to maneuver
+Storable design
+Low noise operation
+Filters for allergen removal"
+Vacuum,1,"List the features and properties of a Vacuum. Give a plain list, one property per line, no explanations.","Suction power
+Filter system
+Hose connectivity
+Head attachments
+Battery life (for cordless models)
+Weight
+Noise level
+LED illumination
+Dust cup or bag capacity
+Cleaning path memory (smart vacuums)
+Wi-Fi connectivity (smart vacuums)
+App control (smart vacuums)
+Child lock
+Auto-emptying dust cup (for bagless models)
+Auto-recharge feature (for cordless models)"
+Vacuum,2,"List the features and properties of a Vacuum. Give a plain list, one property per line, no explanations.","Removes air from enclosed spaces
+Creates a partial vacuum
+Reduces pressure in an area
+Enhances suction power
+Improves cleaning efficiency
+Utilizes motors for operation
+Includes filters for capturing particles
+Operates on electrical power
+Some models are portable
+Features HEPA filtration systems
+Includes attachments for various uses
+Operates at high suction speeds
+Some models are cordless
+Equipped with dust collection bins
+Features adjustable heads
+Includes brush rolls for carpets
+Some models have HEPA filters
+Operates quietly
+Some models come with bags
+Features variable suction settings
+Includes nozzles for precision cleaning
+Some models have extendable handles
+Operates on battery power for some models
+Features advanced cleaning technologies
+Includes attachments for upholstery
+Some models have telescopic poles
+Equipped with LED lights for visibility
+Features automatic dust collection systems
+Includes washable filters for longevity"
+Vacuum,3,"List the features and properties of a Vacuum. Give a plain list, one property per line, no explanations.","Attracts dust and debris
+Operates on electrical power
+Uses suction force
+Comes with a variety of attachments
+Features a canister or upright design
+Includes a dustbin or bag
+Has adjustable suction settings
+Includes a crevice tool
+Features a hose for reach
+Has a filter system
+Includes a power cord
+Features LED lights (some models)
+Has a storage feature
+Includes a tool kit (some models)
+Features a HEPA filter (some models)
+Includes a rechargeable battery (some models)"
+Vacuum,4,"List the features and properties of a Vacuum. Give a plain list, one property per line, no explanations.","Suction power
+Corded design
+Cordless operation
+Variable speed settings
+Adjustable suction
+HEPA filtration
+Multi-purpose attachments
+Lightweight construction
+Ergonomic handle
+Durability
+Silent operation
+Rechargeable battery
+Dust container
+Filter system
+Wand extension
+Brush roll
+Rotating head
+Spot cleaning mode
+Sturdiness
+Ease of use
+Versatility
+Compact size
+Long续航时间
+智能传感器"

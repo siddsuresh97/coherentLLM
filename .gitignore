@@ -6,7 +6,8 @@ __pycache__/
 *.pyc
 *.log
 logs/
-results/raw/
+# NOTE: results/raw/ IS tracked on purpose - it holds every model prompt+completion
+# (triplet/pairwise/listing/feature), so experiments never need re-running. Only ~20MB.
 results/embeddings/
 *.safetensors
 *.bin
