@@ -1,0 +1,2 @@
+model,params_b,coherence,human,n_methods
+qwen2.5-7b-instruct,7,0.3282570360559007,0.603233259488976,3
