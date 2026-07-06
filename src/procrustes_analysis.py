@@ -26,10 +26,10 @@ METHODS = ["triplet", "pairwise", "feature"]
 
 
 def procrustes_r2(X, Y):
-    """Metric = sqrt(1 - disparity), disparity = scipy symmetric Procrustes m12^2
-    (same sqrt(1-ss) form as Suresh+2023). Here X, Y are NxN RDMs aligned DIRECTLY
-    (no MDS): each concept = its row of the RDM. Gives higher, MDS-free values;
-    validated to reproduce the paper's ordering (see repro_human.py, column B)."""
+    """Paper's REPORTED metric = squared Procrustes correlation r^2 = 1 - disparity
+    (= 1 - protest ss = "% of variance explained"). This is what the EMNLP paper
+    text/heatmap reports (0.96/0.84/0.72). disparity = scipy symmetric Procrustes m12^2.
+    X, Y are NxN RDMs aligned DIRECTLY (no MDS): each concept = its row of the RDM."""
     from scipy.spatial import procrustes as _sp
     if X.shape != Y.shape:
         return float("nan")
@@ -37,7 +37,7 @@ def procrustes_r2(X, Y):
         _, _, disp = _sp(X, Y)
     except Exception:
         return float("nan")
-    return float(np.sqrt(max(0.0, 1.0 - disp)))
+    return float(max(0.0, 1.0 - disp))
 
 
 def method_rdms(model):
