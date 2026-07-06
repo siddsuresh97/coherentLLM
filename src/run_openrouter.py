@@ -27,7 +27,7 @@ RAW = os.path.join(HERE, "results", "raw")
 # Reasoning models (GPT-5.x, o-series) spend output tokens on hidden reasoning
 # before emitting the answer, so a tiny cap returns empty content. Give generous
 # headroom; the answer is still parsed to a single word/number downstream.
-MAX_TOKENS = {"triplet": 2048, "pairwise": 2048, "feature": 2048}
+MAX_TOKENS = {"triplet": 2048, "pairwise": 2048, "feature": 2048, "listing": 2560}
 
 
 def load_registry():
@@ -101,6 +101,56 @@ async def run(args):
             print(f"[skip] {out} exists")
             continue
 
+        if method == "listing":
+            from prompts import listing_prompt
+            from stimuli import load_concepts
+            concepts = load_concepts()
+            jobs = [(c, r) for c in concepts for r in range(args.repeats)]
+            done["n"] = 0
+            total = len(jobs)
+            print(f"[listing] starting {total} calls", flush=True)
+            tasks = [one_logged(listing_prompt(c), "listing", total) for c, _ in jobs]
+            responses = await asyncio.gather(*tasks)
+            with open(out, "w", newline="") as f:
+                w = csv.writer(f)
+                w.writerow(["concept", "rep", "prompt", "response"])
+                for (c, r), resp in zip(jobs, responses):
+                    w.writerow([c, r, listing_prompt(c), resp])
+            print(f"[done] listing: {total} rows -> {out}")
+            continue
+
+        if method == "feature" and args.pairs_file:
+            from feature_batch import BATCH_INSTRUCTIONS, parse_batch
+            from stimuli import _read_rows
+            import collections
+            by_concept = collections.OrderedDict()
+            for feat, concept in _read_rows(os.path.join(outdir, args.pairs_file)):
+                by_concept.setdefault(concept, []).append(feat)
+            blk = args.feature_batch or 20
+            batches = []
+            for concept, feats in by_concept.items():
+                for i in range(0, len(feats), blk):
+                    chunk = feats[i:i + blk]
+                    items = "\n".join(f"{j+1}. {f}" for j, f in enumerate(chunk))
+                    batches.append((concept, chunk,
+                                    BATCH_INSTRUCTIONS.format(concept=concept, items=items)))
+            done["n"] = 0
+            total = len(batches)
+            print(f"[feature] starting {total} self-verify batched calls", flush=True)
+            tasks = [one_logged(p, "feature", total) for _, _, p in batches]
+            responses = await asyncio.gather(*tasks)
+            with open(out, "w", newline="") as f:
+                w = csv.writer(f)
+                w.writerow(["input", "prompt", "response"])
+                n = 0
+                for (concept, chunk, prompt), resp in zip(batches, responses):
+                    for feat, val in parse_batch(resp, chunk):
+                        w.writerow([f"{feat}|{concept}", prompt,
+                                    "True" if val else "False"])
+                        n += 1
+            print(f"[done] feature (self-verify): {total} calls -> {n} rows -> {out}")
+            continue
+
         if method == "feature" and args.feature_batch:
             from feature_batch import make_batches, parse_batch
             from stimuli import load_concepts, _read_rows
@@ -153,6 +203,10 @@ def main():
                          "(e.g. features_leuven300.csv)")
     ap.add_argument("--feature_batch", type=int, default=0,
                     help="if >0, batch this many features per call for the feature method")
+    ap.add_argument("--pairs_file", default=None,
+                    help="per-model (feature,concept) pairs file under the model's raw dir")
+    ap.add_argument("--repeats", type=int, default=5,
+                    help="listing repeats per concept")
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--concurrency", type=int, default=16)
     ap.add_argument("--reasoning_effort", default="low",
