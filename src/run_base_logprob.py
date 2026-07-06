@@ -82,7 +82,7 @@ def seq_logprob(llm, prompt, completion):
     return _mean_logprob(llm, prompt, completion)
 
 
-def batch_mean_logprob(llm, pairs, chunk=512):
+def batch_mean_logprob(llm, pairs, chunk=128):
     """Vectorized mean completion logprob for a list of (prompt, completion).
     Processed in chunks to avoid CUDA OOM from too many concurrent sequences."""
     from vllm import SamplingParams
