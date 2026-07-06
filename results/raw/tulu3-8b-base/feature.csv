@@ -1,0 +1,421 @@
+input,prompt,response
+just the facts|Alligator,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Alligator]? 
+ A:","True 
+ Q: Is the property ["
+just the facts|Anvil,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Anvil]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Axe,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Axe]? 
+ A:","True 
+ Q: Is the property ["
+just the facts|Blindworm,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Blindworm]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Boa python,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Boa python]? 
+ A:","True 
+ Q: Is the property ["
+just the facts|Caiman,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Caiman]? 
+ A:","True 
+ Q: Is the property ["
+just the facts|Chameleon,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Chameleon]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Chisel,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Chisel]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Cobra,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Cobra]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Crocodile,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Crocodile]? 
+ A:","True 
+ Q: Is the property ["
+just the facts|Dinosaur,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Dinosaur]? 
+ A:","True 
+ Q: Is the property ["
+just the facts|Gecko,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Gecko]? 
+ A:","True 
+ Q: Is the property ["
+just the facts|Grinding disk,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Grinding disk]? 
+ A:","True 
+ Q: Is the property ["
+just the facts|Hammer,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Hammer]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Knife,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Knife]? 
+ A:","True 
+ Q: Is the property ["
+just the facts|Lawn Mower,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Lawn Mower]? 
+ A:","True 
+ Q: Is the property ["
+just the facts|Lizard,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Lizard]? 
+ A:","True 
+ Q: Is the property ["
+just the facts|Nail,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Nail]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Oil can,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Oil can]? 
+ A:","True 
+ Q: Is the property ["
+just the facts|Paint brush,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Paint brush]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Salamander,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Salamander]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Saw,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Saw]? 
+ A:","True 
+ Q: Is the property ["
+just the facts|Screwdriver,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Screwdriver]? 
+ A:","True 
+ Q: Is the property ["
+just the facts|Shovel,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Shovel]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Snake,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Snake]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Spanner,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Spanner]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Toad,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Toad]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Tortoise,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Tortoise]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Turtle,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Turtle]? 
+ A:","False 
+ Q: Is the property ["
+just the facts|Vacuum,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [just the facts] true for [Vacuum]? 
+ A:","True 
+ Q: Is the property ["
+nan|Alligator,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Alligator]? 
+ A:","False 
+ Q: Is the property ["
+nan|Anvil,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Anvil]? 
+ A:","False 
+ Q: Is the property ["
+nan|Axe,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Axe]? 
+ A:","False 
+ Q: Is the property ["
+nan|Blindworm,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Blindworm]? 
+ A:","False 
+ Q: Is the property ["
+nan|Boa python,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Boa python]? 
+ A:","False 
+ Q: Is the property ["
+nan|Caiman,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Caiman]? 
+ A:","False 
+ Q: Is the property ["
+nan|Chameleon,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Chameleon]? 
+ A:","False 
+ Q: Is the property ["
+nan|Chisel,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Chisel]? 
+ A:","False 
+ Q: Is the property ["
+nan|Cobra,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Cobra]? 
+ A:","False 
+ Q: Is the property ["
+nan|Crocodile,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Crocodile]? 
+ A:","False 
+ Q: Is the property ["
+nan|Dinosaur,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Dinosaur]? 
+ A:","False 
+ Q: Is the property ["
+nan|Gecko,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Gecko]? 
+ A:","False 
+ Q: Is the property ["
+nan|Grinding disk,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Grinding disk]? 
+ A:","False 
+ Q: Is the property ["
+nan|Hammer,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Hammer]? 
+ A:","False 
+ Q: Is the property ["
+nan|Knife,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Knife]? 
+ A:","False 
+ Q: Is the property ["
+nan|Lawn Mower,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Lawn Mower]? 
+ A:","False 
+ Q: Is the property ["
+nan|Lizard,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Lizard]? 
+ A:","False 
+ Q: Is the property ["
+nan|Nail,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Nail]? 
+ A:","False 
+ Q: Is the property ["
+nan|Oil can,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Oil can]? 
+ A:","False 
+ Q: Is the property ["
+nan|Paint brush,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Paint brush]? 
+ A:","False 
+ Q: Is the property ["
+nan|Salamander,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Salamander]? 
+ A:","False 
+ Q: Is the property ["
+nan|Saw,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Saw]? 
+ A:","False 
+ Q: Is the property ["
+nan|Screwdriver,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Screwdriver]? 
+ A:","False 
+ Q: Is the property ["
+nan|Shovel,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Shovel]? 
+ A:","False 
+ Q: Is the property ["
+nan|Snake,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Snake]? 
+ A:","False 
+ Q: Is the property ["
+nan|Spanner,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Spanner]? 
+ A:","False 
+ Q: Is the property ["
+nan|Toad,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Toad]? 
+ A:","False 
+ Q: Is the property ["
+nan|Tortoise,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Tortoise]? 
+ A:","False 
+ Q: Is the property ["
+nan|Turtle,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Turtle]? 
+ A:","False 
+ Q: Is the property ["
+nan|Vacuum,"Q: Is the property [is female] true for the concept [book]? 
+ A: False 
+ Q: Is the property [can be digital] true for the concept [book] 
+ A: True 
+ In one word True/False, answer the following question Q: Is the property [nan] true for [Vacuum]? 
+ A:","False 
+ Q: Is the property ["
