@@ -1,35 +1,35 @@
-# Resume: frontier feature self-verification (blocked on OpenRouter credits)
+# Resume frontier OpenRouter runs (blocked on credits, 2026-07-05)
 
-Frontier runs stopped at feature self-verification because the OpenRouter key hit
-**402 Insufficient credits** (2026-07-05). Everything upstream is done:
-- gpt-5.5 / claude-opus-4.8: triplet + pairwise + feature LISTING complete.
-- unions built: results/raw/{gpt-5.5,claude-opus-4.8}/verify_pairs.csv
-  (gpt-5.5 7500 pairs, opus 7200 pairs).
+Credits ran out mid-batch (402). Completed frontier models (all 3 methods, saved):
+gpt-5.5, claude-opus-4.8, claude-sonnet-5.
 
-## When credits are topped up, run exactly:
+NOT yet run (credits died before they produced anything): the 7 new models
+gemini-3.5-flash, deepseek-v4-pro, gpt-oss-120b, minimax-m3, kimi-k2.6, glm-5.2,
+mistral-medium-3.
 
+The runner is now hardened: a 402 stops the run early and SAVES partial results,
+so re-running after top-up is safe and resumable (each stage skips if its CSV exists).
+
+## When credits are added:
 ```bash
 cd .../coherence_experiments
 source $(conda info --base)/etc/profile.d/conda.sh
+# run the sequential batch (Sonnet already done -> it skips; the 7 new models run)
+bash scripts/run_frontier_batch.sh
+# then rebuild the full matrix (see below)
+```
+
+## Full matrix rebuild (any time):
+```bash
 conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence
-export OPENROUTER_API_KEY=$(cat .openrouter_key)   # or a fresh key
-
-python src/run_openrouter.py --model gpt-5.5 --methods feature \
-  --pairs_file verify_pairs.csv --feature_batch 20 --reasoning_effort low --overwrite
-python src/run_openrouter.py --model claude-opus-4.8 --methods feature \
-  --pairs_file verify_pairs.csv --feature_batch 20 --reasoning_effort low --overwrite
-
-# then rebuild the full 5-model 3-method matrix:
 cd src
-MODELS="gpt-5.5 claude-opus-4.8 llama-3.1-8b-instruct mistral-7b-instruct-v0.3 qwen2.5-7b-instruct"
-python method_matrix.py --models $MODELS
+MODELS="gpt-5.5 claude-opus-4.8 claude-sonnet-5 gemini-3.5-flash deepseek-v4-pro \
+gpt-oss-120b minimax-m3 kimi-k2.6 glm-5.2 mistral-medium-3 \
+llama-3.1-8b-instruct mistral-7b-instruct-v0.3 qwen2.5-7b-instruct \
+olmo2-7b-base olmo2-7b-sft olmo2-7b-dpo olmo2-7b-instruct"
 python compute_coherence.py --models $MODELS \
   --human_rdm ../data/human/leuven_similarity.npy \
   --human_embedding ../data/human/leuven_embedding.npy --ref_name human
+python method_matrix.py --models $MODELS
 ```
-
-Estimated cost of the two feature runs (batched, tight): well under $10 total.
-```
-gpt-5.5:  ~375 batched calls
-opus-4.8: ~360 batched calls
-```
+Note: frontier feature = batched (validated safe); open models = single-pair.
