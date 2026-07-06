@@ -27,7 +27,7 @@ RAW = os.path.join(HERE, "results", "raw")
 # Reasoning models (GPT-5.x, o-series) spend output tokens on hidden reasoning
 # before emitting the answer, so a tiny cap returns empty content. Give generous
 # headroom; the answer is still parsed to a single word/number downstream.
-MAX_TOKENS = {"triplet": 2048, "pairwise": 2048, "feature": 2048, "listing": 2560}
+MAX_TOKENS = {"triplet": 16, "pairwise": 16, "feature": 16, "listing": 400}
 
 
 def load_registry():
@@ -68,8 +68,12 @@ async def run(args):
             if args.temperature is not None:
                 kwargs["temperature"] = args.temperature
             kwargs["max_tokens"] = MAX_TOKENS[method]
-            if args.reasoning_effort:
-                # OpenRouter passes this through to reasoning models; ignored by others.
+            if args.reasoning_effort in (None, "", "none", "off"):
+                # Disable reasoning: cheaper AND avoids reasoning eating the whole
+                # token budget (which returned empty/unparseable answers). Also more
+                # comparable to humans, who answer these intuitively.
+                kwargs["extra_body"] = {"reasoning": {"enabled": False}}
+            else:
                 kwargs["extra_body"] = {"reasoning": {"effort": args.reasoning_effort}}
             try:
                 r = await client.chat.completions.create(**kwargs)
@@ -243,7 +247,7 @@ def main():
                     help="listing repeats per concept")
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--concurrency", type=int, default=16)
-    ap.add_argument("--reasoning_effort", default="low",
+    ap.add_argument("--reasoning_effort", default="none",
                     help="reasoning effort for reasoning models (low/medium/high); "
                          "empty string to omit")
     ap.add_argument("--key_file", default=None)
