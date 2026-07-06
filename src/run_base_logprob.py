@@ -82,32 +82,33 @@ def seq_logprob(llm, prompt, completion):
     return _mean_logprob(llm, prompt, completion)
 
 
-def batch_mean_logprob(llm, pairs):
-    """Vectorized: pairs = list of (prompt, completion). Returns list of mean
-    completion logprobs, computed in ONE vLLM pass (much faster than per-call)."""
+def batch_mean_logprob(llm, pairs, chunk=512):
+    """Vectorized mean completion logprob for a list of (prompt, completion).
+    Processed in chunks to avoid CUDA OOM from too many concurrent sequences."""
     from vllm import SamplingParams
     tok = llm.get_tokenizer()
-    starts = []
-    fulls = []
-    for prompt, completion in pairs:
-        p_ids = tok(prompt, add_special_tokens=True)["input_ids"]
-        full_ids = tok(prompt + completion, add_special_tokens=True)["input_ids"]
-        s = 0
-        for a, b in zip(p_ids, full_ids):
-            if a == b:
-                s += 1
-            else:
-                break
-        starts.append((s, len(full_ids)))
-        fulls.append(prompt + completion)
     sp = SamplingParams(temperature=0, max_tokens=1, prompt_logprobs=0)
-    outs = llm.generate(fulls, sp)
     res = []
-    for (s, n), o in zip(starts, outs):
-        pls = o.prompt_logprobs
-        lps = [next(iter(pls[i].values())).logprob
-               for i in range(s, n) if i < len(pls) and pls[i]]
-        res.append(sum(lps) / len(lps) if lps else float("-inf"))
+    for base in range(0, len(pairs), chunk):
+        sub = pairs[base:base + chunk]
+        starts, fulls = [], []
+        for prompt, completion in sub:
+            p_ids = tok(prompt, add_special_tokens=True)["input_ids"]
+            full_ids = tok(prompt + completion, add_special_tokens=True)["input_ids"]
+            s = 0
+            for a, b in zip(p_ids, full_ids):
+                if a == b:
+                    s += 1
+                else:
+                    break
+            starts.append((s, len(full_ids)))
+            fulls.append(prompt + completion)
+        outs = llm.generate(fulls, sp)
+        for (s, n), o in zip(starts, outs):
+            pls = o.prompt_logprobs
+            lps = [next(iter(pls[i].values())).logprob
+                   for i in range(s, n) if i < len(pls) and pls[i]]
+            res.append(sum(lps) / len(lps) if lps else float("-inf"))
     return res
 
 
@@ -139,7 +140,7 @@ def main():
     from vllm import LLM
     llm = LLM(model=mp, download_dir=hf_cache, max_model_len=args.max_model_len,
               gpu_memory_utilization=args.gpu_mem_util, dtype="bfloat16",
-              trust_remote_code=True)
+              max_num_seqs=128, trust_remote_code=True)
 
     if "triplet" in args.methods:
         out = os.path.join(outdir, f"triplet{args.suffix}.csv")
