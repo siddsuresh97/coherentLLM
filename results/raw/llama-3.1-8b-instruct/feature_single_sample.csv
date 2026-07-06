@@ -1,0 +1,601 @@
+input,prompt,response
+strong sense of smell|Cobra,,False
+cutting edge|Screwdriver,,False
+texture|Gecko,,False
+circulatory system|Turtle,,False
+no external ear or eyelids|Lawn Mower,,False
+handle material|Crocodile,,False
+handle material|Chisel,,True
+edge|Gecko,,False
+claws|Lawn Mower,,False
+price|Snake,,False
+handle or grip|Toad,,False
+small eyes|Hammer,,False
+ferrule|Blindworm,,False
+edge|Anvil,,False
+herbivorous or carnivorous diet|Salamander,,False
+maintenance requirements|Toad,,False
+thickness|Spanner,,False
+sharpness|Turtle,,False
+oviparous|Knife,,False
+grip type|Axe,,False
+strong claws|Salamander,,False
+locking mechanism|Paint brush,,False
+grip|Saw,,False
+strong claws|Paint brush,,False
+good sense of smell|Boa python,,False
+handle|Tortoise,,False
+respiratory system|Salamander,,False
+legs|Chameleon,,False
+head|Shovel,,False
+found in central and south america|Chameleon,,False
+good sense of smell|Toad,,False
+good eyesight|Tortoise,,False
+good sense of smell|Blindworm,,False
+burrowing behavior|Grinding disk,,False
+strong claws|Toad,,False
+excellent swimmer|Turtle,,False
+blade angle|Boa python,,False
+heel|Blindworm,,False
+strong tail|Grinding disk,,False
+egg-laying|Turtle,,False
+reptile|Snake,,True
+handle or grip|Anvil,,True
+oviparous|Gecko,,False
+tail|Oil can,,False
+circulatory system|Lawn Mower,,False
+grip|Alligator,,True
+social behavior (some species)|Gecko,,False
+weight distribution|Paint brush,,False
+no external ear or eyelids|Gecko,,True
+short legs|Nail,,False
+handle material|Axe,,True
+venomous fangs|Knife,,False
+edge retention|Nail,,False
+hibernation capability|Gecko,,False
+short lifespan|Snake,,False
+noise level|Salamander,,False
+blade sharpness|Anvil,,False
+insulated handle|Axe,,False
+balance point|Vacuum,,False
+no external ear openings|Anvil,,True
+noise level|Caiman,,False
+excellent hearing|Anvil,,False
+motor|Caiman,,False
+blade width|Saw,,False
+no external nose|Oil can,,False
+material type|Toad,,False
+webbed feet|Axe,,False
+can live up to 20 years in captivity|Knife,,False
+poikilothermic|Axe,,False
+grip|Gecko,,True
+ferrule|Dinosaur,,False
+viviparous reproduction|Lawn Mower,,False
+texture|Spanner,,False
+hibernation capability|Dinosaur,,False
+long neck|Saw,,False
+weight|Nail,,False
+heat-sensing pits|Lizard,,True
+hibernation ability|Paint brush,,False
+adjustable handle|Cobra,,False
+large size|Chisel,,False
+head size|Turtle,,False
+hibernation capability|Saw,,False
+solitary animals|Vacuum,,False
+scaly skin|Paint brush,,False
+strong neck|Blindworm,,False
+no external ears|Caiman,,False
+blade width|Snake,,False
+good sense of smell|Snake,,False
+adaptability|Grinding disk,,False
+thick skin|Alligator,,False
+long handle|Saw,,False
+hardness|Alligator,,False
+flexibility|Anvil,,False
+strong tail|Screwdriver,,False
+length|Nail,,False
+found on every continent except antarctica|Lawn Mower,,False
+strong bite force|Dinosaur,,False
+poikilothermic|Oil can,,False
+scaly skin|Vacuum,,False
+shell|Lawn Mower,,False
+grip|Toad,,False
+nocturnal behavior|Blindworm,,False
+blade length|Anvil,,False
+highly efficient respiratory system|Knife,,False
+egg-laying|Gecko,,False
+head size|Grinding disk,,False
+venomous fangs|Chisel,,False
+strong legs|Spanner,,False
+handle material|Lawn Mower,,True
+blade|Vacuum,,False
+amphibian|Turtle,,False
+ferrule|Anvil,,False
+tang|Hammer,,False
+active at night|Knife,,False
+large eyes|Cobra,,False
+excellent eyesight|Alligator,,False
+anti-vibration handle|Shovel,,False
+no legs|Snake,,True
+solitary animals|Shovel,,False
+excellent hearing|Toad,,False
+hibernation capability|Lizard,,False
+no external ears|Lizard,,False
+slow movement|Shovel,,False
+material hardness|Chisel,,True
+no limbs|Gecko,,True
+ectothermic|Paint brush,,False
+safety features|Snake,,False
+ergonomics|Spanner,,False
+no external eyelids|Salamander,,False
+long lifespan|Paint brush,,False
+found on every continent except antarctica|Dinosaur,,False
+shell|Gecko,,False
+vertebrae|Snake,,False
+camouflage coloration|Knife,,False
+ferrule|Snake,,False
+found in central and south america|Saw,,False
+short lifespan|Cobra,,False
+large reptile|Spanner,,False
+egg-laying|Snake,,False
+herpetofauna|Anvil,,False
+material hardness|Cobra,,False
+aquatic habitat|Gecko,,False
+sharp teeth|Screwdriver,,False
+depth stop|Boa python,,False
+beak|Nail,,False
+amphibian|Boa python,,False
+material finish|Boa python,,False
+strong legs|Gecko,,False
+strong sense of smell|Snake,,False
+no teeth in the upper jaw|Gecko,,False
+social behavior (some species)|Cobra,,False
+reptilian|Toad,,False
+excellent swimmer|Boa python,,False
+burrowing behavior|Caiman,,False
+can be manual or powered|Gecko,,False
+material type|Axe,,True
+short legs|Turtle,,False
+insulated handle|Toad,,False
+blade shape|Gecko,,False
+aquatic environment|Nail,,False
+handle length|Lawn Mower,,False
+ferrule|Alligator,,False
+price|Salamander,,False
+powerful jaws|Axe,,False
+long neck|Chisel,,False
+magnetic tip|Salamander,,False
+eel-like body shape|Knife,,False
+variable coloration|Turtle,,True
+angle|Screwdriver,,False
+no external ear openings|Boa python,,False
+short lifespan|Hammer,,False
+camouflage coloration|Cobra,,False
+sharp claws|Blindworm,,False
+material|Alligator,,False
+weight capacity|Dinosaur,,False
+long snout|Spanner,,False
+powerful tail|Vacuum,,False
+herbivorous or carnivorous diet|Crocodile,,False
+camouflage|Dinosaur,,False
+insulation|Chameleon,,False
+no external eyelids|Hammer,,False
+large size|Gecko,,False
+strong claws|Anvil,,False
+live in water and on land|Tortoise,,False
+material|Crocodile,,True
+long snout|Cobra,,False
+reptilian|Saw,,False
+head shape|Anvil,,False
+large reptile|Grinding disk,,False
+handle shape|Blindworm,,False
+large size|Paint brush,,False
+edge retention|Tortoise,,False
+venomous fangs|Nail,,False
+blade angle|Gecko,,False
+powerful legs|Lawn Mower,,False
+tail|Hammer,,False
+claws|Alligator,,True
+amphibious|Salamander,,False
+long neck|Salamander,,False
+blade width|Axe,,False
+camouflage skin|Screwdriver,,False
+digestive system|Chameleon,,False
+strong legs|Shovel,,False
+elongated head|Chisel,,False
+small eyes|Cobra,,False
+strong neck muscles|Snake,,False
+powerful jaws|Oil can,,False
+edge|Shovel,,False
+noise level|Paint brush,,False
+balance point|Paint brush,,False
+balance|Nail,,False
+amphibian|Shovel,,False
+social behavior in some species|Salamander,,False
+nocturnal|Saw,,False
+strong bite force|Nail,,False
+aquatic or terrestrial habitat|Nail,,False
+magnetic tip|Turtle,,False
+handle size|Oil can,,False
+edge|Boa python,,False
+sharp teeth|Oil can,,False
+highly efficient respiratory system|Screwdriver,,False
+oviparous|Salamander,,False
+bevel|Oil can,,False
+excellent hearing|Tortoise,,False
+balance point|Screwdriver,,False
+ferrule|Chisel,,False
+solitary animals|Saw,,False
+hibernation capability|Shovel,,False
+aquatic environment|Snake,,False
+semi-aquatic lifestyle|Knife,,False
+price|Tortoise,,False
+large reptile|Screwdriver,,False
+sharp claws|Screwdriver,,False
+material type|Caiman,,False
+variable coloration|Dinosaur,,False
+social behavior in some species|Hammer,,False
+no external ear|Vacuum,,True
+active at night|Lawn Mower,,False
+small eyes|Boa python,,False
+cold-blooded|Salamander,,False
+amphibian|Snake,,False
+gouge|Lawn Mower,,False
+depth stop|Vacuum,,False
+color|Lizard,,False
+slow movement|Chisel,,False
+strength|Lizard,,False
+strong neck muscles|Dinosaur,,False
+good sense of smell|Alligator,,False
+poor eyesight|Knife,,False
+anti-slip grip|Boa python,,False
+small brain|Hammer,,False
+can be manual or powered|Oil can,,True
+no eyelids|Saw,,False
+ergonomics|Salamander,,False
+good eyesight|Salamander,,False
+thick skin|Snake,,False
+bipedal or quadrupedal locomotion|Axe,,False
+vertebrae|Knife,,False
+active at night|Grinding disk,,False
+width|Turtle,,False
+good night vision|Cobra,,False
+camouflage|Lizard,,False
+grip material|Boa python,,False
+elongated body|Saw,,True
+safety features|Vacuum,,False
+size|Vacuum,,False
+slow movement|Axe,,False
+found in various habitats worldwide|Blindworm,,False
+small to medium size|Cobra,,False
+balance|Chameleon,,False
+herbivorous or carnivorous diet|Alligator,,False
+herpetofauna|Screwdriver,,False
+small to medium size|Vacuum,,True
+tip shape|Dinosaur,,False
+shock-absorbing handle|Caiman,,False
+long neck|Caiman,,False
+prehensile tail|Shovel,,False
+tip shape|Axe,,False
+long handle|Alligator,,False
+respiratory system|Saw,,False
+long lifespan|Snake,,True
+no ribs|Anvil,,False
+carnivorous diet|Chameleon,,False
+highly efficient respiratory system|Spanner,,False
+aquatic habitat|Oil can,,False
+good swimmers|Anvil,,False
+heat-sensing pits|Chameleon,,True
+found in central and south america|Anvil,,False
+can live up to 20 years in captivity|Axe,,False
+gouge|Screwdriver,,False
+strong sense of smell|Vacuum,,False
+brand|Alligator,,False
+head size|Alligator,,False
+scales|Cobra,,False
+depth stop|Alligator,,False
+shape|Lawn Mower,,False
+no legs|Lizard,,True
+"power source (e.g. electric, manual)|Crocodile",,False
+good night vision|Nail,,False
+herbivorous or carnivorous diet|Lizard,,False
+live in water and on land|Axe,,False
+edge retention|Saw,,False
+shock-absorbing handle|Screwdriver,,False
+handle material|Cobra,,False
+prehensile tail|Gecko,,False
+burrowing behavior|Oil can,,False
+handle length|Dinosaur,,False
+width|Blindworm,,False
+blade width|Cobra,,False
+no external ear or eyelids|Boa python,,False
+handle material|Boa python,,True
+"power source (e.g. electric, manual)|Chameleon",,False
+excellent swimmer|Lawn Mower,,False
+egg-laying|Lawn Mower,,False
+grip material|Crocodile,,False
+beak|Oil can,,False
+grip type|Crocodile,,False
+elongated head|Spanner,,False
+balance|Anvil,,False
+blade material|Blindworm,,False
+highly adaptable|Anvil,,False
+carnivorous or omnivorous diet|Vacuum,,False
+"power source (e.g. electric, manual)|Dinosaur",,False
+nocturnal|Spanner,,False
+egg-laying|Hammer,,False
+amphibian|Knife,,False
+tip shape|Snake,,False
+balance|Screwdriver,,False
+carnivorous or omnivorous diet|Screwdriver,,False
+handle or grip|Gecko,,True
+legs|Lizard,,False
+large eyes|Chisel,,False
+sharp claws|Boa python,,False
+noise level|Shovel,,False
+magnetic tip|Lawn Mower,,False
+amphibious|Boa python,,False
+herbivorous diet|Alligator,,False
+heat-sensing pits|Caiman,,True
+balance point|Lawn Mower,,False
+magnetic tip|Paint brush,,False
+slimy skin|Crocodile,,False
+amphibian|Screwdriver,,False
+noise level|Gecko,,False
+grip type|Grinding disk,,True
+poikilothermic|Turtle,,False
+strong sense of smell|Axe,,False
+no external ear|Crocodile,,False
+durability|Vacuum,,True
+forked tongue|Axe,,False
+no external ears|Crocodile,,False
+carnivorous or omnivorous diet|Chameleon,,False
+small brain|Boa python,,False
+bipedal or quadrupedal locomotion|Tortoise,,False
+beak|Lizard,,False
+elongated body|Blindworm,,False
+small size|Axe,,False
+carnivorous|Lizard,,False
+strong neck muscles|Hammer,,False
+good night vision|Paint brush,,False
+slow movement|Anvil,,False
+no external ear or eyelids|Paint brush,,False
+color|Nail,,False
+grip type|Screwdriver,,True
+motor|Dinosaur,,False
+herbivorous or carnivorous diet|Chisel,,False
+material finish|Anvil,,False
+excellent night vision|Lawn Mower,,False
+nocturnal|Axe,,False
+wide-set eyes|Knife,,False
+strong sense of smell|Shovel,,False
+powerful legs|Shovel,,False
+magnetic tip|Screwdriver,,False
+strong sense of smell|Salamander,,False
+strong neck|Shovel,,False
+material durability|Shovel,,True
+excellent eyesight|Lizard,,False
+flexibility|Tortoise,,False
+strong jaws|Chisel,,False
+anti-vibration handle|Chisel,,False
+handle or grip|Alligator,,True
+strength|Screwdriver,,False
+no ribs|Boa python,,False
+shell|Dinosaur,,False
+blade sharpness|Saw,,True
+price|Cobra,,False
+long handle|Screwdriver,,False
+carnivorous or omnivorous diet|Grinding disk,,False
+omnivorous diet|Spanner,,False
+prehensile tail|Saw,,False
+no external ears|Spanner,,False
+ferrule|Spanner,,False
+anti-vibration handle|Nail,,False
+ectothermic|Chameleon,,False
+circulatory system|Axe,,False
+no eyelids|Alligator,,False
+amphibian|Dinosaur,,False
+aquatic habitat|Axe,,False
+speed control|Turtle,,False
+beak|Crocodile,,False
+reptilian|Screwdriver,,False
+strong tail|Hammer,,False
+strong neck muscles|Crocodile,,False
+hardness|Blindworm,,False
+beak|Chisel,,False
+"moist, smooth skin|Knife",,False
+beak|Shovel,,False
+edge retention|Spanner,,False
+reptilian|Boa python,,False
+camouflage coloration|Paint brush,,False
+texture|Vacuum,,False
+adjustable handle|Vacuum,,False
+insectivorous diet|Vacuum,,False
+blade length|Shovel,,False
+weight distribution|Dinosaur,,False
+highly efficient respiratory system|Dinosaur,,False
+excellent eyesight|Axe,,False
+brand|Saw,,False
+four limbs|Nail,,False
+cutting edge|Oil can,,False
+beak|Vacuum,,False
+short lifespan|Turtle,,False
+elongated body shape|Dinosaur,,True
+large eyes|Vacuum,,False
+guard|Hammer,,False
+no external ears|Oil can,,False
+insulation|Dinosaur,,False
+venomous fangs|Chameleon,,False
+found in central and south america|Hammer,,False
+adjustable handle|Alligator,,False
+camouflage|Knife,,False
+no legs|Cobra,,True
+material hardness|Caiman,,False
+durability|Knife,,True
+highly adaptable|Toad,,False
+good night vision|Alligator,,False
+grip|Salamander,,False
+tip shape|Salamander,,False
+head shape|Saw,,False
+material|Gecko,,False
+viviparous reproduction|Grinding disk,,False
+brand|Shovel,,False
+shape|Knife,,False
+handle or grip|Paint brush,,True
+reptilian|Grinding disk,,False
+brand|Blindworm,,False
+venomous fangs|Blindworm,,False
+bipedal or quadrupedal locomotion|Shovel,,False
+head|Hammer,,False
+oviparous|Boa python,,False
+small brain|Lizard,,False
+color|Cobra,,False
+insulation|Crocodile,,False
+variable coloration|Chisel,,False
+slow movement|Salamander,,False
+strong jaws|Boa python,,False
+carnivorous or omnivorous diet|Toad,,False
+thick skin|Grinding disk,,False
+short legs|Gecko,,False
+good sense of smell|Lawn Mower,,False
+lay eggs|Knife,,False
+blade shape|Nail,,False
+long lifespan|Toad,,False
+head shape|Crocodile,,False
+no external ear|Blindworm,,False
+grip type|Oil can,,False
+material durability|Dinosaur,,False
+no external nose|Blindworm,,False
+small brain-to-body mass ratio|Cobra,,False
+elongated body shape|Gecko,,True
+large reptile|Axe,,False
+powerful tail|Shovel,,False
+blade shape|Hammer,,False
+tip|Turtle,,False
+beak|Salamander,,False
+circulatory system|Salamander,,False
+moist skin|Blindworm,,False
+nocturnal|Grinding disk,,False
+legs|Grinding disk,,False
+circulatory system|Caiman,,False
+no external eyelids|Grinding disk,,False
+ergonomic grip|Chisel,,False
+angle|Toad,,False
+maintenance requirements|Screwdriver,,False
+safety guard|Chameleon,,False
+ectothermic|Gecko,,False
+adaptability|Crocodile,,False
+available in various sizes and shapes|Shovel,,True
+powerful tail|Axe,,False
+highly adaptable|Oil can,,False
+price|Saw,,False
+moist skin|Screwdriver,,False
+anti-slip grip|Shovel,,False
+social behavior (some species)|Nail,,False
+armored plates|Boa python,,False
+reptilian skin|Shovel,,False
+handle|Alligator,,False
+tip|Vacuum,,False
+anti-vibration handle|Grinding disk,,False
+omnivorous diet in some species|Dinosaur,,True
+guard|Turtle,,False
+carnivorous|Hammer,,False
+no external ear|Boa python,,False
+hibernation ability|Screwdriver,,False
+grip type|Lawn Mower,,False
+omnivorous diet|Knife,,False
+large size|Lizard,,False
+strong neck|Toad,,False
+can be manual or powered|Anvil,,False
+burrowing behavior|Cobra,,False
+tail|Paint brush,,False
+large size|Caiman,,False
+non-venomous|Blindworm,,False
+heat-sensing pits|Crocodile,,True
+hardness|Lawn Mower,,True
+large reptile|Dinosaur,,True
+nocturnal vision|Alligator,,False
+adaptability|Knife,,False
+live in water and on land|Boa python,,False
+powerful legs|Hammer,,False
+insulation|Lizard,,False
+oviparous|Oil can,,False
+tip|Gecko,,False
+nocturnal behavior|Chisel,,False
+moist skin|Alligator,,False
+poor eyesight|Nail,,False
+social behavior (some species)|Vacuum,,False
+respiratory system|Grinding disk,,False
+noise level|Knife,,False
+camouflage skin|Salamander,,False
+strong muscles|Anvil,,False
+carnivorous|Anvil,,False
+shell|Crocodile,,False
+excellent hearing|Dinosaur,,False
+gouge|Nail,,False
+small eyes|Vacuum,,False
+safety features|Axe,,False
+respiratory system|Lawn Mower,,False
+blade sharpness|Oil can,,False
+no external ear openings|Cobra,,False
+ergonomic design|Caiman,,False
+prehensile tail|Hammer,,False
+omnivorous diet in some species|Crocodile,,True
+weight|Lawn Mower,,True
+ferrule|Lawn Mower,,False
+strong neck|Crocodile,,False
+head size|Gecko,,False
+speed control|Dinosaur,,False
+head shape|Lawn Mower,,False
+powerful tail|Crocodile,,False
+no ribs|Spanner,,False
+thick skin|Shovel,,False
+balance|Grinding disk,,False
+no external ears or eyelids|Blindworm,,True
+powerful legs|Spanner,,False
+motor|Shovel,,False
+strong tail|Boa python,,False
+social behavior in some species|Tortoise,,False
+small brain|Snake,,False
+vertebrae|Chameleon,,False
+reptile|Lizard,,True
+nocturnal vision|Cobra,,False
+aquatic habitat|Nail,,False
+sharpness|Shovel,,False
+anti-slip grip|Nail,,False
+no vocal cords|Gecko,,False
+balance|Vacuum,,False
+head shape|Snake,,False
+reptilian skin|Lawn Mower,,False
+grip|Screwdriver,,False
+oviparous|Hammer,,False
+heat-sensing pits|Saw,,False
+insulation|Snake,,False
+strong muscles|Cobra,,False
+gouge|Vacuum,,False
+texture|Saw,,False
+active at night|Vacuum,,False
+edge retention|Hammer,,False
+balance|Knife,,False
+herbivorous diet|Axe,,False
+no limbs|Alligator,,True
+head|Vacuum,,False
+found in various habitats worldwide|Chisel,,False
+arboreal lifestyle|Gecko,,False
+variable coloration|Anvil,,False
+sharp teeth|Hammer,,False
+poor eyesight|Screwdriver,,False
+small to medium size|Lizard,,False
+ferrule|Caiman,,False
+nocturnal vision|Snake,,False
+head shape|Salamander,,False
+slow movement|Toad,,False
+angle|Knife,,False
+motor|Boa python,,False
+omnivorous diet|Snake,,False
+small eyes|Saw,,False
+no external ear|Chisel,,False
+good eyesight|Blindworm,,False
+size|Blindworm,,False
+no tail|Cobra,,False
+insulated handle|Blindworm,,False
