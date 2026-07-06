@@ -1,0 +1,133 @@
+"""Base-model-appropriate scoring via LIKELIHOOD (no instruction-following needed).
+
+Pretrained-only checkpoints can't follow "answer with one word" prompts, so instead
+of generating we SCORE completions and pick the higher-likelihood one. This reads the
+base model's representations in its native next-token regime.
+
+triplet : for (anchor, c1, c2), compare logprob of
+            "{anchor} is more similar to {c1}" vs "... {c2}"; the winner is the choice.
+          Output matches the generated-triplet schema (response = chosen concept), so
+          downstream analysis.triplet_similarity is unchanged.
+pairwise: for (a, b), score the 1..7 rating templates and take the argmax rating.
+
+Uses vLLM prompt_logprobs to get the summed log-prob of the completion tokens.
+
+Usage:
+  python run_base_logprob.py --model olmo2-7b-base --methods triplet pairwise
+"""
+import argparse
+import csv
+import glob
+import os
+import sys
+
+import yaml
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from stimuli import _read_rows, load_concepts  # noqa: E402
+
+HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RAW = os.path.join(HERE, "results", "raw")
+STIM = os.path.join(HERE, "data", "stimuli")
+
+
+def load_registry():
+    with open(os.path.join(HERE, "configs", "models.yaml")) as f:
+        return yaml.safe_load(f)
+
+
+def resolve_model_path(repo_id, hf_cache):
+    cache = "models--" + repo_id.replace("/", "--")
+    for snap in sorted(glob.glob(os.path.join(hf_cache, cache, "snapshots", "*"))):
+        if glob.glob(os.path.join(snap, "config.json")):
+            return snap
+    return repo_id
+
+
+def seq_logprob(llm, prompt, completion):
+    """Sum log-prob of `completion` tokens conditioned on `prompt`, via one
+    prompt_logprobs pass over prompt+completion."""
+    from vllm import SamplingParams
+    full = prompt + completion
+    sp = SamplingParams(temperature=0, max_tokens=1, prompt_logprobs=0)
+    out = llm.generate([full], sp)[0]
+    pls = out.prompt_logprobs  # list per token; first is None
+    # count tokens belonging to the prompt alone to know where completion starts
+    tok = llm.get_tokenizer()
+    n_prompt = len(tok(prompt)["input_ids"])
+    total = 0.0
+    for i, d in enumerate(pls):
+        if i < n_prompt or not d:
+            continue
+        # d maps token_id -> Logprob; take the realized token's logprob
+        lp = next(iter(d.values()))
+        total += lp.logprob
+    return total
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--model", required=True)
+    ap.add_argument("--methods", nargs="+", default=["triplet", "pairwise"])
+    ap.add_argument("--gpu_mem_util", type=float, default=0.90)
+    ap.add_argument("--max_model_len", type=int, default=2048)
+    ap.add_argument("--overwrite", action="store_true")
+    args = ap.parse_args()
+
+    reg = load_registry()
+    spec = reg["local"][args.model]
+    hf_cache = reg["hf_cache"]
+    os.environ.setdefault("HF_HOME", hf_cache)
+    os.environ.setdefault("HF_HUB_CACHE", hf_cache)
+    mp = resolve_model_path(spec["path"], hf_cache)
+    if os.path.isdir(mp):
+        os.environ["HF_HUB_OFFLINE"] = "1"
+        os.environ["TRANSFORMERS_OFFLINE"] = "1"
+
+    outdir = os.path.join(RAW, args.model)
+    os.makedirs(outdir, exist_ok=True)
+
+    from vllm import LLM
+    llm = LLM(model=mp, download_dir=hf_cache, max_model_len=args.max_model_len,
+              gpu_memory_utilization=args.gpu_mem_util, dtype="bfloat16",
+              trust_remote_code=True)
+
+    if "triplet" in args.methods:
+        out = os.path.join(outdir, "triplet.csv")
+        if os.path.exists(out) and not args.overwrite:
+            print(f"[skip] {out}")
+        else:
+            rows = _read_rows(os.path.join(STIM, "triplets.csv"))
+            with open(out, "w", newline="") as f:
+                w = csv.writer(f)
+                w.writerow(["input", "prompt", "response"])
+                for anchor, c1, c2 in rows:
+                    l1 = seq_logprob(llm, f"{anchor} is more similar to ", c1)
+                    l2 = seq_logprob(llm, f"{anchor} is more similar to ", c2)
+                    choice = c1 if l1 >= l2 else c2
+                    w.writerow([f"{anchor}|{c1}|{c2}", "logprob", choice])
+            print(f"[done] triplet (logprob): {len(rows)} rows -> {out}")
+
+    if "pairwise" in args.methods:
+        out = os.path.join(outdir, "pairwise.csv")
+        if os.path.exists(out) and not args.overwrite:
+            print(f"[skip] {out}")
+        else:
+            rows = _read_rows(os.path.join(STIM, "pairs.csv"))
+            with open(out, "w", newline="") as f:
+                w = csv.writer(f)
+                w.writerow(["input", "prompt", "response"])
+                for a, b in rows:
+                    best_r, best_lp = 4, -1e9
+                    for r in range(1, 8):
+                        lp = seq_logprob(
+                            llm, f"On a scale of 1 to 7, the similarity of {a} and {b} is ",
+                            str(r))
+                        if lp > best_lp:
+                            best_lp, best_r = lp, r
+                    w.writerow([f"{a}|{b}", "logprob", str(best_r)])
+            print(f"[done] pairwise (logprob): {len(rows)} rows -> {out}")
+
+
+if __name__ == "__main__":
+    main()
