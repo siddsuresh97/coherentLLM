@@ -1,0 +1,3001 @@
+input,prompt,response
+Shovel|Alligator|Spanner,fewshot,Alligator
+Anvil|Caiman|Tortoise,fewshot,Caiman
+Nail|Boa python|Snake,fewshot,Boa python
+Paint brush|Chisel|Toad,fewshot,Chisel
+Shovel|Caiman|Crocodile,fewshot,Caiman
+Alligator|Gecko|Salamander,fewshot,Gecko
+Cobra|Boa python|Turtle,fewshot,Boa python
+Oil can|Grinding disk|Hammer,fewshot,Grinding disk
+Paint brush|Lizard|Spanner,fewshot,Lizard
+Gecko|Axe|Vacuum,fewshot,Axe
+Toad|Caiman|Tortoise,fewshot,Caiman
+Chameleon|Cobra|Shovel,fewshot,Cobra
+Anvil|Chisel|Grinding disk,fewshot,Grinding disk
+Saw|Alligator|Caiman,fewshot,Alligator
+Paint brush|Lawn Mower|Lizard,fewshot,Lawn Mower
+Hammer|Blindworm|Lizard,fewshot,Lizard
+Blindworm|Anvil|Axe,fewshot,Anvil
+Dinosaur|Anvil|Crocodile,fewshot,Anvil
+Knife|Crocodile|Turtle,fewshot,Crocodile
+Anvil|Lizard|Toad,fewshot,Lizard
+Lizard|Snake|Spanner,fewshot,Spanner
+Caiman|Gecko|Paint brush,fewshot,Gecko
+Snake|Caiman|Knife,fewshot,Caiman
+Knife|Caiman|Crocodile,fewshot,Caiman
+Lawn Mower|Chameleon|Nail,fewshot,Chameleon
+Lizard|Turtle|Vacuum,fewshot,Turtle
+Gecko|Chisel|Knife,fewshot,Chisel
+Tortoise|Blindworm|Paint brush,fewshot,Blindworm
+Dinosaur|Gecko|Knife,fewshot,Gecko
+Oil can|Chisel|Crocodile,fewshot,Chisel
+Chisel|Alligator|Saw,fewshot,Saw
+Tortoise|Grinding disk|Oil can,fewshot,Grinding disk
+Grinding disk|Blindworm|Oil can,fewshot,Blindworm
+Toad|Hammer|Lawn Mower,fewshot,Hammer
+Knife|Gecko|Lizard,fewshot,Gecko
+Caiman|Chameleon|Spanner,fewshot,Chameleon
+Oil can|Chisel|Gecko,fewshot,Chisel
+Crocodile|Grinding disk|Turtle,fewshot,Grinding disk
+Nail|Knife|Lawn Mower,fewshot,Knife
+Snake|Knife|Oil can,fewshot,Knife
+Lawn Mower|Axe|Caiman,fewshot,Axe
+Anvil|Lizard|Saw,fewshot,Lizard
+Shovel|Cobra|Toad,fewshot,Cobra
+Alligator|Blindworm|Lawn Mower,fewshot,Blindworm
+Crocodile|Cobra|Salamander,fewshot,Cobra
+Caiman|Chisel|Salamander,fewshot,Chisel
+Chisel|Paint brush|Saw,fewshot,Saw
+Grinding disk|Blindworm|Knife,fewshot,Blindworm
+Saw|Gecko|Salamander,fewshot,Gecko
+Knife|Lawn Mower|Vacuum,fewshot,Lawn Mower
+Crocodile|Hammer|Spanner,fewshot,Hammer
+Grinding disk|Hammer|Screwdriver,fewshot,Screwdriver
+Toad|Paint brush|Tortoise,fewshot,Paint brush
+Screwdriver|Axe|Dinosaur,fewshot,Axe
+Oil can|Axe|Snake,fewshot,Axe
+Nail|Dinosaur|Oil can,fewshot,Dinosaur
+Oil can|Snake|Toad,fewshot,Toad
+Axe|Gecko|Vacuum,fewshot,Gecko
+Toad|Caiman|Oil can,fewshot,Caiman
+Shovel|Dinosaur|Lawn Mower,fewshot,Dinosaur
+Hammer|Anvil|Lizard,fewshot,Anvil
+Salamander|Blindworm|Tortoise,fewshot,Tortoise
+Chameleon|Boa python|Toad,fewshot,Boa python
+Crocodile|Alligator|Screwdriver,fewshot,Screwdriver
+Lizard|Gecko|Turtle,fewshot,Gecko
+Crocodile|Gecko|Turtle,fewshot,Gecko
+Anvil|Crocodile|Grinding disk,fewshot,Crocodile
+Anvil|Caiman|Knife,fewshot,Caiman
+Salamander|Alligator|Nail,fewshot,Nail
+Grinding disk|Axe|Dinosaur,fewshot,Axe
+Snake|Chisel|Vacuum,fewshot,Chisel
+Toad|Crocodile|Lizard,fewshot,Crocodile
+Axe|Salamander|Turtle,fewshot,Salamander
+Saw|Cobra|Turtle,fewshot,Cobra
+Blindworm|Caiman|Cobra,fewshot,Caiman
+Chameleon|Alligator|Oil can,fewshot,Alligator
+Lawn Mower|Cobra|Screwdriver,fewshot,Cobra
+Screwdriver|Paint brush|Salamander,fewshot,Paint brush
+Lawn Mower|Anvil|Knife,fewshot,Anvil
+Snake|Boa python|Chameleon,fewshot,Boa python
+Vacuum|Lizard|Paint brush,fewshot,Lizard
+Boa python|Dinosaur|Saw,fewshot,Dinosaur
+Blindworm|Salamander|Snake,fewshot,Salamander
+Nail|Lizard|Screwdriver,fewshot,Lizard
+Chameleon|Knife|Oil can,fewshot,Knife
+Chisel|Knife|Lawn Mower,fewshot,Knife
+Knife|Anvil|Axe,fewshot,Anvil
+Nail|Cobra|Crocodile,fewshot,Cobra
+Lizard|Hammer|Nail,fewshot,Nail
+Nail|Spanner|Turtle,fewshot,Spanner
+Crocodile|Salamander|Tortoise,fewshot,Salamander
+Tortoise|Chisel|Spanner,fewshot,Chisel
+Gecko|Anvil|Cobra,fewshot,Anvil
+Caiman|Lizard|Shovel,fewshot,Lizard
+Snake|Paint brush|Vacuum,fewshot,Paint brush
+Saw|Alligator|Toad,fewshot,Alligator
+Chisel|Blindworm|Boa python,fewshot,Boa python
+Boa python|Nail|Shovel,fewshot,Nail
+Dinosaur|Lawn Mower|Vacuum,fewshot,Vacuum
+Oil can|Chameleon|Grinding disk,fewshot,Chameleon
+Grinding disk|Blindworm|Cobra,fewshot,Blindworm
+Chameleon|Grinding disk|Toad,fewshot,Grinding disk
+Toad|Gecko|Shovel,fewshot,Gecko
+Toad|Axe|Salamander,fewshot,Axe
+Chisel|Alligator|Lawn Mower,fewshot,Alligator
+Chisel|Anvil|Oil can,fewshot,Anvil
+Paint brush|Caiman|Vacuum,fewshot,Caiman
+Knife|Alligator|Gecko,fewshot,Alligator
+Hammer|Blindworm|Salamander,fewshot,Blindworm
+Nail|Crocodile|Knife,fewshot,Crocodile
+Crocodile|Alligator|Grinding disk,fewshot,Grinding disk
+Alligator|Boa python|Chameleon,fewshot,Boa python
+Saw|Toad|Tortoise,fewshot,Toad
+Turtle|Knife|Salamander,fewshot,Knife
+Anvil|Lawn Mower|Snake,fewshot,Lawn Mower
+Hammer|Chameleon|Crocodile,fewshot,Chameleon
+Grinding disk|Salamander|Saw,fewshot,Salamander
+Crocodile|Lizard|Shovel,fewshot,Lizard
+Blindworm|Boa python|Lawn Mower,fewshot,Boa python
+Dinosaur|Crocodile|Shovel,fewshot,Crocodile
+Oil can|Anvil|Chameleon,fewshot,Anvil
+Lizard|Caiman|Grinding disk,fewshot,Caiman
+Shovel|Cobra|Spanner,fewshot,Cobra
+Chameleon|Chisel|Gecko,fewshot,Chisel
+Lawn Mower|Knife|Snake,fewshot,Knife
+Salamander|Alligator|Blindworm,fewshot,Alligator
+Tortoise|Axe|Oil can,fewshot,Axe
+Crocodile|Lawn Mower|Lizard,fewshot,Lawn Mower
+Saw|Blindworm|Boa python,fewshot,Blindworm
+Dinosaur|Snake|Spanner,fewshot,Spanner
+Salamander|Toad|Turtle,fewshot,Toad
+Vacuum|Spanner|Turtle,fewshot,Spanner
+Snake|Boa python|Paint brush,fewshot,Boa python
+Salamander|Axe|Oil can,fewshot,Axe
+Axe|Dinosaur|Gecko,fewshot,Dinosaur
+Chameleon|Knife|Nail,fewshot,Knife
+Paint brush|Knife|Oil can,fewshot,Knife
+Tortoise|Blindworm|Cobra,fewshot,Blindworm
+Oil can|Dinosaur|Vacuum,fewshot,Dinosaur
+Lizard|Axe|Spanner,fewshot,Axe
+Caiman|Cobra|Turtle,fewshot,Cobra
+Lizard|Snake|Toad,fewshot,Toad
+Saw|Nail|Salamander,fewshot,Nail
+Shovel|Dinosaur|Saw,fewshot,Dinosaur
+Knife|Anvil|Gecko,fewshot,Anvil
+Saw|Hammer|Turtle,fewshot,Hammer
+Lawn Mower|Gecko|Snake,fewshot,Gecko
+Paint brush|Knife|Tortoise,fewshot,Knife
+Turtle|Boa python|Vacuum,fewshot,Boa python
+Chameleon|Hammer|Snake,fewshot,Hammer
+Screwdriver|Crocodile|Lizard,fewshot,Crocodile
+Nail|Lizard|Paint brush,fewshot,Lizard
+Blindworm|Spanner|Turtle,fewshot,Spanner
+Lizard|Knife|Saw,fewshot,Knife
+Anvil|Chisel|Tortoise,fewshot,Chisel
+Alligator|Axe|Saw,fewshot,Axe
+Nail|Grinding disk|Tortoise,fewshot,Grinding disk
+Saw|Dinosaur|Shovel,fewshot,Dinosaur
+Axe|Gecko|Turtle,fewshot,Gecko
+Axe|Alligator|Oil can,fewshot,Alligator
+Knife|Anvil|Paint brush,fewshot,Anvil
+Blindworm|Lawn Mower|Lizard,fewshot,Lawn Mower
+Chameleon|Anvil|Vacuum,fewshot,Anvil
+Boa python|Chisel|Grinding disk,fewshot,Grinding disk
+Snake|Crocodile|Lawn Mower,fewshot,Crocodile
+Oil can|Caiman|Chisel,fewshot,Caiman
+Paint brush|Crocodile|Turtle,fewshot,Crocodile
+Caiman|Gecko|Vacuum,fewshot,Gecko
+Oil can|Cobra|Salamander,fewshot,Cobra
+Nail|Dinosaur|Toad,fewshot,Dinosaur
+Salamander|Blindworm|Hammer,fewshot,Blindworm
+Oil can|Alligator|Paint brush,fewshot,Alligator
+Hammer|Oil can|Snake,fewshot,Oil can
+Vacuum|Boa python|Shovel,fewshot,Boa python
+Dinosaur|Chisel|Paint brush,fewshot,Chisel
+Turtle|Axe|Hammer,fewshot,Axe
+Oil can|Cobra|Grinding disk,fewshot,Cobra
+Nail|Anvil|Chisel,fewshot,Anvil
+Hammer|Blindworm|Toad,fewshot,Blindworm
+Toad|Blindworm|Cobra,fewshot,Blindworm
+Salamander|Snake|Turtle,fewshot,Turtle
+Saw|Anvil|Snake,fewshot,Anvil
+Chameleon|Blindworm|Boa python,fewshot,Boa python
+Crocodile|Dinosaur|Vacuum,fewshot,Dinosaur
+Hammer|Alligator|Nail,fewshot,Nail
+Snake|Spanner|Vacuum,fewshot,Spanner
+Anvil|Chameleon|Dinosaur,fewshot,Chameleon
+Tortoise|Hammer|Screwdriver,fewshot,Screwdriver
+Chisel|Salamander|Screwdriver,fewshot,Salamander
+Spanner|Saw|Screwdriver,fewshot,Saw
+Shovel|Knife|Oil can,fewshot,Knife
+Shovel|Blindworm|Gecko,fewshot,Blindworm
+Spanner|Caiman|Screwdriver,fewshot,Screwdriver
+Paint brush|Caiman|Crocodile,fewshot,Caiman
+Anvil|Alligator|Boa python,fewshot,Boa python
+Boa python|Hammer|Toad,fewshot,Hammer
+Gecko|Shovel|Tortoise,fewshot,Shovel
+Nail|Crocodile|Spanner,fewshot,Crocodile
+Crocodile|Shovel|Snake,fewshot,Shovel
+Turtle|Snake|Vacuum,fewshot,Vacuum
+Gecko|Hammer|Oil can,fewshot,Hammer
+Blindworm|Gecko|Nail,fewshot,Gecko
+Anvil|Paint brush|Salamander,fewshot,Paint brush
+Snake|Anvil|Lawn Mower,fewshot,Anvil
+Screwdriver|Blindworm|Grinding disk,fewshot,Blindworm
+Boa python|Caiman|Chameleon,fewshot,Caiman
+Gecko|Cobra|Spanner,fewshot,Cobra
+Chameleon|Dinosaur|Shovel,fewshot,Dinosaur
+Tortoise|Alligator|Lizard,fewshot,Alligator
+Paint brush|Boa python|Caiman,fewshot,Boa python
+Caiman|Hammer|Turtle,fewshot,Hammer
+Knife|Crocodile|Spanner,fewshot,Crocodile
+Snake|Alligator|Chisel,fewshot,Alligator
+Lizard|Axe|Nail,fewshot,Axe
+Chisel|Lawn Mower|Oil can,fewshot,Lawn Mower
+Knife|Anvil|Shovel,fewshot,Anvil
+Chisel|Caiman|Spanner,fewshot,Caiman
+Blindworm|Boa python|Grinding disk,fewshot,Grinding disk
+Shovel|Oil can|Salamander,fewshot,Oil can
+Chisel|Oil can|Toad,fewshot,Oil can
+Nail|Blindworm|Grinding disk,fewshot,Blindworm
+Cobra|Chameleon|Dinosaur,fewshot,Chameleon
+Blindworm|Paint brush|Shovel,fewshot,Shovel
+Tortoise|Dinosaur|Toad,fewshot,Dinosaur
+Grinding disk|Chisel|Lizard,fewshot,Chisel
+Oil can|Hammer|Paint brush,fewshot,Paint brush
+Turtle|Alligator|Shovel,fewshot,Shovel
+Saw|Anvil|Chisel,fewshot,Anvil
+Vacuum|Axe|Gecko,fewshot,Axe
+Nail|Anvil|Dinosaur,fewshot,Anvil
+Oil can|Alligator|Tortoise,fewshot,Tortoise
+Toad|Lawn Mower|Spanner,fewshot,Lawn Mower
+Screwdriver|Chameleon|Snake,fewshot,Chameleon
+Cobra|Chameleon|Shovel,fewshot,Chameleon
+Dinosaur|Knife|Spanner,fewshot,Knife
+Snake|Anvil|Paint brush,fewshot,Anvil
+Knife|Grinding disk|Vacuum,fewshot,Grinding disk
+Boa python|Hammer|Paint brush,fewshot,Paint brush
+Spanner|Boa python|Tortoise,fewshot,Boa python
+Spanner|Boa python|Shovel,fewshot,Boa python
+Alligator|Caiman|Toad,fewshot,Caiman
+Cobra|Chisel|Paint brush,fewshot,Chisel
+Nail|Anvil|Lizard,fewshot,Anvil
+Snake|Dinosaur|Screwdriver,fewshot,Dinosaur
+Lizard|Cobra|Crocodile,fewshot,Cobra
+Lawn Mower|Chameleon|Saw,fewshot,Chameleon
+Toad|Caiman|Chameleon,fewshot,Caiman
+Cobra|Alligator|Toad,fewshot,Alligator
+Axe|Nail|Tortoise,fewshot,Nail
+Vacuum|Chisel|Crocodile,fewshot,Chisel
+Vacuum|Cobra|Nail,fewshot,Cobra
+Axe|Boa python|Nail,fewshot,Boa python
+Knife|Alligator|Paint brush,fewshot,Alligator
+Dinosaur|Boa python|Grinding disk,fewshot,Grinding disk
+Knife|Crocodile|Gecko,fewshot,Crocodile
+Oil can|Chisel|Dinosaur,fewshot,Chisel
+Nail|Anvil|Screwdriver,fewshot,Anvil
+Chisel|Nail|Salamander,fewshot,Nail
+Spanner|Caiman|Vacuum,fewshot,Caiman
+Gecko|Chameleon|Nail,fewshot,Chameleon
+Oil can|Lizard|Turtle,fewshot,Lizard
+Turtle|Alligator|Saw,fewshot,Saw
+Gecko|Oil can|Vacuum,fewshot,Oil can
+Salamander|Chisel|Gecko,fewshot,Chisel
+Salamander|Axe|Dinosaur,fewshot,Axe
+Salamander|Chisel|Vacuum,fewshot,Chisel
+Dinosaur|Grinding disk|Paint brush,fewshot,Grinding disk
+Lizard|Caiman|Cobra,fewshot,Caiman
+Nail|Lizard|Shovel,fewshot,Lizard
+Spanner|Lawn Mower|Vacuum,fewshot,Lawn Mower
+Hammer|Lizard|Paint brush,fewshot,Lizard
+Knife|Anvil|Chisel,fewshot,Anvil
+Vacuum|Boa python|Turtle,fewshot,Boa python
+Gecko|Axe|Screwdriver,fewshot,Axe
+Vacuum|Grinding disk|Nail,fewshot,Grinding disk
+Oil can|Alligator|Grinding disk,fewshot,Grinding disk
+Paint brush|Blindworm|Spanner,fewshot,Blindworm
+Shovel|Grinding disk|Toad,fewshot,Grinding disk
+Paint brush|Caiman|Spanner,fewshot,Caiman
+Blindworm|Chisel|Grinding disk,fewshot,Grinding disk
+Tortoise|Lizard|Toad,fewshot,Lizard
+Saw|Lawn Mower|Paint brush,fewshot,Lawn Mower
+Vacuum|Alligator|Salamander,fewshot,Alligator
+Knife|Nail|Paint brush,fewshot,Nail
+Vacuum|Axe|Boa python,fewshot,Axe
+Lizard|Caiman|Salamander,fewshot,Caiman
+Chameleon|Lizard|Toad,fewshot,Lizard
+Snake|Caiman|Dinosaur,fewshot,Caiman
+Lizard|Lawn Mower|Nail,fewshot,Nail
+Vacuum|Anvil|Chisel,fewshot,Anvil
+Screwdriver|Knife|Tortoise,fewshot,Knife
+Axe|Grinding disk|Salamander,fewshot,Grinding disk
+Snake|Alligator|Knife,fewshot,Alligator
+Grinding disk|Caiman|Saw,fewshot,Saw
+Alligator|Grinding disk|Tortoise,fewshot,Grinding disk
+Shovel|Oil can|Toad,fewshot,Oil can
+Hammer|Blindworm|Knife,fewshot,Blindworm
+Toad|Boa python|Lizard,fewshot,Boa python
+Grinding disk|Turtle|Vacuum,fewshot,Turtle
+Axe|Spanner|Turtle,fewshot,Spanner
+Lizard|Alligator|Anvil,fewshot,Anvil
+Snake|Gecko|Knife,fewshot,Gecko
+Lawn Mower|Anvil|Gecko,fewshot,Anvil
+Gecko|Chameleon|Knife,fewshot,Chameleon
+Snake|Chisel|Hammer,fewshot,Chisel
+Chisel|Crocodile|Spanner,fewshot,Crocodile
+Crocodile|Knife|Saw,fewshot,Knife
+Chameleon|Lizard|Tortoise,fewshot,Lizard
+Grinding disk|Chameleon|Snake,fewshot,Chameleon
+Blindworm|Oil can|Snake,fewshot,Oil can
+Screwdriver|Chisel|Grinding disk,fewshot,Chisel
+Axe|Blindworm|Dinosaur,fewshot,Blindworm
+Cobra|Paint brush|Shovel,fewshot,Shovel
+Shovel|Alligator|Axe,fewshot,Axe
+Vacuum|Boa python|Caiman,fewshot,Boa python
+Nail|Alligator|Chisel,fewshot,Alligator
+Chisel|Knife|Turtle,fewshot,Knife
+Screwdriver|Spanner|Vacuum,fewshot,Spanner
+Shovel|Anvil|Caiman,fewshot,Anvil
+Nail|Hammer|Snake,fewshot,Hammer
+Shovel|Saw|Vacuum,fewshot,Saw
+Alligator|Grinding disk|Screwdriver,fewshot,Grinding disk
+Lawn Mower|Oil can|Paint brush,fewshot,Oil can
+Cobra|Anvil|Spanner,fewshot,Anvil
+Hammer|Grinding disk|Spanner,fewshot,Grinding disk
+Shovel|Axe|Oil can,fewshot,Axe
+Chisel|Hammer|Tortoise,fewshot,Hammer
+Saw|Anvil|Hammer,fewshot,Anvil
+Screwdriver|Knife|Snake,fewshot,Knife
+Hammer|Axe|Shovel,fewshot,Axe
+Anvil|Saw|Toad,fewshot,Saw
+Toad|Crocodile|Grinding disk,fewshot,Crocodile
+Tortoise|Saw|Snake,fewshot,Saw
+Shovel|Caiman|Grinding disk,fewshot,Caiman
+Axe|Alligator|Gecko,fewshot,Alligator
+Anvil|Cobra|Toad,fewshot,Cobra
+Screwdriver|Lawn Mower|Vacuum,fewshot,Vacuum
+Knife|Lawn Mower|Toad,fewshot,Lawn Mower
+Lizard|Alligator|Crocodile,fewshot,Alligator
+Hammer|Anvil|Knife,fewshot,Anvil
+Snake|Blindworm|Vacuum,fewshot,Blindworm
+Spanner|Knife|Screwdriver,fewshot,Knife
+Chameleon|Saw|Snake,fewshot,Saw
+Chameleon|Caiman|Spanner,fewshot,Caiman
+Boa python|Knife|Turtle,fewshot,Knife
+Snake|Chisel|Oil can,fewshot,Chisel
+Hammer|Screwdriver|Toad,fewshot,Screwdriver
+Chameleon|Grinding disk|Lawn Mower,fewshot,Grinding disk
+Anvil|Boa python|Turtle,fewshot,Boa python
+Saw|Gecko|Tortoise,fewshot,Gecko
+Salamander|Gecko|Hammer,fewshot,Gecko
+Knife|Anvil|Hammer,fewshot,Anvil
+Blindworm|Dinosaur|Screwdriver,fewshot,Dinosaur
+Lizard|Alligator|Nail,fewshot,Alligator
+Nail|Hammer|Shovel,fewshot,Hammer
+Shovel|Caiman|Chameleon,fewshot,Caiman
+Knife|Alligator|Hammer,fewshot,Alligator
+Axe|Chisel|Salamander,fewshot,Chisel
+Caiman|Paint brush|Shovel,fewshot,Shovel
+Nail|Screwdriver|Vacuum,fewshot,Screwdriver
+Turtle|Cobra|Salamander,fewshot,Cobra
+Oil can|Turtle|Vacuum,fewshot,Turtle
+Snake|Dinosaur|Shovel,fewshot,Dinosaur
+Oil can|Blindworm|Knife,fewshot,Blindworm
+Nail|Lizard|Turtle,fewshot,Lizard
+Snake|Chameleon|Cobra,fewshot,Cobra
+Chisel|Alligator|Turtle,fewshot,Alligator
+Knife|Boa python|Gecko,fewshot,Boa python
+Nail|Anvil|Gecko,fewshot,Anvil
+Hammer|Oil can|Toad,fewshot,Oil can
+Vacuum|Gecko|Knife,fewshot,Gecko
+Salamander|Grinding disk|Spanner,fewshot,Grinding disk
+Oil can|Cobra|Lawn Mower,fewshot,Cobra
+Lawn Mower|Grinding disk|Hammer,fewshot,Grinding disk
+Chisel|Oil can|Saw,fewshot,Saw
+Blindworm|Saw|Shovel,fewshot,Saw
+Nail|Chisel|Snake,fewshot,Chisel
+Spanner|Oil can|Screwdriver,fewshot,Screwdriver
+Chameleon|Axe|Grinding disk,fewshot,Axe
+Anvil|Hammer|Lawn Mower,fewshot,Hammer
+Chisel|Dinosaur|Snake,fewshot,Dinosaur
+Spanner|Lizard|Toad,fewshot,Lizard
+Spanner|Dinosaur|Gecko,fewshot,Dinosaur
+Chisel|Hammer|Nail,fewshot,Nail
+Vacuum|Blindworm|Lawn Mower,fewshot,Blindworm
+Nail|Boa python|Screwdriver,fewshot,Boa python
+Vacuum|Caiman|Tortoise,fewshot,Caiman
+Screwdriver|Crocodile|Shovel,fewshot,Crocodile
+Lawn Mower|Axe|Saw,fewshot,Axe
+Axe|Alligator|Chisel,fewshot,Chisel
+Snake|Chameleon|Vacuum,fewshot,Chameleon
+Axe|Anvil|Grinding disk,fewshot,Anvil
+Chameleon|Hammer|Paint brush,fewshot,Paint brush
+Grinding disk|Crocodile|Nail,fewshot,Crocodile
+Crocodile|Alligator|Caiman,fewshot,Alligator
+Anvil|Turtle|Vacuum,fewshot,Turtle
+Shovel|Chameleon|Oil can,fewshot,Chameleon
+Chisel|Anvil|Turtle,fewshot,Anvil
+Boa python|Alligator|Dinosaur,fewshot,Dinosaur
+Spanner|Grinding disk|Lizard,fewshot,Grinding disk
+Screwdriver|Lawn Mower|Oil can,fewshot,Lawn Mower
+Knife|Crocodile|Lizard,fewshot,Crocodile
+Chisel|Crocodile|Grinding disk,fewshot,Crocodile
+Grinding disk|Blindworm|Crocodile,fewshot,Blindworm
+Anvil|Knife|Shovel,fewshot,Knife
+Lawn Mower|Snake|Turtle,fewshot,Turtle
+Snake|Anvil|Vacuum,fewshot,Anvil
+Vacuum|Alligator|Saw,fewshot,Saw
+Blindworm|Axe|Boa python,fewshot,Axe
+Hammer|Screwdriver|Spanner,fewshot,Screwdriver
+Chisel|Paint brush|Salamander,fewshot,Paint brush
+Paint brush|Nail|Salamander,fewshot,Nail
+Chameleon|Dinosaur|Toad,fewshot,Dinosaur
+Chameleon|Lizard|Snake,fewshot,Lizard
+Lizard|Caiman|Toad,fewshot,Caiman
+Oil can|Salamander|Shovel,fewshot,Salamander
+Hammer|Blindworm|Snake,fewshot,Blindworm
+Anvil|Crocodile|Paint brush,fewshot,Crocodile
+Chameleon|Toad|Tortoise,fewshot,Tortoise
+Chisel|Anvil|Paint brush,fewshot,Anvil
+Shovel|Chisel|Salamander,fewshot,Chisel
+Turtle|Cobra|Lawn Mower,fewshot,Cobra
+Lizard|Snake|Vacuum,fewshot,Snake
+Chameleon|Axe|Saw,fewshot,Axe
+Salamander|Hammer|Oil can,fewshot,Hammer
+Spanner|Paint brush|Shovel,fewshot,Paint brush
+Turtle|Anvil|Shovel,fewshot,Anvil
+Lawn Mower|Nail|Saw,fewshot,Saw
+Blindworm|Lizard|Turtle,fewshot,Lizard
+Lizard|Alligator|Axe,fewshot,Axe
+Boa python|Lizard|Nail,fewshot,Lizard
+Crocodile|Cobra|Gecko,fewshot,Cobra
+Boa python|Caiman|Toad,fewshot,Caiman
+Nail|Alligator|Snake,fewshot,Alligator
+Spanner|Lawn Mower|Nail,fewshot,Nail
+Grinding disk|Crocodile|Lawn Mower,fewshot,Crocodile
+Gecko|Hammer|Turtle,fewshot,Hammer
+Saw|Crocodile|Dinosaur,fewshot,Crocodile
+Toad|Blindworm|Crocodile,fewshot,Crocodile
+Blindworm|Turtle|Vacuum,fewshot,Turtle
+Hammer|Screwdriver|Vacuum,fewshot,Screwdriver
+Saw|Alligator|Spanner,fewshot,Alligator
+Spanner|Alligator|Boa python,fewshot,Boa python
+Paint brush|Axe|Salamander,fewshot,Axe
+Snake|Cobra|Turtle,fewshot,Cobra
+Crocodile|Paint brush|Saw,fewshot,Saw
+Saw|Cobra|Gecko,fewshot,Cobra
+Gecko|Knife|Snake,fewshot,Knife
+Alligator|Crocodile|Knife,fewshot,Crocodile
+Toad|Nail|Paint brush,fewshot,Nail
+Chameleon|Chisel|Cobra,fewshot,Chisel
+Tortoise|Caiman|Chisel,fewshot,Caiman
+Lawn Mower|Dinosaur|Nail,fewshot,Dinosaur
+Tortoise|Snake|Turtle,fewshot,Turtle
+Crocodile|Blindworm|Salamander,fewshot,Blindworm
+Blindworm|Salamander|Vacuum,fewshot,Salamander
+Salamander|Dinosaur|Lizard,fewshot,Dinosaur
+Spanner|Hammer|Knife,fewshot,Knife
+Paint brush|Axe|Caiman,fewshot,Axe
+Boa python|Alligator|Gecko,fewshot,Gecko
+Shovel|Boa python|Hammer,fewshot,Boa python
+Lizard|Anvil|Oil can,fewshot,Anvil
+Shovel|Cobra|Snake,fewshot,Cobra
+Cobra|Lizard|Shovel,fewshot,Lizard
+Gecko|Dinosaur|Oil can,fewshot,Dinosaur
+Knife|Caiman|Lizard,fewshot,Caiman
+Axe|Nail|Salamander,fewshot,Nail
+Chisel|Gecko|Shovel,fewshot,Gecko
+Spanner|Anvil|Saw,fewshot,Anvil
+Screwdriver|Cobra|Toad,fewshot,Cobra
+Saw|Chisel|Dinosaur,fewshot,Chisel
+Anvil|Alligator|Shovel,fewshot,Shovel
+Blindworm|Alligator|Dinosaur,fewshot,Alligator
+Lizard|Axe|Cobra,fewshot,Axe
+Anvil|Caiman|Chameleon,fewshot,Caiman
+Alligator|Hammer|Tortoise,fewshot,Tortoise
+Toad|Caiman|Saw,fewshot,Caiman
+Nail|Caiman|Vacuum,fewshot,Caiman
+Hammer|Gecko|Tortoise,fewshot,Gecko
+Chisel|Axe|Toad,fewshot,Axe
+Anvil|Saw|Screwdriver,fewshot,Saw
+Knife|Chisel|Screwdriver,fewshot,Chisel
+Hammer|Anvil|Gecko,fewshot,Anvil
+Spanner|Blindworm|Oil can,fewshot,Oil can
+Paint brush|Blindworm|Crocodile,fewshot,Crocodile
+Chameleon|Salamander|Tortoise,fewshot,Salamander
+Alligator|Lawn Mower|Shovel,fewshot,Shovel
+Cobra|Boa python|Salamander,fewshot,Boa python
+Caiman|Axe|Blindworm,fewshot,Axe
+Gecko|Hammer|Lizard,fewshot,Hammer
+Cobra|Anvil|Vacuum,fewshot,Anvil
+Crocodile|Snake|Spanner,fewshot,Spanner
+Crocodile|Screwdriver|Tortoise,fewshot,Screwdriver
+Lawn Mower|Dinosaur|Lizard,fewshot,Dinosaur
+Snake|Lawn Mower|Vacuum,fewshot,Vacuum
+Saw|Tortoise|Turtle,fewshot,Tortoise
+Vacuum|Nail|Snake,fewshot,Nail
+Vacuum|Boa python|Grinding disk,fewshot,Grinding disk
+Lizard|Salamander|Snake,fewshot,Salamander
+Screwdriver|Blindworm|Salamander,fewshot,Blindworm
+Anvil|Boa python|Tortoise,fewshot,Boa python
+Caiman|Alligator|Spanner,fewshot,Alligator
+Alligator|Boa python|Hammer,fewshot,Boa python
+Boa python|Snake|Turtle,fewshot,Turtle
+Anvil|Axe|Screwdriver,fewshot,Axe
+Axe|Boa python|Hammer,fewshot,Boa python
+Tortoise|Grinding disk|Lawn Mower,fewshot,Grinding disk
+Chisel|Axe|Saw,fewshot,Axe
+Caiman|Alligator|Knife,fewshot,Alligator
+Tortoise|Shovel|Turtle,fewshot,Shovel
+Lawn Mower|Crocodile|Nail,fewshot,Crocodile
+Axe|Knife|Saw,fewshot,Knife
+Alligator|Gecko|Lizard,fewshot,Gecko
+Toad|Hammer|Paint brush,fewshot,Hammer
+Nail|Cobra|Screwdriver,fewshot,Cobra
+Toad|Grinding disk|Turtle,fewshot,Grinding disk
+Chisel|Chameleon|Cobra,fewshot,Chameleon
+Spanner|Axe|Shovel,fewshot,Axe
+Nail|Alligator|Cobra,fewshot,Alligator
+Anvil|Saw|Vacuum,fewshot,Saw
+Screwdriver|Boa python|Caiman,fewshot,Boa python
+Chameleon|Oil can|Salamander,fewshot,Oil can
+Axe|Anvil|Tortoise,fewshot,Anvil
+Turtle|Caiman|Saw,fewshot,Caiman
+Lawn Mower|Axe|Snake,fewshot,Axe
+Shovel|Caiman|Dinosaur,fewshot,Caiman
+Oil can|Cobra|Tortoise,fewshot,Cobra
+Oil can|Caiman|Turtle,fewshot,Caiman
+Hammer|Crocodile|Oil can,fewshot,Crocodile
+Chisel|Crocodile|Lawn Mower,fewshot,Crocodile
+Anvil|Chisel|Knife,fewshot,Chisel
+Lizard|Anvil|Grinding disk,fewshot,Anvil
+Spanner|Caiman|Chameleon,fewshot,Caiman
+Oil can|Crocodile|Salamander,fewshot,Crocodile
+Paint brush|Hammer|Shovel,fewshot,Shovel
+Turtle|Gecko|Grinding disk,fewshot,Grinding disk
+Knife|Hammer|Oil can,fewshot,Hammer
+Toad|Oil can|Shovel,fewshot,Shovel
+Axe|Oil can|Screwdriver,fewshot,Screwdriver
+Caiman|Gecko|Spanner,fewshot,Gecko
+Dinosaur|Knife|Lawn Mower,fewshot,Knife
+Dinosaur|Blindworm|Grinding disk,fewshot,Grinding disk
+Chisel|Anvil|Nail,fewshot,Anvil
+Blindworm|Hammer|Paint brush,fewshot,Hammer
+Oil can|Dinosaur|Lizard,fewshot,Dinosaur
+Alligator|Dinosaur|Grinding disk,fewshot,Dinosaur
+Chameleon|Axe|Vacuum,fewshot,Axe
+Gecko|Blindworm|Hammer,fewshot,Blindworm
+Blindworm|Axe|Oil can,fewshot,Axe
+Saw|Axe|Screwdriver,fewshot,Axe
+Vacuum|Chisel|Knife,fewshot,Chisel
+Caiman|Hammer|Salamander,fewshot,Hammer
+Boa python|Blindworm|Grinding disk,fewshot,Grinding disk
+Saw|Grinding disk|Lizard,fewshot,Grinding disk
+Boa python|Oil can|Tortoise,fewshot,Tortoise
+Gecko|Dinosaur|Spanner,fewshot,Dinosaur
+Turtle|Chisel|Screwdriver,fewshot,Chisel
+Snake|Screwdriver|Spanner,fewshot,Screwdriver
+Hammer|Cobra|Oil can,fewshot,Cobra
+Alligator|Blindworm|Chameleon,fewshot,Chameleon
+Shovel|Blindworm|Oil can,fewshot,Blindworm
+Dinosaur|Chisel|Turtle,fewshot,Chisel
+Spanner|Gecko|Lizard,fewshot,Gecko
+Salamander|Oil can|Tortoise,fewshot,Oil can
+Nail|Blindworm|Turtle,fewshot,Blindworm
+Salamander|Crocodile|Toad,fewshot,Crocodile
+Caiman|Salamander|Saw,fewshot,Salamander
+Axe|Chisel|Lawn Mower,fewshot,Chisel
+Vacuum|Alligator|Snake,fewshot,Alligator
+Axe|Caiman|Lawn Mower,fewshot,Caiman
+Snake|Crocodile|Spanner,fewshot,Crocodile
+Axe|Cobra|Dinosaur,fewshot,Cobra
+Toad|Anvil|Chisel,fewshot,Anvil
+Cobra|Crocodile|Screwdriver,fewshot,Crocodile
+Saw|Dinosaur|Spanner,fewshot,Dinosaur
+Turtle|Hammer|Tortoise,fewshot,Tortoise
+Cobra|Grinding disk|Lizard,fewshot,Grinding disk
+Caiman|Saw|Snake,fewshot,Saw
+Grinding disk|Caiman|Lawn Mower,fewshot,Caiman
+Tortoise|Paint brush|Shovel,fewshot,Shovel
+Lizard|Salamander|Tortoise,fewshot,Salamander
+Chameleon|Anvil|Gecko,fewshot,Anvil
+Anvil|Axe|Dinosaur,fewshot,Axe
+Lawn Mower|Anvil|Hammer,fewshot,Anvil
+Salamander|Lizard|Tortoise,fewshot,Tortoise
+Tortoise|Alligator|Caiman,fewshot,Alligator
+Boa python|Grinding disk|Vacuum,fewshot,Grinding disk
+Paint brush|Boa python|Hammer,fewshot,Boa python
+Grinding disk|Anvil|Crocodile,fewshot,Anvil
+Oil can|Hammer|Spanner,fewshot,Hammer
+Oil can|Hammer|Nail,fewshot,Nail
+Chisel|Anvil|Crocodile,fewshot,Anvil
+Spanner|Blindworm|Turtle,fewshot,Turtle
+Caiman|Hammer|Paint brush,fewshot,Paint brush
+Anvil|Axe|Snake,fewshot,Axe
+Lizard|Blindworm|Tortoise,fewshot,Tortoise
+Snake|Dinosaur|Knife,fewshot,Dinosaur
+Chameleon|Blindworm|Gecko,fewshot,Blindworm
+Oil can|Blindworm|Gecko,fewshot,Blindworm
+Toad|Cobra|Dinosaur,fewshot,Cobra
+Turtle|Boa python|Cobra,fewshot,Boa python
+Chisel|Blindworm|Lawn Mower,fewshot,Blindworm
+Hammer|Grinding disk|Lawn Mower,fewshot,Grinding disk
+Salamander|Chisel|Knife,fewshot,Chisel
+Toad|Turtle|Vacuum,fewshot,Turtle
+Oil can|Screwdriver|Toad,fewshot,Screwdriver
+Chameleon|Blindworm|Shovel,fewshot,Shovel
+Anvil|Knife|Vacuum,fewshot,Knife
+Paint brush|Knife|Spanner,fewshot,Knife
+Shovel|Lizard|Spanner,fewshot,Lizard
+Lawn Mower|Hammer|Oil can,fewshot,Hammer
+Chameleon|Knife|Salamander,fewshot,Knife
+Oil can|Shovel|Spanner,fewshot,Shovel
+Turtle|Caiman|Cobra,fewshot,Caiman
+Gecko|Alligator|Toad,fewshot,Alligator
+Cobra|Dinosaur|Lawn Mower,fewshot,Dinosaur
+Paint brush|Shovel|Vacuum,fewshot,Shovel
+Salamander|Spanner|Tortoise,fewshot,Tortoise
+Knife|Boa python|Caiman,fewshot,Boa python
+Toad|Caiman|Vacuum,fewshot,Caiman
+Screwdriver|Hammer|Lizard,fewshot,Hammer
+Screwdriver|Chisel|Nail,fewshot,Chisel
+Lawn Mower|Boa python|Vacuum,fewshot,Boa python
+Chameleon|Alligator|Gecko,fewshot,Gecko
+Spanner|Paint brush|Saw,fewshot,Paint brush
+Grinding disk|Lawn Mower|Vacuum,fewshot,Lawn Mower
+Grinding disk|Lizard|Vacuum,fewshot,Lizard
+Caiman|Blindworm|Screwdriver,fewshot,Screwdriver
+Axe|Boa python|Lizard,fewshot,Boa python
+Oil can|Chisel|Snake,fewshot,Chisel
+Vacuum|Blindworm|Nail,fewshot,Blindworm
+Tortoise|Axe|Snake,fewshot,Axe
+Hammer|Cobra|Lizard,fewshot,Cobra
+Saw|Boa python|Screwdriver,fewshot,Screwdriver
+Vacuum|Knife|Snake,fewshot,Knife
+Anvil|Shovel|Toad,fewshot,Shovel
+Lawn Mower|Caiman|Hammer,fewshot,Caiman
+Snake|Dinosaur|Spanner,fewshot,Dinosaur
+Blindworm|Caiman|Knife,fewshot,Caiman
+Turtle|Axe|Knife,fewshot,Axe
+Anvil|Cobra|Lizard,fewshot,Cobra
+Caiman|Axe|Crocodile,fewshot,Axe
+Anvil|Chameleon|Lawn Mower,fewshot,Chameleon
+Alligator|Chisel|Lawn Mower,fewshot,Chisel
+Vacuum|Oil can|Snake,fewshot,Oil can
+Nail|Crocodile|Snake,fewshot,Crocodile
+Cobra|Screwdriver|Spanner,fewshot,Screwdriver
+Toad|Dinosaur|Saw,fewshot,Dinosaur
+Paint brush|Boa python|Crocodile,fewshot,Boa python
+Screwdriver|Nail|Saw,fewshot,Saw
+Toad|Hammer|Nail,fewshot,Nail
+Blindworm|Grinding disk|Toad,fewshot,Grinding disk
+Boa python|Axe|Gecko,fewshot,Axe
+Axe|Knife|Turtle,fewshot,Knife
+Knife|Lizard|Paint brush,fewshot,Lizard
+Oil can|Chameleon|Nail,fewshot,Chameleon
+Nail|Boa python|Caiman,fewshot,Boa python
+Grinding disk|Crocodile|Shovel,fewshot,Crocodile
+Chisel|Axe|Nail,fewshot,Axe
+Caiman|Anvil|Paint brush,fewshot,Anvil
+Spanner|Chisel|Cobra,fewshot,Chisel
+Lizard|Anvil|Tortoise,fewshot,Anvil
+Saw|Salamander|Turtle,fewshot,Salamander
+Turtle|Axe|Lizard,fewshot,Axe
+Saw|Lawn Mower|Vacuum,fewshot,Lawn Mower
+Chisel|Lawn Mower|Tortoise,fewshot,Lawn Mower
+Vacuum|Knife|Turtle,fewshot,Knife
+Crocodile|Lawn Mower|Nail,fewshot,Nail
+Chameleon|Boa python|Shovel,fewshot,Boa python
+Lawn Mower|Chameleon|Toad,fewshot,Chameleon
+Cobra|Lizard|Turtle,fewshot,Lizard
+Salamander|Lawn Mower|Vacuum,fewshot,Vacuum
+Snake|Axe|Caiman,fewshot,Axe
+Vacuum|Gecko|Turtle,fewshot,Gecko
+Tortoise|Grinding disk|Screwdriver,fewshot,Grinding disk
+Toad|Knife|Turtle,fewshot,Knife
+Lawn Mower|Crocodile|Tortoise,fewshot,Crocodile
+Chisel|Hammer|Toad,fewshot,Hammer
+Axe|Knife|Vacuum,fewshot,Knife
+Saw|Dinosaur|Oil can,fewshot,Dinosaur
+Chameleon|Blindworm|Toad,fewshot,Toad
+Snake|Chisel|Salamander,fewshot,Chisel
+Shovel|Oil can|Snake,fewshot,Oil can
+Saw|Hammer|Oil can,fewshot,Hammer
+Caiman|Blindworm|Tortoise,fewshot,Tortoise
+Axe|Paint brush|Tortoise,fewshot,Paint brush
+Toad|Cobra|Oil can,fewshot,Cobra
+Lawn Mower|Spanner|Turtle,fewshot,Spanner
+Vacuum|Knife|Salamander,fewshot,Knife
+Blindworm|Gecko|Grinding disk,fewshot,Grinding disk
+Cobra|Chisel|Knife,fewshot,Chisel
+Alligator|Cobra|Toad,fewshot,Cobra
+Oil can|Caiman|Cobra,fewshot,Caiman
+Chisel|Blindworm|Grinding disk,fewshot,Blindworm
+Vacuum|Chameleon|Turtle,fewshot,Chameleon
+Chameleon|Salamander|Screwdriver,fewshot,Salamander
+Knife|Nail|Oil can,fewshot,Nail
+Lawn Mower|Cobra|Salamander,fewshot,Cobra
+Spanner|Cobra|Lawn Mower,fewshot,Cobra
+Cobra|Chameleon|Gecko,fewshot,Chameleon
+Dinosaur|Alligator|Axe,fewshot,Axe
+Hammer|Chisel|Tortoise,fewshot,Chisel
+Grinding disk|Anvil|Axe,fewshot,Anvil
+Shovel|Knife|Turtle,fewshot,Knife
+Dinosaur|Chisel|Oil can,fewshot,Chisel
+Turtle|Caiman|Chisel,fewshot,Caiman
+Axe|Chisel|Oil can,fewshot,Chisel
+Paint brush|Crocodile|Salamander,fewshot,Crocodile
+Lizard|Nail|Saw,fewshot,Nail
+Knife|Caiman|Oil can,fewshot,Caiman
+Hammer|Lizard|Screwdriver,fewshot,Screwdriver
+Alligator|Blindworm|Vacuum,fewshot,Blindworm
+Hammer|Axe|Boa python,fewshot,Axe
+Tortoise|Blindworm|Chisel,fewshot,Chisel
+Gecko|Oil can|Salamander,fewshot,Oil can
+Salamander|Blindworm|Paint brush,fewshot,Blindworm
+Turtle|Axe|Toad,fewshot,Axe
+Shovel|Knife|Lizard,fewshot,Knife
+Anvil|Screwdriver|Toad,fewshot,Screwdriver
+Lizard|Chameleon|Paint brush,fewshot,Chameleon
+Gecko|Chisel|Nail,fewshot,Chisel
+Oil can|Crocodile|Dinosaur,fewshot,Crocodile
+Chameleon|Paint brush|Spanner,fewshot,Paint brush
+Boa python|Grinding disk|Turtle,fewshot,Grinding disk
+Lizard|Paint brush|Screwdriver,fewshot,Screwdriver
+Nail|Caiman|Grinding disk,fewshot,Caiman
+Blindworm|Knife|Vacuum,fewshot,Knife
+Boa python|Paint brush|Screwdriver,fewshot,Screwdriver
+Oil can|Gecko|Shovel,fewshot,Gecko
+Chameleon|Crocodile|Spanner,fewshot,Crocodile
+Axe|Snake|Spanner,fewshot,Spanner
+Lawn Mower|Boa python|Knife,fewshot,Boa python
+Saw|Chisel|Gecko,fewshot,Chisel
+Blindworm|Boa python|Oil can,fewshot,Boa python
+Alligator|Caiman|Lawn Mower,fewshot,Caiman
+Salamander|Tortoise|Turtle,fewshot,Turtle
+Screwdriver|Blindworm|Knife,fewshot,Blindworm
+Dinosaur|Cobra|Grinding disk,fewshot,Cobra
+Shovel|Alligator|Hammer,fewshot,Alligator
+Paint brush|Cobra|Grinding disk,fewshot,Cobra
+Blindworm|Chisel|Vacuum,fewshot,Chisel
+Nail|Alligator|Boa python,fewshot,Boa python
+Vacuum|Chameleon|Screwdriver,fewshot,Chameleon
+Lizard|Chameleon|Toad,fewshot,Chameleon
+Paint brush|Blindworm|Saw,fewshot,Saw
+Cobra|Salamander|Turtle,fewshot,Salamander
+Lawn Mower|Salamander|Screwdriver,fewshot,Salamander
+Alligator|Screwdriver|Snake,fewshot,Screwdriver
+Nail|Saw|Screwdriver,fewshot,Saw
+Oil can|Cobra|Screwdriver,fewshot,Cobra
+Spanner|Crocodile|Hammer,fewshot,Crocodile
+Screwdriver|Salamander|Turtle,fewshot,Salamander
+Paint brush|Salamander|Spanner,fewshot,Salamander
+Turtle|Anvil|Blindworm,fewshot,Anvil
+Lizard|Screwdriver|Shovel,fewshot,Screwdriver
+Grinding disk|Alligator|Snake,fewshot,Alligator
+Screwdriver|Grinding disk|Nail,fewshot,Grinding disk
+Toad|Cobra|Paint brush,fewshot,Cobra
+Chameleon|Boa python|Caiman,fewshot,Boa python
+Oil can|Axe|Toad,fewshot,Axe
+Chameleon|Knife|Screwdriver,fewshot,Knife
+Crocodile|Axe|Dinosaur,fewshot,Axe
+Paint brush|Alligator|Toad,fewshot,Alligator
+Salamander|Axe|Grinding disk,fewshot,Axe
+Shovel|Anvil|Lawn Mower,fewshot,Anvil
+Oil can|Paint brush|Snake,fewshot,Paint brush
+Lizard|Boa python|Knife,fewshot,Boa python
+Grinding disk|Axe|Shovel,fewshot,Axe
+Screwdriver|Blindworm|Saw,fewshot,Saw
+Oil can|Anvil|Cobra,fewshot,Anvil
+Turtle|Tortoise|Vacuum,fewshot,Tortoise
+Alligator|Screwdriver|Spanner,fewshot,Screwdriver
+Salamander|Blindworm|Chisel,fewshot,Chisel
+Saw|Snake|Turtle,fewshot,Turtle
+Knife|Nail|Turtle,fewshot,Nail
+Spanner|Chisel|Paint brush,fewshot,Chisel
+Oil can|Hammer|Screwdriver,fewshot,Screwdriver
+Grinding disk|Blindworm|Shovel,fewshot,Blindworm
+Chisel|Chameleon|Shovel,fewshot,Chameleon
+Crocodile|Chisel|Salamander,fewshot,Chisel
+Crocodile|Alligator|Anvil,fewshot,Anvil
+Lawn Mower|Anvil|Chisel,fewshot,Anvil
+Vacuum|Saw|Tortoise,fewshot,Saw
+Chameleon|Cobra|Vacuum,fewshot,Cobra
+Saw|Chameleon|Vacuum,fewshot,Chameleon
+Anvil|Axe|Hammer,fewshot,Axe
+Saw|Nail|Toad,fewshot,Nail
+Screwdriver|Lawn Mower|Shovel,fewshot,Lawn Mower
+Anvil|Caiman|Snake,fewshot,Caiman
+Axe|Chameleon|Saw,fewshot,Chameleon
+Chameleon|Grinding disk|Oil can,fewshot,Grinding disk
+Lizard|Shovel|Spanner,fewshot,Shovel
+Grinding disk|Chameleon|Saw,fewshot,Chameleon
+Chameleon|Grinding disk|Saw,fewshot,Grinding disk
+Chisel|Salamander|Snake,fewshot,Salamander
+Anvil|Blindworm|Cobra,fewshot,Blindworm
+Chameleon|Lizard|Paint brush,fewshot,Lizard
+Oil can|Nail|Saw,fewshot,Nail
+Grinding disk|Hammer|Paint brush,fewshot,Hammer
+Anvil|Knife|Toad,fewshot,Knife
+Salamander|Caiman|Lawn Mower,fewshot,Caiman
+Vacuum|Lawn Mower|Lizard,fewshot,Lawn Mower
+Anvil|Cobra|Gecko,fewshot,Cobra
+Turtle|Lizard|Spanner,fewshot,Lizard
+Caiman|Knife|Paint brush,fewshot,Knife
+Tortoise|Chameleon|Screwdriver,fewshot,Chameleon
+Paint brush|Knife|Nail,fewshot,Knife
+Vacuum|Dinosaur|Lizard,fewshot,Dinosaur
+Knife|Blindworm|Chameleon,fewshot,Blindworm
+Alligator|Salamander|Screwdriver,fewshot,Salamander
+Lizard|Snake|Tortoise,fewshot,Tortoise
+Spanner|Chisel|Toad,fewshot,Chisel
+Tortoise|Chisel|Lawn Mower,fewshot,Chisel
+Knife|Chameleon|Crocodile,fewshot,Chameleon
+Dinosaur|Chisel|Lawn Mower,fewshot,Chisel
+Alligator|Hammer|Toad,fewshot,Hammer
+Chameleon|Blindworm|Salamander,fewshot,Blindworm
+Dinosaur|Caiman|Chisel,fewshot,Caiman
+Anvil|Hammer|Snake,fewshot,Hammer
+Caiman|Hammer|Screwdriver,fewshot,Screwdriver
+Toad|Chameleon|Dinosaur,fewshot,Chameleon
+Tortoise|Grinding disk|Nail,fewshot,Grinding disk
+Toad|Lizard|Salamander,fewshot,Lizard
+Crocodile|Grinding disk|Spanner,fewshot,Grinding disk
+Boa python|Gecko|Toad,fewshot,Gecko
+Salamander|Lawn Mower|Shovel,fewshot,Shovel
+Paint brush|Anvil|Lawn Mower,fewshot,Anvil
+Gecko|Snake|Spanner,fewshot,Spanner
+Knife|Axe|Chisel,fewshot,Axe
+Grinding disk|Saw|Toad,fewshot,Saw
+Screwdriver|Boa python|Grinding disk,fewshot,Boa python
+Nail|Blindworm|Chisel,fewshot,Chisel
+Hammer|Boa python|Crocodile,fewshot,Boa python
+Snake|Anvil|Nail,fewshot,Anvil
+Gecko|Salamander|Saw,fewshot,Salamander
+Nail|Caiman|Dinosaur,fewshot,Caiman
+Axe|Caiman|Grinding disk,fewshot,Caiman
+Boa python|Chameleon|Grinding disk,fewshot,Chameleon
+Paint brush|Chisel|Salamander,fewshot,Chisel
+Toad|Nail|Turtle,fewshot,Nail
+Knife|Cobra|Shovel,fewshot,Cobra
+Paint brush|Dinosaur|Snake,fewshot,Dinosaur
+Nail|Gecko|Saw,fewshot,Saw
+Paint brush|Alligator|Blindworm,fewshot,Alligator
+Knife|Chameleon|Saw,fewshot,Saw
+Axe|Nail|Screwdriver,fewshot,Nail
+Vacuum|Axe|Dinosaur,fewshot,Axe
+Shovel|Chisel|Grinding disk,fewshot,Chisel
+Chisel|Knife|Lizard,fewshot,Knife
+Screwdriver|Axe|Hammer,fewshot,Axe
+Grinding disk|Spanner|Vacuum,fewshot,Spanner
+Gecko|Grinding disk|Saw,fewshot,Grinding disk
+Cobra|Alligator|Lizard,fewshot,Alligator
+Vacuum|Hammer|Screwdriver,fewshot,Screwdriver
+Shovel|Gecko|Lizard,fewshot,Gecko
+Nail|Caiman|Hammer,fewshot,Caiman
+Anvil|Hammer|Vacuum,fewshot,Hammer
+Chameleon|Saw|Shovel,fewshot,Saw
+Chameleon|Crocodile|Shovel,fewshot,Crocodile
+Paint brush|Cobra|Knife,fewshot,Cobra
+Knife|Crocodile|Lawn Mower,fewshot,Crocodile
+Lawn Mower|Paint brush|Vacuum,fewshot,Paint brush
+Boa python|Oil can|Screwdriver,fewshot,Screwdriver
+Lawn Mower|Grinding disk|Spanner,fewshot,Grinding disk
+Dinosaur|Alligator|Caiman,fewshot,Alligator
+Cobra|Axe|Salamander,fewshot,Axe
+Shovel|Axe|Screwdriver,fewshot,Axe
+Blindworm|Anvil|Toad,fewshot,Anvil
+Paint brush|Lizard|Tortoise,fewshot,Lizard
+Axe|Blindworm|Knife,fewshot,Blindworm
+Screwdriver|Axe|Snake,fewshot,Axe
+Dinosaur|Caiman|Screwdriver,fewshot,Caiman
+Paint brush|Hammer|Nail,fewshot,Nail
+Blindworm|Chameleon|Oil can,fewshot,Chameleon
+Toad|Crocodile|Screwdriver,fewshot,Crocodile
+Snake|Knife|Nail,fewshot,Knife
+Blindworm|Crocodile|Dinosaur,fewshot,Crocodile
+Crocodile|Paint brush|Turtle,fewshot,Paint brush
+Toad|Anvil|Shovel,fewshot,Anvil
+Chisel|Alligator|Oil can,fewshot,Alligator
+Chameleon|Oil can|Shovel,fewshot,Shovel
+Oil can|Anvil|Tortoise,fewshot,Anvil
+Lizard|Caiman|Gecko,fewshot,Caiman
+Screwdriver|Dinosaur|Oil can,fewshot,Dinosaur
+Vacuum|Axe|Tortoise,fewshot,Axe
+Tortoise|Grinding disk|Saw,fewshot,Grinding disk
+Nail|Anvil|Chameleon,fewshot,Anvil
+Crocodile|Blindworm|Tortoise,fewshot,Tortoise
+Nail|Crocodile|Oil can,fewshot,Crocodile
+Lizard|Grinding disk|Tortoise,fewshot,Grinding disk
+Chisel|Hammer|Lawn Mower,fewshot,Hammer
+Crocodile|Caiman|Grinding disk,fewshot,Caiman
+Knife|Crocodile|Nail,fewshot,Crocodile
+Paint brush|Chameleon|Spanner,fewshot,Chameleon
+Caiman|Boa python|Chisel,fewshot,Boa python
+Cobra|Alligator|Blindworm,fewshot,Alligator
+Shovel|Alligator|Knife,fewshot,Alligator
+Toad|Cobra|Tortoise,fewshot,Cobra
+Axe|Anvil|Screwdriver,fewshot,Anvil
+Tortoise|Gecko|Grinding disk,fewshot,Grinding disk
+Saw|Anvil|Lawn Mower,fewshot,Anvil
+Vacuum|Blindworm|Shovel,fewshot,Blindworm
+Chisel|Grinding disk|Oil can,fewshot,Grinding disk
+Blindworm|Axe|Nail,fewshot,Axe
+Lawn Mower|Paint brush|Toad,fewshot,Paint brush
+Vacuum|Axe|Grinding disk,fewshot,Grinding disk
+Tortoise|Dinosaur|Hammer,fewshot,Dinosaur
+Saw|Lizard|Shovel,fewshot,Lizard
+Alligator|Axe|Snake,fewshot,Axe
+Snake|Chameleon|Gecko,fewshot,Chameleon
+Salamander|Boa python|Gecko,fewshot,Boa python
+Crocodile|Axe|Screwdriver,fewshot,Axe
+Screwdriver|Saw|Shovel,fewshot,Saw
+Hammer|Blindworm|Grinding disk,fewshot,Blindworm
+Grinding disk|Knife|Saw,fewshot,Knife
+Paint brush|Lawn Mower|Snake,fewshot,Lawn Mower
+Shovel|Cobra|Lizard,fewshot,Cobra
+Spanner|Boa python|Cobra,fewshot,Boa python
+Chisel|Anvil|Chameleon,fewshot,Anvil
+Oil can|Screwdriver|Turtle,fewshot,Screwdriver
+Vacuum|Hammer|Lizard,fewshot,Hammer
+Lawn Mower|Axe|Crocodile,fewshot,Axe
+Turtle|Caiman|Toad,fewshot,Caiman
+Oil can|Grinding disk|Toad,fewshot,Grinding disk
+Salamander|Cobra|Lawn Mower,fewshot,Cobra
+Turtle|Saw|Shovel,fewshot,Saw
+Nail|Alligator|Crocodile,fewshot,Alligator
+Snake|Caiman|Lizard,fewshot,Caiman
+Salamander|Nail|Toad,fewshot,Nail
+Turtle|Blindworm|Cobra,fewshot,Blindworm
+Crocodile|Shovel|Spanner,fewshot,Shovel
+Axe|Chisel|Crocodile,fewshot,Chisel
+Boa python|Chisel|Nail,fewshot,Chisel
+Axe|Grinding disk|Lizard,fewshot,Grinding disk
+Dinosaur|Salamander|Vacuum,fewshot,Salamander
+Dinosaur|Alligator|Anvil,fewshot,Anvil
+Gecko|Blindworm|Boa python,fewshot,Boa python
+Hammer|Lawn Mower|Oil can,fewshot,Lawn Mower
+Gecko|Crocodile|Salamander,fewshot,Crocodile
+Saw|Dinosaur|Lawn Mower,fewshot,Dinosaur
+Knife|Oil can|Tortoise,fewshot,Oil can
+Caiman|Cobra|Saw,fewshot,Saw
+Knife|Axe|Crocodile,fewshot,Axe
+Screwdriver|Oil can|Shovel,fewshot,Oil can
+Spanner|Knife|Salamander,fewshot,Knife
+Caiman|Axe|Nail,fewshot,Axe
+Axe|Paint brush|Turtle,fewshot,Paint brush
+Alligator|Dinosaur|Snake,fewshot,Dinosaur
+Oil can|Axe|Lizard,fewshot,Axe
+Toad|Anvil|Hammer,fewshot,Anvil
+Turtle|Saw|Spanner,fewshot,Saw
+Lizard|Boa python|Gecko,fewshot,Boa python
+Snake|Knife|Toad,fewshot,Knife
+Snake|Shovel|Vacuum,fewshot,Shovel
+Alligator|Saw|Turtle,fewshot,Saw
+Chameleon|Gecko|Paint brush,fewshot,Gecko
+Snake|Anvil|Blindworm,fewshot,Anvil
+Caiman|Crocodile|Hammer,fewshot,Crocodile
+Lizard|Chisel|Saw,fewshot,Chisel
+Crocodile|Lawn Mower|Turtle,fewshot,Lawn Mower
+Paint brush|Axe|Tortoise,fewshot,Axe
+Vacuum|Gecko|Toad,fewshot,Gecko
+Axe|Hammer|Nail,fewshot,Nail
+Chameleon|Saw|Vacuum,fewshot,Saw
+Blindworm|Axe|Grinding disk,fewshot,Axe
+Hammer|Nail|Spanner,fewshot,Nail
+Toad|Axe|Lizard,fewshot,Axe
+Toad|Cobra|Knife,fewshot,Cobra
+Dinosaur|Paint brush|Salamander,fewshot,Paint brush
+Chameleon|Blindworm|Lizard,fewshot,Lizard
+Spanner|Knife|Turtle,fewshot,Knife
+Axe|Caiman|Snake,fewshot,Caiman
+Nail|Lizard|Spanner,fewshot,Lizard
+Salamander|Snake|Toad,fewshot,Snake
+Anvil|Hammer|Nail,fewshot,Nail
+Turtle|Chameleon|Oil can,fewshot,Chameleon
+Axe|Blindworm|Lawn Mower,fewshot,Blindworm
+Anvil|Chameleon|Oil can,fewshot,Chameleon
+Nail|Gecko|Tortoise,fewshot,Gecko
+Saw|Chameleon|Oil can,fewshot,Chameleon
+Lizard|Crocodile|Spanner,fewshot,Crocodile
+Tortoise|Nail|Spanner,fewshot,Nail
+Saw|Dinosaur|Screwdriver,fewshot,Dinosaur
+Grinding disk|Cobra|Vacuum,fewshot,Cobra
+Snake|Boa python|Lawn Mower,fewshot,Boa python
+Shovel|Boa python|Lawn Mower,fewshot,Boa python
+Tortoise|Cobra|Knife,fewshot,Cobra
+Knife|Crocodile|Oil can,fewshot,Crocodile
+Gecko|Lizard|Saw,fewshot,Saw
+Shovel|Paint brush|Snake,fewshot,Paint brush
+Caiman|Cobra|Shovel,fewshot,Cobra
+Oil can|Knife|Lawn Mower,fewshot,Knife
+Hammer|Chameleon|Turtle,fewshot,Chameleon
+Knife|Chameleon|Lizard,fewshot,Chameleon
+Axe|Nail|Saw,fewshot,Saw
+Dinosaur|Cobra|Salamander,fewshot,Cobra
+Gecko|Nail|Salamander,fewshot,Nail
+Toad|Caiman|Gecko,fewshot,Caiman
+Knife|Alligator|Spanner,fewshot,Alligator
+Vacuum|Anvil|Crocodile,fewshot,Anvil
+Boa python|Axe|Cobra,fewshot,Axe
+Dinosaur|Blindworm|Boa python,fewshot,Boa python
+Spanner|Boa python|Nail,fewshot,Boa python
+Lawn Mower|Axe|Vacuum,fewshot,Axe
+Grinding disk|Gecko|Saw,fewshot,Saw
+Oil can|Hammer|Snake,fewshot,Hammer
+Nail|Boa python|Chisel,fewshot,Boa python
+Lizard|Caiman|Knife,fewshot,Caiman
+Chameleon|Knife|Shovel,fewshot,Knife
+Gecko|Anvil|Caiman,fewshot,Anvil
+Boa python|Hammer|Saw,fewshot,Saw
+Chameleon|Alligator|Vacuum,fewshot,Alligator
+Screwdriver|Chameleon|Saw,fewshot,Chameleon
+Snake|Salamander|Shovel,fewshot,Salamander
+Chameleon|Nail|Screwdriver,fewshot,Nail
+Alligator|Blindworm|Cobra,fewshot,Cobra
+Nail|Saw|Spanner,fewshot,Saw
+Vacuum|Screwdriver|Spanner,fewshot,Screwdriver
+Nail|Caiman|Screwdriver,fewshot,Caiman
+Dinosaur|Lizard|Salamander,fewshot,Lizard
+Chameleon|Chisel|Turtle,fewshot,Chisel
+Grinding disk|Gecko|Snake,fewshot,Gecko
+Chisel|Gecko|Toad,fewshot,Gecko
+Spanner|Lawn Mower|Snake,fewshot,Lawn Mower
+Tortoise|Alligator|Salamander,fewshot,Alligator
+Caiman|Axe|Tortoise,fewshot,Axe
+Axe|Alligator|Crocodile,fewshot,Alligator
+Tortoise|Dinosaur|Nail,fewshot,Dinosaur
+Shovel|Dinosaur|Lizard,fewshot,Dinosaur
+Chameleon|Nail|Shovel,fewshot,Nail
+Screwdriver|Lizard|Turtle,fewshot,Lizard
+Saw|Dinosaur|Tortoise,fewshot,Dinosaur
+Screwdriver|Blindworm|Caiman,fewshot,Caiman
+Chameleon|Anvil|Nail,fewshot,Anvil
+Axe|Cobra|Grinding disk,fewshot,Cobra
+Shovel|Axe|Vacuum,fewshot,Axe
+Gecko|Saw|Shovel,fewshot,Saw
+Knife|Blindworm|Lizard,fewshot,Blindworm
+Oil can|Dinosaur|Shovel,fewshot,Dinosaur
+Knife|Hammer|Snake,fewshot,Hammer
+Grinding disk|Chameleon|Toad,fewshot,Chameleon
+Dinosaur|Caiman|Cobra,fewshot,Caiman
+Vacuum|Lizard|Screwdriver,fewshot,Lizard
+Cobra|Alligator|Nail,fewshot,Alligator
+Tortoise|Crocodile|Knife,fewshot,Crocodile
+Knife|Boa python|Toad,fewshot,Boa python
+Axe|Nail|Spanner,fewshot,Nail
+Toad|Anvil|Lawn Mower,fewshot,Anvil
+Axe|Paint brush|Saw,fewshot,Saw
+Screwdriver|Knife|Turtle,fewshot,Knife
+Crocodile|Screwdriver|Toad,fewshot,Screwdriver
+Nail|Paint brush|Salamander,fewshot,Paint brush
+Saw|Nail|Screwdriver,fewshot,Screwdriver
+Crocodile|Gecko|Nail,fewshot,Gecko
+Shovel|Axe|Knife,fewshot,Axe
+Spanner|Anvil|Salamander,fewshot,Anvil
+Dinosaur|Lawn Mower|Tortoise,fewshot,Tortoise
+Screwdriver|Chameleon|Dinosaur,fewshot,Chameleon
+Tortoise|Anvil|Shovel,fewshot,Anvil
+Vacuum|Cobra|Oil can,fewshot,Cobra
+Axe|Alligator|Blindworm,fewshot,Alligator
+Salamander|Boa python|Chisel,fewshot,Boa python
+Nail|Caiman|Snake,fewshot,Caiman
+Toad|Cobra|Vacuum,fewshot,Cobra
+Hammer|Gecko|Turtle,fewshot,Gecko
+Oil can|Nail|Turtle,fewshot,Nail
+Snake|Blindworm|Cobra,fewshot,Cobra
+Axe|Boa python|Tortoise,fewshot,Boa python
+Lawn Mower|Anvil|Crocodile,fewshot,Anvil
+Turtle|Chisel|Grinding disk,fewshot,Chisel
+Paint brush|Boa python|Screwdriver,fewshot,Boa python
+Paint brush|Lizard|Oil can,fewshot,Lizard
+Gecko|Chameleon|Dinosaur,fewshot,Chameleon
+Saw|Gecko|Toad,fewshot,Gecko
+Paint brush|Grinding disk|Nail,fewshot,Grinding disk
+Alligator|Anvil|Salamander,fewshot,Anvil
+Lawn Mower|Alligator|Tortoise,fewshot,Tortoise
+Dinosaur|Axe|Knife,fewshot,Axe
+Shovel|Cobra|Lawn Mower,fewshot,Cobra
+Shovel|Chisel|Vacuum,fewshot,Chisel
+Toad|Anvil|Turtle,fewshot,Anvil
+Oil can|Spanner|Tortoise,fewshot,Tortoise
+Vacuum|Chisel|Screwdriver,fewshot,Chisel
+Crocodile|Blindworm|Oil can,fewshot,Blindworm
+Lawn Mower|Gecko|Oil can,fewshot,Gecko
+Nail|Dinosaur|Shovel,fewshot,Dinosaur
+Grinding disk|Snake|Spanner,fewshot,Spanner
+Gecko|Alligator|Shovel,fewshot,Shovel
+Vacuum|Cobra|Hammer,fewshot,Cobra
+Hammer|Knife|Snake,fewshot,Knife
+Boa python|Dinosaur|Toad,fewshot,Dinosaur
+Blindworm|Hammer|Lizard,fewshot,Hammer
+Boa python|Caiman|Spanner,fewshot,Caiman
+Dinosaur|Chameleon|Cobra,fewshot,Cobra
+Nail|Dinosaur|Screwdriver,fewshot,Dinosaur
+Crocodile|Chisel|Shovel,fewshot,Chisel
+Chisel|Axe|Lizard,fewshot,Axe
+Screwdriver|Alligator|Caiman,fewshot,Alligator
+Chisel|Anvil|Caiman,fewshot,Anvil
+Alligator|Blindworm|Salamander,fewshot,Salamander
+Salamander|Boa python|Cobra,fewshot,Boa python
+Screwdriver|Caiman|Cobra,fewshot,Caiman
+Turtle|Nail|Spanner,fewshot,Nail
+Spanner|Nail|Screwdriver,fewshot,Screwdriver
+Chameleon|Dinosaur|Hammer,fewshot,Dinosaur
+Tortoise|Dinosaur|Vacuum,fewshot,Dinosaur
+Shovel|Axe|Gecko,fewshot,Axe
+Chisel|Lizard|Snake,fewshot,Lizard
+Shovel|Oil can|Vacuum,fewshot,Oil can
+Boa python|Screwdriver|Shovel,fewshot,Screwdriver
+Chameleon|Hammer|Turtle,fewshot,Hammer
+Grinding disk|Hammer|Snake,fewshot,Hammer
+Alligator|Chisel|Gecko,fewshot,Chisel
+Hammer|Lizard|Oil can,fewshot,Lizard
+Paint brush|Axe|Lawn Mower,fewshot,Axe
+Chisel|Gecko|Lizard,fewshot,Gecko
+Oil can|Alligator|Vacuum,fewshot,Alligator
+Axe|Boa python|Gecko,fewshot,Boa python
+Snake|Alligator|Anvil,fewshot,Anvil
+Paint brush|Caiman|Dinosaur,fewshot,Caiman
+Screwdriver|Nail|Turtle,fewshot,Nail
+Caiman|Chisel|Spanner,fewshot,Chisel
+Alligator|Hammer|Snake,fewshot,Hammer
+Screwdriver|Cobra|Lawn Mower,fewshot,Cobra
+Gecko|Salamander|Screwdriver,fewshot,Salamander
+Salamander|Crocodile|Dinosaur,fewshot,Crocodile
+Chisel|Axe|Snake,fewshot,Axe
+Saw|Alligator|Oil can,fewshot,Alligator
+Shovel|Lizard|Salamander,fewshot,Lizard
+Boa python|Blindworm|Screwdriver,fewshot,Screwdriver
+Chameleon|Anvil|Caiman,fewshot,Anvil
+Salamander|Anvil|Cobra,fewshot,Anvil
+Spanner|Blindworm|Lawn Mower,fewshot,Blindworm
+Grinding disk|Crocodile|Screwdriver,fewshot,Crocodile
+Shovel|Boa python|Nail,fewshot,Boa python
+Grinding disk|Anvil|Toad,fewshot,Anvil
+Anvil|Saw|Tortoise,fewshot,Saw
+Lawn Mower|Knife|Shovel,fewshot,Knife
+Chameleon|Knife|Vacuum,fewshot,Knife
+Caiman|Lawn Mower|Spanner,fewshot,Lawn Mower
+Lawn Mower|Axe|Gecko,fewshot,Axe
+Toad|Caiman|Lizard,fewshot,Caiman
+Toad|Boa python|Oil can,fewshot,Boa python
+Alligator|Chameleon|Vacuum,fewshot,Chameleon
+Paint brush|Caiman|Screwdriver,fewshot,Caiman
+Nail|Chisel|Spanner,fewshot,Chisel
+Lizard|Chisel|Cobra,fewshot,Chisel
+Turtle|Paint brush|Toad,fewshot,Paint brush
+Screwdriver|Saw|Vacuum,fewshot,Saw
+Spanner|Cobra|Tortoise,fewshot,Cobra
+Spanner|Lawn Mower|Oil can,fewshot,Lawn Mower
+Vacuum|Boa python|Dinosaur,fewshot,Boa python
+Anvil|Boa python|Nail,fewshot,Boa python
+Shovel|Crocodile|Dinosaur,fewshot,Crocodile
+Chameleon|Grinding disk|Screwdriver,fewshot,Grinding disk
+Gecko|Anvil|Turtle,fewshot,Anvil
+Lizard|Caiman|Tortoise,fewshot,Caiman
+Chisel|Lawn Mower|Nail,fewshot,Lawn Mower
+Vacuum|Gecko|Lizard,fewshot,Gecko
+Salamander|Dinosaur|Tortoise,fewshot,Dinosaur
+Turtle|Caiman|Lawn Mower,fewshot,Caiman
+Paint brush|Crocodile|Gecko,fewshot,Crocodile
+Lawn Mower|Caiman|Shovel,fewshot,Caiman
+Crocodile|Gecko|Grinding disk,fewshot,Grinding disk
+Hammer|Lawn Mower|Tortoise,fewshot,Lawn Mower
+Saw|Lawn Mower|Spanner,fewshot,Lawn Mower
+Crocodile|Alligator|Saw,fewshot,Saw
+Knife|Cobra|Screwdriver,fewshot,Cobra
+Shovel|Axe|Saw,fewshot,Axe
+Tortoise|Axe|Grinding disk,fewshot,Axe
+Anvil|Cobra|Salamander,fewshot,Cobra
+Turtle|Axe|Saw,fewshot,Axe
+Alligator|Chameleon|Crocodile,fewshot,Chameleon
+Caiman|Saw|Spanner,fewshot,Saw
+Alligator|Crocodile|Turtle,fewshot,Crocodile
+Caiman|Boa python|Vacuum,fewshot,Boa python
+Cobra|Blindworm|Toad,fewshot,Blindworm
+Dinosaur|Spanner|Toad,fewshot,Spanner
+Crocodile|Oil can|Shovel,fewshot,Shovel
+Blindworm|Alligator|Paint brush,fewshot,Alligator
+Paint brush|Knife|Lizard,fewshot,Knife
+Lizard|Grinding disk|Hammer,fewshot,Grinding disk
+Axe|Chisel|Screwdriver,fewshot,Chisel
+Oil can|Boa python|Gecko,fewshot,Boa python
+Knife|Saw|Snake,fewshot,Saw
+Alligator|Blindworm|Caiman,fewshot,Caiman
+Spanner|Boa python|Gecko,fewshot,Boa python
+Cobra|Gecko|Screwdriver,fewshot,Gecko
+Chisel|Axe|Caiman,fewshot,Axe
+Snake|Paint brush|Shovel,fewshot,Shovel
+Shovel|Anvil|Snake,fewshot,Anvil
+Cobra|Blindworm|Salamander,fewshot,Blindworm
+Tortoise|Crocodile|Hammer,fewshot,Crocodile
+Anvil|Blindworm|Nail,fewshot,Nail
+Gecko|Screwdriver|Spanner,fewshot,Screwdriver
+Turtle|Cobra|Oil can,fewshot,Cobra
+Salamander|Saw|Spanner,fewshot,Saw
+Snake|Chameleon|Lawn Mower,fewshot,Chameleon
+Paint brush|Knife|Lawn Mower,fewshot,Knife
+Lawn Mower|Cobra|Knife,fewshot,Cobra
+Blindworm|Gecko|Saw,fewshot,Gecko
+Caiman|Alligator|Vacuum,fewshot,Alligator
+Paint brush|Alligator|Spanner,fewshot,Alligator
+Tortoise|Nail|Vacuum,fewshot,Nail
+Grinding disk|Axe|Toad,fewshot,Axe
+Toad|Lizard|Oil can,fewshot,Lizard
+Chisel|Chameleon|Lizard,fewshot,Chameleon
+Vacuum|Grinding disk|Shovel,fewshot,Grinding disk
+Paint brush|Axe|Saw,fewshot,Axe
+Gecko|Lizard|Toad,fewshot,Lizard
+Axe|Boa python|Crocodile,fewshot,Boa python
+Paint brush|Blindworm|Oil can,fewshot,Blindworm
+Gecko|Paint brush|Screwdriver,fewshot,Screwdriver
+Anvil|Salamander|Saw,fewshot,Salamander
+Knife|Cobra|Toad,fewshot,Cobra
+Axe|Knife|Paint brush,fewshot,Knife
+Blindworm|Axe|Gecko,fewshot,Axe
+Knife|Blindworm|Oil can,fewshot,Blindworm
+Saw|Boa python|Cobra,fewshot,Boa python
+Turtle|Dinosaur|Shovel,fewshot,Dinosaur
+Anvil|Dinosaur|Salamander,fewshot,Dinosaur
+Boa python|Crocodile|Grinding disk,fewshot,Crocodile
+Screwdriver|Chisel|Shovel,fewshot,Chisel
+Toad|Boa python|Chisel,fewshot,Boa python
+Turtle|Blindworm|Grinding disk,fewshot,Blindworm
+Caiman|Axe|Screwdriver,fewshot,Axe
+Anvil|Lizard|Nail,fewshot,Lizard
+Crocodile|Blindworm|Chisel,fewshot,Chisel
+Lizard|Saw|Shovel,fewshot,Saw
+Axe|Alligator|Dinosaur,fewshot,Alligator
+Blindworm|Anvil|Crocodile,fewshot,Anvil
+Grinding disk|Alligator|Toad,fewshot,Alligator
+Anvil|Oil can|Snake,fewshot,Oil can
+Lizard|Hammer|Lawn Mower,fewshot,Hammer
+Knife|Salamander|Saw,fewshot,Salamander
+Hammer|Chisel|Lizard,fewshot,Chisel
+Salamander|Knife|Turtle,fewshot,Knife
+Snake|Crocodile|Screwdriver,fewshot,Crocodile
+Snake|Dinosaur|Nail,fewshot,Dinosaur
+Snake|Gecko|Screwdriver,fewshot,Gecko
+Gecko|Shovel|Snake,fewshot,Shovel
+Lawn Mower|Dinosaur|Paint brush,fewshot,Dinosaur
+Dinosaur|Blindworm|Spanner,fewshot,Blindworm
+Lawn Mower|Gecko|Vacuum,fewshot,Gecko
+Alligator|Grinding disk|Lawn Mower,fewshot,Grinding disk
+Screwdriver|Chisel|Hammer,fewshot,Chisel
+Saw|Nail|Vacuum,fewshot,Nail
+Alligator|Anvil|Gecko,fewshot,Anvil
+Oil can|Lawn Mower|Spanner,fewshot,Lawn Mower
+Crocodile|Axe|Lizard,fewshot,Axe
+Toad|Saw|Screwdriver,fewshot,Saw
+Axe|Nail|Snake,fewshot,Nail
+Lawn Mower|Axe|Spanner,fewshot,Axe
+Saw|Lizard|Screwdriver,fewshot,Lizard
+Knife|Caiman|Grinding disk,fewshot,Caiman
+Dinosaur|Nail|Shovel,fewshot,Nail
+Screwdriver|Alligator|Lawn Mower,fewshot,Lawn Mower
+Anvil|Chisel|Spanner,fewshot,Chisel
+Anvil|Toad|Turtle,fewshot,Toad
+Hammer|Blindworm|Chisel,fewshot,Chisel
+Shovel|Crocodile|Grinding disk,fewshot,Crocodile
+Toad|Hammer|Vacuum,fewshot,Hammer
+Oil can|Lizard|Toad,fewshot,Lizard
+Grinding disk|Crocodile|Dinosaur,fewshot,Crocodile
+Grinding disk|Toad|Vacuum,fewshot,Toad
+Chameleon|Paint brush|Salamander,fewshot,Paint brush
+Turtle|Paint brush|Salamander,fewshot,Paint brush
+Hammer|Salamander|Turtle,fewshot,Salamander
+Paint brush|Snake|Turtle,fewshot,Turtle
+Blindworm|Lizard|Screwdriver,fewshot,Lizard
+Knife|Crocodile|Shovel,fewshot,Crocodile
+Cobra|Screwdriver|Toad,fewshot,Screwdriver
+Grinding disk|Lawn Mower|Saw,fewshot,Saw
+Tortoise|Lawn Mower|Salamander,fewshot,Lawn Mower
+Spanner|Hammer|Paint brush,fewshot,Paint brush
+Grinding disk|Caiman|Cobra,fewshot,Caiman
+Alligator|Caiman|Oil can,fewshot,Caiman
+Salamander|Lawn Mower|Nail,fewshot,Nail
+Gecko|Cobra|Lawn Mower,fewshot,Cobra
+Tortoise|Boa python|Toad,fewshot,Boa python
+Vacuum|Salamander|Screwdriver,fewshot,Salamander
+Axe|Blindworm|Cobra,fewshot,Blindworm
+Caiman|Chameleon|Oil can,fewshot,Chameleon
+Shovel|Axe|Grinding disk,fewshot,Axe
+Anvil|Boa python|Knife,fewshot,Boa python
+Gecko|Alligator|Caiman,fewshot,Alligator
+Crocodile|Axe|Salamander,fewshot,Axe
+Vacuum|Anvil|Grinding disk,fewshot,Anvil
+Saw|Dinosaur|Toad,fewshot,Dinosaur
+Alligator|Knife|Turtle,fewshot,Knife
+Snake|Crocodile|Gecko,fewshot,Crocodile
+Grinding disk|Alligator|Tortoise,fewshot,Tortoise
+Saw|Snake|Vacuum,fewshot,Vacuum
+Lawn Mower|Boa python|Shovel,fewshot,Boa python
+Toad|Crocodile|Spanner,fewshot,Crocodile
+Saw|Spanner|Vacuum,fewshot,Spanner
+Spanner|Gecko|Snake,fewshot,Gecko
+Lawn Mower|Knife|Vacuum,fewshot,Knife
+Spanner|Blindworm|Crocodile,fewshot,Crocodile
+Oil can|Anvil|Caiman,fewshot,Anvil
+Grinding disk|Nail|Saw,fewshot,Saw
+Alligator|Caiman|Tortoise,fewshot,Caiman
+Toad|Knife|Paint brush,fewshot,Knife
+Caiman|Axe|Saw,fewshot,Axe
+Gecko|Oil can|Toad,fewshot,Oil can
+Chisel|Hammer|Spanner,fewshot,Hammer
+Knife|Axe|Vacuum,fewshot,Axe
+Hammer|Tortoise|Turtle,fewshot,Tortoise
+Spanner|Boa python|Screwdriver,fewshot,Boa python
+Salamander|Axe|Tortoise,fewshot,Axe
+Gecko|Chisel|Saw,fewshot,Chisel
+Lizard|Hammer|Screwdriver,fewshot,Screwdriver
+Blindworm|Paint brush|Spanner,fewshot,Paint brush
+Vacuum|Oil can|Paint brush,fewshot,Oil can
+Tortoise|Axe|Toad,fewshot,Axe
+Crocodile|Anvil|Hammer,fewshot,Anvil
+Lawn Mower|Chisel|Grinding disk,fewshot,Grinding disk
+Toad|Lizard|Snake,fewshot,Lizard
+Hammer|Boa python|Vacuum,fewshot,Boa python
+Grinding disk|Anvil|Snake,fewshot,Anvil
+Turtle|Boa python|Dinosaur,fewshot,Boa python
+Shovel|Grinding disk|Saw,fewshot,Grinding disk
+Nail|Gecko|Oil can,fewshot,Gecko
+Alligator|Oil can|Turtle,fewshot,Oil can
+Vacuum|Dinosaur|Shovel,fewshot,Dinosaur
+Crocodile|Boa python|Salamander,fewshot,Boa python
+Lawn Mower|Caiman|Crocodile,fewshot,Caiman
+Cobra|Crocodile|Dinosaur,fewshot,Crocodile
+Chameleon|Chisel|Grinding disk,fewshot,Grinding disk
+Tortoise|Chameleon|Gecko,fewshot,Chameleon
+Blindworm|Chisel|Paint brush,fewshot,Chisel
+Knife|Gecko|Shovel,fewshot,Gecko
+Lawn Mower|Alligator|Hammer,fewshot,Alligator
+Boa python|Chameleon|Paint brush,fewshot,Chameleon
+Chisel|Dinosaur|Gecko,fewshot,Dinosaur
+Toad|Gecko|Lawn Mower,fewshot,Gecko
+Snake|Axe|Toad,fewshot,Axe
+Axe|Chameleon|Spanner,fewshot,Chameleon
+Spanner|Salamander|Saw,fewshot,Salamander
+Blindworm|Anvil|Snake,fewshot,Anvil
+Tortoise|Gecko|Screwdriver,fewshot,Gecko
+Lizard|Gecko|Tortoise,fewshot,Gecko
+Crocodile|Chisel|Tortoise,fewshot,Chisel
+Axe|Knife|Shovel,fewshot,Knife
+Screwdriver|Crocodile|Hammer,fewshot,Crocodile
+Nail|Cobra|Snake,fewshot,Cobra
+Salamander|Alligator|Lawn Mower,fewshot,Alligator
+Dinosaur|Crocodile|Lizard,fewshot,Crocodile
+Boa python|Crocodile|Turtle,fewshot,Crocodile
+Alligator|Hammer|Shovel,fewshot,Hammer
+Saw|Oil can|Turtle,fewshot,Oil can
+Boa python|Anvil|Screwdriver,fewshot,Screwdriver
+Chisel|Screwdriver|Spanner,fewshot,Screwdriver
+Screwdriver|Toad|Vacuum,fewshot,Toad
+Spanner|Axe|Hammer,fewshot,Axe
+Spanner|Chisel|Nail,fewshot,Chisel
+Blindworm|Axe|Crocodile,fewshot,Axe
+Lawn Mower|Blindworm|Toad,fewshot,Blindworm
+Toad|Anvil|Boa python,fewshot,Anvil
+Dinosaur|Knife|Salamander,fewshot,Knife
+Blindworm|Alligator|Grinding disk,fewshot,Grinding disk
+Hammer|Axe|Grinding disk,fewshot,Axe
+Snake|Caiman|Chisel,fewshot,Caiman
+Boa python|Dinosaur|Turtle,fewshot,Dinosaur
+Turtle|Cobra|Snake,fewshot,Cobra
+Crocodile|Chameleon|Vacuum,fewshot,Chameleon
+Crocodile|Knife|Oil can,fewshot,Knife
+Oil can|Anvil|Saw,fewshot,Anvil
+Caiman|Axe|Snake,fewshot,Axe
+Paint brush|Chisel|Snake,fewshot,Chisel
+Toad|Dinosaur|Vacuum,fewshot,Dinosaur
+Hammer|Anvil|Caiman,fewshot,Anvil
+Gecko|Oil can|Tortoise,fewshot,Oil can
+Cobra|Anvil|Shovel,fewshot,Anvil
+Nail|Chisel|Salamander,fewshot,Chisel
+Axe|Blindworm|Screwdriver,fewshot,Blindworm
+Nail|Cobra|Turtle,fewshot,Cobra
+Turtle|Caiman|Vacuum,fewshot,Caiman
+Nail|Crocodile|Paint brush,fewshot,Crocodile
+Dinosaur|Blindworm|Snake,fewshot,Blindworm
+Caiman|Lawn Mower|Lizard,fewshot,Lawn Mower
+Turtle|Grinding disk|Oil can,fewshot,Grinding disk
+Caiman|Hammer|Saw,fewshot,Saw
+Screwdriver|Lizard|Salamander,fewshot,Lizard
+Gecko|Crocodile|Grinding disk,fewshot,Crocodile
+Screwdriver|Spanner|Toad,fewshot,Spanner
+Spanner|Hammer|Oil can,fewshot,Hammer
+Spanner|Gecko|Paint brush,fewshot,Gecko
+Salamander|Dinosaur|Saw,fewshot,Dinosaur
+Screwdriver|Boa python|Vacuum,fewshot,Boa python
+Tortoise|Lizard|Snake,fewshot,Lizard
+Cobra|Blindworm|Snake,fewshot,Blindworm
+Paint brush|Nail|Spanner,fewshot,Nail
+Lizard|Boa python|Oil can,fewshot,Boa python
+Blindworm|Salamander|Spanner,fewshot,Salamander
+Dinosaur|Chisel|Screwdriver,fewshot,Chisel
+Axe|Alligator|Caiman,fewshot,Alligator
+Chameleon|Cobra|Nail,fewshot,Cobra
+Lawn Mower|Paint brush|Spanner,fewshot,Paint brush
+Saw|Knife|Shovel,fewshot,Knife
+Boa python|Alligator|Chameleon,fewshot,Chameleon
+Caiman|Nail|Spanner,fewshot,Nail
+Salamander|Paint brush|Saw,fewshot,Paint brush
+Crocodile|Alligator|Lizard,fewshot,Alligator
+Tortoise|Caiman|Chameleon,fewshot,Caiman
+Cobra|Shovel|Turtle,fewshot,Shovel
+Boa python|Crocodile|Lizard,fewshot,Crocodile
+Axe|Cobra|Knife,fewshot,Cobra
+Axe|Chameleon|Lawn Mower,fewshot,Chameleon
+Lizard|Screwdriver|Snake,fewshot,Screwdriver
+Lizard|Anvil|Dinosaur,fewshot,Anvil
+Toad|Chisel|Salamander,fewshot,Chisel
+Salamander|Axe|Snake,fewshot,Axe
+Vacuum|Lizard|Tortoise,fewshot,Lizard
+Boa python|Alligator|Chisel,fewshot,Chisel
+Caiman|Boa python|Lizard,fewshot,Boa python
+Nail|Anvil|Saw,fewshot,Anvil
+Vacuum|Boa python|Gecko,fewshot,Boa python
+Anvil|Spanner|Toad,fewshot,Spanner
+Cobra|Shovel|Vacuum,fewshot,Shovel
+Nail|Alligator|Lizard,fewshot,Alligator
+Grinding disk|Gecko|Tortoise,fewshot,Gecko
+Gecko|Caiman|Turtle,fewshot,Caiman
+Nail|Grinding disk|Lawn Mower,fewshot,Grinding disk
+Snake|Lawn Mower|Turtle,fewshot,Lawn Mower
+Saw|Lawn Mower|Lizard,fewshot,Lawn Mower
+Nail|Caiman|Knife,fewshot,Caiman
+Alligator|Lizard|Toad,fewshot,Lizard
+Snake|Crocodile|Hammer,fewshot,Crocodile
+Cobra|Lawn Mower|Toad,fewshot,Lawn Mower
+Chameleon|Dinosaur|Saw,fewshot,Dinosaur
+Cobra|Caiman|Screwdriver,fewshot,Caiman
+Axe|Paint brush|Snake,fewshot,Paint brush
+Anvil|Caiman|Vacuum,fewshot,Caiman
+Vacuum|Paint brush|Spanner,fewshot,Paint brush
+Vacuum|Lizard|Shovel,fewshot,Lizard
+Snake|Crocodile|Paint brush,fewshot,Crocodile
+Dinosaur|Snake|Toad,fewshot,Toad
+Grinding disk|Screwdriver|Spanner,fewshot,Screwdriver
+Dinosaur|Anvil|Knife,fewshot,Anvil
+Saw|Anvil|Spanner,fewshot,Anvil
+Snake|Anvil|Turtle,fewshot,Anvil
+Toad|Oil can|Snake,fewshot,Oil can
+Toad|Hammer|Screwdriver,fewshot,Hammer
+Turtle|Lawn Mower|Nail,fewshot,Lawn Mower
+Vacuum|Dinosaur|Knife,fewshot,Dinosaur
+Shovel|Boa python|Chameleon,fewshot,Boa python
+Cobra|Chameleon|Hammer,fewshot,Chameleon
+Lawn Mower|Saw|Toad,fewshot,Saw
+Dinosaur|Anvil|Screwdriver,fewshot,Anvil
+Paint brush|Dinosaur|Toad,fewshot,Dinosaur
+Vacuum|Anvil|Gecko,fewshot,Anvil
+Shovel|Alligator|Salamander,fewshot,Alligator
+Lawn Mower|Salamander|Shovel,fewshot,Salamander
+Vacuum|Paint brush|Toad,fewshot,Paint brush
+Knife|Chameleon|Vacuum,fewshot,Chameleon
+Lizard|Hammer|Turtle,fewshot,Hammer
+Hammer|Anvil|Boa python,fewshot,Anvil
+Screwdriver|Gecko|Snake,fewshot,Gecko
+Crocodile|Axe|Chisel,fewshot,Axe
+Grinding disk|Lizard|Shovel,fewshot,Lizard
+Saw|Grinding disk|Shovel,fewshot,Grinding disk
+Lawn Mower|Oil can|Tortoise,fewshot,Oil can
+Anvil|Grinding disk|Turtle,fewshot,Grinding disk
+Alligator|Saw|Screwdriver,fewshot,Saw
+Paint brush|Crocodile|Shovel,fewshot,Crocodile
+Oil can|Knife|Paint brush,fewshot,Knife
+Chameleon|Oil can|Paint brush,fewshot,Oil can
+Anvil|Crocodile|Nail,fewshot,Crocodile
+Oil can|Anvil|Lizard,fewshot,Anvil
+Crocodile|Lawn Mower|Screwdriver,fewshot,Screwdriver
+Anvil|Chameleon|Toad,fewshot,Chameleon
+Tortoise|Gecko|Lizard,fewshot,Gecko
+Shovel|Paint brush|Tortoise,fewshot,Paint brush
+Toad|Snake|Vacuum,fewshot,Snake
+Blindworm|Anvil|Chisel,fewshot,Anvil
+Toad|Gecko|Lizard,fewshot,Gecko
+Toad|Alligator|Screwdriver,fewshot,Alligator
+Boa python|Blindworm|Snake,fewshot,Blindworm
+Saw|Oil can|Snake,fewshot,Oil can
+Toad|Anvil|Dinosaur,fewshot,Anvil
+Chameleon|Chisel|Spanner,fewshot,Chisel
+Saw|Grinding disk|Snake,fewshot,Grinding disk
+Cobra|Gecko|Spanner,fewshot,Gecko
+Snake|Crocodile|Toad,fewshot,Crocodile
+Knife|Toad|Turtle,fewshot,Toad
+Snake|Gecko|Nail,fewshot,Gecko
+Chameleon|Crocodile|Dinosaur,fewshot,Crocodile
+Anvil|Screwdriver|Vacuum,fewshot,Screwdriver
+Salamander|Nail|Screwdriver,fewshot,Nail
+Oil can|Salamander|Tortoise,fewshot,Salamander
+Crocodile|Lawn Mower|Spanner,fewshot,Lawn Mower
+Caiman|Hammer|Toad,fewshot,Hammer
+Oil can|Lawn Mower|Paint brush,fewshot,Lawn Mower
+Spanner|Paint brush|Toad,fewshot,Paint brush
+Axe|Salamander|Spanner,fewshot,Salamander
+Toad|Anvil|Salamander,fewshot,Anvil
+Crocodile|Oil can|Snake,fewshot,Oil can
+Paint brush|Tortoise|Turtle,fewshot,Turtle
+Boa python|Alligator|Shovel,fewshot,Shovel
+Axe|Chameleon|Grinding disk,fewshot,Chameleon
+Chameleon|Spanner|Toad,fewshot,Spanner
+Vacuum|Crocodile|Salamander,fewshot,Crocodile
+Chameleon|Salamander|Vacuum,fewshot,Salamander
+Vacuum|Saw|Screwdriver,fewshot,Saw
+Toad|Caiman|Hammer,fewshot,Caiman
+Crocodile|Cobra|Paint brush,fewshot,Cobra
+Blindworm|Anvil|Spanner,fewshot,Anvil
+Oil can|Hammer|Lawn Mower,fewshot,Hammer
+Anvil|Gecko|Spanner,fewshot,Gecko
+Boa python|Knife|Snake,fewshot,Knife
+Blindworm|Lizard|Spanner,fewshot,Lizard
+Axe|Snake|Tortoise,fewshot,Tortoise
+Axe|Cobra|Lizard,fewshot,Cobra
+Boa python|Anvil|Blindworm,fewshot,Anvil
+Paint brush|Caiman|Gecko,fewshot,Caiman
+Nail|Lawn Mower|Vacuum,fewshot,Vacuum
+Toad|Boa python|Lawn Mower,fewshot,Boa python
+Tortoise|Blindworm|Screwdriver,fewshot,Screwdriver
+Snake|Axe|Oil can,fewshot,Axe
+Shovel|Crocodile|Nail,fewshot,Crocodile
+Cobra|Chisel|Turtle,fewshot,Chisel
+Boa python|Caiman|Turtle,fewshot,Caiman
+Cobra|Anvil|Hammer,fewshot,Anvil
+Boa python|Cobra|Vacuum,fewshot,Cobra
+Spanner|Nail|Salamander,fewshot,Nail
+Shovel|Blindworm|Tortoise,fewshot,Tortoise
+Lawn Mower|Alligator|Shovel,fewshot,Alligator
+Chameleon|Grinding disk|Shovel,fewshot,Grinding disk
+Saw|Chameleon|Lawn Mower,fewshot,Chameleon
+Gecko|Anvil|Grinding disk,fewshot,Anvil
+Grinding disk|Lizard|Nail,fewshot,Lizard
+Chisel|Grinding disk|Lawn Mower,fewshot,Grinding disk
+Salamander|Blindworm|Grinding disk,fewshot,Blindworm
+Vacuum|Crocodile|Toad,fewshot,Crocodile
+Cobra|Chameleon|Turtle,fewshot,Chameleon
+Nail|Dinosaur|Grinding disk,fewshot,Dinosaur
+Cobra|Anvil|Chameleon,fewshot,Anvil
+Vacuum|Lizard|Saw,fewshot,Lizard
+Nail|Turtle|Vacuum,fewshot,Turtle
+Oil can|Nail|Toad,fewshot,Nail
+Shovel|Cobra|Saw,fewshot,Cobra
+Screwdriver|Alligator|Saw,fewshot,Saw
+Grinding disk|Anvil|Gecko,fewshot,Anvil
+Oil can|Alligator|Chisel,fewshot,Alligator
+Toad|Salamander|Turtle,fewshot,Salamander
+Hammer|Salamander|Snake,fewshot,Salamander
+Alligator|Axe|Screwdriver,fewshot,Axe
+Dinosaur|Crocodile|Salamander,fewshot,Crocodile
+Saw|Blindworm|Nail,fewshot,Nail
+Dinosaur|Boa python|Saw,fewshot,Saw
+Boa python|Blindworm|Nail,fewshot,Nail
+Turtle|Chameleon|Vacuum,fewshot,Chameleon
+Lizard|Chisel|Lawn Mower,fewshot,Chisel
+Lizard|Crocodile|Vacuum,fewshot,Crocodile
+Grinding disk|Axe|Chisel,fewshot,Axe
+Nail|Chameleon|Paint brush,fewshot,Chameleon
+Blindworm|Anvil|Shovel,fewshot,Anvil
+Grinding disk|Alligator|Axe,fewshot,Axe
+Tortoise|Oil can|Turtle,fewshot,Oil can
+Hammer|Paint brush|Tortoise,fewshot,Paint brush
+Turtle|Oil can|Toad,fewshot,Oil can
+Boa python|Dinosaur|Paint brush,fewshot,Dinosaur
+Axe|Hammer|Knife,fewshot,Knife
+Lawn Mower|Axe|Nail,fewshot,Axe
+Spanner|Crocodile|Grinding disk,fewshot,Crocodile
+Dinosaur|Nail|Turtle,fewshot,Nail
+Chisel|Cobra|Screwdriver,fewshot,Cobra
+Crocodile|Knife|Nail,fewshot,Knife
+Anvil|Lizard|Paint brush,fewshot,Lizard
+Hammer|Nail|Toad,fewshot,Nail
+Dinosaur|Blindworm|Vacuum,fewshot,Blindworm
+Nail|Chisel|Oil can,fewshot,Chisel
+Lizard|Anvil|Boa python,fewshot,Anvil
+Salamander|Screwdriver|Turtle,fewshot,Screwdriver
+Axe|Gecko|Lizard,fewshot,Gecko
+Dinosaur|Gecko|Screwdriver,fewshot,Gecko
+Hammer|Nail|Oil can,fewshot,Nail
+Lizard|Alligator|Salamander,fewshot,Salamander
+Dinosaur|Alligator|Salamander,fewshot,Alligator
+Alligator|Chameleon|Toad,fewshot,Chameleon
+Gecko|Lizard|Oil can,fewshot,Lizard
+Crocodile|Axe|Grinding disk,fewshot,Axe
+Grinding disk|Blindworm|Saw,fewshot,Saw
+Crocodile|Lawn Mower|Tortoise,fewshot,Tortoise
+Alligator|Knife|Saw,fewshot,Knife
+Cobra|Boa python|Screwdriver,fewshot,Boa python
+Chisel|Alligator|Shovel,fewshot,Alligator
+Chisel|Grinding disk|Vacuum,fewshot,Grinding disk
+Alligator|Chameleon|Nail,fewshot,Chameleon
+Boa python|Paint brush|Spanner,fewshot,Paint brush
+Dinosaur|Gecko|Grinding disk,fewshot,Grinding disk
+Dinosaur|Knife|Lizard,fewshot,Knife
+Vacuum|Nail|Tortoise,fewshot,Nail
+Boa python|Crocodile|Shovel,fewshot,Crocodile
+Knife|Axe|Lawn Mower,fewshot,Axe
+Blindworm|Chameleon|Gecko,fewshot,Chameleon
+Shovel|Gecko|Nail,fewshot,Gecko
+Screwdriver|Boa python|Lizard,fewshot,Boa python
+Lizard|Boa python|Chisel,fewshot,Boa python
+Hammer|Alligator|Vacuum,fewshot,Alligator
+Boa python|Axe|Screwdriver,fewshot,Screwdriver
+Lizard|Alligator|Chameleon,fewshot,Chameleon
+Lizard|Crocodile|Oil can,fewshot,Crocodile
+Nail|Anvil|Turtle,fewshot,Anvil
+Vacuum|Saw|Snake,fewshot,Saw
+Shovel|Nail|Tortoise,fewshot,Nail
+Anvil|Saw|Spanner,fewshot,Saw
+Tortoise|Salamander|Snake,fewshot,Salamander
+Hammer|Chisel|Gecko,fewshot,Chisel
+Alligator|Axe|Lawn Mower,fewshot,Axe
+Salamander|Boa python|Crocodile,fewshot,Boa python
+Snake|Blindworm|Spanner,fewshot,Blindworm
+Turtle|Gecko|Oil can,fewshot,Gecko
+Nail|Crocodile|Screwdriver,fewshot,Crocodile
+Saw|Nail|Turtle,fewshot,Nail
+Tortoise|Oil can|Paint brush,fewshot,Oil can
+Salamander|Gecko|Spanner,fewshot,Gecko
+Axe|Alligator|Boa python,fewshot,Alligator
+Snake|Caiman|Oil can,fewshot,Caiman
+Nail|Gecko|Spanner,fewshot,Gecko
+Boa python|Nail|Toad,fewshot,Nail
+Salamander|Axe|Paint brush,fewshot,Axe
+Shovel|Alligator|Tortoise,fewshot,Alligator
+Chameleon|Caiman|Vacuum,fewshot,Caiman
+Lawn Mower|Dinosaur|Toad,fewshot,Dinosaur
+Blindworm|Anvil|Grinding disk,fewshot,Anvil
+Dinosaur|Grinding disk|Knife,fewshot,Grinding disk
+Tortoise|Shovel|Toad,fewshot,Shovel
+Caiman|Grinding disk|Snake,fewshot,Grinding disk
+Dinosaur|Lizard|Nail,fewshot,Lizard
+Vacuum|Salamander|Spanner,fewshot,Salamander
+Grinding disk|Boa python|Gecko,fewshot,Boa python
+Snake|Chisel|Cobra,fewshot,Chisel
+Saw|Chisel|Spanner,fewshot,Chisel
+Crocodile|Nail|Paint brush,fewshot,Nail
+Blindworm|Oil can|Paint brush,fewshot,Oil can
+Nail|Chameleon|Turtle,fewshot,Chameleon
+Nail|Blindworm|Crocodile,fewshot,Blindworm
+Hammer|Cobra|Toad,fewshot,Cobra
+Cobra|Gecko|Turtle,fewshot,Gecko
+Tortoise|Axe|Blindworm,fewshot,Axe
+Axe|Hammer|Vacuum,fewshot,Hammer
+Snake|Oil can|Salamander,fewshot,Oil can
+Nail|Chisel|Vacuum,fewshot,Chisel
+Vacuum|Axe|Crocodile,fewshot,Axe
+Turtle|Gecko|Lizard,fewshot,Gecko
+Tortoise|Crocodile|Salamander,fewshot,Crocodile
+Paint brush|Grinding disk|Shovel,fewshot,Grinding disk
+Hammer|Axe|Spanner,fewshot,Axe
+Hammer|Crocodile|Paint brush,fewshot,Crocodile
+Toad|Knife|Shovel,fewshot,Knife
+Shovel|Axe|Dinosaur,fewshot,Axe
+Anvil|Grinding disk|Salamander,fewshot,Grinding disk
+Alligator|Hammer|Spanner,fewshot,Hammer
+Turtle|Nail|Paint brush,fewshot,Nail
+Paint brush|Chameleon|Crocodile,fewshot,Chameleon
+Spanner|Nail|Saw,fewshot,Saw
+Dinosaur|Cobra|Turtle,fewshot,Cobra
+Nail|Dinosaur|Spanner,fewshot,Dinosaur
+Dinosaur|Cobra|Snake,fewshot,Cobra
+Chameleon|Alligator|Axe,fewshot,Axe
+Turtle|Paint brush|Saw,fewshot,Saw
+Lawn Mower|Nail|Shovel,fewshot,Nail
+Gecko|Spanner|Vacuum,fewshot,Spanner
+Axe|Cobra|Nail,fewshot,Cobra
+Shovel|Alligator|Turtle,fewshot,Alligator
+Knife|Lizard|Salamander,fewshot,Lizard
+Shovel|Anvil|Hammer,fewshot,Anvil
+Oil can|Dinosaur|Paint brush,fewshot,Dinosaur
+Saw|Screwdriver|Tortoise,fewshot,Screwdriver
+Lawn Mower|Alligator|Toad,fewshot,Alligator
+Paint brush|Axe|Gecko,fewshot,Axe
+Alligator|Gecko|Tortoise,fewshot,Gecko
+Screwdriver|Paint brush|Turtle,fewshot,Paint brush
+Gecko|Shovel|Turtle,fewshot,Shovel
+Chameleon|Axe|Knife,fewshot,Axe
+Salamander|Cobra|Crocodile,fewshot,Cobra
+Dinosaur|Lizard|Screwdriver,fewshot,Lizard
+Chisel|Anvil|Dinosaur,fewshot,Anvil
+Vacuum|Dinosaur|Nail,fewshot,Dinosaur
+Cobra|Blindworm|Dinosaur,fewshot,Dinosaur
+Salamander|Chameleon|Turtle,fewshot,Chameleon
+Snake|Tortoise|Turtle,fewshot,Turtle
+Caiman|Chameleon|Gecko,fewshot,Chameleon
+Toad|Boa python|Dinosaur,fewshot,Boa python
+Chisel|Shovel|Snake,fewshot,Shovel
+Blindworm|Knife|Tortoise,fewshot,Knife
+Oil can|Saw|Tortoise,fewshot,Saw
+Hammer|Boa python|Cobra,fewshot,Boa python
+Grinding disk|Toad|Turtle,fewshot,Toad
+Nail|Hammer|Paint brush,fewshot,Hammer
+Hammer|Oil can|Shovel,fewshot,Shovel
+Tortoise|Boa python|Chisel,fewshot,Boa python
+Turtle|Chameleon|Saw,fewshot,Chameleon
+Turtle|Anvil|Axe,fewshot,Anvil
+Blindworm|Oil can|Spanner,fewshot,Oil can
+Saw|Knife|Nail,fewshot,Knife
+Anvil|Chameleon|Lizard,fewshot,Chameleon
+Saw|Anvil|Oil can,fewshot,Anvil
+Screwdriver|Hammer|Snake,fewshot,Hammer
+Dinosaur|Cobra|Oil can,fewshot,Cobra
+Blindworm|Dinosaur|Shovel,fewshot,Dinosaur
+Knife|Grinding disk|Paint brush,fewshot,Grinding disk
+Snake|Caiman|Crocodile,fewshot,Caiman
+Tortoise|Caiman|Turtle,fewshot,Caiman
+Grinding disk|Caiman|Toad,fewshot,Caiman
+Screwdriver|Tortoise|Vacuum,fewshot,Tortoise
+Knife|Lizard|Vacuum,fewshot,Lizard
+Caiman|Crocodile|Dinosaur,fewshot,Crocodile
+Vacuum|Dinosaur|Hammer,fewshot,Dinosaur
+Blindworm|Chisel|Screwdriver,fewshot,Chisel
+Tortoise|Chisel|Knife,fewshot,Chisel
+Dinosaur|Grinding disk|Turtle,fewshot,Grinding disk
+Turtle|Gecko|Toad,fewshot,Gecko
+Nail|Chameleon|Spanner,fewshot,Chameleon
+Axe|Grinding disk|Toad,fewshot,Grinding disk
+Blindworm|Hammer|Toad,fewshot,Hammer
+Salamander|Knife|Saw,fewshot,Knife
+Knife|Cobra|Nail,fewshot,Cobra
+Paint brush|Knife|Vacuum,fewshot,Knife
+Vacuum|Lawn Mower|Shovel,fewshot,Lawn Mower
+Knife|Boa python|Nail,fewshot,Nail
+Lizard|Chameleon|Crocodile,fewshot,Chameleon
+Chameleon|Boa python|Vacuum,fewshot,Boa python
+Lawn Mower|Alligator|Nail,fewshot,Alligator
+Spanner|Axe|Lizard,fewshot,Axe
+Crocodile|Boa python|Paint brush,fewshot,Boa python
+Anvil|Lizard|Tortoise,fewshot,Lizard
+Cobra|Nail|Screwdriver,fewshot,Screwdriver
+Spanner|Screwdriver|Tortoise,fewshot,Screwdriver
+Anvil|Cobra|Knife,fewshot,Cobra
+Screwdriver|Knife|Shovel,fewshot,Knife
+Blindworm|Saw|Turtle,fewshot,Saw
+Vacuum|Alligator|Nail,fewshot,Alligator
+Cobra|Boa python|Tortoise,fewshot,Boa python
+Shovel|Paint brush|Toad,fewshot,Paint brush
+Hammer|Gecko|Vacuum,fewshot,Gecko
+Paint brush|Nail|Tortoise,fewshot,Nail
+Toad|Alligator|Saw,fewshot,Alligator
+Alligator|Crocodile|Snake,fewshot,Crocodile
+Spanner|Lawn Mower|Lizard,fewshot,Lawn Mower
+Nail|Alligator|Anvil,fewshot,Anvil
+Alligator|Chisel|Saw,fewshot,Chisel
+Blindworm|Anvil|Tortoise,fewshot,Anvil
+Gecko|Caiman|Lawn Mower,fewshot,Caiman
+Lawn Mower|Blindworm|Boa python,fewshot,Blindworm
+Anvil|Axe|Shovel,fewshot,Axe
+Crocodile|Axe|Knife,fewshot,Axe
+Nail|Boa python|Saw,fewshot,Saw
+Vacuum|Nail|Turtle,fewshot,Nail
+Vacuum|Alligator|Toad,fewshot,Alligator
+Turtle|Chisel|Dinosaur,fewshot,Chisel
+Turtle|Blindworm|Nail,fewshot,Nail
+Anvil|Caiman|Shovel,fewshot,Caiman
+Salamander|Grinding disk|Turtle,fewshot,Grinding disk
+Tortoise|Lawn Mower|Lizard,fewshot,Lawn Mower
+Hammer|Nail|Saw,fewshot,Saw
+Lizard|Gecko|Nail,fewshot,Gecko
+Lizard|Anvil|Shovel,fewshot,Anvil
+Saw|Paint brush|Toad,fewshot,Paint brush
+Paint brush|Anvil|Axe,fewshot,Axe
+Chisel|Caiman|Screwdriver,fewshot,Caiman
+Salamander|Saw|Snake,fewshot,Saw
+Blindworm|Anvil|Caiman,fewshot,Anvil
+Blindworm|Dinosaur|Salamander,fewshot,Dinosaur
+Boa python|Caiman|Hammer,fewshot,Caiman
+Anvil|Grinding disk|Lizard,fewshot,Grinding disk
+Vacuum|Nail|Salamander,fewshot,Nail
+Shovel|Caiman|Paint brush,fewshot,Caiman
+Alligator|Anvil|Knife,fewshot,Anvil
+Axe|Boa python|Lawn Mower,fewshot,Boa python
+Lizard|Gecko|Grinding disk,fewshot,Gecko
+Grinding disk|Lizard|Paint brush,fewshot,Lizard
+Shovel|Alligator|Gecko,fewshot,Alligator
+Gecko|Alligator|Snake,fewshot,Alligator
+Oil can|Cobra|Shovel,fewshot,Cobra
+Snake|Lawn Mower|Oil can,fewshot,Lawn Mower
+Salamander|Hammer|Nail,fewshot,Nail
+Hammer|Chisel|Lawn Mower,fewshot,Chisel
+Shovel|Axe|Lizard,fewshot,Axe
+Axe|Dinosaur|Hammer,fewshot,Dinosaur
+Saw|Crocodile|Screwdriver,fewshot,Crocodile
+Toad|Oil can|Tortoise,fewshot,Oil can
+Grinding disk|Lizard|Tortoise,fewshot,Tortoise
+Paint brush|Cobra|Vacuum,fewshot,Cobra
+Oil can|Axe|Salamander,fewshot,Axe
+Oil can|Blindworm|Paint brush,fewshot,Blindworm
+Nail|Axe|Salamander,fewshot,Axe
+Lawn Mower|Gecko|Nail,fewshot,Gecko
+Snake|Oil can|Saw,fewshot,Saw
+Tortoise|Chameleon|Salamander,fewshot,Chameleon
+Crocodile|Chisel|Turtle,fewshot,Chisel
+Oil can|Gecko|Grinding disk,fewshot,Grinding disk
+Gecko|Blindworm|Oil can,fewshot,Blindworm
+Screwdriver|Chameleon|Cobra,fewshot,Chameleon
+Chameleon|Axe|Dinosaur,fewshot,Axe
+Caiman|Hammer|Knife,fewshot,Knife
+Caiman|Chameleon|Vacuum,fewshot,Chameleon
+Anvil|Boa python|Spanner,fewshot,Boa python
+Knife|Blindworm|Snake,fewshot,Blindworm
+Crocodile|Oil can|Screwdriver,fewshot,Screwdriver
+Anvil|Grinding disk|Spanner,fewshot,Grinding disk
+Alligator|Dinosaur|Gecko,fewshot,Dinosaur
+Chameleon|Axe|Boa python,fewshot,Axe
+Spanner|Alligator|Turtle,fewshot,Alligator
+Blindworm|Grinding disk|Turtle,fewshot,Grinding disk
+Lizard|Axe|Crocodile,fewshot,Axe
+Boa python|Chameleon|Oil can,fewshot,Chameleon
+Oil can|Boa python|Chameleon,fewshot,Boa python
+Chameleon|Screwdriver|Turtle,fewshot,Screwdriver
+Snake|Anvil|Shovel,fewshot,Anvil
+Anvil|Grinding disk|Paint brush,fewshot,Grinding disk
+Snake|Chameleon|Turtle,fewshot,Chameleon
+Tortoise|Nail|Shovel,fewshot,Nail
+Anvil|Chisel|Gecko,fewshot,Chisel
+Blindworm|Nail|Salamander,fewshot,Nail
+Axe|Chameleon|Gecko,fewshot,Chameleon
+Screwdriver|Alligator|Axe,fewshot,Axe
+Chameleon|Lawn Mower|Toad,fewshot,Lawn Mower
+Crocodile|Saw|Shovel,fewshot,Saw
+Lawn Mower|Cobra|Grinding disk,fewshot,Cobra
+Hammer|Cobra|Snake,fewshot,Cobra
+Blindworm|Alligator|Spanner,fewshot,Alligator
+Screwdriver|Alligator|Turtle,fewshot,Alligator
+Turtle|Screwdriver|Tortoise,fewshot,Screwdriver
+Boa python|Nail|Turtle,fewshot,Nail
+Tortoise|Alligator|Turtle,fewshot,Turtle
+Paint brush|Boa python|Chameleon,fewshot,Boa python
+Lawn Mower|Axe|Blindworm,fewshot,Axe
+Snake|Blindworm|Grinding disk,fewshot,Blindworm
+Snake|Boa python|Spanner,fewshot,Boa python
+Toad|Cobra|Snake,fewshot,Cobra
+Knife|Caiman|Saw,fewshot,Saw
+Oil can|Knife|Salamander,fewshot,Knife
+Salamander|Knife|Snake,fewshot,Knife
+Nail|Chisel|Tortoise,fewshot,Chisel
+Shovel|Nail|Snake,fewshot,Nail
+Shovel|Lizard|Screwdriver,fewshot,Lizard
+Hammer|Cobra|Lawn Mower,fewshot,Cobra
+Paint brush|Toad|Tortoise,fewshot,Toad
+Spanner|Axe|Screwdriver,fewshot,Axe
+Hammer|Chisel|Cobra,fewshot,Chisel
+Tortoise|Chameleon|Chisel,fewshot,Chameleon
+Screwdriver|Axe|Gecko,fewshot,Axe
+Knife|Axe|Grinding disk,fewshot,Axe
+Saw|Toad|Vacuum,fewshot,Toad
+Axe|Grinding disk|Shovel,fewshot,Grinding disk
+Cobra|Lizard|Snake,fewshot,Lizard
+Caiman|Gecko|Tortoise,fewshot,Gecko
+Gecko|Snake|Turtle,fewshot,Turtle
+Caiman|Chameleon|Screwdriver,fewshot,Chameleon
+Blindworm|Anvil|Turtle,fewshot,Anvil
+Grinding disk|Crocodile|Paint brush,fewshot,Crocodile
+Toad|Paint brush|Shovel,fewshot,Shovel
+Axe|Shovel|Tortoise,fewshot,Shovel
+Nail|Gecko|Lawn Mower,fewshot,Gecko
+Caiman|Crocodile|Spanner,fewshot,Crocodile
+Oil can|Boa python|Toad,fewshot,Boa python
+Lawn Mower|Caiman|Dinosaur,fewshot,Caiman
+Salamander|Cobra|Dinosaur,fewshot,Cobra
+Salamander|Paint brush|Turtle,fewshot,Paint brush
+Screwdriver|Crocodile|Lawn Mower,fewshot,Crocodile
+Vacuum|Grinding disk|Knife,fewshot,Grinding disk
+Lizard|Lawn Mower|Saw,fewshot,Saw
+Paint brush|Hammer|Spanner,fewshot,Hammer
+Crocodile|Cobra|Snake,fewshot,Cobra
+Chameleon|Caiman|Cobra,fewshot,Caiman
+Saw|Snake|Toad,fewshot,Snake
+Axe|Chameleon|Crocodile,fewshot,Chameleon
+Chameleon|Chisel|Lawn Mower,fewshot,Chisel
+Crocodile|Cobra|Hammer,fewshot,Cobra
+Turtle|Alligator|Axe,fewshot,Axe
+Lizard|Axe|Caiman,fewshot,Axe
+Lawn Mower|Toad|Vacuum,fewshot,Toad
+Dinosaur|Axe|Snake,fewshot,Axe
+Chameleon|Blindworm|Snake,fewshot,Blindworm
+Oil can|Blindworm|Saw,fewshot,Saw
+Grinding disk|Chameleon|Knife,fewshot,Chameleon
+Oil can|Alligator|Chameleon,fewshot,Alligator
+Lizard|Chameleon|Oil can,fewshot,Chameleon
+Tortoise|Axe|Chisel,fewshot,Axe
+Anvil|Shovel|Tortoise,fewshot,Shovel
+Lawn Mower|Knife|Spanner,fewshot,Knife
+Anvil|Nail|Screwdriver,fewshot,Nail
+Turtle|Axe|Vacuum,fewshot,Axe
+Toad|Salamander|Shovel,fewshot,Salamander
+Blindworm|Crocodile|Paint brush,fewshot,Crocodile
+Alligator|Tortoise|Vacuum,fewshot,Tortoise
+Lizard|Boa python|Hammer,fewshot,Boa python
+Nail|Chisel|Cobra,fewshot,Chisel
+Screwdriver|Anvil|Crocodile,fewshot,Anvil
+Tortoise|Nail|Screwdriver,fewshot,Nail
+Chisel|Cobra|Spanner,fewshot,Cobra
+Lawn Mower|Lizard|Spanner,fewshot,Lizard
+Alligator|Nail|Saw,fewshot,Saw
+Lawn Mower|Chisel|Lizard,fewshot,Chisel
+Salamander|Hammer|Vacuum,fewshot,Hammer
+Chameleon|Knife|Tortoise,fewshot,Knife
+Nail|Lawn Mower|Lizard,fewshot,Lawn Mower
+Caiman|Oil can|Tortoise,fewshot,Oil can
+Grinding disk|Oil can|Vacuum,fewshot,Oil can
+Nail|Lawn Mower|Shovel,fewshot,Shovel
+Snake|Axe|Chisel,fewshot,Axe
+Boa python|Cobra|Screwdriver,fewshot,Cobra
+Paint brush|Cobra|Dinosaur,fewshot,Cobra
+Anvil|Alligator|Chisel,fewshot,Chisel
+Lizard|Anvil|Hammer,fewshot,Anvil
+Knife|Oil can|Saw,fewshot,Saw
+Paint brush|Anvil|Saw,fewshot,Saw
+Saw|Boa python|Grinding disk,fewshot,Boa python
+Oil can|Chisel|Vacuum,fewshot,Chisel
+Oil can|Chameleon|Chisel,fewshot,Chameleon
+Anvil|Gecko|Knife,fewshot,Gecko
+Turtle|Lawn Mower|Saw,fewshot,Saw
+Toad|Blindworm|Nail,fewshot,Nail
+Spanner|Knife|Tortoise,fewshot,Knife
+Nail|Saw|Vacuum,fewshot,Saw
+Toad|Chisel|Gecko,fewshot,Chisel
+Snake|Dinosaur|Salamander,fewshot,Dinosaur
+Cobra|Alligator|Axe,fewshot,Axe
+Tortoise|Hammer|Toad,fewshot,Hammer
+Nail|Toad|Tortoise,fewshot,Toad
+Chisel|Blindworm|Chameleon,fewshot,Chameleon
+Grinding disk|Alligator|Crocodile,fewshot,Alligator
+Grinding disk|Chisel|Crocodile,fewshot,Chisel
+Paint brush|Lawn Mower|Nail,fewshot,Lawn Mower
+Dinosaur|Shovel|Turtle,fewshot,Shovel
+Spanner|Blindworm|Paint brush,fewshot,Paint brush
+Salamander|Anvil|Lizard,fewshot,Anvil
+Grinding disk|Chisel|Turtle,fewshot,Chisel
+Chameleon|Gecko|Vacuum,fewshot,Gecko
+Dinosaur|Salamander|Snake,fewshot,Salamander
+Axe|Boa python|Paint brush,fewshot,Boa python
+Turtle|Knife|Tortoise,fewshot,Knife
+Tortoise|Paint brush|Toad,fewshot,Paint brush
+Axe|Spanner|Toad,fewshot,Spanner
+Grinding disk|Chisel|Lawn Mower,fewshot,Chisel
+Vacuum|Lawn Mower|Oil can,fewshot,Lawn Mower
+Spanner|Boa python|Snake,fewshot,Boa python
+Nail|Paint brush|Toad,fewshot,Paint brush
+Boa python|Cobra|Oil can,fewshot,Cobra
+Toad|Caiman|Shovel,fewshot,Caiman
+Hammer|Screwdriver|Shovel,fewshot,Screwdriver
+Cobra|Saw|Vacuum,fewshot,Saw
+Saw|Hammer|Snake,fewshot,Hammer
+Spanner|Screwdriver|Toad,fewshot,Screwdriver
+Screwdriver|Gecko|Saw,fewshot,Saw
+Tortoise|Dinosaur|Grinding disk,fewshot,Dinosaur
+Oil can|Caiman|Spanner,fewshot,Caiman
+Boa python|Chisel|Saw,fewshot,Chisel
+Grinding disk|Paint brush|Toad,fewshot,Paint brush
+Spanner|Salamander|Shovel,fewshot,Salamander
+Salamander|Cobra|Hammer,fewshot,Cobra
+Gecko|Lawn Mower|Nail,fewshot,Nail
+Caiman|Anvil|Gecko,fewshot,Anvil
+Screwdriver|Grinding disk|Lawn Mower,fewshot,Grinding disk
+Gecko|Boa python|Saw,fewshot,Saw
+Axe|Grinding disk|Screwdriver,fewshot,Grinding disk
+Chisel|Lawn Mower|Turtle,fewshot,Lawn Mower
+Tortoise|Toad|Vacuum,fewshot,Toad
+Turtle|Crocodile|Nail,fewshot,Crocodile
+Tortoise|Dinosaur|Salamander,fewshot,Dinosaur
+Lizard|Nail|Oil can,fewshot,Nail
+Cobra|Boa python|Saw,fewshot,Saw
+Grinding disk|Alligator|Blindworm,fewshot,Alligator
+Anvil|Oil can|Spanner,fewshot,Oil can
+Nail|Anvil|Vacuum,fewshot,Anvil
+Shovel|Alligator|Grinding disk,fewshot,Grinding disk
+Salamander|Paint brush|Spanner,fewshot,Paint brush
+Shovel|Boa python|Chisel,fewshot,Boa python
+Cobra|Blindworm|Shovel,fewshot,Shovel
+Lawn Mower|Knife|Toad,fewshot,Knife
+Alligator|Knife|Oil can,fewshot,Knife
+Snake|Nail|Vacuum,fewshot,Nail
+Alligator|Chisel|Salamander,fewshot,Chisel
+Vacuum|Alligator|Boa python,fewshot,Boa python
+Hammer|Boa python|Shovel,fewshot,Boa python
+Tortoise|Dinosaur|Spanner,fewshot,Dinosaur
+Spanner|Nail|Toad,fewshot,Nail
+Anvil|Cobra|Turtle,fewshot,Cobra
+Blindworm|Lawn Mower|Paint brush,fewshot,Lawn Mower
+Salamander|Dinosaur|Gecko,fewshot,Dinosaur
+Alligator|Blindworm|Shovel,fewshot,Shovel
+Lizard|Cobra|Nail,fewshot,Cobra
+Lawn Mower|Tortoise|Turtle,fewshot,Tortoise
+Alligator|Spanner|Vacuum,fewshot,Spanner
+Anvil|Dinosaur|Gecko,fewshot,Dinosaur
+Axe|Cobra|Spanner,fewshot,Cobra
+Blindworm|Chisel|Gecko,fewshot,Chisel
+Boa python|Alligator|Grinding disk,fewshot,Grinding disk
+Hammer|Chameleon|Nail,fewshot,Nail
+Toad|Salamander|Vacuum,fewshot,Salamander
+Gecko|Axe|Caiman,fewshot,Axe
+Oil can|Saw|Toad,fewshot,Saw
+Saw|Dinosaur|Lizard,fewshot,Dinosaur
+Toad|Dinosaur|Knife,fewshot,Dinosaur
+Turtle|Gecko|Nail,fewshot,Gecko
+Axe|Knife|Snake,fewshot,Knife
+Dinosaur|Lizard|Vacuum,fewshot,Lizard
+Lizard|Oil can|Paint brush,fewshot,Oil can
+Lizard|Alligator|Chisel,fewshot,Alligator
+Boa python|Spanner|Tortoise,fewshot,Tortoise
+Snake|Chameleon|Paint brush,fewshot,Chameleon
+Turtle|Paint brush|Snake,fewshot,Paint brush
+Saw|Gecko|Paint brush,fewshot,Gecko
+Chisel|Alligator|Caiman,fewshot,Alligator
+Caiman|Boa python|Spanner,fewshot,Boa python
+Shovel|Saw|Toad,fewshot,Saw
+Toad|Caiman|Spanner,fewshot,Caiman
+Chameleon|Caiman|Snake,fewshot,Caiman
+Vacuum|Lizard|Nail,fewshot,Lizard
+Caiman|Boa python|Salamander,fewshot,Boa python
+Snake|Crocodile|Salamander,fewshot,Crocodile
+Lawn Mower|Knife|Lizard,fewshot,Knife
+Boa python|Chameleon|Nail,fewshot,Chameleon
+Turtle|Axe|Chisel,fewshot,Axe
+Hammer|Alligator|Knife,fewshot,Alligator
+Grinding disk|Chisel|Gecko,fewshot,Chisel
+Tortoise|Hammer|Lizard,fewshot,Hammer
+Shovel|Blindworm|Turtle,fewshot,Blindworm
+Snake|Chameleon|Hammer,fewshot,Chameleon
+Lawn Mower|Caiman|Screwdriver,fewshot,Caiman
+Crocodile|Caiman|Hammer,fewshot,Caiman
+Knife|Lawn Mower|Lizard,fewshot,Lawn Mower
+Hammer|Alligator|Anvil,fewshot,Anvil
+Screwdriver|Spanner|Turtle,fewshot,Spanner
+Snake|Hammer|Spanner,fewshot,Hammer
+Axe|Dinosaur|Lizard,fewshot,Dinosaur
+Crocodile|Lizard|Snake,fewshot,Lizard
+Boa python|Lawn Mower|Spanner,fewshot,Lawn Mower
+Shovel|Alligator|Toad,fewshot,Alligator
+Snake|Axe|Vacuum,fewshot,Axe
+Salamander|Spanner|Vacuum,fewshot,Vacuum
+Salamander|Lawn Mower|Tortoise,fewshot,Tortoise
+Knife|Cobra|Paint brush,fewshot,Cobra
+Salamander|Caiman|Toad,fewshot,Caiman
+Paint brush|Lawn Mower|Tortoise,fewshot,Lawn Mower
+Turtle|Paint brush|Screwdriver,fewshot,Screwdriver
+Salamander|Anvil|Toad,fewshot,Anvil
+Crocodile|Hammer|Tortoise,fewshot,Tortoise
+Vacuum|Axe|Cobra,fewshot,Axe
+Toad|Chameleon|Chisel,fewshot,Chameleon
+Nail|Boa python|Grinding disk,fewshot,Boa python
+Snake|Anvil|Gecko,fewshot,Anvil
+Knife|Alligator|Toad,fewshot,Alligator
+Crocodile|Anvil|Toad,fewshot,Anvil
+Lawn Mower|Chisel|Snake,fewshot,Chisel
+Snake|Dinosaur|Hammer,fewshot,Dinosaur
+Salamander|Gecko|Vacuum,fewshot,Gecko
+Chisel|Nail|Vacuum,fewshot,Nail
+Saw|Anvil|Screwdriver,fewshot,Anvil
+Lawn Mower|Cobra|Turtle,fewshot,Cobra
+Oil can|Chisel|Saw,fewshot,Chisel
+Axe|Chameleon|Toad,fewshot,Chameleon
+Toad|Grinding disk|Lizard,fewshot,Grinding disk
+Paint brush|Axe|Toad,fewshot,Axe
+Screwdriver|Hammer|Tortoise,fewshot,Hammer
+Toad|Cobra|Grinding disk,fewshot,Cobra
+Oil can|Knife|Nail,fewshot,Knife
+Toad|Blindworm|Tortoise,fewshot,Tortoise
+Dinosaur|Anvil|Nail,fewshot,Anvil
+Dinosaur|Nail|Oil can,fewshot,Nail
+Boa python|Blindworm|Knife,fewshot,Blindworm
+Salamander|Snake|Tortoise,fewshot,Tortoise
+Gecko|Lawn Mower|Spanner,fewshot,Lawn Mower
+Lawn Mower|Caiman|Paint brush,fewshot,Caiman
+Nail|Boa python|Shovel,fewshot,Boa python
+Paint brush|Chameleon|Saw,fewshot,Chameleon
+Paint brush|Chameleon|Turtle,fewshot,Chameleon
+Oil can|Boa python|Knife,fewshot,Boa python
+Nail|Blindworm|Salamander,fewshot,Blindworm
+Alligator|Snake|Toad,fewshot,Snake
+Crocodile|Snake|Vacuum,fewshot,Vacuum
+Dinosaur|Spanner|Vacuum,fewshot,Spanner
+Chameleon|Toad|Turtle,fewshot,Toad
+Crocodile|Lizard|Nail,fewshot,Lizard
+Tortoise|Lizard|Salamander,fewshot,Lizard
+Boa python|Screwdriver|Spanner,fewshot,Screwdriver
+Turtle|Blindworm|Lawn Mower,fewshot,Blindworm
+Snake|Anvil|Hammer,fewshot,Anvil
+Salamander|Oil can|Toad,fewshot,Oil can
+Tortoise|Anvil|Caiman,fewshot,Anvil
+Hammer|Oil can|Spanner,fewshot,Oil can
+Spanner|Axe|Nail,fewshot,Axe
+Nail|Oil can|Toad,fewshot,Oil can
+Toad|Dinosaur|Snake,fewshot,Dinosaur
+Grinding disk|Chisel|Shovel,fewshot,Chisel
+Boa python|Crocodile|Saw,fewshot,Crocodile
+Lizard|Blindworm|Gecko,fewshot,Blindworm
+Blindworm|Axe|Turtle,fewshot,Axe
+Gecko|Lizard|Spanner,fewshot,Lizard
+Crocodile|Chameleon|Knife,fewshot,Chameleon
+Paint brush|Cobra|Turtle,fewshot,Cobra
+Cobra|Axe|Snake,fewshot,Axe
+Knife|Axe|Saw,fewshot,Axe
+Chameleon|Lizard|Nail,fewshot,Lizard
+Chameleon|Crocodile|Vacuum,fewshot,Crocodile
+Alligator|Dinosaur|Saw,fewshot,Dinosaur
+Dinosaur|Lawn Mower|Oil can,fewshot,Oil can
+Snake|Crocodile|Knife,fewshot,Crocodile
+Alligator|Gecko|Turtle,fewshot,Gecko
+Chisel|Grinding disk|Shovel,fewshot,Grinding disk
+Oil can|Caiman|Snake,fewshot,Caiman
+Grinding disk|Salamander|Shovel,fewshot,Salamander
+Hammer|Caiman|Paint brush,fewshot,Caiman
+Gecko|Axe|Cobra,fewshot,Axe
+Toad|Lizard|Paint brush,fewshot,Lizard
+Boa python|Anvil|Vacuum,fewshot,Anvil
+Alligator|Chisel|Nail,fewshot,Chisel
+Spanner|Lizard|Vacuum,fewshot,Lizard
+Gecko|Alligator|Chisel,fewshot,Alligator
+Oil can|Knife|Toad,fewshot,Knife
+Toad|Anvil|Lizard,fewshot,Anvil
+Hammer|Alligator|Snake,fewshot,Alligator
+Dinosaur|Lizard|Toad,fewshot,Lizard
+Lizard|Hammer|Toad,fewshot,Hammer
+Anvil|Chameleon|Nail,fewshot,Chameleon
+Lizard|Anvil|Lawn Mower,fewshot,Anvil
+Knife|Chisel|Snake,fewshot,Chisel
+Oil can|Knife|Screwdriver,fewshot,Knife
+Axe|Chisel|Knife,fewshot,Chisel
+Chameleon|Crocodile|Toad,fewshot,Crocodile
+Grinding disk|Cobra|Oil can,fewshot,Cobra
+Dinosaur|Caiman|Saw,fewshot,Caiman
+Lawn Mower|Shovel|Snake,fewshot,Shovel
+Alligator|Dinosaur|Knife,fewshot,Dinosaur
+Gecko|Hammer|Nail,fewshot,Nail
+Grinding disk|Caiman|Gecko,fewshot,Caiman
+Anvil|Alligator|Tortoise,fewshot,Tortoise
+Turtle|Chisel|Shovel,fewshot,Chisel
+Shovel|Tortoise|Vacuum,fewshot,Tortoise
+Oil can|Alligator|Caiman,fewshot,Alligator
+Saw|Alligator|Nail,fewshot,Alligator
+Blindworm|Dinosaur|Lizard,fewshot,Dinosaur
+Vacuum|Paint brush|Snake,fewshot,Paint brush
+Hammer|Paint brush|Saw,fewshot,Saw
+Snake|Alligator|Chameleon,fewshot,Alligator
+Lawn Mower|Chisel|Toad,fewshot,Chisel
+Gecko|Anvil|Snake,fewshot,Anvil
+Tortoise|Cobra|Hammer,fewshot,Cobra
+Boa python|Gecko|Grinding disk,fewshot,Grinding disk
+Anvil|Chisel|Saw,fewshot,Chisel
+Lawn Mower|Chisel|Knife,fewshot,Chisel
+Oil can|Blindworm|Chisel,fewshot,Chisel
+Saw|Grinding disk|Toad,fewshot,Grinding disk
+Salamander|Axe|Lawn Mower,fewshot,Axe
+Chisel|Hammer|Salamander,fewshot,Hammer
+Chameleon|Cobra|Turtle,fewshot,Cobra
+Chameleon|Crocodile|Tortoise,fewshot,Crocodile
+Turtle|Crocodile|Snake,fewshot,Crocodile
+Paint brush|Alligator|Oil can,fewshot,Alligator
+Toad|Dinosaur|Paint brush,fewshot,Dinosaur
+Shovel|Screwdriver|Snake,fewshot,Screwdriver
+Hammer|Axe|Vacuum,fewshot,Axe
+Nail|Grinding disk|Paint brush,fewshot,Grinding disk
+Cobra|Nail|Tortoise,fewshot,Nail
+Knife|Chameleon|Gecko,fewshot,Chameleon
+Toad|Anvil|Blindworm,fewshot,Anvil
+Blindworm|Cobra|Paint brush,fewshot,Cobra
+Screwdriver|Cobra|Paint brush,fewshot,Cobra
+Anvil|Chisel|Crocodile,fewshot,Chisel
+Nail|Shovel|Toad,fewshot,Shovel
+Chisel|Toad|Vacuum,fewshot,Toad
+Spanner|Anvil|Toad,fewshot,Anvil
+Shovel|Axe|Chisel,fewshot,Axe
+Lizard|Boa python|Tortoise,fewshot,Boa python
+Paint brush|Alligator|Anvil,fewshot,Anvil
+Vacuum|Dinosaur|Salamander,fewshot,Dinosaur
+Chisel|Blindworm|Turtle,fewshot,Blindworm
+Chameleon|Nail|Toad,fewshot,Nail
+Lizard|Crocodile|Salamander,fewshot,Crocodile
+Oil can|Axe|Turtle,fewshot,Axe
+Dinosaur|Hammer|Paint brush,fewshot,Paint brush
+Spanner|Chisel|Shovel,fewshot,Chisel
+Chisel|Chameleon|Saw,fewshot,Chameleon
+Toad|Blindworm|Salamander,fewshot,Blindworm
+Knife|Nail|Saw,fewshot,Saw
+Grinding disk|Axe|Nail,fewshot,Axe
+Boa python|Blindworm|Hammer,fewshot,Blindworm
+Shovel|Blindworm|Nail,fewshot,Nail
+Caiman|Oil can|Salamander,fewshot,Oil can
+Screwdriver|Caiman|Grinding disk,fewshot,Caiman
+Vacuum|Chisel|Oil can,fewshot,Chisel
+Gecko|Paint brush|Vacuum,fewshot,Paint brush
+Grinding disk|Chisel|Dinosaur,fewshot,Chisel
+Shovel|Nail|Turtle,fewshot,Nail
+Vacuum|Chisel|Saw,fewshot,Chisel
+Tortoise|Crocodile|Oil can,fewshot,Crocodile
+Cobra|Alligator|Knife,fewshot,Alligator
+Chameleon|Shovel|Vacuum,fewshot,Shovel
+Paint brush|Chameleon|Knife,fewshot,Chameleon
+Axe|Alligator|Chameleon,fewshot,Alligator
+Nail|Oil can|Snake,fewshot,Oil can
+Salamander|Crocodile|Lawn Mower,fewshot,Crocodile
+Shovel|Chisel|Screwdriver,fewshot,Chisel
+Anvil|Grinding disk|Saw,fewshot,Grinding disk
+Salamander|Crocodile|Nail,fewshot,Crocodile
+Saw|Chameleon|Shovel,fewshot,Chameleon
+Chameleon|Boa python|Nail,fewshot,Boa python
+Knife|Chisel|Salamander,fewshot,Chisel
+Turtle|Blindworm|Salamander,fewshot,Salamander
+Anvil|Axe|Crocodile,fewshot,Axe
+Lawn Mower|Oil can|Spanner,fewshot,Oil can
+Paint brush|Anvil|Dinosaur,fewshot,Anvil
+Chisel|Alligator|Hammer,fewshot,Alligator
+Lizard|Caiman|Vacuum,fewshot,Caiman
+Vacuum|Snake|Spanner,fewshot,Spanner
+Knife|Grinding disk|Shovel,fewshot,Grinding disk
+Caiman|Anvil|Knife,fewshot,Anvil
+Tortoise|Alligator|Chameleon,fewshot,Alligator
+Axe|Cobra|Saw,fewshot,Cobra
+Tortoise|Boa python|Spanner,fewshot,Boa python
+Anvil|Gecko|Snake,fewshot,Gecko
+Hammer|Lawn Mower|Shovel,fewshot,Lawn Mower
+Chameleon|Nail|Paint brush,fewshot,Nail
+Dinosaur|Lawn Mower|Saw,fewshot,Saw
+Hammer|Chameleon|Lizard,fewshot,Chameleon
+Anvil|Lizard|Turtle,fewshot,Lizard
+Blindworm|Chameleon|Hammer,fewshot,Chameleon
+Lizard|Screwdriver|Tortoise,fewshot,Screwdriver
+Knife|Dinosaur|Paint brush,fewshot,Dinosaur
+Shovel|Axe|Lawn Mower,fewshot,Axe
+Vacuum|Blindworm|Hammer,fewshot,Blindworm
+Screwdriver|Snake|Vacuum,fewshot,Vacuum
+Screwdriver|Axe|Boa python,fewshot,Axe
+Saw|Anvil|Paint brush,fewshot,Anvil
+Dinosaur|Crocodile|Knife,fewshot,Crocodile
+Chisel|Crocodile|Paint brush,fewshot,Crocodile
+Saw|Crocodile|Vacuum,fewshot,Crocodile
+Caiman|Gecko|Saw,fewshot,Saw
+Lawn Mower|Alligator|Crocodile,fewshot,Alligator
+Tortoise|Knife|Oil can,fewshot,Knife
+Toad|Hammer|Tortoise,fewshot,Hammer
+Snake|Blindworm|Toad,fewshot,Toad
+Screwdriver|Anvil|Nail,fewshot,Anvil
+Gecko|Axe|Tortoise,fewshot,Axe
+Turtle|Axe|Lawn Mower,fewshot,Axe
+Spanner|Lizard|Screwdriver,fewshot,Lizard
+Chameleon|Spanner|Vacuum,fewshot,Spanner
+Hammer|Paint brush|Spanner,fewshot,Paint brush
+Snake|Alligator|Blindworm,fewshot,Alligator
+Toad|Chameleon|Spanner,fewshot,Chameleon
+Gecko|Chisel|Lizard,fewshot,Chisel
+Paint brush|Lizard|Turtle,fewshot,Lizard
+Spanner|Grinding disk|Screwdriver,fewshot,Grinding disk
+Gecko|Anvil|Dinosaur,fewshot,Anvil
+Alligator|Hammer|Vacuum,fewshot,Hammer
+Lawn Mower|Cobra|Snake,fewshot,Cobra
+Gecko|Chameleon|Paint brush,fewshot,Chameleon
+Lizard|Blindworm|Caiman,fewshot,Caiman
+Shovel|Boa python|Crocodile,fewshot,Boa python
+Hammer|Dinosaur|Saw,fewshot,Saw
+Shovel|Dinosaur|Grinding disk,fewshot,Dinosaur
+Blindworm|Alligator|Tortoise,fewshot,Tortoise
+Shovel|Crocodile|Lizard,fewshot,Crocodile
+Lawn Mower|Chisel|Turtle,fewshot,Chisel
+Hammer|Gecko|Lizard,fewshot,Gecko
+Chameleon|Nail|Salamander,fewshot,Nail
+Axe|Alligator|Spanner,fewshot,Alligator
+Chisel|Lawn Mower|Toad,fewshot,Lawn Mower
+Cobra|Blindworm|Crocodile,fewshot,Crocodile
+Hammer|Axe|Cobra,fewshot,Axe
+Turtle|Alligator|Chisel,fewshot,Alligator
+Hammer|Blindworm|Paint brush,fewshot,Paint brush
+Lizard|Alligator|Shovel,fewshot,Shovel
+Knife|Dinosaur|Shovel,fewshot,Dinosaur
+Nail|Hammer|Lizard,fewshot,Hammer
+Snake|Anvil|Caiman,fewshot,Anvil
+Boa python|Crocodile|Snake,fewshot,Crocodile
+Blindworm|Alligator|Anvil,fewshot,Anvil
+Boa python|Lizard|Shovel,fewshot,Lizard
+Shovel|Chisel|Oil can,fewshot,Chisel
+Knife|Dinosaur|Screwdriver,fewshot,Dinosaur
+Chisel|Nail|Oil can,fewshot,Nail
+Screwdriver|Axe|Toad,fewshot,Axe
+Shovel|Spanner|Tortoise,fewshot,Tortoise
+Salamander|Caiman|Dinosaur,fewshot,Caiman
+Salamander|Chisel|Toad,fewshot,Chisel
+Saw|Gecko|Shovel,fewshot,Gecko
+Toad|Cobra|Crocodile,fewshot,Cobra
+Chisel|Alligator|Gecko,fewshot,Alligator
+Chisel|Crocodile|Dinosaur,fewshot,Crocodile
+Salamander|Saw|Vacuum,fewshot,Saw
+Hammer|Cobra|Screwdriver,fewshot,Screwdriver
+Vacuum|Caiman|Spanner,fewshot,Caiman
+Shovel|Chameleon|Lizard,fewshot,Chameleon
+Gecko|Lizard|Nail,fewshot,Lizard
+Lizard|Hammer|Salamander,fewshot,Hammer
+Dinosaur|Boa python|Spanner,fewshot,Boa python
+Boa python|Blindworm|Toad,fewshot,Toad
+Oil can|Crocodile|Spanner,fewshot,Crocodile
+Tortoise|Axe|Gecko,fewshot,Axe
+Snake|Chameleon|Lizard,fewshot,Chameleon
+Blindworm|Snake|Vacuum,fewshot,Vacuum
+Knife|Chisel|Crocodile,fewshot,Chisel
+Knife|Hammer|Toad,fewshot,Hammer
+Lizard|Alligator|Gecko,fewshot,Gecko
+Dinosaur|Crocodile|Vacuum,fewshot,Crocodile
+Grinding disk|Oil can|Salamander,fewshot,Oil can
+Saw|Lawn Mower|Snake,fewshot,Lawn Mower
+Cobra|Knife|Salamander,fewshot,Knife
+Alligator|Dinosaur|Vacuum,fewshot,Dinosaur
+Nail|Cobra|Salamander,fewshot,Cobra
+Shovel|Lizard|Oil can,fewshot,Lizard
+Toad|Boa python|Saw,fewshot,Boa python
+Dinosaur|Alligator|Crocodile,fewshot,Alligator
+Toad|Alligator|Gecko,fewshot,Alligator
+Hammer|Alligator|Spanner,fewshot,Alligator
+Toad|Alligator|Turtle,fewshot,Alligator
+Vacuum|Grinding disk|Turtle,fewshot,Grinding disk
+Nail|Anvil|Shovel,fewshot,Anvil
+Alligator|Lizard|Screwdriver,fewshot,Lizard
+Paint brush|Spanner|Tortoise,fewshot,Tortoise
+Snake|Grinding disk|Knife,fewshot,Grinding disk
+Spanner|Shovel|Toad,fewshot,Shovel
+Saw|Crocodile|Salamander,fewshot,Crocodile
+Knife|Cobra|Gecko,fewshot,Cobra
+Saw|Chameleon|Chisel,fewshot,Chisel
+Screwdriver|Cobra|Dinosaur,fewshot,Cobra
+Toad|Caiman|Dinosaur,fewshot,Caiman
+Hammer|Lawn Mower|Nail,fewshot,Nail
+Screwdriver|Anvil|Vacuum,fewshot,Anvil
+Dinosaur|Anvil|Vacuum,fewshot,Anvil
+Cobra|Gecko|Grinding disk,fewshot,Grinding disk
+Lizard|Lawn Mower|Screwdriver,fewshot,Screwdriver
+Tortoise|Chameleon|Knife,fewshot,Chameleon
+Tortoise|Chisel|Shovel,fewshot,Chisel
+Axe|Snake|Toad,fewshot,Snake
+Cobra|Boa python|Lizard,fewshot,Boa python
+Anvil|Crocodile|Gecko,fewshot,Crocodile
+Caiman|Blindworm|Spanner,fewshot,Blindworm
+Spanner|Crocodile|Paint brush,fewshot,Crocodile
+Oil can|Grinding disk|Knife,fewshot,Grinding disk
+Screwdriver|Dinosaur|Shovel,fewshot,Dinosaur
+Boa python|Toad|Vacuum,fewshot,Toad
+Blindworm|Lawn Mower|Oil can,fewshot,Lawn Mower
+Snake|Chameleon|Nail,fewshot,Chameleon
+Gecko|Cobra|Tortoise,fewshot,Cobra
+Oil can|Lawn Mower|Snake,fewshot,Lawn Mower
+Oil can|Paint brush|Turtle,fewshot,Paint brush
+Chameleon|Snake|Spanner,fewshot,Spanner
+Screwdriver|Axe|Paint brush,fewshot,Axe
+Turtle|Chisel|Spanner,fewshot,Chisel
+Caiman|Grinding disk|Toad,fewshot,Grinding disk
+Toad|Nail|Spanner,fewshot,Nail
+Cobra|Spanner|Toad,fewshot,Spanner
+Crocodile|Cobra|Toad,fewshot,Cobra
+Alligator|Lawn Mower|Tortoise,fewshot,Lawn Mower
+Snake|Salamander|Tortoise,fewshot,Salamander
+Vacuum|Grinding disk|Tortoise,fewshot,Grinding disk
+Spanner|Grinding disk|Salamander,fewshot,Grinding disk
+Vacuum|Chisel|Tortoise,fewshot,Chisel
+Spanner|Cobra|Dinosaur,fewshot,Cobra
+Toad|Axe|Tortoise,fewshot,Axe
+Axe|Nail|Shovel,fewshot,Nail
+Dinosaur|Boa python|Snake,fewshot,Boa python
+Crocodile|Oil can|Saw,fewshot,Oil can
+Boa python|Knife|Oil can,fewshot,Knife
+Snake|Blindworm|Chameleon,fewshot,Chameleon
+Tortoise|Salamander|Screwdriver,fewshot,Salamander
+Snake|Blindworm|Gecko,fewshot,Blindworm
+Oil can|Cobra|Dinosaur,fewshot,Cobra
+Lizard|Cobra|Toad,fewshot,Cobra
+Alligator|Lawn Mower|Snake,fewshot,Lawn Mower
+Boa python|Chisel|Gecko,fewshot,Chisel
+Spanner|Caiman|Shovel,fewshot,Caiman
+Grinding disk|Crocodile|Toad,fewshot,Crocodile
+Grinding disk|Knife|Oil can,fewshot,Knife
+Toad|Chisel|Lizard,fewshot,Chisel
+Snake|Saw|Spanner,fewshot,Saw
+Axe|Anvil|Chameleon,fewshot,Anvil
+Tortoise|Chisel|Cobra,fewshot,Chisel
+Salamander|Caiman|Nail,fewshot,Caiman
+Hammer|Dinosaur|Lawn Mower,fewshot,Dinosaur
+Lawn Mower|Lizard|Shovel,fewshot,Lizard
+Oil can|Hammer|Tortoise,fewshot,Hammer
+Cobra|Shovel|Snake,fewshot,Shovel
+Turtle|Caiman|Grinding disk,fewshot,Caiman
+Oil can|Gecko|Hammer,fewshot,Gecko
+Saw|Alligator|Cobra,fewshot,Alligator
+Turtle|Axe|Dinosaur,fewshot,Axe
+Blindworm|Hammer|Vacuum,fewshot,Hammer
+Caiman|Gecko|Nail,fewshot,Gecko
+Spanner|Lizard|Nail,fewshot,Lizard
+Anvil|Nail|Saw,fewshot,Nail
+Vacuum|Axe|Hammer,fewshot,Axe
+Toad|Grinding disk|Tortoise,fewshot,Grinding disk
+Axe|Alligator|Snake,fewshot,Alligator
+Knife|Lawn Mower|Saw,fewshot,Saw
+Tortoise|Knife|Toad,fewshot,Knife
+Screwdriver|Boa python|Hammer,fewshot,Boa python
+Paint brush|Gecko|Saw,fewshot,Saw
+Vacuum|Oil can|Tortoise,fewshot,Oil can
+Screwdriver|Hammer|Nail,fewshot,Nail
+Blindworm|Axe|Chisel,fewshot,Axe
+Lizard|Caiman|Hammer,fewshot,Caiman
+Caiman|Saw|Shovel,fewshot,Saw
+Chameleon|Blindworm|Crocodile,fewshot,Crocodile
+Grinding disk|Caiman|Chisel,fewshot,Caiman
+Lizard|Chisel|Shovel,fewshot,Chisel
+Vacuum|Boa python|Crocodile,fewshot,Boa python
+Axe|Lizard|Vacuum,fewshot,Lizard
+Paint brush|Nail|Toad,fewshot,Nail
+Tortoise|Grinding disk|Vacuum,fewshot,Grinding disk
+Oil can|Lizard|Paint brush,fewshot,Lizard
+Snake|Chameleon|Spanner,fewshot,Chameleon
+Toad|Lawn Mower|Lizard,fewshot,Lawn Mower
+Chameleon|Knife|Spanner,fewshot,Knife
+Salamander|Axe|Vacuum,fewshot,Axe
+Vacuum|Dinosaur|Snake,fewshot,Dinosaur
+Nail|Boa python|Knife,fewshot,Boa python
+Snake|Gecko|Paint brush,fewshot,Gecko
+Salamander|Axe|Nail,fewshot,Axe
+Crocodile|Axe|Shovel,fewshot,Axe
+Tortoise|Crocodile|Dinosaur,fewshot,Crocodile
+Oil can|Hammer|Saw,fewshot,Saw
+Gecko|Anvil|Saw,fewshot,Anvil
+Chisel|Spanner|Tortoise,fewshot,Tortoise
+Dinosaur|Chisel|Crocodile,fewshot,Chisel
+Knife|Crocodile|Salamander,fewshot,Crocodile
+Screwdriver|Alligator|Gecko,fewshot,Alligator
+Crocodile|Axe|Chameleon,fewshot,Axe
+Knife|Nail|Shovel,fewshot,Nail
+Saw|Crocodile|Snake,fewshot,Crocodile
+Blindworm|Chameleon|Snake,fewshot,Chameleon
+Caiman|Blindworm|Snake,fewshot,Blindworm
+Toad|Crocodile|Knife,fewshot,Crocodile
+Paint brush|Shovel|Toad,fewshot,Shovel
+Anvil|Alligator|Dinosaur,fewshot,Alligator
+Snake|Caiman|Shovel,fewshot,Caiman
+Cobra|Hammer|Vacuum,fewshot,Hammer
+Shovel|Blindworm|Lizard,fewshot,Blindworm
+Lizard|Oil can|Turtle,fewshot,Oil can
+Chameleon|Lizard|Saw,fewshot,Lizard
+Blindworm|Lizard|Oil can,fewshot,Lizard
+Lizard|Toad|Tortoise,fewshot,Toad
+Crocodile|Axe|Boa python,fewshot,Axe
+Lizard|Blindworm|Cobra,fewshot,Blindworm
+Blindworm|Boa python|Chisel,fewshot,Boa python
+Dinosaur|Alligator|Saw,fewshot,Saw
+Chisel|Snake|Turtle,fewshot,Turtle
+Lawn Mower|Chisel|Salamander,fewshot,Chisel
+Oil can|Nail|Tortoise,fewshot,Nail
+Crocodile|Boa python|Shovel,fewshot,Boa python
+Axe|Anvil|Salamander,fewshot,Anvil
+Salamander|Blindworm|Turtle,fewshot,Blindworm
+Salamander|Crocodile|Grinding disk,fewshot,Crocodile
+Oil can|Dinosaur|Knife,fewshot,Dinosaur
+Tortoise|Lizard|Turtle,fewshot,Lizard
+Vacuum|Anvil|Knife,fewshot,Anvil
+Boa python|Axe|Dinosaur,fewshot,Axe
+Salamander|Alligator|Gecko,fewshot,Gecko
+Cobra|Axe|Caiman,fewshot,Axe
+Turtle|Axe|Crocodile,fewshot,Axe
+Saw|Gecko|Turtle,fewshot,Gecko
+Dinosaur|Nail|Spanner,fewshot,Nail
+Boa python|Crocodile|Vacuum,fewshot,Crocodile
+Chisel|Chameleon|Dinosaur,fewshot,Chameleon
+Saw|Anvil|Tortoise,fewshot,Anvil
+Grinding disk|Alligator|Dinosaur,fewshot,Alligator
+Shovel|Caiman|Vacuum,fewshot,Caiman
+Knife|Blindworm|Nail,fewshot,Nail
+Salamander|Boa python|Nail,fewshot,Nail
+Boa python|Dinosaur|Spanner,fewshot,Dinosaur
+Chameleon|Chisel|Lizard,fewshot,Chisel
+Snake|Chisel|Crocodile,fewshot,Chisel
+Cobra|Knife|Screwdriver,fewshot,Knife
+Caiman|Gecko|Toad,fewshot,Gecko
+Caiman|Gecko|Knife,fewshot,Gecko
+Shovel|Snake|Turtle,fewshot,Turtle
+Dinosaur|Knife|Oil can,fewshot,Knife
+Crocodile|Anvil|Nail,fewshot,Anvil
+Lawn Mower|Nail|Vacuum,fewshot,Nail
+Lizard|Lawn Mower|Snake,fewshot,Lawn Mower
+Paint brush|Alligator|Chameleon,fewshot,Chameleon
+Hammer|Alligator|Tortoise,fewshot,Tortoise
+Turtle|Grinding disk|Lawn Mower,fewshot,Grinding disk
+Paint brush|Oil can|Saw,fewshot,Oil can
+Knife|Cobra|Oil can,fewshot,Cobra
+Knife|Screwdriver|Shovel,fewshot,Screwdriver
+Anvil|Salamander|Vacuum,fewshot,Salamander
+Turtle|Dinosaur|Vacuum,fewshot,Dinosaur
+Toad|Knife|Screwdriver,fewshot,Knife
+Spanner|Cobra|Lizard,fewshot,Cobra
+Spanner|Gecko|Saw,fewshot,Saw
+Screwdriver|Crocodile|Dinosaur,fewshot,Crocodile
+Crocodile|Anvil|Gecko,fewshot,Anvil
+Lawn Mower|Caiman|Chisel,fewshot,Caiman
+Paint brush|Hammer|Vacuum,fewshot,Hammer
+Gecko|Lawn Mower|Vacuum,fewshot,Vacuum
+Salamander|Oil can|Vacuum,fewshot,Oil can
+Nail|Alligator|Oil can,fewshot,Alligator
+Alligator|Knife|Spanner,fewshot,Knife
+Boa python|Lawn Mower|Tortoise,fewshot,Tortoise
+Grinding disk|Gecko|Lawn Mower,fewshot,Gecko
+Crocodile|Chisel|Hammer,fewshot,Chisel
+Nail|Grinding disk|Spanner,fewshot,Grinding disk
+Blindworm|Boa python|Cobra,fewshot,Boa python
+Cobra|Caiman|Saw,fewshot,Caiman
+Axe|Cobra|Salamander,fewshot,Cobra
+Dinosaur|Paint brush|Spanner,fewshot,Paint brush
+Tortoise|Blindworm|Vacuum,fewshot,Blindworm
+Axe|Chameleon|Screwdriver,fewshot,Chameleon
+Nail|Lawn Mower|Tortoise,fewshot,Lawn Mower
+Turtle|Grinding disk|Tortoise,fewshot,Grinding disk
+Snake|Lizard|Screwdriver,fewshot,Lizard
+Cobra|Axe|Crocodile,fewshot,Axe
+Cobra|Anvil|Toad,fewshot,Anvil
+Turtle|Oil can|Screwdriver,fewshot,Screwdriver
+Axe|Gecko|Shovel,fewshot,Gecko
+Spanner|Anvil|Turtle,fewshot,Anvil
+Paint brush|Grinding disk|Toad,fewshot,Grinding disk
+Salamander|Chameleon|Gecko,fewshot,Chameleon
+Saw|Lizard|Vacuum,fewshot,Lizard
+Grinding disk|Blindworm|Snake,fewshot,Blindworm
+Gecko|Anvil|Chameleon,fewshot,Anvil
+Axe|Hammer|Toad,fewshot,Hammer
+Crocodile|Cobra|Turtle,fewshot,Cobra
+Axe|Chameleon|Chisel,fewshot,Chisel
+Caiman|Grinding disk|Salamander,fewshot,Grinding disk
+Toad|Anvil|Cobra,fewshot,Anvil
+Boa python|Chisel|Screwdriver,fewshot,Chisel
+Lawn Mower|Boa python|Lizard,fewshot,Boa python
+Spanner|Blindworm|Shovel,fewshot,Shovel
+Lawn Mower|Boa python|Snake,fewshot,Boa python
+Hammer|Anvil|Grinding disk,fewshot,Anvil
+Gecko|Anvil|Toad,fewshot,Anvil
+Shovel|Anvil|Screwdriver,fewshot,Anvil
+Screwdriver|Blindworm|Cobra,fewshot,Blindworm
+Axe|Hammer|Spanner,fewshot,Hammer
+Blindworm|Caiman|Spanner,fewshot,Caiman
+Cobra|Chameleon|Lizard,fewshot,Chameleon
+Boa python|Dinosaur|Knife,fewshot,Dinosaur
+Lawn Mower|Lizard|Turtle,fewshot,Lizard
+Saw|Alligator|Knife,fewshot,Alligator
+Knife|Boa python|Lawn Mower,fewshot,Boa python
+Shovel|Anvil|Axe,fewshot,Anvil
+Axe|Chameleon|Tortoise,fewshot,Chameleon
+Knife|Boa python|Chisel,fewshot,Boa python
+Saw|Caiman|Toad,fewshot,Caiman
+Lawn Mower|Chisel|Crocodile,fewshot,Chisel
+Nail|Crocodile|Turtle,fewshot,Crocodile
+Nail|Screwdriver|Spanner,fewshot,Screwdriver
+Chisel|Dinosaur|Turtle,fewshot,Dinosaur
+Caiman|Crocodile|Turtle,fewshot,Crocodile
+Cobra|Grinding disk|Tortoise,fewshot,Grinding disk
+Caiman|Anvil|Axe,fewshot,Anvil
+Boa python|Caiman|Paint brush,fewshot,Caiman
+Nail|Grinding disk|Shovel,fewshot,Grinding disk
+Spanner|Hammer|Salamander,fewshot,Hammer
+Saw|Alligator|Crocodile,fewshot,Alligator
+Knife|Tortoise|Turtle,fewshot,Tortoise
+Axe|Shovel|Snake,fewshot,Shovel
+Alligator|Anvil|Crocodile,fewshot,Anvil
+Lizard|Knife|Vacuum,fewshot,Knife
+Paint brush|Caiman|Nail,fewshot,Caiman
+Lizard|Gecko|Knife,fewshot,Gecko
+Dinosaur|Boa python|Vacuum,fewshot,Boa python
+Saw|Crocodile|Spanner,fewshot,Crocodile
+Turtle|Dinosaur|Gecko,fewshot,Dinosaur
+Screwdriver|Cobra|Oil can,fewshot,Cobra
+Axe|Alligator|Lawn Mower,fewshot,Alligator
+Saw|Caiman|Tortoise,fewshot,Caiman
+Alligator|Anvil|Saw,fewshot,Saw
+Grinding disk|Boa python|Chameleon,fewshot,Boa python
+Screwdriver|Lawn Mower|Paint brush,fewshot,Lawn Mower
+Hammer|Nail|Salamander,fewshot,Nail
+Tortoise|Axe|Nail,fewshot,Axe
+Oil can|Crocodile|Shovel,fewshot,Crocodile
+Caiman|Alligator|Grinding disk,fewshot,Grinding disk
+Turtle|Lizard|Shovel,fewshot,Lizard
+Lawn Mower|Hammer|Saw,fewshot,Saw
+Axe|Cobra|Crocodile,fewshot,Cobra
+Snake|Spanner|Tortoise,fewshot,Tortoise
+Knife|Saw|Tortoise,fewshot,Saw
+Lizard|Anvil|Axe,fewshot,Anvil
+Chameleon|Hammer|Lizard,fewshot,Hammer
+Alligator|Cobra|Paint brush,fewshot,Cobra
+Caiman|Boa python|Turtle,fewshot,Boa python
+Screwdriver|Toad|Turtle,fewshot,Toad
+Cobra|Caiman|Grinding disk,fewshot,Caiman
+Grinding disk|Crocodile|Spanner,fewshot,Crocodile
+Chameleon|Paint brush|Turtle,fewshot,Paint brush
+Nail|Cobra|Grinding disk,fewshot,Cobra
+Boa python|Axe|Lizard,fewshot,Axe
+Knife|Caiman|Spanner,fewshot,Caiman
+Axe|Tortoise|Vacuum,fewshot,Tortoise
+Spanner|Alligator|Tortoise,fewshot,Tortoise
+Salamander|Anvil|Vacuum,fewshot,Anvil
+Grinding disk|Gecko|Oil can,fewshot,Gecko
+Toad|Dinosaur|Oil can,fewshot,Dinosaur
+Cobra|Anvil|Blindworm,fewshot,Anvil
+Blindworm|Lizard|Vacuum,fewshot,Lizard
+Oil can|Chameleon|Screwdriver,fewshot,Chameleon
+Turtle|Chameleon|Dinosaur,fewshot,Chameleon
+Nail|Knife|Tortoise,fewshot,Knife
+Chisel|Axe|Dinosaur,fewshot,Axe
+Lawn Mower|Tortoise|Vacuum,fewshot,Tortoise
+Gecko|Blindworm|Chameleon,fewshot,Chameleon
+Saw|Paint brush|Shovel,fewshot,Paint brush
+Lizard|Caiman|Dinosaur,fewshot,Caiman
+Dinosaur|Axe|Cobra,fewshot,Axe
+Lawn Mower|Hammer|Knife,fewshot,Hammer
+Chameleon|Gecko|Oil can,fewshot,Gecko
+Gecko|Chisel|Dinosaur,fewshot,Chisel
+Spanner|Dinosaur|Saw,fewshot,Dinosaur
+Tortoise|Blindworm|Gecko,fewshot,Blindworm
+Boa python|Grinding disk|Knife,fewshot,Grinding disk
+Crocodile|Lizard|Salamander,fewshot,Salamander
+Toad|Knife|Vacuum,fewshot,Knife
+Cobra|Chisel|Nail,fewshot,Chisel
+Chameleon|Screwdriver|Spanner,fewshot,Screwdriver
+Crocodile|Cobra|Spanner,fewshot,Cobra
+Vacuum|Grinding disk|Hammer,fewshot,Grinding disk
+Chameleon|Boa python|Snake,fewshot,Boa python
+Tortoise|Knife|Vacuum,fewshot,Knife
+Vacuum|Chameleon|Snake,fewshot,Chameleon
+Hammer|Axe|Saw,fewshot,Axe
+Lizard|Chisel|Nail,fewshot,Chisel
+Turtle|Alligator|Salamander,fewshot,Alligator
+Salamander|Anvil|Chameleon,fewshot,Anvil
+Shovel|Blindworm|Salamander,fewshot,Blindworm
+Oil can|Screwdriver|Snake,fewshot,Screwdriver
+Oil can|Axe|Grinding disk,fewshot,Axe
+Caiman|Grinding disk|Nail,fewshot,Grinding disk
+Knife|Gecko|Saw,fewshot,Saw
+Snake|Cobra|Oil can,fewshot,Cobra
+Shovel|Anvil|Vacuum,fewshot,Anvil
+Alligator|Shovel|Spanner,fewshot,Shovel
+Nail|Paint brush|Shovel,fewshot,Paint brush
+Salamander|Hammer|Tortoise,fewshot,Hammer
+Paint brush|Hammer|Lawn Mower,fewshot,Lawn Mower
+Dinosaur|Crocodile|Hammer,fewshot,Crocodile
+Nail|Caiman|Paint brush,fewshot,Caiman
+Gecko|Lawn Mower|Saw,fewshot,Saw
+Caiman|Shovel|Spanner,fewshot,Shovel
+Dinosaur|Screwdriver|Tortoise,fewshot,Screwdriver
+Salamander|Gecko|Grinding disk,fewshot,Grinding disk
+Toad|Boa python|Salamander,fewshot,Boa python
+Turtle|Chameleon|Shovel,fewshot,Chameleon
+Turtle|Axe|Spanner,fewshot,Axe
+Chameleon|Grinding disk|Knife,fewshot,Grinding disk
+Gecko|Boa python|Crocodile,fewshot,Boa python
+Anvil|Gecko|Hammer,fewshot,Gecko
+Lizard|Alligator|Dinosaur,fewshot,Alligator
+Caiman|Dinosaur|Toad,fewshot,Dinosaur
+Spanner|Blindworm|Lizard,fewshot,Lizard
+Boa python|Axe|Chisel,fewshot,Axe
+Grinding disk|Boa python|Dinosaur,fewshot,Boa python
+Spanner|Axe|Toad,fewshot,Axe
+Chisel|Knife|Tortoise,fewshot,Knife
+Screwdriver|Cobra|Nail,fewshot,Cobra
+Hammer|Lizard|Vacuum,fewshot,Lizard
+Crocodile|Dinosaur|Toad,fewshot,Dinosaur
+Snake|Alligator|Lawn Mower,fewshot,Alligator
+Snake|Gecko|Vacuum,fewshot,Gecko
+Cobra|Caiman|Chameleon,fewshot,Caiman
+Oil can|Alligator|Dinosaur,fewshot,Alligator
+Hammer|Caiman|Nail,fewshot,Caiman
+Crocodile|Lizard|Tortoise,fewshot,Tortoise
+Anvil|Snake|Turtle,fewshot,Turtle
+Nail|Gecko|Salamander,fewshot,Gecko
+Oil can|Chisel|Screwdriver,fewshot,Chisel
+Caiman|Blindworm|Paint brush,fewshot,Paint brush
+Hammer|Shovel|Turtle,fewshot,Shovel
+Hammer|Lizard|Toad,fewshot,Lizard
+Dinosaur|Salamander|Spanner,fewshot,Salamander
+Shovel|Dinosaur|Salamander,fewshot,Dinosaur
+Chisel|Chameleon|Hammer,fewshot,Chameleon
+Spanner|Crocodile|Knife,fewshot,Crocodile
+Knife|Alligator|Lawn Mower,fewshot,Alligator
+Screwdriver|Oil can|Turtle,fewshot,Oil can
+Boa python|Alligator|Nail,fewshot,Nail
+Knife|Gecko|Spanner,fewshot,Gecko
+Chameleon|Anvil|Screwdriver,fewshot,Anvil
+Dinosaur|Oil can|Spanner,fewshot,Oil can
+Grinding disk|Chameleon|Lizard,fewshot,Chameleon
+Caiman|Cobra|Hammer,fewshot,Cobra
+Boa python|Dinosaur|Screwdriver,fewshot,Dinosaur
+Salamander|Chameleon|Dinosaur,fewshot,Chameleon
+Nail|Boa python|Salamander,fewshot,Boa python
+Screwdriver|Gecko|Spanner,fewshot,Gecko
+Paint brush|Gecko|Screwdriver,fewshot,Screwdriver
+Gecko|Alligator|Salamander,fewshot,Alligator
+Paint brush|Dinosaur|Salamander,fewshot,Dinosaur
+Lawn Mower|Dinosaur|Salamander,fewshot,Dinosaur
+Knife|Hammer|Turtle,fewshot,Hammer
+Saw|Chameleon|Gecko,fewshot,Chameleon
+Crocodile|Alligator|Turtle,fewshot,Alligator
+Lawn Mower|Cobra|Shovel,fewshot,Cobra
+Tortoise|Salamander|Shovel,fewshot,Salamander
+Alligator|Lizard|Tortoise,fewshot,Lizard
+Crocodile|Dinosaur|Knife,fewshot,Dinosaur
+Dinosaur|Anvil|Tortoise,fewshot,Anvil
+Turtle|Grinding disk|Lizard,fewshot,Grinding disk
+Tortoise|Cobra|Gecko,fewshot,Cobra
+Dinosaur|Chameleon|Oil can,fewshot,Chameleon
+Boa python|Blindworm|Saw,fewshot,Saw
+Chisel|Grinding disk|Saw,fewshot,Grinding disk
+Blindworm|Paint brush|Salamander,fewshot,Paint brush
+Spanner|Snake|Toad,fewshot,Snake
+Chisel|Caiman|Gecko,fewshot,Caiman
+Lizard|Oil can|Shovel,fewshot,Shovel
+Axe|Hammer|Shovel,fewshot,Hammer
+Grinding disk|Knife|Lizard,fewshot,Knife
+Chisel|Anvil|Blindworm,fewshot,Anvil
+Hammer|Anvil|Vacuum,fewshot,Anvil
+Screwdriver|Dinosaur|Tortoise,fewshot,Dinosaur
+Cobra|Tortoise|Turtle,fewshot,Tortoise
+Crocodile|Knife|Vacuum,fewshot,Knife
+Hammer|Knife|Shovel,fewshot,Knife
+Lizard|Anvil|Cobra,fewshot,Anvil
+Salamander|Chameleon|Chisel,fewshot,Chameleon
+Hammer|Knife|Paint brush,fewshot,Knife
+Crocodile|Grinding disk|Lizard,fewshot,Grinding disk
+Saw|Boa python|Paint brush,fewshot,Boa python
+Vacuum|Lawn Mower|Screwdriver,fewshot,Lawn Mower
+Gecko|Anvil|Crocodile,fewshot,Anvil
+Saw|Lizard|Snake,fewshot,Lizard
+Alligator|Caiman|Gecko,fewshot,Caiman
+Gecko|Alligator|Tortoise,fewshot,Tortoise
+Blindworm|Crocodile|Tortoise,fewshot,Crocodile
+Knife|Lizard|Tortoise,fewshot,Lizard
+Alligator|Chameleon|Dinosaur,fewshot,Chameleon
+Salamander|Blindworm|Snake,fewshot,Blindworm
+Oil can|Blindworm|Lizard,fewshot,Blindworm
+Boa python|Blindworm|Shovel,fewshot,Shovel
+Turtle|Lizard|Vacuum,fewshot,Lizard
+Saw|Dinosaur|Turtle,fewshot,Dinosaur
+Knife|Chisel|Gecko,fewshot,Chisel
+Lizard|Chameleon|Knife,fewshot,Chameleon
+Toad|Grinding disk|Snake,fewshot,Grinding disk
+Tortoise|Blindworm|Caiman,fewshot,Caiman
+Snake|Alligator|Saw,fewshot,Saw
+Screwdriver|Anvil|Oil can,fewshot,Anvil
+Chameleon|Dinosaur|Lawn Mower,fewshot,Dinosaur
+Toad|Boa python|Hammer,fewshot,Boa python
+Hammer|Caiman|Spanner,fewshot,Caiman
+Nail|Anvil|Snake,fewshot,Anvil
+Dinosaur|Gecko|Toad,fewshot,Gecko
+Oil can|Chameleon|Turtle,fewshot,Chameleon
+Axe|Lawn Mower|Toad,fewshot,Lawn Mower
+Chisel|Alligator|Spanner,fewshot,Alligator
+Paint brush|Cobra|Toad,fewshot,Cobra
+Lizard|Caiman|Crocodile,fewshot,Caiman
+Turtle|Chameleon|Nail,fewshot,Chameleon
+Knife|Gecko|Salamander,fewshot,Salamander
+Crocodile|Blindworm|Lizard,fewshot,Lizard
+Paint brush|Lawn Mower|Saw,fewshot,Saw
+Salamander|Boa python|Paint brush,fewshot,Boa python
+Turtle|Knife|Snake,fewshot,Knife
+Lawn Mower|Boa python|Nail,fewshot,Boa python
+Alligator|Boa python|Vacuum,fewshot,Boa python
+Chameleon|Axe|Shovel,fewshot,Axe
+Spanner|Chameleon|Hammer,fewshot,Chameleon
+Crocodile|Boa python|Grinding disk,fewshot,Boa python
+Dinosaur|Crocodile|Gecko,fewshot,Crocodile
+Shovel|Alligator|Nail,fewshot,Alligator
+Dinosaur|Hammer|Vacuum,fewshot,Hammer
+Snake|Anvil|Screwdriver,fewshot,Anvil
+Screwdriver|Alligator|Crocodile,fewshot,Alligator
+Hammer|Alligator|Saw,fewshot,Saw
+Nail|Anvil|Salamander,fewshot,Anvil
+Spanner|Anvil|Lizard,fewshot,Anvil
+Alligator|Cobra|Screwdriver,fewshot,Cobra
+Axe|Snake|Vacuum,fewshot,Snake
+Cobra|Saw|Spanner,fewshot,Saw
+Hammer|Caiman|Turtle,fewshot,Caiman
+Toad|Cobra|Lizard,fewshot,Cobra
+Spanner|Lizard|Shovel,fewshot,Lizard
+Chisel|Oil can|Spanner,fewshot,Oil can
+Axe|Boa python|Vacuum,fewshot,Boa python
+Toad|Shovel|Turtle,fewshot,Shovel
+Caiman|Axe|Turtle,fewshot,Axe
+Alligator|Salamander|Snake,fewshot,Salamander
+Lizard|Dinosaur|Screwdriver,fewshot,Dinosaur
+Toad|Gecko|Turtle,fewshot,Gecko
+Shovel|Lizard|Vacuum,fewshot,Lizard
+Hammer|Axe|Blindworm,fewshot,Axe
+Saw|Anvil|Boa python,fewshot,Anvil
+Turtle|Blindworm|Chameleon,fewshot,Chameleon
+Hammer|Grinding disk|Oil can,fewshot,Grinding disk
+Turtle|Chisel|Salamander,fewshot,Chisel
+Boa python|Cobra|Grinding disk,fewshot,Cobra
+Caiman|Cobra|Dinosaur,fewshot,Cobra
+Gecko|Chameleon|Grinding disk,fewshot,Chameleon
+Lawn Mower|Spanner|Vacuum,fewshot,Spanner
+Lawn Mower|Hammer|Paint brush,fewshot,Hammer
+Paint brush|Oil can|Snake,fewshot,Oil can
+Chameleon|Crocodile|Lawn Mower,fewshot,Crocodile
+Chisel|Dinosaur|Lizard,fewshot,Dinosaur
+Boa python|Crocodile|Paint brush,fewshot,Crocodile
+Shovel|Boa python|Paint brush,fewshot,Boa python
+Salamander|Lizard|Shovel,fewshot,Lizard
+Paint brush|Cobra|Tortoise,fewshot,Cobra
+Crocodile|Boa python|Snake,fewshot,Boa python
+Caiman|Anvil|Screwdriver,fewshot,Anvil
+Nail|Alligator|Dinosaur,fewshot,Alligator
+Lizard|Blindworm|Boa python,fewshot,Boa python
+Crocodile|Nail|Turtle,fewshot,Nail
+Alligator|Oil can|Salamander,fewshot,Oil can
+Vacuum|Knife|Lizard,fewshot,Knife
+Saw|Chameleon|Snake,fewshot,Chameleon
+Chisel|Dinosaur|Nail,fewshot,Dinosaur
+Grinding disk|Cobra|Crocodile,fewshot,Cobra
+Blindworm|Chameleon|Dinosaur,fewshot,Chameleon
+Crocodile|Lawn Mower|Oil can,fewshot,Lawn Mower
+Saw|Boa python|Tortoise,fewshot,Boa python
+Chameleon|Caiman|Paint brush,fewshot,Caiman
+Paint brush|Boa python|Vacuum,fewshot,Boa python
+Saw|Paint brush|Spanner,fewshot,Paint brush
+Axe|Cobra|Screwdriver,fewshot,Cobra
+Hammer|Oil can|Saw,fewshot,Saw
+Oil can|Screwdriver|Shovel,fewshot,Screwdriver
+Anvil|Hammer|Toad,fewshot,Hammer
+Paint brush|Dinosaur|Knife,fewshot,Dinosaur
+Vacuum|Gecko|Shovel,fewshot,Gecko
+Chisel|Oil can|Tortoise,fewshot,Oil can
+Alligator|Boa python|Caiman,fewshot,Boa python
+Gecko|Boa python|Lawn Mower,fewshot,Boa python
+Chisel|Lizard|Spanner,fewshot,Lizard
+Shovel|Chameleon|Vacuum,fewshot,Chameleon
+Salamander|Cobra|Knife,fewshot,Cobra
+Paint brush|Caiman|Salamander,fewshot,Caiman
+Knife|Caiman|Gecko,fewshot,Caiman
+Salamander|Anvil|Turtle,fewshot,Anvil
+Crocodile|Anvil|Chameleon,fewshot,Anvil
+Snake|Tortoise|Vacuum,fewshot,Tortoise
+Cobra|Snake|Tortoise,fewshot,Tortoise
+Blindworm|Boa python|Screwdriver,fewshot,Screwdriver
+Tortoise|Oil can|Salamander,fewshot,Oil can
+Tortoise|Lawn Mower|Nail,fewshot,Lawn Mower
+Screwdriver|Snake|Tortoise,fewshot,Tortoise
+Paint brush|Caiman|Hammer,fewshot,Caiman
+Chameleon|Hammer|Screwdriver,fewshot,Screwdriver
+Lizard|Blindworm|Oil can,fewshot,Blindworm
+Anvil|Hammer|Oil can,fewshot,Hammer
+Alligator|Anvil|Tortoise,fewshot,Anvil
+Toad|Gecko|Screwdriver,fewshot,Gecko
+Lawn Mower|Screwdriver|Shovel,fewshot,Screwdriver
+Gecko|Anvil|Nail,fewshot,Anvil
+Blindworm|Gecko|Toad,fewshot,Gecko
+Dinosaur|Gecko|Vacuum,fewshot,Gecko
+Caiman|Nail|Toad,fewshot,Nail
+Saw|Boa python|Shovel,fewshot,Boa python
+Snake|Axe|Hammer,fewshot,Axe
+Spanner|Dinosaur|Tortoise,fewshot,Dinosaur
+Cobra|Anvil|Tortoise,fewshot,Anvil
+Chameleon|Crocodile|Gecko,fewshot,Crocodile
+Salamander|Gecko|Toad,fewshot,Gecko
+Chameleon|Shovel|Toad,fewshot,Shovel
+Saw|Shovel|Tortoise,fewshot,Shovel
+Toad|Blindworm|Grinding disk,fewshot,Blindworm
+Lawn Mower|Shovel|Toad,fewshot,Shovel
+Paint brush|Snake|Spanner,fewshot,Spanner
+Paint brush|Chisel|Cobra,fewshot,Chisel
+Crocodile|Gecko|Paint brush,fewshot,Gecko
+Lawn Mower|Hammer|Tortoise,fewshot,Hammer
+Hammer|Dinosaur|Toad,fewshot,Dinosaur
+Alligator|Boa python|Nail,fewshot,Boa python
+Tortoise|Crocodile|Saw,fewshot,Crocodile
+Dinosaur|Blindworm|Hammer,fewshot,Blindworm
+Spanner|Shovel|Turtle,fewshot,Shovel
+Knife|Tortoise|Vacuum,fewshot,Tortoise
+Dinosaur|Saw|Snake,fewshot,Saw
+Caiman|Snake|Vacuum,fewshot,Vacuum
+Turtle|Cobra|Hammer,fewshot,Cobra
+Blindworm|Axe|Hammer,fewshot,Axe
+Saw|Boa python|Turtle,fewshot,Boa python
+Boa python|Chameleon|Vacuum,fewshot,Chameleon
+Lawn Mower|Saw|Spanner,fewshot,Saw
+Lizard|Anvil|Saw,fewshot,Anvil
+Knife|Anvil|Snake,fewshot,Anvil
+Alligator|Snake|Vacuum,fewshot,Snake
+Shovel|Axe|Hammer,fewshot,Axe
+Axe|Dinosaur|Grinding disk,fewshot,Dinosaur
+Oil can|Paint brush|Toad,fewshot,Paint brush
+Alligator|Crocodile|Screwdriver,fewshot,Crocodile
+Knife|Spanner|Toad,fewshot,Spanner
+Lizard|Screwdriver|Spanner,fewshot,Screwdriver
+Lizard|Caiman|Spanner,fewshot,Caiman
+Chameleon|Lawn Mower|Salamander,fewshot,Lawn Mower
+Lizard|Alligator|Snake,fewshot,Alligator
+Saw|Chameleon|Hammer,fewshot,Chameleon
+Anvil|Lizard|Screwdriver,fewshot,Lizard
+Grinding disk|Cobra|Salamander,fewshot,Cobra
+Crocodile|Salamander|Snake,fewshot,Salamander
+Anvil|Hammer|Lizard,fewshot,Hammer
+Crocodile|Boa python|Caiman,fewshot,Boa python
+Lizard|Chameleon|Tortoise,fewshot,Chameleon
+Shovel|Alligator|Paint brush,fewshot,Alligator
+Alligator|Salamander|Saw,fewshot,Salamander
+Screwdriver|Chisel|Tortoise,fewshot,Chisel
+Boa python|Grinding disk|Toad,fewshot,Grinding disk
+Paint brush|Axe|Blindworm,fewshot,Axe
+Cobra|Chameleon|Grinding disk,fewshot,Chameleon
+Salamander|Blindworm|Shovel,fewshot,Shovel
+Cobra|Caiman|Lawn Mower,fewshot,Caiman
+Hammer|Boa python|Dinosaur,fewshot,Boa python
+Knife|Dinosaur|Nail,fewshot,Dinosaur
+Hammer|Alligator|Salamander,fewshot,Alligator
+Turtle|Chameleon|Paint brush,fewshot,Chameleon
+Hammer|Anvil|Spanner,fewshot,Anvil
+Salamander|Gecko|Turtle,fewshot,Gecko
+Blindworm|Gecko|Hammer,fewshot,Gecko
+Boa python|Crocodile|Lawn Mower,fewshot,Crocodile
+Vacuum|Gecko|Hammer,fewshot,Gecko
+Axe|Caiman|Dinosaur,fewshot,Caiman
+Dinosaur|Lawn Mower|Shovel,fewshot,Shovel
+Dinosaur|Hammer|Snake,fewshot,Hammer
+Knife|Hammer|Spanner,fewshot,Hammer
+Screwdriver|Anvil|Boa python,fewshot,Anvil
+Cobra|Grinding disk|Hammer,fewshot,Grinding disk
+Nail|Dinosaur|Gecko,fewshot,Dinosaur
+Hammer|Lizard|Turtle,fewshot,Lizard
+Axe|Cobra|Lawn Mower,fewshot,Cobra
+Snake|Nail|Shovel,fewshot,Nail
+Chameleon|Alligator|Nail,fewshot,Alligator
+Caiman|Spanner|Toad,fewshot,Spanner
+Lawn Mower|Alligator|Chisel,fewshot,Alligator
+Saw|Hammer|Tortoise,fewshot,Hammer
+Chisel|Axe|Knife,fewshot,Axe
+Salamander|Blindworm|Crocodile,fewshot,Crocodile
+Knife|Blindworm|Paint brush,fewshot,Blindworm
+Caiman|Salamander|Spanner,fewshot,Salamander
+Lizard|Crocodile|Paint brush,fewshot,Crocodile
+Cobra|Blindworm|Oil can,fewshot,Blindworm
+Axe|Caiman|Knife,fewshot,Caiman
+Cobra|Knife|Paint brush,fewshot,Knife
+Grinding disk|Axe|Salamander,fewshot,Axe
+Snake|Crocodile|Oil can,fewshot,Crocodile
+Boa python|Screwdriver|Vacuum,fewshot,Screwdriver
+Paint brush|Crocodile|Tortoise,fewshot,Crocodile
+Boa python|Gecko|Saw,fewshot,Saw
+Nail|Salamander|Spanner,fewshot,Salamander
+Anvil|Dinosaur|Lawn Mower,fewshot,Dinosaur
+Blindworm|Chisel|Oil can,fewshot,Chisel
+Spanner|Nail|Paint brush,fewshot,Nail
+Lizard|Lawn Mower|Oil can,fewshot,Oil can
+Chameleon|Saw|Tortoise,fewshot,Saw
+Snake|Blindworm|Knife,fewshot,Blindworm
+Anvil|Knife|Lizard,fewshot,Knife
+Cobra|Boa python|Hammer,fewshot,Boa python
+Chameleon|Lawn Mower|Saw,fewshot,Saw
+Caiman|Axe|Knife,fewshot,Knife
+Spanner|Dinosaur|Hammer,fewshot,Dinosaur
+Screwdriver|Blindworm|Tortoise,fewshot,Tortoise
+Saw|Crocodile|Grinding disk,fewshot,Crocodile
+Toad|Lawn Mower|Nail,fewshot,Lawn Mower
+Boa python|Crocodile|Knife,fewshot,Crocodile
+Nail|Chameleon|Crocodile,fewshot,Chameleon
+Gecko|Lawn Mower|Turtle,fewshot,Lawn Mower
+Dinosaur|Chisel|Cobra,fewshot,Chisel
+Tortoise|Salamander|Vacuum,fewshot,Salamander
+Snake|Alligator|Dinosaur,fewshot,Alligator
+Snake|Blindworm|Paint brush,fewshot,Blindworm
+Hammer|Chameleon|Shovel,fewshot,Chameleon
+Boa python|Chameleon|Chisel,fewshot,Chameleon
+Turtle|Cobra|Spanner,fewshot,Cobra
+Screwdriver|Anvil|Salamander,fewshot,Anvil
+Dinosaur|Hammer|Toad,fewshot,Hammer
+Crocodile|Axe|Tortoise,fewshot,Axe
+Nail|Axe|Spanner,fewshot,Axe
+Saw|Chisel|Vacuum,fewshot,Chisel
+Screwdriver|Gecko|Grinding disk,fewshot,Grinding disk
+Crocodile|Knife|Toad,fewshot,Knife
+Chisel|Alligator|Anvil,fewshot,Anvil
+Snake|Saw|Screwdriver,fewshot,Saw
+Grinding disk|Cobra|Lawn Mower,fewshot,Cobra
+Caiman|Axe|Hammer,fewshot,Axe
+Nail|Blindworm|Tortoise,fewshot,Blindworm
+Caiman|Chisel|Oil can,fewshot,Chisel
+Caiman|Anvil|Lawn Mower,fewshot,Anvil
+Lizard|Toad|Vacuum,fewshot,Toad
+Caiman|Lawn Mower|Saw,fewshot,Saw
+Axe|Spanner|Vacuum,fewshot,Spanner
+Anvil|Alligator|Snake,fewshot,Alligator
+Shovel|Oil can|Spanner,fewshot,Oil can
+Oil can|Grinding disk|Tortoise,fewshot,Grinding disk
+Paint brush|Chameleon|Vacuum,fewshot,Chameleon
+Salamander|Alligator|Crocodile,fewshot,Alligator
+Shovel|Cobra|Vacuum,fewshot,Cobra
+Knife|Gecko|Vacuum,fewshot,Gecko
+Hammer|Alligator|Screwdriver,fewshot,Screwdriver
+Grinding disk|Hammer|Nail,fewshot,Nail
+Hammer|Lawn Mower|Paint brush,fewshot,Lawn Mower
+Alligator|Paint brush|Screwdriver,fewshot,Screwdriver
+Dinosaur|Boa python|Oil can,fewshot,Boa python
+Hammer|Anvil|Blindworm,fewshot,Anvil
+Nail|Blindworm|Saw,fewshot,Saw
+Nail|Alligator|Blindworm,fewshot,Alligator
+Chisel|Toad|Turtle,fewshot,Toad
+Paint brush|Grinding disk|Lawn Mower,fewshot,Grinding disk
+Vacuum|Caiman|Snake,fewshot,Caiman
+Anvil|Cobra|Shovel,fewshot,Cobra
+Chisel|Gecko|Spanner,fewshot,Gecko
+Turtle|Gecko|Lawn Mower,fewshot,Gecko
+Cobra|Spanner|Turtle,fewshot,Spanner
+Oil can|Caiman|Toad,fewshot,Caiman

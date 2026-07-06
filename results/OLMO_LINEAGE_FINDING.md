@@ -65,3 +65,13 @@ elicitation methods. Low cross-method coherence for the base holds under BOTH
 base-appropriate measurements. Post-training (generation regime) is what makes the
 methods agree. This strengthens the main finding: post-training improves cross-method
 CONSISTENCY of reporting, and the base does not already have high cross-method coherence.
+
+## Cross-lineage base check (few-shot), both bases agree
+Few-shot cross-method coherence at the BASE stage:
+- OLMo-2-7B base (AI2 base):     -0.01
+- Tulu-3-8B base (Llama-3.1-8B): -0.05
+Both pretrained bases have ~ZERO cross-method coherence under few-shot generation,
+regardless of base model. Confirms: high cross-method coherence is NOT present at
+pretraining; it emerges (in the generation/reporting regime) only after post-training.
+Meanwhile logprob(representation) coherence is flat-low across ALL stages of BOTH
+lineages -> post-training changes reporting/accessibility, not representation coherence.
