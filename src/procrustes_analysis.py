@@ -26,30 +26,33 @@ METHODS = ["triplet", "pairwise", "feature"]
 
 
 def procrustes_r2(X, Y):
-    """Paper metric = sqrt(1 - disparity), disparity = scipy symmetric Procrustes m12^2
-    (matches R vegan::protest(symmetric=TRUE) -> sqrt(1-ss), Suresh+2023).
-    X, Y are 3D MDS (cmdscale) embeddings -- the paper's 3D-compressed configs."""
+    """Metric = sqrt(1 - disparity), disparity = scipy symmetric Procrustes m12^2
+    (same sqrt(1-ss) form as Suresh+2023). Here X, Y are NxN RDMs aligned DIRECTLY
+    (no MDS): each concept = its row of the RDM. Gives higher, MDS-free values;
+    validated to reproduce the paper's ordering (see repro_human.py, column B)."""
     from scipy.spatial import procrustes as _sp
-    d = min(X.shape[1], Y.shape[1])
-    if d == 0:
+    if X.shape != Y.shape:
         return float("nan")
     try:
-        _, _, disp = _sp(X[:, :d], Y[:, :d])
+        _, _, disp = _sp(X, Y)
     except Exception:
         return float("nan")
     return float(np.sqrt(max(0.0, 1.0 - disp)))
 
 
-def method_embeddings(model, dim=3):
-    """Return {method: 3D cmdscale embedding} for a model's methods (paper recipe)."""
+def method_rdms(model):
+    """Return {method: NxN distance matrix (RDM)} for a model's methods."""
     concepts = A.load_concepts()
-    embs = {}
+    rdms = {}
     for m in METHODS:
         sim = A.METHOD_FN[m](model, concepts)
         if sim is None:
             continue
-        embs[m] = A.embed_30d(sim, dim=dim)   # embed_30d now uses classical MDS
-    return embs
+        d = 1.0 - sim
+        d = (d + d.T) / 2.0
+        np.fill_diagonal(d, 0.0)
+        rdms[m] = d
+    return rdms
 
 
 def discover_models():
