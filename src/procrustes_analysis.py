@@ -26,30 +26,17 @@ METHODS = ["triplet", "pairwise", "feature"]
 
 
 def procrustes_r2(X, Y):
-    """R^2 of fitting X onto Y with orthogonal rotation+reflection, scale, translation.
-    Symmetric-normalized (both scaled to unit norm), so R^2 in ~[0,1]."""
+    """Paper metric: Procrustes correlation r = sqrt(1 - disparity), where disparity is
+    scipy's symmetric Procrustes m12^2 (both configs mean-centered + unit-normed).
+    Matches R vegan::protest(symmetric=TRUE) -> sqrt(1 - ss) used in Suresh+2023."""
+    from scipy.spatial import procrustes as _sp
     d = min(X.shape[1], Y.shape[1])
-    X = X[:, :d].astype(float).copy()
-    Y = Y[:, :d].astype(float).copy()
-    # center
-    X -= X.mean(0)
-    Y -= Y.mean(0)
-    # scale to unit Frobenius norm (removes arbitrary scale of each embedding)
-    nx = np.linalg.norm(X)
-    ny = np.linalg.norm(Y)
-    if nx == 0 or ny == 0:
-        return np.nan
-    X /= nx
-    Y /= ny
-    # optimal rotation R minimizing ||Y - X R||: SVD of X^T Y
-    U, S, Vt = np.linalg.svd(X.T @ Y)
-    R = U @ Vt
-    # optimal scale
-    scale = S.sum()
-    Xr = scale * (X @ R)
-    ss_res = np.sum((Y - Xr) ** 2)
-    ss_tot = np.sum(Y ** 2)  # = 1 after unit-norm
-    return float(1.0 - ss_res / ss_tot)
+    if d == 0: return float("nan")
+    try:
+        _, _, disp = _sp(X[:, :d], Y[:, :d])
+    except Exception:
+        return float("nan")
+    return float(np.sqrt(max(0.0, 1.0 - disp)))
 
 
 def method_embeddings(model, dim=None):

@@ -215,15 +215,24 @@ def rsa(sim_a, sim_b):
     return float(r)
 
 
+def _cmdscale(D, k):
+    """Classical MDS (== R cmdscale): eigendecomp of double-centered -0.5 D^2."""
+    D = np.asarray(D, float); n = D.shape[0]
+    J = np.eye(n) - np.ones((n, n)) / n
+    B = -0.5 * J @ (D ** 2) @ J
+    w, V = np.linalg.eigh(B)
+    idx = np.argsort(w)[::-1][:k]
+    return V[:, idx] * np.sqrt(np.clip(w[idx], 0, None))
+
+
 def embed_30d(sim, dim=30, seed=0):
-    """30D embedding from a similarity matrix via metric MDS on 1-sim distance."""
+    """k-dim embedding from a similarity matrix via CLASSICAL MDS (matches the paper's
+    R cmdscale) on 1-sim distance."""
     d = 1.0 - sim
     d = (d + d.T) / 2.0
     np.fill_diagonal(d, 0.0)
     k = min(dim, sim.shape[0] - 1)
-    mds = MDS(n_components=k, dissimilarity="precomputed",
-              random_state=seed, normalized_stress="auto")
-    return mds.fit_transform(d)
+    return _cmdscale(d, k)
 
 
 def procrustes_r2(emb_model, emb_human):
