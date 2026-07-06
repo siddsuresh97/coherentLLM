@@ -98,6 +98,7 @@ local:
     path: Qwen/Qwen2.5-14B-Instruct
     chat: true
     download: true
+    tensor_parallel: 2
     params_b: 14
   qwen2.5-32b-instruct:
     path: Qwen/Qwen2.5-32B-Instruct
