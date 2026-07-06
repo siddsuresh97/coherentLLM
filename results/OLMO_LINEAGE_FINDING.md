@@ -47,3 +47,21 @@ So post-training is ~constant across the two lineages; the base/pretraining diff
   property of post-training, not of OLMo's specific (weaker) base.
 - Bonus same-base comparison: Tulu-3-8B-final (Llama-3.1 + AI2 recipe) vs
   llama-3.1-8b-instruct (Llama-3.1 + Meta recipe) - two recipes on one base.
+
+## Base measured THREE ways (few-shot added per request)
+OLMo-2-7B base, triplet~pairwise coherence:
+| method | coherence | note |
+|---|---|---|
+| logprob (representation) | 0.30 | structure in triplet only |
+| few-shot (in-context gen) | -0.01 | 99.8% parseable, but triplet & pairwise structure don't agree |
+| zero-shot instruction | n/a | base can't follow (42% parseable) |
+
+Category-structure check (within-category > between?):
+- logprob:  triplet YES (within-rep 0.71 > between 0.43), pairwise weak
+- few-shot: triplet NO, pairwise YES (between 0.06)
+Each method recovers structure in ONE task but not the other, and they don't line up
+-> the base's similarity structure is real-but-fragile and NOT consistent across
+elicitation methods. Low cross-method coherence for the base holds under BOTH
+base-appropriate measurements. Post-training (generation regime) is what makes the
+methods agree. This strengthens the main finding: post-training improves cross-method
+CONSISTENCY of reporting, and the base does not already have high cross-method coherence.
