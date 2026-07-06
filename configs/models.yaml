@@ -129,6 +129,27 @@ local:
     chat: true
     download: true
     stage: rlvr
+  # --- OLMo-2-32B lineage (largest with full training axis; H100 bf16) ---
+  olmo2-32b-base:
+    path: allenai/OLMo-2-0325-32B
+    chat: false
+    download: true
+    stage: base
+  olmo2-32b-sft:
+    path: allenai/OLMo-2-0325-32B-SFT
+    chat: true
+    download: true
+    stage: sft
+  olmo2-32b-dpo:
+    path: allenai/OLMo-2-0325-32B-DPO
+    chat: true
+    download: true
+    stage: dpo
+  olmo2-32b-instruct:
+    path: allenai/OLMo-2-0325-32B-Instruct
+    chat: true
+    download: true
+    stage: rlvr
   # --- big models: need coherence_big env (vLLM 0.8.x) + 4-bit to fit 48GB ---
   gemma-3-27b-it:
     path: google/gemma-3-27b-it
