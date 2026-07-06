@@ -6,6 +6,23 @@ Ported verbatim from the EMNLP/llm-response-pipeline paper
 
 SYSTEM_PROMPT = "You are a helpful assistant who gives responses to questions."
 
+# Few-shot exemplars for BASE models (no instruction-following). Prepended as a
+# plain-text demonstration block so the base continues the pattern. Uses concepts
+# NOT in the 30-item stimulus set to avoid leaking answers.
+FEWSHOT_TRIPLET = (
+    "Answer using only one word - Dog or Chair and not Cat. "
+    "Which is more similar in semantic meaning to Cat?\nDog\n\n"
+    "Answer using only one word - Table or Apple and not Desk. "
+    "Which is more similar in semantic meaning to Desk?\nTable\n\n"
+    "Answer using only one word - Boat or Hammer and not Ship. "
+    "Which is more similar in semantic meaning to Ship?\nBoat\n\n"
+)
+FEWSHOT_PAIRWISE = (
+    "Answer with only one number from 1 to 7: How semantically similar is Cat and Dog?\n6\n\n"
+    "Answer with only one number from 1 to 7: How semantically similar is Table and Apple?\n2\n\n"
+    "Answer with only one number from 1 to 7: How semantically similar is Ship and Boat?\n7\n\n"
+)
+
 
 def triplet_prompt(anchor: str, concept1: str, concept2: str) -> str:
     """Anchored similarity: which of two items is more similar to the anchor."""
