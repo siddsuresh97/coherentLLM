@@ -11,6 +11,7 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export HF_HOME=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models
 export HF_HUB_CACHE=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models
 export COHERENCE_FORCE_BF16=1
+export COHERENCE_EXTRA_CACHE=/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/shared_model_weights
 GM=0.80   # leave headroom so a lagging release doesn't starve the next load
 
 drain() {

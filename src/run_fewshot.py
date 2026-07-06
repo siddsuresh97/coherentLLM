@@ -31,10 +31,12 @@ def load_registry():
 
 
 def resolve(repo, cache):
-    for snap in sorted(glob.glob(os.path.join(
-            cache, "models--" + repo.replace("/", "--"), "snapshots", "*"))):
-        if glob.glob(os.path.join(snap, "config.json")):
-            return snap
+    cn = "models--" + repo.replace("/", "--")
+    caches = [cache] + [c for c in os.environ.get("COHERENCE_EXTRA_CACHE", "").split(":") if c]
+    for _c in caches:
+        for snap in sorted(glob.glob(os.path.join(_c, cn, "snapshots", "*"))):
+            if glob.glob(os.path.join(snap, "config.json")):
+                return snap
     return repo
 
 

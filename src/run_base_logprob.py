@@ -38,9 +38,11 @@ def load_registry():
 
 def resolve_model_path(repo_id, hf_cache):
     cache = "models--" + repo_id.replace("/", "--")
-    for snap in sorted(glob.glob(os.path.join(hf_cache, cache, "snapshots", "*"))):
-        if glob.glob(os.path.join(snap, "config.json")):
-            return snap
+    caches = [hf_cache] + [c for c in os.environ.get("COHERENCE_EXTRA_CACHE", "").split(":") if c]
+    for _c in caches:
+        for snap in sorted(glob.glob(os.path.join(_c, cache, "snapshots", "*"))):
+            if glob.glob(os.path.join(snap, "config.json")):
+                return snap
     return repo_id
 
 

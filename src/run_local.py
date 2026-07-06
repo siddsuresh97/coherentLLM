@@ -35,10 +35,13 @@ def resolve_model_path(repo_id: str, hf_cache: str, allow_download: bool):
     read-only and never tries to write into another user's cache subdir. Falls
     back to the repo id (triggering a download) only when not cached."""
     cache_name = "models--" + repo_id.replace("/", "--")
-    snaps = sorted(glob.glob(os.path.join(hf_cache, cache_name, "snapshots", "*")))
-    for snap in snaps:
-        if glob.glob(os.path.join(snap, "config.json")):
-            return snap
+    # Search the primary cache AND any extra caches (e.g. a second project quota).
+    caches = [hf_cache] + [c for c in os.environ.get(
+        "COHERENCE_EXTRA_CACHE", "").split(":") if c]
+    for cache in caches:
+        for snap in sorted(glob.glob(os.path.join(cache, cache_name, "snapshots", "*"))):
+            if glob.glob(os.path.join(snap, "config.json")):
+                return snap
     if not allow_download:
         print(f"[warn] {repo_id} not found in cache; will let HF resolve/download")
     return repo_id
