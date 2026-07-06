@@ -21,3 +21,4 @@ results/embeddings/
 *openrouter*
 secrets.yaml
 .ipynb_checkpoints/
+conceptual_representations_gpt/
