@@ -1,22 +1,22 @@
-# Paper's exact metric (from conceptual_representations_gpt/emnlp/experiments.ipynb)
+# The paper's TRUE metric = RDM-direct Procrustes (no MDS)
 
-The EMNLP paper uses R's vegan::protest(symmetric=TRUE) and reports:
-    results = c(results, sqrt(1 - result$ss))
-So the metric is the PROCRUSTES CORRELATION r = sqrt(1 - ss), NOT R^2.
-(The dissertation prose "squared Procrustes correlation" is loose; the code is sqrt(1-ss).)
+RESOLVED via the paper's OWN saved output:
+  conceptual_representations_gpt/emnlp/results/humans_all_tasks_correlation_table.csv
 
-scipy.spatial.procrustes returns disparity = m12^2 (symmetric, both unit-normed),
-so paper_value = sqrt(1 - disparity). Verified reproduction of the paper's HUMAN matrix:
+Paper's actual computed human values (protest symmetric, sqrt(1-ss)):
+  leuven(feature) ~ triplet  = 0.979
+  leuven(feature) ~ pairwise = 0.915
+  triplet ~ pairwise         = 0.846
 
-| pair | my repro | paper |
-|---|---|---|
-| triplet ~ feature  | 0.90 | 0.96 |
-| pairwise ~ feature | 0.82 | 0.84 |
-| triplet ~ pairwise | 0.74 | 0.72 |
+My RDM-direct Procrustes reproduces these almost exactly:
+  0.980 / 0.919 / 0.852   (vs 0.979 / 0.915 / 0.846)
 
-Within ~0.02-0.06 (triplet~pairwise near-exact). Residual gap = my binarized Leuven vs
-the paper's raw-count animal+artifact Leuven CSVs.
+Key finding: the paper's notebook (cell 26) calls R vegan::protest() on the DISTANCE
+MATRICES directly (leuven_dsm, human_triplet_dsm, human_pairwise_dsm) -> protest treats
+each 30x30 DSM as a 30-dim configuration. That is RDM-direct Procrustes, NOT 3D MDS.
 
-Human coherence ceiling (mean of 3) = (0.96+0.84+0.72)/3 = 0.84 in r units.
-ACTION: switch all figures from R^2 to r = sqrt(1-ss) to match the paper.
-Embeddings: classical MDS (cmdscale) k=3 from the relevant distance matrix, per method.
+The dissertation TEXT quotes 0.96/0.84/0.72 - an older/different run that does not match
+the committed analysis output. The saved table (0.98/0.92/0.85) is authoritative.
+
+=> Our pipeline metric = RDM-direct Procrustes, sqrt(1-scipy_disparity). Correct & paper-faithful.
+Human coherence ceiling (mean of 3) = (0.979+0.915+0.846)/3 = 0.913 (~0.91).

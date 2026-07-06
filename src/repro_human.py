@@ -65,10 +65,14 @@ def build_human_dists():
 
 def main():
     have, D = build_human_dists()
-    pairs = [("triplet", "feature", 0.96), ("pairwise", "feature", 0.84),
-             ("triplet", "pairwise", 0.72)]
+    # "paper" = the paper's OWN saved output humans_all_tasks_correlation_table.csv
+    # (leuven~triplet 0.979, leuven~pairwise 0.915, triplet~pairwise 0.846).
+    # NOTE: the dissertation TEXT quotes 0.96/0.84/0.72 (older/different run); the
+    # saved analysis table is what protest actually computed, and it is RDM-direct.
+    pairs = [("triplet", "feature", 0.979), ("pairwise", "feature", 0.915),
+             ("triplet", "pairwise", 0.846)]
     print(f"covered {len(have)}/30 concepts\n")
-    print("(A) 3D cmdscale + Procrustes  vs  (B) full-RDM Procrustes  [paper]")
+    print("(A) 3D cmdscale + Procrustes  vs  (B) full-RDM Procrustes  [paper SAVED table]")
     for a, b, paper in pairs:
         Ea, Eb = cmdscale(D[a]), cmdscale(D[b])
         r_mds = pmetric(Ea, Eb)
