@@ -34,6 +34,19 @@ local:
     path: google/gemma-2-9b-it
     chat: true
     download: true
+  # --- big models: need coherence_big env (vLLM 0.8.x) + 4-bit to fit 48GB ---
+  gemma-3-27b-it:
+    path: google/gemma-3-27b-it
+    chat: true
+    quantization: bitsandbytes
+    tensor_parallel: 2
+    big_env: true
+  mixtral-8x7b-instruct:
+    path: mistralai/Mixtral-8x7B-Instruct-v0.1
+    chat: true
+    quantization: bitsandbytes
+    tensor_parallel: 2
+    big_env: true
 
 openrouter:
   # IDs verified against openrouter.ai/api/v1/models on 2026-07-04.

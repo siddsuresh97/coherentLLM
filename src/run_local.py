@@ -101,15 +101,22 @@ def main():
 
     from vllm import LLM, SamplingParams
 
-    llm = LLM(
+    # tensor-parallel and quantization can come from the model spec (big models).
+    tp = spec.get("tensor_parallel", args.tensor_parallel)
+    llm_kwargs = dict(
         model=model_path,
         download_dir=hf_cache,
-        tensor_parallel_size=args.tensor_parallel,
+        tensor_parallel_size=tp,
         max_model_len=args.max_model_len,
         gpu_memory_utilization=args.gpu_mem_util,
         dtype="bfloat16",
         trust_remote_code=True,
     )
+    quant = spec.get("quantization")
+    if quant:
+        llm_kwargs["quantization"] = quant
+        print(f"[quant] {quant}, tensor_parallel={tp}")
+    llm = LLM(**llm_kwargs)
 
     def run_prompts(prompts, max_tokens):
         sp = SamplingParams(temperature=args.temperature, max_tokens=max_tokens)

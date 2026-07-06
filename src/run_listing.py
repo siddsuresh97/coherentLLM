@@ -71,11 +71,15 @@ def main():
     prompts = [listing_prompt(c) for c, _ in jobs]
 
     from vllm import LLM, SamplingParams
-    llm = LLM(model=model_path, download_dir=hf_cache,
-              tensor_parallel_size=args.tensor_parallel,
-              max_model_len=args.max_model_len,
-              gpu_memory_utilization=args.gpu_mem_util,
-              dtype="bfloat16", trust_remote_code=True)
+    tp = spec.get("tensor_parallel", args.tensor_parallel)
+    llm_kwargs = dict(model=model_path, download_dir=hf_cache,
+                      tensor_parallel_size=tp,
+                      max_model_len=args.max_model_len,
+                      gpu_memory_utilization=args.gpu_mem_util,
+                      dtype="bfloat16", trust_remote_code=True)
+    if spec.get("quantization"):
+        llm_kwargs["quantization"] = spec["quantization"]
+    llm = LLM(**llm_kwargs)
     # temperature>0 needs a seed-free sampling; vLLM handles randomness per request
     sp = SamplingParams(temperature=args.temperature, max_tokens=args.max_tokens)
     if spec.get("chat", True):
