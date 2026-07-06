@@ -113,6 +113,9 @@ def main():
         trust_remote_code=True,
     )
     quant = spec.get("quantization")
+    if quant and os.environ.get("COHERENCE_FORCE_BF16") == "1":
+        print(f"[bf16] ignoring quantization={quant} (COHERENCE_FORCE_BF16 set, e.g. H100)")
+        quant = None
     if quant:
         llm_kwargs["quantization"] = quant
         print(f"[quant] {quant}, tensor_parallel={tp}")
