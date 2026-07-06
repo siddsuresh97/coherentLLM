@@ -58,16 +58,35 @@ def coherence(model, suffix):
     return A.rsa(t, p), A.rsa(t, HUMAN)
 
 
+def three_method(model):
+    """Full 3-method cross-mean coherence (generation): mean of the three RSAs."""
+    concepts = A.load_concepts()
+    rdms = {}
+    for m in ("triplet", "pairwise", "feature"):
+        sim = A.METHOD_FN[m](model, concepts)
+        if sim is not None:
+            rdms[m] = sim
+    if len(rdms) < 3:
+        return np.nan
+    keys = list(rdms)
+    scores = [A.rsa(rdms[keys[i]], rdms[keys[j]])
+              for i in range(3) for j in range(i + 1, 3)]
+    return float(np.mean(scores))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--lineage", choices=list(LINEAGES), required=True)
     args = ap.parse_args()
     rows = []
     for model, label in LINEAGES[args.lineage]:
-        gen_c, gen_h = coherence(model, "")       # generation
-        lp_c, lp_h = coherence(model, "_lp")      # logprob
+        gen_c, gen_h = coherence(model, "")       # generation triplet~pairwise
+        lp_c, lp_h = coherence(model, "_lp")      # logprob triplet~pairwise
+        fs_c, _ = coherence(model, "_fs")         # few-shot triplet~pairwise
+        gen3 = three_method(model)                # generation 3-method cross-mean
         rows.append({"stage": label,
-                     "gen_coherence": gen_c, "gen_human": gen_h,
+                     "gen_coherence": gen_c, "gen_3method": gen3, "gen_human": gen_h,
+                     "fewshot_coherence": fs_c,
                      "lp_coherence": lp_c, "lp_human": lp_h})
     df = pd.DataFrame(rows)
     csv = os.path.join(OUT, f"{args.lineage}_dual.csv")
