@@ -77,7 +77,7 @@ def main():
                       max_model_len=args.max_model_len,
                       gpu_memory_utilization=args.gpu_mem_util,
                       dtype="bfloat16", trust_remote_code=True)
-    if spec.get("quantization"):
+    if spec.get("quantization") and os.environ.get("COHERENCE_FORCE_BF16") != "1":
         llm_kwargs["quantization"] = spec["quantization"]
     llm = LLM(**llm_kwargs)
     # temperature>0 needs a seed-free sampling; vLLM handles randomness per request
