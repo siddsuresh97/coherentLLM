@@ -1,0 +1,990 @@
+ambush predator,Alligator
+ambush predator,Anvil
+ambush predator,Axe
+ambush predator,Blindworm
+ambush predator,Boa python
+ambush predator,Caiman
+ambush predator,Chameleon
+ambush predator,Chisel
+ambush predator,Cobra
+ambush predator,Crocodile
+ambush predator,Dinosaur
+ambush predator,Gecko
+ambush predator,Grinding disk
+ambush predator,Hammer
+ambush predator,Knife
+ambush predator,Lawn Mower
+ambush predator,Lizard
+ambush predator,Nail
+ambush predator,Oil can
+ambush predator,Paint brush
+ambush predator,Salamander
+ambush predator,Saw
+ambush predator,Screwdriver
+ambush predator,Shovel
+ambush predator,Snake
+ambush predator,Spanner
+ambush predator,Toad
+ambush predator,Tortoise
+ambush predator,Turtle
+ambush predator,Vacuum
+aquatic,Alligator
+aquatic,Anvil
+aquatic,Axe
+aquatic,Blindworm
+aquatic,Boa python
+aquatic,Caiman
+aquatic,Chameleon
+aquatic,Chisel
+aquatic,Cobra
+aquatic,Crocodile
+aquatic,Dinosaur
+aquatic,Gecko
+aquatic,Grinding disk
+aquatic,Hammer
+aquatic,Knife
+aquatic,Lawn Mower
+aquatic,Lizard
+aquatic,Nail
+aquatic,Oil can
+aquatic,Paint brush
+aquatic,Salamander
+aquatic,Saw
+aquatic,Screwdriver
+aquatic,Shovel
+aquatic,Snake
+aquatic,Spanner
+aquatic,Toad
+aquatic,Tortoise
+aquatic,Turtle
+aquatic,Vacuum
+blade,Alligator
+blade,Anvil
+blade,Axe
+blade,Blindworm
+blade,Boa python
+blade,Caiman
+blade,Chameleon
+blade,Chisel
+blade,Cobra
+blade,Crocodile
+blade,Dinosaur
+blade,Gecko
+blade,Grinding disk
+blade,Hammer
+blade,Knife
+blade,Lawn Mower
+blade,Lizard
+blade,Nail
+blade,Oil can
+blade,Paint brush
+blade,Salamander
+blade,Saw
+blade,Screwdriver
+blade,Shovel
+blade,Snake
+blade,Spanner
+blade,Toad
+blade,Tortoise
+blade,Turtle
+blade,Vacuum
+can climb trees,Alligator
+can climb trees,Anvil
+can climb trees,Axe
+can climb trees,Blindworm
+can climb trees,Boa python
+can climb trees,Caiman
+can climb trees,Chameleon
+can climb trees,Chisel
+can climb trees,Cobra
+can climb trees,Crocodile
+can climb trees,Dinosaur
+can climb trees,Gecko
+can climb trees,Grinding disk
+can climb trees,Hammer
+can climb trees,Knife
+can climb trees,Lawn Mower
+can climb trees,Lizard
+can climb trees,Nail
+can climb trees,Oil can
+can climb trees,Paint brush
+can climb trees,Salamander
+can climb trees,Saw
+can climb trees,Screwdriver
+can climb trees,Shovel
+can climb trees,Snake
+can climb trees,Spanner
+can climb trees,Toad
+can climb trees,Tortoise
+can climb trees,Turtle
+can climb trees,Vacuum
+carnivorous,Alligator
+carnivorous,Anvil
+carnivorous,Axe
+carnivorous,Blindworm
+carnivorous,Boa python
+carnivorous,Caiman
+carnivorous,Chameleon
+carnivorous,Chisel
+carnivorous,Cobra
+carnivorous,Crocodile
+carnivorous,Dinosaur
+carnivorous,Gecko
+carnivorous,Grinding disk
+carnivorous,Hammer
+carnivorous,Knife
+carnivorous,Lawn Mower
+carnivorous,Lizard
+carnivorous,Nail
+carnivorous,Oil can
+carnivorous,Paint brush
+carnivorous,Salamander
+carnivorous,Saw
+carnivorous,Screwdriver
+carnivorous,Shovel
+carnivorous,Snake
+carnivorous,Spanner
+carnivorous,Toad
+carnivorous,Tortoise
+carnivorous,Turtle
+carnivorous,Vacuum
+constrictor,Alligator
+constrictor,Anvil
+constrictor,Axe
+constrictor,Blindworm
+constrictor,Boa python
+constrictor,Caiman
+constrictor,Chameleon
+constrictor,Chisel
+constrictor,Cobra
+constrictor,Crocodile
+constrictor,Dinosaur
+constrictor,Gecko
+constrictor,Grinding disk
+constrictor,Hammer
+constrictor,Knife
+constrictor,Lawn Mower
+constrictor,Lizard
+constrictor,Nail
+constrictor,Oil can
+constrictor,Paint brush
+constrictor,Salamander
+constrictor,Saw
+constrictor,Screwdriver
+constrictor,Shovel
+constrictor,Snake
+constrictor,Spanner
+constrictor,Toad
+constrictor,Tortoise
+constrictor,Turtle
+constrictor,Vacuum
+cutting edge,Alligator
+cutting edge,Anvil
+cutting edge,Axe
+cutting edge,Blindworm
+cutting edge,Boa python
+cutting edge,Caiman
+cutting edge,Chameleon
+cutting edge,Chisel
+cutting edge,Cobra
+cutting edge,Crocodile
+cutting edge,Dinosaur
+cutting edge,Gecko
+cutting edge,Grinding disk
+cutting edge,Hammer
+cutting edge,Knife
+cutting edge,Lawn Mower
+cutting edge,Lizard
+cutting edge,Nail
+cutting edge,Oil can
+cutting edge,Paint brush
+cutting edge,Salamander
+cutting edge,Saw
+cutting edge,Screwdriver
+cutting edge,Shovel
+cutting edge,Snake
+cutting edge,Spanner
+cutting edge,Toad
+cutting edge,Tortoise
+cutting edge,Turtle
+cutting edge,Vacuum
+dry skin,Alligator
+dry skin,Anvil
+dry skin,Axe
+dry skin,Blindworm
+dry skin,Boa python
+dry skin,Caiman
+dry skin,Chameleon
+dry skin,Chisel
+dry skin,Cobra
+dry skin,Crocodile
+dry skin,Dinosaur
+dry skin,Gecko
+dry skin,Grinding disk
+dry skin,Hammer
+dry skin,Knife
+dry skin,Lawn Mower
+dry skin,Lizard
+dry skin,Nail
+dry skin,Oil can
+dry skin,Paint brush
+dry skin,Salamander
+dry skin,Saw
+dry skin,Screwdriver
+dry skin,Shovel
+dry skin,Snake
+dry skin,Spanner
+dry skin,Toad
+dry skin,Tortoise
+dry skin,Turtle
+dry skin,Vacuum
+durable,Alligator
+durable,Anvil
+durable,Axe
+durable,Blindworm
+durable,Boa python
+durable,Caiman
+durable,Chameleon
+durable,Chisel
+durable,Cobra
+durable,Crocodile
+durable,Dinosaur
+durable,Gecko
+durable,Grinding disk
+durable,Hammer
+durable,Knife
+durable,Lawn Mower
+durable,Lizard
+durable,Nail
+durable,Oil can
+durable,Paint brush
+durable,Salamander
+durable,Saw
+durable,Screwdriver
+durable,Shovel
+durable,Snake
+durable,Spanner
+durable,Toad
+durable,Tortoise
+durable,Turtle
+durable,Vacuum
+eyes on top of head,Alligator
+eyes on top of head,Anvil
+eyes on top of head,Axe
+eyes on top of head,Blindworm
+eyes on top of head,Boa python
+eyes on top of head,Caiman
+eyes on top of head,Chameleon
+eyes on top of head,Chisel
+eyes on top of head,Cobra
+eyes on top of head,Crocodile
+eyes on top of head,Dinosaur
+eyes on top of head,Gecko
+eyes on top of head,Grinding disk
+eyes on top of head,Hammer
+eyes on top of head,Knife
+eyes on top of head,Lawn Mower
+eyes on top of head,Lizard
+eyes on top of head,Nail
+eyes on top of head,Oil can
+eyes on top of head,Paint brush
+eyes on top of head,Salamander
+eyes on top of head,Saw
+eyes on top of head,Screwdriver
+eyes on top of head,Shovel
+eyes on top of head,Snake
+eyes on top of head,Spanner
+eyes on top of head,Toad
+eyes on top of head,Tortoise
+eyes on top of head,Turtle
+eyes on top of head,Vacuum
+four legs,Alligator
+four legs,Anvil
+four legs,Axe
+four legs,Blindworm
+four legs,Boa python
+four legs,Caiman
+four legs,Chameleon
+four legs,Chisel
+four legs,Cobra
+four legs,Crocodile
+four legs,Dinosaur
+four legs,Gecko
+four legs,Grinding disk
+four legs,Hammer
+four legs,Knife
+four legs,Lawn Mower
+four legs,Lizard
+four legs,Nail
+four legs,Oil can
+four legs,Paint brush
+four legs,Salamander
+four legs,Saw
+four legs,Screwdriver
+four legs,Shovel
+four legs,Snake
+four legs,Spanner
+four legs,Toad
+four legs,Tortoise
+four legs,Turtle
+four legs,Vacuum
+handle,Alligator
+handle,Anvil
+handle,Axe
+handle,Blindworm
+handle,Boa python
+handle,Caiman
+handle,Chameleon
+handle,Chisel
+handle,Cobra
+handle,Crocodile
+handle,Dinosaur
+handle,Gecko
+handle,Grinding disk
+handle,Hammer
+handle,Knife
+handle,Lawn Mower
+handle,Lizard
+handle,Nail
+handle,Oil can
+handle,Paint brush
+handle,Salamander
+handle,Saw
+handle,Screwdriver
+handle,Shovel
+handle,Snake
+handle,Spanner
+handle,Toad
+handle,Tortoise
+handle,Turtle
+handle,Vacuum
+hard,Alligator
+hard,Anvil
+hard,Axe
+hard,Blindworm
+hard,Boa python
+hard,Caiman
+hard,Chameleon
+hard,Chisel
+hard,Cobra
+hard,Crocodile
+hard,Dinosaur
+hard,Gecko
+hard,Grinding disk
+hard,Hammer
+hard,Knife
+hard,Lawn Mower
+hard,Lizard
+hard,Nail
+hard,Oil can
+hard,Paint brush
+hard,Salamander
+hard,Saw
+hard,Screwdriver
+hard,Shovel
+hard,Snake
+hard,Spanner
+hard,Toad
+hard,Tortoise
+hard,Turtle
+hard,Vacuum
+has a handle,Alligator
+has a handle,Anvil
+has a handle,Axe
+has a handle,Blindworm
+has a handle,Boa python
+has a handle,Caiman
+has a handle,Chameleon
+has a handle,Chisel
+has a handle,Cobra
+has a handle,Crocodile
+has a handle,Dinosaur
+has a handle,Gecko
+has a handle,Grinding disk
+has a handle,Hammer
+has a handle,Knife
+has a handle,Lawn Mower
+has a handle,Lizard
+has a handle,Nail
+has a handle,Oil can
+has a handle,Paint brush
+has a handle,Salamander
+has a handle,Saw
+has a handle,Screwdriver
+has a handle,Shovel
+has a handle,Snake
+has a handle,Spanner
+has a handle,Toad
+has a handle,Tortoise
+has a handle,Turtle
+has a handle,Vacuum
+limbs,Alligator
+limbs,Anvil
+limbs,Axe
+limbs,Blindworm
+limbs,Boa python
+limbs,Caiman
+limbs,Chameleon
+limbs,Chisel
+limbs,Cobra
+limbs,Crocodile
+limbs,Dinosaur
+limbs,Gecko
+limbs,Grinding disk
+limbs,Hammer
+limbs,Knife
+limbs,Lawn Mower
+limbs,Lizard
+limbs,Nail
+limbs,Oil can
+limbs,Paint brush
+limbs,Salamander
+limbs,Saw
+limbs,Screwdriver
+limbs,Shovel
+limbs,Snake
+limbs,Spanner
+limbs,Toad
+limbs,Tortoise
+limbs,Turtle
+limbs,Vacuum
+lizard-like appearance,Alligator
+lizard-like appearance,Anvil
+lizard-like appearance,Axe
+lizard-like appearance,Blindworm
+lizard-like appearance,Boa python
+lizard-like appearance,Caiman
+lizard-like appearance,Chameleon
+lizard-like appearance,Chisel
+lizard-like appearance,Cobra
+lizard-like appearance,Crocodile
+lizard-like appearance,Dinosaur
+lizard-like appearance,Gecko
+lizard-like appearance,Grinding disk
+lizard-like appearance,Hammer
+lizard-like appearance,Knife
+lizard-like appearance,Lawn Mower
+lizard-like appearance,Lizard
+lizard-like appearance,Nail
+lizard-like appearance,Oil can
+lizard-like appearance,Paint brush
+lizard-like appearance,Salamander
+lizard-like appearance,Saw
+lizard-like appearance,Screwdriver
+lizard-like appearance,Shovel
+lizard-like appearance,Snake
+lizard-like appearance,Spanner
+lizard-like appearance,Toad
+lizard-like appearance,Tortoise
+lizard-like appearance,Turtle
+lizard-like appearance,Vacuum
+made of steel,Alligator
+made of steel,Anvil
+made of steel,Axe
+made of steel,Blindworm
+made of steel,Boa python
+made of steel,Caiman
+made of steel,Chameleon
+made of steel,Chisel
+made of steel,Cobra
+made of steel,Crocodile
+made of steel,Dinosaur
+made of steel,Gecko
+made of steel,Grinding disk
+made of steel,Hammer
+made of steel,Knife
+made of steel,Lawn Mower
+made of steel,Lizard
+made of steel,Nail
+made of steel,Oil can
+made of steel,Paint brush
+made of steel,Salamander
+made of steel,Saw
+made of steel,Screwdriver
+made of steel,Shovel
+made of steel,Snake
+made of steel,Spanner
+made of steel,Toad
+made of steel,Tortoise
+made of steel,Turtle
+made of steel,Vacuum
+metal,Alligator
+metal,Anvil
+metal,Axe
+metal,Blindworm
+metal,Boa python
+metal,Caiman
+metal,Chameleon
+metal,Chisel
+metal,Cobra
+metal,Crocodile
+metal,Dinosaur
+metal,Gecko
+metal,Grinding disk
+metal,Hammer
+metal,Knife
+metal,Lawn Mower
+metal,Lizard
+metal,Nail
+metal,Oil can
+metal,Paint brush
+metal,Salamander
+metal,Saw
+metal,Screwdriver
+metal,Shovel
+metal,Snake
+metal,Spanner
+metal,Toad
+metal,Tortoise
+metal,Turtle
+metal,Vacuum
+no legs,Alligator
+no legs,Anvil
+no legs,Axe
+no legs,Blindworm
+no legs,Boa python
+no legs,Caiman
+no legs,Chameleon
+no legs,Chisel
+no legs,Cobra
+no legs,Crocodile
+no legs,Dinosaur
+no legs,Gecko
+no legs,Grinding disk
+no legs,Hammer
+no legs,Knife
+no legs,Lawn Mower
+no legs,Lizard
+no legs,Nail
+no legs,Oil can
+no legs,Paint brush
+no legs,Salamander
+no legs,Saw
+no legs,Screwdriver
+no legs,Shovel
+no legs,Snake
+no legs,Spanner
+no legs,Toad
+no legs,Tortoise
+no legs,Turtle
+no legs,Vacuum
+no tail,Alligator
+no tail,Anvil
+no tail,Axe
+no tail,Blindworm
+no tail,Boa python
+no tail,Caiman
+no tail,Chameleon
+no tail,Chisel
+no tail,Cobra
+no tail,Crocodile
+no tail,Dinosaur
+no tail,Gecko
+no tail,Grinding disk
+no tail,Hammer
+no tail,Knife
+no tail,Lawn Mower
+no tail,Lizard
+no tail,Nail
+no tail,Oil can
+no tail,Paint brush
+no tail,Salamander
+no tail,Saw
+no tail,Screwdriver
+no tail,Shovel
+no tail,Snake
+no tail,Spanner
+no tail,Toad
+no tail,Tortoise
+no tail,Turtle
+no tail,Vacuum
+nocturnal,Alligator
+nocturnal,Anvil
+nocturnal,Axe
+nocturnal,Blindworm
+nocturnal,Boa python
+nocturnal,Caiman
+nocturnal,Chameleon
+nocturnal,Chisel
+nocturnal,Cobra
+nocturnal,Crocodile
+nocturnal,Dinosaur
+nocturnal,Gecko
+nocturnal,Grinding disk
+nocturnal,Hammer
+nocturnal,Knife
+nocturnal,Lawn Mower
+nocturnal,Lizard
+nocturnal,Nail
+nocturnal,Oil can
+nocturnal,Paint brush
+nocturnal,Salamander
+nocturnal,Saw
+nocturnal,Screwdriver
+nocturnal,Shovel
+nocturnal,Snake
+nocturnal,Spanner
+nocturnal,Toad
+nocturnal,Tortoise
+nocturnal,Turtle
+nocturnal,Vacuum
+rough scales,Alligator
+rough scales,Anvil
+rough scales,Axe
+rough scales,Blindworm
+rough scales,Boa python
+rough scales,Caiman
+rough scales,Chameleon
+rough scales,Chisel
+rough scales,Cobra
+rough scales,Crocodile
+rough scales,Dinosaur
+rough scales,Gecko
+rough scales,Grinding disk
+rough scales,Hammer
+rough scales,Knife
+rough scales,Lawn Mower
+rough scales,Lizard
+rough scales,Nail
+rough scales,Oil can
+rough scales,Paint brush
+rough scales,Salamander
+rough scales,Saw
+rough scales,Screwdriver
+rough scales,Shovel
+rough scales,Snake
+rough scales,Spanner
+rough scales,Toad
+rough scales,Tortoise
+rough scales,Turtle
+rough scales,Vacuum
+rough skin,Alligator
+rough skin,Anvil
+rough skin,Axe
+rough skin,Blindworm
+rough skin,Boa python
+rough skin,Caiman
+rough skin,Chameleon
+rough skin,Chisel
+rough skin,Cobra
+rough skin,Crocodile
+rough skin,Dinosaur
+rough skin,Gecko
+rough skin,Grinding disk
+rough skin,Hammer
+rough skin,Knife
+rough skin,Lawn Mower
+rough skin,Lizard
+rough skin,Nail
+rough skin,Oil can
+rough skin,Paint brush
+rough skin,Salamander
+rough skin,Saw
+rough skin,Screwdriver
+rough skin,Shovel
+rough skin,Snake
+rough skin,Spanner
+rough skin,Toad
+rough skin,Tortoise
+rough skin,Turtle
+rough skin,Vacuum
+scaly skin,Alligator
+scaly skin,Anvil
+scaly skin,Axe
+scaly skin,Blindworm
+scaly skin,Boa python
+scaly skin,Caiman
+scaly skin,Chameleon
+scaly skin,Chisel
+scaly skin,Cobra
+scaly skin,Crocodile
+scaly skin,Dinosaur
+scaly skin,Gecko
+scaly skin,Grinding disk
+scaly skin,Hammer
+scaly skin,Knife
+scaly skin,Lawn Mower
+scaly skin,Lizard
+scaly skin,Nail
+scaly skin,Oil can
+scaly skin,Paint brush
+scaly skin,Salamander
+scaly skin,Saw
+scaly skin,Screwdriver
+scaly skin,Shovel
+scaly skin,Snake
+scaly skin,Spanner
+scaly skin,Toad
+scaly skin,Tortoise
+scaly skin,Turtle
+scaly skin,Vacuum
+sharp claws,Alligator
+sharp claws,Anvil
+sharp claws,Axe
+sharp claws,Blindworm
+sharp claws,Boa python
+sharp claws,Caiman
+sharp claws,Chameleon
+sharp claws,Chisel
+sharp claws,Cobra
+sharp claws,Crocodile
+sharp claws,Dinosaur
+sharp claws,Gecko
+sharp claws,Grinding disk
+sharp claws,Hammer
+sharp claws,Knife
+sharp claws,Lawn Mower
+sharp claws,Lizard
+sharp claws,Nail
+sharp claws,Oil can
+sharp claws,Paint brush
+sharp claws,Salamander
+sharp claws,Saw
+sharp claws,Screwdriver
+sharp claws,Shovel
+sharp claws,Snake
+sharp claws,Spanner
+sharp claws,Toad
+sharp claws,Tortoise
+sharp claws,Turtle
+sharp claws,Vacuum
+sharp teeth,Alligator
+sharp teeth,Anvil
+sharp teeth,Axe
+sharp teeth,Blindworm
+sharp teeth,Boa python
+sharp teeth,Caiman
+sharp teeth,Chameleon
+sharp teeth,Chisel
+sharp teeth,Cobra
+sharp teeth,Crocodile
+sharp teeth,Dinosaur
+sharp teeth,Gecko
+sharp teeth,Grinding disk
+sharp teeth,Hammer
+sharp teeth,Knife
+sharp teeth,Lawn Mower
+sharp teeth,Lizard
+sharp teeth,Nail
+sharp teeth,Oil can
+sharp teeth,Paint brush
+sharp teeth,Salamander
+sharp teeth,Saw
+sharp teeth,Screwdriver
+sharp teeth,Shovel
+sharp teeth,Snake
+sharp teeth,Spanner
+sharp teeth,Toad
+sharp teeth,Tortoise
+sharp teeth,Turtle
+sharp teeth,Vacuum
+shed skin,Alligator
+shed skin,Anvil
+shed skin,Axe
+shed skin,Blindworm
+shed skin,Boa python
+shed skin,Caiman
+shed skin,Chameleon
+shed skin,Chisel
+shed skin,Cobra
+shed skin,Crocodile
+shed skin,Dinosaur
+shed skin,Gecko
+shed skin,Grinding disk
+shed skin,Hammer
+shed skin,Knife
+shed skin,Lawn Mower
+shed skin,Lizard
+shed skin,Nail
+shed skin,Oil can
+shed skin,Paint brush
+shed skin,Salamander
+shed skin,Saw
+shed skin,Screwdriver
+shed skin,Shovel
+shed skin,Snake
+shed skin,Spanner
+shed skin,Toad
+shed skin,Tortoise
+shed skin,Turtle
+shed skin,Vacuum
+short legs,Alligator
+short legs,Anvil
+short legs,Axe
+short legs,Blindworm
+short legs,Boa python
+short legs,Caiman
+short legs,Chameleon
+short legs,Chisel
+short legs,Cobra
+short legs,Crocodile
+short legs,Dinosaur
+short legs,Gecko
+short legs,Grinding disk
+short legs,Hammer
+short legs,Knife
+short legs,Lawn Mower
+short legs,Lizard
+short legs,Nail
+short legs,Oil can
+short legs,Paint brush
+short legs,Salamander
+short legs,Saw
+short legs,Screwdriver
+short legs,Shovel
+short legs,Snake
+short legs,Spanner
+short legs,Toad
+short legs,Tortoise
+short legs,Turtle
+short legs,Vacuum
+smooth,Alligator
+smooth,Anvil
+smooth,Axe
+smooth,Blindworm
+smooth,Boa python
+smooth,Caiman
+smooth,Chameleon
+smooth,Chisel
+smooth,Cobra
+smooth,Crocodile
+smooth,Dinosaur
+smooth,Gecko
+smooth,Grinding disk
+smooth,Hammer
+smooth,Knife
+smooth,Lawn Mower
+smooth,Lizard
+smooth,Nail
+smooth,Oil can
+smooth,Paint brush
+smooth,Salamander
+smooth,Saw
+smooth,Screwdriver
+smooth,Shovel
+smooth,Snake
+smooth,Spanner
+smooth,Toad
+smooth,Tortoise
+smooth,Turtle
+smooth,Vacuum
+tails,Alligator
+tails,Anvil
+tails,Axe
+tails,Blindworm
+tails,Boa python
+tails,Caiman
+tails,Chameleon
+tails,Chisel
+tails,Cobra
+tails,Crocodile
+tails,Dinosaur
+tails,Gecko
+tails,Grinding disk
+tails,Hammer
+tails,Knife
+tails,Lawn Mower
+tails,Lizard
+tails,Nail
+tails,Oil can
+tails,Paint brush
+tails,Salamander
+tails,Saw
+tails,Screwdriver
+tails,Shovel
+tails,Snake
+tails,Spanner
+tails,Toad
+tails,Tortoise
+tails,Turtle
+tails,Vacuum
+thickness,Alligator
+thickness,Anvil
+thickness,Axe
+thickness,Blindworm
+thickness,Boa python
+thickness,Caiman
+thickness,Chameleon
+thickness,Chisel
+thickness,Cobra
+thickness,Crocodile
+thickness,Dinosaur
+thickness,Gecko
+thickness,Grinding disk
+thickness,Hammer
+thickness,Knife
+thickness,Lawn Mower
+thickness,Lizard
+thickness,Nail
+thickness,Oil can
+thickness,Paint brush
+thickness,Salamander
+thickness,Saw
+thickness,Screwdriver
+thickness,Shovel
+thickness,Snake
+thickness,Spanner
+thickness,Toad
+thickness,Tortoise
+thickness,Turtle
+thickness,Vacuum
+weight,Alligator
+weight,Anvil
+weight,Axe
+weight,Blindworm
+weight,Boa python
+weight,Caiman
+weight,Chameleon
+weight,Chisel
+weight,Cobra
+weight,Crocodile
+weight,Dinosaur
+weight,Gecko
+weight,Grinding disk
+weight,Hammer
+weight,Knife
+weight,Lawn Mower
+weight,Lizard
+weight,Nail
+weight,Oil can
+weight,Paint brush
+weight,Salamander
+weight,Saw
+weight,Screwdriver
+weight,Shovel
+weight,Snake
+weight,Spanner
+weight,Toad
+weight,Tortoise
+weight,Turtle
+weight,Vacuum
+wooden handle,Alligator
+wooden handle,Anvil
+wooden handle,Axe
+wooden handle,Blindworm
+wooden handle,Boa python
+wooden handle,Caiman
+wooden handle,Chameleon
+wooden handle,Chisel
+wooden handle,Cobra
+wooden handle,Crocodile
+wooden handle,Dinosaur
+wooden handle,Gecko
+wooden handle,Grinding disk
+wooden handle,Hammer
+wooden handle,Knife
+wooden handle,Lawn Mower
+wooden handle,Lizard
+wooden handle,Nail
+wooden handle,Oil can
+wooden handle,Paint brush
+wooden handle,Salamander
+wooden handle,Saw
+wooden handle,Screwdriver
+wooden handle,Shovel
+wooden handle,Snake
+wooden handle,Spanner
+wooden handle,Toad
+wooden handle,Tortoise
+wooden handle,Turtle
+wooden handle,Vacuum

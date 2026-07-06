@@ -54,9 +54,16 @@ def _mean_logprob(llm, prompt, completion):
     """
     from vllm import SamplingParams
     tok = llm.get_tokenizer()
+    # Find the completion token span by the longest common PREFIX of the two token
+    # sequences (robust to boundary merges from a trailing space in the prompt).
     p_ids = tok(prompt, add_special_tokens=True)["input_ids"]
     full_ids = tok(prompt + completion, add_special_tokens=True)["input_ids"]
-    start = len(p_ids)
+    start = 0
+    for a, b in zip(p_ids, full_ids):
+        if a == b:
+            start += 1
+        else:
+            break
     if len(full_ids) <= start:
         return float("-inf")
     sp = SamplingParams(temperature=0, max_tokens=1, prompt_logprobs=0)
@@ -112,8 +119,8 @@ def main():
                 w = csv.writer(f)
                 w.writerow(["input", "prompt", "response"])
                 for anchor, c1, c2 in rows:
-                    l1 = seq_logprob(llm, f"{anchor} is more similar to ", c1)
-                    l2 = seq_logprob(llm, f"{anchor} is more similar to ", c2)
+                    l1 = seq_logprob(llm, f"{anchor} is more similar to", " "+c1)
+                    l2 = seq_logprob(llm, f"{anchor} is more similar to", " "+c2)
                     choice = c1 if l1 >= l2 else c2
                     w.writerow([f"{anchor}|{c1}|{c2}", "logprob", choice])
             print(f"[done] triplet (logprob): {len(rows)} rows -> {out}")
@@ -131,8 +138,7 @@ def main():
                     best_r, best_lp = 4, -1e9
                     for r in range(1, 8):
                         lp = seq_logprob(
-                            llm, f"On a scale of 1 to 7, the similarity of {a} and {b} is ",
-                            str(r))
+                            llm, f"On a scale of 1 to 7, the similarity of {a} and {b} is", " "+str(r))
                         if lp > best_lp:
                             best_lp, best_r = lp, r
                     w.writerow([f"{a}|{b}", "logprob", str(best_r)])
