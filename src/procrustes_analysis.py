@@ -26,12 +26,13 @@ METHODS = ["triplet", "pairwise", "feature"]
 
 
 def procrustes_r2(X, Y):
-    """Paper metric: Procrustes correlation r = sqrt(1 - disparity), where disparity is
-    scipy's symmetric Procrustes m12^2 (both configs mean-centered + unit-normed).
-    Matches R vegan::protest(symmetric=TRUE) -> sqrt(1 - ss) used in Suresh+2023."""
+    """Paper metric = sqrt(1 - disparity), disparity = scipy symmetric Procrustes m12^2
+    (matches R vegan::protest(symmetric=TRUE) -> sqrt(1-ss), Suresh+2023).
+    X, Y are 3D MDS (cmdscale) embeddings -- the paper's 3D-compressed configs."""
     from scipy.spatial import procrustes as _sp
     d = min(X.shape[1], Y.shape[1])
-    if d == 0: return float("nan")
+    if d == 0:
+        return float("nan")
     try:
         _, _, disp = _sp(X[:, :d], Y[:, :d])
     except Exception:
@@ -39,16 +40,15 @@ def procrustes_r2(X, Y):
     return float(np.sqrt(max(0.0, 1.0 - disp)))
 
 
-def method_embeddings(model, dim=None):
-    """Return {method: embedding} for a model's available methods."""
+def method_embeddings(model, dim=3):
+    """Return {method: 3D cmdscale embedding} for a model's methods (paper recipe)."""
     concepts = A.load_concepts()
     embs = {}
     for m in METHODS:
         sim = A.METHOD_FN[m](model, concepts)
         if sim is None:
             continue
-        k = dim or (len(concepts) - 1)
-        embs[m] = A.embed_30d(sim, dim=k)
+        embs[m] = A.embed_30d(sim, dim=dim)   # embed_30d now uses classical MDS
     return embs
 
 
@@ -61,34 +61,42 @@ def discover_models():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--models", nargs="*", default=None)
-    ap.add_argument("--human_embedding",
-                    default=os.path.join(HERE, "data", "human", "leuven_embedding.npy"))
-    ap.add_argument("--dim", type=int, default=29)
     args = ap.parse_args()
 
-    human = np.load(args.human_embedding)
+    # Human RDMs (paper's data), built once. Each method -> NxN distance matrix.
+    hp = os.path.join(HERE, "data", "human")
+    human_rdm = {}
+    for meth, f in [("triplet", "paper_human_triplet_similarity.npy"),
+                    ("feature", "paper_human_feature_similarity.npy"),
+                    ("pairwise", "paper_human_pairwise_similarity_mat.npy")]:
+        p = os.path.join(hp, f)
+        if os.path.exists(p):
+            sim = np.load(p)
+            d = 1.0 - sim; d = (d + d.T) / 2.0; np.fill_diagonal(d, 0.0)
+            human_rdm[meth] = d
+
     models = args.models or discover_models()
     rows = []
     for model in models:
-        embs = method_embeddings(model, dim=args.dim)
-        if "triplet" not in embs:
+        rdms = method_rdms(model)
+        if "triplet" not in rdms:
             continue
-        row = {"model": model, "n_methods": len(embs)}
+        row = {"model": model, "n_methods": len(rdms)}
 
-        # (1) coherence = mean pairwise Procrustes R^2 among the model's methods
-        keys = list(embs)
+        # (1) coherence = mean pairwise Procrustes(RDM) among the model's methods
+        keys = list(rdms)
         pair_r2 = {}
         for i in range(len(keys)):
             for j in range(i + 1, len(keys)):
-                r2 = procrustes_r2(embs[keys[i]], embs[keys[j]])
-                pair_r2[f"proc_{keys[i]}~{keys[j]}"] = r2
+                pair_r2[f"proc_{keys[i]}~{keys[j]}"] = procrustes_r2(rdms[keys[i]], rdms[keys[j]])
         row.update(pair_r2)
         row["proc_coherence_mean"] = (float(np.nanmean(list(pair_r2.values())))
                                       if pair_r2 else np.nan)
 
-        # (2) human prediction = Procrustes R^2 of each method embedding onto human
-        for m, e in embs.items():
-            row[f"human_proc_{m}"] = procrustes_r2(e, human)
+        # (2) human prediction = Procrustes(model RDM, human RDM) per method
+        for m, dmat in rdms.items():
+            if m in human_rdm and dmat.shape == human_rdm[m].shape:
+                row[f"human_proc_{m}"] = procrustes_r2(dmat, human_rdm[m])
         rows.append(row)
         print(f"[ok] {model}: coherence={row['proc_coherence_mean']:.3f} "
               f"human_triplet={row.get('human_proc_triplet', float('nan')):.3f}")
