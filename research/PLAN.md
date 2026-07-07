@@ -9,8 +9,12 @@ so targeted SFT is pushing on the strongest known lever. Full research in
 ## Core idea
 Derive all three elicitation views from ONE NOVA-derived ground-truth similarity matrix `S*`, so
 triplet/pairwise/feature training examples are **mutually consistent by construction** (AligNet
-template, arXiv:2409.06509). Train on ~600 NOVA concepts, **hold out our 128 test concepts
-entirely**, and measure whether coherence rises on the unseen 128.
+template, arXiv:2409.06509).
+
+**Train/test split (fixed):** the **128 THINGS concepts are the EVAL set** (the ones we already
+have baseline coherence + THINGS SPoSE human data for). **Train = ALL OTHER NOVA concepts**
+(786 - the 128 - any synonym/hypernym leakage ≈ ~650). The 128 (and 60/30 nested) never appear
+in any training example, in any view. Measure whether coherence rises on the unseen 128.
 
 ## Assets on disk
 - NOVA verified matrix: `/mnt/dv/.../mia/llm-norms-cogsci2025/verified_matrix_cogsci2025.parquet` (786 concepts)
@@ -27,8 +31,9 @@ entirely**, and measure whether coherence rises on the unseen 128.
 
 ### 1. Build S* + train/test concept split  (`src/sft/build_target.py`)
 - Load NOVA matrix; `S* = cosine(feature_rows)`. Save `S*` (concept x concept).
-- train = NOVA concepts minus (128 test + 60 + 30 + close synonyms); target ~600.
-- Save `data/sft/train_concepts.csv`, `test_concepts.csv`.
+- **test = the 128 THINGS concepts** (+ 60/30 nested). **train = ALL OTHER NOVA concepts**
+  (786 - 128 - close synonyms/hypernyms ≈ ~650). Save `data/sft/train_concepts.csv`,
+  `test_concepts.csv`. Verify zero overlap incl synonyms.
 
 ### 2. Generate mutually-consistent SFT data from S*  (`src/sft/gen_sft_data.py`)
 - triplet (~40-80k): (A,B,C) from train concepts, label from S*; multi-abstraction sampling
@@ -44,22 +49,55 @@ entirely**, and measure whether coherence rises on the unseen 128.
   response-only mask. Save ADAPTER only (no merge).
 - Arms: (a) real S* SFT, (b) scrambled-S* control, (c) full-FT ceiling on H100 (8-bit AdamW).
 
-### 4. Eval  (`src/sft/eval_coherence.py`, vLLM hot-swap LoRA)
-- vLLM `LLM(base, enable_lora=True, max_lora_rank=64)`; run triplet+pairwise+feature on the
-  **128 held-out concepts** (reuse scale128 stimuli), SALMON d=5 for triplet, then
-  `procrustes_analysis` for triplet~feature / triplet~pairwise / pairwise~feature + human align.
-- DUAL eval (mandatory): generation AND logprob. Gap => reporting-only, not representation.
-- Hot-swap adapters via VLLM_ALLOW_RUNTIME_LORA_UPDATING so base loads once.
+### 4. Eval BATTERY, run before AND after each SFT arm  (`src/sft/eval_*.py`, vLLM hot-swap LoRA)
+vLLM `LLM(base, enable_lora=True, max_lora_rank=64)`, hot-swap adapters
+(VLLM_ALLOW_RUNTIME_LORA_UPDATING) so base loads once. ALL evals on the FIXED 128 THINGS
+eval concepts. Four independent axes so improvement isn't just gaming our own metric:
+
+  A. **Our Procrustes coherence** (primary): triplet+pairwise+feature on the 128, SALMON d=5,
+     `procrustes_analysis` -> triplet~feature / triplet~pairwise / pairwise~feature + human align.
+     DUAL: generation AND logprob (gap => reporting-only, not representation).
+  B. **Paraphrase/format consistency** (independent, no external data): reword each elicitation
+     prompt N ways, measure answer agreement over the 128. (protocol from benchmark research)
+  C. **Internal transitivity/symmetry** (free, self-consistency): triplet cycle-violation rate +
+     pairwise symmetry over the 128 - a coherent model should be transitive/symmetric.
+  D. **THINGS human alignment** (independent human data we already have): Procrustes of model
+     triplet space vs THINGS SPoSE 49D on the 128.
+
+### 4b. KNOWLEDGE-RETENTION guard (must NOT regress) (`src/sft/eval_retention.py`, lm-eval-harness)
+Run a minimal capability battery before/after each SFT arm to catch catastrophic forgetting:
+MMLU (or subset) + ARC + HellaSwag + TruthfulQA via lm-eval-harness on vLLM. A coherence-SFT
+that tanks these is a failure regardless of coherence gain. (exact minimal set from research)
 
 ### 5. Read the result
-- SUCCESS = coherence r2 on held-out 128 rises toward human 0.77 ceiling (from llama's ~0.32),
-  in BOTH generation and logprob, and NOT in the scrambled-control arm.
-- If gen rises but logprob flat -> reporting-only (add Stage-2 AligNet KL+L2 aux loss).
-- If real >> scrambled -> genuine structure learning (the win).
+- SUCCESS = (A) coherence r2 on the 128 rises toward human 0.77 (from llama's ~0.32) in BOTH
+  gen and logprob; (B,C,D) the independent axes ALSO improve (not just our metric); real arm
+  >> scrambled control; AND (4b) knowledge retention within ~1-2 pts of baseline.
+- If A gen rises but logprob flat -> reporting-only (add Stage-2 AligNet KL+L2 aux loss).
+- If A rises but B/C/D don't -> we gamed our own metric; not a real coherence gain.
+- If coherence rises but retention drops -> tradeoff; tune LoRA rank/LR/mixture or add replay.
 
 ## Guards against "reporting not representation" (we already saw this in OLMo Finding 4)
 1. dual generation-vs-logprob eval  2. held-out-concept transfer  3. cross-format Procrustes IS
 the test + RSA(model-RDM, S*)  4. scrambled-label control arm.
+
+## Data-scaling ablation (how much data is actually needed)
+Once Stage 1 works, sweep training-set SIZE to find the coherence-vs-data curve:
+- vary # train concepts (e.g. 50, 100, 200, 400, ~650) and/or # examples per concept.
+- retrain (cheap QLoRA) at each point, eval coherence on the fixed 128.
+- plot coherence r2 vs training data -> where does it saturate? Is a small coherent seed enough?
+This is a clean scaling-law result: "N concepts of consistent supervision suffice to induce
+coherence that generalizes to held-out concepts." Reuse the hot-swap eval loop; each point is
+one small QLoRA run + one eval pass.
+
+## RL alternative (efficiency question — research agent running)
+Instead of SFT-from-consistent-data, teach coherence via RL: reward = cross-method self-agreement
+(the model's triplet/pairwise/feature judgments agreeing), or RLVR against NOVA S* per-answer.
+Open question: coherence is a BATCH-level geometric quantity (need many judgments -> similarity
+matrix -> Procrustes), so credit assignment to single responses is awkward. Candidate: GRPO with
+a per-group self-consistency reward (transitivity/agreement within a sampled group of triplets).
+Decision pending research (af6578...); likely a secondary arm AFTER SFT gives a first result,
+unless RL proves more sample-efficient. Would also compare data efficiency vs the SFT scaling curve.
 
 ## Stretch goals (after Stage 1 shows coherence moves)
 - Stage 2: CoIN hidden-rep contrastive across the 3 prompts, or AligNet KL-on-sim + L2 anchor.
