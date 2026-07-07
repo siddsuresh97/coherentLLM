@@ -6,7 +6,7 @@ from typing import List, Tuple
 from prompts import BUILDERS
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STIM = os.path.join(HERE, "data", "stimuli")
+STIM = os.environ.get("COHERENCE_STIM_DIR", os.path.join(HERE, "data", "stimuli"))
 
 
 def _read_rows(path: str) -> List[List[str]]:

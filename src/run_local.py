@@ -20,7 +20,7 @@ from prompts import SYSTEM_PROMPT  # noqa: E402
 from stimuli import build_jobs  # noqa: E402
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW = os.path.join(HERE, "results", "raw")
+RAW = os.environ.get("COHERENCE_RAW_DIR", os.path.join(HERE, "results", "raw"))
 
 MAX_TOKENS = {"triplet": 8, "pairwise": 8, "feature": 8}
 
@@ -66,6 +66,9 @@ def main():
     ap.add_argument("--tensor_parallel", type=int, default=1)
     ap.add_argument("--max_model_len", type=int, default=4096)
     ap.add_argument("--gpu_mem_util", type=float, default=0.90)
+    ap.add_argument("--max_num_seqs", type=int, default=0,
+                    help="vLLM max concurrent sequences (0=default). High values + "
+                         "small max_model_len maximize KV-cache batch throughput.")
     ap.add_argument("--overwrite", action="store_true")
     args = ap.parse_args()
 
@@ -115,6 +118,10 @@ def main():
         dtype="bfloat16",
         trust_remote_code=True,
     )
+    # KV-cache throughput: with short prompts, a small max_model_len + large
+    # max_num_seqs lets vLLM run many sequences concurrently on the H100.
+    if args.max_num_seqs:
+        llm_kwargs["max_num_seqs"] = args.max_num_seqs
     quant = spec.get("quantization")
     if quant and os.environ.get("COHERENCE_FORCE_BF16") == "1":
         print(f"[bf16] ignoring quantization={quant} (COHERENCE_FORCE_BF16 set, e.g. H100)")
