@@ -1,0 +1,1485 @@
+concept,rep,prompt,response
+accordion,0,"List the features and properties of a accordion. Give a plain list, one property per line, no explanations.","Foldable: Yes
+Toggles: Yes
+Has pleats: Yes
+Expandable: Yes
+Musical: No (unless specified)"
+accordion,1,"List the features and properties of a accordion. Give a plain list, one property per line, no explanations.","- Foldable: Can be compressed or expanded
+- Portable: Easy to carry
+- Versatile: Used for various purposes
+- Foldable handles: For easy carrying
+- Adjustable: Size can be adjusted for storage or use
+- Sound amplification: Some models have built-in sound systems
+- Keyboards: May have piano-style or button-style keyboards
+- Accessories: Often comes with straps, cases, and additional parts
+- Material: Constructed from materials like wood, metal, or synthetic composites"
+accordion,2,"List the features and properties of a accordion. Give a plain list, one property per line, no explanations.","Foldable sections
+Bellows
+Tone color varies with position
+Easy to transport
+Can play single notes or chords
+Can be played with either hands
+Several sizes and keys available"
+acorn,0,"List the features and properties of a acorn. Give a plain list, one property per line, no explanations.","- Typically brown in color
+- Rough, hard outer shell
+- Contains a small nut (the embryo of a future oak tree)
+- Achenium (base of the shell) is usually cup-shaped
+- Has a cap scar where the cap attaches
+- Composed of cellulose and other organic substances
+- Lightweight
+- Usually small in size"
+acorn,1,"List the features and properties of a acorn. Give a plain list, one property per line, no explanations.","- Elliptical in shape
+- Rough, brown outer shell
+- Single seed enclosed within
+- Hard, protective coating
+- Attached to an oak tree
+- Small size
+- Light brown to tan in color inside"
+acorn,2,"List the features and properties of a acorn. Give a plain list, one property per line, no explanations.","- Brown or tan color
+- Rough, fibrous outer shell
+- Round or oval shape
+- Hollow interior
+- Cap attached to one end
+- Seed within the shell
+- Often contains a small plant body (embryo)"
+airplane,0,"List the features and properties of a airplane. Give a plain list, one property per line, no explanations.","Engines
+Wings
+Fuselage
+Ailerons
+Rudder
+Elevators
+Landing gear
+Tailfin
+Flaps"
+airplane,1,"List the features and properties of a airplane. Give a plain list, one property per line, no explanations.","Wings
+Landing gear
+Engine(s)
+Fuselage
+Tail assembly
+Hull
+Rudder
+Elevators
+Ailerons
+Fuselage fuel tanks
+Landing gear struts"
+airplane,2,"List the features and properties of a airplane. Give a plain list, one property per line, no explanations.","- Wings
+- Fuselage
+- Engines
+- Tail assembly
+- Landing gear
+- Cockpit
+- Body structure (frame or monocoque)
+- Control surfaces (ailerons, elevator, rudder)
+- Fuselage material (aluminum, composite, etc.)
+- Wingspan
+- Wing area
+- Maximum speed
+- Cruise speed
+- Range
+- Capacity (seats, passengers, cargo)
+- Fuel capacity
+- Altitude capabilities
+- Aircraft type (commercial airliner, fighter jet, etc.)
+- Number of engines
+- Construction method (built-up, cantilever, etc.)
+- Interior lighting
+- External lighting (anti-collision, navigation lights)"
+aloe,0,"List the features and properties of a aloe. Give a plain list, one property per line, no explanations.","Aloe leaves are succulent, fleshy, have serrated edges, and narrow at the tips. They are typically green with white stripes, and have a thick outer skin and a gel-like inner substance. The gel is clear and viscous, with a slightly bitter taste."
+aloe,1,"List the features and properties of a aloe. Give a plain list, one property per line, no explanations.","Aloe is a succulent plant with these properties:
+- Gel-like inner leaves
+- Spiky, fleshy leaves
+- Native to Africa and the Arabian Peninsula
+- Growth in arid climates
+- Uses: medicinal, cosmetic, culinary
+- Easily propagated by cuttings
+- Often cultivated as houseplants
+- Possible frost sensitivity"
+aloe,2,"List the features and properties of a aloe. Give a plain list, one property per line, no explanations.","Potted Plant 
+Growth Habit 
+Deciduous 
+Hardiness Zone 
+Sunlight Requirement 
+Watering Needs 
+Soil Type Preference 
+Fertilizer Requirements 
+Propagation Method"
+ant,0,"List the features and properties of a ant. Give a plain list, one property per line, no explanations.","Ants have six legs.
+Ants live in colonies.
+Ants communicate with chemicals called pheromones.
+Ants are social insects.
+Ants have a pair of compound eyes and three simple eyes.
+Ants have a narrow waist called a petiole."
+ant,1,"List the features and properties of a ant. Give a plain list, one property per line, no explanations.","Ants are social insects
+Ants are hexapods (six-legged)
+Ants have a metathoracic (second) pair of wings (males) or wingless (females)
+Ants have elbowed antennae
+Ants have a narrow waist (petiole)
+Ants exhibit polymorphism (differing forms in a colony)
+Ants have a compound eyes and three simple eyes (ocelli)
+Ants possess elytra, hardened front wings
+Ants have mandibles for chewing and defense
+Ants are generally small to medium in size"
+ant,2,"List the features and properties of a ant. Give a plain list, one property per line, no explanations.","Antennae
+Compound eyes
+Three body segments: head, thorax, and abdomen
+Six legs
+Two pairs of wings (except for wingless species)
+Strong mandibles for cutting and carrying
+Silk-producing glands
+Oviparous (egg-laying)
+Social behavior, living in colonies
+Phragmotic (able to block their nest entrances with their head and body)"
+anteater,0,"List the features and properties of a anteater. Give a plain list, one property per line, no explanations.","- Long, tube-like snout
+- Sharp, keratinous spines on the tongue and throat
+- Long, sticky tongue
+- Relatively small eyes
+- No teeth
+- Sharp claws
+- Echolocation not used for navigation
+- Arboreal and terrestrial habitats
+- Carnivorous diet primarily consisting of ants and termites
+- Low metabolism
+- Capable of spending prolonged periods in a dormant state"
+anteater,1,"List the features and properties of a anteater. Give a plain list, one property per line, no explanations.","Long, sticky tongue for capturing ants and termites. No teeth for chewing. Small eyes and ears. Sharp, curved claws for digging. Long, thin snout. Flexible, elongated head and neck. Long, slender body. Short, sturdy legs. Thick, durable skin and fur."
+anteater,2,"List the features and properties of a anteater. Give a plain list, one property per line, no explanations.","- No teeth
+- Long tongue
+- Sharp claws
+- Pointed snout
+- Small eyes
+- Long tail
+- Eats ants and termites
+- Low metabolism
+- Poor eyesight, but excellent sense of smell
+- Can dig in soil
+- Hairy coat"
+anvil,0,"List the features and properties of a anvil. Give a plain list, one property per line, no explanations.","- Heavy: Anvils are typically very heavy to provide stability during forging.
+- Durable: They are built to withstand the force of hammer blows and heat.
+- Hard: The surface of an anvil is usually made of a hard metal like tool steel to retain a sharp edge for cutting or bending.
+- Resilient: Anvils are designed to withstand repeated use without significant deformation.
+- Flat: The top surface of an anvil is flat for the most accurate and efficient forging.
+- Mounted: Anvils are typically mounted on a heavy-duty base or support to keep them steady."
+anvil,1,"List the features and properties of a anvil. Give a plain list, one property per line, no explanations.","Durable
+Heavy
+Heat resistant
+Flat surface
+Hollow
+Forged"
+anvil,2,"List the features and properties of a anvil. Give a plain list, one property per line, no explanations.","1. Heavy
+2. Hard
+3. Durable
+4. Resistant to wear
+5. Smooth surface
+6. Usually made from steel
+7. Comes in different sizes"
+apple,0,"List the features and properties of a apple. Give a plain list, one property per line, no explanations.",Round shape: Hard skin: Reddish color: Edible seeds: Fibrous texture: Sweet flavor: Nutritious: Commonly consumed fresh
+apple,1,"List the features and properties of a apple. Give a plain list, one property per line, no explanations.","- Red or green skin color
+- Round or slightly oblong shape
+- Typically has a stem
+- Has seeds inside
+- Edible flesh with a tart flavor when raw
+- Sweet when ripe
+- Good source of fiber and vitamin C"
+apple,2,"List the features and properties of a apple. Give a plain list, one property per line, no explanations.","- Round
+- Red (when ripe)
+- Sweet
+- Crunchy
+- Nutritious
+- Seed-filled
+- Edible skin
+- Grows on trees"
+artichoke,0,"List the features and properties of a artichoke. Give a plain list, one property per line, no explanations.","- Edible leaf bases
+- Globally grown
+- High in fiber
+- Requires cooking to soften
+- Often eaten as a appetizer
+- Contains edible heart
+- Belongs to the sunflower family
+- Has thorns on its leaves
+- Grows best in cool climates"
+artichoke,1,"List the features and properties of a artichoke. Give a plain list, one property per line, no explanations.","- Globe-shaped vegetable
+- Protected by tough, leafy ""chokes""
+- Edible flowering head
+- Green in color
+- Hollow stem
+- Tendril tips
+- Bitter taste
+- Requires cooking to soften fibers"
+artichoke,2,"List the features and properties of a artichoke. Give a plain list, one property per line, no explanations.","- Edible flower
+- Spiny exterior
+- Globe shape
+- Leafy green color
+- Bile-inducing
+- Rich in fiber
+- Versatile ingredient
+- Low in calories"
+bagel,0,"List the features and properties of a bagel. Give a plain list, one property per line, no explanations.","- round
+- dense
+- chewy
+- crispy exterior
+- soft interior
+- ring-shaped
+- hole in center
+- can be toasted
+- can be sliced
+- can be plain, seeded, or flavored
+- can be filled
+- can be buttered or topped with cream cheese"
+bagel,1,"List the features and properties of a bagel. Give a plain list, one property per line, no explanations.","- Round in shape
+- Typically smaller than a loaf of bread
+- Dense texture
+- Holes in center
+- Can be boiled then baked
+- Crusty exterior
+- Can be toasted
+- Usually covered with seeds or grains
+- May have various fillings
+- Serve as a sandwich bread or breakfast item
+- Can be eaten plain or with spreads"
+bagel,2,"List the features and properties of a bagel. Give a plain list, one property per line, no explanations.","- Round
+- Dense
+- Crusty
+- Smooth
+- Hole
+- Chewy
+- Sturdy"
+banana,0,"List the features and properties of a banana. Give a plain list, one property per line, no explanations.","Green: edible 
+Yellow: ripe 
+M medium-size fruit 
+S soft texture 
+P pale yellow color 
+T sweet taste 
+H high in potassium"
+banana,1,"List the features and properties of a banana. Give a plain list, one property per line, no explanations.","- Yellow skin when ripe
+- Mellow flavor
+- Soft texture
+- Mild sweetness
+- Rich in potassium and vitamin B6
+- Edible peel
+- Contains antioxidants
+- Energy-providing carbohydrates
+- Portion of a balanced diet"
+banana,2,"List the features and properties of a banana. Give a plain list, one property per line, no explanations.","Bananas are:
+- Soft when ripe
+- Sweet tasting
+- Yellow with brown spots when ripe
+- Edible
+- Rich in potassium
+- Easy to peel
+- Native to Southeast Asia
+- Popular fruit
+- Available in various sizes
+- Cultivated in tropical climates"
+banjo,0,"List the features and properties of a banjo. Give a plain list, one property per line, no explanations.","Banjos have a resonator.
+Banjos have a neck with strings and frets.
+Banjos have a skin (typically goat) or plastic head.
+Banjos can have either 4 or 5 strings.
+Banjos are played with a plectrum or fingers."
+banjo,1,"List the features and properties of a banjo. Give a plain list, one property per line, no explanations.","-wood body
+-tight head
+-plectrum
+-fingerpicks
+-tuners
+-neck
+-fretboard
+-strings"
+banjo,2,"List the features and properties of a banjo. Give a plain list, one property per line, no explanations.","It has a wooden body with a resonator.
+The neck is fretted.
+It has a short neck with a distinct fret marker.
+Its strings are typically made of nylon.
+It doesn't usually have a separate bridge.
+The strings are strung from the head to the tail rather than over the neck."
+barrel,0,"List the features and properties of a barrel. Give a plain list, one property per line, no explanations.","Made of wood or metal
+Usually round
+Hollow
+Has staves
+Has hoops
+Has a head and a foot"
+barrel,1,"List the features and properties of a barrel. Give a plain list, one property per line, no explanations.","- Round
+- Wooden staves
+- Rim
+- Top
+- Bottom
+- Ends
+- Segments
+- Bound with metal hoops"
+barrel,2,"List the features and properties of a barrel. Give a plain list, one property per line, no explanations.","- Made of wood or metal
+- Circular shape
+- Long and narrow
+- Open top and bottom
+- Curved sides"
+bat,0,"List the features and properties of a bat. Give a plain list, one property per line, no explanations.","Echolocation
+Flight
+Small eyes
+Ears for hearing
+Nose for smelling
+Thermoregulation (able to regulate body temperature)
+Strong hind legs for climbing
+Sharp teeth for eating insects and small animals"
+bat,1,"List the features and properties of a bat. Give a plain list, one property per line, no explanations.","Echolocation
+Small eyes
+Furry
+Nocturnal
+Flexible joints in wings
+Big ears
+Unguligrade (walks on fingers and toes)"
+bat,2,"List the features and properties of a bat. Give a plain list, one property per line, no explanations.","Echolocation
+Nostrils
+Thumbs on wings
+Larger ears than mice
+Hollow bones
+Small eyes
+Pointy face mask
+Furry
+Diverse diet, eats insects, fruit, small animals"
+beaver,0,"List the features and properties of a beaver. Give a plain list, one property per line, no explanations.","Dentition: 20 teeth with iron-based enamel for cutting wood; Tail: Flat, broad, and scaly for swimming and support; Body: Semiaquatic mammal with waterproof fur; Nostrils: Can close tightly to keep water out; Teeth: Deciduous (baby) teeth are replaced by permanent ones for effective chewing; Ears: Small and hidden, with a flap of skin to keep water out; Eyes: Located on the sides of the head, allowing for good peripheral vision underwater; Hind feet: Webbed for efficient swimming; Legs: Strong, with large, padded hind feet for digging and swimming; Incisors: Gnawing teeth that are ever-growing to compensate for wear from chewing wood; Dexterity: Highly skilled at felling trees and building dams; Home-building: Constructs lodges from logs and mud, sometimes on dry land; Social: Live in colonies, known as castes, with a dominant male and female; Communication: Use vocalizations and scent marking; Nesting: Females build the nest from branches and vegetation for young."
+beaver,1,"List the features and properties of a beaver. Give a plain list, one property per line, no explanations.","- four front teeth that grow continually throughout their life
+- waterproof fur
+- large, flat tail used for balance and as a warning signal
+- webbed hind feet for efficient swimming
+- excellent tree-cutting and dam-building skills
+- slow-moving but agile in water
+- capable of creating complex underwater lodges and dams"
+beaver,2,"List the features and properties of a beaver. Give a plain list, one property per line, no explanations.","Durable teeth
+Sharp incisors for cutting wood
+Flat, tail for slapping water
+Webbed hind feet for swimming
+Busy, industrious nature
+Nocturnal habits
+Excellent dam builders
+Hairy tail for warmth
+Good swimmers"
+bed,0,"List the features and properties of a bed. Give a plain list, one property per line, no explanations.","- Size (dimensions)
+- Frame (structure)
+- Mattress (supporting cushion)
+- Headboard and footboard (optional ornaments)
+- Bedside tables (optional furniture)
+- Bed linen (sheets, comforter, pillows)
+- Bedding materials (fibers, thread count)
+- Color and finish (paint, wood type)
+- Bedstead (leg structure, type, material)
+- Bed height (adjustable)
+- Adjustable features (slats, positioners)
+- Mattress topper (additional cushion layer)
+- Box spring (support layer, optional)
+- Bed bug protection (encasements, barriers)
+- Storage capabilities (under-bed storage)
+- Sustainable materials (eco-friendly options)
+- Durability (material quality, construction)
+- Ease of cleaning (washability of materials)"
+bed,1,"List the features and properties of a bed. Give a plain list, one property per line, no explanations.","- Frame
+- Headboard
+- Footboard
+- Mattress
+- Box spring
+- Bed skirt
+- Bed linens (sheets, pillowcases, comforter)
+- Bed rails (optional)
+- Adjustable height (some models)
+- Bed frame materials (wood, metal, etc.)
+- Bed size (twin, full, queen, king)"
+bed,2,"List the features and properties of a bed. Give a plain list, one property per line, no explanations.","- Frame
+- Headboard
+- Footboard
+- Bed Rails
+- Mattress
+- Box Spring
+- Bed Skirt
+- Bedding
+- Pillow Cases
+- Dust Ruffle"
+beet,0,"List the features and properties of a beet. Give a plain list, one property per line, no explanations.","Beet roots are edible, round or cylindrical, deep purple in color, with a sweet taste, high in sugar content, rich in fiber, contain antioxidants like betalains, edible leaves are green and nutritious, contain high amounts of vitamins A and C, grown as an annual plant, used in various cuisines worldwide."
+beet,1,"List the features and properties of a beet. Give a plain list, one property per line, no explanations.","Beets have a reddish-purple color. They have a bulbous, edible root. Beets grow in a cluster called a beet root. Beets have a sweet taste. Beets contain high levels of folate. Beets have a tough skin that can be peeled. Beets are a good source of dietary fiber. Beets are low in calories. Beets have a crunchy texture when raw and soft when cooked. Beets are rich in vitamins and minerals. Beets are a popular ingredient in salads and soups."
+beet,2,"List the features and properties of a beet. Give a plain list, one property per line, no explanations.","Beets have a deep red or purple color. Beets are a root vegetable. Beets have a distinct earthy flavor. Beets are high in fiber. Beets are rich in folate. Beets contain antioxidants. Beets have a low glycemic index. Beets are naturally sweet. Beets are an excellent source of vitamin A. Beets are low in calories. Beets can enhance digestion. Beets support heart health. Beets may reduce blood pressure. Beets are useful for managing blood sugar levels. Beets are versatile in cooking. Beets can be roasted, boiled, or grilled."
+beetle,0,"List the features and properties of a beetle. Give a plain list, one property per line, no explanations.","Wings hardened into shells
+Two pairs of wings (one hardened and one membranous)
+Long antennae
+Compound eyes
+Hard exoskeleton
+Jointed legs
+Sexual dimorphism (differences between males and females)"
+beetle,1,"List the features and properties of a beetle. Give a plain list, one property per line, no explanations.","Elongated body shape
+Hard exoskeleton
+Antennae
+Compound eyes
+Six legs
+Wing shells (elytra)"
+beetle,2,"List the features and properties of a beetle. Give a plain list, one property per line, no explanations.","Dramatically long antennae
+Hard exoskeleton
+Compound eyes
+Fours sets of legs
+Two pairs of wings (one hard, one membranous)"
+bell,0,"List the features and properties of a bell. Give a plain list, one property per line, no explanations.","A bell can be made of various materials like copper, bronze, or steel. It has a clapper or tongue inside. It produces a ringing sound when struck. It can be suspended by a rope, metal rod, or pivot. It is often used for signaling, calling attention, or marking time."
+bell,1,"List the features and properties of a bell. Give a plain list, one property per line, no explanations.","Cylindrical
+Resonant
+Brass or steel
+Clapper inside
+Tongue on clapper"
+bell,2,"List the features and properties of a bell. Give a plain list, one property per line, no explanations.","- Can produce sound
+- Crystalline shape
+- Typically made of metal
+- Often hangs via a metal clapper or tongue
+- Symmetrical
+- Can be found in various sizes
+- Can be decorative
+- Can produce sustained sound
+- Can be struck manually or mechanically"
+belt,0,"List the features and properties of a belt. Give a plain list, one property per line, no explanations.","- Holds items together
+- Adjustable
+- Typically looped or buckled
+- Can be made from various materials (leather, fabric, metal, etc.)
+- Can have decorative elements or functional attachments (such as pockets or hooks)
+- Can be wide or narrow
+- Comes in various lengths and styles (like waist, brace, utility)"
+belt,1,"List the features and properties of a belt. Give a plain list, one property per line, no explanations.","- Hold clothing together at the waist
+- A loop to go through the holes of pants
+- Adjustable with a buckle or other fastening system
+- Often made of leather, fabric, or synthetic materials
+- Can be simple or ornate, with designs and decorations
+- May have pockets
+- Comes in various widths and lengths
+- Can have buckles, clasps, or other fastening mechanisms
+- Can be used to carry items
+- Can be decorative, adding style to an outfit"
+belt,2,"List the features and properties of a belt. Give a plain list, one property per line, no explanations.","- Holds items together
+- Adjustable
+- Removable
+- Elastic
+- Loop and buckle
+- Reflective
+- Durable
+- Stylish
+- Made of various materials (leather, nylon, fabric)"
+bird,0,"List the features and properties of a bird. Give a plain list, one property per line, no explanations.","- Feathers
+- Beak
+- Wings
+- Fingers (no fingers, just claws on ends of wings)
+- Hollow bones
+- Warm-blooded
+- Eggs,
+- Lays eggs
+- Chicks (young)
+- Flies (capable usually at 2-4 weeks old)"
+bird,1,"List the features and properties of a bird. Give a plain list, one property per line, no explanations.","- Feathers
+- Beak
+- Wings
+- Hollow bones
+- Warm-blooded
+- Eggs
+- Laying eggs
+- Flight
+- Two legs
+- Feathers for insulation and waterproofing
+- Highly adaptable beak for various feeding methods
+- Lightweight hollow bones for flight
+- High metabolism to maintain body heat
+- Amniotic eggs with a hard shell
+- Tends to incubate eggs
+- Capable of powered flight
+- Most have two legs adapted for perching"
+bird,2,"List the features and properties of a bird. Give a plain list, one property per line, no explanations.","Feathers,Growth,Breathes,Lays eggs,Has beak,Has wings,Eyes facing forward,Has feathers,Has claws on feet"
+blender,0,"List the features and properties of a blender. Give a plain list, one property per line, no explanations.","- Blade design for chopping and mixing
+- Variable speed control
+- Seal mechanism to prevent leaks
+- Jar material (usually BPA-free plastic or glass)
+- Lid with vents or pouring spout
+- Cord and cord storage
+- Controls on the base or handle
+- Safety features (e.g., blade lock)
+- Capacity to accommodate different sized containers
+- Wiper blade or brush for cleaning
+- Noise reduction technology
+- Power cord length"
+blender,1,"List the features and properties of a blender. Give a plain list, one property per line, no explanations.","- Cuisinart blender
+- Food processor attachment
+- 750 watts power
+- 64-ounce pitcher
+- Variable speed control
+- 5-year limited warranty"
+blender,2,"List the features and properties of a blender. Give a plain list, one property per line, no explanations.","- Cuisinart
+- stainless steel jar
+- blade assembly
+- glass jar
+- multiple speed settings
+- pulse button
+- food processor attachment
+- dishwasher safe parts
+- lockable lid
+- variable speed control"
+blowtorch,0,"List the features and properties of a blowtorch. Give a plain list, one property per line, no explanations.","- Hot flame
+- Portable
+- Adjustable flame control
+- Ignites gas with a trigger or button
+- Often uses propane or MAPP gas
+- Can produce a cutting, soldering, or brazing flame
+- Can be used for heating objects
+- Requires fuel and oxygen (typically air)
+- Can be operated manually or with a stand"
+blowtorch,1,"List the features and properties of a blowtorch. Give a plain list, one property per line, no explanations.","- Portable
+- Fueled by gas
+- Produces high-temperature flame
+- Adjustable flame settings
+- Uses a trigger to ignite
+- Contains a reflector to direct flame
+- May have a safety lock
+- Cools with a heat-resistant sleeve"
+blowtorch,2,"List the features and properties of a blowtorch. Give a plain list, one property per line, no explanations.","* Handheld device
+* Fuel source (typically propane or MAPP gas)
+* Ignition mechanism (sparker, piezoelectric igniter, or electric start)
+* Adjustable flame control (rocker or valve for controlling flame size)
+* Durable metal construction
+* Insulating handle material (wood, bakelite, or rubber)
+* Tip attachments for various applications (cutting, brazing, soldering)
+* Often equipped with a safety feature (auto-off when flame is extinguished)"
+blueberry,0,"List the features and properties of a blueberry. Give a plain list, one property per line, no explanations.","- Round shape
+- Small size
+- Blue color
+- Indented surface
+- Sweet taste
+- Soft texture
+- Edible skin
+- Seed content
+- Fragrant scent
+- Calorie-rich
+- Nutrient dense"
+blueberry,1,"List the features and properties of a blueberry. Give a plain list, one property per line, no explanations.",Round shapeSmall sizeIndoeuropean originRich in antioxidantsBlue colorThin skin
+blueberry,2,"List the features and properties of a blueberry. Give a plain list, one property per line, no explanations.","Blueberries are small, round fruits with a sweet taste.
+Blueberries have a smooth skin.
+Blueberries are colored blue, with variations towards purple.
+Blueberries contain seeds inside.
+Blueberries grow on shrubs called blueberry bushes."
+boa,0,"List the features and properties of a boa. Give a plain list, one property per line, no explanations.","Boas are: large, constrictors, non-venomous, live in tropical climates, have distinctive overlapping scales, can reach lengths over 10 feet, have two sets of teeth, can regulate their body temperature internally, have good eyesight, have a flexible jaw, and give birth to live young."
+boa,1,"List the features and properties of a boa. Give a plain list, one property per line, no explanations.","Boas have bodies divided into sections, they are non-venomous, they are carnivorous, they can be found in warm climates, they can constrict their prey, they have robust skulls, they possess a row of teeth on their upper jaw, they have a sensory organ called the Jacobson's organ, their skin is covered in scales, they exhibit sexual dimorphism, they use their tongues to sense their environment, they have a slow metabolism, and they can go for long periods without eating."
+boa,2,"List the features and properties of a boa. Give a plain list, one property per line, no explanations.","Boas have a streamlined body; they are constrictors; they have a hooked teeth structure; they have heat-sensing pits along their jaws; their scales are typically smooth and bear patterns; they have a flexible jaw; they exhibit sexual dimorphism; they can vary greatly in size, with some being small enough to wrap around a human arm and others reaching lengths over 30 feet."
+boar,0,"List the features and properties of a boar. Give a plain list, one property per line, no explanations.","The list of features and properties of a boar includes:
+
+- Large size
+- Rough bristles
+- Oviparous (lays eggs)
+- Short legs
+- Sharp tusks
+- Strong sense of smell
+- Plant-based diet
+- Fast runner
+- Social behavior (live in groups called sounders)"
+boar,1,"List the features and properties of a boar. Give a plain list, one property per line, no explanations.","- Rough bristles covering the body
+- Sharp tusks for defense and rooting
+- Strong, sturdy build
+- Short legs
+- Ears with prominent tufts of hair
+- Pointed snout
+- Hardy, adaptable to various habitats
+- Omnivorous diet
+- Able to forage and root in soil
+- Social behavior, living in groups called sounders
+- Excellent sense of smell, used for hunting and foraging"
+boar,2,"List the features and properties of a boar. Give a plain list, one property per line, no explanations.","Tusks
+Ovoid body shape
+Thick bristly hair coat
+Powerful legs
+Narrow snout
+Solitary except when breeding
+Nocturnal or crepuscular activity"
+bread,0,"List the features and properties of a bread. Give a plain list, one property per line, no explanations.","- Crust: hardens during baking
+- Crumb: soft, porous interior texture
+- Shape: various forms including round, loaf, baguette, etc.
+- Size: can vary greatly, from bite-sized to large loaves
+- Texture: can range from soft to chewy, crispy, or crusty
+- Color: typically golden brown, but can be influenced by ingredients and baking techniques
+- Taste: can vary from sweet to savory, depending on ingredients
+- Odor: often has a distinct aroma, especially when freshly baked
+- Moisture content: should be moist but not wet
+- Filling: can be air pockets, depending on leavening agent used
+- Consistency: can range from light and fluffy to dense and heavy
+- Appearance: can be appealing in presentation, often with a shiny or matte finish
+- Nutritional value: can be rich in carbohydrates, fiber, and sometimes protein
+- Storage: best kept in a cool, dry place"
+bread,1,"List the features and properties of a bread. Give a plain list, one property per line, no explanations.","- Baked
+- Usually made from wheat flour
+- Typically leavened
+- Can be made into various shapes (sliced, round, loaf-shaped, etc.)
+- Can be crusty or soft
+- May contain additions like seeds, grains, sugars, fats, eggs, dairy, or herbs
+- Comes in different colors (from pale yellow to dark brown)
+- Can be eaten fresh or stored for later consumption (often in a sealed bag to keep fresh)
+- Commonly used as a staple food or a side item with meals
+- Widely varied in texture and flavor depending on ingredients and preparation method"
+bread,2,"List the features and properties of a bread. Give a plain list, one property per line, no explanations.","- Texture
+- Shape
+- Color
+- Flavor
+- Crumb structure
+- Crust texture
+- Volume
+- Density"
+brussels sprouts,0,"List the features and properties of a brussels sprouts. Give a plain list, one property per line, no explanations.","- Small cabbage-like appearance
+- Compact, tightly-packed leaves
+- Typically green in color
+- Oval shape
+- Average size similar to a golf ball
+- Dense texture
+- Firm when fresh
+- Central, edible stem
+- Mild, slightly peppery taste
+- Nutritious, high in vitamins C and K, and fiber
+- Often consumed cooked"
+brussels sprouts,1,"List the features and properties of a brussels sprouts. Give a plain list, one property per line, no explanations.","- Small cabbage-like appearance
+- Typically dark green color
+- Outer leaves can be yellowed
+- Compact, compacted buds
+- Average diameter around 1 inch
+- Typically grow in clusters
+- Typically round shape
+- Dense, fibrous texture
+- Typically grown as annuals
+- Rich in vitamin C
+- Rich in vitamin K
+- Rich in dietary fiber
+- Low in calories
+- Naturally low sodium
+- High in vitamin A"
+brussels sprouts,2,"List the features and properties of a brussels sprouts. Give a plain list, one property per line, no explanations.","- small cabbage-like vegetables
+- green leaves attached to a compact, rounded cabbage-like base
+- typically 1-2 inches in diameter
+- conical shape
+- tightly packed layers
+- dense and slightly firm texture
+- tapered end
+- attached to a central thick stalk
+- variable taste, from mildly to intensely cabbage-like and slightly nutty
+- high in fiber, vitamins C and K, folate, manganese, and anti-cancer compounds such as glucosinolates"
+bucket,0,"List the features and properties of a bucket. Give a plain list, one property per line, no explanations.","- Holds items
+- Has handle
+- Can be made of various materials like plastic, wood, metal
+- Can have different sizes
+- Can have different shapes
+- Can have a lid
+- Can be used for various purposes like carrying water, holding tools, storing items
+- Can be portable or stationary"
+bucket,1,"List the features and properties of a bucket. Give a plain list, one property per line, no explanations.","- Open top
+- Carrying handles
+- Material: typically plastic, sometimes metal
+- Can be of various shapes, most commonly cylindrical
+- Size varies
+- Can be painted or left in natural color
+- Often has a capacity measurement (e.g., gallons, liters)"
+bucket,2,"List the features and properties of a bucket. Give a plain list, one property per line, no explanations.","- Holds objects or liquid
+- Can be made of various materials like plastic, metal, or wood
+- Typically has a handle for easy carrying
+- Varies in size and shape depending on its intended use
+- Can have a lid for containment
+- Can be used for storage or transport
+- Can be stacked for space-saving storage
+- Can be used for a variety of purposes such as painting, cleaning, or swimming pool filling"
+burrito,0,"List the features and properties of a burrito. Give a plain list, one property per line, no explanations.","- Tortilla
+- Filling (meat, beans, cheese, vegetables)
+- Rice
+- Sour cream
+- Guacamole
+- Pico de gallo
+- Cheese
+- Salsa"
+burrito,1,"List the features and properties of a burrito. Give a plain list, one property per line, no explanations.","- Typically made with a wheat tortilla
+- Can include various ingredients such as beans, rice, lettuce, tomato, cheese, sauces, and meats
+- Often filled with a filling like grilled chicken, beef, or vegetarian options
+- Can be wrapped tightly to contain filling
+- Comes in many sizes and variations
+- Can be eaten as a main dish or a snack
+- Variations exist globally with local influences
+- Often accompanied by chips and salsa or guacamole
+- Can be prepared in different styles, like grilled, steamed, or baked
+- May include additional ingredients like avocado, sour cream, or cilantro
+- Can be customized with personal preferences in ingredients and sauces"
+burrito,2,"List the features and properties of a burrito. Give a plain list, one property per line, no explanations.","- Outer Tortilla
+- Filling
+- Rice
+- Beans
+- Cheese
+- Lettuce"
+cactus,0,"List the features and properties of a cactus. Give a plain list, one property per line, no explanations.","Cacti have thick stems for water storage; they have spines instead of leaves; they have a deep root system; they are usually succulents; most are adapted to arid climates; they have a waxy, water-resistant skin; photosynthesis occurs in their stems; they can store water for long periods; they have chlorophyll in their stems for photosynthesis; they have a low surface area to volume ratio to minimize water loss."
+cactus,1,"List the features and properties of a cactus. Give a plain list, one property per line, no explanations.","- Stem is spine-covered
+- Leaves are absent
+- Flowers are large and colorful
+- Roots are shallow
+- Photosynthetic stem
+- Thick waxy skin
+- Store water in stems
+- Spines replace leaves"
+cactus,2,"List the features and properties of a cactus. Give a plain list, one property per line, no explanations.","Cacti have thick, succulent stems that store water.
+They have sharp spines instead of leaves for protection.
+Their surfaces are often covered in a waxy layer to reduce water loss.
+They have deep roots that can anchor them in harsh, arid environments.
+Cacti are adapted to survive in hot, dry conditions with minimal rainfall."
+candle,0,"List the features and properties of a candle. Give a plain list, one property per line, no explanations.","- Solid wax or wax-like substance
+- Wick 
+- Wick base or wick holder
+- Container
+- Wick fuel 
+- Flame 
+- Melting wax
+- Fumes (when burned)
+- Scented or unscented 
+- Container material 
+- Wick material 
+- Color"
+candle,1,"List the features and properties of a candle. Give a plain list, one property per line, no explanations.","- Solid wax core
+- Wick
+- Wick pool
+- Flame
+- Waxy pool
+- Molded outer shell
+- Smoke
+- Scent (fragrance)
+- Burn time
+- Resin core (for commercial candles)
+- Container or holder
+- Wick tab"
+candle,2,"List the features and properties of a candle. Give a plain list, one property per line, no explanations.","- Made of wax
+- Burns
+- Produces smoke
+- Melts
+- Consumes oxygen
+- Gives off heat
+- Can be scented
+- Can be colored
+- Can be in a variety of shapes and sizes
+- Can be made from various materials (beeswax, soy, paraffin, etc.)
+- Produces light when burning"
+candy,0,"List the features and properties of a candy. Give a plain list, one property per line, no explanations.",Sweet Texture Color Flavors Odor Fragrance Aroma Melting Point Edible
+candy,1,"List the features and properties of a candy. Give a plain list, one property per line, no explanations.",Sweetness Texture Color Shape Flavor Fragrance
+candy,2,"List the features and properties of a candy. Give a plain list, one property per line, no explanations.","- Sweet
+- Edible
+- Spherical, often
+- Colorful
+- Sugary
+- Soft
+- Fruity flavor
+- Crunchy
+- Chocolate coating
+- Melt-in-the-mouth
+- Odor
+- Caloric
+- Artificially flavored"
+cannon,0,"List the features and properties of a cannon. Give a plain list, one property per line, no explanations.","- Cylinder shape
+- Metal construction
+- Smooth bore
+- Muzzle
+- Barrel
+- Trigger mechanism
+- Stock (on many types)
+- Gunpowder chamber
+- Loading mechanism (often a breech)
+- Locking mechanism
+- Sights or scope (on some models)"
+cannon,1,"List the features and properties of a cannon. Give a plain list, one property per line, no explanations.","Caliber
+Range
+Rate of fire
+Muzzle velocity
+Barrel length
+Sight system
+Breech type
+Magazine capacity
+Trigger mechanism"
+cannon,2,"List the features and properties of a cannon. Give a plain list, one property per line, no explanations.","- Made of metal
+- shoots projectiles
+- barrel
+- trigger mechanism
+- can be mounted on a carriage or fixed
+- ammunition chamber
+- recoil system
+- sights for aiming
+- can be smoothbore or rifled
+- various calibers and sizes
+- portable or mounted
+- typically used for military purposes
+- can be hand-held or operated by a crew"
+car,0,"List the features and properties of a car. Give a plain list, one property per line, no explanations.","- Doors
+- Seats
+- Transmission
+- Engine
+- Tires
+- Body style
+- Suspension
+- Wheels
+- Brakes
+- Steering wheel
+- Dashboard
+- Fuel system
+- Exhaust system
+- Air filter
+- Air conditioning"
+car,1,"List the features and properties of a car. Give a plain list, one property per line, no explanations.","- engine
+- transmission
+- suspension
+- steering system
+- brakes
+- fuel system
+- body/frame
+- wheels
+- tires
+- interior
+- seats
+- dashboard
+- instruments
+- lights
+- audio system
+- air conditioning
+- heating system"
+car,2,"List the features and properties of a car. Give a plain list, one property per line, no explanations.","Wheels
+Engine
+Transmission
+Suspension
+Steering wheel
+Brakes
+Exhaust system
+Fuel tank
+Battery
+Lights
+Windshield
+Mirrors
+Heaters/air conditioning"
+carrot,0,"List the features and properties of a carrot. Give a plain list, one property per line, no explanations.","- Orange in color
+- Edible
+- Rich in beta-carotene
+- Nutritious
+- Contains dietary fiber
+- Distinctive taste
+- Soft texture when cooked
+- Grows underground
+- Originated in Persia (now Iran)"
+carrot,1,"List the features and properties of a carrot. Give a plain list, one property per line, no explanations.","- Orange in color
+- Edible root vegetable
+- Rich in beta-carotene
+- Abundant in Vitamin A
+- High in dietary fiber
+- Naturally sweet
+- Low in calories
+- Good source of potassium
+- Relatively inexpensive
+- Versatile in cooking"
+carrot,2,"List the features and properties of a carrot. Give a plain list, one property per line, no explanations.","- orange
+- cylindrical
+- tapering
+- tapered ends
+- thin skin
+- edible
+- crunchy
+- sweet
+- high in beta-carotene
+- good source of dietary fiber
+- widely cultivated
+- rich in vitamins A and K"
+cart,0,"List the features and properties of a cart. Give a plain list, one property per line, no explanations.","- Wheels
+- Axles
+- Frame or chassis
+- Suspension system
+- Tires
+- Brakes
+- Handlebars
+- Steering mechanism
+- Cargo area or basket
+- Locks"
+cart,1,"List the features and properties of a cart. Give a plain list, one property per line, no explanations.","- Sizeable cargo area
+- Wheels or casters for movement
+- Handlebars or a grip for pushing or pulling
+- Frame or chassis for structural support
+- Open top or collapsible sides for easy loading/unloading
+- Locks or latches for security
+- Padded or upholstered seating (optional)
+- Brakes for controlling speed or stopping
+- Suspension (shocks) for a smoother ride
+- Tires for ground contact
+- Cushioned grips for hand comfort
+- Reflectors or lights for visibility"
+cart,2,"List the features and properties of a cart. Give a plain list, one property per line, no explanations.","- wheels
+- frame or chassis
+- suspension system
+- brakes
+- steering mechanism
+- axle(s)
+- cargo area or bed
+- tires
+- handlebars (for hand carts)
+- seat (optional for certain types)
+- locks/security features
+- color/type of material used (e.g., steel, aluminum)"
+cat,0,"List the features and properties of a cat. Give a plain list, one property per line, no explanations.",FurSoftClawsWhiskersIndependent temperamentSense of smellQuick reflexesGood visionNictitating membrane (third eyelid)Communication through meowing and purring
+cat,1,"List the features and properties of a cat. Give a plain list, one property per line, no explanations.","Feline, carnivorous, agile, mammal, four-legged, sharp teeth, retractable claws, excellent sense of sight and smell, vocal (meowing, purring), independent, nocturnal, warm-blooded, covered in fur, expressive tail movements, quick reflexes, social (within their species), breeds vary widely in appearance"
+cat,2,"List the features and properties of a cat. Give a plain list, one property per line, no explanations.","Fur soft and smooth
+Ears point up
+Whiskers on face
+Four paws
+Tail with fur
+Sharp teeth
+Keen sense of smell
+Quick reflexes
+Climbs well
+Affectionate"
+caterpillar,0,"List the features and properties of a caterpillar. Give a plain list, one property per line, no explanations.","* Soft, segmented body
+* Three pairs of true legs (prolegs) on abdominal segments
+* Several pairs of simple legs (pseudopodia) on thoracic and abdominal segments
+* Short, retractile head with simple eyes known as ocelli
+* Soft, hair-like setae covering body
+* Bilateral symmetry
+* Long, fleshy tentacles (oral horns) near the mouth
+* Tube-like mouthparts for sucking fluids
+* A pair of silk-producing glands
+* Able to retract head and prolegs into body for protection"
+caterpillar,1,"List the features and properties of a caterpillar. Give a plain list, one property per line, no explanations.","- Segmented body
+- Soft, hairlike bristles
+- Jointed legs
+- Three pairs of true legs
+- Mandibles for chewing
+- Simple eyes
+- Proleg pads"
+caterpillar,2,"List the features and properties of a caterpillar. Give a plain list, one property per line, no explanations.","- segmented body
+- soft, legless
+- thoracic legs (prolegs)
+- true legs (up to 11 pairs)
+- annulated body
+- head with simple eyes and antennae
+- mandibles for chewing 
+- tube-shaped body
+- variable colors and patterns
+- predominantly herbivorous diet"
+celery,0,"List the features and properties of a celery. Give a plain list, one property per line, no explanations.","Celery features and properties include:
+
+- Biennial herb
+- Tall, slender flowering stems
+- Leafy green foliage
+- Hollow stems, often used in cooking as a vegetable
+- Rich in dietary fiber
+- Low in calories
+- Good source of vitamins K and B6
+- High in water content
+- Contains antioxidants
+- Diuretic properties
+- Anti-inflammatory effects
+- Low glycemic index"
+celery,1,"List the features and properties of a celery. Give a plain list, one property per line, no explanations.","- Tall stalks
+- Green leaves
+- Long, stringy fibers
+- Narrows at the top
+- Bulb underground
+- Photo-sensitive"
+celery,2,"List the features and properties of a celery. Give a plain list, one property per line, no explanations.","- Tall stem
+- Broad, leafy green leaves
+- Pungent, crisp texture when eaten fresh
+- Rich in vitamin K and various antioxidants
+- Contains dietary fiber
+- Low in calories
+- High water content"
+chili,0,"List the features and properties of a chili. Give a plain list, one property per line, no explanations.","Chili peppers are fruits that grow on plants in the Capsicum family. They are cultivars of the plant Capsicum annuum. Chili peppers contain capsaicin, a compound that gives them their heat. The Scoville scale measures the heat of chili peppers, which ranges from negligible to over 2,000,000 SHUs. Different varieties of chili peppers exist, ranging in shape, color, and heat level."
+chili,1,"List the features and properties of a chili. Give a plain list, one property per line, no explanations.","- Scoville scale (heat level)
+- Capsicum species (various types like bell, cayenne, etc.)
+- Seed count
+- Color (red, green, etc.)
+- Size
+- Shape
+- Skin texture
+- Flesh texture
+- Flavor profiles (sweet, bitter, spicy)
+- Nutritional value (fiber, vitamins, minerals)
+- Caloric content
+- Astringency
+- Juiciness
+- Starch content
+- Shelf life (once harvested)
+- Availability (fresh, dried, canned, frozen)"
+chili,2,"List the features and properties of a chili. Give a plain list, one property per line, no explanations.","Chilies are typically spicy, round or oblong in shape, varying in size, have a smooth skin, can be red, yellow, orange, green, or purple, contain seeds, originate from the plant Capsicum, and are used as a popular spice in various cuisines worldwide."
+chinchilla,0,"List the features and properties of a chinchilla. Give a plain list, one property per line, no explanations.","- Small, rodent-like creature
+- Dense, soft fur
+- Large ears and eyes
+- Long tail
+- Good jumper
+- Nocturnal
+- Vegetarian
+- Live 8-10 years
+- Social creature
+- Requires dust baths for grooming"
+chinchilla,1,"List the features and properties of a chinchilla. Give a plain list, one property per line, no explanations.","- Small size
+- Dense, soft fur
+- Long life span
+- Hypersensitive hearing
+- Vegetarian diet
+- Social and playful
+- Good memory
+- No vocal cords
+- Requires dust baths
+- Small, fragile bones
+- Requires cool temperature
+- Active at night"
+chinchilla,2,"List the features and properties of a chinchilla. Give a plain list, one property per line, no explanations.","- Small size
+- Dense fur
+- Long life span
+- Agile
+- Good memory
+- Gentle nature
+- Nocturnal
+- Requires dust baths for grooming
+- Herbivorous diet
+- Soft fur
+- High-pitched vocalizations"
+chisel,0,"List the features and properties of a chisel. Give a plain list, one property per line, no explanations.","- Single or multiple cutting edges
+- Hand-held or machine-held
+- Straight or curved shape
+- Hardened steel body
+- Handle (grip)
+- Tang (part extending into the handle)
+- Shank (body part not forming the cutting edge)"
+chisel,1,"List the features and properties of a chisel. Give a plain list, one property per line, no explanations.","Sharp cutting edge
+Metal body
+Wood or synthetic handle
+Can be single or double bevel
+Various sizes and shapes for different applications
+May be straight or tapered
+Often made from steel or high carbon steel"
+chisel,2,"List the features and properties of a chisel. Give a plain list, one property per line, no explanations.","- Straight or bevelled edge
+- Blade material (steel, high carbon steel, stainless steel)
+- Handle material (wood, plastic, metal)
+- Width of the blade
+- Length of the handle
+- Type of grind (flat grind, hollow grind, convex grind)
+- Bevel angle (usually 60 degrees)
+- Edge thickness
+- Hardness of the steel (Rockwell scale, typically HRC 56-64 for chisel steel)
+- Coating or finish (often black oxide, paint, or no coating for high-carbon steel)
+- Grind type (single grind or double grind)
+- Origin (country of manufacture)"
+clarinet,0,"List the features and properties of a clarinet. Give a plain list, one property per line, no explanations.","- Keyed wind instrument
+- Typically made of wood or plastic
+- Has a single reed
+- Produces a wide range of pitches
+- Uses a mouthpiece and a barrel
+- Has a cylindrical bore
+- Has finger holes and/or key mechanisms
+- Produces a bright, penetrating timbre
+- Often used in classical, jazz, and folk music"
+clarinet,1,"List the features and properties of a clarinet. Give a plain list, one property per line, no explanations.",The clarinet is a woodwind instrument. It is played by blowing air through a reed into a mouthpiece. It has a cylindrical bore. It has a range of over two octaves. The clarinet has twenty-odd keys. It has a pitch range of approximately a ninth. The clarinet is part of the woodwind family.
+clarinet,2,"List the features and properties of a clarinet. Give a plain list, one property per line, no explanations.","- Keyed wind instrument
+- Usually made of wood
+- Has a single reed
+- Played with a mouthpiece
+- Has a cylindrical bore
+- Has finger holes and/or keys
+- Produces a range of notes
+- Can be pitched in Bb or A
+- Has a bell-shaped end
+- Depends on the player's embouchure for tone color and dynamics"
+coat,0,"List the features and properties of a coat. Give a plain list, one property per line, no explanations.","- Waterproof
+- Windproof
+- Breathable
+- Insulating
+- Warm
+- Durable
+- Adjustable
+- Waterproof zippers
+- Elastic cuffs
+- Pocket
+- Reflective trim"
+coat,1,"List the features and properties of a coat. Give a plain list, one property per line, no explanations.","Waterproof
+Windproof
+Insulating
+Breathable
+Water-resistant
+Warm
+Layerable
+Adjustable hood
+Pockets"
+coat,2,"List the features and properties of a coat. Give a plain list, one property per line, no explanations.",Waterproof Breathable Elastic Collar
+coconut,0,"List the features and properties of a coconut. Give a plain list, one property per line, no explanations.","The coconut is a one-seeded drupe.
+The shell is covered with a fibrous husk.
+The husk is light brown to green.
+The shell has three germination pores.
+The shell is composed mainly of lignocellulose.
+The shell is hard and thick.
+The shell is approximately 3 to 4 inches in diameter.
+The inner shell contains the coconut water.
+The shell houses the coconut meat.
+The coconut water is clear, sweet, and nutritious.
+The coconut meat is white and meaty.
+The coconut meat contains coconut oil.
+The meat is high in dietary fiber and proteins.
+The coconut has a distinct odor and flavor when ripe."
+coconut,1,"List the features and properties of a coconut. Give a plain list, one property per line, no explanations.","- Hair-like fibers on the outside
+- Hard outer shell
+- Fibrous white flesh
+- Brown, rubbery shell inside
+- Edible white flesh
+- High water content
+- Nutty flavor
+- Rich in nutrients"
+coconut,2,"List the features and properties of a coconut. Give a plain list, one property per line, no explanations.","- Round
+- Smooth
+- Brown
+- Fibrous husk
+- Hard shell
+- Oval shape
+- Creamy white flesh
+- Brown shell"
+crow,0,"List the features and properties of a crow. Give a plain list, one property per line, no explanations.","Nocturnal
+Flight speed of 30-40 mph
+Black with black beak and legs
+4-5 pounds
+Feathered head and neck
+Diet of insects, small animals, garbage, carrion, seeds, and fruits
+Social bird
+Tool-using ability"
+crow,1,"List the features and properties of a crow. Give a plain list, one property per line, no explanations.",Crows are highly intelligent birds. They are capable of problem-solving. They use tools. Crows have strong social bonds. Crows communicate through a variety of vocalizations. They are omnivorous. Crows have a remarkable memory. Crows travel in groups called murders.
+crow,2,"List the features and properties of a crow. Give a plain list, one property per line, no explanations.","Crows are:
+1. intelligent
+2. black
+3. omnivorous
+4. noisy
+5. social
+6. adaptable
+7. vocal
+8. opportunistic
+9. sleek
+10. strong"
+crowbar,0,"List the features and properties of a crowbar. Give a plain list, one property per line, no explanations.","- Long handle
+- Flat head
+- Curved end
+- High tensile strength
+- Durable steel construction
+- Adjustable length (some models)"
+crowbar,1,"List the features and properties of a crowbar. Give a plain list, one property per line, no explanations.","Can be used as a lever
+Can be used as a pry bar
+Can be used to break things
+Can be used to remove nails
+Can be used to open boxes
+Lightweight
+Versatile tool
+Robust and durable"
+crowbar,2,"List the features and properties of a crowbar. Give a plain list, one property per line, no explanations.","* Long, slender, usually steel with a wooden or plastic handle
+* Curved end
+* Straight, metal shaft
+* Tapered end
+* Typically has a pry bar tip
+* May have a nail puller or a nail set on the flat bar side
+* Can be left or right-handed based on the curve direction
+* Often used for prying, hammering, lifting, and levering"
+dragonfly,0,"List the features and properties of a dragonfly. Give a plain list, one property per line, no explanations.","Eyes that move independently
+Two pairs of wings
+Long, slender body
+Transparent wings
+Colorful, iridescent abdomen"
+dragonfly,1,"List the features and properties of a dragonfly. Give a plain list, one property per line, no explanations.","Eyes that move independently
+Two pairs of wings
+Long, thin body
+Transparent wings
+Hovers with rapid wings
+Lives near water"
+dragonfly,2,"List the features and properties of a dragonfly. Give a plain list, one property per line, no explanations.","Eyes are multifaceted
+Capable of flight
+Narrow waist
+Long, delicate wings
+Transparent wings"
+dress,0,"List the features and properties of a dress. Give a plain list, one property per line, no explanations.","- Color
+- Length
+- Material
+- Fit
+- Style
+- Hem
+- Sleeves
+- Neckline
+- Back design
+- Fabric type
+- Pattern
+- Closure (zipper, buttons, etc.)
+- Design details (ruffles, pockets, etc.)
+- Size
+- Brand
+- Price
+- Seasonality
+- Comfort
+- Durability"
+dress,1,"List the features and properties of a dress. Give a plain list, one property per line, no explanations.","- Length
+- Pattern
+- Material
+- Color
+- Sleeves
+- Neckline
+- Hem
+- Fit
+- Closure
+- Layering potential
+- Fabric type
+- Embellishments"
+dress,2,"List the features and properties of a dress. Give a plain list, one property per line, no explanations.","- length
+- width
+- hemline
+- sleeve length
+- neckline
+- waistline
+- fabric type
+- color
+- pattern
+- fit
+- style
+- embellishments"
+eagle,0,"List the features and properties of a eagle. Give a plain list, one property per line, no explanations.","Sharp eyesight
+Strong beak
+Flew high
+Hawk-like appearance
+Dive at high speeds
+Excellent vision in the dark"
+eagle,1,"List the features and properties of a eagle. Give a plain list, one property per line, no explanations.",Feathers;  sharp claws; strong wings; keen vision; powerful beak; swift flight; excellent hunter; adaptable; territorial; vocal communicator; nests in high places; long lifespan; carnivorous; solitary or lives in groups (flocks)
+eagle,2,"List the features and properties of a eagle. Give a plain list, one property per line, no explanations.","Eagles have powerful wingspan, excellent eyesight, sharp claws, streamlined body, aerodynamic shape, strong beak, keen sense of smell, waterproof feathers, and can soar for long durations."
+eggbeater,0,"List the features and properties of a eggbeater. Give a plain list, one property per line, no explanations.","- Can mix ingredients
+- Rotates around a central axis
+- Has a handle for easy grip
+- Comes in various sizes and materials
+- Often includes a pouring spout
+- Typically non-electric
+- Require manual operation
+- Can be used for beating or stirring"
+eggbeater,1,"List the features and properties of a eggbeater. Give a plain list, one property per line, no explanations.","- Compact design
+- Non-stick surface
+- Stainless steel blades
+- Glass or nylon body
+- Adjustable speed
+- Cord storage
+- Ergonomic handle
+- Locking mechanism
+- Dishwasher safe
+- Cool touch exterior"
+eggbeater,2,"List the features and properties of a eggbeater. Give a plain list, one property per line, no explanations.","- Portable
+- Cordless
+- Electric
+- Manual crank option
+- Non-stick mixing bowl attachment
+- Variable speed control
+- Durable construction
+- Compact design"
+fig,0,"List the features and properties of a fig. Give a plain list, one property per line, no explanations.","Fig leaves are edible and nutritious.
+Figs are sweet.
+The fig tree has a broad, spreading crown.
+Figs grow in clusters.
+Figs thrive in sunny, warm climates."
+fig,1,"List the features and properties of a fig. Give a plain list, one property per line, no explanations.","Fig fruit is:
+- Edible
+- Sweet
+- Seed-containing
+- Soft when ripe
+- Dried for preservation
+- Produced in clusters
+- High in nutrients
+- Rich in vitamins"
+fig,2,"List the features and properties of a fig. Give a plain list, one property per line, no explanations.","Fig fruit is sweet 
+Fig fruit is fleshy 
+Fig fruit has a single seed 
+Fig fruit has a distinctive taste 
+Fig fruit has a rough skin 
+Fig fruit ripens on the tree
+Fig tree is a perennial"
+file,0,"List the features and properties of a file. Give a plain list, one property per line, no explanations.","File contains data
+File has a name
+File has an extension
+File has a size
+File has permissions
+File has a creation date
+File has an access/modification date"
+file,1,"List the features and properties of a file. Give a plain list, one property per line, no explanations.","- Name
+- Extension
+- Size
+- Type
+- Attributes
+- Creation date
+- Last accessed date
+- Last modified date
+- Compression status"
+file,2,"List the features and properties of a file. Give a plain list, one property per line, no explanations.","- Size
+- Name
+- Extension
+- Type
+- Date created
+- Date modified
+- Permissions
+- Encoding
+- Compression
+- Attributes"
+flute,0,"List the features and properties of a flute. Give a plain list, one property per line, no explanations.","- Keyed or open-hole
+- Material: typically metal (e.g., silver, gold, or nickel), wood, or plastic
+- Length: determines pitch and range, with longer flutes producing lower pitches
+- Diameter: affects the flute's tone color and loudness; larger flutes generally produce darker tones
+- Embouchure: the angle and pressure applied to the mouthpiece affect pitch and tone quality
+- Register: the C or G system, which affects the tonal range and fingering
+- Fingerings: specific combinations of fingers closed or open on the keys produce different notes
+- Number of tonesholes: varies by flute model; more holes allow for more precise control over pitch
+- Types: concert flutes (treble), alto flutes, bass flutes, and piccolos"
+flute,1,"List the features and properties of a flute. Give a plain list, one property per line, no explanations.","- Keyed or open-hole
+- Metal, wood, or composite material
+- Graduated bore
+- Finger holes or keys
+- Embouchure hole
+- Pitch range (varies by type, e.g., piccolo, C flute, alto flute)"
+flute,2,"List the features and properties of a flute. Give a plain list, one property per line, no explanations.","- Transverse
+- Tubular
+- Keyed
+- Open at one end
+- Closed at the other end
+- Pitched
+- Fingering holes
+- Tone holes
+- Key levers
+- Material: wood or metal
+- Melodic instrument
+- Variable pitch
+- Requires breath control"
+fly,0,"List the features and properties of a fly. Give a plain list, one property per line, no explanations.","- Six legs
+- Two wings
+- Single pair of antennae
+- Compound eyes
+- One pair of mandibles
+- One pair of maxillae
+- One pair of labium
+- Three simple eyes (ocelli)
+- Life cycle includes egg, larva (maggot), pupa, adult
+- Adult stage undergoes metamorphosis
+- External mouthparts for feeding on liquid or soft foods
+- Breathing through spiracles
+- Most species have two life stages that rely on hosts for development - larva (maggot) and pupa
+- Varies widely in size and color
+- Many are capable of flight, while others are flightless
+- Pollinators or nuisance pests depending on species
+- Wide range of habitats and climates
+- Can reproduce rapidly, completing their life cycle in days to weeks under optimal conditions"
+fly,1,"List the features and properties of a fly. Give a plain list, one property per line, no explanations.","- Winged
+- Small size
+- Compound eyes
+- Single pair of antennae
+- Six legs
+- Prothorax
+- Metathorax
+- Pronotum
+- Veinued thorax
+- Simple metamorphosis
+- Hemimetabolous development
+- Unsegmented abdomen
+- Malpighian tubules for excretion
+- Multilobed digestive system
+- Open circulatory system
+- Single pair of halteres (if present, primarily in flies like houseflies)"
+fly,2,"List the features and properties of a fly. Give a plain list, one property per line, no explanations.","- Small size
+- Two wings
+- Six legs
+- Single pair of wings
+- Compound eyes
+- Antennae
+- Hard exoskeleton
+- Three body parts: head, thorax, abdomen
+- Breathing through spiracles
+- Adult stage includes four life stages: egg, larva (maggot), pupa, adult
+- Most species are holometabolous, undergoing complete metamorphosis
+- Typically found in large groups and short-lived
+- Various colors and patterns for camouflage or warning"
+grenade,0,"List the features and properties of a grenade. Give a plain list, one property per line, no explanations.","- Explosive filling
+- Fuse assembly
+- Body or casing
+- Ignition mechanism
+- Safety pin and lever
+- Explosive effect radius
+- Fragmentation"
+grenade,1,"List the features and properties of a grenade. Give a plain list, one property per line, no explanations.","Explosive filling Impact fuze Safety pin Explosive charge Safety lever Explosive material (e.g., TNT, Composition B) Fuse Tube Body Material (usually high-impact plastic or steel)"
+grenade,2,"List the features and properties of a grenade. Give a plain list, one property per line, no explanations.","Explosive
+Fragmenting
+Detonator assembly
+Fuzing system
+Body
+Fuse or safety lever"
+jeans,0,"List the features and properties of a jeans. Give a plain list, one property per line, no explanations.","Denim material
+Blue color
+Five pocket design
+Reinforced stitching
+Button fly
+Stretchable fabric
+Rigid fabric texture
+Collar and cuff details (optional)"
+jeans,1,"List the features and properties of a jeans. Give a plain list, one property per line, no explanations.","- Comfortable
+- Casual
+- Durable
+- Stretchable
+- Breathable
+- Wrinkle-resistant
+- Elastic cuffs
+- Pocketed
+- Tapered (or straight)
+- Button fly
+- Belt loops"
+jeans,2,"List the features and properties of a jeans. Give a plain list, one property per line, no explanations.","Durability
+Stain-resistant
+Comfortable
+Flexible
+Boot cut
+Relaxed fit
+Skinny fit
+Regular fit
+Straight fit
+Dark wash
+Light wash
+Ripped effect
+Stonewash"
+missile,0,"List the features and properties of a missile. Give a plain list, one property per line, no explanations.","Guidance system
+Propellant
+Warhead
+Launch platform
+Reentry vehicle
+Stabilizing fins
+Thrust vectoring
+Range
+Navigation system
+Decoys and countermeasures
+Speed"
+missile,1,"List the features and properties of a missile. Give a plain list, one property per line, no explanations.","Guidance system
+Warhead
+Propellant
+Stabilization fins
+Radar signature reduction features
+Thrust vectoring
+Launch platform"
+missile,2,"List the features and properties of a missile. Give a plain list, one property per line, no explanations.","Propellants
+Control systems
+Warheads
+Guidance systems
+Launch platforms
+Stabilization systems
+Radar or other targeting systems
+Propellant efficiency
+Range"
+motorcycle,0,"List the features and properties of a motorcycle. Give a plain list, one property per line, no explanations.","Fuel-efficient
+High maneuverability
+Steering via handlebars
+Two or three wheels
+Can be manual or automatic transmission
+Rear brake
+Front brake
+Can be sit-up or sport-tuned
+Various engine types (e.g., single, twin, V-twin, inline-three)
+Can have a fairing for wind protection
+Can have a storage space (trunk or compartment)"
+motorcycle,1,"List the features and properties of a motorcycle. Give a plain list, one property per line, no explanations.","- Two wheels
+- Engine
+- Handlebars
+- Saddle or seat
+- Footrests
+- Clutch
+- Gearbox
+- Brakes
+- Ignition switch
+- Headlight
+- Tail light
+- Instrument panel
+- Tank or fuel container"
+motorcycle,2,"List the features and properties of a motorcycle. Give a plain list, one property per line, no explanations.","Engine type: Internal combustion engine
+Transmission: Manual or automatic (CVT)
+Fuel type: Gasoline
+Chassis: Steel or aluminum frame
+Drive system: Chain or belt drive
+Suspension: Spring suspension (front and rear)
+Brakes: Disc brakes (front and rear)
+Wheels: Pneumatic tires
+Steering: Handlebars and manual steering
+Body: Open-framed
+Seating: Solo seat for rider only
+Engine location: Front-mounted
+Engine size: Varies by model (e.g., 125cc to 1200cc+)"
