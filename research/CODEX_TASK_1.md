@@ -4,8 +4,8 @@ Context: read research/PLAN.md and research/STATUS.md first. This is step 1 of t
 experiment. Cheap, deterministic, NO GPU. Work on the `coherence-sft` branch.
 
 ## Inputs
-- NOVA verified concept x feature matrix (786 concepts):
-  /mnt/dv/wid/projects3/Rogers-muri-human-ai/mia/llm-norms-cogsci2025/verified_matrix_cogsci2025.parquet
+- NOVA verified concept x feature matrix (786 concepts), staged IN-REPO (gitignored):
+  data/nova/verified_matrix_cogsci2025.parquet
   (index = concept names lowercased; columns = features; values binary 0/1). Needs pyarrow (installed
   in env /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence).
 - EVAL concepts (the fixed 128 THINGS test set): data/scale128/concepts.csv (+ data/scale60,
