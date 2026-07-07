@@ -117,21 +117,23 @@ then self-verified. All r² (RDM-direct Procrustes), same metric as n=30.
 | triplet~feature (r²) | n=30 | n=60 | n=128 |
 |---|---|---|---|
 | **Human** | 0.93 | **0.76** | 0.77 |
-| qwen2.5-32b | 0.94 | *(H100)* | **0.34** |
+| qwen2.5-32b | 0.94 | **0.25** | 0.34 |
 | llama-3.1-8b | 0.82 | 0.35 | 0.32 |
 | olmo2-7b | 0.80 | 0.17 | 0.23 |
 | qwen2.5-7b | 0.69 | 0.14 | 0.13 |
 
-**Humans stay coherent (0.93 → 0.76 → 0.77); models collapse (near-human at n=30 → ≤0.35
-by n=60, and stay down).** The three-point curve shows the collapse is a **threshold
+**Humans stay coherent (0.93 → 0.76 → 0.77); every model collapses (near-human at n=30 →
+≤0.35 by n=60, and stays down).** The three-point curve shows the collapse is a **threshold
 effect, essentially complete by n=60** (n=60 ≈ n=128 for every row) — not a gradual decay.
 The models' apparent coherence at 30 concepts was largely the easy 2-cluster reptile/tool
 separation; escaping that trivial structure (by ~60 diverse concepts) fully opens the
-model↔human gap. **This partially reverses Finding 1:** the impression that modern models
-match human coherence is concept-set-dependent. At scale, the 2023 "humans cohere, LLMs
-don't" result **holds even for strong models** — the 30-concept task was too easy to reveal
-it. Concept-set size is a critical confound for this whole line of work.
-(n=60 uses a category-balanced subset nested in the 128; qwen2.5-32b n=60/128 pending H100.)
+model↔human gap. **Crucially, model size does not protect against the collapse:** qwen2.5-32b,
+the largest model, had the *highest* n=30 coherence (0.94, human-level) yet falls just as far
+(0.25 at n=60). **This partially reverses Finding 1:** the impression that modern models match
+human coherence is concept-set-dependent. At scale, the 2023 "humans cohere, LLMs don't"
+result **holds even for the strongest models** — the 30-concept task was simply too easy to
+reveal it. Concept-set size is a critical confound for this whole line of work.
+(n=60 uses a category-balanced subset nested in the 128.)
 
 (Model feature spaces still align with human NOVA at 0.48–0.71 and triplets at 0.15–0.49;
 the collapse is specifically in the *internal* triplet↔feature agreement, i.e. coherence.)
