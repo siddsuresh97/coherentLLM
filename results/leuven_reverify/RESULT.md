@@ -22,3 +22,25 @@ Root cause is the UNION step, not verification quality: verifying against the fu
 breaking the triplet~feature alignment. Even a perfect verifier can't fix scope.
 => Leuven norms are already near-optimal for these 30 concepts; the 0.84 human ceiling
 stands. Clean negative result + validation of Leuven.
+
+## Follow-up: what the OG paper did + Leuven-within + NOVA-cross-domain hybrid
+
+OG paper (experiments.ipynb cell 7): merge(animal, tool, all=TRUE); NA -> 0. i.e. it
+keeps Leuven within-domain features and ZERO-FILLS all cross-domain cells (a reptile is
+marked as not having any tool feature). No cross-domain verification. That IS our "ORIG
+Leuven" baseline (mean 0.813, reproduces saved 0.979/0.915/0.846).
+
+Hybrid tested (per user): Leuven cells untouched within-domain; cross-domain (0) cells
+filled with the two-stage flan+gpt5 NOVA verdict (1379 new True cross-domain links).
+| pair | paper (cross=0) | hybrid (cross=NOVA) |
+|---|---|---|
+| triplet~feature  | 0.896 | 0.854 |
+| pairwise~feature | 0.828 | 0.862 |
+| triplet~pairwise | 0.716 | 0.716 |
+| MEAN             | 0.813 | 0.810 |
+
+Hybrid ~ tied with paper (0.810 vs 0.813), and MUCH better than naive full-union
+re-verify (0.772). Adding real cross-domain overlap helps pairwise~feature (0.83->0.86)
+but slightly costs triplet~feature (0.90->0.85), net flat. Confirms the paper's zero-fill
+was near-optimal: the reptile/tool split dominates, so cross-domain links barely matter.
+Human ceiling ~0.81 (r^2), 0.84 as reported (r^2 with paper's exact Leuven/MDS). Stands.
