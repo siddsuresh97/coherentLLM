@@ -103,6 +103,36 @@ breaking the tight triplet~feature alignment. The paper's zero-fill of cross-dom
 is near-optimal; a Leuven-within + NOVA-cross-domain hybrid merely ties it (0.810 vs 0.813).
 **The 0.84 ceiling stands, now stress-tested from three angles.**
 
+### Finding 7 — Coherence collapses with concept-set size, for models but not humans.
+
+We repeated the experiment on **128 concepts** (category-balanced across 13 categories,
+all present in both THINGS SPoSE and NOVA). Human triplet = THINGS SPoSE 49D; human
+feature = NOVA verified matrix. Model triplet = SALMON at **d=5** (chosen by an empirical
+held-out-accuracy elbow — accuracy plateaus after d=5); model feature = free-listing
+consolidated to features **shared by ≥3 concepts** (~55–272 features/model, Leuven-scale),
+then self-verified. All r² (RDM-direct Procrustes), same metric as n=30.
+
+![Coherence collapses with scale](results/coherence/scale_n30_vs_n128.png)
+
+| triplet~feature (r²) | n=30 | n=128 |
+|---|---|---|
+| **Human** | 0.93 | **0.77** |
+| qwen2.5-32b | 0.94 | **0.34** |
+| llama-3.1-8b | 0.82 | 0.32 |
+| olmo2-7b | 0.80 | 0.23 |
+| qwen2.5-7b | 0.69 | 0.13 |
+
+**Humans stay coherent (0.93 → 0.77); models collapse (near-human at n=30 → ≤0.34 at n=128).**
+The models' apparent coherence at 30 concepts was largely the easy 2-cluster reptile/tool
+separation. On 128 diverse concepts they cannot hold a consistent structure across triplet
+vs feature elicitation. **This partially reverses Finding 1:** the impression that modern
+models match human coherence is concept-set-dependent. At scale, the 2023 "humans cohere,
+LLMs don't" result **holds even for strong models** — the 30-concept task was too easy to
+reveal it. Concept-set size is a critical confound for this whole line of work.
+
+(Model feature spaces still align with human NOVA at 0.48–0.71 and triplets at 0.15–0.49;
+the collapse is specifically in the *internal* triplet↔feature agreement, i.e. coherence.)
+
 ## 4. Reliability checks
 
 - **Batched vs single-pair feature verification.** Frontier models can be verified 20-at-a-time
@@ -114,10 +144,10 @@ is near-optimal; a Leuven-within + NOVA-cross-domain hybrid merely ties it (0.81
 
 ## 5. What's next (planned)
 
-**Scale experiment:** repeat on **128 concepts** (chosen to exist in *both* the THINGS SPoSE
-release and the NOVA feature matrix), run triplet + feature-listing on the best open models,
-and measure how human and model coherence change as the concept set grows from 30 → 128.
-This isolates the effect of concept-set size on coherence.
+- **Trace the full scale curve** (e.g. n=60) between 30 and 128 to see whether the model
+  collapse is gradual or has a threshold.
+- **Add a frontier model (GPT-5.5)** at n=128 to test whether the collapse holds for the
+  strongest models or is specific to open models.
 
 ---
 
