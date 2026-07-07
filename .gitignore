@@ -25,3 +25,5 @@ conceptual_representations_gpt/
 salmon/
 out/
 data/nova/
+data/sft/*.jsonl
+data/sft/S_star.npy
