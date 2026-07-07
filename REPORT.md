@@ -112,28 +112,38 @@ held-out-accuracy elbow — accuracy plateaus after d=5); model feature = free-l
 consolidated to features **shared by ≥3 concepts** (~55–272 features/model, Leuven-scale),
 then self-verified. All r² (RDM-direct Procrustes), same metric as n=30.
 
-![Coherence vs concept-set size](results/coherence/scale_curve.png)
+![Model-human alignment vs concept-set size](results/coherence/scale_curve.png)
 
-| triplet~feature (r²) | n=30 | n=60 | n=128 |
+**Primary metric: model triplet ↔ human triplet alignment (r²)** — this is confound-free
+(the alternative, triplet~feature coherence, is sensitive to how many features survive
+consolidation, which itself scales with n; see caveat below).
+
+| triplet ~ human (r²) | n=30 | n=60 | n=128 |
 |---|---|---|---|
-| **Human** | 0.93 | **0.76** | 0.77 |
-| qwen2.5-32b | 0.94 | **0.25** | 0.34 |
-| llama-3.1-8b | 0.82 | 0.35 | 0.32 |
-| olmo2-7b | 0.80 | 0.17 | 0.23 |
-| qwen2.5-7b | 0.69 | 0.14 | 0.13 |
+| qwen2.5-32b | 0.96 | 0.39 | 0.43 |
+| llama-3.1-8b | 0.92 | 0.55 | 0.49 |
+| olmo2-7b | 0.86 | 0.36 | 0.32 |
+| qwen2.5-7b | 0.82 | 0.29 | 0.15 |
 
-**Humans stay coherent (0.93 → 0.76 → 0.77); every model collapses (near-human at n=30 →
-≤0.35 by n=60, and stays down).** The three-point curve shows the collapse is a **threshold
-effect, essentially complete by n=60** (n=60 ≈ n=128 for every row) — not a gradual decay.
-The models' apparent coherence at 30 concepts was largely the easy 2-cluster reptile/tool
+**Every model's alignment to human structure collapses with scale** — from near-perfect at
+n=30 (0.82–0.96) to 0.15–0.55 by n=60, and it stays down at n=128. The collapse is a
+**threshold effect, essentially complete by n=60** (n=60 ≈ n=128) — not gradual decay. The
+models' near-human agreement at 30 concepts was largely the easy 2-cluster reptile/tool
 separation; escaping that trivial structure (by ~60 diverse concepts) fully opens the
-model↔human gap. **Crucially, model size does not protect against the collapse:** qwen2.5-32b,
-the largest model, had the *highest* n=30 coherence (0.94, human-level) yet falls just as far
-(0.25 at n=60). **This partially reverses Finding 1:** the impression that modern models match
-human coherence is concept-set-dependent. At scale, the 2023 "humans cohere, LLMs don't"
-result **holds even for the strongest models** — the 30-concept task was simply too easy to
-reveal it. Concept-set size is a critical confound for this whole line of work.
-(n=60 uses a category-balanced subset nested in the 128.)
+model↔human gap. **Crucially, model size does not protect:** qwen2.5-32b, the largest model,
+was *most* aligned at n=30 (0.96) yet falls just as far (0.39 at n=60). **This partially
+reverses Finding 1:** the impression that modern models match human structure is
+concept-set-dependent. At scale, the 2023 "humans cohere, LLMs don't" result **holds even for
+the strongest models** — the 30-concept task was simply too easy to reveal it. Concept-set
+size is a critical confound for this whole line of work.
+
+*Caveat (why not triplet~feature coherence):* the internal triplet~feature coherence shows
+the same collapse but is noisier at n=60, because the per-model feature consolidation
+(features shared by ≥3 concepts) keeps fewer features when there are fewer concepts (e.g.
+26 features for qwen-32b at n=60 vs 88 at n=128), making the feature RDM thin. Holding
+features fixed (n=128 verdicts subset to 60 concepts) restores monotonicity
+(qwen-32b 0.94→0.30→0.34). See `data/scale60/RESULT.md` and the supplementary figure
+`scale_curve_coherence.png`. (n=60 is a category-balanced subset nested in the 128.)
 
 (Model feature spaces still align with human NOVA at 0.48–0.71 and triplets at 0.15–0.49;
 the collapse is specifically in the *internal* triplet↔feature agreement, i.e. coherence.)
