@@ -17,11 +17,12 @@ import re
 import pandas as pd
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW = os.path.join(HERE, "results", "raw")
+RAW = os.environ.get("COHERENCE_RAW_DIR", os.path.join(HERE, "results", "raw"))
 
 
 def load_concepts():
-    with open(os.path.join(HERE, "data", "stimuli", "concepts.csv")) as f:
+    stim = os.environ.get("COHERENCE_STIM_DIR", os.path.join(HERE, "data", "stimuli"))
+    with open(os.path.join(stim, "concepts.csv")) as f:
         return [ln.strip() for ln in f if ln.strip()]
 
 
