@@ -20,7 +20,7 @@ from prompts import SYSTEM_PROMPT, listing_prompt  # noqa: E402
 from stimuli import load_concepts  # noqa: E402
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW = os.path.join(HERE, "results", "raw")
+RAW = os.environ.get("COHERENCE_RAW_DIR", os.path.join(HERE, "results", "raw"))
 
 
 def load_registry():
@@ -47,6 +47,7 @@ def main():
     ap.add_argument("--tensor_parallel", type=int, default=1)
     ap.add_argument("--max_model_len", type=int, default=4096)
     ap.add_argument("--gpu_mem_util", type=float, default=0.90)
+    ap.add_argument("--max_num_seqs", type=int, default=0)
     ap.add_argument("--overwrite", action="store_true")
     args = ap.parse_args()
 
@@ -78,6 +79,7 @@ def main():
                       tensor_parallel_size=tp,
                       max_model_len=args.max_model_len,
                       gpu_memory_utilization=args.gpu_mem_util,
+        **({"max_num_seqs": args.max_num_seqs} if args.max_num_seqs else {}),
                       dtype="bfloat16", trust_remote_code=True)
     if spec.get("quantization") and os.environ.get("COHERENCE_FORCE_BF16") != "1":
         llm_kwargs["quantization"] = spec["quantization"]
