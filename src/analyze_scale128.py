@@ -17,8 +17,8 @@ import pandas as pd
 from scipy.spatial import procrustes as sp
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW = os.path.join(HERE, "results", "raw_128")
-S128 = os.path.join(HERE, "data", "scale128")
+RAW = os.environ.get("COHERENCE_RAW_DIR", os.path.join(HERE, "results", "raw_128"))
+S128 = os.environ.get("COHERENCE_SCALE_DIR", os.path.join(HERE, "data", "scale128"))
 CONCEPTS = [l.strip() for l in open(os.path.join(S128, "concepts.csv"))]
 
 
@@ -96,7 +96,7 @@ def main():
             row["human_feature"] = r2(Df, Dh_f)
         rows.append(row)
     out = pd.DataFrame(rows).set_index("model")
-    out.to_csv(os.path.join(S128, "coherence_128.csv"))
+    out.to_csv(os.path.join(S128, "coherence.csv"))
     print(out.round(3).to_string())
 
 

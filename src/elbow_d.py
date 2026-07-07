@@ -20,9 +20,10 @@ for pkg in ["salmon", "salmon.triplets"]:
         sys.modules[pkg] = m
 OfflineEmbedding = importlib.import_module("salmon.triplets.offline").OfflineEmbedding
 
-RAW128 = os.path.join(_REPO, "results", "raw_128")
-CONCEPTS = [l.strip() for l in open(os.path.join(_REPO, "data/scale128/concepts.csv"))]
-OUT = os.path.join(_REPO, "data/scale128")
+RAW128 = os.environ.get("COHERENCE_RAW_DIR", os.path.join(_REPO, "results", "raw_128"))
+_SDIR = os.environ.get("COHERENCE_SCALE_DIR", os.path.join(_REPO, "data/scale128"))
+CONCEPTS = [l.strip() for l in open(os.path.join(_SDIR, "concepts.csv"))]
+OUT = _SDIR
 
 
 def _norm(s):
