@@ -31,3 +31,13 @@ Log training loss. If OOM on A5000, lower batch to 1 / seq to 1024 / use the H10
 - Commit code (NOT weights) to coherence-sft: "SFT step 3: unsloth rsLoRA r=64 trainer + real/scrambled adapters trained".
 - IMPORTANT: actually run `git add` + `git commit` yourself before finishing. Do NOT push.
 - Report final train loss for each arm.
+
+## EFFICIENCY UPDATE (v2) - the first run was ~9h/arm, too slow. Fix:
+- max_seq_length = 256 (our longest example is ~60 tokens; 2048 wasted huge compute on padding).
+- per_device_train_batch_size = 16 (fits easily at seq 256), grad_accum = 2 (eff ~32).
+- --max_steps 1500 for the FIRST signal (roughly ~1 epoch on a subset), NOT full 3 epochs on 110k.
+- pack sequences if unsloth supports it (packing=True) for further speedup.
+- Prefer the H100 (ssh ssuresh@opt-a007.discovery.wisc.edu, key ~/.ssh/id_ed25519, shared FS) -
+  ~6-8x faster than A5000; run both arms there. If H100 unreachable, A5000 with the above config
+  should get each arm to ~15-30 min.
+Target: both arms (real + scrambled) done in well under 1 hour total.
