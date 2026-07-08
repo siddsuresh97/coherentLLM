@@ -27,10 +27,28 @@ from sft.lora_apply import install_lora_adapter, set_active_lora  # noqa: E402
 
 
 WORD_BENCHMARK_URLS = {
-    "SimLex-999": "https://raw.githubusercontent.com/mfaruqui/eval-word-vectors/master/data/word-sim/EN-SIMLEX-999.txt",
-    "WordSim-353": "https://raw.githubusercontent.com/mfaruqui/eval-word-vectors/master/data/word-sim/EN-WS-353-ALL.txt",
-    "MEN": "https://raw.githubusercontent.com/mfaruqui/eval-word-vectors/master/data/word-sim/EN-MEN-TR-3k.txt",
+    "SimLex-999": [
+        "https://raw.githubusercontent.com/mfaruqui/eval-word-vectors/master/data/word-sim/EN-SIMLEX-999.txt",
+    ],
+    "WordSim-353": [
+        "https://raw.githubusercontent.com/mfaruqui/eval-word-vectors/master/data/word-sim/EN-WS-353-ALL.txt",
+    ],
+    "MEN": [
+        "https://raw.githubusercontent.com/mfaruqui/eval-word-vectors/master/data/word-sim/EN-MEN-TR-3k.txt",
+    ],
+    "RG-65": [
+        "https://raw.githubusercontent.com/mfaruqui/eval-word-vectors/master/data/word-sim/EN-RG-65.txt",
+    ],
+    "MTurk-771": [
+        "https://raw.githubusercontent.com/mfaruqui/eval-word-vectors/master/data/word-sim/EN-MTurk-771.txt",
+    ],
+    "SimVerb-3500": [
+        "https://raw.githubusercontent.com/mfaruqui/eval-word-vectors/master/data/word-sim/EN-SIMVERB-3500.txt",
+        "https://raw.githubusercontent.com/mfaruqui/eval-word-vectors/master/data/word-sim/EN-SimVerb-3500.txt",
+    ],
 }
+REQUIRED_WORD_BENCHMARKS = ["SimLex-999", "WordSim-353", "MEN"]
+OPTIONAL_WORD_BENCHMARKS = ["RG-65", "MTurk-771", "SimVerb-3500"]
 
 
 @dataclass(frozen=True)
@@ -46,6 +64,8 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--model", default="llama-3.1-8b-instruct")
     ap.add_argument("--real_adapter", default=str(ROOT / "out" / "adapters_vllm_fixed" / "real"))
     ap.add_argument("--scrambled_adapter", default=str(ROOT / "out" / "adapters_vllm_fixed" / "scrambled"))
+    ap.add_argument("--lowLR_adapter", default=str(ROOT / "out" / "adapters_mitigation" / "lowLR"))
+    ap.add_argument("--lowrank_adapter", default=str(ROOT / "out" / "adapters_mitigation" / "lowrank"))
     ap.add_argument("--out_dir", default=str(ROOT / "results" / "sft_eval" / "external"))
     ap.add_argument("--cache_dir", default=str(ROOT / "data" / "external_benchmarks"))
     ap.add_argument("--batch_size", type=int, default=16)
@@ -53,7 +73,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--dtype", choices=["bfloat16", "float16", "float32"], default="bfloat16")
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--states", nargs="+", default=["base", "real", "scrambled"],
-                    choices=["base", "real", "scrambled"])
+                    choices=["base", "real", "scrambled", "lowLR", "lowrank"])
     ap.add_argument("--allow_download", action="store_true")
     ap.add_argument("--overwrite", action="store_true")
     return ap.parse_args()
@@ -116,17 +136,23 @@ def load_stsb() -> list[PairRow]:
     return rows
 
 
-def _download_text(url: str, cache_path: Path) -> str:
-    cache_path.parent.mkdir(parents=True, exist_ok=True)
-    if not cache_path.exists():
-        with urllib.request.urlopen(url, timeout=60) as response:
-            cache_path.write_bytes(response.read())
-    return cache_path.read_text(encoding="utf-8")
+def _download_text(urls: list[str], cache_dir: Path) -> tuple[str, str]:
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    errors = []
+    for url in urls:
+        cache_path = cache_dir / Path(url).name
+        try:
+            if not cache_path.exists():
+                with urllib.request.urlopen(url, timeout=60) as response:
+                    cache_path.write_bytes(response.read())
+            return cache_path.read_text(encoding="utf-8"), url
+        except Exception as exc:
+            errors.append(f"{url}: {type(exc).__name__}: {exc}")
+    raise RuntimeError("; ".join(errors))
 
 
 def load_tab_word_pairs(name: str, cache_dir: Path) -> list[PairRow]:
-    url = WORD_BENCHMARK_URLS[name]
-    text = _download_text(url, cache_dir / Path(url).name)
+    text, _ = _download_text(WORD_BENCHMARK_URLS[name], cache_dir)
     rows = []
     reader = csv.reader(io.StringIO(text), delimiter="\t")
     for idx, row in enumerate(reader):
@@ -142,11 +168,18 @@ def load_tab_word_pairs(name: str, cache_dir: Path) -> list[PairRow]:
     return rows
 
 
-def load_benchmarks(cache_dir: Path) -> dict[str, list[PairRow]]:
+def load_benchmarks(cache_dir: Path) -> tuple[dict[str, list[PairRow]], list[dict[str, str]]]:
     benches = {"STS-B": load_stsb()}
-    for name in ["SimLex-999", "WordSim-353", "MEN"]:
+    skipped = []
+    for name in REQUIRED_WORD_BENCHMARKS:
         benches[name] = load_tab_word_pairs(name, cache_dir)
-    return benches
+    for name in OPTIONAL_WORD_BENCHMARKS:
+        try:
+            benches[name] = load_tab_word_pairs(name, cache_dir)
+        except Exception as exc:
+            skipped.append({"benchmark": name, "reason": str(exc)})
+            print(f"[skip] optional benchmark {name}: {exc}", flush=True)
+    return benches, skipped
 
 
 def unique_texts(benchmarks: dict[str, list[PairRow]]) -> list[str]:
@@ -249,7 +282,7 @@ def main() -> None:
     model_path = resolve_model_path(spec["path"], hf_cache, args.allow_download or bool(spec.get("download", False)))
     configure_hf_cache(hf_cache, model_path)
 
-    benchmarks = load_benchmarks(Path(args.cache_dir))
+    benchmarks, skipped_benchmarks = load_benchmarks(Path(args.cache_dir))
     texts = unique_texts(benchmarks)
     print(
         "[data] "
@@ -273,14 +306,18 @@ def main() -> None:
         trust_remote_code=True,
     ).to(device)
 
+    adapter_paths = {
+        "real": args.real_adapter,
+        "scrambled": args.scrambled_adapter,
+        "lowLR": args.lowLR_adapter,
+        "lowrank": args.lowrank_adapter,
+    }
     installed = {}
-    if "real" in args.states:
-        installed["real"] = install_lora_adapter(
-            model, args.real_adapter, "real", dtype=dtype, device=device, activate=False
-        )
-    if "scrambled" in args.states:
-        installed["scrambled"] = install_lora_adapter(
-            model, args.scrambled_adapter, "scrambled", dtype=dtype, device=device, activate=False
+    for state in args.states:
+        if state == "base":
+            continue
+        installed[state] = install_lora_adapter(
+            model, adapter_paths[state], state, dtype=dtype, device=device, activate=False
         )
     if installed:
         print(f"[lora] installed modules: {installed}", flush=True)
@@ -311,6 +348,7 @@ def main() -> None:
         "batch_size": args.batch_size,
         "max_length": args.max_length,
         "benchmarks": {name: len(rows) for name, rows in benchmarks.items()},
+        "skipped_benchmarks": skipped_benchmarks,
         "word_benchmark_urls": WORD_BENCHMARK_URLS,
     }
     (out_dir / "summary_meta.json").write_text(json.dumps(meta, indent=2, sort_keys=True) + "\n")
