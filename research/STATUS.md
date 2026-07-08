@@ -53,6 +53,22 @@ src/sft/train_lora.py invocation MUST:
 Each scaling-ablation point should then train in a few minutes, not 30. The existing
 real/scrambled adapters are fine as-is; do NOT retrain them for the first eval.
 
+### CORRECTNESS GATE before using --packing (packing != correct attention masks)
+Our examples are INDEPENDENT single-turn QA (each triplet/pairwise/feature is its own example).
+Naive packing concatenates examples into one block under a FULL causal mask, letting example B
+attend across the boundary to example A (cross-contamination) -> corrupts training. Before using
+--packing for ANY real run, VERIFY the packing is boundary-aware (block-diagonal / position-reset /
+FlashAttention varlen cu_seqlens so each sub-example is isolated):
+1. Check installed TRL + unsloth versions. Unsloth packing usually = FA2 varlen (cu_seqlens) =
+   CORRECT. Plain older TRL packing=True = NAIVE (cross-contamination) unless FA2 + position_ids
+   reset. Newer TRL added neat/greedy packing with proper masking -- confirm ours has it.
+2. Concretely test: pack 2-3 known examples, inspect the attention mask / position_ids actually
+   used; confirm block-diagonal (B cannot attend to A), NOT a full causal mask over the block.
+3. If our stack only does NAIVE packing: DO NOT use packing. Use --max_seq_length 128 +
+   group_by_length=True + a length-bucketed batch sampler instead (most of the speedup, safe).
+4. Report which path we are on (boundary-aware packing vs padded/bucketed) and note it in the
+   training commit. CORRECTNESS over speed: a fast-but-contaminated run is worse than a slower one.
+
 ## Not-yet-done infra checks
 - unsloth not installed in any env yet.
 - no raw human THINGS odd-one-out triplets on disk (downloadable OSF f5rn6/qn5uv if we want the
