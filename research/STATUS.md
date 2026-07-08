@@ -18,8 +18,8 @@ read this top section first for where the project actually stands.**
   (`opt-a007.discovery.wisc.edu`), shared with other work. Rule from the user: keep GPUs allocated
   and utilized when experiments are queued, ask how to make slow paths faster, and commit/push
   meaningful checkpoints. A5000 vLLM+LoRA logprob scoring needs careful tuning: auto batch can OOM,
-  too-low `gpu_memory_utilization` can leave no KV cache, and the current lowrank retry is using
-  `gpu_mem_util=0.75 --batch_size 4`.
+  too-low `gpu_memory_utilization` can leave no KV cache, and stable long ARC/Hella lanes are using
+  `gpu_mem_util=0.72 --batch_size 2`.
   ThingsVision is not installed in the active coherence env on either GPU host; for current
   90-concept fMRI RSA, HDF5 reads were the bottleneck rather than RDM math. Revisit a torch/CuPy/
   ThingsVision-style GPU RDM backend for full-720, bootstrap, or permutation-heavy RSA.
@@ -154,10 +154,18 @@ Finding: coherence collapses with concept count for ALL models by n=60; humans h
 protect. Lead metric at scale = model triplet~human alignment (confound-free).
 
 ## Latest coherence-sft checkpoint
-- `caff36e` pushed: partial lowrank/taskvec wide-bench mitigation results and
-  active benchmark log.
-- fMRI x semantic-hub bridge now exists locally in
-  `results/sft_fmri_semantic_bridge/` and is ready for commit.
+- README and `research/EXPERIMENT_LOG.md` are the current living dashboard.
+- Lowrank wide-bench now has regenerated summary CSVs at
+  `results/sft_eval/wide_bench/summary.csv` and
+  `results/sft_eval/wide_bench/raw_task_summary.csv`.
+- Lowrank is flat on HellaSwag (`0.683` vs base `0.685`) and mostly flat on
+  WinoGrande, but still drops ARC, MMLU, WiC, and OpenBookQA. Scrambled
+  zero-shot collapses broadly (`PIQA acc_norm=0.540`,
+  `OpenBookQA acc_norm=0.282`, `CommonsenseQA acc=0.197`), so some retention
+  loss is generic adapter/SFT perturbation, not semantic alignment alone.
+- Current active A5000 lanes are `taskvec_a0p25 arc_25shot` on GPU0 and
+  `taskvec_a0p25 hellaswag_10shot` on GPU1, both with
+  `gpu_mem_util=0.72 --batch_size 2`.
 - Bridge read: semantic-hub invariance is strong internally, but it does not yet
   explain object-fMRI RSA. Ventral Visual delta-vs-base vs mid hub RDM is
   positive but small-n (`r=0.600`, `n=6`, `p=0.208`); retrieval top-1 is not

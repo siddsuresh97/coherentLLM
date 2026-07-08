@@ -502,6 +502,8 @@ Completed partial results:
 | `lowrank` | zero-shot | TruthfulQA-MC2 | acc | 0.541 |
 | `lowrank` | 5-shot | WinoGrande | acc | 0.744 |
 | `lowrank` | 5-shot | MMLU | acc | 0.592 |
+| `lowrank` | 25-shot | ARC-Easy | acc_norm | 0.705 |
+| `lowrank` | 25-shot | ARC-Challenge | acc_norm | 0.508 |
 | `lowrank` | 10-shot | HellaSwag | acc_norm | 0.683 |
 | `taskvec_a0p25` | zero-shot | PIQA | acc_norm | 0.789 |
 | `taskvec_a0p25` | zero-shot | OpenBookQA | acc_norm | 0.436 |
@@ -509,6 +511,11 @@ Completed partial results:
 | `taskvec_a0p25` | zero-shot | WiC | acc | 0.502 |
 | `taskvec_a0p25` | zero-shot | TruthfulQA-MC2 | acc | 0.523 |
 | `taskvec_a0p25` | 5-shot | WinoGrande | acc | 0.747 |
+| `scrambled` | zero-shot | PIQA | acc_norm | 0.540 |
+| `scrambled` | zero-shot | OpenBookQA | acc_norm | 0.282 |
+| `scrambled` | zero-shot | CommonsenseQA | acc | 0.197 |
+| `scrambled` | zero-shot | WiC | acc | 0.481 |
+| `scrambled` | zero-shot | TruthfulQA-MC2 | acc | 0.482 |
 
 Initial interpretation:
 
@@ -516,12 +523,23 @@ Initial interpretation:
   the alignment objective may be harming lexical sense discrimination rather
   than merely overfitting a specific adapter rank.
 - `lowrank` HellaSwag finishes at `acc_norm=0.683` under conservative A5000
-  settings, so the long-run OOMs were a runtime setting problem rather than a
-  task-level evaluation failure.
+  settings and is nearly flat against base (`0.685`), so the long-run OOMs were
+  a runtime setting problem rather than a task-level evaluation failure.
+- `lowrank` still drops ARC-Easy (`0.705` vs base `0.850`), ARC-Challenge
+  (`0.508` vs base `0.649`), and MMLU (`0.592` vs base `0.693`). This is
+  task-family-specific retention damage, not a single global scoring bug.
 - `taskvec_a0p25` improves OpenBookQA and PIQA relative to `lowrank`, but loses
   CommonsenseQA and TruthfulQA in this partial slice.
 - WinoGrande is stable across `lowrank` and `taskvec_a0p25`, so the broad drop
   is not a uniform few-shot evaluation failure.
+- `scrambled` zero-shot is much worse than lowrank/taskvec on PIQA,
+  OpenBookQA, CommonsenseQA, and TruthfulQA, which argues that the semantic SFT
+  signal is beneficial relative to random target geometry. But scrambled also
+  drops broadly, so generic adapter/SFT perturbation contributes to the
+  retention loss.
+- Summary tables regenerated after the lowrank ARC completion:
+  `results/sft_eval/wide_bench/summary.csv` and
+  `results/sft_eval/wide_bench/raw_task_summary.csv`.
 
 Speed/reliability notes:
 
@@ -537,6 +555,9 @@ Speed/reliability notes:
 - Lowrank HellaSwag also OOMed at `gpu_mem_util=0.75`, `batch_size=4` around
   19% of loglikelihood requests. It was relaunched with `batch_size=2`,
   `gpu_mem_util=0.72`.
+- Lowrank ARC 25-shot completed at `gpu_mem_util=0.72`, `batch_size=2`.
+- Scrambled zero-shot completed on A5000 at `gpu_mem_util=0.75`,
+  `batch_size=4`; the A5000 rank-64 vLLM path is viable.
 - H100 lowrank MMLU completed. It was the long lane because 5-shot MMLU expands
   to about 54k loglikelihood requests.
 - `src/sft/eval_wide_bench.py` now exposes a `scrambled` state backed by
@@ -567,15 +588,20 @@ Speed/reliability notes:
 Current active runs:
 
 ```bash
-ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/eval_wide_bench.py --states lowrank --groups arc_25shot --gpu_mem_util 0.72 --batch_size 2 --no_summarize'
-ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=1 python src/sft/eval_wide_bench.py --states scrambled --groups zero_shot --gpu_mem_util 0.75 --batch_size 4 --no_summarize'
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/eval_wide_bench.py --states taskvec_a0p25 --groups arc_25shot --gpu_mem_util 0.72 --batch_size 2 --no_summarize'
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=1 python src/sft/eval_wide_bench.py --states taskvec_a0p25 --groups hellaswag_10shot --gpu_mem_util 0.72 --batch_size 2 --no_summarize'
 ```
 
-Next after lowrank wide-bench completes:
+Completed bookkeeping command after lowrank ARC:
 
 ```bash
 python src/sft/eval_wide_bench.py --states base lowLR lowrank --summarize_only
 ```
+
+Next after current taskvec lanes complete: parse taskvec ARC/Hella result JSONs,
+update README/log, commit/push, then launch the next highest-value lane. Current
+priority is `taskvec_a0p25 mmlu_5shot` if a long GPU lane is acceptable, or
+scrambled ARC/Hella if the immediate question is random-perturbation control.
 
 ## 2026-07-08 result: fMRI x semantic-hub bridge
 

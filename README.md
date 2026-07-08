@@ -20,14 +20,14 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   delta in a small-n descriptive check, but same-concept retrieval does not
   explain fMRI deltas. This is not yet evidence that the semantic hub explains
   the fMRI effect.
-- **Benchmarks:** lowrank still collapses on WiC; WinoGrande is stable and
-  lowrank HellaSwag 10-shot now completes at `acc_norm=0.683`.
-  `taskvec_a0p25` improves PIQA/OpenBookQA versus lowrank but loses
-  CommonsenseQA/TruthfulQA in the partial slice.
-- **Runtime:** A5000 runs need conservative vLLM settings for long
-  loglikelihood tasks. H100 handled rank-16 lowrank MMLU, but rank-64 LoRA
-  vLLM evals (`taskvec_a0p25`, `scrambled`) stall before GPU allocation on
-  `opt-a007`, even after local adapter staging.
+- **Benchmarks:** lowrank is flat on HellaSwag (`0.683` vs base `0.685`) and
+  mostly flat on WinoGrande, but still drops ARC, MMLU, WiC, and OpenBookQA.
+  Scrambled zero-shot collapses broadly, so part of the retention loss is a
+  generic adapter/SFT perturbation, not semantic alignment alone.
+- **Runtime:** both A5000 lanes are active on `taskvec_a0p25` ARC/HellaSwag
+  follow-ups using `gpu_mem_util=0.72`, `batch_size=2`. H100 handled rank-16
+  lowrank MMLU, but rank-64 LoRA vLLM evals (`taskvec_a0p25`, `scrambled`)
+  stall before GPU allocation on `opt-a007`, even after local adapter staging.
 
 ### Reading Map
 
@@ -188,6 +188,10 @@ Pushed partial results:
 
 - Commit `caff36e`: partial lowrank/taskvec wide-bench outputs.
 - Raw JSON directories under `results/sft_eval/wide_bench/runs/`.
+- Regenerated summary tables:
+  [`results/sft_eval/wide_bench/summary.csv`](results/sft_eval/wide_bench/summary.csv)
+  and
+  [`results/sft_eval/wide_bench/raw_task_summary.csv`](results/sft_eval/wide_bench/raw_task_summary.csv).
 
 Completed partial metrics:
 
@@ -200,6 +204,8 @@ Completed partial metrics:
 | `lowrank` | zero-shot | TruthfulQA-MC2 | acc | 0.541 |
 | `lowrank` | 5-shot | WinoGrande | acc | 0.744 |
 | `lowrank` | 5-shot | MMLU | acc | 0.592 |
+| `lowrank` | 25-shot | ARC-Easy | acc_norm | 0.705 |
+| `lowrank` | 25-shot | ARC-Challenge | acc_norm | 0.508 |
 | `lowrank` | 10-shot | HellaSwag | acc_norm | 0.683 |
 | `taskvec_a0p25` | zero-shot | PIQA | acc_norm | 0.789 |
 | `taskvec_a0p25` | zero-shot | OpenBookQA | acc_norm | 0.436 |
@@ -207,18 +213,42 @@ Completed partial metrics:
 | `taskvec_a0p25` | zero-shot | WiC | acc | 0.502 |
 | `taskvec_a0p25` | zero-shot | TruthfulQA-MC2 | acc | 0.523 |
 | `taskvec_a0p25` | 5-shot | WinoGrande | acc | 0.747 |
+| `scrambled` | zero-shot | PIQA | acc_norm | 0.540 |
+| `scrambled` | zero-shot | OpenBookQA | acc_norm | 0.282 |
+| `scrambled` | zero-shot | CommonsenseQA | acc | 0.197 |
+| `scrambled` | zero-shot | WiC | acc | 0.481 |
+| `scrambled` | zero-shot | TruthfulQA-MC2 | acc | 0.482 |
+
+Base/lowLR/lowrank retention summary:
+
+| Task | Base | LowLR | Lowrank | Lowrank delta |
+|---|---:|---:|---:|---:|
+| PIQA | 0.799 | 0.779 | 0.776 | -0.023 |
+| OpenBookQA | 0.490 | 0.412 | 0.408 | -0.082 |
+| CommonsenseQA | 0.651 | 0.666 | 0.622 | -0.029 |
+| WiC | 0.652 | 0.500 | 0.498 | -0.154 |
+| TruthfulQA-MC2 | 0.550 | 0.533 | 0.541 | -0.010 |
+| WinoGrande | 0.762 | 0.765 | 0.744 | -0.018 |
+| ARC-Easy | 0.850 | 0.725 | 0.705 | -0.145 |
+| ARC-Challenge | 0.649 | 0.524 | 0.508 | -0.141 |
+| HellaSwag | 0.685 | 0.656 | 0.683 | -0.002 |
+| MMLU | 0.693 | 0.594 | 0.592 | -0.101 |
 
 Read:
 
 - WiC remains near chance for aligned states, suggesting lexical sense
   discrimination is harmed by the alignment objective or adapter perturbation.
 - WinoGrande is stable, so this is not a uniform few-shot evaluation failure.
-- HellaSwag remains usable under the lowrank mitigation once the run is split
-  and constrained to `gpu_mem_util=0.72`, `batch_size=2`.
+- HellaSwag is essentially preserved by lowrank once the run is split and
+  constrained to `gpu_mem_util=0.72`, `batch_size=2`; ARC and MMLU still drop.
 - `taskvec_a0p25` improves PIQA/OpenBookQA over lowrank, but loses
   CommonsenseQA/TruthfulQA in this partial slice.
-- Scrambled broad-benchmark control is now exposed in the runner and is running
-  for zero-shot on `rogers-gpu-1` GPU1.
+- Scrambled zero-shot is much worse than lowrank/taskvec on PIQA, OpenBookQA,
+  CommonsenseQA, and TruthfulQA, so useful semantic training is doing real work.
+  But scrambled also drops broadly, so generic LoRA/SFT perturbation is part of
+  the damage.
+- Current active follow-ups: `taskvec_a0p25` ARC 25-shot on GPU0 and HellaSwag
+  10-shot on GPU1.
 
 </details>
 
@@ -227,6 +257,8 @@ Read:
 
 Current confirmed settings:
 
+- Current active A5000 lanes: GPU0 `taskvec_a0p25 arc_25shot`; GPU1
+  `taskvec_a0p25 hellaswag_10shot`.
 - A5000 broad-bench long loglikelihood runs should use conservative settings:
   `gpu_mem_util=0.72` and `batch_size=2` for ARC/Hella.
 - `gpu_mem_util=0.82` with auto batch OOMed during prompt-logprob scoring.
