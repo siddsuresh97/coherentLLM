@@ -46,13 +46,26 @@ misconception lures. Training on semantic relatedness can make plausible but
 false answers look more competitive, while scrambled training shows that generic
 adapter perturbation also damages this scoring surface.
 
+The 200-item log-sample diagnostic refines this. Lowrank improves over base on
+the bounded slice (`0.5528` vs `0.5224`). The paired decomposition in
+`results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md` shows
+that lowrank lowers both true and false answer log-likelihood mass, but lowers
+false-answer pressure more (`delta_false_logsumexp=-3.9391` vs
+`delta_true_logsumexp=-3.5444`), so mean truth log-odds rises by `+0.3946`.
+Task-vector `alpha=0.25` is almost flat on aggregate (`0.5267`) but has the
+opposite pressure pattern: both true and false masses rise, and false pressure
+rises more (`+4.9265` vs `+4.3026`), so mean truth log-odds falls by
+`-0.6239`. Scrambled drops to `0.4701`; its mean truth log-odds rises only
+because it suppresses both true and false likelihoods extremely hard, producing
+catastrophic item-level flips. Overall this supports a calibration/relative
+ranking story rather than a simple "truth skill got worse" story.
+
 ## Next Tests
 
 - Finish `taskvec_a0p25` MMLU 5-shot to see whether the ARC mitigation extends
   to broad exam knowledge.
-- Run a TruthfulQA error slice comparing correct-answer logprob, best
-  false-answer logprob, and margin for base vs lowrank vs task-vector vs
-  scrambled. If margins shrink mainly on misconception lures, the issue is
-  semantic attraction/calibration rather than missing factual knowledge.
+- Use the TruthfulQA item-level deltas to group failure classes:
+  medical/safety myths, conspiracy lures, stereotype/generalization lures, and
+  ordinary factual confusions.
 - Run WiC error slices by same-lemma similarity and part-of-speech to test
   whether the semantic objective collapses word-sense boundaries.

@@ -169,7 +169,12 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   discrimination, science/exam retrieval, and multiple-choice calibration.
   TruthfulQA-MC2 is only mildly affected for aligned adapters but more affected
   by task-vector/scrambled SFT, suggesting calibration and plausible-false lure
-  sensitivity. Scrambled zero-shot collapses broadly (`PIQA acc_norm=0.540`,
+  sensitivity. The first bounded log-sample diagnostic is now trackable in
+  `results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md`:
+  lowrank improves over base on the 200-item slice (`0.5528` vs `0.5224`)
+  because false-answer pressure drops more than truthful-answer mass
+  (`delta_false_logsumexp=-3.9391`, `delta_true_logsumexp=-3.5444`).
+  Scrambled zero-shot collapses broadly (`PIQA acc_norm=0.540`,
   `OpenBookQA acc_norm=0.282`, `CommonsenseQA acc=0.197`), so some retention
   loss is generic adapter/SFT perturbation, not semantic alignment alone.
 - Held-out fMRI hub regression is implemented in
@@ -179,10 +184,16 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   tied with or worse than the best single prompt-format spoke. ATL/Language
   show small aligned-state averaged-predictor advantages, but the absolute
   effects are exploratory.
-- Current active A5000 lanes are a bounded TruthfulQA log-sample diagnostic on
-  GPU0 and `taskvec_a0p25 mmlu_5shot` on GPU1. The MMLU lane uses
-  `gpu_mem_util=0.72 --batch_size 2`; it is not a duplicate of the completed
-  base/lowLR/lowrank MMLU rows, but the missing task-vector mitigation row.
+- Current active A5000 lanes are scrambled `arc_25shot` on GPU0 and
+  `taskvec_a0p25 mmlu_5shot` on GPU1. The MMLU lane uses `gpu_mem_util=0.72
+  --batch_size 2`; it is not a duplicate of the completed base/lowLR/lowrank
+  MMLU rows, but the missing task-vector mitigation row.
+- Huth/LeBel language-fMRI now has a trackable audit script and CHTC-ready
+  CPU audit bundle: `src/sft/huth_lebel_audit.py`, `chtc/huth_lebel_audit/`,
+  and `results/sft_huth_lebel/REPORT.md`. The corrected audit found zero
+  plausible local/staged `ds003020` roots in the paths visible to this session.
+  The experiment is therefore blocked on staging/downloading `ds003020`
+  assets, not on fMRI experiment design.
 - Bridge read: semantic-hub invariance is strong internally, but it does not yet
   explain object-fMRI RSA. Ventral Visual delta-vs-base vs mid hub RDM is
   positive but small-n (`r=0.600`, `n=6`, `p=0.208`); retrieval top-1 is not

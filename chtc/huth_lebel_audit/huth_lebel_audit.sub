@@ -1,0 +1,21 @@
+universe = container
+container_image = docker://python:3.11-slim
+
+batch_name = coherence_huth_lebel_audit_$(Cluster)
+log = logs/$(Cluster)_$(Process).log
+output = logs/$(Cluster)_$(Process).out
+error = logs/$(Cluster)_$(Process).err
+
+executable = /bin/bash
+arguments = run_huth_lebel_audit.sh
+transfer_input_files = run_huth_lebel_audit.sh, huth_lebel_audit.py
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_output_files = huth_lebel_audit_results.tgz
+
+request_cpus = 1
+request_memory = 2GB
+request_disk = 2GB
++is_resumable = true
+
+queue 1

@@ -803,3 +803,130 @@ Initial read:
 - The safe conclusion is: semantic-hub invariance is real inside the model; the
   fMRI object-RSA result is mostly visual/object geometry; language/semantic ROI
   evidence remains exploratory and needs fixed-layer or nested-CV confirmation.
+
+## 2026-07-08 result: TruthfulQA log-sample diagnostic
+
+Purpose:
+
+- Diagnose why TruthfulQA moves by decomposing MC2 into truthful-answer mass
+  and false-answer pressure, instead of relying only on aggregate accuracy.
+- Use bounded `--limit 200` slices for fast mechanism checks. These are
+  diagnostics, not final benchmark numbers.
+
+Commands:
+
+```bash
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python -m lm_eval run --model vllm --model_args pretrained=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659,dtype=bfloat16,tensor_parallel_size=1,gpu_memory_utilization=0.72,max_model_len=2048,trust_remote_code=True --tasks truthfulqa_mc2 --limit 200 --batch_size 2 --apply_chat_template --log_samples --output_path /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/wide_bench_diagnostics/truthfulqa_logsamples/base_limit200'
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python -m lm_eval run --model vllm --model_args pretrained=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659,dtype=bfloat16,tensor_parallel_size=1,gpu_memory_utilization=0.72,max_model_len=2048,trust_remote_code=True,enable_lora=True,lora_local_path=/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/out/adapters_mitigation_vllm/lowrank,max_lora_rank=16 --tasks truthfulqa_mc2 --limit 200 --batch_size 2 --apply_chat_template --log_samples --output_path /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/wide_bench_diagnostics/truthfulqa_logsamples/lowrank_limit200'
+python src/sft/analyze_truthfulqa_logsamples.py
+```
+
+Artifacts:
+
+- `src/sft/analyze_truthfulqa_logsamples.py`
+- `results/sft_eval/wide_bench_diagnostics/truthfulqa_logsamples/base_limit200/`
+- `results/sft_eval/wide_bench_diagnostics/truthfulqa_logsamples/lowrank_limit200/`
+- `results/sft_eval/wide_bench_diagnostics/truthfulqa_logsamples/taskvec_a0p25_limit200/`
+- `results/sft_eval/wide_bench_diagnostics/truthfulqa_logsamples/scrambled_limit200/`
+- `results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md`
+- `results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/summary.csv`
+- `results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/paired_delta_summary.csv`
+- `results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/paired_deltas.csv`
+
+Results on the bounded slice:
+
+| Arm | n | MC2 acc | Truth log-odds | Best true - false | Best-is-true |
+|---|---:|---:|---:|---:|---:|
+| `base` | 200 | 0.5224 | 0.6684 | 0.7060 | 0.5250 |
+| `lowrank` | 200 | 0.5528 | 1.0630 | 1.1408 | 0.5500 |
+| `taskvec_a0p25` | 200 | 0.5267 | 0.0445 | 0.1110 | 0.5500 |
+| `scrambled` | 200 | 0.4701 | 3.7499 | 3.8238 | 0.4750 |
+
+Paired decomposition vs base:
+
+| Arm | Delta MC2 acc | Delta truth log-odds | Delta true mass | Delta false pressure | Acc-down frac |
+|---|---:|---:|---:|---:|---:|
+| `lowrank` | +0.0304 | +0.3946 | -3.5444 | -3.9391 | 0.4450 |
+| `taskvec_a0p25` | +0.0042 | -0.6239 | +4.3026 | +4.9265 | 0.5400 |
+| `scrambled` | -0.0523 | +3.0815 | -59.0274 | -62.1090 | 0.5050 |
+
+Read:
+
+- Lowrank improves the bounded TruthfulQA slice by reducing false-answer
+  pressure more than it reduces truthful-answer mass.
+- This argues against a simple "truth knowledge is erased" mechanism for the
+  lowrank arm. The mechanism is relative ranking/calibration over attractive
+  false answers.
+- `taskvec_a0p25` is aggregate-flat but raises false-answer pressure more than
+  truthful-answer mass, especially on plausible misconception lures.
+- Scrambled drops MC2 despite higher mean truth log-odds because it suppresses
+  all answer likelihoods very strongly and creates catastrophic item-level
+  flips.
+- The largest lowrank regressions are specific safety/myth/misconception lures
+  such as defibrillation for flatline, washing chicken, Latin-American language
+  overgeneralization, and voodoo dolls.
+
+## 2026-07-08 result: Huth/LeBel language-fMRI audit
+
+Purpose:
+
+- Answer why a Huth/LeBel lane was not already running in parallel.
+- Make the language-fMRI path concrete and trackable before spending GPU time:
+  check whether `ds003020` transcripts, TextGrids, audio, and BOLD/preprocessed
+  responses are visible locally or ready to stage to CHTC.
+
+Commands:
+
+```bash
+python src/sft/huth_lebel_audit.py --out_dir results/sft_huth_lebel --max_scan_depth 4
+python -m py_compile src/sft/huth_lebel_audit.py
+bash -n chtc/huth_lebel_audit/run_huth_lebel_audit.sh
+chtc-master start  # user approved Duo push
+chtc-master check
+chtc-ssh 'hostname -f; condor_q -totals; echo STAGING=$STAGING'
+chtc-ssh "mkdir -p ~/chtc-runs/coherence-huth-audit-20260708-1801/logs"
+chtc-push src/sft/huth_lebel_audit.py 'chtc-runs/coherence-huth-audit-20260708-1801/huth_lebel_audit.py'
+chtc-push chtc/huth_lebel_audit/ 'chtc-runs/coherence-huth-audit-20260708-1801/'
+chtc-ssh "cd ~/chtc-runs/coherence-huth-audit-20260708-1801 && condor_submit huth_lebel_audit.sub"
+```
+
+Artifacts:
+
+- `src/sft/huth_lebel_audit.py`
+- `results/sft_huth_lebel/REPORT.md`
+- `results/sft_huth_lebel/audit.json`
+- `results/sft_huth_lebel/candidate_roots.csv`
+- `chtc/huth_lebel_audit/README.md`
+- `chtc/huth_lebel_audit/run_huth_lebel_audit.sh`
+- `chtc/huth_lebel_audit/huth_lebel_audit.sub`
+
+Result:
+
+- The corrected audit checked 29 candidate roots and found zero plausible
+  `ds003020` roots visible to this session.
+- No local/staged TextGrid files, WAV stimuli, author-preprocessed `.hf5`
+  responses, BIDS BOLD files, or `wheretheressmoke` test-story assets were
+  found.
+- A reusable local study hook does exist in the adjacent `vision_project`
+  checkout:
+  `/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/tribev2/tribev2/studies/lebel2023bold.py`.
+  It confirms the expected assumptions: TR=2s, subjects `UTS01`-`UTS08`,
+  high-data subjects `UTS01`/`UTS02`/`UTS03`, TextGrid word timings, and
+  `wheretheressmoke` as the repeated test story.
+
+Read:
+
+- The Huth/LeBel lane is now blocked on data staging/downloading, not on GPU
+  availability or design.
+- Once `ds003020` is staged, start with the CHTC CPU audit bundle, then run a
+  small encoding smoke before scaling feature extraction across `(arm, subject,
+  story split)`.
+- Operational CHTC rule: run `chtc-master start` from this session, choose Duo
+  Push, ask the user to approve the push, then verify with `chtc-master check`
+  before `condor_submit`.
+- CHTC access is now live for this session. `chtc-ssh` reached
+  `ap2002.chtc.wisc.edu`, `condor_q -totals` showed an empty queue at submit
+  time, and `$STAGING` was empty.
+- CHTC audit smoke job submitted as cluster `5513006`. Initial status was idle
+  and not held; `condor_q -better-analyze 5513006.0` reported 53 slots willing
+  to run and 102 more that would match if drained.

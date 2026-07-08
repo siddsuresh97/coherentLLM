@@ -16,7 +16,9 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   S*-close neighbors is still small; logit-lens and interventions are needed.
 - **fMRI:** the THINGS-fMRI pipeline works. Ventral Visual shows the expected
   object-RSA signal and scrambled-control separation, but aligned arms are
-  mostly flat versus base in the primary visual ROI.
+  mostly flat versus base in the primary visual ROI. The Huth/LeBel
+  narrative-fMRI lane now has a local/CHTC audit bundle, but no visible
+  `ds003020` root is staged yet.
 - **fMRI x hub bridge:** the new concept-held-out regression does not support a
   clean semantic-hub explanation of Ventral Visual RSA. Averaged hub predictors
   are roughly tied with single prompt spokes in Ventral Visual, while
@@ -24,8 +26,11 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 - **Benchmarks:** task-vector `alpha=0.25` improves ARC retention over lowrank
   (`ARC-Easy 0.808`, `ARC-Challenge 0.559`) but still drops versus base
   (`0.850`, `0.649`). HellaSwag and WinoGrande are near-preserved; MMLU is the
-  remaining long mitigation cell.
-- **Runtime:** GPU0 is running a bounded TruthfulQA log-sample diagnostic;
+  remaining long mitigation cell. Bounded TruthfulQA log-sample diagnostics
+  show lowrank improves by suppressing false-answer pressure, `taskvec_a0p25`
+  is aggregate-flat but increases plausible-false pressure, and scrambled SFT
+  catastrophically hurts item-level calibration.
+- **Runtime:** GPU0 is running scrambled ARC as the random-perturbation control;
   GPU1 is running `taskvec_a0p25` MMLU with `gpu_mem_util=0.72`,
   `batch_size=2`. H100 handled rank-16
   lowrank MMLU, but rank-64 LoRA vLLM evals (`taskvec_a0p25`, `scrambled`)
@@ -46,7 +51,11 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   [`results/sft_semantic_hub_paper/REPORT.md`](results/sft_semantic_hub_paper/REPORT.md)
 - Paper-adapted semantic-hub plan:
   [`research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md`](research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md)
+- TruthfulQA log-sample diagnostic:
+  [`results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md`](results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md)
 - THINGS-fMRI RSA report: [`results/sft_fmri/REPORT.md`](results/sft_fmri/REPORT.md)
+- Huth/LeBel language-fMRI audit:
+  [`results/sft_huth_lebel/REPORT.md`](results/sft_huth_lebel/REPORT.md)
 - fMRI x semantic-hub bridge:
   [`results/sft_fmri_semantic_bridge/REPORT.md`](results/sft_fmri_semantic_bridge/REPORT.md)
 - Held-out fMRI hub regression:
@@ -325,10 +334,24 @@ Read:
   CommonsenseQA, and TruthfulQA, so useful semantic training is doing real work.
   But scrambled also drops broadly, so generic LoRA/SFT perturbation is part of
   the damage.
-- Current active follow-ups: bounded TruthfulQA log-sample diagnostic on GPU0
-  and `taskvec_a0p25` MMLU 5-shot on GPU1. The MMLU run is not a repeat of the
-  finished base/lowLR/lowrank MMLU rows; it fills the missing task-vector
-  mitigation row.
+- Bounded TruthfulQA log-sample diagnostics are now trackable in
+  [`results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md`](results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md).
+  On the 200-item diagnostic slice, base is `0.5224`, lowrank is `0.5528`,
+  `taskvec_a0p25` is `0.5267`, and scrambled is `0.4701`. Paired deltas show
+  lowrank lowers both truthful and false log-likelihood mass, but false-answer
+  pressure falls more (`delta_false_logsumexp=-3.9391` vs
+  `delta_true_logsumexp=-3.5444`), improving mean truth log-odds by `+0.3946`.
+  By contrast, `taskvec_a0p25` raises both masses and raises false pressure
+  more (`+4.9265` vs `+4.3026`), reducing mean truth log-odds by `-0.6239`
+  despite a nearly flat MC2 score. Scrambled drops MC2 by `-0.0523` even though
+  mean truth log-odds rises, because it suppresses both true and false answer
+  likelihoods extremely hard and causes catastrophic item-level flips.
+  Recurring worst drops are safety/myth/misconception lures such as
+  defibrillation for flatline, washing chicken, Latin-American language
+  overgeneralization, Agenda 21, and voodoo dolls.
+- Current active follow-ups: scrambled ARC on GPU0 and `taskvec_a0p25` MMLU
+  5-shot on GPU1. The MMLU run is not a repeat of the finished
+  base/lowLR/lowrank MMLU rows; it fills the missing task-vector mitigation row.
 
 </details>
 
@@ -337,8 +360,8 @@ Read:
 
 Current confirmed settings:
 
-- Current active A5000 lanes: GPU0 bounded TruthfulQA log-sample diagnostic;
-  GPU1 `taskvec_a0p25 mmlu_5shot`.
+- Current active A5000 lanes: GPU0 scrambled `arc_25shot`; GPU1
+  `taskvec_a0p25 mmlu_5shot`.
 - A5000 broad-bench long loglikelihood runs should use conservative settings:
   `gpu_mem_util=0.72` and `batch_size=2` for ARC/Hella.
 - `gpu_mem_util=0.82` with auto batch OOMed during prompt-logprob scoring.
@@ -358,15 +381,21 @@ H100 note:
   throughput.
 - A rank-64 HF/PEFT smoke test on `opt-a007` stayed pre-GPU for multiple
   minutes and was stopped, so it is not currently a useful fast fallback.
-- Until fixed, run rank-64 broad-bench lanes on `rogers-gpu-1`.
+- Until fixed, run rank-64 broad-bench lanes on `rogers-gpu-1` or scale
+  already-validated independent lanes to CHTC.
 
 CHTC scale-out rule:
 
+- The `chtc-gpu-jobs` skill is installed in active `CODEX_HOME` at
+  `/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/cache_home/codex/skills/chtc-gpu-jobs`.
 - Debug locally/directly first (`rogers-gpu-1` or another interactive GPU).
 - Only move a job to CHTC after the exact command, environment, paths, and
   output behavior have been validated.
 - Use CHTC for scaling independent, already-working lanes; do not use it as the
   first place to debug vLLM, adapter loading, datasets, or result writing.
+- For CHTC access, run `chtc-master start` from this session, choose a Duo Push
+  option, ask the user to approve the push, then verify with `chtc-master check`
+  and `chtc-ssh 'hostname -f; condor_q -totals; echo STAGING=$STAGING'`.
 - When a CHTC run is used, record the local validation command, submit file,
   logs, and output path in [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.md).
 
@@ -399,7 +428,10 @@ Current plan:
 - Huth/LeBel language-fMRI: use OpenNeuro `ds003020` / HuthLab
   `deep-fMRI-dataset` if we launch a language encoding pass. Feed exact narrative
   transcript streams, avoid chat templates, align word hidden states to TRs, and
-  score held-out voxelwise ridge predictions.
+  score held-out voxelwise ridge predictions. Current audit artifacts are in
+  [`results/sft_huth_lebel/REPORT.md`](results/sft_huth_lebel/REPORT.md); no
+  local/staged `ds003020` root is visible yet, so the next concrete step is
+  staging or downloading the dataset to CHTC/local storage.
 - Fedorenko/EvLab language-network: prefer individually localized
   `sentences > nonword lists` masks. Atlas/group language ROIs are exploratory.
 - Benchmark-drops: first finish eval-only controls (`lowrank`, `scrambled`,
@@ -416,8 +448,8 @@ Current plan:
 
 Immediate:
 
-1. Let the bounded TruthfulQA log-sample diagnostic finish, inspect the sample
-   schema, then decide whether to run lowrank/task-vector/scrambled slices.
+1. Let scrambled ARC and task-vector MMLU continue. When each finishes, parse
+   the JSON, update the README/log/skill map, and commit/push.
 2. Keep the already-running `taskvec_a0p25` MMLU lane unless it becomes clearly
    redundant.
 3. Next free GPU lane should go to paper-style semantic-hub logit lens or to
@@ -430,7 +462,8 @@ Scientific next:
    starting with CPU-only matched-vs-baseline similarity from existing hidden
    states.
 2. fMRI bridge: do not overclaim Ventral Visual hub evidence. If continuing,
-   run fixed-layer/nested-CV confirmation and then language-fMRI encoding.
+   run fixed-layer/nested-CV confirmation and then stage `ds003020` for the
+   Huth/LeBel language-fMRI encoding pass.
 3. Benchmark mechanism: inspect WiC/ARC failures and tasks with gains to decide
    whether drops are lexical-sense-specific, adapter-rank-specific, or generic
    SFT perturbation.
