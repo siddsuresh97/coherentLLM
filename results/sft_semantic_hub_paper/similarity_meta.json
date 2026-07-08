@@ -1,0 +1,16 @@
+{
+  "arms": [
+    "base",
+    "scrambled",
+    "lowLR",
+    "lowrank",
+    "taskvec_a0p25",
+    "taskvec_a0p5",
+    "taskvec_a1p0"
+  ],
+  "hidden_dir": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hidden_states",
+  "mid_layers": "10:20",
+  "n_boot": 1000,
+  "neighbor_table": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hidden_states/neighbor_table.csv",
+  "seed": 17
+}

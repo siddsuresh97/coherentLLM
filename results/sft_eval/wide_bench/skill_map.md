@@ -4,9 +4,9 @@ Last updated: 2026-07-08
 
 This map groups the current wide-benchmark deltas by the skill each benchmark
 mostly probes. Deltas are relative to the base Llama-3.1-8B-Instruct run in
-`results/sft_eval/wide_bench/raw_task_summary.csv`. The `taskvec_a0p25`
-HellaSwag result is from the completed split run under
-`results/sft_eval/wide_bench/runs/taskvec_a0p25_hellaswag_10shot/`.
+`results/sft_eval/wide_bench/raw_task_summary.csv`. The `taskvec_a0p25` ARC
+and HellaSwag results are from completed split runs under
+`results/sft_eval/wide_bench/runs/`.
 
 | Task | Skill proxy | Base | Lowrank delta | Taskvec 0.25 delta | Scrambled delta | Read |
 |---|---|---:|---:|---:|---:|---|
@@ -16,8 +16,8 @@ HellaSwag result is from the completed split run under
 | WiC | Word-sense disambiguation | 0.652 | -0.154 | -0.150 | -0.171 | Strongly hurt across aligned and scrambled states |
 | TruthfulQA-MC2 | Truthfulness and misconception calibration | 0.550 | -0.010 | -0.028 | -0.068 | Mildly hurt; sensitive to calibration and plausible-false lures |
 | WinoGrande | Coreference and discourse commonsense | 0.762 | -0.018 | -0.015 |  | Preserved |
-| ARC-Easy | Grade-school science retrieval | 0.850 | -0.145 |  |  | Hurt; task-vector pending |
-| ARC-Challenge | Hard science reasoning | 0.649 | -0.141 |  |  | Hurt; task-vector pending |
+| ARC-Easy | Grade-school science retrieval | 0.850 | -0.145 | -0.042 |  | Improved by task-vector but still hurt |
+| ARC-Challenge | Hard science reasoning | 0.649 | -0.141 | -0.090 |  | Improved by task-vector but still hurt |
 | HellaSwag | Script and event plausibility | 0.685 | -0.002 | -0.005 |  | Preserved by lowrank and task-vector |
 | MMLU | Broad exam knowledge and reasoning | 0.693 | -0.101 |  |  | Hurt; task-vector pending |
 
@@ -31,9 +31,10 @@ and task-vector PIQA are flat or near-flat.
 
 The hurt skills are those that need sharper decision boundaries than associative
 similarity: lexical sense discrimination in WiC, science/exam retrieval in ARC
-and MMLU, and option calibration in OpenBookQA. This is consistent with a LoRA
-update that improves one semantic geometry while perturbing the base model's
-multiple-choice ranking surface.
+and MMLU, and option calibration in OpenBookQA. The ARC result is now more
+nuanced: task-vector `alpha=0.25` recovers a large part of the lowrank ARC loss
+but still remains below base, so the mitigation helps science retrieval without
+fully restoring the base model's multiple-choice ranking surface.
 
 TruthfulQA is not one of the largest lowrank drops in the current numbers:
 lowrank is only `-0.010` and lowLR is `-0.017`, both flat by the current
@@ -47,8 +48,8 @@ adapter perturbation also damages this scoring surface.
 
 ## Next Tests
 
-- Finish `taskvec_a0p25` ARC 25-shot and MMLU 5-shot to see whether the
-  task-vector mitigation also protects science/exam retrieval.
+- Finish `taskvec_a0p25` MMLU 5-shot to see whether the ARC mitigation extends
+  to broad exam knowledge.
 - Run a TruthfulQA error slice comparing correct-answer logprob, best
   false-answer logprob, and margin for base vs lowrank vs task-vector vs
   scrambled. If margins shrink mainly on misconception lures, the issue is

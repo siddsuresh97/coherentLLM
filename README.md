@@ -11,8 +11,9 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 ### Headlines
 
 - **Semantic hub:** coherence-aligned/task-vector states strongly increase
-  cross-format invariance inside the model. `taskvec_a0p25` is the best
-  mid-layer hub candidate so far.
+  cross-format invariance inside the model. The stricter paper-style baseline
+  also shows matched concepts beating random mismatches, but exact identity over
+  S*-close neighbors is still small; logit-lens and interventions are needed.
 - **fMRI:** the THINGS-fMRI pipeline works. Ventral Visual shows the expected
   object-RSA signal and scrambled-control separation, but aligned arms are
   mostly flat versus base in the primary visual ROI.
@@ -20,14 +21,13 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   clean semantic-hub explanation of Ventral Visual RSA. Averaged hub predictors
   are roughly tied with single prompt spokes in Ventral Visual, while
   ATL/Language show small aligned-state advantages that remain exploratory.
-- **Benchmarks:** lowrank is flat on HellaSwag (`0.683` vs base `0.685`) and
-  mostly flat on WinoGrande, but still drops ARC, MMLU, WiC, and OpenBookQA.
-  Scrambled zero-shot collapses broadly, so part of the retention loss is a
-  generic adapter/SFT perturbation, not semantic alignment alone.
-- **Runtime:** both A5000 lanes are active on `taskvec_a0p25` ARC/MMLU
-  follow-ups using `gpu_mem_util=0.72`, `batch_size=2`. This MMLU lane is the
-  missing task-vector mitigation cell; base, lowLR, and lowrank MMLU are
-  already complete. H100 handled rank-16
+- **Benchmarks:** task-vector `alpha=0.25` improves ARC retention over lowrank
+  (`ARC-Easy 0.808`, `ARC-Challenge 0.559`) but still drops versus base
+  (`0.850`, `0.649`). HellaSwag and WinoGrande are near-preserved; MMLU is the
+  remaining long mitigation cell.
+- **Runtime:** GPU0 is running a bounded TruthfulQA log-sample diagnostic;
+  GPU1 is running `taskvec_a0p25` MMLU with `gpu_mem_util=0.72`,
+  `batch_size=2`. H100 handled rank-16
   lowrank MMLU, but rank-64 LoRA vLLM evals (`taskvec_a0p25`, `scrambled`)
   stall before GPU allocation on `opt-a007`, even after local adapter staging.
 
@@ -42,6 +42,8 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 - Benchmark-drop task brief:
   [`research/CODEX_TASK_10_BENCHMARK_DROPS.md`](research/CODEX_TASK_10_BENCHMARK_DROPS.md)
 - Semantic-hub report: [`results/sft_semantic_hub/REPORT.md`](results/sft_semantic_hub/REPORT.md)
+- Paper-style semantic-hub similarity report:
+  [`results/sft_semantic_hub_paper/REPORT.md`](results/sft_semantic_hub_paper/REPORT.md)
 - Paper-adapted semantic-hub plan:
   [`research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md`](research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md)
 - THINGS-fMRI RSA report: [`results/sft_fmri/REPORT.md`](results/sft_fmri/REPORT.md)
@@ -72,6 +74,8 @@ Artifacts:
 - Layer metrics: [`results/sft_semantic_hub/hub_by_layer.csv`](results/sft_semantic_hub/hub_by_layer.csv)
 - Summary: [`results/sft_semantic_hub/hub_summary.csv`](results/sft_semantic_hub/hub_summary.csv)
 - Report: [`results/sft_semantic_hub/REPORT.md`](results/sft_semantic_hub/REPORT.md)
+- Paper-style matched-vs-baseline report:
+  [`results/sft_semantic_hub_paper/REPORT.md`](results/sft_semantic_hub_paper/REPORT.md)
 
 Mid-layer summary:
 
@@ -91,6 +95,11 @@ Read:
 - `taskvec_a0p25` is the best mid-layer candidate by RDM, CKA, and retrieval.
 - This is not yet a clean concept-dominant hub: concept-minus-format alignment
   stays negative for all arms.
+- Paper-style similarity baselines strengthen and qualify the read:
+  `taskvec_a0p5` has the best mid-layer same-minus-random margin (`0.0617`,
+  base `0.0022`), but the stricter same-minus-S*-close margins are small
+  (`taskvec_a1p0` best at `0.0099`). This looks like stronger semantic
+  clustering, not yet a decisive exact-concept hub.
 
 </details>
 
@@ -259,6 +268,8 @@ Completed partial metrics:
 | `taskvec_a0p25` | zero-shot | WiC | acc | 0.502 |
 | `taskvec_a0p25` | zero-shot | TruthfulQA-MC2 | acc | 0.523 |
 | `taskvec_a0p25` | 5-shot | WinoGrande | acc | 0.747 |
+| `taskvec_a0p25` | 25-shot | ARC-Easy | acc_norm | 0.808 |
+| `taskvec_a0p25` | 25-shot | ARC-Challenge | acc_norm | 0.559 |
 | `taskvec_a0p25` | 10-shot | HellaSwag | acc_norm | 0.680 |
 | `scrambled` | zero-shot | PIQA | acc_norm | 0.540 |
 | `scrambled` | zero-shot | OpenBookQA | acc_norm | 0.282 |
@@ -303,17 +314,21 @@ Read:
   discrimination is harmed by the alignment objective or adapter perturbation.
 - WinoGrande is stable, so this is not a uniform few-shot evaluation failure.
 - HellaSwag is essentially preserved by lowrank and `taskvec_a0p25` once the
-  run is split and constrained to `gpu_mem_util=0.72`, `batch_size=2`; ARC and
-  MMLU are still the decisive pending task-vector tests.
+  run is split and constrained to `gpu_mem_util=0.72`, `batch_size=2`.
+- `taskvec_a0p25` mitigates ARC relative to lowrank but does not fix it:
+  ARC-Easy improves from lowrank `0.705` to `0.808` but remains below base
+  `0.850`; ARC-Challenge improves from `0.508` to `0.559` but remains below
+  base `0.649`.
 - `taskvec_a0p25` improves PIQA/OpenBookQA over lowrank, but loses
   CommonsenseQA/TruthfulQA in this partial slice.
 - Scrambled zero-shot is much worse than lowrank/taskvec on PIQA, OpenBookQA,
   CommonsenseQA, and TruthfulQA, so useful semantic training is doing real work.
   But scrambled also drops broadly, so generic LoRA/SFT perturbation is part of
   the damage.
-- Current active follow-ups: `taskvec_a0p25` ARC 25-shot on GPU0 and MMLU
-  5-shot on GPU1. The MMLU run is not a repeat of the finished base/lowLR/
-  lowrank MMLU rows; it fills the missing task-vector mitigation row.
+- Current active follow-ups: bounded TruthfulQA log-sample diagnostic on GPU0
+  and `taskvec_a0p25` MMLU 5-shot on GPU1. The MMLU run is not a repeat of the
+  finished base/lowLR/lowrank MMLU rows; it fills the missing task-vector
+  mitigation row.
 
 </details>
 
@@ -322,8 +337,8 @@ Read:
 
 Current confirmed settings:
 
-- Current active A5000 lanes: GPU0 `taskvec_a0p25 arc_25shot`; GPU1
-  `taskvec_a0p25 mmlu_5shot`.
+- Current active A5000 lanes: GPU0 bounded TruthfulQA log-sample diagnostic;
+  GPU1 `taskvec_a0p25 mmlu_5shot`.
 - A5000 broad-bench long loglikelihood runs should use conservative settings:
   `gpu_mem_util=0.72` and `batch_size=2` for ARC/Hella.
 - `gpu_mem_util=0.82` with auto batch OOMed during prompt-logprob scoring.
@@ -401,11 +416,12 @@ Current plan:
 
 Immediate:
 
-1. Let `taskvec_a0p25` ARC finish on `rogers-gpu-1`; keep the already-running
-   `taskvec_a0p25` MMLU lane unless it becomes clearly redundant.
-2. Parse the ARC result JSON, update README/log, commit, and push.
-3. Use the next freed A5000 lane for a targeted TruthfulQA log-sample diagnostic
-   or scrambled ARC/Hella if the priority is the random perturbation control.
+1. Let the bounded TruthfulQA log-sample diagnostic finish, inspect the sample
+   schema, then decide whether to run lowrank/task-vector/scrambled slices.
+2. Keep the already-running `taskvec_a0p25` MMLU lane unless it becomes clearly
+   redundant.
+3. Next free GPU lane should go to paper-style semantic-hub logit lens or to
+   scrambled ARC/Hella if the priority is the random-perturbation control.
 
 Scientific next:
 

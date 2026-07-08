@@ -215,6 +215,46 @@ Readout:
 - If these same metrics track ARC/MMLU/WiC/TruthfulQA damage, then the induced
   hub may be entangled with output calibration and should become a mitigation
   target rather than only a mechanistic success.
+
+## 2026-07-08 result: paper-style semantic-hub similarity baselines
+
+Command:
+
+```bash
+python src/sft/run_semantic_hub_paper_similarity.py
+```
+
+Artifacts:
+
+- `src/sft/run_semantic_hub_paper_similarity.py`
+- `results/sft_semantic_hub_paper/similarity_by_layer.csv`
+- `results/sft_semantic_hub_paper/similarity_summary.csv`
+- `results/sft_semantic_hub_paper/similarity_meta.json`
+- `results/sft_semantic_hub_paper/REPORT.md`
+
+Mid-layer matched-vs-baseline summary:
+
+| Arm | Same-random | Same-S*-close | Same-S*-far | Top-1 | Top-5 |
+|---|---:|---:|---:|---:|---:|
+| `base` | 0.0022 | -0.0002 | 0.0033 | 0.0192 | 0.0800 |
+| `scrambled` | 0.0095 | 0.0026 | 0.0077 | 0.1094 | 0.2667 |
+| `lowLR` | 0.0247 | 0.0013 | 0.0371 | 0.0729 | 0.3063 |
+| `lowrank` | 0.0311 | 0.0003 | 0.0494 | 0.0968 | 0.4079 |
+| `taskvec_a0p25` | 0.0380 | 0.0011 | 0.0548 | 0.2062 | 0.5393 |
+| `taskvec_a0p5` | 0.0617 | 0.0070 | 0.0805 | 0.1578 | 0.4744 |
+| `taskvec_a1p0` | 0.0430 | 0.0099 | 0.0563 | 0.0637 | 0.1896 |
+
+Interpretation:
+
+- This mirrors the paper's relative-similarity test more closely than the first
+  RDM/CKA pass.
+- Aligned/task-vector arms clearly improve same-concept-vs-random margins over
+  base, supporting a real semantic clustering effect.
+- The stricter same-concept-vs-S*-close-neighbor margins are positive but
+  small. This weakens any claim that the model has a fully exact
+  concept-identity hub rather than a strong semantic-neighborhood hub.
+- Next paper-style tests should be logit-lens semantic anchoring and causal
+  mid-layer interventions.
 - Causal tests should avoid broad activation-addition during free generation
   because Task 8 showed that route collapses generation. Use targeted
   cross-format patching under logprob scoring instead.
@@ -542,6 +582,8 @@ Completed partial results:
 | `taskvec_a0p25` | zero-shot | WiC | acc | 0.502 |
 | `taskvec_a0p25` | zero-shot | TruthfulQA-MC2 | acc | 0.523 |
 | `taskvec_a0p25` | 5-shot | WinoGrande | acc | 0.747 |
+| `taskvec_a0p25` | 25-shot | ARC-Easy | acc_norm | 0.808 |
+| `taskvec_a0p25` | 25-shot | ARC-Challenge | acc_norm | 0.559 |
 | `taskvec_a0p25` | 10-shot | HellaSwag | acc_norm | 0.680 |
 | `scrambled` | zero-shot | PIQA | acc_norm | 0.540 |
 | `scrambled` | zero-shot | OpenBookQA | acc_norm | 0.282 |
@@ -560,6 +602,9 @@ Initial interpretation:
 - `taskvec_a0p25` HellaSwag also finishes flat (`acc_norm=0.680` vs base
   `0.685`), so the light task-vector mitigation preserves script/event
   plausibility in the same way as lowrank.
+- `taskvec_a0p25` ARC improves substantially over lowrank but remains below
+  base: ARC-Easy `0.808` vs lowrank `0.705` and base `0.850`; ARC-Challenge
+  `0.559` vs lowrank `0.508` and base `0.649`.
 - `lowrank` still drops ARC-Easy (`0.705` vs base `0.850`), ARC-Challenge
   (`0.508` vs base `0.649`), and MMLU (`0.592` vs base `0.693`). This is
   task-family-specific retention damage, not a single global scoring bug.
@@ -611,8 +656,9 @@ Speed/reliability notes:
 - Lowrank ARC 25-shot completed at `gpu_mem_util=0.72`, `batch_size=2`.
 - Task-vector HellaSwag 10-shot completed at `gpu_mem_util=0.72`,
   `batch_size=2`.
-- Current active A5000 lanes: GPU0 `taskvec_a0p25 arc_25shot`; GPU1
-  `taskvec_a0p25 mmlu_5shot`, both at `gpu_mem_util=0.72`, `batch_size=2`.
+- Task-vector ARC 25-shot completed at `gpu_mem_util=0.72`, `batch_size=2`.
+- Current active A5000 lanes: GPU0 bounded TruthfulQA log-sample diagnostic;
+  GPU1 `taskvec_a0p25 mmlu_5shot` at `gpu_mem_util=0.72`, `batch_size=2`.
 - 2026-07-08 17:27 CDT clarification: the active MMLU lane is not a duplicate
   of the completed base/lowLR/lowrank MMLU rows. It is the missing
   `taskvec_a0p25` mitigation cell needed to decide whether alpha-0.25 preserves

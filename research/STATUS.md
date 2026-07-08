@@ -160,7 +160,9 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   `results/sft_eval/wide_bench/raw_task_summary.csv`.
 - Lowrank is flat on HellaSwag (`0.683` vs base `0.685`) and mostly flat on
   WinoGrande, and task-vector `alpha=0.25` is also flat on HellaSwag
-  (`0.680` vs base `0.685`). Lowrank still drops ARC, MMLU, WiC, and
+  (`0.680` vs base `0.685`). Task-vector ARC improves over lowrank
+  (`ARC-Easy 0.808` vs `0.705`, `ARC-Challenge 0.559` vs `0.508`) but remains
+  below base (`0.850`, `0.649`). Lowrank still drops MMLU, WiC, and
   OpenBookQA. The skill map is in
   `results/sft_eval/wide_bench/skill_map.md`: preserved skills look like
   event/discourse/affordance plausibility, while hurt skills are lexical sense
@@ -177,11 +179,10 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   tied with or worse than the best single prompt-format spoke. ATL/Language
   show small aligned-state averaged-predictor advantages, but the absolute
   effects are exploratory.
-- Current active A5000 lanes are `taskvec_a0p25 arc_25shot` on GPU0 and
-  `taskvec_a0p25 mmlu_5shot` on GPU1, both with
-  `gpu_mem_util=0.72 --batch_size 2`. The MMLU lane is not a duplicate of the
-  completed base/lowLR/lowrank MMLU rows; it is the missing task-vector
-  mitigation row.
+- Current active A5000 lanes are a bounded TruthfulQA log-sample diagnostic on
+  GPU0 and `taskvec_a0p25 mmlu_5shot` on GPU1. The MMLU lane uses
+  `gpu_mem_util=0.72 --batch_size 2`; it is not a duplicate of the completed
+  base/lowLR/lowrank MMLU rows, but the missing task-vector mitigation row.
 - Bridge read: semantic-hub invariance is strong internally, but it does not yet
   explain object-fMRI RSA. Ventral Visual delta-vs-base vs mid hub RDM is
   positive but small-n (`r=0.600`, `n=6`, `p=0.208`); retrieval top-1 is not
@@ -191,3 +192,8 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   `research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md`; it adds matched-vs-baseline
   similarity, logit-lens semantic anchoring, symbolic S* spokes, and causal
   interventions.
+- First paper-style semantic-hub similarity baseline is implemented in
+  `src/sft/run_semantic_hub_paper_similarity.py` and written to
+  `results/sft_semantic_hub_paper/`. It confirms matched concepts beat random
+  mismatches much more for aligned/task-vector arms than base, but exact
+  same-concept over S*-close-neighbor margins are small.
