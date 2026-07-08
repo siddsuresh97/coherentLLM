@@ -20,7 +20,8 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   delta in a small-n descriptive check, but same-concept retrieval does not
   explain fMRI deltas. This is not yet evidence that the semantic hub explains
   the fMRI effect.
-- **Benchmarks:** lowrank still collapses on WiC; WinoGrande is stable.
+- **Benchmarks:** lowrank still collapses on WiC; WinoGrande is stable and
+  lowrank HellaSwag 10-shot now completes at `acc_norm=0.683`.
   `taskvec_a0p25` improves PIQA/OpenBookQA versus lowrank but loses
   CommonsenseQA/TruthfulQA in the partial slice.
 - **Runtime:** A5000 runs need conservative vLLM settings for long
@@ -197,6 +198,7 @@ Completed partial metrics:
 | `lowrank` | zero-shot | TruthfulQA-MC2 | acc | 0.541 |
 | `lowrank` | 5-shot | WinoGrande | acc | 0.744 |
 | `lowrank` | 5-shot | MMLU | acc | 0.592 |
+| `lowrank` | 10-shot | HellaSwag | acc_norm | 0.683 |
 | `taskvec_a0p25` | zero-shot | PIQA | acc_norm | 0.789 |
 | `taskvec_a0p25` | zero-shot | OpenBookQA | acc_norm | 0.436 |
 | `taskvec_a0p25` | zero-shot | CommonsenseQA | acc | 0.581 |
@@ -209,10 +211,12 @@ Read:
 - WiC remains near chance for aligned states, suggesting lexical sense
   discrimination is harmed by the alignment objective or adapter perturbation.
 - WinoGrande is stable, so this is not a uniform few-shot evaluation failure.
+- HellaSwag remains usable under the lowrank mitigation once the run is split
+  and constrained to `gpu_mem_util=0.72`, `batch_size=2`.
 - `taskvec_a0p25` improves PIQA/OpenBookQA over lowrank, but loses
   CommonsenseQA/TruthfulQA in this partial slice.
-- Scrambled broad-benchmark control is now exposed in the runner; it should be
-  run on `rogers-gpu-1` after the lowrank A5000 jobs finish.
+- Scrambled broad-benchmark control is now exposed in the runner and is running
+  for zero-shot on `rogers-gpu-1` GPU1.
 
 </details>
 
@@ -238,6 +242,8 @@ H100 note:
   (`657M`), but vLLM still stalled from the local path. The issue is likely
   vLLM/rank-64 LoRA initialization on that host rather than only filesystem
   throughput.
+- A rank-64 HF/PEFT smoke test on `opt-a007` stayed pre-GPU for multiple
+  minutes and was stopped, so it is not currently a useful fast fallback.
 - Until fixed, run rank-64 broad-bench lanes on `rogers-gpu-1`.
 
 CHTC scale-out rule:
@@ -265,7 +271,7 @@ Speed/RSA note:
 
 Immediate:
 
-1. Let lowrank `arc_25shot` and `hellaswag_10shot` finish on `rogers-gpu-1`.
+1. Let lowrank `arc_25shot` finish on `rogers-gpu-1`.
 2. Run:
 
    ```bash
@@ -273,8 +279,8 @@ Immediate:
    ```
 
 3. Commit and push the completed lowrank wide-bench summary and raw outputs.
-4. Use freed A5000 time for `scrambled` zero-shot/MMLU and taskvec remaining
-   broad-bench lanes.
+4. Let `scrambled` zero-shot finish on `rogers-gpu-1` GPU1, then use freed
+   A5000 time for taskvec remaining broad-bench lanes and later scrambled MMLU.
 
 Scientific next:
 

@@ -495,6 +495,7 @@ Completed partial results:
 | `lowrank` | zero-shot | TruthfulQA-MC2 | acc | 0.541 |
 | `lowrank` | 5-shot | WinoGrande | acc | 0.744 |
 | `lowrank` | 5-shot | MMLU | acc | 0.592 |
+| `lowrank` | 10-shot | HellaSwag | acc_norm | 0.683 |
 | `taskvec_a0p25` | zero-shot | PIQA | acc_norm | 0.789 |
 | `taskvec_a0p25` | zero-shot | OpenBookQA | acc_norm | 0.436 |
 | `taskvec_a0p25` | zero-shot | CommonsenseQA | acc | 0.581 |
@@ -507,6 +508,9 @@ Initial interpretation:
 - `lowrank` does not rescue WiC; it is near chance, like lowLR. That suggests
   the alignment objective may be harming lexical sense discrimination rather
   than merely overfitting a specific adapter rank.
+- `lowrank` HellaSwag finishes at `acc_norm=0.683` under conservative A5000
+  settings, so the long-run OOMs were a runtime setting problem rather than a
+  task-level evaluation failure.
 - `taskvec_a0p25` improves OpenBookQA and PIQA relative to `lowrank`, but loses
   CommonsenseQA and TruthfulQA in this partial slice.
 - WinoGrande is stable across `lowrank` and `taskvec_a0p25`, so the broad drop
@@ -546,6 +550,9 @@ Speed/reliability notes:
   GPU allocation and was killed. The bottleneck is therefore not just symlinked
   adapter reads; treat `opt-a007` as unsuitable for rank-64 LoRA vLLM eval until
   we test a different vLLM/PEFT path.
+- A rank-64 HF/PEFT smoke test for `scrambled` zero-shot on `opt-a007` was also
+  stopped after multiple pre-GPU minutes. It was not in uninterruptible I/O, but
+  it was too slow to be a useful fallback while A5000 vLLM lanes are available.
 - User approved using CHTC for additional GPUs. Rule: debug locally/direct GPU
   first; only move known-good commands to CHTC for scale-out, and record submit
   files/logs/output paths in this log.
@@ -554,7 +561,7 @@ Current active runs:
 
 ```bash
 ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/eval_wide_bench.py --states lowrank --groups arc_25shot --gpu_mem_util 0.72 --batch_size 2 --no_summarize'
-ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=1 python src/sft/eval_wide_bench.py --states lowrank --groups hellaswag_10shot --gpu_mem_util 0.72 --batch_size 2 --no_summarize'
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=1 python src/sft/eval_wide_bench.py --states scrambled --groups zero_shot --gpu_mem_util 0.75 --batch_size 4 --no_summarize'
 ```
 
 Next after lowrank wide-bench completes:
