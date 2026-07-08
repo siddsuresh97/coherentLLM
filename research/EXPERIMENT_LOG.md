@@ -528,17 +528,25 @@ Speed/reliability notes:
   `gpu_mem_util=0.72`.
 - H100 lowrank MMLU completed. It was the long lane because 5-shot MMLU expands
   to about 54k loglikelihood requests.
-- The freed H100 is now running `taskvec_a0p25` MMLU to avoid idle allocation.
+- `src/sft/eval_wide_bench.py` now exposes a `scrambled` state backed by
+  `out/adapters_vllm_fixed/scrambled` so the broad benchmark can test whether
+  drops come from semantic alignment or generic SFT perturbation.
 - First `taskvec_a0p25` H100 MMLU launch entered pre-GPU uninterruptible I/O for
   about four minutes and was killed/relaunched after model and adapter path
   checks returned immediately.
+- A second `taskvec_a0p25` H100 MMLU launch repeated the same pre-GPU I/O wait
+  and was killed.
+- A `scrambled` H100 zero-shot launch also entered pre-GPU I/O wait and was
+  killed. Working hypothesis: `opt-a007` is unreliable for the 641 MB rank-64
+  adapter paths, even though rank-16 lowrank MMLU ran cleanly there. Run
+  rank-64 taskvec/scrambled broad benchmark lanes on `rogers-gpu-1` after the
+  lowrank A5000 jobs finish, or stage/copy adapters to host-local storage first.
 
 Current active runs:
 
 ```bash
 ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/eval_wide_bench.py --states lowrank --groups arc_25shot --gpu_mem_util 0.72 --batch_size 2 --no_summarize'
 ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=1 python src/sft/eval_wide_bench.py --states lowrank --groups hellaswag_10shot --gpu_mem_util 0.72 --batch_size 2 --no_summarize'
-ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 opt-a007.discovery.wisc.edu 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/eval_wide_bench.py --states taskvec_a0p25 --groups mmlu_5shot --gpu_mem_util 0.88 --no_summarize'
 ```
 
 Next after lowrank wide-bench completes:

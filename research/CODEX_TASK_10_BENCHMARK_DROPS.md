@@ -138,16 +138,24 @@ Cheapest first:
 3. Run the full wide benchmark for `lowrank`.
    - This is eval-only and checks whether the apparently good lowrank Pareto
      point also survives broad capability tests.
-4. Try alpha grid between `0.10` and `0.35`.
+4. Run at least zero-shot and MMLU for `scrambled`.
+   - `eval_wide_bench.py` now exposes `scrambled` using
+     `out/adapters_vllm_fixed/scrambled`.
+   - This tests whether benchmark drops are caused by semantic alignment or by
+     generic rank-64 SFT perturbation.
+   - Do not run rank-64 adapter lanes on `opt-a007` unless adapters are staged
+     locally first; both `taskvec_a0p25` and `scrambled` stalled there before
+     GPU allocation.
+5. Try alpha grid between `0.10` and `0.35`.
    - Goal: find an elbow with THINGS-human gain but minimal capability loss.
-5. Adapter composition / DARE-style sparsification.
+6. Adapter composition / DARE-style sparsification.
    - Keep only high-signal LoRA deltas or attenuate layers/modules most associated
      with capability loss.
-6. Add KL-to-base during SFT.
+7. Add KL-to-base during SFT.
    - More training but directly targets retention.
-7. Mix small general-instruction replay during SFT.
+8. Mix small general-instruction replay during SFT.
    - Could reduce forgetting, but risks muddying the clean causal story.
-8. Layer/module ablation of LoRA adapter.
+9. Layer/module ablation of LoRA adapter.
    - Identify whether MLP or attention deltas drive gains vs drops.
 
 ## Completion criteria
