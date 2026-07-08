@@ -46,7 +46,7 @@ run_real_logprob(){
     if [ -s "$RAW/llama31-sft-real/${m}_lp.csv" ]; then log "skip real ${m}_lp (exists)"; continue; fi
     retry "CUDA_VISIBLE_DEVICES=1 COHERENCE_RAW_DIR=$RAW COHERENCE_STIM_DIR=$STIM \
       python src/run_base_logprob.py --model llama-3.1-8b-instruct --out_model llama31-sft-real \
-      --lora out/adapters_vllm_fixed/real --methods $m" \
+      --lora out/adapters_vllm_fixed/real --methods $m --suffix _lp" \
       || return 1
   done
 }
