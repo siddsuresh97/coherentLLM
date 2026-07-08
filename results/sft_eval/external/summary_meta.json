@@ -1,0 +1,23 @@
+{
+  "batch_size": 32,
+  "benchmarks": {
+    "MEN": 3000,
+    "STS-B": 1500,
+    "SimLex-999": 999,
+    "WordSim-353": 353
+  },
+  "dtype": "bfloat16",
+  "max_length": 128,
+  "model": "llama-3.1-8b-instruct",
+  "model_path": "/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659",
+  "states": [
+    "base",
+    "real",
+    "scrambled"
+  ],
+  "word_benchmark_urls": {
+    "MEN": "https://raw.githubusercontent.com/mfaruqui/eval-word-vectors/master/data/word-sim/EN-MEN-TR-3k.txt",
+    "SimLex-999": "https://raw.githubusercontent.com/mfaruqui/eval-word-vectors/master/data/word-sim/EN-SIMLEX-999.txt",
+    "WordSim-353": "https://raw.githubusercontent.com/mfaruqui/eval-word-vectors/master/data/word-sim/EN-WS-353-ALL.txt"
+  }
+}

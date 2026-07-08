@@ -1,0 +1,13 @@
+model,benchmark,n_pairs,rho,p_value,method,raw_file
+base,STS-B,1500,0.5180304869623981,9.114159096337443e-104,cosine_last_token_hidden,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/external/base_stsb.csv
+base,SimLex-999,999,0.2983156137573088,5.56197408334913e-22,cosine_last_token_hidden,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/external/base_simlex999.csv
+base,WordSim-353,353,0.29521734381121195,1.572564253532756e-08,cosine_last_token_hidden,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/external/base_wordsim353.csv
+base,MEN,3000,0.4865537536590696,4.042199334507724e-178,cosine_last_token_hidden,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/external/base_men.csv
+real,STS-B,1500,0.5267142015693839,7.831022435204552e-108,cosine_last_token_hidden,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/external/real_stsb.csv
+real,SimLex-999,999,0.31276714679913203,4.132475553374991e-24,cosine_last_token_hidden,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/external/real_simlex999.csv
+real,WordSim-353,353,0.4175782264856445,2.502073905053134e-16,cosine_last_token_hidden,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/external/real_wordsim353.csv
+real,MEN,3000,0.4300643252910052,2.4561789402932264e-135,cosine_last_token_hidden,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/external/real_men.csv
+scrambled,STS-B,1500,0.43616721737375863,1.0749265623772602e-70,cosine_last_token_hidden,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/external/scrambled_stsb.csv
+scrambled,SimLex-999,999,0.2506309897056517,8.951762634724237e-16,cosine_last_token_hidden,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/external/scrambled_simlex999.csv
+scrambled,WordSim-353,353,0.3398587242280879,5.418113212030123e-11,cosine_last_token_hidden,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/external/scrambled_wordsim353.csv
+scrambled,MEN,3000,0.36252579242245,7.506113425159456e-94,cosine_last_token_hidden,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/external/scrambled_men.csv
