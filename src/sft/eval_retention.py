@@ -12,11 +12,14 @@ import yaml
 
 
 ROOT = Path(__file__).resolve().parents[2]
-TASKS = "mmlu,arc_challenge,hellaswag,truthfulqa_mc2"
+TASKS = "mmlu_abstract_algebra,mmlu_anatomy,arc_challenge,hellaswag,truthfulqa_mc2"
 STATES = {
     "base": ("llama-3.1-8b-instruct", None),
-    "real": ("llama31-sft-real", ROOT / "out" / "adapters" / "real"),
-    "scrambled": ("llama31-sft-scrambled", ROOT / "out" / "adapters" / "scrambled"),
+    "real": ("llama31-sft-real", ROOT / "out" / "adapters_vllm_fixed" / "real"),
+    "scrambled": (
+        "llama31-sft-scrambled",
+        ROOT / "out" / "adapters_vllm_fixed" / "scrambled",
+    ),
 }
 
 
@@ -58,8 +61,9 @@ def run_state(state, args, base_path, hf_cache):
     env.setdefault("HF_HOME", hf_cache)
     env.setdefault("HF_HUB_CACHE", hf_cache)
     env.setdefault("HF_DATASETS_CACHE", str(ROOT / "out" / "hf_datasets_cache"))
+    # `base_path` is a local snapshot, so vLLM/HF do not need to resolve model
+    # files from the hub. Keep HF hub online for lm-eval datasets.
     if Path(base_path).is_dir():
-        env["HF_HUB_OFFLINE"] = "1"
         env["TRANSFORMERS_OFFLINE"] = "1"
 
     common = [
@@ -133,4 +137,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

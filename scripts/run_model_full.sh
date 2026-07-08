@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Full correct pipeline for one LOCAL model: triplet+pairwise (gen) + listing->union
-# ->single-pair feature. Resumable. Usage: CUDA_VISIBLE_DEVICES=0 scripts/run_model_full.sh <model>
+# ->single-pair feature. Resumable. Usage: CUDA_VISIBLE_DEVICES=1 scripts/run_model_full.sh <model>
 set -uo pipefail
 cd "$(dirname "$0")/.."
 source "$(conda info --base)/etc/profile.d/conda.sh"
@@ -15,7 +15,7 @@ fi
 export VLLM_LOGGING_LEVEL=WARNING PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export HF_HOME=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models
 export HF_HUB_CACHE=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models
-GPU0="${CUDA_VISIBLE_DEVICES:-0}"; GPU0="${GPU0%%,*}"
+GPU0="${CUDA_VISIBLE_DEVICES:-1}"; GPU0="${GPU0%%,*}"
 drain() {  # wait until this GPU is actually free before loading the next model
   for i in $(seq 1 40); do
     u=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i "$GPU0" 2>/dev/null | head -1)

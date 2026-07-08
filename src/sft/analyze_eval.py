@@ -21,7 +21,7 @@ RAW = Path(os.environ.get("COHERENCE_RAW_DIR", ROOT / "results" / "sft_eval" / "
 STIM = Path(os.environ.get("COHERENCE_STIM_DIR", ROOT / "data" / "scale128" / "stimuli"))
 SCALE = ROOT / "data" / "scale128"
 OUT_DIR = ROOT / "results" / "sft_eval"
-RESULT_CSV = ROOT / "data" / "sft" / "eval_results.csv"
+RESULT_CSV = OUT_DIR / "eval_results.csv"
 
 STATES = [
     ("base", "llama-3.1-8b-instruct"),
@@ -310,10 +310,11 @@ def transitivity_metric(model):
     }
 
 
-def human_triplet_metric(model):
-    model_rdm = triplet_rdm(model)
+def human_triplet_metric(model, mode="gen"):
+    suffix = "" if mode == "gen" else "_lp"
+    model_rdm = triplet_rdm(model, suffix=suffix)
     human = np.load(SCALE / "human_spose_triplet_sim.npy")
-    return {"human_things_triplet_r2": procrustes_r2(model_rdm, sym_rdm(human))}
+    return {f"{mode}_human_things_triplet_r2": procrustes_r2(model_rdm, sym_rdm(human))}
 
 
 def _load_json(path):
@@ -392,7 +393,9 @@ def build_rows():
         row.update(paraphrase_metrics(model))
         row.update(symmetry_metrics(model))
         row.update(transitivity_metric(model))
-        row.update(human_triplet_metric(model))
+        row.update(human_triplet_metric(model, "gen"))
+        row.update(human_triplet_metric(model, "lp"))
+        row["human_things_triplet_r2"] = row["gen_human_things_triplet_r2"]
         row.update(retention_metrics(state, model))
         rows.append(row)
     return pd.DataFrame(rows)
@@ -414,7 +417,8 @@ def _delta(df, col, a="real", b="base"):
 def write_summary(df):
     show_cols = [
         "state", "gen_proc_mean", "lp_proc_mean", "para_mean",
-        "sym_viol_rate", "trans_viol_rate", "human_things_triplet_r2",
+        "sym_viol_rate", "trans_viol_rate",
+        "gen_human_things_triplet_r2", "lp_human_things_triplet_r2",
         "ret_mmlu", "ret_arc_challenge", "ret_hellaswag", "ret_truthfulqa",
     ]
     table = df[show_cols].copy()
