@@ -24,6 +24,7 @@ secrets.yaml
 conceptual_representations_gpt/
 salmon/
 out/
+unsloth_compiled_cache/
 data/nova/
 data/sft/*.jsonl
 data/sft/S_star.npy
