@@ -159,8 +159,15 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   `results/sft_eval/wide_bench/summary.csv` and
   `results/sft_eval/wide_bench/raw_task_summary.csv`.
 - Lowrank is flat on HellaSwag (`0.683` vs base `0.685`) and mostly flat on
-  WinoGrande, but still drops ARC, MMLU, WiC, and OpenBookQA. Scrambled
-  zero-shot collapses broadly (`PIQA acc_norm=0.540`,
+  WinoGrande, and task-vector `alpha=0.25` is also flat on HellaSwag
+  (`0.680` vs base `0.685`). Lowrank still drops ARC, MMLU, WiC, and
+  OpenBookQA. The skill map is in
+  `results/sft_eval/wide_bench/skill_map.md`: preserved skills look like
+  event/discourse/affordance plausibility, while hurt skills are lexical sense
+  discrimination, science/exam retrieval, and multiple-choice calibration.
+  TruthfulQA-MC2 is only mildly affected for aligned adapters but more affected
+  by task-vector/scrambled SFT, suggesting calibration and plausible-false lure
+  sensitivity. Scrambled zero-shot collapses broadly (`PIQA acc_norm=0.540`,
   `OpenBookQA acc_norm=0.282`, `CommonsenseQA acc=0.197`), so some retention
   loss is generic adapter/SFT perturbation, not semantic alignment alone.
 - Held-out fMRI hub regression is implemented in
@@ -171,7 +178,7 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   show small aligned-state averaged-predictor advantages, but the absolute
   effects are exploratory.
 - Current active A5000 lanes are `taskvec_a0p25 arc_25shot` on GPU0 and
-  `taskvec_a0p25 hellaswag_10shot` on GPU1, both with
+  `taskvec_a0p25 mmlu_5shot` on GPU1, both with
   `gpu_mem_util=0.72 --batch_size 2`.
 - Bridge read: semantic-hub invariance is strong internally, but it does not yet
   explain object-fMRI RSA. Ventral Visual delta-vs-base vs mid hub RDM is

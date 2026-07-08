@@ -511,6 +511,7 @@ Completed partial results:
 | `taskvec_a0p25` | zero-shot | WiC | acc | 0.502 |
 | `taskvec_a0p25` | zero-shot | TruthfulQA-MC2 | acc | 0.523 |
 | `taskvec_a0p25` | 5-shot | WinoGrande | acc | 0.747 |
+| `taskvec_a0p25` | 10-shot | HellaSwag | acc_norm | 0.680 |
 | `scrambled` | zero-shot | PIQA | acc_norm | 0.540 |
 | `scrambled` | zero-shot | OpenBookQA | acc_norm | 0.282 |
 | `scrambled` | zero-shot | CommonsenseQA | acc | 0.197 |
@@ -525,6 +526,9 @@ Initial interpretation:
 - `lowrank` HellaSwag finishes at `acc_norm=0.683` under conservative A5000
   settings and is nearly flat against base (`0.685`), so the long-run OOMs were
   a runtime setting problem rather than a task-level evaluation failure.
+- `taskvec_a0p25` HellaSwag also finishes flat (`acc_norm=0.680` vs base
+  `0.685`), so the light task-vector mitigation preserves script/event
+  plausibility in the same way as lowrank.
 - `lowrank` still drops ARC-Easy (`0.705` vs base `0.850`), ARC-Challenge
   (`0.508` vs base `0.649`), and MMLU (`0.592` vs base `0.693`). This is
   task-family-specific retention damage, not a single global scoring bug.
@@ -540,6 +544,17 @@ Initial interpretation:
 - Summary tables regenerated after the lowrank ARC completion:
   `results/sft_eval/wide_bench/summary.csv` and
   `results/sft_eval/wide_bench/raw_task_summary.csv`.
+- Skill-level read written to
+  `results/sft_eval/wide_bench/skill_map.md`: preserved skills are
+  script/event plausibility, coreference/discourse commonsense, and much of
+  physical affordance commonsense under task-vector mitigation; hurt skills are
+  lexical sense discrimination, science/exam retrieval, and multiple-choice
+  calibration.
+- TruthfulQA-MC2 is not currently a large aligned-adapter failure. Lowrank is
+  only `-0.010` and lowLR is `-0.017` versus base, both flat by the current
+  threshold. Task-vector `alpha=0.25` (`-0.028`) and scrambled SFT (`-0.068`)
+  are more negative, which points to calibration and plausible-false lure
+  sensitivity rather than a clean loss of truth knowledge.
 
 Speed/reliability notes:
 
@@ -556,6 +571,10 @@ Speed/reliability notes:
   19% of loglikelihood requests. It was relaunched with `batch_size=2`,
   `gpu_mem_util=0.72`.
 - Lowrank ARC 25-shot completed at `gpu_mem_util=0.72`, `batch_size=2`.
+- Task-vector HellaSwag 10-shot completed at `gpu_mem_util=0.72`,
+  `batch_size=2`.
+- Current active A5000 lanes: GPU0 `taskvec_a0p25 arc_25shot`; GPU1
+  `taskvec_a0p25 mmlu_5shot`, both at `gpu_mem_util=0.72`, `batch_size=2`.
 - Scrambled zero-shot completed on A5000 at `gpu_mem_util=0.75`,
   `batch_size=4`; the A5000 rank-64 vLLM path is viable.
 - H100 lowrank MMLU completed. It was the long lane because 5-shot MMLU expands

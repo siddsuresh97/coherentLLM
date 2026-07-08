@@ -255,6 +255,7 @@ Completed partial metrics:
 | `taskvec_a0p25` | zero-shot | WiC | acc | 0.502 |
 | `taskvec_a0p25` | zero-shot | TruthfulQA-MC2 | acc | 0.523 |
 | `taskvec_a0p25` | 5-shot | WinoGrande | acc | 0.747 |
+| `taskvec_a0p25` | 10-shot | HellaSwag | acc_norm | 0.680 |
 | `scrambled` | zero-shot | PIQA | acc_norm | 0.540 |
 | `scrambled` | zero-shot | OpenBookQA | acc_norm | 0.282 |
 | `scrambled` | zero-shot | CommonsenseQA | acc | 0.197 |
@@ -276,21 +277,38 @@ Base/lowLR/lowrank retention summary:
 | HellaSwag | 0.685 | 0.656 | 0.683 | -0.002 |
 | MMLU | 0.693 | 0.594 | 0.592 | -0.101 |
 
+Skill-level read:
+
+- Detailed map:
+  [`results/sft_eval/wide_bench/skill_map.md`](results/sft_eval/wide_bench/skill_map.md).
+- Preserved or near-preserved skills: script/event plausibility
+  (HellaSwag), coreference/discourse commonsense (WinoGrande), and physical
+  affordance commonsense under task-vector mitigation (PIQA).
+- Hurt skills: word-sense disambiguation (WiC), science/exam retrieval
+  (ARC/MMLU/OpenBookQA), and multiple-choice ranking calibration.
+- TruthfulQA-MC2 is not one of the largest aligned-adapter drops in the current
+  numbers: lowrank is `-0.010` and lowLR is `-0.017`, both flat by the current
+  `0.02` threshold. It is more affected under task-vector `alpha=0.25`
+  (`-0.028`) and scrambled SFT (`-0.068`), suggesting sensitivity to
+  calibration and plausible-false misconception lures rather than a clean
+  truth-knowledge collapse.
+
 Read:
 
 - WiC remains near chance for aligned states, suggesting lexical sense
   discrimination is harmed by the alignment objective or adapter perturbation.
 - WinoGrande is stable, so this is not a uniform few-shot evaluation failure.
-- HellaSwag is essentially preserved by lowrank once the run is split and
-  constrained to `gpu_mem_util=0.72`, `batch_size=2`; ARC and MMLU still drop.
+- HellaSwag is essentially preserved by lowrank and `taskvec_a0p25` once the
+  run is split and constrained to `gpu_mem_util=0.72`, `batch_size=2`; ARC and
+  MMLU are still the decisive pending task-vector tests.
 - `taskvec_a0p25` improves PIQA/OpenBookQA over lowrank, but loses
   CommonsenseQA/TruthfulQA in this partial slice.
 - Scrambled zero-shot is much worse than lowrank/taskvec on PIQA, OpenBookQA,
   CommonsenseQA, and TruthfulQA, so useful semantic training is doing real work.
   But scrambled also drops broadly, so generic LoRA/SFT perturbation is part of
   the damage.
-- Current active follow-ups: `taskvec_a0p25` ARC 25-shot on GPU0 and HellaSwag
-  10-shot on GPU1.
+- Current active follow-ups: `taskvec_a0p25` ARC 25-shot on GPU0 and MMLU
+  5-shot on GPU1.
 
 </details>
 
@@ -300,7 +318,7 @@ Read:
 Current confirmed settings:
 
 - Current active A5000 lanes: GPU0 `taskvec_a0p25 arc_25shot`; GPU1
-  `taskvec_a0p25 hellaswag_10shot`.
+  `taskvec_a0p25 mmlu_5shot`.
 - A5000 broad-bench long loglikelihood runs should use conservative settings:
   `gpu_mem_util=0.72` and `batch_size=2` for ARC/Hella.
 - `gpu_mem_util=0.82` with auto batch OOMed during prompt-logprob scoring.
