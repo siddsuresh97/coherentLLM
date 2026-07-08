@@ -305,8 +305,9 @@ Confounds to control:
    subject trial counts, and ROI voxel counts.
 2. Done: implement hidden-state extraction for Track A concept prompts.
 3. Done: implement RSA over saved hidden states and existing fMRI betas.
-4. Next: add semantic-hub prompt extraction and metrics.
-5. Next: integrate semantic-hub scores with fMRI RSA and decide whether to launch
+4. Done locally: add semantic-hub prompt extraction and layer-resolved metrics.
+5. Next: run semantic-hub extraction on the next free GPU lane.
+6. Next: integrate semantic-hub scores with fMRI RSA and decide whether to launch
    language-fMRI.
 
 ## Completion criteria for first solid result
@@ -318,4 +319,37 @@ Confounds to control:
 - Done: `results/sft_fmri/REPORT.md` states that Ventral Visual shows a strong
   object-RSA signal and scrambled-control separation, but aligned arms are
   nearly flat vs base in the primary ROI.
-- Pending: commit and push the first fMRI RSA result checkpoint.
+- Done: commit and push the first fMRI RSA result checkpoint (`f723cc4`).
+- Pending: extract and score semantic-hub hidden states for all arms.
+
+## 2026-07-08 semantic-hub implementation note
+
+Implemented scripts:
+
+- `src/sft/extract_semantic_hub_hidden_states.py`
+- `src/sft/run_semantic_hub.py`
+
+Prompt design:
+
+- Concepts: 128 held-out THINGS concepts.
+- Formats: triplet, pairwise, and feature-listing spokes.
+- Triplet prompts use deterministic S*-close and S*-far neighbors with
+  alternating answer-option order.
+- Pairwise prompts use the S*-close neighbor.
+- Feature-listing prompts reuse `listing_prompt(concept)`.
+
+Scoring design:
+
+- Cross-format RDM Spearman.
+- Linear CKA.
+- Same-concept cross-format retrieval top-1/top-5/margin.
+- Concept-vs-format label alignment.
+
+Speed note:
+
+- ThingsVision is not installed in the active coherence envs on `rogers-gpu-1`
+  or `opt-a007.discovery.wisc.edu`.
+- For the completed 90-concept fMRI RSA, batched HDF5 loading was the real speed
+  fix; RDM math was not the bottleneck.
+- For full-720, bootstrap, or permutation-heavy RSA, add/use a torch/CuPy/
+  ThingsVision-style GPU RDM backend.

@@ -1,15 +1,16 @@
 # Coherence-SFT project STATUS (where we are + open threads)
 
 **Last updated: 2026-07-08. Tasks 1-8 are ALL COMPLETE and committed to `coherence-sft`.
-Task 9 fMRI audit/hidden-state/RSA is now implemented locally and awaiting the
-next checkpoint commit. This file was stale below this point (left as historical design record) —
+Task 9 fMRI audit/hidden-state/RSA is implemented, committed, and pushed.
+Semantic-hub extraction/scoring code is implemented locally and awaiting the next
+checkpoint commit. This file was stale below this point (left as historical design record) —
 read this top section first for where the project actually stands.**
 
 ## Handoff for a fresh agent picking this up
 
 - **Branch:** `coherence-sft` (off `main`), repo `git@github.com:siddsuresh97/coherentLLM.git`.
-  Pushed through `c49f195` as of 2026-07-08; local fMRI RSA and hidden-state artifacts are the
-  next pending commit.
+  Pushed through `f723cc4` as of 2026-07-08; local semantic-hub scripts/results are the
+  next pending checkpoint.
 - **Env:** `source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate
   /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence` for all SFT/eval work.
   SALMON fits need the separate `salmon` conda env (skorch+dask deps the coherence env lacks) —
@@ -20,6 +21,9 @@ read this top section first for where the project actually stands.**
   meaningful checkpoints. A5000 vLLM+LoRA logprob scoring needs careful tuning: auto batch can OOM,
   too-low `gpu_memory_utilization` can leave no KV cache, and the current lowrank retry is using
   `gpu_mem_util=0.75 --batch_size 4`.
+  ThingsVision is not installed in the active coherence env on either GPU host; for current
+  90-concept fMRI RSA, HDF5 reads were the bottleneck rather than RDM math. Revisit a torch/CuPy/
+  ThingsVision-style GPU RDM backend for full-720, bootstrap, or permutation-heavy RSA.
 - **Read in order:** `research/CODEX_TASK_1.md` through `CODEX_TASK_8.md` (chronological,
   each is what was actually asked + done — CODEX_TASK_8.md + `results/sft_eval/steer_actlayer/
   VERDICT.md` is the most recent). Then `results/sft_eval/REPORT.md` for the synthesized
@@ -40,10 +44,12 @@ read this top section first for where the project actually stands.**
   `90 x 33 x 4096`. RSA runs end-to-end. Primary Ventral Visual RSA is strong but aligned arms are
   essentially flat vs base (`base=0.1990`, `lowLR=0.2010`, `lowrank=0.2013`), while scrambled is
   much lower (`0.1293`). See `results/sft_fmri/REPORT.md`.
-- **What's NOT done / next candidates:** `research/FUTURE_semantic_hub.md` / Task 9 Track B
-  remains next: test whether coherence-SFT induces/sharpens a format-invariant mid-layer semantic
-  hub based on arXiv:2411.04986. The stronger language-fMRI/Huth/Fedorenko encoding run remains
-  feasibility-stage only. Task 10 lowrank wide-benchmark mitigation is in flight. Task 9 and Task
+- **What's NOT done / next candidates:** Task 9 Track B semantic hub is implemented locally in
+  `src/sft/extract_semantic_hub_hidden_states.py` and `src/sft/run_semantic_hub.py`; next is GPU
+  extraction once a lane frees. This tests whether coherence-SFT induces/sharpens a
+  format-invariant mid-layer semantic hub based on arXiv:2411.04986. The stronger
+  language-fMRI/Huth/Fedorenko encoding run remains feasibility-stage only. Task 10 lowrank
+  wide-benchmark mitigation is in flight. Task 9 and Task
   10 briefs now track these follow-ups:
   `research/CODEX_TASK_9_FMRI_AND_SEMANTIC_HUB.md`,
   `research/CODEX_TASK_10_BENCHMARK_DROPS.md`, and the running handoff log

@@ -396,3 +396,37 @@ python src/sft/eval_wide_bench.py --states base lowLR lowrank --summarize_only
   OpenNeuro/Narratives route if LeBel preprocessing is costly.
 - Whether mitigation work should prioritize alpha-sweep/task-vector strength,
   training recipe changes, or post-hoc adapter composition.
+
+## 2026-07-08 active: semantic-hub implementation and speed audit
+
+Semantic-hub code added locally:
+
+- `src/sft/extract_semantic_hub_hidden_states.py`
+- `src/sft/run_semantic_hub.py`
+
+Method:
+
+- Concepts: 128 held-out concepts from `data/scale128/concepts.csv`.
+- Prompt spokes: triplet, pairwise, feature-listing.
+- Triplet/pairwise neighbors are deterministic S*-based close/far selections
+  from the held-out concept set.
+- Metrics: cross-format RDM Spearman, linear CKA, same-concept retrieval, and
+  concept-vs-format label alignment.
+
+Validation:
+
+- Syntax check passes for both scripts.
+- Prompt/neighbor sanity check passed on sample held-out concepts.
+- Fixed `run_semantic_hub.py` CSV writing to allow pair rows and mean rows with
+  different metric columns.
+
+ThingsVision/GPU RSA check:
+
+- `thingsvision` is not installed in the active coherence env on either
+  `rogers-gpu-1` or `opt-a007.discovery.wisc.edu`.
+- For the completed 90-concept THINGS-fMRI RSA, wall time was dominated by HDF5
+  beta loading. The implemented speedup batches selected HDF5 trial reads per
+  subject and averages concepts in memory.
+- Keep a torch/CuPy/ThingsVision-style GPU RDM backend on the list for full-720,
+  bootstrap-heavy, or permutation-heavy RSA where pairwise distance math becomes
+  a real cost.
