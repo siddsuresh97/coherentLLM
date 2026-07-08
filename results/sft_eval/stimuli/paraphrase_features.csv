@@ -1,0 +1,2001 @@
+item_id,feature,concept
+0,ability to fly,apple
+1,ability to fly,artichoke
+2,ability to fly,avocado
+3,ability to fly,bagpipe
+4,ability to fly,bassoon
+5,ability to fly,blowtorch
+6,ability to fly,burrito
+7,ability to fly,butterfly
+8,ability to fly,dragonfly
+9,ability to fly,tree
+10,adaptability,antelope
+11,adaptability,blackberry
+12,adaptability,cello
+13,adaptability,chili
+14,adaptability,hat
+15,adaptability,jeep
+16,adjustable,bra
+17,adjustable,burrito
+18,adjustable,butterfly
+19,adjustable,cauliflower
+20,adjustable,chicken
+21,adjustable,crow
+22,adjustable,fern
+23,adjustable,flute
+24,adjustable,owl
+25,aesthetics,cake
+26,aesthetics,earwig
+27,aesthetics,flute
+28,aesthetics,jeans
+29,aesthetics,motorcycle
+30,aesthetics,owl
+31,aesthetics,pants
+32,air conditioning,car
+33,air conditioning,gong
+34,antennae,blender
+35,antennae,candy
+36,antennae,caterpillar
+37,antennae,eggbeater
+38,antennae,grasshopper
+39,antennae,penguin
+40,antennae,scooter
+41,anti-inflammatory properties,bee
+42,anti-inflammatory properties,burner
+43,anti-inflammatory properties,earwig
+44,anti-inflammatory properties,jeep
+45,antimicrobial properties,asparagus
+46,antimicrobial properties,basket
+47,antimicrobial properties,bear
+48,antimicrobial properties,blueberry
+49,antimicrobial properties,coconut
+50,antimicrobial properties,dragonfly
+51,antimicrobial properties,fruit
+52,antimicrobial properties,jeep
+53,antimicrobial properties,missile
+54,antimicrobial properties,parrot
+55,antimicrobial properties,rifle
+56,antimicrobial properties,scooter
+57,antimicrobial properties,spear
+58,antioxidant properties,accordion
+59,antioxidant properties,bench
+60,antioxidant properties,boar
+61,antioxidant properties,bread
+62,antioxidant properties,bus
+63,antioxidant properties,can opener
+64,antioxidant properties,carriage
+65,antioxidant properties,chili
+66,antioxidant properties,spear
+67,appearance,basket
+68,appearance,belt
+69,appearance,caterpillar
+70,appearance,cherry
+71,appearance,chili
+72,appearance,jeans
+73,appearance,tree
+74,aroma,banana
+75,aroma,blouse
+76,aroma,candy
+77,aroma,chili
+78,aroma,cranberry
+79,aroma,rifle
+80,aroma,spear
+81,axle,antelope
+82,axle,asparagus
+83,axle,bassoon
+84,axle,boar
+85,axle,broccoli
+86,axle,bucket
+87,axle,carriage
+88,axle,cheese
+89,axle,cheetah
+90,axle,cherry
+91,axle,corn
+92,axle,eagle
+93,axles,axe
+94,axles,bed
+95,axles,candy
+96,axles,cello
+97,axles,dragonfly
+98,axles,eagle
+99,axles,fly
+100,balance point,acorn
+101,balance point,bell
+102,balance point,blowtorch
+103,balance point,boar
+104,balance point,bucket
+105,balance point,candy
+106,balance point,carriage
+107,balance point,carrot
+108,balance point,cherry
+109,balance point,ostrich
+110,barrel,asparagus
+111,barrel,bear
+112,barrel,beetle
+113,barrel,carrot
+114,barrel,eggbeater
+115,barrel,flute
+116,barrel,grenade
+117,barrel,gun
+118,barrel,motorcycle
+119,barrel,pants
+120,barrel,pelican
+121,barrel length,cart
+122,barrel length,caterpillar
+123,barrel length,cello
+124,barrel length,drill
+125,barrel length,flute
+126,barrel length,missile
+127,barrel length,pants
+128,beak,bear
+129,beak,bell
+130,beak,brussels sprouts
+131,beak,bus
+132,beak,butterfly
+133,beak,cannon
+134,beak,coat
+135,beak,dagger
+136,beak,eggbeater
+137,beak,fig
+138,belongs to the brassica family,barrel
+139,belongs to the brassica family,cello
+140,belongs to the brassica family,cranberry
+141,belongs to the brassica family,ostrich
+142,belongs to the brassica family,spear
+143,belongs to the brassica family,tree
+144,brake system,artichoke
+145,brake system,cheese
+146,brake system,cheetah
+147,brake system,coat
+148,brake system,corkscrew
+149,brake system,eagle
+150,brake system,flute
+151,brake system,slingshot
+152,brakes,antelope
+153,brakes,artichoke
+154,brakes,bee
+155,brakes,blender
+156,brakes,bottle
+157,brakes,burrito
+158,brakes,cart
+159,brakes,cat
+160,brakes,file
+161,brakes,penguin
+162,braking system,anvil
+163,braking system,bamboo
+164,braking system,banjo
+165,braking system,bird
+166,braking system,bra
+167,braking system,file
+168,braking system,fly
+169,braking system,spear
+170,brand,bamboo
+171,brand,barrel
+172,brand,bell
+173,brand,blouse
+174,brand,cauliflower
+175,brand,cheese
+176,breathability,banjo
+177,breathability,bed
+178,breathability,beet
+179,breathability,beetle
+180,breathability,bell
+181,breathability,bird
+182,breathability,blowtorch
+183,breathability,bottle
+184,breathability,coconut
+185,breathability,drill
+186,breathability,gong
+187,breathability,jeans
+188,breathability,owl
+189,breathability,tree
+190,bridge,ant
+191,bridge,antelope
+192,bridge,asparagus
+193,bridge,belt
+194,bridge,boar
+195,bridge,cheetah
+196,bridge,chinchilla
+197,bridge,corn
+198,bridge,earwig
+199,bridge,missile
+200,bridge,scooter
+201,brightly colored plumage,bat
+202,brightly colored plumage,chicken
+203,brightly colored plumage,chocolate
+204,brightly colored plumage,corkscrew
+205,brightly colored plumage,costume
+206,brightly colored plumage,drill
+207,brightly colored plumage,fruit
+208,brown color,aloe
+209,brown color,anteater
+210,brown color,bat
+211,brown color,broccoli
+212,brown color,butterfly
+213,brown color,cherry
+214,brown color,crow
+215,brown color,gun
+216,brown color,peacock
+217,burrowing behavior,belt
+218,burrowing behavior,pants
+219,caliber,bazooka
+220,caliber,earwig
+221,caliber,fern
+222,calorie count,antelope
+223,calorie count,beaver
+224,calorie count,bell
+225,calorie count,bra
+226,calorie count,fly
+227,calorie count,jeep
+228,calorie count,pelican
+229,can be dried,barrel
+230,can be dried,bassoon
+231,can be dried,beaver
+232,can be dried,bee
+233,can be dried,blackberry
+234,can be dried,blender
+235,can be dried,cake
+236,can be dried,candle
+237,can be eaten raw or cooked,burner
+238,can be eaten raw or cooked,eggbeater
+239,can be eaten raw or cooked,gun
+240,can be pickled,apple
+241,can be pickled,bison
+242,can be pickled,brownie
+243,can be pickled,cauliflower
+244,can be pickled,crowbar
+245,can be pickled,dragonfly
+246,can be pickled,ostrich
+247,can be pickled,skateboard
+248,can be roasted,ant
+249,can be roasted,apple
+250,can be roasted,bottle
+251,can be roasted,burner
+252,can be roasted,chicken
+253,can be roasted,corn
+254,can be roasted,ostrich
+255,can run at high speeds,anteater
+256,can run at high speeds,basket
+257,can run at high speeds,bottle
+258,can run at high speeds,bra
+259,can run at high speeds,crow
+260,can run at high speeds,drum
+261,can run at high speeds,penguin
+262,cargo capacity,bed
+263,cargo capacity,bison
+264,cargo capacity,bra
+265,cargo capacity,fly
+266,cargo capacity,parrot
+267,carnivorous diet,artichoke
+268,carnivorous diet,bazooka
+269,carnivorous diet,bear
+270,carnivorous diet,cheese
+271,carnivorous diet,clarinet
+272,carnivorous diet,jeep
+273,chitinous exoskeleton,ant
+274,chitinous exoskeleton,bed
+275,chitinous exoskeleton,boar
+276,chitinous exoskeleton,broccoli
+277,chitinous exoskeleton,cabbage
+278,chitinous exoskeleton,caterpillar
+279,chitinous exoskeleton,dragonfly
+280,chitinous exoskeleton,eggbeater
+281,chitinous exoskeleton,rifle
+282,claws,antelope
+283,claws,apple
+284,claws,bazooka
+285,claws,bison
+286,claws,boar
+287,claws,butterfly
+288,claws,cactus
+289,claws,celery
+290,claws,coconut
+291,claws,jeans
+292,claws,skateboard
+293,closure,acorn
+294,closure,axe
+295,closure,bison
+296,closure,clarinet
+297,closure,corn
+298,closure,earwig
+299,closure,tumbleweed
+300,closure type,banjo
+301,closure type,bean
+302,closure type,crowbar
+303,closure type,scooter
+304,color,antelope
+305,color,basket
+306,color,bear
+307,color,beaver
+308,color,bread
+309,color,can opener
+310,color,candelabra
+311,color,cello
+312,color,dress
+313,color,owl
+314,colorful patterns,avocado
+315,colorful patterns,bird
+316,colorful patterns,cake
+317,colorful patterns,carriage
+318,colorful patterns,coat
+319,colorful patterns,crowbar
+320,colorful patterns,earwig
+321,colorful patterns,pants
+322,colorful patterns,sled
+323,comfort,bed
+324,comfort,eggbeater
+325,compact size,antelope
+326,compact size,brownie
+327,compact size,cabbage
+328,compact size,corkscrew
+329,compact size,eggbeater
+330,compact size,fern
+331,compact size,pants
+332,compact size,tumbleweed
+333,composition,accordion
+334,composition,acorn
+335,composition,asparagus
+336,composition,beetle
+337,composition,bottle
+338,composition,candelabra
+339,composition,candy
+340,composition,cannon
+341,composition,chicken
+342,composition,corkscrew
+343,composition,gun
+344,composition,peacock
+345,compound eyes,anvil
+346,compound eyes,banjo
+347,compound eyes,boar
+348,compound eyes,chicken
+349,compound eyes,chisel
+350,compound eyes,coat
+351,compound eyes,corn
+352,compound eyes,drum
+353,compound eyes,gong
+354,compound eyes,skateboard
+355,cruciferous vegetable,bear
+356,cruciferous vegetable,bed
+357,cruciferous vegetable,broccoli
+358,cruciferous vegetable,candle
+359,cruciferous vegetable,cat
+360,cruciferous vegetable,chicken
+361,cruciferous vegetable,cranberry
+362,cruciferous vegetable,penguin
+363,crunchy texture,bed
+364,crunchy texture,bench
+365,crunchy texture,blowtorch
+366,crunchy texture,boar
+367,crunchy texture,cabbage
+368,crunchy texture,cake
+369,crunchy texture,candle
+370,crunchy texture,coconut
+371,crunchy texture,fig
+372,crust,bassoon
+373,crust,bison
+374,crust,blueberry
+375,crust,brownie
+376,crust,cranberry
+377,crust,ostrich
+378,depth,bagpipe
+379,depth,bus
+380,depth,cheese
+381,depth,dragonfly
+382,depth,drill
+383,depth,grenade
+384,design,accordion
+385,design,barrel
+386,design,basket
+387,design,bee
+388,design,bird
+389,design,blueberry
+390,design,burrito
+391,design,can opener
+392,design,car
+393,design,carriage
+394,design,chocolate
+395,design,scooter
+396,diameter,bassoon
+397,diameter,beetle
+398,diameter,bread
+399,diameter,bucket
+400,diameter,duck
+401,diameter,grasshopper
+402,diverse species,anteater
+403,diverse species,asparagus
+404,diverse species,bell
+405,diverse species,brownie
+406,diverse species,cauliflower
+407,diverse species,cello
+408,durability,anteater
+409,durability,axe
+410,durability,bee
+411,durability,brownie
+412,durability,candy
+413,durability,cannon
+414,durability,cockroach
+415,durability,grenade
+416,durable,axe
+417,durable,bat
+418,durable,drill
+419,durable,penguin
+420,ears,can opener
+421,ears,candle
+422,ears,clarinet
+423,ears,dragonfly
+424,ears,drill
+425,ears,drum
+426,ears,gong
+427,ears,grenade
+428,ease of cleaning,bamboo
+429,ease of cleaning,belt
+430,ease of cleaning,bison
+431,ease of cleaning,cannon
+432,ease of cleaning,dress
+433,ease of cleaning,ostrich
+434,edibility,accordion
+435,edibility,bassoon
+436,edibility,blender
+437,edibility,cart
+438,edibility,cheese
+439,edibility,drum
+440,edibility,penguin
+441,edibility,scooter
+442,edible,acorn
+443,edible,antelope
+444,edible,bagel
+445,edible,banana
+446,edible,boar
+447,edible,clarinet
+448,edible,crowbar
+449,edible,duck
+450,electrical system,banjo
+451,electrical system,bed
+452,electrical system,blackberry
+453,electrical system,cactus
+454,elongated body shape,antelope
+455,elongated body shape,bra
+456,elongated body shape,bread
+457,elongated body shape,burrito
+458,elongated body shape,carriage
+459,elongated body shape,caterpillar
+460,elongated body shape,celery
+461,elongated body shape,coat
+462,elongated body shape,coconut
+463,elongated body shape,corkscrew
+464,elongated body shape,fruit
+465,elongated body shape,hat
+466,elongated body shape,spear
+467,ergonomic design,bus
+468,ergonomic design,butterfly
+469,ergonomic design,cabbage
+470,ergonomic design,carrot
+471,ergonomic design,clarinet
+472,ergonomic design,dragonfly
+473,ergonomic handle,basket
+474,ergonomic handle,bee
+475,ergonomic handle,beetle
+476,ergonomic handle,gun
+477,ergonomic handle,jeans
+478,ergonomic handle,pants
+479,ergonomics,bed
+480,ergonomics,blackberry
+481,ergonomics,blowtorch
+482,ergonomics,boar
+483,ergonomics,broccoli
+484,ergonomics,cello
+485,ergonomics,chocolate
+486,ergonomics,dragonfly
+487,ergonomics,fern
+488,ergonomics,grenade
+489,ergonomics,hat
+490,ergonomics,pelican
+491,excellent eyesight,avocado
+492,excellent eyesight,bat
+493,excellent eyesight,can opener
+494,excellent eyesight,carriage
+495,excellent eyesight,peacock
+496,excellent swimmers,artichoke
+497,excellent swimmers,bamboo
+498,excellent swimmers,cactus
+499,excellent swimmers,clarinet
+500,excellent swimmers,coat
+501,excellent swimmers,corkscrew
+502,excellent swimmers,gong
+503,exoskeleton,anteater
+504,exoskeleton,bagel
+505,exoskeleton,broccoli
+506,exoskeleton,burrito
+507,exoskeleton,candelabra
+508,exoskeleton,coat
+509,exoskeleton,drill
+510,exoskeleton,eagle
+511,exoskeleton,hat
+512,exoskeleton,ostrich
+513,exoskeleton,tumbleweed
+514,fabric,bagpipe
+515,fabric,banjo
+516,fabric,clarinet
+517,fabric,earwig
+518,fabric,owl
+519,fabric,parrot
+520,fabric,penguin
+521,fabric type,blowtorch
+522,fabric type,bucket
+523,fabric type,cabbage
+524,fabric type,cart
+525,fabric type,gong
+526,fabric type,hat
+527,fabric type,peacock
+528,fabric type,pelican
+529,fasteners,aloe
+530,fasteners,blender
+531,fasteners,carrot
+532,fasteners,caterpillar
+533,fasteners,crowbar
+534,fasteners,slingshot
+535,fat content,bird
+536,fat content,bread
+537,fat content,cart
+538,fat content,chili
+539,fat content,cockroach
+540,fat content,coconut
+541,fat content,crow
+542,fat content,grasshopper
+543,feathers,aloe
+544,feathers,chicken
+545,feathers,coat
+546,feathers,crowbar
+547,feathers,penguin
+548,fiber content,acorn
+549,fiber content,carrot
+550,fiber content,coat
+551,fiber content,duck
+552,fiber content,grasshopper
+553,finger holes,ant
+554,finger holes,bat
+555,finger holes,blowtorch
+556,finger holes,cauliflower
+557,finger holes,clarinet
+558,finger holes,dagger
+559,finger holes,grasshopper
+560,fit,beaver
+561,fit,belt
+562,fit,bus
+563,fit,fig
+564,fit,flute
+565,fit,jeans
+566,fit,sled
+567,fit,spear
+568,flavor,axe
+569,flavor,banjo
+570,flavor,bean
+571,flavor,bear
+572,flavor,belt
+573,flavor,cherry
+574,flavor,drum
+575,flavor,penguin
+576,flavor,skateboard
+577,flavor profile,basket
+578,flavor profile,beetle
+579,flavor profile,can opener
+580,flavor profile,cat
+581,flavor profile,chisel
+582,flavor profile,flute
+583,fleshy texture,antelope
+584,fleshy texture,bat
+585,fleshy texture,bed
+586,fleshy texture,bench
+587,fleshy texture,cheese
+588,fleshy texture,chicken
+589,fleshy texture,fig
+590,fleshy texture,pants
+591,flight capabilities,burrito
+592,flight capabilities,chili
+593,flight capabilities,drum
+594,flight capabilities,gong
+595,flight capabilities,pants
+596,fragrant,bench
+597,fragrant,brownie
+598,fragrant,cannon
+599,fragrant,chicken
+600,fragrant,cockroach
+601,fragrant,hat
+602,frame,bamboo
+603,frame,blender
+604,frame,cello
+605,frame,sled
+606,fuel tank,accordion
+607,fuel tank,bat
+608,fuel tank,blouse
+609,fuel tank,cabbage
+610,fuel tank,cranberry
+611,fuel tank,skateboard
+612,fuel tank,tree
+613,fuel type,bed
+614,fuel type,bus
+615,fuel type,caterpillar
+616,fuel type,cherry
+617,fuel type,cranberry
+618,fuel type,crowbar
+619,fuel type,file
+620,fuel type,owl
+621,functionality,basket
+622,functionality,bassoon
+623,functionality,bee
+624,functionality,belt
+625,functionality,brownie
+626,functionality,cabbage
+627,functionality,chisel
+628,functionality,coat
+629,functionality,coconut
+630,functionality,eggbeater
+631,functionality,slingshot
+632,good eyesight,acorn
+633,good eyesight,beaver
+634,good eyesight,bed
+635,good eyesight,bee
+636,good eyesight,bird
+637,good eyesight,broccoli
+638,good eyesight,burrito
+639,good eyesight,cart
+640,good eyesight,chisel
+641,good eyesight,clarinet
+642,good eyesight,dress
+643,good memory,accordion
+644,good memory,asparagus
+645,good memory,banana
+646,good memory,bean
+647,good memory,bison
+648,good memory,carrot
+649,good memory,fig
+650,good memory,skateboard
+651,good night vision,banjo
+652,good night vision,belt
+653,good night vision,bird
+654,good night vision,blender
+655,good night vision,burrito
+656,good night vision,coconut
+657,good night vision,crowbar
+658,good source of antioxidants,bat
+659,good source of antioxidants,bed
+660,good source of antioxidants,bread
+661,good source of antioxidants,camel
+662,good source of antioxidants,cart
+663,good source of antioxidants,coconut
+664,good source of antioxidants,dragonfly
+665,good source of antioxidants,dress
+666,good source of antioxidants,fly
+667,good source of antioxidants,sled
+668,good source of antioxidants,spear
+669,good source of fiber,aloe
+670,good source of fiber,ant
+671,good source of fiber,bear
+672,good source of fiber,bee
+673,good source of fiber,beetle
+674,good source of fiber,can opener
+675,good source of fiber,chisel
+676,good source of fiber,chocolate
+677,good source of fiber,cranberry
+678,good source of fiber,sled
+679,good source of folate,accordion
+680,good source of folate,anvil
+681,good source of folate,boa
+682,good source of folate,cactus
+683,good source of folate,coat
+684,good source of folate,crow
+685,good source of folate,fruit
+686,good source of manganese,aloe
+687,good source of manganese,bassoon
+688,good source of manganese,blowtorch
+689,good source of manganese,cabbage
+690,good source of manganese,cactus
+691,good source of manganese,cat
+692,good source of manganese,dagger
+693,good source of manganese,hat
+694,good source of minerals,accordion
+695,good source of minerals,asparagus
+696,good source of minerals,bottle
+697,good source of minerals,broccoli
+698,good source of minerals,brownie
+699,good source of minerals,burner
+700,good source of minerals,cello
+701,good source of minerals,gong
+702,good source of minerals,peacock
+703,good source of potassium,bamboo
+704,good source of potassium,banjo
+705,good source of potassium,bazooka
+706,good source of potassium,bell
+707,good source of potassium,bus
+708,good source of potassium,carriage
+709,good source of potassium,cello
+710,good source of potassium,flute
+711,good source of protein,acorn
+712,good source of protein,axe
+713,good source of protein,bagpipe
+714,good source of protein,beetle
+715,good source of protein,brownie
+716,good source of protein,cheetah
+717,good source of protein,coconut
+718,good source of protein,dress
+719,good source of vitamin c,beetle
+720,good source of vitamin c,belt
+721,good source of vitamin c,blowtorch
+722,good source of vitamin c,cake
+723,good source of vitamin c,cherry
+724,good source of vitamin c,pelican
+725,good source of vitamin k,avocado
+726,good source of vitamin k,candelabra
+727,good source of vitamin k,cockroach
+728,good source of vitamin k,dress
+729,good source of vitamin k,owl
+730,good source of vitamin k,slingshot
+731,good source of vitamins and minerals,aloe
+732,good source of vitamins and minerals,belt
+733,good source of vitamins and minerals,camel
+734,good source of vitamins and minerals,cat
+735,good source of vitamins and minerals,cherry
+736,good source of vitamins and minerals,chisel
+737,good source of vitamins and minerals,dragonfly
+738,good source of vitamins c and k,brussels sprouts
+739,good source of vitamins c and k,cart
+740,good source of vitamins c and k,costume
+741,good source of vitamins c and k,drill
+742,green,apple
+743,green,bamboo
+744,green,bed
+745,green,candy
+746,green,carrot
+747,green,dragonfly
+748,green,tumbleweed
+749,green color,brownie
+750,green color,candy
+751,green color,chicken
+752,green color,owl
+753,green color,scooter
+754,grip,candelabra
+755,grip,corkscrew
+756,grip,jeep
+757,grip,missile
+758,grip,motorcycle
+759,grip material,blueberry
+760,grip material,bra
+761,grip material,brownie
+762,grip material,camel
+763,grip material,spear
+764,ground clearance,barrel
+765,ground clearance,bird
+766,ground clearance,bison
+767,ground clearance,candy
+768,ground clearance,carrot
+769,handle,anteater
+770,handle,celery
+771,handle,cello
+772,handle,clarinet
+773,handle,costume
+774,handle,file
+775,handle,fly
+776,handle,fruit
+777,handle length,artichoke
+778,handle length,burner
+779,handle length,camel
+780,handle length,carriage
+781,handle length,fig
+782,handle or grip,cabbage
+783,handles,barrel
+784,handles,bee
+785,handles,bird
+786,handles,candle
+787,handles,corn
+788,handles,cranberry
+789,handles,spear
+790,hard exoskeleton,bazooka
+791,hard exoskeleton,cauliflower
+792,hard exoskeleton,cheese
+793,hard exoskeleton,eggbeater
+794,hard exoskeleton,fig
+795,hardness,acorn
+796,hardness,anteater
+797,hardness,bench
+798,hardness,cannon
+799,hardness,celery
+800,hardness,cockroach
+801,hardness,corkscrew
+802,hardness,earwig
+803,hardware,accordion
+804,hardware,antelope
+805,hardware,avocado
+806,hardware,bagel
+807,hardware,banjo
+808,hardware,barrel
+809,hardware,bird
+810,hardware,burner
+811,hardware,cheese
+812,has a crunchy texture,antelope
+813,has a crunchy texture,asparagus
+814,has a crunchy texture,bed
+815,has a crunchy texture,blender
+816,has a crunchy texture,chicken
+817,has a crunchy texture,chocolate
+818,has a crunchy texture,clarinet
+819,has a crunchy texture,crow
+820,has a crunchy texture,tumbleweed
+821,has a short shelf life,axe
+822,has a short shelf life,bazooka
+823,has a short shelf life,bread
+824,has a short shelf life,cello
+825,has a short shelf life,dagger
+826,has a short shelf life,flute
+827,has a short shelf life,jeep
+828,has a short shelf life,spear
+829,head,airplane
+830,head,artichoke
+831,head,axe
+832,head,bagel
+833,head,motorcycle
+834,heat-resistant materials,banjo
+835,heat-resistant materials,beetle
+836,heat-resistant materials,bell
+837,heat-resistant materials,cabbage
+838,heat-resistant materials,chisel
+839,heat-resistant materials,fly
+840,height,bagpipe
+841,height,bird
+842,height,blender
+843,height,brussels sprouts
+844,height,cabbage
+845,height,crow
+846,height,dragonfly
+847,height,drum
+848,height,motorcycle
+849,height,pants
+850,hem,accordion
+851,hem,banana
+852,hem,beaver
+853,hem,can opener
+854,hem,cello
+855,hem,coconut
+856,hem,corn
+857,hem,drum
+858,hem,fig
+859,herbivorous diet,basket
+860,herbivorous diet,beetle
+861,herbivorous diet,blouse
+862,herbivorous diet,bottle
+863,herbivorous diet,bucket
+864,herbivorous diet,car
+865,herbivorous diet,cherry
+866,herbivorous diet,coat
+867,herbivorous diet,costume
+868,herbivorous diet,fruit
+869,high in antioxidants,antelope
+870,high in antioxidants,bear
+871,high in antioxidants,bird
+872,high in antioxidants,bison
+873,high in antioxidants,boa
+874,high in antioxidants,burrito
+875,high in antioxidants,coat
+876,high in antioxidants,cockroach
+877,high in antioxidants,corkscrew
+878,high in antioxidants,costume
+879,high in antioxidants,dress
+880,high in fiber,bee
+881,high in fiber,dagger
+882,high in fiber,drill
+883,high in fiber,gun
+884,high in potassium,barrel
+885,high in potassium,bench
+886,high in potassium,burner
+887,high in potassium,can opener
+888,high in potassium,drum
+889,high in potassium,tumbleweed
+890,high in vitamin c,bed
+891,high in vitamin c,blowtorch
+892,high in vitamin c,bus
+893,high in vitamin c,celery
+894,high in vitamin c,duck
+895,high in vitamin c,file
+896,high in vitamin c,fly
+897,high in vitamin c,fruit
+898,high in vitamin c,pelican
+899,high in vitamin c,tree
+900,high in water content,accordion
+901,high in water content,barrel
+902,high in water content,brownie
+903,high in water content,carriage
+904,high in water content,chili
+905,high in water content,chocolate
+906,high water content,beetle
+907,high water content,belt
+908,high water content,candelabra
+909,highly adaptable,bazooka
+910,highly adaptable,bread
+911,highly adaptable,burner
+912,highly adaptable,hat
+913,highly adaptable,jeans
+914,highly social,blouse
+915,highly social,blueberry
+916,highly social,cauliflower
+917,highly social,cherry
+918,highly social,grasshopper
+919,highly social,sled
+920,highly social behavior,bucket
+921,highly social behavior,candelabra
+922,highly social behavior,chocolate
+923,highly social behavior,coat
+924,highly social behavior,grenade
+925,highly social behavior,spear
+926,hollow interior,car
+927,hollow interior,cart
+928,horn,acorn
+929,horn,ant
+930,horn,asparagus
+931,horn,bed
+932,horn,fruit
+933,horn,ostrich
+934,horn,peacock
+935,insulation,bat
+936,insulation,broccoli
+937,keen eyesight,asparagus
+938,keen eyesight,avocado
+939,keen eyesight,bench
+940,keen eyesight,blackberry
+941,keen eyesight,broccoli
+942,keen eyesight,cart
+943,keen eyesight,chinchilla
+944,large beak,barrel
+945,large beak,bat
+946,large beak,fern
+947,large beak,sled
+948,large beak,tumbleweed
+949,large ears,acorn
+950,large ears,apple
+951,large ears,avocado
+952,large ears,candle
+953,large ears,cheese
+954,large ears,chisel
+955,large ears,clarinet
+956,large ears,gun
+957,large eyes,anvil
+958,large eyes,bagel
+959,large eyes,bamboo
+960,large eyes,blueberry
+961,large eyes,butterfly
+962,large eyes,eggbeater
+963,large size,artichoke
+964,large size,avocado
+965,large size,bra
+966,large size,broccoli
+967,large size,chocolate
+968,large size,fern
+969,large size,spear
+970,large size,tree
+971,leaves,bee
+972,leaves,bottle
+973,leaves,burrito
+974,leaves,cauliflower
+975,leaves,cheetah
+976,leaves,corkscrew
+977,leaves,dress
+978,leaves,fly
+979,leaves,fruit
+980,leaves,jeans
+981,leaves,peacock
+982,leaves,sled
+983,legs,blackberry
+984,legs,boa
+985,legs,car
+986,legs,fig
+987,legs,fly
+988,length,bean
+989,length,bear
+990,length,dress
+991,lightweight,bear
+992,lightweight,boar
+993,lightweight,cabbage
+994,lightweight,camel
+995,lightweight,candle
+996,lightweight,cauliflower
+997,lightweight,peacock
+998,lightweight skeleton,anvil
+999,lightweight skeleton,bamboo
+1000,lightweight skeleton,cactus
+1001,lightweight skeleton,eggbeater
+1002,lightweight skeleton,tumbleweed
+1003,lining,acorn
+1004,lining,antelope
+1005,lining,cactus
+1006,lining,coat
+1007,long legs,asparagus
+1008,long legs,bread
+1009,long legs,parrot
+1010,long lifespan,bamboo
+1011,long lifespan,brownie
+1012,long lifespan,candle
+1013,long lifespan,celery
+1014,long lifespan,dress
+1015,long lifespan,gong
+1016,long lifespan,scooter
+1017,long lifespan,slingshot
+1018,long neck,basket
+1019,long neck,bench
+1020,long neck,cactus
+1021,long neck,cauliflower
+1022,long neck,chisel
+1023,long neck,eggbeater
+1024,low calorie count,apple
+1025,low calorie count,bazooka
+1026,low calorie count,camel
+1027,low calorie count,chocolate
+1028,low calorie count,crow
+1029,low calorie count,eggbeater
+1030,low calorie count,pants
+1031,low glycemic index,artichoke
+1032,low glycemic index,beetle
+1033,low glycemic index,belt
+1034,low glycemic index,burner
+1035,low glycemic index,carrot
+1036,low glycemic index,cherry
+1037,low glycemic index,cranberry
+1038,low glycemic index,eggbeater
+1039,low in calories,bagel
+1040,low in calories,barrel
+1041,low in calories,carriage
+1042,low in calories,dragonfly
+1043,low in calories,fern
+1044,low in calories,file
+1045,low in calories,ostrich
+1046,low in fat,bat
+1047,low in fat,blouse
+1048,low in fat,blueberry
+1049,low in fat,broccoli
+1050,low in fat,chinchilla
+1051,low in fat,drill
+1052,low in fat,parrot
+1053,mandibles,acorn
+1054,mandibles,asparagus
+1055,mandibles,barrel
+1056,mandibles,bison
+1057,mandibles,burner
+1058,mandibles,coat
+1059,mandibles,tumbleweed
+1060,material,avocado
+1061,material,bed
+1062,material,car
+1063,material,cheetah
+1064,material,drill
+1065,material,duck
+1066,material,eggbeater
+1067,material,fly
+1068,material,missile
+1069,material,peacock
+1070,"material (wood, metal, plastic, etc.)",boar
+1071,"material (wood, metal, plastic, etc.)",butterfly
+1072,"material (wood, metal, plastic, etc.)",candle
+1073,"material (wood, metal, plastic, etc.)",carriage
+1074,"material (wood, metal, plastic, etc.)",clarinet
+1075,"material (wood, metal, plastic, etc.)",drum
+1076,"material (wood, metal, plastic, etc.)",slingshot
+1077,may help lower cholesterol,anteater
+1078,may help lower cholesterol,basket
+1079,may help lower cholesterol,bird
+1080,may help lower cholesterol,bus
+1081,may help lower cholesterol,candy
+1082,may help lower cholesterol,carriage
+1083,may help lower cholesterol,cello
+1084,may help lower cholesterol,fig
+1085,may help lower cholesterol,grasshopper
+1086,may help lower cholesterol,grenade
+1087,may help lower cholesterol levels,banjo
+1088,may help lower cholesterol levels,boar
+1089,may help lower cholesterol levels,celery
+1090,may help lower cholesterol levels,chicken
+1091,may help lower cholesterol levels,jeans
+1092,may help lower cholesterol levels,motorcycle
+1093,may help lower cholesterol levels,skateboard
+1094,melting point,basket
+1095,melting point,beetle
+1096,melting point,belt
+1097,melting point,cheese
+1098,melting point,cherry
+1099,melting point,parrot
+1100,melting point,peacock
+1101,metamorphosis,bazooka
+1102,metamorphosis,bread
+1103,metamorphosis,brussels sprouts
+1104,metamorphosis,cheetah
+1105,metamorphosis,clarinet
+1106,metamorphosis,parrot
+1107,metamorphosis,pelican
+1108,metamorphosis,tree
+1109,migration patterns,ant
+1110,migration patterns,anteater
+1111,migration patterns,boar
+1112,migration patterns,cherry
+1113,migration patterns,corkscrew
+1114,migration patterns,eagle
+1115,migration patterns,earwig
+1116,migration patterns,hat
+1117,migration patterns,owl
+1118,migration patterns,pants
+1119,migration patterns,skateboard
+1120,migratory patterns,avocado
+1121,migratory patterns,cabbage
+1122,migratory patterns,file
+1123,migratory patterns,gun
+1124,migratory patterns,parrot
+1125,minerals,avocado
+1126,minerals,bee
+1127,minerals,brussels sprouts
+1128,minerals,camel
+1129,mirrors,bazooka
+1130,mirrors,celery
+1131,mirrors,cockroach
+1132,mirrors,eggbeater
+1133,mirrors,fly
+1134,moisture content,bee
+1135,moisture content,blowtorch
+1136,moisture content,bus
+1137,moisture content,cannon
+1138,moisture content,carriage
+1139,moisture content,cockroach
+1140,moisture content,costume
+1141,moisture content,dress
+1142,moisture content,grasshopper
+1143,monogamous,airplane
+1144,monogamous,bagpipe
+1145,monogamous,bison
+1146,monogamous,boar
+1147,monogamous,brussels sprouts
+1148,monogamous,cabbage
+1149,monogamous,coat
+1150,monogamous mating,antelope
+1151,monogamous mating,anvil
+1152,monogamous mating,bed
+1153,monogamous mating,boar
+1154,monogamous mating,bucket
+1155,monogamous mating,cake
+1156,monogamous mating,cheetah
+1157,monogamous mating,costume
+1158,monogamous mating,crowbar
+1159,motor,antelope
+1160,motor,barrel
+1161,motor,bra
+1162,motor,cannon
+1163,motor,costume
+1164,motor,eagle
+1165,motor,scooter
+1166,muzzle brake,beetle
+1167,muzzle brake,pelican
+1168,muzzle velocity,banana
+1169,muzzle velocity,basket
+1170,muzzle velocity,blueberry
+1171,muzzle velocity,cannon
+1172,muzzle velocity,chili
+1173,muzzle velocity,dress
+1174,muzzle velocity,jeep
+1175,muzzle velocity,pants
+1176,native to europe,bassoon
+1177,native to europe,belt
+1178,native to europe,cheese
+1179,native to europe,parrot
+1180,native to north america,antelope
+1181,native to north america,blackberry
+1182,native to north america,cheese
+1183,native to north america,flute
+1184,native to north america,hat
+1185,navigation system,avocado
+1186,navigation system,bagpipe
+1187,navigation system,cannon
+1188,navigation system,flute
+1189,no external ears,avocado
+1190,no external ears,burner
+1191,no external ears,butterfly
+1192,no external ears,car
+1193,no external ears,skateboard
+1194,no external nose,basket
+1195,no external nose,bell
+1196,no external nose,belt
+1197,no external nose,bench
+1198,no external nose,broccoli
+1199,no external nose,cello
+1200,no external nose,cherry
+1201,no external nose,clarinet
+1202,no external nose,dagger
+1203,no external nose,fig
+1204,no external nose,flute
+1205,no external nose,skateboard
+1206,no tail,anvil
+1207,no tail,bed
+1208,no tail,boa
+1209,no tail,brussels sprouts
+1210,no tail,cactus
+1211,no tail,cart
+1212,no tail,dagger
+1213,no tail,flute
+1214,no tail,sled
+1215,no teeth,apple
+1216,no teeth,asparagus
+1217,no teeth,bison
+1218,no teeth,bottle
+1219,no teeth,candelabra
+1220,no teeth,chicken
+1221,no teeth,drum
+1222,no teeth,earwig
+1223,no teeth,motorcycle
+1224,nocturnal,accordion
+1225,nocturnal,belt
+1226,nocturnal,candelabra
+1227,nocturnal,cherry
+1228,nocturnal,drum
+1229,nocturnal behavior,ant
+1230,nocturnal behavior,candelabra
+1231,nocturnal behavior,cannon
+1232,nocturnal behavior,carrot
+1233,nocturnal behavior,cat
+1234,nocturnal behavior,cherry
+1235,nocturnal behavior,costume
+1236,nocturnal behavior,dress
+1237,nocturnal behavior,flute
+1238,nutritional value,barrel
+1239,nutritional value,cabbage
+1240,nutritional value,cactus
+1241,nutritional value,cheetah
+1242,nutritional value,file
+1243,nutritional value,missile
+1244,nutritious,asparagus
+1245,nutritious,beaver
+1246,nutritious,broccoli
+1247,nutritious,brownie
+1248,nutritious,coconut
+1249,nutritious,jeans
+1250,omnivorous diet,candelabra
+1251,omnivorous diet,corn
+1252,omnivorous diet,gun
+1253,omnivorous diet,missile
+1254,omnivorous diet,rifle
+1255,omnivorous diet,tree
+1256,omnivorous young,bagel
+1257,omnivorous young,blender
+1258,omnivorous young,broccoli
+1259,omnivorous young,caterpillar
+1260,omnivorous young,coat
+1261,omnivorous young,corkscrew
+1262,omnivorous young,dragonfly
+1263,omnivorous young,file
+1264,omnivorous young,fly
+1265,omnivorous young,pants
+1266,omnivorous young,sled
+1267,omnivorous young,tumbleweed
+1268,pattern,bean
+1269,pattern,bee
+1270,pattern,blueberry
+1271,pattern,bucket
+1272,pattern,cake
+1273,pattern,chocolate
+1274,pattern,fig
+1275,pattern,pelican
+1276,pattern,scooter
+1277,photosynthetic,axe
+1278,photosynthetic,banjo
+1279,photosynthetic,camel
+1280,photosynthetic,cheese
+1281,photosynthetic,chicken
+1282,photosynthetic,hat
+1283,photosynthetic,missile
+1284,photosynthetic,skateboard
+1285,pitch,acorn
+1286,pitch,cabbage
+1287,pitch,cauliflower
+1288,pitch,chili
+1289,pitch,crow
+1290,pitch,grenade
+1291,pitch,missile
+1292,pitch,motorcycle
+1293,pitch,ostrich
+1294,pitch,slingshot
+1295,pockets,accordion
+1296,pockets,apple
+1297,pockets,bench
+1298,pockets,bison
+1299,pockets,brownie
+1300,pockets,cello
+1301,portability,barrel
+1302,portability,bassoon
+1303,portability,blueberry
+1304,portability,chisel
+1305,portability,sled
+1306,portable,barrel
+1307,portable,blouse
+1308,portable,blowtorch
+1309,portable,bottle
+1310,portable,bread
+1311,portable,candy
+1312,portable,car
+1313,portable,eggbeater
+1314,portable,rifle
+1315,powerful jaws,bread
+1316,powerful jaws,cauliflower
+1317,powerful jaws,cheese
+1318,powerful jaws,cheetah
+1319,powerful jaws,crow
+1320,powerful jaws,drum
+1321,powerful jaws,owl
+1322,powerful jaws,slingshot
+1323,powerful jaws,tumbleweed
+1324,powerful legs,avocado
+1325,powerful legs,blowtorch
+1326,powerful legs,chili
+1327,powerful legs,clarinet
+1328,powerful legs,dragonfly
+1329,powerful legs,scooter
+1330,protein content,airplane
+1331,protein content,asparagus
+1332,protein content,barrel
+1333,protein content,bazooka
+1334,protein content,blender
+1335,protein content,boar
+1336,protein content,cake
+1337,protein content,chisel
+1338,protein content,drum
+1339,range,bagel
+1340,range,bazooka
+1341,range,bench
+1342,range,cherry
+1343,range,eggbeater
+1344,range,gong
+1345,range,tree
+1346,rich in antioxidants,airplane
+1347,rich in antioxidants,artichoke
+1348,rich in antioxidants,bat
+1349,rich in antioxidants,bird
+1350,rich in antioxidants,fig
+1351,rich in antioxidants,parrot
+1352,rich in antioxidants,tumbleweed
+1353,rich in fiber,basket
+1354,rich in fiber,bassoon
+1355,rich in fiber,beaver
+1356,rich in fiber,caterpillar
+1357,rich in fiber,cheetah
+1358,rich in fiber,cockroach
+1359,rich in fiber,jeep
+1360,rich in fiber,rifle
+1361,rich in fiber,tumbleweed
+1362,rich in potassium,acorn
+1363,rich in potassium,ant
+1364,rich in potassium,bed
+1365,rich in potassium,blouse
+1366,rich in potassium,burner
+1367,rich in potassium,camel
+1368,rich in potassium,carriage
+1369,rich in potassium,carrot
+1370,rich in potassium,cello
+1371,rich in potassium,coconut
+1372,rich in potassium,corkscrew
+1373,rich in potassium,dragonfly
+1374,rich in potassium,penguin
+1375,rich in vitamin c,bear
+1376,rich in vitamin c,bucket
+1377,rich in vitamin c,candle
+1378,rich in vitamin c,car
+1379,rich in vitamin c,cheese
+1380,rich in vitamin c,cheetah
+1381,rich in vitamin c,eagle
+1382,rich in vitamin c,fig
+1383,rich in vitamins,anvil
+1384,rich in vitamins,bazooka
+1385,rich in vitamins,bottle
+1386,rich in vitamins,bread
+1387,rich in vitamins,candelabra
+1388,rich in vitamins,cherry
+1389,rich in vitamins,chisel
+1390,rich in vitamins,costume
+1391,rich in vitamins,drum
+1392,rich in vitamins,flute
+1393,rich in vitamins,jeans
+1394,rich in vitamins c and k,artichoke
+1395,rich in vitamins c and k,avocado
+1396,rich in vitamins c and k,bagpipe
+1397,rich in vitamins c and k,bean
+1398,rich in vitamins c and k,cat
+1399,rich in vitamins c and k,dragonfly
+1400,rich in vitamins c and k,missile
+1401,safety features,broccoli
+1402,safety features,candelabra
+1403,safety features,carrot
+1404,safety features,coconut
+1405,safety features,crowbar
+1406,safety features,owl
+1407,scales,basket
+1408,scales,camel
+1409,scales,candelabra
+1410,scales,cauliflower
+1411,scales,coat
+1412,scales,cockroach
+1413,scales,ostrich
+1414,scales,pelican
+1415,scales,slingshot
+1416,scales,tree
+1417,seasonality,barrel
+1418,seasonality,basket
+1419,seasonality,bean
+1420,seasonality,cactus
+1421,seasonality,cheetah
+1422,seasonality,dagger
+1423,seasonality,earwig
+1424,seat,bassoon
+1425,seat,bell
+1426,seat,candy
+1427,seat,cannon
+1428,seat,car
+1429,seat,slingshot
+1430,seats,airplane
+1431,seats,clarinet
+1432,seats,jeep
+1433,seats,pants
+1434,seeds,airplane
+1435,seeds,banjo
+1436,seeds,bazooka
+1437,seeds,beaver
+1438,seeds,bench
+1439,seeds,bread
+1440,seeds,can opener
+1441,seeds,cannon
+1442,seeds,clarinet
+1443,seeds,gong
+1444,segmented body,antelope
+1445,segmented body,bamboo
+1446,segmented body,basket
+1447,segmented body,bee
+1448,segmented body,belt
+1449,segmented body,candelabra
+1450,segmented body,cheetah
+1451,segmented body,chocolate
+1452,segmented body,clarinet
+1453,segmented body,rifle
+1454,shape,bamboo
+1455,shape,banana
+1456,shape,bus
+1457,shape,candle
+1458,shape,carriage
+1459,shape,crow
+1460,sharp beak,axe
+1461,sharp beak,bazooka
+1462,sharp beak,cheetah
+1463,sharp beak,chisel
+1464,sharp beak,cranberry
+1465,sharp beak,fig
+1466,sharp claws,bell
+1467,sharp claws,clarinet
+1468,sharp claws,cockroach
+1469,sharp claws,dagger
+1470,sharp claws,fern
+1471,sharp claws,grenade
+1472,sharp talons,banana
+1473,sharp talons,bell
+1474,sharp talons,caterpillar
+1475,sharp talons,cheetah
+1476,sharp talons,cherry
+1477,sharp talons,peacock
+1478,sharp teeth,bazooka
+1479,sharp teeth,bean
+1480,sharp teeth,boa
+1481,sharp teeth,broccoli
+1482,sharp teeth,burrito
+1483,sharp teeth,fly
+1484,sharp teeth,jeep
+1485,shelf life,bamboo
+1486,shelf life,barrel
+1487,shelf life,belt
+1488,shelf life,blowtorch
+1489,shelf life,carrot
+1490,shelf life,cranberry
+1491,shelf life,earwig
+1492,short antennae,anteater
+1493,short antennae,beetle
+1494,short antennae,blackberry
+1495,short antennae,blueberry
+1496,short antennae,boa
+1497,short antennae,bottle
+1498,short antennae,burner
+1499,short antennae,cannon
+1500,short antennae,corkscrew
+1501,short antennae,rifle
+1502,short antennae,sled
+1503,single seed,bird
+1504,single seed,candy
+1505,single seed,cannon
+1506,single seed,corn
+1507,single seed,costume
+1508,single seed,drill
+1509,single seed,drum
+1510,single seed,rifle
+1511,six legs,bazooka
+1512,six legs,burner
+1513,six legs,candelabra
+1514,six legs,candle
+1515,six legs,car
+1516,six legs,carriage
+1517,six legs,dagger
+1518,six legs,eggbeater
+1519,six legs,fig
+1520,six legs,file
+1521,six legs,parrot
+1522,six legs,spear
+1523,size,bamboo
+1524,size,banana
+1525,size,blueberry
+1526,size,brussels sprouts
+1527,size,cactus
+1528,size,cart
+1529,size,cherry
+1530,size,chisel
+1531,size,grasshopper
+1532,"size (length, width, height)",aloe
+1533,"size (length, width, height)",bed
+1534,"size (length, width, height)",celery
+1535,"size (length, width, height)",cello
+1536,"size (length, width, height)",chocolate
+1537,"size (length, width, height)",clarinet
+1538,"size (length, width, height)",coat
+1539,"size (length, width, height)",crowbar
+1540,"size (length, width, height)",jeans
+1541,skin,ant
+1542,skin,basket
+1543,skin,blender
+1544,skin,burrito
+1545,skin,can opener
+1546,skin,candle
+1547,skin,cat
+1548,skin,cheese
+1549,small size,anteater
+1550,small size,bird
+1551,small size,blackberry
+1552,small size,burrito
+1553,small size,cabbage
+1554,small size,candy
+1555,small to large size,bamboo
+1556,small to large size,belt
+1557,small to large size,brussels sprouts
+1558,small to large size,can opener
+1559,small to large size,drum
+1560,small to large size,earwig
+1561,small to large size,fruit
+1562,small to large size,missile
+1563,small to large size,ostrich
+1564,small to large size,skateboard
+1565,small to medium size,bagpipe
+1566,small to medium size,banjo
+1567,small to medium size,bassoon
+1568,small to medium size,beet
+1569,small to medium size,blender
+1570,small to medium size,cabbage
+1571,small to medium size,cheese
+1572,small to medium size,coconut
+1573,small to medium size,drill
+1574,small to medium size,gong
+1575,small to medium size,hat
+1576,small to medium size,motorcycle
+1577,smell,blueberry
+1578,smell,can opener
+1579,smell,candy
+1580,smell,chinchilla
+1581,smell,fern
+1582,smell,skateboard
+1583,social animal,banana
+1584,social animal,bat
+1585,social animal,bean
+1586,social animal,beaver
+1587,social animal,cabbage
+1588,social animal,corkscrew
+1589,social animal,fern
+1590,social animal,owl
+1591,social animals,airplane
+1592,social animals,brussels sprouts
+1593,social animals,candle
+1594,social animals,cheetah
+1595,social animals,crowbar
+1596,social animals,dragonfly
+1597,social animals,drum
+1598,social animals,motorcycle
+1599,social animals,peacock
+1600,social animals,tumbleweed
+1601,social behavior,accordion
+1602,social behavior,bee
+1603,social behavior,beet
+1604,social behavior,blueberry
+1605,social behavior,bucket
+1606,social behavior,cabbage
+1607,social behavior,chocolate
+1608,social behavior,coconut
+1609,social behavior,dagger
+1610,social behavior,dress
+1611,social behavior,fern
+1612,softness,bamboo
+1613,softness,caterpillar
+1614,softness,eggbeater
+1615,softness,grasshopper
+1616,softness,penguin
+1617,speed,ant
+1618,speed,boa
+1619,speed,cauliflower
+1620,speed,celery
+1621,speed,cherry
+1622,speed,coat
+1623,speed,cranberry
+1624,speed,fig
+1625,speed,flute
+1626,speed,scooter
+1627,speed control,avocado
+1628,speed control,bat
+1629,speed control,burner
+1630,speed control,cauliflower
+1631,speed control,cockroach
+1632,speed control,dragonfly
+1633,stability,acorn
+1634,stability,banjo
+1635,stability,barrel
+1636,stability,bus
+1637,stability,candle
+1638,stability,cannon
+1639,stability,caterpillar
+1640,stability,cherry
+1641,stability,chinchilla
+1642,stability,file
+1643,stability,owl
+1644,steering mechanism,brussels sprouts
+1645,steering mechanism,carrot
+1646,steering mechanism,drill
+1647,steering mechanism,file
+1648,steering mechanism,grasshopper
+1649,steering mechanism,grenade
+1650,steering mechanism,rifle
+1651,steering mechanism,spear
+1652,steering system,flute
+1653,steering system,fruit
+1654,steering system,sled
+1655,stem,anteater
+1656,stem,bus
+1657,stem,clarinet
+1658,stem,drum
+1659,stem,flute
+1660,stem,fly
+1661,stem,jeans
+1662,stem,owl
+1663,stem,rifle
+1664,storage capacity,bazooka
+1665,storage capacity,beet
+1666,storage capacity,carriage
+1667,storage capacity,cheetah
+1668,storage capacity,cockroach
+1669,storage capacity,drill
+1670,storage capacity,owl
+1671,storage compartment,anvil
+1672,storage compartment,banana
+1673,storage compartment,celery
+1674,storage compartment,drill
+1675,storage compartment,grasshopper
+1676,storage compartment,pelican
+1677,storage compartments,artichoke
+1678,storage compartments,bassoon
+1679,storage compartments,beaver
+1680,storage compartments,blouse
+1681,storage compartments,drum
+1682,storage compartments,grenade
+1683,storage compartments,owl
+1684,storage compartments,skateboard
+1685,storage space,bagel
+1686,storage space,bed
+1687,storage space,cauliflower
+1688,storage space,cheese
+1689,storage space,chisel
+1690,storage space,corkscrew
+1691,storage space,parrot
+1692,storage space,spear
+1693,strong beak,airplane
+1694,strong beak,brownie
+1695,strong beak,coconut
+1696,strong beak,gong
+1697,strong beak,penguin
+1698,strong claws,banjo
+1699,strong claws,bed
+1700,strong claws,beetle
+1701,strong claws,blouse
+1702,strong claws,bread
+1703,strong claws,eggbeater
+1704,strong claws,motorcycle
+1705,strong claws,penguin
+1706,strong claws,skateboard
+1707,strong legs,ant
+1708,strong legs,asparagus
+1709,strong legs,drill
+1710,strong legs,motorcycle
+1711,strong legs,rifle
+1712,strong legs,tree
+1713,strong sense of hearing,bagel
+1714,strong sense of hearing,bird
+1715,strong sense of hearing,blackberry
+1716,strong sense of hearing,boar
+1717,strong sense of hearing,cake
+1718,strong sense of hearing,caterpillar
+1719,strong sense of hearing,corkscrew
+1720,strong sense of hearing,fern
+1721,strong sense of smell,bagel
+1722,strong sense of smell,bird
+1723,strong sense of smell,broccoli
+1724,strong sense of smell,chicken
+1725,strong sense of smell,fruit
+1726,strong sense of smell,rifle
+1727,strong wings,axe
+1728,strong wings,banjo
+1729,strong wings,blowtorch
+1730,strong wings,candle
+1731,strong wings,celery
+1732,strong wings,coat
+1733,strong wings,corkscrew
+1734,strong wings,corn
+1735,strong wings,dragonfly
+1736,strong wings,grenade
+1737,strong wings,hat
+1738,strong wings,owl
+1739,strong wings,rifle
+1740,style,bison
+1741,style,blueberry
+1742,style,bra
+1743,style,can opener
+1744,style,candle
+1745,style,dress
+1746,style,drum
+1747,style,earwig
+1748,style,grenade
+1749,style,pelican
+1750,sugar content,accordion
+1751,sugar content,bird
+1752,sugar content,bison
+1753,sugar content,blouse
+1754,sugar content,bus
+1755,sugar content,cart
+1756,sugar content,dress
+1757,sugar content,scooter
+1758,supports digestive health,airplane
+1759,supports digestive health,butterfly
+1760,supports digestive health,chocolate
+1761,supports digestive health,eggbeater
+1762,supports digestive health,scooter
+1763,supports heart health,blowtorch
+1764,supports heart health,blueberry
+1765,supports heart health,burrito
+1766,supports heart health,candelabra
+1767,supports heart health,cat
+1768,supports heart health,cello
+1769,supports heart health,eagle
+1770,supports heart health,parrot
+1771,suspension system,artichoke
+1772,suspension system,axe
+1773,suspension system,blender
+1774,suspension system,bottle
+1775,suspension system,fig
+1776,sweet,banjo
+1777,sweet,bat
+1778,sweet,bench
+1779,sweet,bottle
+1780,sweet,cat
+1781,sweet,grasshopper
+1782,sweet taste,bamboo
+1783,sweet taste,beaver
+1784,sweet taste,blueberry
+1785,sweet taste,duck
+1786,sweet taste,gong
+1787,sweet taste,gun
+1788,sweetness,aloe
+1789,sweetness,banana
+1790,sweetness,banjo
+1791,sweetness,brownie
+1792,sweetness,cat
+1793,sweetness,corkscrew
+1794,sweetness,dagger
+1795,sweetness,duck
+1796,sweetness,slingshot
+1797,tail,airplane
+1798,tail,avocado
+1799,tail,bamboo
+1800,tail,beetle
+1801,tail,blueberry
+1802,tail,brownie
+1803,tail,earwig
+1804,talons,beet
+1805,talons,bison
+1806,talons,candy
+1807,talons,chocolate
+1808,talons,duck
+1809,talons,scooter
+1810,talons,tree
+1811,tart taste,cake
+1812,tart taste,chisel
+1813,tart taste,coat
+1814,tart taste,dagger
+1815,tart taste,eggbeater
+1816,tart taste,fern
+1817,taste,airplane
+1818,taste,bazooka
+1819,taste,camel
+1820,taste,cauliflower
+1821,taste,drum
+1822,taste,fern
+1823,taste,rifle
+1824,territorial behavior,bear
+1825,territorial behavior,bread
+1826,territorial behavior,broccoli
+1827,territorial behavior,cat
+1828,territorial behavior,cockroach
+1829,territorial marking,accordion
+1830,territorial marking,acorn
+1831,territorial marking,butterfly
+1832,territorial marking,cactus
+1833,territorial marking,caterpillar
+1834,territorial marking,cranberry
+1835,texture,candelabra
+1836,texture,crowbar
+1837,texture,grasshopper
+1838,thick skin,antelope
+1839,thick skin,axe
+1840,thick skin,banana
+1841,thick skin,bread
+1842,thick skin,brussels sprouts
+1843,thick skin,cheese
+1844,thick skin,duck
+1845,thick skin,grasshopper
+1846,thick skin,slingshot
+1847,thickness,banana
+1848,thickness,bat
+1849,thickness,car
+1850,thickness,cherry
+1851,thickness,fig
+1852,thickness,motorcycle
+1853,thickness,skateboard
+1854,thickness,spear
+1855,throttle,accordion
+1856,throttle,bear
+1857,throttle,crowbar
+1858,throttle,hat
+1859,tires,acorn
+1860,tires,antelope
+1861,tires,axe
+1862,tires,bucket
+1863,tires,fern
+1864,tires,grasshopper
+1865,tuning pegs,barrel
+1866,tuning pegs,basket
+1867,tuning pegs,butterfly
+1868,tuning pegs,dagger
+1869,tuning pegs,fruit
+1870,tuning pegs,motorcycle
+1871,two pairs of wings,antelope
+1872,two pairs of wings,broccoli
+1873,two pairs of wings,burner
+1874,two pairs of wings,can opener
+1875,two pairs of wings,cat
+1876,two pairs of wings,chinchilla
+1877,two pairs of wings,cranberry
+1878,two pairs of wings,crowbar
+1879,two pairs of wings,fig
+1880,two pairs of wings,fly
+1881,two pairs of wings,pelican
+1882,typically made of metal,barrel
+1883,typically made of metal,bassoon
+1884,typically made of metal,bison
+1885,typically made of metal,brussels sprouts
+1886,typically made of metal,burner
+1887,typically made of metal,butterfly
+1888,typically made of metal,carriage
+1889,typically made of metal,chicken
+1890,typically made of metal,coat
+1891,typically made of metal,corn
+1892,typically made of metal,duck
+1893,typically made of metal,skateboard
+1894,used in various cuisines worldwide,ant
+1895,used in various cuisines worldwide,apple
+1896,used in various cuisines worldwide,celery
+1897,used in various cuisines worldwide,eagle
+1898,used in various cuisines worldwide,grenade
+1899,versatile,bird
+1900,versatile,blender
+1901,versatile,grasshopper
+1902,versatile,sled
+1903,versatile,spear
+1904,versatility,bagpipe
+1905,versatility,bazooka
+1906,versatility,blackberry
+1907,versatility,butterfly
+1908,versatility,corn
+1909,versatility,crow
+1910,versatility,drill
+1911,water content,bassoon
+1912,water content,can opener
+1913,water content,drum
+1914,water content,fig
+1915,water content,hat
+1916,water resistance,artichoke
+1917,water resistance,bazooka
+1918,water resistance,cabbage
+1919,water resistance,candelabra
+1920,water resistance,candy
+1921,water resistance,clarinet
+1922,water resistance,ostrich
+1923,webbed feet,cactus
+1924,webbed feet,candelabra
+1925,webbed feet,chicken
+1926,webbed feet,costume
+1927,webbed feet,grenade
+1928,webbed feet,motorcycle
+1929,weight,blender
+1930,weight,bra
+1931,weight,brownie
+1932,weight,cake
+1933,weight,candelabra
+1934,weight,chisel
+1935,weight,chocolate
+1936,weight,fig
+1937,weight,rifle
+1938,weight capacity,beet
+1939,weight capacity,cockroach
+1940,weight capacity,missile
+1941,weight distribution,beet
+1942,weight distribution,bird
+1943,weight distribution,bread
+1944,weight distribution,cheetah
+1945,weight distribution,chinchilla
+1946,weight distribution,eggbeater
+1947,weight distribution,jeans
+1948,weight distribution,ostrich
+1949,weight distribution,pelican
+1950,wheelbase,anteater
+1951,wheelbase,avocado
+1952,wheelbase,basket
+1953,wheelbase,bed
+1954,wheelbase,beet
+1955,wheelbase,candelabra
+1956,wheelbase,chicken
+1957,wheelbase,earwig
+1958,wheelbase,flute
+1959,wheelbase,jeans
+1960,wheelbase,parrot
+1961,wheels,asparagus
+1962,wheels,bagel
+1963,wheels,bean
+1964,wheels,carrot
+1965,wheels,celery
+1966,wheels,coconut
+1967,wheels,duck
+1968,wheels,fruit
+1969,wheels,grasshopper
+1970,wheels,motorcycle
+1971,width,accordion
+1972,width,bagpipe
+1973,width,bison
+1974,width,camel
+1975,width,dagger
+1976,width,eagle
+1977,width,gong
+1978,width,gun
+1979,width,sled
+1980,wings,artichoke
+1981,wings,bagel
+1982,wings,barrel
+1983,wings,bed
+1984,wings,bell
+1985,wings,boa
+1986,wings,butterfly
+1987,wings,coconut
+1988,wings,dragonfly
+1989,woodwind instrument,banana
+1990,woodwind instrument,blender
+1991,woodwind instrument,bucket
+1992,woodwind instrument,cart
+1993,woodwind instrument,cat
+1994,woodwind instrument,chocolate
+1995,woodwind instrument,clarinet
+1996,woodwind instrument,duck
+1997,woodwind instrument,fern
+1998,woodwind instrument,fly
+1999,woodwind instrument,gun

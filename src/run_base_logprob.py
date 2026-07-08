@@ -27,8 +27,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from stimuli import _read_rows, load_concepts  # noqa: E402
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW = os.path.join(HERE, "results", "raw")
-STIM = os.path.join(HERE, "data", "stimuli")
+RAW = os.environ.get("COHERENCE_RAW_DIR", os.path.join(HERE, "results", "raw"))
+STIM = os.environ.get("COHERENCE_STIM_DIR", os.path.join(HERE, "data", "stimuli"))
 
 
 def load_registry():
@@ -84,7 +84,7 @@ def seq_logprob(llm, prompt, completion):
     return _mean_logprob(llm, prompt, completion)
 
 
-def batch_mean_logprob(llm, pairs, chunk=64):
+def batch_mean_logprob(llm, pairs, chunk=64, lora_request=None):
     """Vectorized mean completion logprob for a list of (prompt, completion).
     Processed in chunks to avoid CUDA OOM from too many concurrent sequences."""
     from vllm import SamplingParams
@@ -105,7 +105,7 @@ def batch_mean_logprob(llm, pairs, chunk=64):
                     break
             starts.append((s, len(full_ids)))
             fulls.append(prompt + completion)
-        outs = llm.generate(fulls, sp)
+        outs = llm.generate(fulls, sp, lora_request=lora_request, use_tqdm=False)
         for (s, n), o in zip(starts, outs):
             pls = o.prompt_logprobs
             lps = [next(iter(pls[i].values())).logprob
@@ -117,12 +117,21 @@ def batch_mean_logprob(llm, pairs, chunk=64):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
+    ap.add_argument("--out_model", default=None,
+                    help="raw-output directory name (default: --model)")
+    ap.add_argument("--lora", default=None,
+                    help="optional LoRA adapter directory to apply with vLLM")
     ap.add_argument("--methods", nargs="+", default=["triplet", "pairwise"])
     ap.add_argument("--gpu_mem_util", type=float, default=0.90)
     ap.add_argument("--max_model_len", type=int, default=2048)
     ap.add_argument("--suffix", default="",
                     help="output filename suffix, e.g. '_lp' -> triplet_lp.csv "
                          "(keeps generation-based files intact)")
+    ap.add_argument("--pairs_file", default="verify_pairs.csv",
+                    help="feature verification pairs file for feature logprob; "
+                         "relative to output dir unless a path is provided")
+    ap.add_argument("--chunk", type=int, default=64,
+                    help="logprob batch chunk size")
     ap.add_argument("--overwrite", action="store_true")
     args = ap.parse_args()
 
@@ -136,13 +145,26 @@ def main():
         os.environ["HF_HUB_OFFLINE"] = "1"
         os.environ["TRANSFORMERS_OFFLINE"] = "1"
 
-    outdir = os.path.join(RAW, args.model)
+    out_name = args.out_model or args.model
+    outdir = os.path.join(RAW, out_name)
     os.makedirs(outdir, exist_ok=True)
 
     from vllm import LLM
-    llm = LLM(model=mp, download_dir=hf_cache, max_model_len=args.max_model_len,
-              gpu_memory_utilization=args.gpu_mem_util, dtype="bfloat16",
-              max_num_seqs=128, trust_remote_code=True)
+    llm_kwargs = dict(model=mp, download_dir=hf_cache, max_model_len=args.max_model_len,
+                      gpu_memory_utilization=args.gpu_mem_util, dtype="bfloat16",
+                      max_num_seqs=128, trust_remote_code=True)
+    lora_request = None
+    if args.lora:
+        llm_kwargs["enable_lora"] = True
+        llm_kwargs["max_lora_rank"] = 64
+        from vllm.lora.request import LoRARequest
+        lora_request = LoRARequest(out_name, 1, os.path.abspath(args.lora))
+    llm = LLM(**llm_kwargs)
+
+    def resolve_pairs_file(path):
+        if os.path.isabs(path) or os.path.exists(path):
+            return path
+        return os.path.join(outdir, path)
 
     if "triplet" in args.methods:
         out = os.path.join(outdir, f"triplet{args.suffix}.csv")
@@ -154,7 +176,8 @@ def main():
             for anchor, c1, c2 in rows:
                 pairs.append((f"{anchor} is more similar to", " " + c1))
                 pairs.append((f"{anchor} is more similar to", " " + c2))
-            lps = batch_mean_logprob(llm, pairs)
+            lps = batch_mean_logprob(llm, pairs, chunk=args.chunk,
+                                     lora_request=lora_request)
             with open(out, "w", newline="") as f:
                 w = csv.writer(f)
                 w.writerow(["input", "prompt", "response"])
@@ -175,7 +198,8 @@ def main():
                     pairs.append(
                         (f"On a scale of 1 to 7, the similarity of {a} and {b} is",
                          " " + str(r)))
-            lps = batch_mean_logprob(llm, pairs)
+            lps = batch_mean_logprob(llm, pairs, chunk=args.chunk,
+                                     lora_request=lora_request)
             with open(out, "w", newline="") as f:
                 w = csv.writer(f)
                 w.writerow(["input", "prompt", "response"])
@@ -184,6 +208,31 @@ def main():
                     best_r = 1 + max(range(7), key=lambda i: seg[i])
                     w.writerow([f"{a}|{b}", "logprob", str(best_r)])
             print(f"[done] pairwise (logprob): {len(rows)} rows -> {out}")
+
+    if "feature" in args.methods:
+        out = os.path.join(outdir, f"feature{args.suffix}.csv")
+        if os.path.exists(out) and not args.overwrite:
+            print(f"[skip] {out}")
+        else:
+            from prompts import feature_prompt
+            rows = _read_rows(resolve_pairs_file(args.pairs_file))
+            pairs = []
+            prompts = []
+            for feat, concept in rows:
+                prompt = feature_prompt(feat, concept)
+                prompts.append(prompt)
+                pairs.append((prompt, " True"))
+                pairs.append((prompt, " False"))
+            lps = batch_mean_logprob(llm, pairs, chunk=args.chunk,
+                                     lora_request=lora_request)
+            with open(out, "w", newline="") as f:
+                w = csv.writer(f)
+                w.writerow(["input", "prompt", "response"])
+                for k, (feat, concept) in enumerate(rows):
+                    lt, lf = lps[2 * k], lps[2 * k + 1]
+                    w.writerow([f"{feat}|{concept}", prompts[k],
+                                "True" if lt >= lf else "False"])
+            print(f"[done] feature (logprob): {len(rows)} rows -> {out}")
 
 
 if __name__ == "__main__":

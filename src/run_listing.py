@@ -41,6 +41,10 @@ def resolve_model_path(repo_id, hf_cache, allow_download):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
+    ap.add_argument("--out_model", default=None,
+                    help="raw-output directory name (default: --model)")
+    ap.add_argument("--lora", default=None,
+                    help="optional LoRA adapter directory to apply with vLLM")
     ap.add_argument("--repeats", type=int, default=5)
     ap.add_argument("--temperature", type=float, default=0.7)
     ap.add_argument("--max_tokens", type=int, default=256)
@@ -61,7 +65,8 @@ def main():
         os.environ["HF_HUB_OFFLINE"] = "1"
         os.environ["TRANSFORMERS_OFFLINE"] = "1"
 
-    outdir = os.path.join(RAW, args.model)
+    out_name = args.out_model or args.model
+    outdir = os.path.join(RAW, out_name)
     os.makedirs(outdir, exist_ok=True)
     out = os.path.join(outdir, "listing.csv")
     if os.path.exists(out) and not args.overwrite:
@@ -81,6 +86,12 @@ def main():
                       gpu_memory_utilization=args.gpu_mem_util,
         **({"max_num_seqs": args.max_num_seqs} if args.max_num_seqs else {}),
                       dtype="bfloat16", trust_remote_code=True)
+    lora_request = None
+    if args.lora:
+        llm_kwargs["enable_lora"] = True
+        llm_kwargs["max_lora_rank"] = 64
+        from vllm.lora.request import LoRARequest
+        lora_request = LoRARequest(out_name, 1, os.path.abspath(args.lora))
     if spec.get("quantization") and os.environ.get("COHERENCE_FORCE_BF16") != "1":
         llm_kwargs["quantization"] = spec["quantization"]
     llm = LLM(**llm_kwargs)
@@ -89,9 +100,9 @@ def main():
     if spec.get("chat", True):
         convos = [[{"role": "system", "content": SYSTEM_PROMPT},
                    {"role": "user", "content": p}] for p in prompts]
-        outputs = llm.chat(convos, sp)
+        outputs = llm.chat(convos, sp, lora_request=lora_request)
     else:
-        outputs = llm.generate(prompts, sp)
+        outputs = llm.generate(prompts, sp, lora_request=lora_request)
 
     with open(out, "w", newline="") as f:
         w = csv.writer(f)

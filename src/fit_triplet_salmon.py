@@ -12,6 +12,7 @@ import os
 import sys
 import types
 import importlib
+import argparse
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -30,8 +31,9 @@ for pkg in ["salmon", "salmon.triplets"]:
 OfflineEmbedding = importlib.import_module("salmon.triplets.offline").OfflineEmbedding
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW = os.path.join(HERE, "results", "raw")
-OUT = os.path.join(HERE, "data", "triplet_embeddings")
+RAW = os.environ.get("COHERENCE_RAW_DIR", os.path.join(HERE, "results", "raw"))
+OUT = os.environ.get("COHERENCE_TRIPLET_EMB_DIR",
+                     os.path.join(HERE, "data", "triplet_embeddings"))
 os.makedirs(OUT, exist_ok=True)
 
 
@@ -41,13 +43,14 @@ def _norm(s):
 
 
 def load_concepts():
-    with open(os.path.join(HERE, "data", "stimuli", "concepts.csv")) as f:
+    stim = os.environ.get("COHERENCE_STIM_DIR", os.path.join(HERE, "data", "stimuli"))
+    with open(os.path.join(stim, "concepts.csv")) as f:
         return [ln.strip() for ln in f if ln.strip()]
 
 
-def triplets_for_model(model, concepts):
+def triplets_for_model(model, concepts, suffix=""):
     """Return (head, winner, loser) int arrays from a model's triplet.csv."""
-    df = pd.read_csv(os.path.join(RAW, model, "triplet.csv"))
+    df = pd.read_csv(os.path.join(RAW, model, f"triplet{suffix}.csv"))
     idx = {_norm(c): i for i, c in enumerate(concepts)}
     rows = []
     for _, r in df.iterrows():
@@ -69,23 +72,43 @@ def triplets_for_model(model, concepts):
     return np.array(rows, dtype=int)
 
 
-def fit(model, concepts, d=3, max_epochs=8000):
-    X = triplets_for_model(model, concepts)
+def fit(model, concepts, d=3, max_epochs=8000, suffix="", out_dir=OUT):
+    X = triplets_for_model(model, concepts, suffix=suffix)
     n = len(concepts)
     X_train, X_test = train_test_split(X, random_state=42, test_size=0.2)
     em = OfflineEmbedding(n=n, d=d, max_epochs=max_epochs, verbose=1000)
     em.fit(X_train, X_test)
     emb = np.asarray(em.embedding_)          # n x d, in 0..n-1 concept-index order
-    np.save(os.path.join(OUT, f"{model}.npy"), emb)
+    os.makedirs(out_dir, exist_ok=True)
+    if not suffix and d == 3 and os.path.abspath(out_dir) == os.path.abspath(OUT):
+        name = f"{model}.npy"
+    else:
+        tag = f"_triplet{suffix}_d{d}" if suffix else f"_triplet_d{d}"
+        name = f"{model}{tag}.npy"
+    np.save(os.path.join(out_dir, name), emb)
     print(f"[salmon] {model}: fit {X.shape[0]} triplets -> {emb.shape} embedding")
     return emb
 
 
 if __name__ == "__main__":
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--raw_dir", default=None)
+    ap.add_argument("--stim_dir", default=None)
+    ap.add_argument("--out_dir", default=OUT)
+    ap.add_argument("--suffix", default="")
+    ap.add_argument("--d", type=int, default=3)
+    ap.add_argument("--max_epochs", type=int, default=8000)
+    ap.add_argument("models", nargs="*")
+    args = ap.parse_args()
+    if args.raw_dir:
+        RAW = args.raw_dir
+    if args.stim_dir:
+        os.environ["COHERENCE_STIM_DIR"] = args.stim_dir
     concepts = load_concepts()
-    models = sys.argv[1:] or []
+    models = args.models or []
     for m in models:
         try:
-            fit(m, concepts)
+            fit(m, concepts, d=args.d, max_epochs=args.max_epochs,
+                suffix=args.suffix, out_dir=args.out_dir)
         except Exception as e:
             print(f"[salmon] {m} FAILED: {e}")

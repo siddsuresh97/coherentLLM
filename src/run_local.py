@@ -50,6 +50,10 @@ def resolve_model_path(repo_id: str, hf_cache: str, allow_download: bool):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
+    ap.add_argument("--out_model", default=None,
+                    help="raw-output directory name (default: --model)")
+    ap.add_argument("--lora", default=None,
+                    help="optional LoRA adapter directory to apply with vLLM")
     ap.add_argument("--methods", nargs="+", default=["triplet", "pairwise", "feature"])
     ap.add_argument("--feature_sample", type=int, default=0,
                     help="use only first N features (0 = all in the file)")
@@ -61,7 +65,9 @@ def main():
                          "feature method to cut call count")
     ap.add_argument("--pairs_file", default=None,
                     help="per-model (feature,concept) pairs file under the model's raw "
-                         "dir (e.g. verify_pairs.csv) for self-verification")
+                         "dir (e.g. verify_pairs.csv) for self-verification, or a path")
+    ap.add_argument("--suffix", default="",
+                    help="output filename suffix, e.g. '_basefeatures'")
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--tensor_parallel", type=int, default=1)
     ap.add_argument("--max_model_len", type=int, default=4096)
@@ -90,13 +96,14 @@ def main():
         os.environ["TRANSFORMERS_OFFLINE"] = "1"
     print(f"[model] {args.model} -> {model_path} (local_snapshot={is_local_snapshot})")
 
-    outdir = os.path.join(RAW, args.model)
+    out_name = args.out_model or args.model
+    outdir = os.path.join(RAW, out_name)
     os.makedirs(outdir, exist_ok=True)
 
     # Decide what still needs running before loading the (expensive) model.
     todo = []
     for m in args.methods:
-        out = os.path.join(outdir, f"{m}.csv")
+        out = os.path.join(outdir, f"{m}{args.suffix}.csv")
         if os.path.exists(out) and not args.overwrite:
             print(f"[skip] {out} exists")
             continue
@@ -122,6 +129,12 @@ def main():
     # max_num_seqs lets vLLM run many sequences concurrently on the H100.
     if args.max_num_seqs:
         llm_kwargs["max_num_seqs"] = args.max_num_seqs
+    lora_request = None
+    if args.lora:
+        llm_kwargs["enable_lora"] = True
+        llm_kwargs["max_lora_rank"] = 64
+        from vllm.lora.request import LoRARequest
+        lora_request = LoRARequest(out_name, 1, os.path.abspath(args.lora))
     quant = spec.get("quantization")
     if quant and os.environ.get("COHERENCE_FORCE_BF16") == "1":
         print(f"[bf16] ignoring quantization={quant} (COHERENCE_FORCE_BF16 set, e.g. H100)")
@@ -136,18 +149,25 @@ def main():
         if spec.get("chat", True):
             convos = [[{"role": "system", "content": SYSTEM_PROMPT},
                        {"role": "user", "content": p}] for p in prompts]
-            return llm.chat(convos, sp)
-        return llm.generate(prompts, sp)
+            return llm.chat(convos, sp, lora_request=lora_request)
+        return llm.generate(prompts, sp, lora_request=lora_request)
+
+    def resolve_pairs_file(path):
+        if not path:
+            return None
+        if os.path.isabs(path) or os.path.exists(path):
+            return path
+        return os.path.join(outdir, path)
 
     for method in todo:
-        out = os.path.join(outdir, f"{method}.csv")
+        out = os.path.join(outdir, f"{method}{args.suffix}.csv")
 
         if method == "feature" and args.pairs_file and not args.feature_batch:
             # SINGLE-PAIR self-verification (validated: batching inflates True-rate,
             # so one (feature, concept) per call is the correct method).
             from prompts import feature_prompt
             from stimuli import _read_rows
-            pairs = _read_rows(os.path.join(outdir, args.pairs_file))
+            pairs = _read_rows(resolve_pairs_file(args.pairs_file))
             prompts = [feature_prompt(feat, concept) for feat, concept in pairs]
             outputs = run_prompts(prompts, max_tokens=8)
             with open(out, "w", newline="") as f:
@@ -165,7 +185,7 @@ def main():
             if args.pairs_file:
                 # per-model self-verification: read (feature, concept) pairs, batch per concept
                 import collections
-                pairs_path = os.path.join(outdir, args.pairs_file)
+                pairs_path = resolve_pairs_file(args.pairs_file)
                 by_concept = collections.OrderedDict()
                 for feat, concept in _read_rows(pairs_path):
                     by_concept.setdefault(concept, []).append(feat)
