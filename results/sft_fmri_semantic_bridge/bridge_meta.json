@@ -1,0 +1,28 @@
+{
+  "fmri_dir": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_fmri",
+  "hub_dir": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub",
+  "hub_metrics": [
+    "cross_format_rdm_spearman",
+    "linear_cka",
+    "retrieval_top1",
+    "retrieval_top5",
+    "concept_minus_format_alignment"
+  ],
+  "notes": [
+    "Layer-grid correlations are descriptive and not independent samples.",
+    "Delta-vs-base correlations are the main check against generic layer-depth effects.",
+    "Arm-summary correlations have n=7 and should be treated as hypothesis generation."
+  ],
+  "summary_hub_metrics": [
+    "best_cross_format_rdm_spearman",
+    "best_linear_cka",
+    "best_retrieval_top1",
+    "best_retrieval_top5",
+    "best_concept_minus_format_alignment",
+    "mid_cross_format_rdm_spearman",
+    "mid_linear_cka",
+    "mid_retrieval_top1",
+    "mid_retrieval_top5",
+    "mid_concept_minus_format_alignment"
+  ]
+}

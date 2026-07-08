@@ -307,8 +307,8 @@ Confounds to control:
 3. Done: implement RSA over saved hidden states and existing fMRI betas.
 4. Done: add semantic-hub prompt extraction and layer-resolved metrics.
 5. Done: run semantic-hub extraction and scoring for all seven arms.
-6. Next: integrate semantic-hub scores with fMRI RSA and decide whether to launch
-   language-fMRI.
+6. Done: integrate semantic-hub scores with fMRI RSA.
+7. Next: decide whether to launch language-fMRI.
 
 ## Completion criteria for first solid result
 
@@ -321,6 +321,8 @@ Confounds to control:
   nearly flat vs base in the primary ROI.
 - Done: commit and push the first fMRI RSA result checkpoint (`f723cc4`).
 - Done: extract and score semantic-hub hidden states for all arms.
+- Done: bridge semantic-hub scores to fMRI RSA and write
+  `results/sft_fmri_semantic_bridge/REPORT.md`.
 
 ## 2026-07-08 semantic-hub implementation note
 
@@ -380,3 +382,32 @@ Interpretation:
   remains negative for every arm.
 - Next: bridge hub metrics to fMRI RSA and ask whether format-averaged hub RDMs
   predict fMRI better than single-format RDMs.
+
+## 2026-07-08 fMRI x semantic-hub bridge
+
+Implemented:
+
+- `src/sft/bridge_fmri_semantic_hub.py`
+
+Files:
+
+- `results/sft_fmri_semantic_bridge/layer_join.csv`
+- `results/sft_fmri_semantic_bridge/layer_correlations.csv`
+- `results/sft_fmri_semantic_bridge/arm_summary_bridge.csv`
+- `results/sft_fmri_semantic_bridge/arm_summary_correlations.csv`
+- `results/sft_fmri_semantic_bridge/REPORT.md`
+
+Initial read:
+
+- The semantic hub is a strong internal-model effect: aligned/task-vector arms
+  clearly improve cross-format invariance over base.
+- The fMRI result remains mostly an object-geometry signal. Ventral Visual
+  shows strong scrambled-control separation, but aligned arms are nearly flat
+  versus base.
+- Arm-level Ventral Visual delta-vs-base correlation with mid-layer hub RDM is
+  positive but small-n (`Spearman r=0.600`, `n=6`, `p=0.208`).
+- Same-concept retrieval does not explain Ventral Visual deltas
+  (`Spearman r=-0.086`, `n=6`, `p=0.872`).
+- The next decisive test is not another descriptive correlation; it is a
+  leakage-clean regression where format-averaged hub RDMs and single-format
+  RDMs compete to predict the same fMRI RDMs.

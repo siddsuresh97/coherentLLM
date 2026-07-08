@@ -152,3 +152,13 @@ FlashAttention varlen cu_seqlens so each sub-example is isolated):
 Full scale experiment (n=30/60/128), REPORT.md, all raw data. Metric r2. qwen-32b done.
 Finding: coherence collapses with concept count for ALL models by n=60; humans hold; size doesn't
 protect. Lead metric at scale = model triplet~human alignment (confound-free).
+
+## Latest coherence-sft checkpoint
+- `caff36e` pushed: partial lowrank/taskvec wide-bench mitigation results and
+  active benchmark log.
+- fMRI x semantic-hub bridge now exists locally in
+  `results/sft_fmri_semantic_bridge/` and is ready for commit.
+- Bridge read: semantic-hub invariance is strong internally, but it does not yet
+  explain object-fMRI RSA. Ventral Visual delta-vs-base vs mid hub RDM is
+  positive but small-n (`r=0.600`, `n=6`, `p=0.208`); retrieval top-1 is not
+  explanatory (`r=-0.086`).

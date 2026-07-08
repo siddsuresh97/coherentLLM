@@ -523,15 +523,21 @@ Speed/reliability notes:
 - Lowrank ARC+Hella at `gpu_mem_util=0.75`, `batch_size=4` OOMed near the end
   of ARC 25-shot. The retry is split by GPU: ARC uses `batch_size=2`,
   `gpu_mem_util=0.72`; HellaSwag uses `batch_size=4`, `gpu_mem_util=0.75`.
+- Lowrank HellaSwag also OOMed at `gpu_mem_util=0.75`, `batch_size=4` around
+  19% of loglikelihood requests. It was relaunched with `batch_size=2`,
+  `gpu_mem_util=0.72`.
 - H100 lowrank MMLU completed. It was the long lane because 5-shot MMLU expands
   to about 54k loglikelihood requests.
 - The freed H100 is now running `taskvec_a0p25` MMLU to avoid idle allocation.
+- First `taskvec_a0p25` H100 MMLU launch entered pre-GPU uninterruptible I/O for
+  about four minutes and was killed/relaunched after model and adapter path
+  checks returned immediately.
 
 Current active runs:
 
 ```bash
 ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/eval_wide_bench.py --states lowrank --groups arc_25shot --gpu_mem_util 0.72 --batch_size 2 --no_summarize'
-ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=1 python src/sft/eval_wide_bench.py --states lowrank --groups hellaswag_10shot --gpu_mem_util 0.75 --batch_size 4 --no_summarize'
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=1 python src/sft/eval_wide_bench.py --states lowrank --groups hellaswag_10shot --gpu_mem_util 0.72 --batch_size 2 --no_summarize'
 ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 opt-a007.discovery.wisc.edu 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/eval_wide_bench.py --states taskvec_a0p25 --groups mmlu_5shot --gpu_mem_util 0.88 --no_summarize'
 ```
 
@@ -540,3 +546,35 @@ Next after lowrank wide-bench completes:
 ```bash
 python src/sft/eval_wide_bench.py --states base lowLR lowrank --summarize_only
 ```
+
+## 2026-07-08 result: fMRI x semantic-hub bridge
+
+Command:
+
+```bash
+python src/sft/bridge_fmri_semantic_hub.py
+```
+
+Artifacts:
+
+- `src/sft/bridge_fmri_semantic_hub.py`
+- `results/sft_fmri_semantic_bridge/layer_join.csv`
+- `results/sft_fmri_semantic_bridge/layer_correlations.csv`
+- `results/sft_fmri_semantic_bridge/arm_summary_bridge.csv`
+- `results/sft_fmri_semantic_bridge/arm_summary_correlations.csv`
+- `results/sft_fmri_semantic_bridge/REPORT.md`
+
+Initial read:
+
+- The semantic-hub effect is robust inside the model, but it does not yet
+  explain the first object-fMRI RSA pattern.
+- Ventral Visual arm-level delta-vs-base vs mid-layer hub RDM:
+  `Spearman r=0.600`, `n=6`, `p=0.208`.
+- Ventral Visual arm-level delta-vs-base vs mid-layer hub top-1 retrieval:
+  `Spearman r=-0.086`, `n=6`, `p=0.872`.
+- Layer-grid delta correlations are positive for cross-format RDM in Ventral
+  Visual (`r=0.401`, `n=192`) and ATL (`r=0.306`, `n=192`), but layer-grid
+  points are not independent and should be treated as descriptive.
+- The next decisive analysis is a held-out fMRI regression that compares
+  format-averaged hub RDMs against single-format RDMs for the same concepts and
+  ROIs.
