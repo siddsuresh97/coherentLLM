@@ -1,0 +1,2 @@
+arm,model,lr,rank,steps,coherence_complete,coherence_missing,gen_proc_tf,gen_proc_tp,gen_proc_pf,gen_coherence,retention_source,arc,hellaswag,mmlu_abstract_algebra,mmlu_anatomy,truthfulqa_mc2,retention_mean,gen_delta_vs_base,retention_delta_vs_base
+fewsteps,llama31-mit-fewsteps,0.000200,64,400,False,results/sft_eval/raw/llama31-mit-fewsteps/triplet.csv; results/sft_eval/raw/llama31-mit-fewsteps/pairwise.csv; results/sft_eval/raw/llama31-mit-fewsteps/feature.csv; results/sft_eval/llama31-mit-fewsteps_triplet_d5.npy,,,,,,,,,,,,,
