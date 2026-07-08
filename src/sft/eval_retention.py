@@ -49,9 +49,20 @@ def run_cmd(cmd, env):
     return subprocess.run(cmd, cwd=str(ROOT), env=env)
 
 
+def state_spec(state, args):
+    if state in STATES:
+        return STATES[state]
+    if args.custom_state and state == args.custom_state and args.custom_adapter:
+        return args.custom_model_name or state, Path(args.custom_adapter)
+    raise SystemExit(
+        f"unknown state {state!r}; use one of {list(STATES)} or pass "
+        "--custom_state with --custom_adapter"
+    )
+
+
 def run_state(state, args, base_path, hf_cache):
-    model_name, adapter = STATES[state]
-    out_dir = ROOT / "results" / "sft_eval" / "retention" / model_name
+    model_name, adapter = state_spec(state, args)
+    out_dir = args.out_root / model_name
     if has_result(out_dir) and not args.overwrite:
         print(f"[skip] {out_dir} already has JSON results")
         return
@@ -67,14 +78,14 @@ def run_state(state, args, base_path, hf_cache):
     # `datasets` library is NOT in offline mode, or it can't fetch mmlu/arc/etc.
     if Path(base_path).is_dir():
         env["TRANSFORMERS_OFFLINE"] = "1"
-    env["HF_HUB_OFFLINE"] = "0"
-    env["HF_DATASETS_OFFLINE"] = "0"
+    env.setdefault("HF_HUB_OFFLINE", "0")
+    env.setdefault("HF_DATASETS_OFFLINE", "0")
 
     common = [
         sys.executable, "-m", "lm_eval",
-        "--tasks", TASKS,
+        "--tasks", args.tasks,
         "--limit", str(args.limit),
-        "--num_fewshot", "0",
+        "--num_fewshot", str(args.num_fewshot),
         "--batch_size", args.batch_size,
         "--output_path", str(out_dir),
     ]
@@ -92,7 +103,7 @@ def run_state(state, args, base_path, hf_cache):
             model_args.extend([
                 "enable_lora=True",
                 f"lora_local_path={adapter}",
-                "max_lora_rank=64",
+                f"max_lora_rank={args.max_lora_rank}",
             ])
         return common + ["--model", "vllm", "--model_args", ",".join(model_args)]
 
@@ -122,12 +133,23 @@ def run_state(state, args, base_path, hf_cache):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--states", nargs="+", default=["base", "real", "scrambled"],
-                    choices=list(STATES))
+                    help="Built-in states, or --custom_state when evaluating one adapter.")
+    ap.add_argument("--custom_state", default=None)
+    ap.add_argument("--custom_adapter", default=None)
+    ap.add_argument("--custom_model_name", default=None)
+    ap.add_argument(
+        "--out_root",
+        type=Path,
+        default=ROOT / "results" / "sft_eval" / "retention",
+    )
+    ap.add_argument("--tasks", default=TASKS)
+    ap.add_argument("--num_fewshot", type=int, default=0)
     ap.add_argument("--limit", type=int, default=500)
     ap.add_argument("--backend", choices=["auto", "vllm", "hf"], default="auto")
     ap.add_argument("--batch_size", default="auto")
     ap.add_argument("--gpu_mem_util", type=float, default=0.90)
     ap.add_argument("--max_model_len", type=int, default=4096)
+    ap.add_argument("--max_lora_rank", type=int, default=64)
     ap.add_argument("--overwrite", action="store_true")
     args = ap.parse_args()
 
