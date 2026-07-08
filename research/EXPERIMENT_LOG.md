@@ -475,3 +475,68 @@ Interpretation:
   stronger format invariance rather than a proven concept-dominant hub.
 - Next bridge: correlate hub metrics with fMRI RSA and test whether
   format-averaged hub RDMs predict fMRI better than single-format RDMs.
+
+## 2026-07-08 active: lowrank/task-vector wide-bench follow-up
+
+Reason:
+
+- Diagnose why broad benchmarks drop after coherence SFT and whether lighter
+  mitigation states (`lowrank`, `taskvec_a0p25`) keep semantic gains with less
+  retention loss.
+
+Completed partial results:
+
+| State | Group | Task | Metric | Value |
+|---|---|---|---|---:|
+| `lowrank` | zero-shot | PIQA | acc_norm | 0.776 |
+| `lowrank` | zero-shot | OpenBookQA | acc_norm | 0.408 |
+| `lowrank` | zero-shot | CommonsenseQA | acc | 0.622 |
+| `lowrank` | zero-shot | WiC | acc | 0.498 |
+| `lowrank` | zero-shot | TruthfulQA-MC2 | acc | 0.541 |
+| `lowrank` | 5-shot | WinoGrande | acc | 0.744 |
+| `lowrank` | 5-shot | MMLU | acc | 0.592 |
+| `taskvec_a0p25` | zero-shot | PIQA | acc_norm | 0.789 |
+| `taskvec_a0p25` | zero-shot | OpenBookQA | acc_norm | 0.436 |
+| `taskvec_a0p25` | zero-shot | CommonsenseQA | acc | 0.581 |
+| `taskvec_a0p25` | zero-shot | WiC | acc | 0.502 |
+| `taskvec_a0p25` | zero-shot | TruthfulQA-MC2 | acc | 0.523 |
+| `taskvec_a0p25` | 5-shot | WinoGrande | acc | 0.747 |
+
+Initial interpretation:
+
+- `lowrank` does not rescue WiC; it is near chance, like lowLR. That suggests
+  the alignment objective may be harming lexical sense discrimination rather
+  than merely overfitting a specific adapter rank.
+- `taskvec_a0p25` improves OpenBookQA and PIQA relative to `lowrank`, but loses
+  CommonsenseQA and TruthfulQA in this partial slice.
+- WinoGrande is stable across `lowrank` and `taskvec_a0p25`, so the broad drop
+  is not a uniform few-shot evaluation failure.
+
+Speed/reliability notes:
+
+- A5000 `gpu_mem_util=0.82` with vLLM auto batch OOMed during prompt-logprob
+  scoring.
+- A5000 `gpu_mem_util=0.65` plus `batch_size=8` left too little KV cache and
+  failed vLLM initialization.
+- A5000 `gpu_mem_util=0.75` plus `batch_size=4` completed lowrank
+  zero-shot/WinoGrande and taskvec_a0p25 zero-shot/WinoGrande.
+- Lowrank ARC+Hella at `gpu_mem_util=0.75`, `batch_size=4` OOMed near the end
+  of ARC 25-shot. The retry is split by GPU: ARC uses `batch_size=2`,
+  `gpu_mem_util=0.72`; HellaSwag uses `batch_size=4`, `gpu_mem_util=0.75`.
+- H100 lowrank MMLU completed. It was the long lane because 5-shot MMLU expands
+  to about 54k loglikelihood requests.
+- The freed H100 is now running `taskvec_a0p25` MMLU to avoid idle allocation.
+
+Current active runs:
+
+```bash
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/eval_wide_bench.py --states lowrank --groups arc_25shot --gpu_mem_util 0.72 --batch_size 2 --no_summarize'
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=1 python src/sft/eval_wide_bench.py --states lowrank --groups hellaswag_10shot --gpu_mem_util 0.75 --batch_size 4 --no_summarize'
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 opt-a007.discovery.wisc.edu 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/eval_wide_bench.py --states taskvec_a0p25 --groups mmlu_5shot --gpu_mem_util 0.88 --no_summarize'
+```
+
+Next after lowrank wide-bench completes:
+
+```bash
+python src/sft/eval_wide_bench.py --states base lowLR lowrank --summarize_only
+```
