@@ -204,7 +204,11 @@ def compute_arm(path: Path, mid_band: tuple[int, int]) -> tuple[list[dict], dict
         )
 
     mean_rows = [row for row in rows if row["format_a"] == "__mean__"]
-    best = max(mean_rows, key=lambda row: row["cross_format_rdm_spearman"])
+    finite_mean_rows = [
+        row for row in mean_rows if math.isfinite(float(row["cross_format_rdm_spearman"]))
+    ]
+    best_candidates = finite_mean_rows if finite_mean_rows else mean_rows
+    best = max(best_candidates, key=lambda row: row["cross_format_rdm_spearman"])
     start, end = mid_band
     mid = [row for row in mean_rows if start <= int(row["layer"]) <= end]
     summary = {
@@ -247,6 +251,8 @@ def write_csv(path: Path, rows: list[dict]) -> None:
 def write_report(out_dir: Path, summaries: list[dict], args: argparse.Namespace) -> None:
     by_mid = sorted(summaries, key=lambda row: row["mid_cross_format_rdm_spearman"], reverse=True)
     by_best = sorted(summaries, key=lambda row: row["best_cross_format_rdm_spearman"], reverse=True)
+    base = next((row for row in summaries if row["arm"] == "base"), None)
+    top_mid = by_mid[0]
     lines = [
         "# Semantic Hub Report",
         "",
@@ -276,6 +282,26 @@ def write_report(out_dir: Path, summaries: list[dict], args: argparse.Namespace)
             f"{row['mid_linear_cka']:.4f} | {row['mid_retrieval_top1']:.4f} | "
             f"{row['mid_retrieval_top5']:.4f} | {row['mid_concept_minus_format_alignment']:.4f} |"
         )
+    lines.extend([
+        "",
+        "## Initial Read",
+        "",
+        f"- Strongest mid-layer format-invariance score: `{top_mid['arm']}` "
+        f"(RDM Spearman {top_mid['mid_cross_format_rdm_spearman']:.4f}, "
+        f"CKA {top_mid['mid_linear_cka']:.4f}, top-1 retrieval {top_mid['mid_retrieval_top1']:.4f}).",
+    ])
+    if base is not None:
+        lines.append(
+            f"- Base mid-layer score: RDM Spearman {base['mid_cross_format_rdm_spearman']:.4f}, "
+            f"CKA {base['mid_linear_cka']:.4f}, top-1 retrieval {base['mid_retrieval_top1']:.4f}."
+        )
+    lines.extend([
+        "- Treat this as evidence for stronger cross-format invariance, not yet a clean "
+        "concept-dominant semantic hub: concept-minus-format alignment remains negative "
+        "for every arm.",
+        "- Next bridge: correlate arm/layer hub metrics with fMRI RSA and inspect whether "
+        "format-averaged hub RDMs explain fMRI better than single-format RDMs.",
+    ])
     lines.extend([
         "",
         "## Best-Layer Summary",

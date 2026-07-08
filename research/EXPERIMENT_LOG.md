@@ -430,3 +430,48 @@ ThingsVision/GPU RSA check:
 - Keep a torch/CuPy/ThingsVision-style GPU RDM backend on the list for full-720,
   bootstrap-heavy, or permutation-heavy RSA where pairwise distance math becomes
   a real cost.
+
+## 2026-07-08 result: semantic-hub extraction and scoring
+
+Command:
+
+```bash
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/extract_semantic_hub_hidden_states.py --batch_size 4 --overwrite'
+python src/sft/run_semantic_hub.py
+```
+
+Artifacts:
+
+- `results/sft_semantic_hub/hidden_states/`
+- `results/sft_semantic_hub/hub_by_layer.csv`
+- `results/sft_semantic_hub/hub_summary.csv`
+- `results/sft_semantic_hub/REPORT.md`
+
+Speed/utilization:
+
+- A5000 GPU0 fit the extractor at `--batch_size 4` with about 18.4 GB used and
+  high utilization.
+- Hidden-state shape per arm is `3 x 128 x 33 x 4096`.
+
+First-pass semantic-hub read:
+
+| Arm | Mid RDM Spearman | Mid CKA | Mid Top-1 | Mid Top-5 |
+|---|---:|---:|---:|---:|
+| `base` | 0.3230 | 0.3890 | 0.0192 | 0.0800 |
+| `scrambled` | 0.3472 | 0.4601 | 0.1094 | 0.2667 |
+| `lowLR` | 0.6211 | 0.6899 | 0.0729 | 0.3063 |
+| `lowrank` | 0.6637 | 0.7467 | 0.0968 | 0.4079 |
+| `taskvec_a0p25` | 0.6770 | 0.7809 | 0.2062 | 0.5393 |
+| `taskvec_a0p5` | 0.6372 | 0.7464 | 0.1578 | 0.4744 |
+| `taskvec_a1p0` | 0.4867 | 0.5505 | 0.0637 | 0.1896 |
+
+Interpretation:
+
+- Coherence-aligned/task-vector states substantially increase mid-layer
+  cross-format invariance over base.
+- `taskvec_a0p25` is the strongest mid-layer hub candidate by RDM, CKA, and
+  same-concept retrieval.
+- Concept-minus-format alignment stays negative for every arm, so this supports
+  stronger format invariance rather than a proven concept-dominant hub.
+- Next bridge: correlate hub metrics with fMRI RSA and test whether
+  format-averaged hub RDMs predict fMRI better than single-format RDMs.

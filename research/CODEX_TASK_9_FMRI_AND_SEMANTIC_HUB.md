@@ -305,8 +305,8 @@ Confounds to control:
    subject trial counts, and ROI voxel counts.
 2. Done: implement hidden-state extraction for Track A concept prompts.
 3. Done: implement RSA over saved hidden states and existing fMRI betas.
-4. Done locally: add semantic-hub prompt extraction and layer-resolved metrics.
-5. Next: run semantic-hub extraction on the next free GPU lane.
+4. Done: add semantic-hub prompt extraction and layer-resolved metrics.
+5. Done: run semantic-hub extraction and scoring for all seven arms.
 6. Next: integrate semantic-hub scores with fMRI RSA and decide whether to launch
    language-fMRI.
 
@@ -320,7 +320,7 @@ Confounds to control:
   object-RSA signal and scrambled-control separation, but aligned arms are
   nearly flat vs base in the primary ROI.
 - Done: commit and push the first fMRI RSA result checkpoint (`f723cc4`).
-- Pending: extract and score semantic-hub hidden states for all arms.
+- Done: extract and score semantic-hub hidden states for all arms.
 
 ## 2026-07-08 semantic-hub implementation note
 
@@ -353,3 +353,30 @@ Speed note:
   fix; RDM math was not the bottleneck.
 - For full-720, bootstrap, or permutation-heavy RSA, add/use a torch/CuPy/
   ThingsVision-style GPU RDM backend.
+
+## 2026-07-08 semantic-hub first result
+
+Files:
+
+- `results/sft_semantic_hub/hidden_states/*.npz`
+- `results/sft_semantic_hub/hub_by_layer.csv`
+- `results/sft_semantic_hub/hub_summary.csv`
+- `results/sft_semantic_hub/REPORT.md`
+
+Mid-layer result:
+
+- `base`: RDM Spearman `0.3230`, CKA `0.3890`, top-1 retrieval `0.0192`.
+- `lowLR`: RDM Spearman `0.6211`, CKA `0.6899`, top-1 retrieval `0.0729`.
+- `lowrank`: RDM Spearman `0.6637`, CKA `0.7467`, top-1 retrieval `0.0968`.
+- `taskvec_a0p25`: RDM Spearman `0.6770`, CKA `0.7809`, top-1 retrieval `0.2062`.
+
+Interpretation:
+
+- Coherence-aligned/task-vector states substantially increase mid-layer
+  cross-format invariance over base.
+- `taskvec_a0p25` is the strongest mid-layer hub candidate by RDM, CKA, and
+  same-concept retrieval in this first pass.
+- This is not yet a clean concept-dominant hub: concept-minus-format alignment
+  remains negative for every arm.
+- Next: bridge hub metrics to fMRI RSA and ask whether format-averaged hub RDMs
+  predict fMRI better than single-format RDMs.

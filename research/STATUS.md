@@ -2,15 +2,14 @@
 
 **Last updated: 2026-07-08. Tasks 1-8 are ALL COMPLETE and committed to `coherence-sft`.
 Task 9 fMRI audit/hidden-state/RSA is implemented, committed, and pushed.
-Semantic-hub extraction/scoring code is implemented locally and awaiting the next
-checkpoint commit. This file was stale below this point (left as historical design record) —
+Semantic-hub extraction/scoring has run for all seven arms and is part of the
+current result checkpoint. This file was stale below this point (left as historical design record) —
 read this top section first for where the project actually stands.**
 
 ## Handoff for a fresh agent picking this up
 
 - **Branch:** `coherence-sft` (off `main`), repo `git@github.com:siddsuresh97/coherentLLM.git`.
-  Pushed through `f723cc4` as of 2026-07-08; local semantic-hub scripts/results are the
-  next pending checkpoint.
+  Latest checkpoint includes the Task 9 fMRI RSA plus semantic-hub result artifacts.
 - **Env:** `source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate
   /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence` for all SFT/eval work.
   SALMON fits need the separate `salmon` conda env (skorch+dask deps the coherence env lacks) —
@@ -43,13 +42,16 @@ read this top section first for where the project actually stands.**
   `scrambled`, `lowLR`, `lowrank`, `taskvec_a0p25`, `taskvec_a0p5`, and `taskvec_a1p0` with shape
   `90 x 33 x 4096`. RSA runs end-to-end. Primary Ventral Visual RSA is strong but aligned arms are
   essentially flat vs base (`base=0.1990`, `lowLR=0.2010`, `lowrank=0.2013`), while scrambled is
-  much lower (`0.1293`). See `results/sft_fmri/REPORT.md`.
-- **What's NOT done / next candidates:** Task 9 Track B semantic hub is implemented locally in
-  `src/sft/extract_semantic_hub_hidden_states.py` and `src/sft/run_semantic_hub.py`; next is GPU
-  extraction once a lane frees. This tests whether coherence-SFT induces/sharpens a
-  format-invariant mid-layer semantic hub based on arXiv:2411.04986. The stronger
-  language-fMRI/Huth/Fedorenko encoding run remains feasibility-stage only. Task 10 lowrank
-  wide-benchmark mitigation is in flight. Task 9 and Task
+  much lower (`0.1293`). See `results/sft_fmri/REPORT.md`. Task 9 Track B semantic hub has also
+  run on 128 held-out concepts across triplet/pairwise/feature-listing prompt spokes. Mid-layer
+  cross-format RDM Spearman rises from base `0.3230` to `0.6211-0.6770` for lowLR/lowrank/taskvec
+  arms, led by `taskvec_a0p25`; see `results/sft_semantic_hub/REPORT.md`.
+- **What's NOT done / next candidates:** The semantic-hub result supports stronger cross-format
+  invariance, but not yet a clean concept-dominant hub because concept-minus-format alignment stays
+  negative for every arm. Next Task 9 step is the bridge: correlate arm/layer hub metrics with fMRI
+  RSA and test whether format-averaged hub RDMs predict fMRI better than single-format RDMs. The
+  stronger language-fMRI/Huth/Fedorenko encoding run remains feasibility-stage only. Task 10
+  lowrank and task-vector wide-benchmark mitigation is in flight. Task 9 and Task
   10 briefs now track these follow-ups:
   `research/CODEX_TASK_9_FMRI_AND_SEMANTIC_HUB.md`,
   `research/CODEX_TASK_10_BENCHMARK_DROPS.md`, and the running handoff log
