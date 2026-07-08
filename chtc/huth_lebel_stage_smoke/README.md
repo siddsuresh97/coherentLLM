@@ -14,7 +14,7 @@ The job stages only the manifest-listed `ds003020` files under:
 /staging/s/suresh27/datasets/ds003020-smoke
 ```
 
-It uses a DataLad/git-annex container and the public OpenNeuro GitHub mirror.
+It uses a git-annex container and the public OpenNeuro GitHub mirror.
 The smoke subset is 15 files, 7.88 GB total:
 
 - stories: `sweetaspie`, `againstthewind`, `wheretheressmoke`

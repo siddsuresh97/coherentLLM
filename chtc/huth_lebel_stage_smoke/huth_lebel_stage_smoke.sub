@@ -1,5 +1,5 @@
 universe = container
-container_image = docker://datalad/datalad:latest
+container_image = docker://datalad/buildenv-git-annex:latest
 
 batch_name = coherence_huth_lebel_stage_smoke_$(Cluster)
 log = logs/$(Cluster)_$(Process).log

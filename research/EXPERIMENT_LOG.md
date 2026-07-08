@@ -1027,6 +1027,11 @@ Current status:
 - Initial status: idle, not held.
 - `condor_q -better-analyze 5513020.0` reports 31 willing slots and 124 more
   if drained.
+- Cluster `5513020` then started and was held because
+  `docker://datalad/datalad:latest` was not pullable on CHTC. The bundle was
+  updated to `docker://datalad/buildenv-git-annex:latest`, `datalad --version`
+  was made optional, the held job was removed, and the corrected job was
+  resubmitted as cluster `5513024`.
 - If the job completes, pull `huth_lebel_stage_smoke_results.tgz` and logs,
   then rerun/record the staged-root audit before launching any GPU feature
   extraction.

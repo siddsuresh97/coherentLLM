@@ -24,7 +24,7 @@ mkdir -p "$OUT_DIR"
 echo "Tool versions:"
 git --version | tee -a "$OUT_DIR/stage_env.txt"
 git annex version | tee -a "$OUT_DIR/stage_env.txt"
-datalad --version | tee -a "$OUT_DIR/stage_env.txt"
+datalad --version | tee -a "$OUT_DIR/stage_env.txt" || true
 
 if [[ ! -f "$MANIFEST" ]]; then
   echo "missing manifest: $MANIFEST" >&2
