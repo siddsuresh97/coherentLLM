@@ -91,12 +91,19 @@ Retention degrades smoothly with α — a clean dose-response. **α=0.25 is the 
 ~87% of the coherence gain, human-alignment already at the full-SFT level, for roughly a
 fifth of the retention cost of the full task vector. A quarter-strength nudge, no training.
 
-**Under revision:**
-- **All-layer activation steering fails** — adding the direction to the residual stream at
-  *every* layer over-steers and collapses generation at every scale. This is likely an
-  all-layers artifact, not proof activation steering can't work: the standard method
-  (ActAdd/RepE) steers a narrow *middle-layer* band. A corrected mid-layer, norm-matched
-  sweep is running (Task 8); this section updates with the result.
+**Activation steering: an earned negative, not an artifact.**
+The first attempt added the coherence direction to the residual stream at *every* decoder
+layer simultaneously and collapsed generation at every scale — plausibly just an all-layers
+artifact, since the standard method (ActAdd/RepE) steers a narrow *middle-layer* band instead.
+Task 8 redid it properly: norm-matched injection (`h_L += α·(diff_L/‖diff_L‖)·‖h_L‖`), confined
+to one layer or a 5-layer band at a time, swept over layers {8, 10, 12, 14, 16, 20} and bands
+{10–14, 12–16} at α ∈ {2, 4, 6, 8} — 32 (layer, α) combinations in total. **All 32 collapse
+generation.** 31/32 cells have zero valid triplet judgments (pure repetition/garbage); the one
+partial exception (layer 20, α=2) is still 56% degenerate. This rules out the all-layers
+explanation: the coherence direction itself destabilizes generation via activation steering,
+at every layer depth and magnitude tested. The task-vector (weight-space) route above remains
+the only steering mechanism in this project that raises coherence without destroying
+generation — full grid in `results/sft_eval/steer_actlayer/VERDICT.md`.
 - **Early-stopping alone barely helps retention** (few-steps −0.167 on the narrow battery).
   Lowering the learning rate, not shortening training, does the most to protect knowledge.
 
@@ -261,7 +268,8 @@ All evaluation on the 127 held-out THINGS concepts (or each benchmark's own item
 
 *Artifacts in `results/sft_eval/`; plots `mitigation/pareto.png`, `steer/coherence_human_vs_alpha.png`.
 Interactive version rendered as a claude.ai artifact. Full 6C table: `results/sft_eval/TASK6_SUMMARY.md`.
-Steering retention: `results/sft_eval/steer/steer_retention.csv`.*
+Steering retention: `results/sft_eval/steer/steer_retention.csv`. Activation-steering grid:
+`results/sft_eval/steer_actlayer/summary.csv`, verdict: `results/sft_eval/steer_actlayer/VERDICT.md`.*
 
 ## Future directions
 
@@ -271,5 +279,5 @@ Steering retention: `results/sft_eval/steer/steer_retention.csv`.*
 - `research/FUTURE_semantic_hub.md` — does coherence-SFT induce/sharpen a format-invariant
   "semantic hub" in the middle layers (Wu, Yun, Andreas, Kim 2411.04986), tested via
   cross-format representational convergence and cross-format causal patching.
-- Task 8 (running): corrected mid-layer, norm-matched activation steering — resolves
-  whether the all-layer steering failure above is a true negative or an artifact.
+- Task 8 (complete): corrected mid-layer, norm-matched activation steering — confirmed the
+  all-layer steering failure is a true negative, not an artifact (`steer_actlayer/VERDICT.md`).
