@@ -1,8 +1,10 @@
 """Apply coherence steering vectors to the base model and evaluate the sweep.
 
-The activation route adds alpha * actdiff[layer] to each decoder layer output via
-forward hooks. The task-vector route applies the real LoRA adapter with its LoRA
-scaling multiplied by alpha, which is equivalent to base + alpha * taskvec.
+The activation route can add the actdiff direction to selected decoder layer
+outputs via forward hooks. By default it preserves the original all-layer raw
+addition behavior; pass --layers and --norm-match for mid-layer steering. The
+task-vector route applies the real LoRA adapter with its LoRA scaling multiplied
+by alpha, which is equivalent to base + alpha * taskvec.
 """
 from __future__ import annotations
 
@@ -55,6 +57,12 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--model", default=BASE_MODEL)
     ap.add_argument("--actdiff", type=Path, default=ACTDIFF)
     ap.add_argument("--taskvec", type=Path, default=TASKVEC)
+    ap.add_argument("--out-model", default=None, help="Override output model/result name.")
+    ap.add_argument("--layers", default=None,
+                    help="Actdiff decoder layers to steer, e.g. '8' or '10-14'. Default: all layers.")
+    ap.add_argument("--norm-match", action="store_true",
+                    help="Use h <- h + alpha * unit(diff_L) * ||h|| per token for actdiff.")
+    ap.add_argument("--norm-eps", type=float, default=1e-6)
     ap.add_argument("--raw-dir", type=Path, default=RAW)
     ap.add_argument("--out-dir", type=Path, default=OUT_DIR)
     ap.add_argument("--steer-dir", type=Path, default=STEER_DIR)
@@ -84,6 +92,37 @@ def out_model_for(route: str, alpha: float) -> str:
     if route == "actdiff":
         return f"llama31-steer-a{alpha_tag(alpha)}"
     return f"llama31-steer-task-a{alpha_tag(alpha)}"
+
+
+def output_model_name(args: argparse.Namespace) -> str:
+    return args.out_model or out_model_for(args.route, args.alpha)
+
+
+def parse_layer_spec(spec: str | None, n_layers: int) -> list[int]:
+    if spec is None:
+        return list(range(n_layers))
+    layers: list[int] = []
+    for part in spec.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        if "-" in part:
+            start_s, end_s = part.split("-", 1)
+            start, end = int(start_s), int(end_s)
+            if end < start:
+                raise ValueError(f"layer range {part!r} is descending")
+            layers.extend(range(start, end + 1))
+        else:
+            layers.append(int(part))
+    deduped = []
+    for layer in layers:
+        if layer < 0 or layer >= n_layers:
+            raise ValueError(f"decoder layer {layer} out of range 0..{n_layers - 1}")
+        if layer not in deduped:
+            deduped.append(layer)
+    if not deduped:
+        raise ValueError(f"no decoder layers parsed from {spec!r}")
+    return deduped
 
 
 def torch_dtype(name: str) -> torch.dtype:
@@ -285,7 +324,15 @@ def write_method_csv(
     print(f"[done] {method}: {len(rows)} rows -> {out_path}", flush=True)
 
 
-def add_actdiff_hooks(model, actdiff_path: Path, alpha: float) -> list[torch.utils.hooks.RemovableHandle]:
+def add_actdiff_hooks(
+    model,
+    actdiff_path: Path,
+    alpha: float,
+    layer_spec: str | None,
+    *,
+    norm_match: bool,
+    norm_eps: float,
+) -> list[torch.utils.hooks.RemovableHandle]:
     data = np.load(actdiff_path)
     diff = data["diff"]
     layers = model.model.layers
@@ -294,17 +341,33 @@ def add_actdiff_hooks(model, actdiff_path: Path, alpha: float) -> list[torch.uti
     device = next(model.parameters()).device
     dtype = next(model.parameters()).dtype
     handles = []
-    for layer_idx, layer in enumerate(layers):
-        vec = torch.as_tensor(diff[layer_idx + 1], device=device, dtype=dtype).view(1, 1, -1)
+    selected = parse_layer_spec(layer_spec, len(layers))
+    for layer_idx in selected:
+        layer = layers[layer_idx]
+        vec = torch.as_tensor(diff[layer_idx + 1], device=device, dtype=dtype)
+        if norm_match:
+            vec = vec / torch.clamp(torch.linalg.vector_norm(vec), min=norm_eps)
+        vec = vec.view(1, 1, -1)
 
         def hook(_module, _inputs, output, *, steer_vec=vec):
+            def steer(hidden):
+                direction = steer_vec.to(hidden.dtype)
+                if norm_match:
+                    hidden_norm = torch.linalg.vector_norm(hidden, dim=-1, keepdim=True).clamp_min(norm_eps)
+                    return hidden + alpha * direction * hidden_norm
+                return hidden + alpha * direction
+
             if isinstance(output, tuple):
-                hidden = output[0] + alpha * steer_vec.to(output[0].dtype)
+                hidden = steer(output[0])
                 return (hidden,) + output[1:]
-            return output + alpha * steer_vec.to(output.dtype)
+            return steer(output)
 
         handles.append(layer.register_forward_hook(hook))
-    print(f"[hooks] installed actdiff hooks for {len(handles)} layers at alpha={alpha:g}", flush=True)
+    mode = "norm-matched" if norm_match else "raw"
+    print(
+        f"[hooks] installed {mode} actdiff hooks for decoder layers {selected} at alpha={alpha:g}",
+        flush=True,
+    )
     return handles
 
 
@@ -356,13 +419,13 @@ def load_model_and_tokenizer(args: argparse.Namespace):
 
 
 def run_one(args: argparse.Namespace) -> None:
-    out_model = out_model_for(args.route, args.alpha)
+    out_model = output_model_name(args)
     outdir = args.raw_dir / out_model
 
-    if args.route == "actdiff" and args.alpha == 0.0:
+    if args.route == "actdiff" and args.alpha == 0.0 and args.out_model is None:
         copy_reference_model(BASE_MODEL, out_model, args)
         return
-    if args.route == "taskvec" and args.alpha == 1.0:
+    if args.route == "taskvec" and args.alpha == 1.0 and args.out_model is None:
         copy_reference_model(REAL_MODEL, out_model, args)
         return
 
@@ -385,7 +448,14 @@ def run_one(args: argparse.Namespace) -> None:
     model, tokenizer, dtype, device = load_model_and_tokenizer(args)
     handles = []
     if args.route == "actdiff":
-        handles = add_actdiff_hooks(model, args.actdiff, args.alpha)
+        handles = add_actdiff_hooks(
+            model,
+            args.actdiff,
+            args.alpha,
+            args.layers,
+            norm_match=args.norm_match,
+            norm_eps=args.norm_eps,
+        )
     else:
         apply_taskvec(model, args.taskvec, args.alpha, dtype, device)
 
@@ -435,7 +505,7 @@ def fit_salmon(args: argparse.Namespace) -> None:
         for alpha in args.alphas:
             fit_salmon_for(out_model_for(args.route, alpha), args)
         return
-    fit_salmon_for(out_model_for(args.route, args.alpha), args)
+    fit_salmon_for(output_model_name(args), args)
 
 
 def expected_models() -> list[dict]:
