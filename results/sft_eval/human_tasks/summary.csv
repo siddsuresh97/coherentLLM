@@ -1,0 +1,34 @@
+group,task,model,metric,value,n,base_value,delta_vs_base,verdict,source,note
+human-behavior,THINGS odd-one-out,base,agreement,0.6856,10000,0.6856,0.0,FLAT,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/llama-3.1-8b-instruct_triplet_d5.npy,ties_skipped=0; human target=data/scale128/human_spose_triplet_sim.npy
+human-behavior,THINGS triplet similarity,base,spearman_rho,0.483267439448001,8128,0.483267439448001,0.0,FLAT,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/llama-3.1-8b-instruct_triplet_d5.npy,ties_skipped=0; human target=data/scale128/human_spose_triplet_sim.npy
+human-behavior,THINGS odd-one-out,real,agreement,0.7647,10000,0.6856,0.07910000000000006,GAIN,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/llama31-sft-real_triplet_d5.npy,ties_skipped=0; human target=data/scale128/human_spose_triplet_sim.npy
+human-behavior,THINGS triplet similarity,real,spearman_rho,0.6997905096012627,8128,0.483267439448001,0.21652307015326167,GAIN,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/llama31-sft-real_triplet_d5.npy,ties_skipped=0; human target=data/scale128/human_spose_triplet_sim.npy
+human-behavior,THINGS odd-one-out,lowLR,agreement,0.7698,10000,0.6856,0.08420000000000005,GAIN,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/llama31-mit-lowLR_triplet_d5.npy,ties_skipped=0; human target=data/scale128/human_spose_triplet_sim.npy
+human-behavior,THINGS triplet similarity,lowLR,spearman_rho,0.7111777162076318,8128,0.483267439448001,0.22791027675963083,GAIN,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/llama31-mit-lowLR_triplet_d5.npy,ties_skipped=0; human target=data/scale128/human_spose_triplet_sim.npy
+human-behavior,THINGS odd-one-out,lowrank,agreement,0.7621,10000,0.6856,0.07650000000000001,GAIN,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/llama31-mit-lowrank_triplet_d5.npy,ties_skipped=0; human target=data/scale128/human_spose_triplet_sim.npy
+human-behavior,THINGS triplet similarity,lowrank,spearman_rho,0.7227314703281109,8128,0.483267439448001,0.23946403088010992,GAIN,/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/llama31-mit-lowrank_triplet_d5.npy,ties_skipped=0; human target=data/scale128/human_spose_triplet_sim.npy
+human-behavior,SimLex-999,base,spearman_rho,0.29743856547678843,999,0.29743856547678843,0.0,FLAT,external_similarity,human similarity judgment dataset
+human-behavior,WordSim-353,base,spearman_rho,0.2941440900837434,353,0.2941440900837434,0.0,FLAT,external_similarity,human similarity judgment dataset
+human-behavior,MEN,base,spearman_rho,0.4879133402160966,3000,0.4879133402160966,0.0,FLAT,external_similarity,human similarity judgment dataset
+human-behavior,RG-65,base,spearman_rho,0.35807717278222423,65,0.35807717278222423,0.0,FLAT,external_similarity,human similarity judgment dataset
+human-behavior,MTurk-771,base,spearman_rho,0.30630166811414644,771,0.30630166811414644,0.0,FLAT,external_similarity,human similarity judgment dataset
+human-behavior,SimVerb-3500,base,spearman_rho,0.16756643764882242,3500,0.16756643764882242,0.0,FLAT,external_similarity,human similarity judgment dataset
+human-behavior,SimLex-999,real,spearman_rho,0.31241667413205104,999,0.29743856547678843,0.014978108655262612,FLAT,external_similarity,human similarity judgment dataset
+human-behavior,WordSim-353,real,spearman_rho,0.4184380025715919,353,0.2941440900837434,0.12429391248784849,GAIN,external_similarity,human similarity judgment dataset
+human-behavior,MEN,real,spearman_rho,0.4296534716069082,3000,0.4879133402160966,-0.058259868609188414,DROP,external_similarity,human similarity judgment dataset
+human-behavior,RG-65,real,spearman_rho,0.20917703983756522,65,0.35807717278222423,-0.148900132944659,DROP,external_similarity,human similarity judgment dataset
+human-behavior,MTurk-771,real,spearman_rho,0.38036258170763965,771,0.30630166811414644,0.0740609135934932,GAIN,external_similarity,human similarity judgment dataset
+human-behavior,SimVerb-3500,real,spearman_rho,0.2350467316128296,3500,0.16756643764882242,0.06748029396400718,GAIN,external_similarity,human similarity judgment dataset
+human-behavior,SimLex-999,lowLR,spearman_rho,0.30969468539823114,999,0.29743856547678843,0.01225611992144271,FLAT,external_similarity,human similarity judgment dataset
+human-behavior,WordSim-353,lowLR,spearman_rho,0.3439449454609357,353,0.2941440900837434,0.049800855377192255,GAIN,external_similarity,human similarity judgment dataset
+human-behavior,MEN,lowLR,spearman_rho,0.5175531514017166,3000,0.4879133402160966,0.029639811185620035,GAIN,external_similarity,human similarity judgment dataset
+human-behavior,RG-65,lowLR,spearman_rho,0.3569625526765179,65,0.35807717278222423,-0.0011146201057063432,FLAT,external_similarity,human similarity judgment dataset
+human-behavior,MTurk-771,lowLR,spearman_rho,0.352902265849761,771,0.30630166811414644,0.046600597735614535,GAIN,external_similarity,human similarity judgment dataset
+human-behavior,SimVerb-3500,lowLR,spearman_rho,0.19931281347977245,3500,0.16756643764882242,0.031746375830950024,GAIN,external_similarity,human similarity judgment dataset
+human-behavior,SimLex-999,lowrank,spearman_rho,0.3109990821245483,999,0.29743856547678843,0.013560516647759868,FLAT,external_similarity,human similarity judgment dataset
+human-behavior,WordSim-353,lowrank,spearman_rho,0.2913295954016314,353,0.2941440900837434,-0.0028144946821120342,FLAT,external_similarity,human similarity judgment dataset
+human-behavior,MEN,lowrank,spearman_rho,0.5061357885867169,3000,0.4879133402160966,0.018222448370620314,FLAT,external_similarity,human similarity judgment dataset
+human-behavior,RG-65,lowrank,spearman_rho,0.35296303347368907,65,0.35807717278222423,-0.005114139308535159,FLAT,external_similarity,human similarity judgment dataset
+human-behavior,MTurk-771,lowrank,spearman_rho,0.3575568127365991,771,0.30630166811414644,0.051255144622452675,GAIN,external_similarity,human similarity judgment dataset
+human-behavior,SimVerb-3500,lowrank,spearman_rho,0.1931823996284814,3500,0.16756643764882242,0.025615961979658985,GAIN,external_similarity,human similarity judgment dataset
+human-behavior,Typicality/category norms,all,not_run,nan,0,nan,nan,NA,,skipped: no ready typicality/ranked category norm dataset found in repo
