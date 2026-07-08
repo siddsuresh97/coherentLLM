@@ -18,7 +18,9 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   object-RSA signal and scrambled-control separation, but aligned arms are
   mostly flat versus base in the primary visual ROI. The Huth/LeBel
   narrative-fMRI lane now has a local/CHTC audit bundle and a completed CHTC
-  smoke run (`5513006`), but no visible `ds003020` root is staged yet.
+  smoke run (`5513006`). The OpenNeuro metadata layout is verified and a CHTC
+  staging manifest is ready: smoke is 7.88 GB; the `UTS01`-`UTS03` high-data
+  subset is 76.86 GB, under the observed 100 GB staging quota.
 - **fMRI x hub bridge:** the new concept-held-out regression does not support a
   clean semantic-hub explanation of Ventral Visual RSA. Averaged hub predictors
   are roughly tied with single prompt spokes in Ventral Visual, while
@@ -56,6 +58,8 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 - THINGS-fMRI RSA report: [`results/sft_fmri/REPORT.md`](results/sft_fmri/REPORT.md)
 - Huth/LeBel language-fMRI audit:
   [`results/sft_huth_lebel/REPORT.md`](results/sft_huth_lebel/REPORT.md)
+- Huth/LeBel ds003020 staging plan:
+  [`results/sft_huth_lebel/STAGING_PLAN.md`](results/sft_huth_lebel/STAGING_PLAN.md)
 - fMRI x semantic-hub bridge:
   [`results/sft_fmri_semantic_bridge/REPORT.md`](results/sft_fmri_semantic_bridge/REPORT.md)
 - Held-out fMRI hub regression:
@@ -429,9 +433,12 @@ Current plan:
   `deep-fMRI-dataset` if we launch a language encoding pass. Feed exact narrative
   transcript streams, avoid chat templates, align word hidden states to TRs, and
   score held-out voxelwise ridge predictions. Current audit artifacts are in
-  [`results/sft_huth_lebel/REPORT.md`](results/sft_huth_lebel/REPORT.md); no
-  local/staged `ds003020` root is visible yet, so the next concrete step is
-  staging or downloading the dataset to CHTC/local storage.
+  [`results/sft_huth_lebel/REPORT.md`](results/sft_huth_lebel/REPORT.md).
+  Metadata from the OpenNeuro GitHub mirror verifies the current `derivatives/`
+  layout and DataLad annex file sizes; the staging plan is in
+  [`results/sft_huth_lebel/STAGING_PLAN.md`](results/sft_huth_lebel/STAGING_PLAN.md).
+  No downloaded/staged `ds003020` root is visible yet, so the next concrete step
+  is a CPU-only CHTC downloader for the 7.88 GB smoke subset.
 - Fedorenko/EvLab language-network: prefer individually localized
   `sentences > nonword lists` masks. Atlas/group language ROIs are exploratory.
 - Benchmark-drops: first finish eval-only controls (`lowrank`, `scrambled`,
@@ -461,13 +468,15 @@ Scientific next:
    [`research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md`](research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md),
    starting with CPU-only matched-vs-baseline similarity from existing hidden
    states.
-2. fMRI bridge: do not overclaim Ventral Visual hub evidence. If continuing,
-   run fixed-layer/nested-CV confirmation and then stage `ds003020` for the
-   Huth/LeBel language-fMRI encoding pass.
-3. Benchmark mechanism: inspect WiC/ARC failures and tasks with gains to decide
+2. Huth/LeBel language-fMRI: submit a CPU-only CHTC downloader for the
+   manifest-listed smoke subset, rerun the audit on staged data, then start GPU
+   feature extraction only after the smoke root passes.
+3. fMRI bridge: do not overclaim Ventral Visual hub evidence. If continuing,
+   run fixed-layer/nested-CV confirmation after the Huth smoke path is staged.
+4. Benchmark mechanism: inspect WiC/ARC failures and tasks with gains to decide
    whether drops are lexical-sense-specific, adapter-rank-specific, or generic
    SFT perturbation.
-4. Mitigation: alpha sweep between `0.10` and `0.35`, then adapter
+5. Mitigation: alpha sweep between `0.10` and `0.35`, then adapter
    sparsification or KL-to-base only if eval-only controls justify more
    training.
 

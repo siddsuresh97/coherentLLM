@@ -50,7 +50,9 @@ read this top section first for where the project actually stands.**
   invariance, but not yet a clean concept-dominant hub because concept-minus-format alignment stays
   negative for every arm. Next Task 9 step is the bridge: correlate arm/layer hub metrics with fMRI
   RSA and test whether format-averaged hub RDMs predict fMRI better than single-format RDMs. The
-  stronger language-fMRI/Huth/Fedorenko encoding run remains feasibility-stage only. Task 10
+  stronger language-fMRI/Huth/Fedorenko run now has audit code, a CHTC smoke, and a concrete
+  `ds003020` staging manifest, but it still needs actual downloaded/staged data before encoding.
+  Task 10
   lowrank and task-vector wide-benchmark mitigation is in flight. Task 9 and Task
   10 briefs now track these follow-ups:
   `research/CODEX_TASK_9_FMRI_AND_SEMANTIC_HUB.md`,
@@ -188,14 +190,21 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   `taskvec_a0p25 mmlu_5shot` on GPU1. The MMLU lane uses `gpu_mem_util=0.72
   --batch_size 2`; it is not a duplicate of the completed base/lowLR/lowrank
   MMLU rows, but the missing task-vector mitigation row.
-- Huth/LeBel language-fMRI now has a trackable audit script and CHTC-ready
-  CPU audit bundle: `src/sft/huth_lebel_audit.py`, `chtc/huth_lebel_audit/`,
-  and `results/sft_huth_lebel/REPORT.md`. The corrected audit found zero
-  plausible local/staged `ds003020` roots in the paths visible to this session.
-  The experiment is therefore blocked on staging/downloading `ds003020`
-  assets, not on fMRI experiment design. CHTC access was validated with audit
-  cluster `5513006`, which exited 0 and returned artifacts under
-  `results/sft_huth_lebel/chtc_5513006/`.
+- Huth/LeBel language-fMRI now has a trackable audit script, CHTC-ready CPU
+  audit bundle, and staging manifest: `src/sft/huth_lebel_audit.py`,
+  `src/sft/plan_huth_lebel_staging.py`, `chtc/huth_lebel_audit/`,
+  `results/sft_huth_lebel/REPORT.md`, and
+  `results/sft_huth_lebel/STAGING_PLAN.md`. The corrected default audit found
+  zero plausible downloaded/staged `ds003020` roots in the paths visible to
+  this session. A metadata-only OpenNeuro Git clone at `/tmp/ds003020-git`
+  verifies the current `derivatives/` layout and DataLad annex file sizes:
+  the smoke subset is 7.88 GB across `sweetaspie`, `againstthewind`, and
+  `wheretheressmoke`; the `UTS01`-`UTS03` high-data subset is 76.86 GB across
+  420 manifest files, fitting the observed 100 GB CHTC staging quota if only
+  needed WAV/TextGrid/HF5 assets are staged. The experiment is blocked on a
+  CPU-only downloader/staging job, not on fMRI experiment design or scheduler
+  access. CHTC access was validated with audit cluster `5513006`, which exited
+  0 and returned artifacts under `results/sft_huth_lebel/chtc_5513006/`.
 - Bridge read: semantic-hub invariance is strong internally, but it does not yet
   explain object-fMRI RSA. Ventral Visual delta-vs-base vs mid hub RDM is
   positive but small-n (`r=0.600`, `n=6`, `p=0.208`); retrieval top-1 is not

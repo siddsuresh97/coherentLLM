@@ -8,14 +8,23 @@ Generated: 2026-07-08T22:59:00.688548+00:00
   from the paths visible to this session.
 - Best candidate root checked: `none`.
 - Blocking data pieces: need `ds003020` with `stimuli/*.wav`,
-  `derivative/TextGrids/*.TextGrid`, and either author preprocessed
-  `derivative/preprocessed_data/UTS*/<story>.hf5` or fMRIPrep/BIDS BOLD
+  `derivatives/TextGrids/*.TextGrid` or `derivative/TextGrids/*.TextGrid`,
+  and either author preprocessed
+  `derivatives/preprocessed_data/UTS*/<story>.hf5` or fMRIPrep/BIDS BOLD
   files staged locally/CHTC.
 - Reusable local study hook found: `/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/tribev2/tribev2/studies/lebel2023bold.py`
   (`exists=True`).
 - CHTC submission is now validated. Audit smoke cluster `5513006` completed
   with exit code 0 and returned logs/artifacts under
   `results/sft_huth_lebel/chtc_5513006/`.
+- Metadata-only OpenNeuro mirror inspection is validated separately under
+  `results/sft_huth_lebel/metadata_audit/`. That check confirms the current
+  `derivatives/` layout, `wheretheressmoke` metadata, and DataLad annex
+  symlink evidence, but it does not mean the large files are downloaded.
+- Staging plan is ready in `results/sft_huth_lebel/STAGING_PLAN.md`: the first
+  smoke subset is 7.88 GB (`sweetaspie`, `againstthewind`,
+  `wheretheressmoke` for `UTS01`-`UTS03`), and the full `UTS01`-`UTS03`
+  author-preprocessed subset is 76.86 GB across 420 manifest files.
 
 ## Checked Roots
 
@@ -71,4 +80,8 @@ Generated: 2026-07-08T22:59:00.688548+00:00
 
 - JSON audit: `results/sft_huth_lebel/audit.json`
 - Candidate CSV: `results/sft_huth_lebel/candidate_roots.csv`
+- Metadata audit: `results/sft_huth_lebel/metadata_audit/REPORT.md`
+- Staging plan: `results/sft_huth_lebel/STAGING_PLAN.md`
+- Smoke manifest: `results/sft_huth_lebel/staging_manifest_smoke.csv`
+- High-data manifest: `results/sft_huth_lebel/staging_manifest_highdata.csv`
 - CHTC smoke outputs: `results/sft_huth_lebel/chtc_5513006/`

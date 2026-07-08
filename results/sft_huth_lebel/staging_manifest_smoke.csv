@@ -1,0 +1,16 @@
+subset,kind,subject,story,relative_path,size_bytes,size_gb,size_gib,evidence
+smoke,wav,,sweetaspie,stimuli/sweetaspie.wav,59255932,0.0593,0.0552,annex_symlink
+smoke,textgrid,,sweetaspie,derivatives/TextGrids/sweetaspie.TextGrid,386762,0.0004,0.0004,annex_symlink
+smoke,hf5,UTS01,sweetaspie,derivatives/preprocessed_data/UTS01/sweetaspie.hf5,101896304,0.1019,0.0949,annex_symlink
+smoke,hf5,UTS02,sweetaspie,derivatives/preprocessed_data/UTS02/sweetaspie.hf5,118381304,0.1184,0.1103,annex_symlink
+smoke,hf5,UTS03,sweetaspie,derivatives/preprocessed_data/UTS03/sweetaspie.hf5,120020384,0.1200,0.1118,annex_symlink
+smoke,wav,,againstthewind,stimuli/againstthewind.wav,63532454,0.0635,0.0592,annex_symlink
+smoke,textgrid,,againstthewind,derivatives/TextGrids/againstthewind.TextGrid,456043,0.0005,0.0004,annex_symlink
+smoke,hf5,UTS01,againstthewind,derivatives/preprocessed_data/UTS01/againstthewind.hf5,110333408,0.1103,0.1028,annex_symlink
+smoke,hf5,UTS02,againstthewind,derivatives/preprocessed_data/UTS02/againstthewind.hf5,128183408,0.1282,0.1194,annex_symlink
+smoke,hf5,UTS03,againstthewind,derivatives/preprocessed_data/UTS03/againstthewind.hf5,129958208,0.1300,0.1210,annex_symlink
+smoke,wav,,wheretheressmoke,stimuli/wheretheressmoke.wav,106181968,0.1062,0.0989,annex_symlink
+smoke,textgrid,,wheretheressmoke,derivatives/TextGrids/wheretheressmoke.TextGrid,998492,0.0010,0.0009,annex_symlink
+smoke,hf5,UTS01,wheretheressmoke,derivatives/preprocessed_data/UTS01/wheretheressmoke.hf5,2077476776,2.0775,1.9348,annex_symlink
+smoke,hf5,UTS02,wheretheressmoke,derivatives/preprocessed_data/UTS02/wheretheressmoke.hf5,2413581776,2.4136,2.2478,annex_symlink
+smoke,hf5,UTS03,wheretheressmoke,derivatives/preprocessed_data/UTS03/wheretheressmoke.hf5,2447000216,2.4470,2.2789,annex_symlink

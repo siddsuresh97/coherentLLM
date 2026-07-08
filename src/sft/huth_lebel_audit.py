@@ -130,22 +130,33 @@ def fmriprep_guess(ds_root: Path) -> Path:
     return ds_root.parent / "ds003020-fmriprep"
 
 
-def subject_report(ds_root: Path, subject: str) -> dict:
+def first_existing(paths: list[Path]) -> Path:
+    for path in paths:
+        if path.exists():
+            return path
+    return paths[0]
+
+
+def file_evidence(path: Path) -> bool:
+    return path.exists() or path.is_symlink()
+
+
+def subject_report(ds_root: Path, preproc_dir: Path, subject: str) -> dict:
     raw_dir = ds_root / f"sub-{subject}"
-    preproc_dir = ds_root / "derivative" / "preprocessed_data" / subject
-    hf5_files = sorted(preproc_dir.glob("*.hf5")) if preproc_dir.exists() else []
+    subject_preproc_dir = preproc_dir / subject
+    hf5_files = sorted(subject_preproc_dir.glob("*.hf5")) if subject_preproc_dir.exists() else []
     bold_files = sorted(raw_dir.glob("ses-*/func/*_bold.nii.gz")) if raw_dir.exists() else []
-    test_hf5 = preproc_dir / f"{TEST_STORY}.hf5"
+    test_hf5 = subject_preproc_dir / f"{TEST_STORY}.hf5"
     test_bold = sorted(raw_dir.glob(f"ses-*/func/*task-{TEST_STORY}*_bold.nii.gz"))
     return {
         "subject": subject,
         "raw_subject_dir": str(raw_dir),
         "raw_subject_dir_exists": raw_dir.exists(),
-        "preprocessed_subject_dir": str(preproc_dir),
-        "preprocessed_subject_dir_exists": preproc_dir.exists(),
+        "preprocessed_subject_dir": str(subject_preproc_dir),
+        "preprocessed_subject_dir_exists": subject_preproc_dir.exists(),
         "n_hf5_files": len(hf5_files),
         "n_bold_files": len(bold_files),
-        "test_story_hf5_exists": test_hf5.exists(),
+        "test_story_hf5_exists": file_evidence(test_hf5),
         "n_test_story_bold_files": len(test_bold),
         "sample_hf5": str(hf5_files[0]) if hf5_files else None,
         "sample_bold": str(bold_files[0]) if bold_files else None,
@@ -154,10 +165,20 @@ def subject_report(ds_root: Path, subject: str) -> dict:
 
 def assess_candidate(ds_root: Path) -> dict:
     stimuli_dir = ds_root / "stimuli"
-    textgrid_dir = ds_root / "derivative" / "TextGrids"
-    preproc_dir = ds_root / "derivative" / "preprocessed_data"
+    textgrid_dir = first_existing(
+        [
+            ds_root / "derivatives" / "TextGrids",
+            ds_root / "derivative" / "TextGrids",
+        ]
+    )
+    preproc_dir = first_existing(
+        [
+            ds_root / "derivatives" / "preprocessed_data",
+            ds_root / "derivative" / "preprocessed_data",
+        ]
+    )
     fmriprep_dir = fmriprep_guess(ds_root)
-    subjects = [subject_report(ds_root, subject) for subject in SUBJECTS]
+    subjects = [subject_report(ds_root, preproc_dir, subject) for subject in SUBJECTS]
     n_hf5 = sum(row["n_hf5_files"] for row in subjects)
     n_bold = sum(row["n_bold_files"] for row in subjects)
     n_test_hf5_subjects = sum(1 for row in subjects if row["test_story_hf5_exists"])
@@ -169,7 +190,7 @@ def assess_candidate(ds_root: Path) -> dict:
             (ds_root / "sub-UTS01").exists(),
             textgrid_dir.exists(),
             preproc_dir.exists(),
-            (stimuli_dir / f"{TEST_STORY}.wav").exists(),
+            file_evidence(stimuli_dir / f"{TEST_STORY}.wav"),
         ]
     )
     report = {
@@ -186,8 +207,8 @@ def assess_candidate(ds_root: Path) -> dict:
         "fmriprep_dir_guess_exists": fmriprep_dir.exists(),
         "n_wav_files": count_glob(stimuli_dir, "*.wav"),
         "n_textgrid_files": count_glob(textgrid_dir, "*.TextGrid"),
-        "test_story_wav_exists": (stimuli_dir / f"{TEST_STORY}.wav").exists(),
-        "test_story_textgrid_exists": (textgrid_dir / f"{TEST_STORY}.TextGrid").exists(),
+        "test_story_wav_exists": file_evidence(stimuli_dir / f"{TEST_STORY}.wav"),
+        "test_story_textgrid_exists": file_evidence(textgrid_dir / f"{TEST_STORY}.TextGrid"),
         "n_hf5_files_all_subjects": n_hf5,
         "n_bold_files_all_subjects": n_bold,
         "n_subjects_with_test_story_hf5": n_test_hf5_subjects,

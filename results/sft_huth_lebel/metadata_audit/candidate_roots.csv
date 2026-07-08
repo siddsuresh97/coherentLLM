@@ -1,0 +1,7 @@
+path,exists,looks_like_ds003020,n_wav_files,n_textgrid_files,n_hf5_files_all_subjects,n_bold_files_all_subjects,test_story_wav_exists,test_story_textgrid_exists,n_subjects_with_test_story_hf5,n_subjects_with_test_story_bold
+/tmp/ds003020-git,True,True,85,84,386,495,True,True,8,8
+/tmp/ds003020-git/ds003020,False,False,0,0,0,0,False,False,0,0
+/tmp/ds003020-git/download/ds003020,False,False,0,0,0,0,False,False,0,0
+/tmp/ds003020-git/data/ds003020,False,False,0,0,0,0,False,False,0,0
+/tmp/ds003020-git/openneuro/ds003020,False,False,0,0,0,0,False,False,0,0
+/tmp/ds003020-git/download/openneuro/ds003020,False,False,0,0,0,0,False,False,0,0

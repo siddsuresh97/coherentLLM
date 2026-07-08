@@ -935,3 +935,98 @@ Read:
 - The CHTC-returned audit also found zero plausible `ds003020` roots in the job
   sandbox/staging-visible paths. This confirms that the next Huth step is data
   staging, not more scheduler debugging.
+
+## 2026-07-08 result: Huth/LeBel metadata audit and staging plan
+
+Purpose:
+
+- Verify the current OpenNeuro `ds003020` layout before writing a downloader.
+- Convert DataLad/git-annex metadata into a concrete CHTC staging manifest so
+  the language-fMRI lane can start with a bounded smoke test instead of trying
+  to pull the full dataset.
+
+Commands:
+
+```bash
+git clone --depth 1 https://github.com/OpenNeuroDatasets/ds003020.git /tmp/ds003020-git
+python -m py_compile src/sft/huth_lebel_audit.py
+python -m py_compile src/sft/plan_huth_lebel_staging.py
+python src/sft/huth_lebel_audit.py --roots /tmp/ds003020-git --out_dir results/sft_huth_lebel/metadata_audit --max_scan_depth 2
+python src/sft/plan_huth_lebel_staging.py --ds_root /tmp/ds003020-git --out_dir results/sft_huth_lebel
+```
+
+Artifacts:
+
+- `src/sft/huth_lebel_audit.py`
+- `src/sft/plan_huth_lebel_staging.py`
+- `results/sft_huth_lebel/metadata_audit/REPORT.md`
+- `results/sft_huth_lebel/STAGING_PLAN.md`
+- `results/sft_huth_lebel/staging_manifest_smoke.csv`
+- `results/sft_huth_lebel/staging_manifest_highdata.csv`
+- `results/sft_huth_lebel/staging_summary.json`
+
+Result:
+
+- The audit now accepts both historical `derivative/...` and current
+  `derivatives/...` OpenNeuro layouts.
+- It also treats DataLad annex symlinks as file evidence, which is necessary
+  for metadata-only clones where the large assets have not been downloaded.
+- Metadata audit on `/tmp/ds003020-git` finds 84 TextGrids, 85 WAV entries,
+  386 author-preprocessed HF5 entries, 495 raw BOLD entries, and
+  `wheretheressmoke` test-story evidence.
+- The dataset metadata is `doi:10.18112/openneuro.ds003020.v3.1.1`, license
+  CC0, with references to HuthLab `deep-fMRI-dataset` and the Scientific Data
+  paper.
+- Smoke staging subset:
+  `sweetaspie`, `againstthewind`, and `wheretheressmoke` for
+  `UTS01`/`UTS02`/`UTS03`; 15 files; 7.88 GB total.
+- Full high-data first-pass subset:
+  all 84 shared preprocessed stories for `UTS01`/`UTS02`/`UTS03`; 420 files;
+  76.86 GB total.
+- Observed CHTC staging quota is 100 GB and 1000 files at
+  `/staging/s/suresh27`, so the high-data subset should fit if only the
+  manifest-listed WAV/TextGrid/HF5 assets are staged.
+
+Read:
+
+- The Huth lane has moved from "blocked by unknown data state" to "blocked by
+  actual data download/staging." The layout, file sizes, subject/story subset,
+  and CHTC audit path are now explicit.
+- Do not launch GPU feature extraction until a staged smoke root passes
+  `src/sft/huth_lebel_audit.py`.
+- Next CHTC action should be CPU-only: run a containerized downloader with
+  `git-annex`/DataLad or OpenNeuro tooling that materializes only
+  `staging_manifest_smoke.csv` under `/staging/s/suresh27/datasets/ds003020-smoke`.
+
+## 2026-07-08 active: CHTC Huth/LeBel smoke staging
+
+Purpose:
+
+- Materialize the 7.88 GB `ds003020` smoke subset on CHTC staging without using
+  a GPU.
+
+Commands:
+
+```bash
+chtc-ssh 'mkdir -p ~/chtc-runs/coherence-huth-stage-smoke-20260708-1817/logs'
+chtc-push src/sft/huth_lebel_audit.py 'chtc-runs/coherence-huth-stage-smoke-20260708-1817/huth_lebel_audit.py'
+chtc-push chtc/huth_lebel_stage_smoke/ 'chtc-runs/coherence-huth-stage-smoke-20260708-1817/'
+chtc-push results/sft_huth_lebel/staging_manifest_smoke.csv 'chtc-runs/coherence-huth-stage-smoke-20260708-1817/staging_manifest_smoke.csv'
+chtc-ssh 'cd ~/chtc-runs/coherence-huth-stage-smoke-20260708-1817 && condor_submit huth_lebel_stage_smoke.sub'
+```
+
+Artifacts:
+
+- `chtc/huth_lebel_stage_smoke/`
+- Remote run directory:
+  `~/chtc-runs/coherence-huth-stage-smoke-20260708-1817`
+- Submitted cluster: `5513020`
+
+Current status:
+
+- Initial status: idle, not held.
+- `condor_q -better-analyze 5513020.0` reports 31 willing slots and 124 more
+  if drained.
+- If the job completes, pull `huth_lebel_stage_smoke_results.tgz` and logs,
+  then rerun/record the staged-root audit before launching any GPU feature
+  extraction.

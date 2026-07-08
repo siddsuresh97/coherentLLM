@@ -1,0 +1,177 @@
+{
+  "generated": "2026-07-08T23:13:09.744409+00:00",
+  "ds_root": "/tmp/ds003020-git",
+  "subjects": [
+    "UTS01",
+    "UTS02",
+    "UTS03"
+  ],
+  "test_story": "wheretheressmoke",
+  "smoke_train_stories": [
+    "sweetaspie",
+    "againstthewind"
+  ],
+  "smoke_stories": [
+    "sweetaspie",
+    "againstthewind",
+    "wheretheressmoke"
+  ],
+  "n_shared_stories": 84,
+  "shared_stories": [
+    "adollshouse",
+    "adventuresinsayingyes",
+    "afatherscover",
+    "againstthewind",
+    "alternateithicatom",
+    "avatar",
+    "backsideofthestorm",
+    "becomingindian",
+    "beneaththemushroomcloud",
+    "birthofanation",
+    "bluehope",
+    "breakingupintheageofgoogle",
+    "buck",
+    "catfishingstrangerstofindmyself",
+    "cautioneating",
+    "christmas1940",
+    "cocoonoflove",
+    "comingofageondeathrow",
+    "exorcism",
+    "eyespy",
+    "firetestforlove",
+    "food",
+    "forgettingfear",
+    "fromboyhoodtofatherhood",
+    "gangstersandcookies",
+    "goingthelibertyway",
+    "goldiethegoldfish",
+    "golfclubbing",
+    "gpsformylostidentity",
+    "hangtime",
+    "haveyoumethimyet",
+    "howtodraw",
+    "ifthishaircouldtalk",
+    "inamoment",
+    "itsabox",
+    "jugglingandjesus",
+    "kiksuya",
+    "leavingbaghdad",
+    "legacy",
+    "life",
+    "lifeanddeathontheoregontrail",
+    "lifereimagined",
+    "listo",
+    "mayorofthefreaks",
+    "metsmagic",
+    "mybackseatviewofagreatromance",
+    "myfathershands",
+    "myfirstdaywiththeyankees",
+    "naked",
+    "notontheusualtour",
+    "odetostepfather",
+    "onlyonewaytofindout",
+    "penpal",
+    "quietfire",
+    "reachingoutbetweenthebars",
+    "shoppinginchina",
+    "singlewomanseekingmanwich",
+    "sloth",
+    "souls",
+    "stagefright",
+    "stumblinginthedark",
+    "superheroesjustforeachother",
+    "sweetaspie",
+    "swimmingwithastronauts",
+    "thatthingonmyarm",
+    "theadvancedbeginner",
+    "theclosetthatateeverything",
+    "thecurse",
+    "thefreedomridersandme",
+    "theinterview",
+    "thepostmanalwayscalls",
+    "theshower",
+    "thetiniestbouquet",
+    "thetriangleshirtwaistconnection",
+    "threemonths",
+    "thumbsup",
+    "tildeath",
+    "treasureisland",
+    "undertheinfluence",
+    "vixenandtheussr",
+    "waitingtogo",
+    "whenmothersbullyback",
+    "wheretheressmoke",
+    "wildwomenanddancingqueens"
+  ],
+  "smoke": {
+    "n_files": 15,
+    "n_missing": 0,
+    "total_bytes": 7877643435,
+    "total_gb": 7.877643435,
+    "total_gib": 7.336627165786922,
+    "by_kind": {
+      "hf5": {
+        "bytes": 7646831784,
+        "gb": 7.646831784,
+        "gib": 7.121667064726353
+      },
+      "textgrid": {
+        "bytes": 1841297,
+        "gb": 0.001841297,
+        "gib": 0.0017148414626717567
+      },
+      "wav": {
+        "bytes": 228970354,
+        "gb": 0.228970354,
+        "gib": 0.21324525959789753
+      }
+    }
+  },
+  "highdata": {
+    "n_files": 420,
+    "n_missing": 0,
+    "total_bytes": 76858043164,
+    "total_gb": 76.858043164,
+    "total_gib": 71.57963063940406,
+    "by_kind": {
+      "hf5": {
+        "bytes": 67187565528,
+        "gb": 67.187565528,
+        "gib": 62.57329650968313
+      },
+      "textgrid": {
+        "bytes": 84526092,
+        "gb": 0.084526092,
+        "gib": 0.0787210576236248
+      },
+      "wav": {
+        "bytes": 9585951544,
+        "gb": 9.585951544,
+        "gib": 8.927613072097301
+      }
+    }
+  },
+  "dataset_description": {
+    "Name": "An fMRI dataset during a passive natural language listening task",
+    "BIDSVersion": "1.3.0",
+    "Authors": [
+      "Amanda LeBel",
+      "Lauren Wagner",
+      "Shailee Jain",
+      "Aneesh Adhikari-Desai",
+      "Bhavin Gupta",
+      "Allyson Morgenthal",
+      "Jerry Tang",
+      "Lixiang Xu",
+      "Alexander G. Huth"
+    ],
+    "DatasetDOI": "doi:10.18112/openneuro.ds003020.v3.1.1",
+    "License": "CC0",
+    "Acknowledgements": "This work was supported by the Whitehall Foundation, Alfred P. Sloan Foundation, Burroughs-Wellcome\nFund, The National Science Foundation, and the Texas Advanced Computing Center.",
+    "HowToAcknowledge": "This data was obtained from the OpenfMRI database (https://openfmri.org/dataset/ds003020/). Its accession number is ds003020. \nPlease cite LeBel, A., Wagner, L., Jain, S. et al. A natural language fMRI dataset for voxelwise encoding models. Sci Data 10, 555 (2023). https://doi.org/10.1038/s41597-023-02437-z\n\nhttps://www.biorxiv.org/content/10.1101/2022.09.22.509104v1.abstract?%3Fcollection=",
+    "ReferencesAndLinks": [
+      "https://github.com/HuthLab/deep-fMRI-dataset",
+      "https://www.nature.com/articles/s41597-023-02437-z"
+    ]
+  }
+}
