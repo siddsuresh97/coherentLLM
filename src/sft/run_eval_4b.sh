@@ -98,14 +98,53 @@ run_retention(){
     && log "retention launched on H100" || log "retention ssh launch failed"
 }
 
-# --- CPU-light axes: paraphrase + transitivity (safe to run locally) ---
+# --- Axes: paraphrase + transitivity, once PER MODEL (small stimuli; GPU on A5000#1). ---
+# run_extra_eval.py requires --out_model and runs vLLM; base has no adapter, real/scrambled do.
 run_axes(){
   [ -f src/sft/run_extra_eval.py ] || { log "no run_extra_eval.py; skipping axes"; return 0; }
-  retry "python src/sft/run_extra_eval.py" || log "extra axes failed (continuing)"
+  # model:out_model:lora  (lora '-' means none)
+  for spec in "llama-3.1-8b-instruct:llama-3.1-8b-instruct:-" \
+              "llama-3.1-8b-instruct:llama31-sft-real:out/adapters_vllm_fixed/real" \
+              "llama-3.1-8b-instruct:llama31-sft-scrambled:out/adapters_vllm_fixed/scrambled"; do
+    model="${spec%%:*}"; rest="${spec#*:}"; out_model="${rest%%:*}"; lora="${rest##*:}"
+    # skip if this model's paraphrase output already exists
+    if [ -s "$RAW/$out_model/paraphrase_pairwise.csv" ]; then log "skip axes $out_model (exists)"; continue; fi
+    local loraflag=""; [ "$lora" != "-" ] && loraflag="--lora $lora"
+    retry "CUDA_VISIBLE_DEVICES=1 COHERENCE_RAW_DIR=$RAW COHERENCE_STIM_DIR=$STIM \
+      python src/sft/run_extra_eval.py --model $model --out_model $out_model $loraflag \
+      --gpu_mem_util 0.88 --max_model_len 2048 --max_num_seqs 64" \
+      || log "axes $out_model failed (continuing)"
+  done
 }
 
-# --- Aggregate: only when the raw + SALMON inputs exist ---
+# --- GUARD: per-model raw row counts MUST match across base/real/scrambled,
+#     or the coherence table compares different stimulus sets (invalid). ---
+consistency_guard(){
+  python3 - "$RAW" <<'PY'
+import csv, sys, os
+raw = sys.argv[1]
+models = ["llama-3.1-8b-instruct", "llama31-sft-real", "llama31-sft-scrambled"]
+files = ["triplet","pairwise","feature","triplet_lp","pairwise_lp","feature_lp"]
+def n(p):
+    if not os.path.exists(p): return None
+    with open(p) as f: return sum(1 for _ in csv.reader(f))-1
+bad=[]
+for fn in files:
+    counts={m:n(os.path.join(raw,m,fn+".csv")) for m in models}
+    vals=[v for v in counts.values() if v is not None]
+    if len(set(vals))>1:
+        bad.append(f"{fn}: {counts}")
+if bad:
+    print("CONSISTENCY-GUARD FAILED (row counts diverge across models):")
+    for b in bad: print("  "+b)
+    sys.exit(2)
+print("consistency-guard OK: all raw row counts match across models")
+PY
+}
+
+# --- Aggregate: only when the raw + SALMON inputs exist AND row counts match ---
 aggregate(){
+  consistency_guard || { log "CONSISTENCY GUARD FAILED — refusing to aggregate (see above)"; return 1; }
   retry "python src/sft/analyze_eval.py" || { log "aggregate failed"; return 1; }
 }
 
