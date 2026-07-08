@@ -301,18 +301,21 @@ Confounds to control:
 
 ## Initial implementation order
 
-1. Create audit script for exact concept overlap, fMRI file presence, subject
-   trial counts, and ROI voxel counts.
-2. Implement hidden-state extraction for Track A concept prompts.
-3. Implement RSA over saved hidden states and existing fMRI betas.
-4. Add semantic-hub prompt extraction and metrics.
-5. Integrate sidecar literature memos and decide whether to launch language-fMRI.
+1. Done: create audit script for exact concept overlap, fMRI file presence,
+   subject trial counts, and ROI voxel counts.
+2. Done: implement hidden-state extraction for Track A concept prompts.
+3. Done: implement RSA over saved hidden states and existing fMRI betas.
+4. Next: add semantic-hub prompt extraction and metrics.
+5. Next: integrate semantic-hub scores with fMRI RSA and decide whether to launch
+   language-fMRI.
 
 ## Completion criteria for first solid result
 
-- `results/sft_fmri/concept_overlap.csv` and `fmri_data_audit.json` exist.
-- Hidden states are extracted for at least `base`, `lowLR`, and `scrambled`.
-- THINGS-fMRI RSA runs end-to-end for those arms.
-- `results/sft_fmri/REPORT.md` states whether the first-pass Ventral Visual
-  result is positive, null, or inconclusive.
-- The result is committed and pushed.
+- Done: `results/sft_fmri/concept_overlap.csv` and `fmri_data_audit.json` exist.
+- Done: hidden states are extracted for `base`, `lowLR`, `lowrank`,
+  `scrambled`, `taskvec_a0p25`, `taskvec_a0p5`, and `taskvec_a1p0`.
+- Done: THINGS-fMRI RSA runs end-to-end for those arms.
+- Done: `results/sft_fmri/REPORT.md` states that Ventral Visual shows a strong
+  object-RSA signal and scrambled-control separation, but aligned arms are
+  nearly flat vs base in the primary ROI.
+- Pending: commit and push the first fMRI RSA result checkpoint.

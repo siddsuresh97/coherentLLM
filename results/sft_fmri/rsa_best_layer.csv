@@ -1,0 +1,337 @@
+subject,region,n_concepts,n_voxels,arm,layer,layer_name,rsa_spearman,selection
+01,Early Visual,90,6507,base,30,layer_30,0.07497192682616793,best_mean_subjects
+01,Early Visual,90,6507,scrambled,6,layer_6,0.0600436098986027,best_mean_subjects
+01,Early Visual,90,6507,lowLR,30,layer_30,0.07384792484670757,best_mean_subjects
+01,Early Visual,90,6507,lowrank,7,layer_7,0.07982595339256977,best_mean_subjects
+01,Early Visual,90,6507,taskvec_a0p25,30,layer_30,0.0732342939268506,best_mean_subjects
+01,Early Visual,90,6507,taskvec_a0p5,7,layer_7,0.07739386292231182,best_mean_subjects
+01,Early Visual,90,6507,taskvec_a1p0,9,layer_9,0.07459588024078367,best_mean_subjects
+01,Ventral Visual,90,4404,base,31,layer_31,0.2359474542222892,best_mean_subjects
+01,Ventral Visual,90,4404,scrambled,7,layer_7,0.15274499154970583,best_mean_subjects
+01,Ventral Visual,90,4404,lowLR,6,layer_6,0.2311575913078154,best_mean_subjects
+01,Ventral Visual,90,4404,lowrank,6,layer_6,0.23086371651052723,best_mean_subjects
+01,Ventral Visual,90,4404,taskvec_a0p25,6,layer_6,0.22799507574872616,best_mean_subjects
+01,Ventral Visual,90,4404,taskvec_a0p5,6,layer_6,0.23043135069533674,best_mean_subjects
+01,Ventral Visual,90,4404,taskvec_a1p0,7,layer_7,0.21414236781074167,best_mean_subjects
+01,Dorsal Visual,90,2173,base,26,layer_26,0.08145565086165422,best_mean_subjects
+01,Dorsal Visual,90,2173,scrambled,29,layer_29,0.04671649617545381,best_mean_subjects
+01,Dorsal Visual,90,2173,lowLR,30,layer_30,0.0720790401611866,best_mean_subjects
+01,Dorsal Visual,90,2173,lowrank,30,layer_30,0.07392545842455248,best_mean_subjects
+01,Dorsal Visual,90,2173,taskvec_a0p25,26,layer_26,0.07845476581529806,best_mean_subjects
+01,Dorsal Visual,90,2173,taskvec_a0p5,25,layer_25,0.0764098205716677,best_mean_subjects
+01,Dorsal Visual,90,2173,taskvec_a1p0,6,layer_6,0.07335447680996773,best_mean_subjects
+01,Language,90,6784,base,26,layer_26,0.02642453348641258,best_mean_subjects
+01,Language,90,6784,scrambled,29,layer_29,0.002996032951661307,best_mean_subjects
+01,Language,90,6784,lowLR,32,layer_32,0.015293194448618616,best_mean_subjects
+01,Language,90,6784,lowrank,32,layer_32,0.015124977415810828,best_mean_subjects
+01,Language,90,6784,taskvec_a0p25,29,layer_29,0.024110145960516475,best_mean_subjects
+01,Language,90,6784,taskvec_a0p5,30,layer_30,0.022612767121846202,best_mean_subjects
+01,Language,90,6784,taskvec_a1p0,30,layer_30,0.010191015975036573,best_mean_subjects
+01,ATL (Semantic),90,8204,base,30,layer_30,0.04225928502771665,best_mean_subjects
+01,ATL (Semantic),90,8204,scrambled,29,layer_29,0.02715785115219671,best_mean_subjects
+01,ATL (Semantic),90,8204,lowLR,31,layer_31,0.038132120926468734,best_mean_subjects
+01,ATL (Semantic),90,8204,lowrank,30,layer_30,0.038402439294359846,best_mean_subjects
+01,ATL (Semantic),90,8204,taskvec_a0p25,31,layer_31,0.04164690397756529,best_mean_subjects
+01,ATL (Semantic),90,8204,taskvec_a0p5,30,layer_30,0.04330389609044661,best_mean_subjects
+01,ATL (Semantic),90,8204,taskvec_a1p0,30,layer_30,0.037883541250401075,best_mean_subjects
+01,Prefrontal,90,8381,base,4,layer_4,0.00033587180170675714,best_mean_subjects
+01,Prefrontal,90,8381,scrambled,31,layer_31,-0.0001855779116853797,best_mean_subjects
+01,Prefrontal,90,8381,lowLR,31,layer_31,0.0023474751691415457,best_mean_subjects
+01,Prefrontal,90,8381,lowrank,31,layer_31,0.0001810110585150273,best_mean_subjects
+01,Prefrontal,90,8381,taskvec_a0p25,29,layer_29,0.009221997839072228,best_mean_subjects
+01,Prefrontal,90,8381,taskvec_a0p5,31,layer_31,0.00495654726443375,best_mean_subjects
+01,Prefrontal,90,8381,taskvec_a1p0,31,layer_31,0.0034376596830668535,best_mean_subjects
+01,TGd,90,1914,base,24,layer_24,0.006529519216668269,best_mean_subjects
+01,TGd,90,1914,scrambled,29,layer_29,-0.003963332353331624,best_mean_subjects
+01,TGd,90,1914,lowLR,29,layer_29,0.0025999871433967487,best_mean_subjects
+01,TGd,90,1914,lowrank,29,layer_29,0.0012653328970987313,best_mean_subjects
+01,TGd,90,1914,taskvec_a0p25,29,layer_29,0.006964333401643729,best_mean_subjects
+01,TGd,90,1914,taskvec_a0p5,29,layer_29,0.005907437152704084,best_mean_subjects
+01,TGd,90,1914,taskvec_a1p0,29,layer_29,0.0072644295276638885,best_mean_subjects
+01,TGv,90,632,base,31,layer_31,0.03023710495312082,best_mean_subjects
+01,TGv,90,632,scrambled,15,layer_15,0.03532171781651494,best_mean_subjects
+01,TGv,90,632,lowLR,31,layer_31,0.029997582395951138,best_mean_subjects
+01,TGv,90,632,lowrank,31,layer_31,0.031808896711542745,best_mean_subjects
+01,TGv,90,632,taskvec_a0p25,31,layer_31,0.023598564819317963,best_mean_subjects
+01,TGv,90,632,taskvec_a0p5,32,layer_32,0.026287859085292152,best_mean_subjects
+01,TGv,90,632,taskvec_a1p0,31,layer_31,0.015100789046611886,best_mean_subjects
+01,TE1a,90,692,base,8,layer_8,0.005073255506033305,best_mean_subjects
+01,TE1a,90,692,scrambled,32,layer_32,-0.009240306160655973,best_mean_subjects
+01,TE1a,90,692,lowLR,16,layer_16,0.0024644992872427003,best_mean_subjects
+01,TE1a,90,692,lowrank,16,layer_16,0.002836218308515481,best_mean_subjects
+01,TE1a,90,692,taskvec_a0p25,15,layer_15,0.007790491673094735,best_mean_subjects
+01,TE1a,90,692,taskvec_a0p5,31,layer_31,0.013041544927423975,best_mean_subjects
+01,TE1a,90,692,taskvec_a1p0,32,layer_32,0.006857787753298421,best_mean_subjects
+01,TE1m,90,543,base,3,layer_3,0.006718135781843592,best_mean_subjects
+01,TE1m,90,543,scrambled,3,layer_3,-0.005088904001770657,best_mean_subjects
+01,TE1m,90,543,lowLR,31,layer_31,0.007890264002724525,best_mean_subjects
+01,TE1m,90,543,lowrank,4,layer_4,0.010817098518692196,best_mean_subjects
+01,TE1m,90,543,taskvec_a0p25,4,layer_4,0.010801539312705149,best_mean_subjects
+01,TE1m,90,543,taskvec_a0p5,4,layer_4,0.014620282980102801,best_mean_subjects
+01,TE1m,90,543,taskvec_a1p0,4,layer_4,0.02218615470479248,best_mean_subjects
+01,TE1p,90,910,base,4,layer_4,0.019577939268066998,best_mean_subjects
+01,TE1p,90,910,scrambled,3,layer_3,0.02402938468895713,best_mean_subjects
+01,TE1p,90,910,lowLR,3,layer_3,0.020113574096644438,best_mean_subjects
+01,TE1p,90,910,lowrank,4,layer_4,0.014964130710174568,best_mean_subjects
+01,TE1p,90,910,taskvec_a0p25,4,layer_4,0.01780342447151223,best_mean_subjects
+01,TE1p,90,910,taskvec_a0p5,4,layer_4,0.019880005746150353,best_mean_subjects
+01,TE1p,90,910,taskvec_a1p0,31,layer_31,0.015824372448425137,best_mean_subjects
+01,TE2a,90,814,base,25,layer_25,0.029017582181095344,best_mean_subjects
+01,TE2a,90,814,scrambled,17,layer_17,0.021370928823794468,best_mean_subjects
+01,TE2a,90,814,lowLR,22,layer_22,0.03198535249840315,best_mean_subjects
+01,TE2a,90,814,lowrank,22,layer_22,0.03140871181899527,best_mean_subjects
+01,TE2a,90,814,taskvec_a0p25,25,layer_25,0.031055440097494995,best_mean_subjects
+01,TE2a,90,814,taskvec_a0p5,25,layer_25,0.035722367650879376,best_mean_subjects
+01,TE2a,90,814,taskvec_a1p0,24,layer_24,0.03704111879489263,best_mean_subjects
+01,TE2p,90,584,base,30,layer_30,0.0775925729652443,best_mean_subjects
+01,TE2p,90,584,scrambled,28,layer_28,0.07088638333007735,best_mean_subjects
+01,TE2p,90,584,lowLR,30,layer_30,0.07777890666423036,best_mean_subjects
+01,TE2p,90,584,lowrank,30,layer_30,0.0748745998775449,best_mean_subjects
+01,TE2p,90,584,taskvec_a0p25,6,layer_6,0.07958673382279546,best_mean_subjects
+01,TE2p,90,584,taskvec_a0p5,6,layer_6,0.08474763936066365,best_mean_subjects
+01,TE2p,90,584,taskvec_a1p0,6,layer_6,0.08268729854665559,best_mean_subjects
+01,TF,90,859,base,30,layer_30,0.08697785112264518,best_mean_subjects
+01,TF,90,859,scrambled,6,layer_6,0.07109941522480019,best_mean_subjects
+01,TF,90,859,lowLR,30,layer_30,0.09408341158188298,best_mean_subjects
+01,TF,90,859,lowrank,30,layer_30,0.0907944210142598,best_mean_subjects
+01,TF,90,859,taskvec_a0p25,30,layer_30,0.08263013274540927,best_mean_subjects
+01,TF,90,859,taskvec_a0p5,6,layer_6,0.08089133534336516,best_mean_subjects
+01,TF,90,859,taskvec_a1p0,6,layer_6,0.07421232397644184,best_mean_subjects
+01,PeEc,90,860,base,31,layer_31,0.038860945337746984,best_mean_subjects
+01,PeEc,90,860,scrambled,1,layer_1,0.03415670456906356,best_mean_subjects
+01,PeEc,90,860,lowLR,31,layer_31,0.035257571350061835,best_mean_subjects
+01,PeEc,90,860,lowrank,12,layer_12,0.04241958049056391,best_mean_subjects
+01,PeEc,90,860,taskvec_a0p25,31,layer_31,0.036837962757510403,best_mean_subjects
+01,PeEc,90,860,taskvec_a0p5,3,layer_3,0.034610447994304794,best_mean_subjects
+01,PeEc,90,860,taskvec_a1p0,3,layer_3,0.038410568397610305,best_mean_subjects
+01,EC,90,396,base,30,layer_30,0.0037308509841283716,best_mean_subjects
+01,EC,90,396,scrambled,2,layer_2,0.013522831438654336,best_mean_subjects
+01,EC,90,396,lowLR,17,layer_17,-0.0058176699450743444,best_mean_subjects
+01,EC,90,396,lowrank,30,layer_30,-0.008416657902541437,best_mean_subjects
+01,EC,90,396,taskvec_a0p25,30,layer_30,-0.00472024007226821,best_mean_subjects
+01,EC,90,396,taskvec_a0p5,30,layer_30,-0.01082910705611486,best_mean_subjects
+01,EC,90,396,taskvec_a1p0,2,layer_2,0.006065527270798017,best_mean_subjects
+02,Early Visual,90,7321,base,30,layer_30,0.07518769158500574,best_mean_subjects
+02,Early Visual,90,7321,scrambled,6,layer_6,0.04109144290164894,best_mean_subjects
+02,Early Visual,90,7321,lowLR,30,layer_30,0.08096900845979475,best_mean_subjects
+02,Early Visual,90,7321,lowrank,7,layer_7,0.07546217574938538,best_mean_subjects
+02,Early Visual,90,7321,taskvec_a0p25,30,layer_30,0.07327264929176669,best_mean_subjects
+02,Early Visual,90,7321,taskvec_a0p5,7,layer_7,0.06934237021073059,best_mean_subjects
+02,Early Visual,90,7321,taskvec_a1p0,9,layer_9,0.07446990361102339,best_mean_subjects
+02,Ventral Visual,90,4635,base,31,layer_31,0.21571579218928422,best_mean_subjects
+02,Ventral Visual,90,4635,scrambled,7,layer_7,0.1317014247287377,best_mean_subjects
+02,Ventral Visual,90,4635,lowLR,6,layer_6,0.21455165614825006,best_mean_subjects
+02,Ventral Visual,90,4635,lowrank,6,layer_6,0.2177186845757024,best_mean_subjects
+02,Ventral Visual,90,4635,taskvec_a0p25,6,layer_6,0.2096311359904734,best_mean_subjects
+02,Ventral Visual,90,4635,taskvec_a0p5,6,layer_6,0.21232542095573392,best_mean_subjects
+02,Ventral Visual,90,4635,taskvec_a1p0,7,layer_7,0.20564582939223228,best_mean_subjects
+02,Dorsal Visual,90,1879,base,26,layer_26,0.08326578460983595,best_mean_subjects
+02,Dorsal Visual,90,1879,scrambled,29,layer_29,0.056129412499351966,best_mean_subjects
+02,Dorsal Visual,90,1879,lowLR,30,layer_30,0.08736372705250849,best_mean_subjects
+02,Dorsal Visual,90,1879,lowrank,30,layer_30,0.09377316649890935,best_mean_subjects
+02,Dorsal Visual,90,1879,taskvec_a0p25,26,layer_26,0.08074290215460483,best_mean_subjects
+02,Dorsal Visual,90,1879,taskvec_a0p5,25,layer_25,0.07540366630551579,best_mean_subjects
+02,Dorsal Visual,90,1879,taskvec_a1p0,6,layer_6,0.06797621405484892,best_mean_subjects
+02,Language,90,6306,base,26,layer_26,0.0528304917159837,best_mean_subjects
+02,Language,90,6306,scrambled,29,layer_29,0.03402492746790907,best_mean_subjects
+02,Language,90,6306,lowLR,32,layer_32,0.0709144813948283,best_mean_subjects
+02,Language,90,6306,lowrank,32,layer_32,0.07409460291261186,best_mean_subjects
+02,Language,90,6306,taskvec_a0p25,29,layer_29,0.059382942894192874,best_mean_subjects
+02,Language,90,6306,taskvec_a0p5,30,layer_30,0.06154480578069914,best_mean_subjects
+02,Language,90,6306,taskvec_a1p0,30,layer_30,0.06062301426390125,best_mean_subjects
+02,ATL (Semantic),90,8643,base,30,layer_30,0.08652505364572095,best_mean_subjects
+02,ATL (Semantic),90,8643,scrambled,29,layer_29,0.06199628800839344,best_mean_subjects
+02,ATL (Semantic),90,8643,lowLR,31,layer_31,0.10020482807201607,best_mean_subjects
+02,ATL (Semantic),90,8643,lowrank,30,layer_30,0.10628570907029623,best_mean_subjects
+02,ATL (Semantic),90,8643,taskvec_a0p25,31,layer_31,0.09600019969521897,best_mean_subjects
+02,ATL (Semantic),90,8643,taskvec_a0p5,30,layer_30,0.10001934710882526,best_mean_subjects
+02,ATL (Semantic),90,8643,taskvec_a1p0,30,layer_30,0.09412968889035687,best_mean_subjects
+02,Prefrontal,90,8492,base,4,layer_4,0.024487406737065957,best_mean_subjects
+02,Prefrontal,90,8492,scrambled,31,layer_31,0.015489005750243109,best_mean_subjects
+02,Prefrontal,90,8492,lowLR,31,layer_31,0.03191918505745518,best_mean_subjects
+02,Prefrontal,90,8492,lowrank,31,layer_31,0.03674165516907023,best_mean_subjects
+02,Prefrontal,90,8492,taskvec_a0p25,29,layer_29,0.028711012174580868,best_mean_subjects
+02,Prefrontal,90,8492,taskvec_a0p5,31,layer_31,0.037426912159756714,best_mean_subjects
+02,Prefrontal,90,8492,taskvec_a1p0,31,layer_31,0.03758022658379988,best_mean_subjects
+02,TGd,90,2136,base,24,layer_24,0.04508565923466045,best_mean_subjects
+02,TGd,90,2136,scrambled,29,layer_29,0.07015965946951493,best_mean_subjects
+02,TGd,90,2136,lowLR,29,layer_29,0.059896122658159384,best_mean_subjects
+02,TGd,90,2136,lowrank,29,layer_29,0.06990002841226006,best_mean_subjects
+02,TGd,90,2136,taskvec_a0p25,29,layer_29,0.06021916849159133,best_mean_subjects
+02,TGd,90,2136,taskvec_a0p5,29,layer_29,0.07380700230807093,best_mean_subjects
+02,TGd,90,2136,taskvec_a1p0,29,layer_29,0.08440763015586174,best_mean_subjects
+02,TGv,90,873,base,31,layer_31,0.042402500370043436,best_mean_subjects
+02,TGv,90,873,scrambled,15,layer_15,0.03923913842631272,best_mean_subjects
+02,TGv,90,873,lowLR,31,layer_31,0.04233140181857556,best_mean_subjects
+02,TGv,90,873,lowrank,31,layer_31,0.044081047551684294,best_mean_subjects
+02,TGv,90,873,taskvec_a0p25,31,layer_31,0.046554079240442955,best_mean_subjects
+02,TGv,90,873,taskvec_a0p5,32,layer_32,0.04509570750714653,best_mean_subjects
+02,TGv,90,873,taskvec_a1p0,31,layer_31,0.05258544944577694,best_mean_subjects
+02,TE1a,90,696,base,8,layer_8,0.03699411689449106,best_mean_subjects
+02,TE1a,90,696,scrambled,32,layer_32,0.0504360316451169,best_mean_subjects
+02,TE1a,90,696,lowLR,16,layer_16,0.049810967714449574,best_mean_subjects
+02,TE1a,90,696,lowrank,16,layer_16,0.05092135730335735,best_mean_subjects
+02,TE1a,90,696,taskvec_a0p25,15,layer_15,0.04318627104111799,best_mean_subjects
+02,TE1a,90,696,taskvec_a0p5,31,layer_31,0.05179842362158776,best_mean_subjects
+02,TE1a,90,696,taskvec_a1p0,32,layer_32,0.0631581701370277,best_mean_subjects
+02,TE1m,90,437,base,3,layer_3,0.01845127933074665,best_mean_subjects
+02,TE1m,90,437,scrambled,3,layer_3,0.014298990625512082,best_mean_subjects
+02,TE1m,90,437,lowLR,31,layer_31,0.02642332676719299,best_mean_subjects
+02,TE1m,90,437,lowrank,4,layer_4,0.020619784963718506,best_mean_subjects
+02,TE1m,90,437,taskvec_a0p25,4,layer_4,0.017383873603476784,best_mean_subjects
+02,TE1m,90,437,taskvec_a0p5,4,layer_4,0.019718741358753254,best_mean_subjects
+02,TE1m,90,437,taskvec_a1p0,4,layer_4,0.014883902188338792,best_mean_subjects
+02,TE1p,90,959,base,4,layer_4,0.033780381521690904,best_mean_subjects
+02,TE1p,90,959,scrambled,3,layer_3,0.02289386433170757,best_mean_subjects
+02,TE1p,90,959,lowLR,3,layer_3,0.028158921880137813,best_mean_subjects
+02,TE1p,90,959,lowrank,4,layer_4,0.031229979890696685,best_mean_subjects
+02,TE1p,90,959,taskvec_a0p25,4,layer_4,0.03017734732073337,best_mean_subjects
+02,TE1p,90,959,taskvec_a0p5,4,layer_4,0.027741687502046964,best_mean_subjects
+02,TE1p,90,959,taskvec_a1p0,31,layer_31,0.03678920233470431,best_mean_subjects
+02,TE2a,90,846,base,25,layer_25,0.001710011544697718,best_mean_subjects
+02,TE2a,90,846,scrambled,17,layer_17,-0.0111369816643367,best_mean_subjects
+02,TE2a,90,846,lowLR,22,layer_22,-0.008166275059194109,best_mean_subjects
+02,TE2a,90,846,lowrank,22,layer_22,-0.007254553296725994,best_mean_subjects
+02,TE2a,90,846,taskvec_a0p25,25,layer_25,-0.0006567485293216921,best_mean_subjects
+02,TE2a,90,846,taskvec_a0p5,25,layer_25,-0.0003246395994352711,best_mean_subjects
+02,TE2a,90,846,taskvec_a1p0,24,layer_24,-0.008404168732215988,best_mean_subjects
+02,TE2p,90,507,base,30,layer_30,0.16723852847644688,best_mean_subjects
+02,TE2p,90,507,scrambled,28,layer_28,0.07726689551256072,best_mean_subjects
+02,TE2p,90,507,lowLR,30,layer_30,0.1688395854175275,best_mean_subjects
+02,TE2p,90,507,lowrank,30,layer_30,0.1777069828363674,best_mean_subjects
+02,TE2p,90,507,taskvec_a0p25,6,layer_6,0.1442894737391195,best_mean_subjects
+02,TE2p,90,507,taskvec_a0p5,6,layer_6,0.1444831906543833,best_mean_subjects
+02,TE2p,90,507,taskvec_a1p0,6,layer_6,0.13402076223181644,best_mean_subjects
+02,TF,90,848,base,30,layer_30,0.09000056209579005,best_mean_subjects
+02,TF,90,848,scrambled,6,layer_6,0.07857768604569751,best_mean_subjects
+02,TF,90,848,lowLR,30,layer_30,0.10089684549231184,best_mean_subjects
+02,TF,90,848,lowrank,30,layer_30,0.10670558795674494,best_mean_subjects
+02,TF,90,848,taskvec_a0p25,30,layer_30,0.09565882854152698,best_mean_subjects
+02,TF,90,848,taskvec_a0p5,6,layer_6,0.10811563338727649,best_mean_subjects
+02,TF,90,848,taskvec_a1p0,6,layer_6,0.10462328765491999,best_mean_subjects
+02,PeEc,90,934,base,31,layer_31,0.06571599645359792,best_mean_subjects
+02,PeEc,90,934,scrambled,1,layer_1,0.038885818323964476,best_mean_subjects
+02,PeEc,90,934,lowLR,31,layer_31,0.060203941973983544,best_mean_subjects
+02,PeEc,90,934,lowrank,12,layer_12,0.06096663652801357,best_mean_subjects
+02,PeEc,90,934,taskvec_a0p25,31,layer_31,0.06151322971205508,best_mean_subjects
+02,PeEc,90,934,taskvec_a0p5,3,layer_3,0.05919860831426068,best_mean_subjects
+02,PeEc,90,934,taskvec_a1p0,3,layer_3,0.052660611428078215,best_mean_subjects
+02,EC,90,407,base,30,layer_30,0.002316937327343067,best_mean_subjects
+02,EC,90,407,scrambled,2,layer_2,0.008533828470776982,best_mean_subjects
+02,EC,90,407,lowLR,17,layer_17,0.0007860204739043785,best_mean_subjects
+02,EC,90,407,lowrank,30,layer_30,0.0044507878896745045,best_mean_subjects
+02,EC,90,407,taskvec_a0p25,30,layer_30,0.004424495607384196,best_mean_subjects
+02,EC,90,407,taskvec_a0p5,30,layer_30,0.002294494778241069,best_mean_subjects
+02,EC,90,407,taskvec_a1p0,2,layer_2,0.0006200586610870063,best_mean_subjects
+03,Early Visual,90,5942,base,30,layer_30,0.05349839735452329,best_mean_subjects
+03,Early Visual,90,5942,scrambled,6,layer_6,0.011030573873388305,best_mean_subjects
+03,Early Visual,90,5942,lowLR,30,layer_30,0.04970178148051787,best_mean_subjects
+03,Early Visual,90,5942,lowrank,7,layer_7,0.04495516151739682,best_mean_subjects
+03,Early Visual,90,5942,taskvec_a0p25,30,layer_30,0.04473500381492326,best_mean_subjects
+03,Early Visual,90,5942,taskvec_a0p5,7,layer_7,0.03870579486986338,best_mean_subjects
+03,Early Visual,90,5942,taskvec_a1p0,9,layer_9,0.025746902737035518,best_mean_subjects
+03,Ventral Visual,90,3790,base,31,layer_31,0.14536355284783206,best_mean_subjects
+03,Ventral Visual,90,3790,scrambled,7,layer_7,0.10353067980222753,best_mean_subjects
+03,Ventral Visual,90,3790,lowLR,6,layer_6,0.15716452260961342,best_mean_subjects
+03,Ventral Visual,90,3790,lowrank,6,layer_6,0.15541141120132188,best_mean_subjects
+03,Ventral Visual,90,3790,taskvec_a0p25,6,layer_6,0.15268710227732368,best_mean_subjects
+03,Ventral Visual,90,3790,taskvec_a0p5,6,layer_6,0.14911482615376215,best_mean_subjects
+03,Ventral Visual,90,3790,taskvec_a1p0,7,layer_7,0.13691691749941456,best_mean_subjects
+03,Dorsal Visual,90,1865,base,26,layer_26,0.024931905497573847,best_mean_subjects
+03,Dorsal Visual,90,1865,scrambled,29,layer_29,0.028827140593199373,best_mean_subjects
+03,Dorsal Visual,90,1865,lowLR,30,layer_30,0.0213680978903931,best_mean_subjects
+03,Dorsal Visual,90,1865,lowrank,30,layer_30,0.019768515537782985,best_mean_subjects
+03,Dorsal Visual,90,1865,taskvec_a0p25,26,layer_26,0.01672986746500072,best_mean_subjects
+03,Dorsal Visual,90,1865,taskvec_a0p5,25,layer_25,0.015304653050842757,best_mean_subjects
+03,Dorsal Visual,90,1865,taskvec_a1p0,6,layer_6,0.0243046485508635,best_mean_subjects
+03,Language,90,5962,base,26,layer_26,0.005788318461443605,best_mean_subjects
+03,Language,90,5962,scrambled,29,layer_29,0.030481145609015603,best_mean_subjects
+03,Language,90,5962,lowLR,32,layer_32,0.012410978655993159,best_mean_subjects
+03,Language,90,5962,lowrank,32,layer_32,0.014228813364940637,best_mean_subjects
+03,Language,90,5962,taskvec_a0p25,29,layer_29,0.0036968117886066808,best_mean_subjects
+03,Language,90,5962,taskvec_a0p5,30,layer_30,0.011470434423645058,best_mean_subjects
+03,Language,90,5962,taskvec_a1p0,30,layer_30,0.02388012043304386,best_mean_subjects
+03,ATL (Semantic),90,7612,base,30,layer_30,0.015529354817052483,best_mean_subjects
+03,ATL (Semantic),90,7612,scrambled,29,layer_29,0.02412123619582095,best_mean_subjects
+03,ATL (Semantic),90,7612,lowLR,31,layer_31,0.020869243900988422,best_mean_subjects
+03,ATL (Semantic),90,7612,lowrank,30,layer_30,0.01688352279656335,best_mean_subjects
+03,ATL (Semantic),90,7612,taskvec_a0p25,31,layer_31,0.01609894440816597,best_mean_subjects
+03,ATL (Semantic),90,7612,taskvec_a0p5,30,layer_30,0.019567668331601087,best_mean_subjects
+03,ATL (Semantic),90,7612,taskvec_a1p0,30,layer_30,0.023433939924372815,best_mean_subjects
+03,Prefrontal,90,8150,base,4,layer_4,0.010764307915210774,best_mean_subjects
+03,Prefrontal,90,8150,scrambled,31,layer_31,0.023277376885167445,best_mean_subjects
+03,Prefrontal,90,8150,lowLR,31,layer_31,0.006236786693068562,best_mean_subjects
+03,Prefrontal,90,8150,lowrank,31,layer_31,0.0024435625219842152,best_mean_subjects
+03,Prefrontal,90,8150,taskvec_a0p25,29,layer_29,0.005937931283620615,best_mean_subjects
+03,Prefrontal,90,8150,taskvec_a0p5,31,layer_31,0.012470967171500643,best_mean_subjects
+03,Prefrontal,90,8150,taskvec_a1p0,31,layer_31,0.017705553378448532,best_mean_subjects
+03,TGd,90,2078,base,24,layer_24,-0.008378751788356483,best_mean_subjects
+03,TGd,90,2078,scrambled,29,layer_29,-0.010794540714828823,best_mean_subjects
+03,TGd,90,2078,lowLR,29,layer_29,-0.008279169432944388,best_mean_subjects
+03,TGd,90,2078,lowrank,29,layer_29,-0.010715186971027928,best_mean_subjects
+03,TGd,90,2078,taskvec_a0p25,29,layer_29,-0.012309117170364627,best_mean_subjects
+03,TGd,90,2078,taskvec_a0p5,29,layer_29,-0.012377548237241843,best_mean_subjects
+03,TGd,90,2078,taskvec_a1p0,29,layer_29,-0.010895050712291144,best_mean_subjects
+03,TGv,90,654,base,31,layer_31,-0.002407017422696152,best_mean_subjects
+03,TGv,90,654,scrambled,15,layer_15,0.012120106833654491,best_mean_subjects
+03,TGv,90,654,lowLR,31,layer_31,0.0037387889923692964,best_mean_subjects
+03,TGv,90,654,lowrank,31,layer_31,0.0030762958444469886,best_mean_subjects
+03,TGv,90,654,taskvec_a0p25,31,layer_31,-0.00021558337735757004,best_mean_subjects
+03,TGv,90,654,taskvec_a0p5,32,layer_32,0.004929426716970121,best_mean_subjects
+03,TGv,90,654,taskvec_a1p0,31,layer_31,0.024224872642134392,best_mean_subjects
+03,TE1a,90,608,base,8,layer_8,0.030269084880426296,best_mean_subjects
+03,TE1a,90,608,scrambled,32,layer_32,0.014900741338612624,best_mean_subjects
+03,TE1a,90,608,lowLR,16,layer_16,0.011742318350944738,best_mean_subjects
+03,TE1a,90,608,lowrank,16,layer_16,0.010178726118860863,best_mean_subjects
+03,TE1a,90,608,taskvec_a0p25,15,layer_15,0.010921194676460654,best_mean_subjects
+03,TE1a,90,608,taskvec_a0p5,31,layer_31,0.012795523085144834,best_mean_subjects
+03,TE1a,90,608,taskvec_a1p0,32,layer_32,0.029337482325416157,best_mean_subjects
+03,TE1m,90,457,base,3,layer_3,0.025992903657866887,best_mean_subjects
+03,TE1m,90,457,scrambled,3,layer_3,0.03479822508638834,best_mean_subjects
+03,TE1m,90,457,lowLR,31,layer_31,0.015761907356537885,best_mean_subjects
+03,TE1m,90,457,lowrank,4,layer_4,0.027649297081104432,best_mean_subjects
+03,TE1m,90,457,taskvec_a0p25,4,layer_4,0.026120002387062472,best_mean_subjects
+03,TE1m,90,457,taskvec_a0p5,4,layer_4,0.024890934391290604,best_mean_subjects
+03,TE1m,90,457,taskvec_a1p0,4,layer_4,0.01343379367971693,best_mean_subjects
+03,TE1p,90,750,base,4,layer_4,0.023977015876806642,best_mean_subjects
+03,TE1p,90,750,scrambled,3,layer_3,0.03335176344763089,best_mean_subjects
+03,TE1p,90,750,lowLR,3,layer_3,0.031443718444677686,best_mean_subjects
+03,TE1p,90,750,lowrank,4,layer_4,0.025689453375452472,best_mean_subjects
+03,TE1p,90,750,taskvec_a0p25,4,layer_4,0.026990441463114478,best_mean_subjects
+03,TE1p,90,750,taskvec_a0p5,4,layer_4,0.029432961461884368,best_mean_subjects
+03,TE1p,90,750,taskvec_a1p0,31,layer_31,0.01977115332138977,best_mean_subjects
+03,TE2a,90,765,base,25,layer_25,0.010509826149288304,best_mean_subjects
+03,TE2a,90,765,scrambled,17,layer_17,-0.006028803592009345,best_mean_subjects
+03,TE2a,90,765,lowLR,22,layer_22,0.020809675869221386,best_mean_subjects
+03,TE2a,90,765,lowrank,22,layer_22,0.021012419642003358,best_mean_subjects
+03,TE2a,90,765,taskvec_a0p25,25,layer_25,0.01523056702871251,best_mean_subjects
+03,TE2a,90,765,taskvec_a0p5,25,layer_25,0.015898449130623344,best_mean_subjects
+03,TE2a,90,765,taskvec_a1p0,24,layer_24,0.015091401480918329,best_mean_subjects
+03,TE2p,90,427,base,30,layer_30,0.03938981095717901,best_mean_subjects
+03,TE2p,90,427,scrambled,28,layer_28,0.03912459947732881,best_mean_subjects
+03,TE2p,90,427,lowLR,30,layer_30,0.0334864312577518,best_mean_subjects
+03,TE2p,90,427,lowrank,30,layer_30,0.0254734140226127,best_mean_subjects
+03,TE2p,90,427,taskvec_a0p25,6,layer_6,0.045492131956256,best_mean_subjects
+03,TE2p,90,427,taskvec_a0p5,6,layer_6,0.04993088945306686,best_mean_subjects
+03,TE2p,90,427,taskvec_a1p0,6,layer_6,0.054044948882467886,best_mean_subjects
+03,TF,90,642,base,30,layer_30,0.02331068401681583,best_mean_subjects
+03,TF,90,642,scrambled,6,layer_6,0.025355611514575317,best_mean_subjects
+03,TF,90,642,lowLR,30,layer_30,0.023639760457567455,best_mean_subjects
+03,TF,90,642,lowrank,30,layer_30,0.024795902077171184,best_mean_subjects
+03,TF,90,642,taskvec_a0p25,30,layer_30,0.026190630579552815,best_mean_subjects
+03,TF,90,642,taskvec_a0p5,6,layer_6,0.024201685700448793,best_mean_subjects
+03,TF,90,642,taskvec_a1p0,6,layer_6,0.024034624577630295,best_mean_subjects
+03,PeEc,90,841,base,31,layer_31,0.018618497924819344,best_mean_subjects
+03,PeEc,90,841,scrambled,1,layer_1,0.02870167485772169,best_mean_subjects
+03,PeEc,90,841,lowLR,31,layer_31,0.017153922235064567,best_mean_subjects
+03,PeEc,90,841,lowrank,12,layer_12,0.012374718051035039,best_mean_subjects
+03,PeEc,90,841,taskvec_a0p25,31,layer_31,0.013361920847882916,best_mean_subjects
+03,PeEc,90,841,taskvec_a0p5,3,layer_3,0.019705051259966078,best_mean_subjects
+03,PeEc,90,841,taskvec_a1p0,3,layer_3,0.027006161876328538,best_mean_subjects
+03,EC,90,390,base,30,layer_30,0.01960201593167874,best_mean_subjects
+03,EC,90,390,scrambled,2,layer_2,0.02183346224587733,best_mean_subjects
+03,EC,90,390,lowLR,17,layer_17,0.020273838550917314,best_mean_subjects
+03,EC,90,390,lowrank,30,layer_30,0.023040447279930754,best_mean_subjects
+03,EC,90,390,taskvec_a0p25,30,layer_30,0.020995409944570474,best_mean_subjects
+03,EC,90,390,taskvec_a0p5,30,layer_30,0.020878598403322554,best_mean_subjects
+03,EC,90,390,taskvec_a1p0,2,layer_2,0.014207601071686967,best_mean_subjects

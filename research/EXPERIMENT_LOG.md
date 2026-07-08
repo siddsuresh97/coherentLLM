@@ -261,6 +261,133 @@ Interpretation:
 - The next implementation step is hidden-state extraction for the 90 overlap
   concepts across `base`, `lowLR`, `lowrank`, `scrambled`, and task-vector arms.
 
+## 2026-07-08 result: fMRI hidden-state extraction
+
+Command run on H100 `opt-a007.discovery.wisc.edu`:
+
+```bash
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 opt-a007.discovery.wisc.edu 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/extract_fmri_hidden_states.py --arms base,scrambled,lowLR,lowrank,taskvec_a0p25,taskvec_a0p5,taskvec_a1p0 --batch_size 16 --overwrite'
+```
+
+Artifacts:
+
+- `src/sft/extract_fmri_hidden_states.py`
+- `results/sft_fmri/hidden_states/base.npz`
+- `results/sft_fmri/hidden_states/scrambled.npz`
+- `results/sft_fmri/hidden_states/lowLR.npz`
+- `results/sft_fmri/hidden_states/lowrank.npz`
+- `results/sft_fmri/hidden_states/taskvec_a0p25.npz`
+- `results/sft_fmri/hidden_states/taskvec_a0p5.npz`
+- `results/sft_fmri/hidden_states/taskvec_a1p0.npz`
+
+Result:
+
+- All seven planned arms completed.
+- Each hidden-state array has shape `90 x 33 x 4096`.
+- Prompt template is `concept_colon`: `Concept: {concept}`.
+- Total hidden-state artifact size is about 126 MB.
+
+## 2026-07-08 result: first-pass THINGS-fMRI RSA
+
+Commands:
+
+```bash
+python src/sft/run_fmri_rsa.py
+```
+
+The RSA script was then optimized and rerun with batched HDF5 trial reads. The
+optimized rerun completed in about 30 seconds and overwrote the RSA outputs.
+
+Artifacts:
+
+- `src/sft/run_fmri_rsa.py`
+- `results/sft_fmri/rsa_by_layer.csv`
+- `results/sft_fmri/rsa_best_layer.csv`
+- `results/sft_fmri/rsa_summary.csv`
+- `results/sft_fmri/rsa_meta.json`
+- `results/sft_fmri/REPORT.md`
+
+Core ROI result:
+
+| ROI | Best arm | Best layer | Mean RSA | Delta vs base |
+|---|---|---:|---:|---:|
+| Ventral Visual | `lowrank` | 6 | 0.2013 | +0.0023 |
+| Early Visual | `lowLR` | 30 | 0.0682 | +0.0003 |
+| Dorsal Visual | `base` | 26 | 0.0632 | 0.0000 |
+| ATL (Semantic) | `taskvec_a0p5` | 30 | 0.0543 | +0.0062 |
+| Language | `lowrank` | 32 | 0.0345 | +0.0061 |
+| Prefrontal | `taskvec_a1p0` | 31 | 0.0196 | +0.0077 |
+
+Ventral Visual detail:
+
+- `base`: 0.1990
+- `lowLR`: 0.2010
+- `lowrank`: 0.2013
+- `taskvec_a0p25`: 0.1968
+- `taskvec_a0p5`: 0.1973
+- `taskvec_a1p0`: 0.1856
+- `scrambled`: 0.1293
+
+Interpretation:
+
+- The end-to-end fMRI pipeline works.
+- Ventral Visual is the robust object-RSA signal and the scrambled control is
+  much worse than all meaningful arms.
+- Coherence-SFT does not yield a large Ventral Visual gain in this first-pass
+  90-concept, single-prompt analysis.
+- ATL/Language aligned-arm increases are small and exploratory. They are not yet
+  evidence for language-network improvement because the data are object-fMRI and
+  the ROIs are not subject-specific language-localizer masks.
+- Next best brain-facing step is semantic-hub extraction and a hub-score vs fMRI
+  RSA bridge; next best stronger-neural step is a language-fMRI feasibility run.
+
+Speed note:
+
+- For `n=90`, HDF5 loading was the bottleneck, not RSA compute.
+- `src/sft/run_fmri_rsa.py` now loads all selected trials per subject in one HDF5
+  slice and then averages concepts in memory.
+- For full-720, permutation-heavy, or bootstrap-heavy RSA, use a vectorized
+  torch/CuPy/ThingsVision-style GPU path.
+
+## 2026-07-08 active: lowrank wide-benchmark mitigation
+
+Goal:
+
+- Test whether the `lowrank` adapter preserves broad benchmark capability better
+  than `lowLR` while retaining the semantic gains already seen in prior tasks.
+
+Initial lowrank runs:
+
+- A5000 GPU0: `zero_shot winogrande_5shot`, `gpu_mem_util=0.82`, vLLM auto batch.
+- A5000 GPU1: `arc_25shot hellaswag_10shot`, `gpu_mem_util=0.82`, vLLM auto batch.
+- H100: `mmlu_5shot`, `gpu_mem_util=0.88`, vLLM auto batch.
+
+Observed runner behavior:
+
+- Both A5000 jobs loaded the model but OOMed during prompt-logprob scoring, not
+  during weight loading. This points to loglikelihood/sampler batch pressure.
+- Retrying A5000 with `gpu_mem_util=0.65` and `batch_size=8` failed earlier:
+  vLLM had no available KV cache blocks after weights/activation profiling.
+- Current A5000 retry uses `gpu_mem_util=0.75` and `batch_size=4`, which should
+  leave both KV cache and sampler headroom.
+- H100 MMLU is running and using the GPU heavily. It is the long lane because
+  the `limit=1000` standard MMLU setup expands to about 54k loglikelihood
+  requests.
+
+Commands currently/recently used:
+
+```bash
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/eval_wide_bench.py --states lowrank --groups zero_shot winogrande_5shot --gpu_mem_util 0.75 --batch_size 4 --no_summarize'
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=1 python src/sft/eval_wide_bench.py --states lowrank --groups arc_25shot hellaswag_10shot --gpu_mem_util 0.75 --batch_size 4 --no_summarize'
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 opt-a007.discovery.wisc.edu 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/eval_wide_bench.py --states lowrank --groups mmlu_5shot --gpu_mem_util 0.88 --no_summarize'
+```
+
+Next benchmark step after these runs finish:
+
+```bash
+python src/sft/eval_wide_bench.py --states base lowLR lowrank --summarize_only
+```
+
 ## Open decisions
 
 - Whether to run Phase 1 RSA only on the 90 exact held-out overlaps, or also add

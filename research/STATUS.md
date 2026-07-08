@@ -1,21 +1,25 @@
 # Coherence-SFT project STATUS (where we are + open threads)
 
-**Last updated: 2026-07-08. Tasks 1-8 are ALL COMPLETE and committed to `coherence-sft`
-(current checked commit before Task 9 docs: `76dbc9f`). This file was stale below this point (left as historical design record) —
+**Last updated: 2026-07-08. Tasks 1-8 are ALL COMPLETE and committed to `coherence-sft`.
+Task 9 fMRI audit/hidden-state/RSA is now implemented locally and awaiting the
+next checkpoint commit. This file was stale below this point (left as historical design record) —
 read this top section first for where the project actually stands.**
 
 ## Handoff for a fresh agent picking this up
 
 - **Branch:** `coherence-sft` (off `main`), repo `git@github.com:siddsuresh97/coherentLLM.git`.
-  Pushed through `9fa14bb` as of 2026-07-08.
+  Pushed through `c49f195` as of 2026-07-08; local fMRI RSA and hidden-state artifacts are the
+  next pending commit.
 - **Env:** `source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate
   /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence` for all SFT/eval work.
   SALMON fits need the separate `salmon` conda env (skorch+dask deps the coherence env lacks) —
   route those calls through it specifically (see `run_eval_4b.sh`'s `retry_salmon()` pattern).
 - **GPUs:** 2x RTX A5000 24GB (`rogers-gpu-1`, indices 0/1) + 1x H100 80GB
-  (`opt-a007.discovery.wisc.edu`), shared with another user's job. Rule: NEVER idle a GPU, use
-  whatever's free, one vLLM/HF model per process (A5000 24GB OOMs on 8B logprob scoring —
-  route those to the H100), commit after each step, do NOT push (that's the user's call).
+  (`opt-a007.discovery.wisc.edu`), shared with other work. Rule from the user: keep GPUs allocated
+  and utilized when experiments are queued, ask how to make slow paths faster, and commit/push
+  meaningful checkpoints. A5000 vLLM+LoRA logprob scoring needs careful tuning: auto batch can OOM,
+  too-low `gpu_memory_utilization` can leave no KV cache, and the current lowrank retry is using
+  `gpu_mem_util=0.75 --batch_size 4`.
 - **Read in order:** `research/CODEX_TASK_1.md` through `CODEX_TASK_8.md` (chronological,
   each is what was actually asked + done — CODEX_TASK_8.md + `results/sft_eval/steer_actlayer/
   VERDICT.md` is the most recent). Then `results/sft_eval/REPORT.md` for the synthesized
@@ -30,12 +34,17 @@ read this top section first for where the project actually stands.**
   ~10% of the retention cost, and exhaustively ruled out activation-space steering as a
   training-free alternative (32/32 mid-layer, norm-matched layer x alpha configs collapse
   generation — an earned negative, not an all-layers artifact).
-- **What's NOT done / next candidates:** `research/FUTURE_brain_predictivity.md` (RSA on
-  THINGS-fMRI then Huth/Ivanova-style voxelwise encoding using the alpha-sweep as a dose-
-  response) and `research/FUTURE_semantic_hub.md` (does coherence-SFT induce/sharpen a
-  format-invariant mid-layer "semantic hub", ref arXiv:2411.04986) are both scoped proposals
-  with NO runs launched yet — pure future work, not in-flight. Task 9 and Task 10 briefs now
-  track these follow-ups:
+- **What's DONE after Tasks 1-8:** Task 9 first pass is implemented. fMRI data audit found 90 exact
+  held-out SFT/THINGS-fMRI overlaps across 3 subjects. Hidden states are extracted for `base`,
+  `scrambled`, `lowLR`, `lowrank`, `taskvec_a0p25`, `taskvec_a0p5`, and `taskvec_a1p0` with shape
+  `90 x 33 x 4096`. RSA runs end-to-end. Primary Ventral Visual RSA is strong but aligned arms are
+  essentially flat vs base (`base=0.1990`, `lowLR=0.2010`, `lowrank=0.2013`), while scrambled is
+  much lower (`0.1293`). See `results/sft_fmri/REPORT.md`.
+- **What's NOT done / next candidates:** `research/FUTURE_semantic_hub.md` / Task 9 Track B
+  remains next: test whether coherence-SFT induces/sharpens a format-invariant mid-layer semantic
+  hub based on arXiv:2411.04986. The stronger language-fMRI/Huth/Fedorenko encoding run remains
+  feasibility-stage only. Task 10 lowrank wide-benchmark mitigation is in flight. Task 9 and Task
+  10 briefs now track these follow-ups:
   `research/CODEX_TASK_9_FMRI_AND_SEMANTIC_HUB.md`,
   `research/CODEX_TASK_10_BENCHMARK_DROPS.md`, and the running handoff log
   `research/EXPERIMENT_LOG.md`. Task-list items #15 (7 new frontier

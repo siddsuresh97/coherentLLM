@@ -1,0 +1,48 @@
+{
+  "arms": [
+    "base",
+    "scrambled",
+    "lowLR",
+    "lowrank",
+    "taskvec_a0p25",
+    "taskvec_a0p5",
+    "taskvec_a1p0"
+  ],
+  "betas_dir": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/vision_robustness/experiments/after_iclr_2024/things_fmri/betas_csv",
+  "hidden_dir": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_fmri/hidden_states",
+  "n_concepts": 90,
+  "notes": [
+    "Best-layer rows are descriptive: layer selected by mean over subjects.",
+    "Primary ROI for object-fMRI interpretation is Ventral Visual.",
+    "Language and ATL are exploratory for this object-concept RSA."
+  ],
+  "outputs": {
+    "rsa_best_layer": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_fmri/rsa_best_layer.csv",
+    "rsa_by_layer": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_fmri/rsa_by_layer.csv",
+    "rsa_summary": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_fmri/rsa_summary.csv"
+  },
+  "overlap_csv": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_fmri/concept_overlap.csv",
+  "regions": [
+    "Early Visual",
+    "Ventral Visual",
+    "Dorsal Visual",
+    "Language",
+    "ATL (Semantic)",
+    "Prefrontal",
+    "TGd",
+    "TGv",
+    "TE1a",
+    "TE1m",
+    "TE1p",
+    "TE2a",
+    "TE2p",
+    "TF",
+    "PeEc",
+    "EC"
+  ],
+  "subjects": [
+    "01",
+    "02",
+    "03"
+  ]
+}

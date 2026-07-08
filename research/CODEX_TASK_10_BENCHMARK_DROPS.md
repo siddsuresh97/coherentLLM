@@ -46,6 +46,29 @@ Useful existing result files:
    loss, and should it become the default fMRI arm?
 4. Which mitigations are cheapest and scientifically cleanest?
 
+## Active runs and runner tuning notes
+
+Lowrank wide-bench evaluation is in progress as the first mitigation check.
+
+Important vLLM behavior observed on RTX A5000 24GB:
+
+- `gpu_mem_util=0.82` with auto batch loads the model but can OOM during
+  prompt-logprob scoring.
+- `gpu_mem_util=0.65` with `batch_size=8` leaves too little memory inside vLLM
+  for KV cache blocks and fails engine initialization.
+- Current retry uses `gpu_mem_util=0.75` with `batch_size=4`, balancing KV cache
+  and sampler headroom.
+
+The H100 `mmlu_5shot` lane is running separately with `gpu_mem_util=0.88`. It is
+slow but GPU-active because `limit=1000` MMLU expands to roughly 54k
+loglikelihood requests.
+
+Once the lowrank groups finish, run:
+
+```bash
+python src/sft/eval_wide_bench.py --states base lowLR lowrank --summarize_only
+```
+
 ## Analysis plan
 
 ### A. Summarize deltas
