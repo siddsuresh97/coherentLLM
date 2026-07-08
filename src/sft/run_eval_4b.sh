@@ -58,14 +58,19 @@ retry_salmon(){
   return 1
 }
 
-# --- LOCAL A5000 #1: real-adapter logprob (missing pairwise_lp, feature_lp) ---
+# --- H100: real-adapter logprob (missing pairwise_lp, feature_lp) ---
+# prompt_logprobs scoring on 8B+LoRA does NOT fit in the 24 GB A5000 (OOMs), so this
+# runs on the 80 GB H100 over ssh. Shared FS -> writes straight into the local RAW dir.
+# Run SYNCHRONOUSLY (foreground) so SALMON/aggregate wait for the _lp files.
 run_real_logprob(){
   for m in pairwise feature; do
     if [ -s "$RAW/llama31-sft-real/${m}_lp.csv" ]; then log "skip real ${m}_lp (exists)"; continue; fi
-    retry "CUDA_VISIBLE_DEVICES=1 COHERENCE_RAW_DIR=$RAW COHERENCE_STIM_DIR=$STIM \
+    log "real ${m}_lp on H100"
+    $SSH "cd $ROOT && $CONDA && export COHERENCE_FORCE_BF16=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True \
+      COHERENCE_RAW_DIR=$RAW COHERENCE_STIM_DIR=$STIM && \
       python src/run_base_logprob.py --model llama-3.1-8b-instruct --out_model llama31-sft-real \
-      --lora out/adapters_vllm_fixed/real --methods $m --suffix _lp" \
-      || return 1
+      --lora out/adapters_vllm_fixed/real --methods $m --suffix _lp --gpu_mem_util 0.90 --max_model_len 2048" \
+      || { log "real ${m}_lp FAILED on H100"; return 1; }
   done
 }
 

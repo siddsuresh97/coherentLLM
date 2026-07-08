@@ -62,9 +62,13 @@ def run_state(state, args, base_path, hf_cache):
     env.setdefault("HF_HUB_CACHE", hf_cache)
     env.setdefault("HF_DATASETS_CACHE", str(ROOT / "out" / "hf_datasets_cache"))
     # `base_path` is a local snapshot, so vLLM/HF do not need to resolve model
-    # files from the hub. Keep HF hub online for lm-eval datasets.
+    # files from the hub. Keep HF hub online for lm-eval datasets: TRANSFORMERS_OFFLINE
+    # only affects transformers model resolution, but we must also make sure the
+    # `datasets` library is NOT in offline mode, or it can't fetch mmlu/arc/etc.
     if Path(base_path).is_dir():
         env["TRANSFORMERS_OFFLINE"] = "1"
+    env["HF_HUB_OFFLINE"] = "0"
+    env["HF_DATASETS_OFFLINE"] = "0"
 
     common = [
         sys.executable, "-m", "lm_eval",
