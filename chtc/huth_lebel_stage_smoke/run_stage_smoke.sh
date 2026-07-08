@@ -6,9 +6,12 @@ ANNEX_JOBS="${ANNEX_JOBS:-4}"
 REPO_URL="${REPO_URL:-https://github.com/OpenNeuroDatasets/ds003020.git}"
 SNAPSHOT_TAG="${SNAPSHOT_TAG:-3.1.1}"
 MANIFEST="${MANIFEST:-staging_manifest_smoke.csv}"
-OUT_DIR="results/sft_huth_lebel_stage_smoke"
+SCRATCH_ROOT="$PWD"
+OUT_DIR="$SCRATCH_ROOT/results/sft_huth_lebel_stage_smoke"
+TARBALL="$SCRATCH_ROOT/huth_lebel_stage_smoke_results.tgz"
 
 mkdir -p "$OUT_DIR"
+trap 'status=$?; echo "exit_status=$status" > "$OUT_DIR/exit_status.txt"; tar -czf "$TARBALL" "$OUT_DIR" || true; exit "$status"' EXIT
 
 {
   echo "started=$(date -Is)"
@@ -31,37 +34,43 @@ if [[ ! -f "$MANIFEST" ]]; then
   exit 2
 fi
 
+tail -n +2 "$MANIFEST" | cut -d, -f5 > "$OUT_DIR/manifest_paths.txt"
+{
+  echo "dataset_description.json"
+  cat "$OUT_DIR/manifest_paths.txt"
+} > "$OUT_DIR/sparse_checkout_paths.txt"
+mapfile -t RELPATHS < "$OUT_DIR/manifest_paths.txt"
+
 mkdir -p "$(dirname "$DATASET_ROOT")"
 if [[ ! -d "$DATASET_ROOT/.git" ]]; then
-  git clone "$REPO_URL" "$DATASET_ROOT"
+  git clone --no-checkout "$REPO_URL" "$DATASET_ROOT"
 fi
 
 cd "$DATASET_ROOT"
 git fetch --tags origin
 git fetch origin git-annex:git-annex || true
+git sparse-checkout init --no-cone
+git sparse-checkout set --stdin < "$OUT_DIR/sparse_checkout_paths.txt"
 git checkout "$SNAPSHOT_TAG"
+git config user.email "codex@chtc.local"
+git config user.name "Codex CHTC"
 git annex init "chtc-ds003020-smoke"
 
 echo "Annex info before get:"
-git annex info | tee "$OLDPWD/$OUT_DIR/git_annex_info_before.txt"
+git annex info | tee "$OUT_DIR/git_annex_info_before.txt"
 
-cd "$OLDPWD"
-tail -n +2 "$MANIFEST" | cut -d, -f5 > "$OUT_DIR/manifest_paths.txt"
-mapfile -t RELPATHS < "$OUT_DIR/manifest_paths.txt"
-
-cd "$DATASET_ROOT"
 echo "Manifest paths:"
-printf '%s\n' "${RELPATHS[@]}" | tee "$OLDPWD/$OUT_DIR/manifest_paths_resolved.txt"
+printf '%s\n' "${RELPATHS[@]}" | tee "$OUT_DIR/manifest_paths_resolved.txt"
 
 echo "Whereis sample before get:"
-git annex whereis -- "${RELPATHS[@]:0:3}" | tee "$OLDPWD/$OUT_DIR/git_annex_whereis_sample_before.txt" || true
+git annex whereis -- "${RELPATHS[@]:0:3}" | tee "$OUT_DIR/git_annex_whereis_sample_before.txt" || true
 
 git annex get --jobs="$ANNEX_JOBS" -- "${RELPATHS[@]}"
 
 echo "Annex info after get:"
-git annex info | tee "$OLDPWD/$OUT_DIR/git_annex_info_after.txt"
+git annex info | tee "$OUT_DIR/git_annex_info_after.txt"
 
-cd "$OLDPWD"
+cd "$SCRATCH_ROOT"
 python huth_lebel_audit.py \
   --roots "$DATASET_ROOT" \
   --out_dir "$OUT_DIR/audit" \
@@ -119,5 +128,4 @@ if missing:
 PY
 
 du -sh "$DATASET_ROOT" | tee "$OUT_DIR/dataset_du.txt"
-tar -czf huth_lebel_stage_smoke_results.tgz "$OUT_DIR"
 echo "finished=$(date -Is)"

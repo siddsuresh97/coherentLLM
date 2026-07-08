@@ -179,6 +179,9 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   Scrambled zero-shot collapses broadly (`PIQA acc_norm=0.540`,
   `OpenBookQA acc_norm=0.282`, `CommonsenseQA acc=0.197`), so some retention
   loss is generic adapter/SFT perturbation, not semantic alignment alone.
+  Scrambled ARC is also catastrophic (`ARC-Easy acc_norm=0.306`,
+  `ARC-Challenge acc_norm=0.225`), making science multiple-choice ranking one
+  of the most perturbation-sensitive skill slices.
 - Held-out fMRI hub regression is implemented in
   `src/sft/run_fmri_hub_regression.py` and written to
   `results/sft_fmri_hub_regression/`. It does not support a clean semantic-hub
@@ -186,7 +189,7 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   tied with or worse than the best single prompt-format spoke. ATL/Language
   show small aligned-state averaged-predictor advantages, but the absolute
   effects are exploratory.
-- Current active A5000 lanes are scrambled `arc_25shot` on GPU0 and
+- Current active A5000 lanes are scrambled `hellaswag_10shot` on GPU0 and
   `taskvec_a0p25 mmlu_5shot` on GPU1. The MMLU lane uses `gpu_mem_util=0.72
   --batch_size 2`; it is not a duplicate of the completed base/lowLR/lowrank
   MMLU rows, but the missing task-vector mitigation row.
@@ -205,6 +208,8 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   CPU-only downloader/staging job, not on fMRI experiment design or scheduler
   access. CHTC access was validated with audit cluster `5513006`, which exited
   0 and returned artifacts under `results/sft_huth_lebel/chtc_5513006/`.
+  The active CHTC smoke staging retry is cluster `5513036`; it uses sparse
+  checkout plus git-annex/DataLad in `/staging/s/suresh27/datasets/ds003020-smoke`.
 - Bridge read: semantic-hub invariance is strong internally, but it does not yet
   explain object-fMRI RSA. Ventral Visual delta-vs-base vs mid hub RDM is
   positive but small-n (`r=0.600`, `n=6`, `p=0.208`); retrieval top-1 is not

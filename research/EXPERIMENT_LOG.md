@@ -1032,6 +1032,60 @@ Current status:
   updated to `docker://datalad/buildenv-git-annex:latest`, `datalad --version`
   was made optional, the held job was removed, and the corrected job was
   resubmitted as cluster `5513024`.
+- Cluster `5513024` started successfully but tried to checkout the full
+  OpenNeuro tree into `/staging/s/suresh27/datasets/ds003020-smoke` and hit the
+  staging file-count quota while creating FreeSurfer directories. The failed
+  partial staging tree was removed. The script now uses `git clone
+  --no-checkout` plus sparse checkout of only `dataset_description.json` and
+  the 15 manifest paths, and it has an EXIT trap to always return a tarball on
+  future failures. Sparse retry submitted as cluster `5513028`.
+- Cluster `5513028` passed sparse checkout and S3 remote setup but failed at
+  `git annex init` because the container had no git author identity. Its trap
+  also failed to transfer an output tarball because `OUT_DIR` was relative
+  after `cd "$DATASET_ROOT"`. The script now sets a local git identity, anchors
+  `OUT_DIR`/tarball paths to the scratch directory, writes exit status through
+  an EXIT trap, and returns to scratch before audit/tar creation.
+- The failed `5513028` job was removed, the partial staged tree was cleared,
+  the fixed bundle was pushed, and the sparse staging retry was submitted as
+  cluster `5513036`.
 - If the job completes, pull `huth_lebel_stage_smoke_results.tgz` and logs,
   then rerun/record the staged-root audit before launching any GPU feature
   extraction.
+
+## 2026-07-08 update: scrambled ARC complete, HellaSwag running
+
+Purpose:
+
+- Extend the random-label SFT control from zero-shot tasks to the science and
+  event-plausibility groups, so we can separate useful semantic training from
+  generic rank-64 adapter/SFT perturbation.
+
+Commands:
+
+```bash
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/eval_wide_bench.py --states scrambled --groups arc_25shot --gpu_mem_util 0.72 --batch_size 2 --no_summarize'
+ssh -F /dev/null -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null rogers-gpu-1 'cd /mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments && source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence && CUDA_VISIBLE_DEVICES=0 python src/sft/eval_wide_bench.py --states scrambled --groups hellaswag_10shot --gpu_mem_util 0.72 --batch_size 2 --no_summarize'
+```
+
+Artifacts:
+
+- `results/sft_eval/wide_bench/runs/scrambled_arc_25shot/.../results_2026-07-08T18-38-38.225435.json`
+- `results/sft_eval/wide_bench/skill_map.md`
+
+Result:
+
+- Scrambled ARC completed on A5000 GPU0 at `gpu_mem_util=0.72`,
+  `batch_size=2`.
+- ARC-Easy `acc_norm=0.306` versus base `0.850` (`delta=-0.544`).
+- ARC-Challenge `acc_norm=0.225` versus base `0.649` (`delta=-0.424`).
+- GPU0 was immediately reused for scrambled HellaSwag 10-shot with the same
+  conservative settings.
+
+Read:
+
+- ARC/science multiple-choice ranking is highly perturbation-sensitive. The
+  much milder `taskvec_a0p25` ARC drop therefore looks like a real mitigation
+  effect, not just noise in the benchmark lane.
+- The still-running scrambled HellaSwag lane will test whether script/event
+  plausibility is preserved under random-label SFT or only under coherent
+  semantic adapters.

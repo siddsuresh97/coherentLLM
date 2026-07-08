@@ -20,7 +20,8 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   narrative-fMRI lane now has a local/CHTC audit bundle and a completed CHTC
   smoke run (`5513006`). The OpenNeuro metadata layout is verified and a CHTC
   staging manifest is ready: smoke is 7.88 GB; the `UTS01`-`UTS03` high-data
-  subset is 76.86 GB, under the observed 100 GB staging quota.
+  subset is 76.86 GB, under the observed 100 GB staging quota. A CPU-only CHTC
+  smoke staging retry is active as cluster `5513036`.
 - **fMRI x hub bridge:** the new concept-held-out regression does not support a
   clean semantic-hub explanation of Ventral Visual RSA. Averaged hub predictors
   are roughly tied with single prompt spokes in Ventral Visual, while
@@ -32,8 +33,9 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   show lowrank improves by suppressing false-answer pressure, `taskvec_a0p25`
   is aggregate-flat but increases plausible-false pressure, and scrambled SFT
   catastrophically hurts item-level calibration.
-- **Runtime:** GPU0 is running scrambled ARC as the random-perturbation control;
-  GPU1 is running `taskvec_a0p25` MMLU with `gpu_mem_util=0.72`,
+- **Runtime:** GPU0 finished scrambled ARC and is now running scrambled
+  HellaSwag as the next random-perturbation control; GPU1 is running
+  `taskvec_a0p25` MMLU with `gpu_mem_util=0.72`,
   `batch_size=2`. H100 handled rank-16
   lowrank MMLU, but rank-64 LoRA vLLM evals (`taskvec_a0p25`, `scrambled`)
   stall before GPU allocation on `opt-a007`, even after local adapter staging.
@@ -289,6 +291,8 @@ Completed partial metrics:
 | `scrambled` | zero-shot | CommonsenseQA | acc | 0.197 |
 | `scrambled` | zero-shot | WiC | acc | 0.481 |
 | `scrambled` | zero-shot | TruthfulQA-MC2 | acc | 0.482 |
+| `scrambled` | 25-shot | ARC-Easy | acc_norm | 0.306 |
+| `scrambled` | 25-shot | ARC-Challenge | acc_norm | 0.225 |
 
 Base/lowLR/lowrank retention summary:
 
@@ -338,6 +342,11 @@ Read:
   CommonsenseQA, and TruthfulQA, so useful semantic training is doing real work.
   But scrambled also drops broadly, so generic LoRA/SFT perturbation is part of
   the damage.
+- Scrambled ARC is catastrophic (`ARC-Easy 0.306`, `ARC-Challenge 0.225`),
+  far below base (`0.850`, `0.649`) and below the aligned adapters. That
+  strengthens the read that ARC/science multiple-choice ranking is highly
+  perturbation-sensitive, while task-vector mitigation preserves a real part of
+  the useful semantic signal.
 - Bounded TruthfulQA log-sample diagnostics are now trackable in
   [`results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md`](results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md).
   On the 200-item diagnostic slice, base is `0.5224`, lowrank is `0.5528`,
@@ -353,9 +362,10 @@ Read:
   Recurring worst drops are safety/myth/misconception lures such as
   defibrillation for flatline, washing chicken, Latin-American language
   overgeneralization, Agenda 21, and voodoo dolls.
-- Current active follow-ups: scrambled ARC on GPU0 and `taskvec_a0p25` MMLU
-  5-shot on GPU1. The MMLU run is not a repeat of the finished
-  base/lowLR/lowrank MMLU rows; it fills the missing task-vector mitigation row.
+- Current active follow-ups: scrambled HellaSwag on GPU0 and
+  `taskvec_a0p25` MMLU 5-shot on GPU1. The MMLU run is not a repeat of the
+  finished base/lowLR/lowrank MMLU rows; it fills the missing task-vector
+  mitigation row.
 
 </details>
 
@@ -364,7 +374,7 @@ Read:
 
 Current confirmed settings:
 
-- Current active A5000 lanes: GPU0 scrambled `arc_25shot`; GPU1
+- Current active A5000 lanes: GPU0 scrambled `hellaswag_10shot`; GPU1
   `taskvec_a0p25 mmlu_5shot`.
 - A5000 broad-bench long loglikelihood runs should use conservative settings:
   `gpu_mem_util=0.72` and `batch_size=2` for ARC/Hella.
