@@ -53,6 +53,15 @@ src/sft/train_lora.py invocation MUST:
 Each scaling-ablation point should then train in a few minutes, not 30. The existing
 real/scrambled adapters are fine as-is; do NOT retrain them for the first eval.
 
+### wandb loss curves (all future training runs)
+train_lora.py now defaults --report_to wandb (project coherentLLM-sft), calls wandb.init(name=
+<out-basename>-<data>-steps<N>-r64-seq<L>, config=args) in main() before either backend, keeps
+logging_steps=10, and dumps trainer_state.json next to training_metrics.json (loss history on
+disk too). User is already logged in (~/.netrc). BEFORE the next training run codex MUST:
+1. pip install wandb into the coherence_sft env (not yet installed).
+2. Run one training job and VERIFY a run actually appears under project coherentLLM-sft.
+(--report_to none disables it; if wandb import fails at runtime it self-disables with a warning.)
+
 ### CORRECTNESS GATE before using --packing (packing != correct attention masks)
 Our examples are INDEPENDENT single-turn QA (each triplet/pairwise/feature is its own example).
 Naive packing concatenates examples into one block under a FULL causal mask, letting example B

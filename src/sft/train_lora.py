@@ -62,6 +62,16 @@ def parse_args():
     parser.add_argument("--dataset_num_proc", type=int, default=4)
     parser.add_argument("--logging_steps", type=int, default=10)
     parser.add_argument(
+        "--report_to",
+        default="wandb",
+        help='Trainer report backend: "wandb" (default) or "none" to disable.',
+    )
+    parser.add_argument(
+        "--wandb_project",
+        default="coherentLLM-sft",
+        help="wandb project used when --report_to wandb.",
+    )
+    parser.add_argument(
         "--save_total_limit",
         type=int,
         default=1,
@@ -177,7 +187,7 @@ def make_training_args(args, packing):
         logging_steps=args.logging_steps,
         save_strategy="no",
         save_total_limit=args.save_total_limit,
-        report_to="none",
+        report_to=args.report_to,
         seed=args.seed,
         data_seed=args.seed,
         do_train=True,
@@ -232,6 +242,15 @@ def _write_metrics(out_dir, backend, model_name, trainer, final_loss):
     with metrics_path.open("w") as f:
         json.dump(metrics, f, indent=2)
     print(f"[metrics] wrote {metrics_path}")
+
+    # Also persist the raw HF trainer state (loss history) on disk, independent of
+    # wandb, so loss curves are recoverable even if the wandb run is unavailable.
+    state_path = out / "trainer_state.json"
+    try:
+        trainer.state.save_to_json(str(state_path))
+        print(f"[metrics] wrote {state_path}")
+    except Exception as exc:  # noqa: BLE001 - best-effort dump
+        print(f"[warn] could not write {state_path}: {exc}")
 
 
 def _save_adapter_only(model, tokenizer, out_dir):
@@ -450,8 +469,40 @@ def train_with_peft(args, model_name):
     return final_loss
 
 
+def _init_wandb(args):
+    """Start a wandb run (project coherentLLM-sft) when --report_to wandb.
+
+    Called once in main() before dispatching to either backend, so the unsloth
+    and peft paths both log. No-op (and warns) if wandb is not installed. The run
+    name is derived from the adapter output basename + data file + step budget so
+    scaling-ablation runs are comparable/identifiable in the wandb UI.
+    """
+    if args.report_to != "wandb":
+        return
+    try:
+        import wandb
+    except ImportError:
+        print(
+            "[warn] --report_to wandb but wandb is not installed; disabling wandb "
+            "logging (pip install wandb). Continuing with report_to=none."
+        )
+        args.report_to = "none"
+        return
+    run_name = (
+        f"{Path(args.out).name}-{Path(args.data).stem}-"
+        f"steps{args.max_steps}-r64-seq{args.max_seq_length}"
+    )
+    wandb.init(
+        project=args.wandb_project,
+        name=run_name,
+        config=vars(args),
+    )
+    print(f"[wandb] initialized run '{run_name}' in project '{args.wandb_project}'")
+
+
 def main():
     args = parse_args()
+    _init_wandb(args)
     model_name, local_snapshot = resolve_model(
         args.base_model,
         args.hf_cache,
