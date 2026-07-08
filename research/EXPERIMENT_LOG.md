@@ -541,6 +541,14 @@ Speed/reliability notes:
   adapter paths, even though rank-16 lowrank MMLU ran cleanly there. Run
   rank-64 taskvec/scrambled broad benchmark lanes on `rogers-gpu-1` after the
   lowrank A5000 jobs finish, or stage/copy adapters to host-local storage first.
+- Staging `scrambled` to `/tmp/ssuresh/coherence_adapters/scrambled` completed
+  quickly (`657M`), but running vLLM from that local path still stalled before
+  GPU allocation and was killed. The bottleneck is therefore not just symlinked
+  adapter reads; treat `opt-a007` as unsuitable for rank-64 LoRA vLLM eval until
+  we test a different vLLM/PEFT path.
+- User approved using CHTC for additional GPUs. Rule: debug locally/direct GPU
+  first; only move known-good commands to CHTC for scale-out, and record submit
+  files/logs/output paths in this log.
 
 Current active runs:
 
