@@ -23,7 +23,9 @@ CONDA='source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda ac
 SALMON_CONDA='source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/salmon'
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 RAW=results/sft_eval/raw
-STIM=data/scale128
+# Stimulus files (pairs.csv, triplets.csv, concepts.csv) live in the stimuli/ subdir,
+# which is what COHERENCE_STIM_DIR must point to (matches the original launcher scripts).
+STIM=data/scale128/stimuli
 SSH='ssh -i /mnt/ws/home/ssuresh/.ssh/id_ed25519 -o BatchMode=yes -o ConnectTimeout=15 ssuresh@opt-a007.discovery.wisc.edu'
 
 log(){ echo "[eval4b $(date +%H:%M:%S)] $*"; }
