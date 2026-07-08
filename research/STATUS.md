@@ -1,6 +1,50 @@
 # Coherence-SFT project STATUS (where we are + open threads)
 
-Branch: `coherence-sft` (off `main`). Decision: **DIY everything** (SFT via Unsloth/QLoRA, RL via
+**Last updated: 2026-07-08. Tasks 1-8 are ALL COMPLETE and committed to `coherence-sft`
+(latest: `9fa14bb`). This file was stale below this point (left as historical design record) —
+read this top section first for where the project actually stands.**
+
+## Handoff for a fresh agent picking this up
+
+- **Branch:** `coherence-sft` (off `main`), repo `git@github.com:siddsuresh97/coherentLLM.git`.
+  Pushed through `9fa14bb` as of 2026-07-08.
+- **Env:** `source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate
+  /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence` for all SFT/eval work.
+  SALMON fits need the separate `salmon` conda env (skorch+dask deps the coherence env lacks) —
+  route those calls through it specifically (see `run_eval_4b.sh`'s `retry_salmon()` pattern).
+- **GPUs:** 2x RTX A5000 24GB (`rogers-gpu-1`, indices 0/1) + 1x H100 80GB
+  (`opt-a007.discovery.wisc.edu`), shared with another user's job. Rule: NEVER idle a GPU, use
+  whatever's free, one vLLM/HF model per process (A5000 24GB OOMs on 8B logprob scoring —
+  route those to the H100), commit after each step, do NOT push (that's the user's call).
+- **Read in order:** `research/CODEX_TASK_1.md` through `CODEX_TASK_8.md` (chronological,
+  each is what was actually asked + done — CODEX_TASK_8.md + `results/sft_eval/steer_actlayer/
+  VERDICT.md` is the most recent). Then `results/sft_eval/REPORT.md` for the synthesized
+  findings a human would read. `results/sft_eval/TASK6_SUMMARY.md` has the full 6A/6B/6C tables.
+- **What's DONE (Tasks 1-8):** built NOVA-derived S*-based mutually-consistent SFT data
+  (triplet/pairwise/feature), trained real + scrambled-control LoRA adapters (QLoRA/rsLoRA,
+  Unsloth), ran the 4-axis coherence+retention battery, confirmed the coherence gain is real
+  (scrambled control ~0.03, four independent axes co-move, r=0.914 coherence<->human coupling),
+  found low-LR (5e-5) and low-rank (16) mitigate but do not zero out the retention cost (full
+  battery: 6/10 capability groups + 57/59 MMLU subjects still drop), extracted a weight-space
+  task-vector direction (SFT - base) where alpha=0.25 recovers ~87% of the coherence gain for
+  ~10% of the retention cost, and exhaustively ruled out activation-space steering as a
+  training-free alternative (32/32 mid-layer, norm-matched layer x alpha configs collapse
+  generation — an earned negative, not an all-layers artifact).
+- **What's NOT done / next candidates:** `research/FUTURE_brain_predictivity.md` (RSA on
+  THINGS-fMRI then Huth/Ivanova-style voxelwise encoding using the alpha-sweep as a dose-
+  response) and `research/FUTURE_semantic_hub.md` (does coherence-SFT induce/sharpen a
+  format-invariant mid-layer "semantic hub", ref arXiv:2411.04986) are both scoped proposals
+  with NO runs launched yet — pure future work, not in-flight. Neither has a CODEX_TASK_*.md
+  brief written; that would be the first step if picked up. Task-list items #15 (7 new frontier
+  models for the earlier, separate 18-model coherence benchmark) is also still pending and
+  unrelated to the SFT thread.
+- **Do not fabricate data or invent bibtex entries** — every task brief above ends with this
+  instruction for a reason; report only on-disk numbers, real generation samples for
+  degeneracy checks, and ask the user before treating a stale/partial artifact as real.
+
+## Original design record (historical, pre-Task-1, kept for context)
+
+Decision at project start: **DIY everything** (SFT via Unsloth/QLoRA, RL via
 TRL if we get there) on our own GPUs (2x A5000 24GB + 80GB H100). NOT using Tinker (~$1.1k est,
 adds external dep; our GPUs are ~free). SFT-FIRST, RL is phase-2 at most.
 
@@ -30,7 +74,7 @@ adds external dep; our GPUs are ~free). SFT-FIRST, RL is phase-2 at most.
 - Training arms: (a) real S* SFT, (b) scrambled-S* control, (c) full-FT ceiling. rsLoRA r=64.
 - Data-scaling ablation: coherence vs #train concepts (50/100/200/400/650).
 
-## OPEN / TODO (in order)
+## OPEN / TODO (in order) — HISTORICAL, all items below are now DONE (see handoff section above)
 [ ] 0. env `coherence_sft`: unsloth + trl + peft (+ vllm have). pyarrow installed (NOVA parquet).
 [ ] 1. src/sft/build_target.py: load NOVA, S*=cosine(features), train=NOVA-128(-synonyms ~650),
        save train_concepts.csv/test_concepts.csv. VERIFY 128 coverage + zero leak. (STARTED - was
