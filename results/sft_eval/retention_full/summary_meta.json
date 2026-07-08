@@ -1,0 +1,20 @@
+{
+  "limit": 1000,
+  "num_fewshot": 0,
+  "apply_chat_template": false,
+  "backend": "vllm",
+  "gpu_mem_util": 0.7,
+  "tasks": [
+    "arc_challenge",
+    "hellaswag",
+    "mmlu_abstract_algebra",
+    "mmlu_anatomy",
+    "truthfulqa_mc2"
+  ],
+  "note": "run-now config: 0-shot no chat template; standard few-shot+chat-template widen is a follow-up",
+  "source_jsons": {
+    "base": "results/sft_eval/retention/llama-3.1-8b-instruct/__mnt__dv__wid__projects3__Rogers-muri-human-ai__shared_models__models--meta-llama--Llama-3.1-8B-Instruct__snapshots__0e9e39f249a16976918f6564b8830bc894c89659/results_2026-07-08T00-35-22.291685.json",
+    "real": "results/sft_eval/retention/llama31-sft-real/__mnt__dv__wid__projects3__Rogers-muri-human-ai__shared_models__models--meta-llama--Llama-3.1-8B-Instruct__snapshots__0e9e39f249a16976918f6564b8830bc894c89659/results_2026-07-08T01-50-42.754345.json",
+    "scrambled": "results/sft_eval/retention/llama31-sft-scrambled/__mnt__dv__wid__projects3__Rogers-muri-human-ai__shared_models__models--meta-llama--Llama-3.1-8B-Instruct__snapshots__0e9e39f249a16976918f6564b8830bc894c89659/results_2026-07-08T02-12-32.413292.json"
+  }
+}

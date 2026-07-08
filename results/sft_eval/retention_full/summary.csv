@@ -1,0 +1,7 @@
+task,metric,base,real,scrambled,real_minus_base,scrambled_minus_base
+arc_challenge,acc_norm,0.552,0.262,0.229,-0.29,-0.323
+hellaswag,acc_norm,0.706,0.469,0.363,-0.237,-0.343
+mmlu_abstract_algebra,acc,0.37,0.31,0.2,-0.06,-0.17
+mmlu_anatomy,acc,0.6963,0.2815,0.2222,-0.4148,-0.4741
+truthfulqa_mc2,acc,0.5454,0.5137,0.4912,-0.0317,-0.0542
+MEAN,mixed,0.5739,0.3672,0.3011,-0.2067,-0.2728
