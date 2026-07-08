@@ -179,7 +179,9 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   effects are exploratory.
 - Current active A5000 lanes are `taskvec_a0p25 arc_25shot` on GPU0 and
   `taskvec_a0p25 mmlu_5shot` on GPU1, both with
-  `gpu_mem_util=0.72 --batch_size 2`.
+  `gpu_mem_util=0.72 --batch_size 2`. The MMLU lane is not a duplicate of the
+  completed base/lowLR/lowrank MMLU rows; it is the missing task-vector
+  mitigation row.
 - Bridge read: semantic-hub invariance is strong internally, but it does not yet
   explain object-fMRI RSA. Ventral Visual delta-vs-base vs mid hub RDM is
   positive but small-n (`r=0.600`, `n=6`, `p=0.208`); retrieval top-1 is not

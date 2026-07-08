@@ -24,8 +24,10 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   mostly flat on WinoGrande, but still drops ARC, MMLU, WiC, and OpenBookQA.
   Scrambled zero-shot collapses broadly, so part of the retention loss is a
   generic adapter/SFT perturbation, not semantic alignment alone.
-- **Runtime:** both A5000 lanes are active on `taskvec_a0p25` ARC/HellaSwag
-  follow-ups using `gpu_mem_util=0.72`, `batch_size=2`. H100 handled rank-16
+- **Runtime:** both A5000 lanes are active on `taskvec_a0p25` ARC/MMLU
+  follow-ups using `gpu_mem_util=0.72`, `batch_size=2`. This MMLU lane is the
+  missing task-vector mitigation cell; base, lowLR, and lowrank MMLU are
+  already complete. H100 handled rank-16
   lowrank MMLU, but rank-64 LoRA vLLM evals (`taskvec_a0p25`, `scrambled`)
   stall before GPU allocation on `opt-a007`, even after local adapter staging.
 
@@ -308,7 +310,8 @@ Read:
   But scrambled also drops broadly, so generic LoRA/SFT perturbation is part of
   the damage.
 - Current active follow-ups: `taskvec_a0p25` ARC 25-shot on GPU0 and MMLU
-  5-shot on GPU1.
+  5-shot on GPU1. The MMLU run is not a repeat of the finished base/lowLR/
+  lowrank MMLU rows; it fills the missing task-vector mitigation row.
 
 </details>
 
@@ -393,11 +396,11 @@ Current plan:
 
 Immediate:
 
-1. Let `taskvec_a0p25` HellaSwag and ARC finish on `rogers-gpu-1`.
-2. Parse both result JSONs, update README/log, commit, and push.
-3. Use the next freed A5000 lane for `taskvec_a0p25 mmlu_5shot` if we want the
-   long mitigation lane, or scrambled ARC/Hella if the priority is the random
-   perturbation control.
+1. Let `taskvec_a0p25` ARC finish on `rogers-gpu-1`; keep the already-running
+   `taskvec_a0p25` MMLU lane unless it becomes clearly redundant.
+2. Parse the ARC result JSON, update README/log, commit, and push.
+3. Use the next freed A5000 lane for a targeted TruthfulQA log-sample diagnostic
+   or scrambled ARC/Hella if the priority is the random perturbation control.
 
 Scientific next:
 

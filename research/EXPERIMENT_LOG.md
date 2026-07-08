@@ -582,6 +582,10 @@ Speed/reliability notes:
   `batch_size=2`.
 - Current active A5000 lanes: GPU0 `taskvec_a0p25 arc_25shot`; GPU1
   `taskvec_a0p25 mmlu_5shot`, both at `gpu_mem_util=0.72`, `batch_size=2`.
+- 2026-07-08 17:27 CDT clarification: the active MMLU lane is not a duplicate
+  of the completed base/lowLR/lowrank MMLU rows. It is the missing
+  `taskvec_a0p25` mitigation cell needed to decide whether alpha-0.25 preserves
+  broad exam knowledge better than lowrank.
 - Scrambled zero-shot completed on A5000 at `gpu_mem_util=0.75`,
   `batch_size=4`; the A5000 rank-64 vLLM path is viable.
 - H100 lowrank MMLU completed. It was the long lane because 5-shot MMLU expands
