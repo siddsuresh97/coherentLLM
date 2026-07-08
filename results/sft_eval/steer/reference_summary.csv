@@ -1,0 +1,3 @@
+route,state,alpha,out_model,gen_proc_mean,gen_human_things_triplet_r2,human_things_triplet_r2,complete
+reference,base,,llama-3.1-8b-instruct,0.322558,0.468093,0.468093,True
+reference,real,,llama31-sft-real,0.699402,0.604927,0.604927,True

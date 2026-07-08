@@ -1,0 +1,10 @@
+route,alpha,out_model,gen_proc_tf,gen_proc_tp,gen_proc_pf,gen_proc_mean,gen_human_things_triplet_r2,human_things_triplet_r2,complete,error
+actdiff,0.000000,llama31-steer-a0,0.312061,0.274360,0.381255,0.322558,0.468093,0.468093,True,
+actdiff,0.500000,llama31-steer-a0p5,,,,,,,False,missing results/sft_eval/llama31-steer-a0p5_triplet_d5.npy
+actdiff,1.000000,llama31-steer-a1,,,,,,,False,missing results/sft_eval/llama31-steer-a1_triplet_d5.npy
+actdiff,2.000000,llama31-steer-a2,,,,,,,False,missing results/sft_eval/llama31-steer-a2_triplet_d5.npy
+actdiff,4.000000,llama31-steer-a4,,,,,,,False,missing results/sft_eval/raw/llama31-steer-a4/feature.csv; results/sft_eval/llama31-steer-a4_triplet_d5.npy
+actdiff,8.000000,llama31-steer-a8,,,,,,,False,missing results/sft_eval/llama31-steer-a8_triplet_d5.npy
+taskvec,0.250000,llama31-steer-task-a0p25,0.786813,0.484578,0.676971,0.649454,0.598938,0.598938,True,
+taskvec,0.500000,llama31-steer-task-a0p5,0.756593,0.551210,0.812347,0.706716,0.584390,0.584390,True,
+taskvec,1.000000,llama31-steer-task-a1,0.675653,0.590948,0.831605,0.699402,0.604927,0.604927,True,
