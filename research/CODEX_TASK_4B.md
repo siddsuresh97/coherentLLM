@@ -3,7 +3,23 @@
 Read research/PLAN.md section 4 + research/STATUS.md first. Work on branch `coherence-sft`.
 Env: source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh &&
 conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence
-GPU: prefer the H100 (see memory h100-access). ALWAYS commit each step; do NOT push; do NOT delete data.
+ALWAYS commit each step; do NOT push; do NOT delete data.
+
+## GPU ALLOCATION (HARD CONSTRAINT — do not violate)
+Use ONLY two GPUs, in parallel:
+- **H100** (opt-a007.discovery.wisc.edu, shared FS, see memory h100-access): the heavy passes.
+  SSH: ssh -i /mnt/ws/home/ssuresh/.ssh/id_ed25519 -o BatchMode=yes ssuresh@opt-a007.discovery.wisc.edu
+  Launch detached: nohup setsid bash ... </dev/null >log 2>&1 & disown ; poll the log via shared FS.
+  Set COHERENCE_FORCE_BF16=1 on the H100 (80GB fits bf16, no quant).
+- **A5000 #1 on THIS box (rogers-gpu-1)**: run with `CUDA_VISIBLE_DEVICES=1` ALWAYS.
+  GPU 0 is assigned to another user — NEVER use it. Every local python/vllm call MUST be
+  prefixed `CUDA_VISIBLE_DEVICES=1`. Do not launch anything without a device pin.
+
+### Split of work across the two GPUs (run concurrently)
+- H100: SCRAMBLED adapter full (gen + logprob, all methods) + RETENTION battery (steps 3, 7).
+- A5000 #1: finish REAL adapter (rerun truncated pairwise + logprob) + SALMON fits (steps 1, 2, 4).
+- Paraphrase / transitivity / aggregate (steps 5,6,8) are CPU-light: run wherever a slot frees.
+Barrier: aggregate (step 8) only after BOTH GPUs' passes land on the shared FS.
 
 ## What is ALREADY done (do NOT redo, verify then skip)
 - base `llama-3.1-8b-instruct`: results/sft_eval/raw/<model>/ has triplet,pairwise,feature (+_lp) gen+logprob. DONE.
