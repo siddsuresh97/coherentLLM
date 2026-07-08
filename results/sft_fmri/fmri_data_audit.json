@@ -1,0 +1,560 @@
+{
+  "betas_dir": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/vision_robustness/experiments/after_iclr_2024/things_fmri/betas_csv",
+  "concept_overlap_csv": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_fmri/concept_overlap.csv",
+  "concepts_path": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/data/scale128/concepts.csv",
+  "n_common_fmri_concepts": 720,
+  "n_primary_exact_overlap": 90,
+  "n_sft_concepts": 128,
+  "primary_overlap_concepts": [
+    "acorn",
+    "airplane",
+    "aloe",
+    "ant",
+    "anteater",
+    "antelope",
+    "anvil",
+    "apple",
+    "artichoke",
+    "asparagus",
+    "avocado",
+    "axe",
+    "bagel",
+    "bamboo",
+    "banana",
+    "barrel",
+    "basket",
+    "bean",
+    "bear",
+    "beaver",
+    "bed",
+    "bee",
+    "beet",
+    "beetle",
+    "bell",
+    "bench",
+    "bird",
+    "bison",
+    "blackberry",
+    "blender",
+    "blowtorch",
+    "blueberry",
+    "boa",
+    "boar",
+    "bottle",
+    "bread",
+    "broccoli",
+    "brownie",
+    "bucket",
+    "burner",
+    "burrito",
+    "bus",
+    "butterfly",
+    "cabbage",
+    "cactus",
+    "cake",
+    "camel",
+    "candelabra",
+    "candle",
+    "candy",
+    "cannon",
+    "car",
+    "carrot",
+    "cat",
+    "caterpillar",
+    "cauliflower",
+    "celery",
+    "cheese",
+    "cheetah",
+    "cherry",
+    "chili",
+    "chinchilla",
+    "chocolate",
+    "clarinet",
+    "coat",
+    "cockroach",
+    "coconut",
+    "corkscrew",
+    "corn",
+    "cranberry",
+    "crowbar",
+    "dragonfly",
+    "dress",
+    "drill",
+    "drum",
+    "earwig",
+    "eggbeater",
+    "fern",
+    "fig",
+    "grasshopper",
+    "grenade",
+    "gun",
+    "jeans",
+    "missile",
+    "motorcycle",
+    "penguin",
+    "rifle",
+    "slingshot",
+    "tree",
+    "tumbleweed"
+  ],
+  "subject_reports": {
+    "01": {
+      "h5_response_shape_voxels_by_trials": [
+        211339,
+        9840
+      ],
+      "n_exact_overlap": 90,
+      "n_fmri_concepts": 720,
+      "n_sft_concepts": 128,
+      "n_trials": 9840,
+      "region_voxel_counts": {
+        "ATL (Semantic)": {
+          "found_rois": [
+            "TGd",
+            "TGv",
+            "TE1a",
+            "TE1m",
+            "TE1p",
+            "TE2a",
+            "TE2p",
+            "TF",
+            "PeEc",
+            "EC"
+          ],
+          "missing_rois": [],
+          "n_voxels": 8204
+        },
+        "ATL subregions": {
+          "EC": 396,
+          "PeEc": 860,
+          "TE1a": 692,
+          "TE1m": 543,
+          "TE1p": 910,
+          "TE2a": 814,
+          "TE2p": 584,
+          "TF": 859,
+          "TGd": 1914,
+          "TGv": 632
+        },
+        "Dorsal Visual": {
+          "found_rois": [
+            "MT",
+            "MST",
+            "FST",
+            "V6",
+            "V6A",
+            "V7",
+            "IPS1",
+            "LIPd",
+            "LIPv",
+            "VIP",
+            "MIP",
+            "AIP"
+          ],
+          "missing_rois": [],
+          "n_voxels": 2173
+        },
+        "Early Visual": {
+          "found_rois": [
+            "V1",
+            "V2",
+            "V3",
+            "V3A",
+            "V3B",
+            "V3CD",
+            "V4",
+            "V4t"
+          ],
+          "missing_rois": [],
+          "n_voxels": 6507
+        },
+        "Language": {
+          "found_rois": [
+            "44",
+            "45",
+            "47l",
+            "IFJa",
+            "IFJp",
+            "IFSa",
+            "IFSp",
+            "STSda",
+            "STSdp",
+            "STSva",
+            "STSvp",
+            "STV",
+            "PSL",
+            "A4",
+            "A5",
+            "STGa",
+            "TPOJ1",
+            "TPOJ2",
+            "TPOJ3"
+          ],
+          "missing_rois": [],
+          "n_voxels": 6784
+        },
+        "Prefrontal": {
+          "found_rois": [
+            "8Ad",
+            "8Av",
+            "8BL",
+            "8BM",
+            "8C",
+            "9a",
+            "9m",
+            "9p",
+            "9-46d",
+            "46",
+            "10r",
+            "10v",
+            "a10p",
+            "p10p",
+            "10d",
+            "10pp"
+          ],
+          "missing_rois": [
+            "a9-46v",
+            "p9-46v"
+          ],
+          "n_voxels": 8381
+        },
+        "Ventral Visual": {
+          "found_rois": [
+            "V8",
+            "FFC",
+            "PIT",
+            "VVC",
+            "VMV1",
+            "VMV2",
+            "VMV3",
+            "LO1",
+            "LO2",
+            "LO3",
+            "PH",
+            "PHA1",
+            "PHA2",
+            "PHA3"
+          ],
+          "missing_rois": [],
+          "n_voxels": 4404
+        }
+      },
+      "response_h5": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/vision_robustness/experiments/after_iclr_2024/things_fmri/betas_csv/sub-01_ResponseData.h5",
+      "stimulus_metadata": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/vision_robustness/experiments/after_iclr_2024/things_fmri/betas_csv/sub-01_StimulusMetadata.csv",
+      "trial_counts_for_overlap": {
+        "max": 24,
+        "mean": 13.866666666666667,
+        "min": 12,
+        "missing": []
+      },
+      "voxel_metadata": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/vision_robustness/experiments/after_iclr_2024/things_fmri/betas_csv/sub-01_VoxelMetadata.csv"
+    },
+    "02": {
+      "h5_response_shape_voxels_by_trials": [
+        226950,
+        9840
+      ],
+      "n_exact_overlap": 90,
+      "n_fmri_concepts": 720,
+      "n_sft_concepts": 128,
+      "n_trials": 9840,
+      "region_voxel_counts": {
+        "ATL (Semantic)": {
+          "found_rois": [
+            "TGd",
+            "TGv",
+            "TE1a",
+            "TE1m",
+            "TE1p",
+            "TE2a",
+            "TE2p",
+            "TF",
+            "PeEc",
+            "EC"
+          ],
+          "missing_rois": [],
+          "n_voxels": 8643
+        },
+        "ATL subregions": {
+          "EC": 407,
+          "PeEc": 934,
+          "TE1a": 696,
+          "TE1m": 437,
+          "TE1p": 959,
+          "TE2a": 846,
+          "TE2p": 507,
+          "TF": 848,
+          "TGd": 2136,
+          "TGv": 873
+        },
+        "Dorsal Visual": {
+          "found_rois": [
+            "MT",
+            "MST",
+            "FST",
+            "V6",
+            "V6A",
+            "V7",
+            "IPS1",
+            "LIPd",
+            "LIPv",
+            "VIP",
+            "MIP",
+            "AIP"
+          ],
+          "missing_rois": [],
+          "n_voxels": 1879
+        },
+        "Early Visual": {
+          "found_rois": [
+            "V1",
+            "V2",
+            "V3",
+            "V3A",
+            "V3B",
+            "V3CD",
+            "V4",
+            "V4t"
+          ],
+          "missing_rois": [],
+          "n_voxels": 7321
+        },
+        "Language": {
+          "found_rois": [
+            "44",
+            "45",
+            "47l",
+            "IFJa",
+            "IFJp",
+            "IFSa",
+            "IFSp",
+            "STSda",
+            "STSdp",
+            "STSva",
+            "STSvp",
+            "STV",
+            "PSL",
+            "A4",
+            "A5",
+            "STGa",
+            "TPOJ1",
+            "TPOJ2",
+            "TPOJ3"
+          ],
+          "missing_rois": [],
+          "n_voxels": 6306
+        },
+        "Prefrontal": {
+          "found_rois": [
+            "8Ad",
+            "8Av",
+            "8BL",
+            "8BM",
+            "8C",
+            "9a",
+            "9m",
+            "9p",
+            "9-46d",
+            "46",
+            "10r",
+            "10v",
+            "a10p",
+            "p10p",
+            "10d",
+            "10pp"
+          ],
+          "missing_rois": [
+            "a9-46v",
+            "p9-46v"
+          ],
+          "n_voxels": 8492
+        },
+        "Ventral Visual": {
+          "found_rois": [
+            "V8",
+            "FFC",
+            "PIT",
+            "VVC",
+            "VMV1",
+            "VMV2",
+            "VMV3",
+            "LO1",
+            "LO2",
+            "LO3",
+            "PH",
+            "PHA1",
+            "PHA2",
+            "PHA3"
+          ],
+          "missing_rois": [],
+          "n_voxels": 4635
+        }
+      },
+      "response_h5": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/vision_robustness/experiments/after_iclr_2024/things_fmri/betas_csv/sub-02_ResponseData.h5",
+      "stimulus_metadata": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/vision_robustness/experiments/after_iclr_2024/things_fmri/betas_csv/sub-02_StimulusMetadata.csv",
+      "trial_counts_for_overlap": {
+        "max": 24,
+        "mean": 13.866666666666667,
+        "min": 12,
+        "missing": []
+      },
+      "voxel_metadata": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/vision_robustness/experiments/after_iclr_2024/things_fmri/betas_csv/sub-02_VoxelMetadata.csv"
+    },
+    "03": {
+      "h5_response_shape_voxels_by_trials": [
+        189164,
+        9840
+      ],
+      "n_exact_overlap": 90,
+      "n_fmri_concepts": 720,
+      "n_sft_concepts": 128,
+      "n_trials": 9840,
+      "region_voxel_counts": {
+        "ATL (Semantic)": {
+          "found_rois": [
+            "TGd",
+            "TGv",
+            "TE1a",
+            "TE1m",
+            "TE1p",
+            "TE2a",
+            "TE2p",
+            "TF",
+            "PeEc",
+            "EC"
+          ],
+          "missing_rois": [],
+          "n_voxels": 7612
+        },
+        "ATL subregions": {
+          "EC": 390,
+          "PeEc": 841,
+          "TE1a": 608,
+          "TE1m": 457,
+          "TE1p": 750,
+          "TE2a": 765,
+          "TE2p": 427,
+          "TF": 642,
+          "TGd": 2078,
+          "TGv": 654
+        },
+        "Dorsal Visual": {
+          "found_rois": [
+            "MT",
+            "MST",
+            "FST",
+            "V6",
+            "V6A",
+            "V7",
+            "IPS1",
+            "LIPd",
+            "LIPv",
+            "VIP",
+            "MIP",
+            "AIP"
+          ],
+          "missing_rois": [],
+          "n_voxels": 1865
+        },
+        "Early Visual": {
+          "found_rois": [
+            "V1",
+            "V2",
+            "V3",
+            "V3A",
+            "V3B",
+            "V3CD",
+            "V4",
+            "V4t"
+          ],
+          "missing_rois": [],
+          "n_voxels": 5942
+        },
+        "Language": {
+          "found_rois": [
+            "44",
+            "45",
+            "47l",
+            "IFJa",
+            "IFJp",
+            "IFSa",
+            "IFSp",
+            "STSda",
+            "STSdp",
+            "STSva",
+            "STSvp",
+            "STV",
+            "PSL",
+            "A4",
+            "A5",
+            "STGa",
+            "TPOJ1",
+            "TPOJ2",
+            "TPOJ3"
+          ],
+          "missing_rois": [],
+          "n_voxels": 5962
+        },
+        "Prefrontal": {
+          "found_rois": [
+            "8Ad",
+            "8Av",
+            "8BL",
+            "8BM",
+            "8C",
+            "9a",
+            "9m",
+            "9p",
+            "9-46d",
+            "46",
+            "10r",
+            "10v",
+            "a10p",
+            "p10p",
+            "10d",
+            "10pp"
+          ],
+          "missing_rois": [
+            "a9-46v",
+            "p9-46v"
+          ],
+          "n_voxels": 8150
+        },
+        "Ventral Visual": {
+          "found_rois": [
+            "V8",
+            "FFC",
+            "PIT",
+            "VVC",
+            "VMV1",
+            "VMV2",
+            "VMV3",
+            "LO1",
+            "LO2",
+            "LO3",
+            "PH",
+            "PHA1",
+            "PHA2",
+            "PHA3"
+          ],
+          "missing_rois": [],
+          "n_voxels": 3790
+        }
+      },
+      "response_h5": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/vision_robustness/experiments/after_iclr_2024/things_fmri/betas_csv/sub-03_ResponseData.h5",
+      "stimulus_metadata": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/vision_robustness/experiments/after_iclr_2024/things_fmri/betas_csv/sub-03_StimulusMetadata.csv",
+      "trial_counts_for_overlap": {
+        "max": 24,
+        "mean": 13.866666666666667,
+        "min": 12,
+        "missing": []
+      },
+      "voxel_metadata": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/vision_robustness/experiments/after_iclr_2024/things_fmri/betas_csv/sub-03_VoxelMetadata.csv"
+    }
+  },
+  "subjects": [
+    "01",
+    "02",
+    "03"
+  ]
+}

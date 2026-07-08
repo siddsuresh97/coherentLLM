@@ -161,6 +161,17 @@ Uncertainty:
 
 ## Track B: Semantic Hub
 
+### Method basis
+
+This track is based on Wu, Yu, Yogatama, Lu, and Kim, "The Semantic Hub
+Hypothesis: Language Models Share Semantic Representations Across Languages and
+Modalities" (`arXiv:2411.04986`, ICLR 2025). The paper's direct setting is
+shared intermediate-layer representations across languages and modalities, using
+representation similarity, logit-lens interpretability, and cross-domain
+interventions. Our adaptation is narrower and matched to this project:
+triplet/pairwise/feature elicitation formats are treated as the "spokes", and
+the held-out THINGS concept identity is the shared semantic content.
+
 ### Hypothesis
 
 Coherence-SFT should tighten a format-invariant concept code in mid/late layers.
@@ -185,11 +196,16 @@ Capture all-layer last-token hidden states.
 Layer-resolved:
 
 - RSA/CKA between concept RDMs from different formats.
-- Same-concept cross-format nearest-neighbor accuracy.
+- Same-concept cross-format nearest-neighbor accuracy, top-1/top-5, and margin.
+- Concept-vs-format kernel alignment: compare hidden-state kernels against
+  concept-label and format-label kernels. The hub signature is higher concept
+  alignment with lower format alignment.
 - Concept-vs-format decoding: concept identity should become more recoverable
   than format in the putative hub band.
 - Hub score: average cross-format RDM correlation minus within-format nuisance
   controls.
+- Mid-layer AUC, e.g. L10-20 for Llama-3.1-8B, contrasted with early and late
+  bands.
 
 Predictions:
 
@@ -205,14 +221,47 @@ If a model has a hub layer/band:
 - Average or align the three format-specific concept codes into a hub code.
 - RSA that hub code against THINGS-fMRI RDMs.
 - Test whether hub score predicts fMRI RSA across arms/layers.
+- Compare format-specific vs format-averaged hub-code RDMs. The strongest bridge
+  is a format-invariant hub code that predicts fMRI better than any single
+  elicitation-format code.
 
 This is the clean synthesis:
 
 `coherence-SFT -> stronger format-invariant semantic hub -> better object-fMRI RSA`
 
+### Causal semantic-hub tests
+
+Avoid broad activation-addition during free generation; Task 8 showed that style
+of activation steering collapses generation. If doing causal tests, use targeted
+logprob-scored patching:
+
+- Cache `h[concept, triplet, layer]`, patch it into pairwise or feature prompts
+  for the same concept, and measure whether logprob shifts toward the
+  hub-consistent answer.
+- Clean/corrupt patch: corrupt concept `c -> c_prime`, then patch clean
+  source-format activations for `c` and test recovery.
+- Controls: wrong concept, wrong layer, shuffled vector, early/late layers.
+- Prediction: `lowLR`/`lowrank` show stronger cross-format patch transfer than
+  base, scrambled does not, and task-vector alpha scales the effect.
+
 ## Track C: Language-fMRI feasibility
 
 Do not launch a heavy language-fMRI run until a feasibility memo is written.
+
+### Fedorenko-style evaluation constraints
+
+The language-network claim should follow Fedorenko/EvLab practice where possible:
+
+- Prefer individually localized language-network masks, usually from a
+  `sentences > nonword lists` localizer, over broad anatomical ROIs.
+- If only atlas ROIs are available, label them exploratory and do not frame them
+  as a definitive language-network test.
+- Use held-out encoding predictivity as the main metric: train a linear mapping
+  from LM features to neural responses, predict held-out stimuli, and score with
+  Pearson `r` or ceiling-normalized `r`.
+- Compare all arms on identical stimuli, context windows, preprocessing,
+  train/test splits, mapping complexity, and layer-selection protocol.
+- Use paired deltas against base per subject/ROI/fold.
 
 Questions:
 
@@ -222,8 +271,8 @@ Questions:
   locally or downloadable?
 - What exact feature alignment is needed: token hidden states, word aggregation,
   HRF delays, ridge/banded ridge, held-out story scoring?
-- Can we use Fedorenko/Ivanova language-network masks or must we approximate
-  with atlas ROIs?
+- Can we use Fedorenko/Ivanova language-network masks, or must we approximate
+  with atlas ROIs and explicitly downgrade the claim?
 
 Desired design:
 
@@ -232,6 +281,23 @@ Desired design:
 - Voxelwise ridge encoding.
 - Score held-out prediction correlation in language-network voxels.
 - Compare `base`, `lowLR`, `scrambled`, and task-vector alpha.
+
+Huth/LeBel-specific candidate:
+
+- Dataset: LeBel et al. 2023 / OpenNeuro `ds003020`.
+- Prefer high-data subjects `UTS01`, `UTS02`, `UTS03` if practical.
+- Use exact story transcript streams, TextGrid word timings, TR downsampling, FIR
+  delays, and ridge regression as in the Huth pipeline.
+- Avoid chat templates for passive listening.
+- Consider `wheretheressmoke` repeated test story for a smaller first pass.
+
+Confounds to control:
+
+- Lexical-semantic content may dominate language-brain scores.
+- Perplexity / next-word prediction quality can explain apparent brain-score gains.
+- Prompt/chat-template differences can create incomparable model states.
+- Layer fishing can inflate small effects.
+- Nonlinear or overly flexible mappings can wash out representational differences.
 
 ## Initial implementation order
 

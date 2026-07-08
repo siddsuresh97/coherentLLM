@@ -23,6 +23,9 @@ Broad drops:
 - Full capability battery for lowLR has no >0.02 gains, 4 flat groups, and 6 drops.
 - Drops include HellaSwag, OpenBookQA, MMLU mean, ARC-Easy, ARC-Challenge, WiC.
 - 57/59 MMLU subjects drop for lowLR in the full evaluation.
+- A broad standard-capability run for `lowrank` is not yet confirmed on disk;
+  lowrank has strong semantic/human results and narrow retention, but broad
+  capability is currently unproven.
 
 Useful existing result files:
 
@@ -106,16 +109,22 @@ Cheapest first:
 
 1. Use task-vector `alpha=0.25` as the default aligned model.
    - Already recovers most coherence gain for much less retention loss.
-2. Try alpha grid between `0.10` and `0.35`.
+2. Run the full wide benchmark for `taskvec_a0p25`.
+   - This is eval-only and directly tests whether the narrow retention result
+     survives the broad battery.
+3. Run the full wide benchmark for `lowrank`.
+   - This is eval-only and checks whether the apparently good lowrank Pareto
+     point also survives broad capability tests.
+4. Try alpha grid between `0.10` and `0.35`.
    - Goal: find an elbow with THINGS-human gain but minimal capability loss.
-3. Adapter composition / DARE-style sparsification.
+5. Adapter composition / DARE-style sparsification.
    - Keep only high-signal LoRA deltas or attenuate layers/modules most associated
      with capability loss.
-4. Add KL-to-base during SFT.
+6. Add KL-to-base during SFT.
    - More training but directly targets retention.
-5. Mix small general-instruction replay during SFT.
+7. Mix small general-instruction replay during SFT.
    - Could reduce forgetting, but risks muddying the clean causal story.
-6. Layer/module ablation of LoRA adapter.
+8. Layer/module ablation of LoRA adapter.
    - Identify whether MLP or attention deltas drive gains vs drops.
 
 ## Completion criteria
