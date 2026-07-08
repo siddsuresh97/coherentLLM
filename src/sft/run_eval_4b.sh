@@ -19,6 +19,8 @@ ROOT=$(pwd)
 mkdir -p logs
 
 CONDA='source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence'
+# SALMON needs the dedicated 'salmon' env (skorch); coherence env lacks it.
+SALMON_CONDA='source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/salmon'
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 RAW=results/sft_eval/raw
 STIM=data/scale128
@@ -37,6 +39,20 @@ retry(){
     sleep 5
   done
   log "GIVING UP after 3 attempts: $*"
+  return 1
+}
+
+# retry_salmon CMD... : same as retry() but in the salmon env (has skorch)
+retry_salmon(){
+  local n=0
+  while [ $n -lt 3 ]; do
+    n=$((n+1))
+    log "salmon attempt $n: $*"
+    bash -c "$SALMON_CONDA && $*" && return 0
+    log "SALMON FAILED (attempt $n): $*"
+    sleep 5
+  done
+  log "GIVING UP (salmon) after 3 attempts: $*"
   return 1
 }
 
@@ -60,7 +76,7 @@ run_salmon(){
     out="results/sft_eval/${model}_${trip}_d5.npy"
     # fit_triplet_salmon writes <model><tag>.npy; we just need the npy to exist. Skip if present.
     if ls results/sft_eval/${model}*d5.npy >/dev/null 2>&1 && [ -s "$out" ]; then log "skip SALMON $tag"; continue; fi
-    retry "COHERENCE_RAW_DIR=$RAW python src/fit_triplet_salmon.py --raw_dir $RAW --stim_dir $STIM \
+    retry_salmon "COHERENCE_RAW_DIR=$RAW python src/fit_triplet_salmon.py --raw_dir $RAW --stim_dir $STIM \
       --out_dir results/sft_eval --d 5 --suffix '$suffix' $model" || log "SALMON $tag failed (continuing)"
   done
 }
