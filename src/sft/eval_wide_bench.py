@@ -306,6 +306,7 @@ def summarize(args: argparse.Namespace) -> None:
 def verdict(delta: float) -> str:
     if math.isnan(delta):
         return "NA"
+    delta = round(delta, 12)
     if delta > 0.02:
         return "GAIN"
     if delta < -0.02:
