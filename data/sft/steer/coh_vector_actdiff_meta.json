@@ -1,0 +1,25 @@
+{
+  "activation_file": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/data/sft/steer/coh_vector_actdiff.npz",
+  "adapter": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/out/adapters_vllm_fixed/real",
+  "base_mean_shape": [
+    33,
+    4096
+  ],
+  "batch_size": 8,
+  "concepts": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/data/scale128/stimuli/concepts.csv",
+  "diff_shape": [
+    33,
+    4096
+  ],
+  "dtype": "bfloat16",
+  "max_length": 256,
+  "model": "llama-3.1-8b-instruct",
+  "model_path": "/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659",
+  "n_concepts": 128,
+  "n_lora_modules": 224,
+  "prompt_template": "chat(system=SYSTEM_PROMPT,user=listing_prompt(concept),add_generation_prompt=True)",
+  "real_mean_shape": [
+    33,
+    4096
+  ]
+}
