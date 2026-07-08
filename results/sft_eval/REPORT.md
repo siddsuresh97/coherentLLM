@@ -16,7 +16,8 @@ forgetting; lowering the learning rate removes almost all of that cost.
 |---|---|
 | Coherence (generation) | 0.32 → **0.76** |
 | Human alignment (Procrustes vs THINGS-SPoSE) | 0.47 → **0.67** |
-| Knowledge cost (retention vs base) | **−0.03** (default SFT was −0.21) |
+| Knowledge cost, narrow 4-task battery | **−0.03** (default SFT: −0.21) |
+| Knowledge cost, full lm-eval battery (§6) | **real, ~6/10 task groups drop** — much smaller than default SFT, not zero |
 | Scrambled control (permuted labels) | **0.03** (no gain) |
 
 ---
@@ -65,8 +66,9 @@ even exceeds — the coherence gain while returning retention to within 0.03 of 
 | **Low-rank** | r16, lr 2e-4 | **0.75** | **0.67** | **0.544** | **−0.030** |
 
 > **Headline:** low-LR and low-rank give higher coherence AND higher human alignment than the
-> default fine-tune, at near-zero knowledge cost. The forgetting was an over-aggressive-LR
-> artifact, not an inherent cost of coherence.
+> default fine-tune, for far less knowledge cost. Most of the forgetting was an over-aggressive-LR
+> artifact — but not all of it. **This 4-task battery undersells the true cost; see §6 for the
+> full picture (the same models still drop on ~6/10 capability task groups).**
 
 ---
 
@@ -76,21 +78,27 @@ The fine-tune is a LoRA delta, so the change is one direction in weight space (t
 vector* = SFT − base). Adding a fraction back to the untrained base — no further training —
 recovers most of the gain.
 
-**Task-vector steering: base + α·(real − base):**
+**Task-vector steering: base + α·(real − base), with retention (Task 7):**
 
-| α | Coherence | Human r² | Reads as |
-|---|---|---|---|
-| 0.00 | 0.32 | 0.47 | base |
-| **0.25** | **0.65** | **0.60** | ~87% of the gain, no training |
-| 0.50 | 0.71 | 0.58 | matches full SFT |
-| 1.00 | 0.70 | 0.60 | = real SFT |
+| α | Coherence | Human r² | Retention | vs base |
+|---|---|---|---|---|
+| 0.00 | 0.32 | 0.47 | 0.574 | — |
+| **0.25** | **0.65** | **0.60** | 0.553 | **−0.021** |
+| 0.50 | 0.71 | 0.58 | 0.457 | −0.117 |
+| 1.00 | 0.70 | 0.60 | 0.367 | −0.207 (= real SFT) |
 
-**Negative results (kept):**
-- **Activation steering fails** — adding the same direction to the residual stream at every
-  layer over-steers and collapses generation at every scale. Only the *weight-space* task
-  vector works.
-- **Early-stopping alone barely helps retention** (few-steps −0.167). Lowering the learning
-  rate, not shortening training, protects knowledge.
+Retention degrades smoothly with α — a clean dose-response. **α=0.25 is the sweet spot:**
+~87% of the coherence gain, human-alignment already at the full-SFT level, for roughly a
+fifth of the retention cost of the full task vector. A quarter-strength nudge, no training.
+
+**Under revision:**
+- **All-layer activation steering fails** — adding the direction to the residual stream at
+  *every* layer over-steers and collapses generation at every scale. This is likely an
+  all-layers artifact, not proof activation steering can't work: the standard method
+  (ActAdd/RepE) steers a narrow *middle-layer* band. A corrected mid-layer, norm-matched
+  sweep is running (Task 8); this section updates with the result.
+- **Early-stopping alone barely helps retention** (few-steps −0.167 on the narrow battery).
+  Lowering the learning rate, not shortening training, does the most to protect knowledge.
 
 ---
 
@@ -132,12 +140,55 @@ odd-one-out task (not our own metric, actual behavioral data):
 
 ---
 
-## 6. Broader capability (in progress)
+## 6. What else does it buy? The full picture
 
-Running now: a wider lm-eval battery (PIQA, Winogrande, ARC-easy/challenge, OpenBookQA,
-CommonsenseQA, WiC, MMLU, TruthfulQA) on base vs low-LR, to find where human-like
-conceptual structure *helps* reasoning, not just where it avoids hurting. This section
-updates when Task 6C + `TASK6_SUMMARY.md` land.
+Does low-LR show *gains* — not just avoided regression — on tasks it never trained on?
+All 9 requested capability tasks covered (verdict: GAIN if Δ>+0.02, DROP if Δ<−0.02, else
+FLAT). Full results: `results/sft_eval/TASK6_SUMMARY.md`.
+
+**6C — standard capability (0 gains, 4 flat, 6 drops):**
+
+| Task | Base | Low-LR | Δ | Verdict |
+|---|---|---|---|---|
+| Winogrande | 0.762 | 0.765 | +0.003 | flat |
+| CommonsenseQA | 0.651 | 0.666 | +0.015 | flat |
+| TruthfulQA | 0.550 | 0.533 | −0.017 | flat |
+| PIQA | 0.799 | 0.779 | −0.020 | flat |
+| HellaSwag | 0.685 | 0.656 | −0.029 | DROP |
+| OpenBookQA | 0.490 | 0.412 | −0.078 | DROP |
+| MMLU (57-subject mean) | 0.693 | 0.594 | −0.099 | DROP |
+| ARC-Easy | 0.850 | 0.725 | −0.125 | DROP |
+| ARC-Challenge | 0.649 | 0.524 | −0.125 | DROP |
+| WiC | 0.652 | 0.500 | −0.152 | DROP |
+
+57 of 59 individual MMLU subjects drop (moral scenarios −0.248, human sexuality −0.183,
+formal logic −0.190). **This is a real, broad capability cost — far short of the default
+SFT's near-total collapse, but not the near-zero result the narrow 4-task retention
+battery in §2 suggested.** That battery (2 MMLU subjects + ARC-challenge + HellaSwag +
+TruthfulQA) undersells the true cost; the full MMLU + wider battery is the honest number.
+
+**6A/6B — similarity and human-behavior (this is where the gains are):**
+
+| Task | Base | Low-LR | Δ | Verdict |
+|---|---|---|---|---|
+| **THINGS odd-one-out** (agreement w/ humans) | 0.686 | 0.770 | **+0.084** | GAIN |
+| **THINGS triplet-sim ρ vs human** | 0.483 | 0.711 | **+0.228** | GAIN |
+| WordSim-353 | 0.294 | 0.344 | +0.050 | GAIN |
+| MEN | 0.488 | 0.518 | +0.030 | GAIN |
+| MTurk-771 | 0.306 | 0.353 | +0.047 | GAIN |
+| SimVerb-3500 | 0.168 | 0.199 | +0.032 | GAIN |
+| STS-B / SimLex-999 / RG-65 | — | — | ~0 | flat |
+
+The THINGS odd-one-out result is the most direct "more human-like" test in the whole
+project — predicting *actual* human choices, not our own geometry. Low-LR agrees with the
+human majority pick 8.4 points more often than base.
+
+> **Plain answer:** low-LR reliably improves semantic-similarity and human-behavior
+> measures — especially predicting real human concept judgments — much more safely than
+> the default fine-tune. It does **not** broadly improve standard reasoning/knowledge
+> benchmarks; there it trades away real capability, just far less than the alternative.
+> Honest framing: a large, targeted gain in human-like semantic structure, at a real but
+> substantially reduced cost to general capability — not a free lunch.
 
 ---
 
@@ -209,4 +260,16 @@ All evaluation on the 127 held-out THINGS concepts (or each benchmark's own item
 ---
 
 *Artifacts in `results/sft_eval/`; plots `mitigation/pareto.png`, `steer/coherence_human_vs_alpha.png`.
-Interactive version rendered as a claude.ai artifact.*
+Interactive version rendered as a claude.ai artifact. Full 6C table: `results/sft_eval/TASK6_SUMMARY.md`.
+Steering retention: `results/sft_eval/steer/steer_retention.csv`.*
+
+## Future directions
+
+- `research/FUTURE_brain_predictivity.md` — does coherence-SFT improve LLM-to-brain
+  predictivity (RSA on THINGS-fMRI, then Huth/Ivanova-style voxelwise encoding), using the
+  α-sweep as a dose-response causal manipulation.
+- `research/FUTURE_semantic_hub.md` — does coherence-SFT induce/sharpen a format-invariant
+  "semantic hub" in the middle layers (Wu, Yun, Andreas, Kim 2411.04986), tested via
+  cross-format representational convergence and cross-format causal patching.
+- Task 8 (running): corrected mid-layer, norm-matched activation steering — resolves
+  whether the all-layer steering failure above is a true negative or an artifact.
