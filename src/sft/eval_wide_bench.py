@@ -38,6 +38,9 @@ STANDARD_GROUP_NAMES = [name for name, _, _ in STANDARD_GROUPS]
 STATES = {
     "base": ("base", None, 64),
     "lowLR": ("lowLR", ROOT / "out" / "adapters_mitigation_vllm" / "lowLR", 64),
+    "lowrank": ("lowrank", ROOT / "out" / "adapters_mitigation_vllm" / "lowrank", 16),
+    "taskvec_a0p25": ("taskvec_a0p25", ROOT / "out" / "adapters_taskvec_scaled" / "a0p25", 64),
+    "taskvec_a0p5": ("taskvec_a0p5", ROOT / "out" / "adapters_taskvec_scaled" / "a0p5", 64),
 }
 PREFERRED_METRICS = {
     "arc_easy": ["acc_norm,none", "acc,none"],
