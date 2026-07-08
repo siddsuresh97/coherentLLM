@@ -42,6 +42,17 @@ adds external dep; our GPUs are ~free). SFT-FIRST, RL is phase-2 at most.
 [ ] 5. read result; data-scaling ablation; (phase-2) RL; (stretch) coherence task vector.
 [ ] PARALLEL: 18-model coherence benchmark -> regression on ingredients (separate, cheap).
 
+## MANDATORY for ALL FUTURE training runs (scaling ablation, retrains)
+The SFT examples are tiny (median ~33 tok, max ~95). Step-3 used max_seq_length=256 WITHOUT
+--packing, so ~90% of every batch was padding (~10x wasted compute). Every future
+src/sft/train_lora.py invocation MUST:
+1. pass --packing (train_lora.py already supports it; passes packing=True to SFTConfig);
+2. use --max_seq_length 128 (ample for a 95-token max);
+3. VERIFY packing took effect (SFTConfig accepted packing=True; log it). If the installed
+   TRL/unsloth SFTConfig lacks `packing`, note that and fall back to group_by_length=True.
+Each scaling-ablation point should then train in a few minutes, not 30. The existing
+real/scrambled adapters are fine as-is; do NOT retrain them for the first eval.
+
 ## Not-yet-done infra checks
 - unsloth not installed in any env yet.
 - no raw human THINGS odd-one-out triplets on disk (downloadable OSF f5rn6/qn5uv if we want the
