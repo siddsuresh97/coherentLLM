@@ -558,6 +558,13 @@ Initial interpretation:
 
 Speed/reliability notes:
 
+- Harbor framework decision: do not move the current LM eval loop to Harbor.
+  The relevant HARBOR work is about optimizing long-horizon agent harness
+  flags, memory, caching, context management, and orchestration; it is not a GPU
+  scheduler or a faster evaluator for ARC/MMLU/TruthfulQA. Keep using local
+  direct vLLM/lm-eval for debugging and CHTC for parallel scale-out. Borrow only
+  the lightweight idea of run manifests, gates, and runtime telemetry if
+  orchestration gets messy.
 - A5000 `gpu_mem_util=0.82` with vLLM auto batch OOMed during prompt-logprob
   scoring.
 - A5000 `gpu_mem_util=0.65` plus `batch_size=8` left too little KV cache and
