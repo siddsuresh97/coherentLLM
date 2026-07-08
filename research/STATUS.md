@@ -163,6 +163,13 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   zero-shot collapses broadly (`PIQA acc_norm=0.540`,
   `OpenBookQA acc_norm=0.282`, `CommonsenseQA acc=0.197`), so some retention
   loss is generic adapter/SFT perturbation, not semantic alignment alone.
+- Held-out fMRI hub regression is implemented in
+  `src/sft/run_fmri_hub_regression.py` and written to
+  `results/sft_fmri_hub_regression/`. It does not support a clean semantic-hub
+  explanation of Ventral Visual RSA: mid-layer averaged/shared predictors are
+  tied with or worse than the best single prompt-format spoke. ATL/Language
+  show small aligned-state averaged-predictor advantages, but the absolute
+  effects are exploratory.
 - Current active A5000 lanes are `taskvec_a0p25 arc_25shot` on GPU0 and
   `taskvec_a0p25 hellaswag_10shot` on GPU1, both with
   `gpu_mem_util=0.72 --batch_size 2`.

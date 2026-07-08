@@ -16,10 +16,10 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 - **fMRI:** the THINGS-fMRI pipeline works. Ventral Visual shows the expected
   object-RSA signal and scrambled-control separation, but aligned arms are
   mostly flat versus base in the primary visual ROI.
-- **fMRI x hub bridge:** hub RDM gains are positively related to Ventral Visual
-  delta in a small-n descriptive check, but same-concept retrieval does not
-  explain fMRI deltas. This is not yet evidence that the semantic hub explains
-  the fMRI effect.
+- **fMRI x hub bridge:** the new concept-held-out regression does not support a
+  clean semantic-hub explanation of Ventral Visual RSA. Averaged hub predictors
+  are roughly tied with single prompt spokes in Ventral Visual, while
+  ATL/Language show small aligned-state advantages that remain exploratory.
 - **Benchmarks:** lowrank is flat on HellaSwag (`0.683` vs base `0.685`) and
   mostly flat on WinoGrande, but still drops ARC, MMLU, WiC, and OpenBookQA.
   Scrambled zero-shot collapses broadly, so part of the retention loss is a
@@ -43,6 +43,8 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 - THINGS-fMRI RSA report: [`results/sft_fmri/REPORT.md`](results/sft_fmri/REPORT.md)
 - fMRI x semantic-hub bridge:
   [`results/sft_fmri_semantic_bridge/REPORT.md`](results/sft_fmri_semantic_bridge/REPORT.md)
+- Held-out fMRI hub regression:
+  [`results/sft_fmri_hub_regression/REPORT.md`](results/sft_fmri_hub_regression/REPORT.md)
 
 <details>
 <summary><strong>1. Semantic Hub Result</strong></summary>
@@ -137,8 +139,11 @@ arms/layers.
 Implementation:
 
 - Script: [`src/sft/bridge_fmri_semantic_hub.py`](src/sft/bridge_fmri_semantic_hub.py)
+- Held-out regression script: [`src/sft/run_fmri_hub_regression.py`](src/sft/run_fmri_hub_regression.py)
 - Output directory: `results/sft_fmri_semantic_bridge/`
 - Report: [`results/sft_fmri_semantic_bridge/REPORT.md`](results/sft_fmri_semantic_bridge/REPORT.md)
+- Regression output directory: `results/sft_fmri_hub_regression/`
+- Regression report: [`results/sft_fmri_hub_regression/REPORT.md`](results/sft_fmri_hub_regression/REPORT.md)
 
 Key artifacts:
 
@@ -150,6 +155,11 @@ Key artifacts:
   fMRI summary joined to hub summary.
 - [`arm_summary_correlations.csv`](results/sft_fmri_semantic_bridge/arm_summary_correlations.csv):
   small-n arm-level correlations.
+- [`cv_model_comparison.csv`](results/sft_fmri_hub_regression/cv_model_comparison.csv):
+  concept-held-out mid-layer comparison of format-averaged hub RDMs against
+  single-format RDMs.
+- [`cv_best_layer_summary.csv`](results/sft_fmri_hub_regression/cv_best_layer_summary.csv):
+  descriptive best-layer held-out regression scores.
 
 Important bridge metrics:
 
@@ -160,15 +170,47 @@ Important bridge metrics:
 | Layer-grid delta vs base | Ventral Visual | cross-format RDM delta | 0.401 | 192 | 7.89e-09 |
 | Layer-grid delta vs base | ATL (Semantic) | cross-format RDM delta | 0.306 | 192 | 1.58e-05 |
 
+Held-out regression setup:
+
+- 90 fMRI-overlap concepts, subjects 01/02/03, primary ROIs only.
+- Five concept-held-out folds; train/test RDM distances do not share concepts.
+- Predictors: format-averaged representation RDM, mean format RDM, each single
+  prompt-format RDM, all single-format RDMs, and mean-plus-single RDMs.
+- Mid-layer band: layers 10-20.
+
+Mid-layer held-out Pearson read:
+
+| Region | Arm | Mean repr r | Best single r | Delta |
+|---|---|---:|---:|---:|
+| Ventral Visual | `lowrank` | 0.1751 | 0.1742 | +0.0008 |
+| Ventral Visual | `taskvec_a0p25` | 0.1679 | 0.1702 | -0.0023 |
+| Ventral Visual | `lowLR` | 0.1623 | 0.1748 | -0.0125 |
+| ATL (Semantic) | `taskvec_a0p5` | 0.0356 | 0.0310 | +0.0046 |
+| ATL (Semantic) | `lowrank` | 0.0332 | 0.0326 | +0.0006 |
+| Language | `lowLR` | 0.0511 | 0.0423 | +0.0087 |
+| Language | `taskvec_a0p5` | 0.0511 | 0.0465 | +0.0046 |
+| Language | `lowrank` | 0.0503 | 0.0488 | +0.0015 |
+
+Descriptive best-layer winners:
+
+| Region | Best row | Held-out Pearson r |
+|---|---|---:|
+| Ventral Visual | `taskvec_a0p25` `single_feature_listing`, layer 18 | 0.2034 |
+| Ventral Visual | `lowrank` `single_feature_listing`, layer 18 | 0.2010 |
+| ATL (Semantic) | `taskvec_a0p5` `single_pairwise`, layer 23 | 0.0565 |
+| Language | `taskvec_a1p0` `mean_repr_plus_single_formats`, layer 18 | 0.0765 |
+
 Read:
 
 - Hub invariance is a strong internal-model result.
-- It does not yet explain the object-fMRI RSA pattern.
+- It does not explain the Ventral Visual object-fMRI RSA pattern in the
+  held-out regression; single feature/prompt spokes are as good or better.
+- ATL/Language show small aligned-state advantages for averaged/shared
+  predictors, but the absolute correlations are small and exploratory.
 - Layer-grid correlations are descriptive because layer points are not
   independent.
-- The next decisive analysis is a held-out fMRI regression where
-  format-averaged hub RDMs and single-format RDMs compete to predict the same
-  fMRI RDMs.
+- The next fMRI step, if we pursue it, should be a stricter fixed-layer or
+  nested-CV confirmation plus the planned language-fMRI encoding analysis.
 
 </details>
 
@@ -333,21 +375,16 @@ Current plan:
 
 Immediate:
 
-1. Let lowrank `arc_25shot` finish on `rogers-gpu-1`.
-2. Run:
-
-   ```bash
-   python src/sft/eval_wide_bench.py --states base lowLR lowrank --summarize_only
-   ```
-
-3. Commit and push the completed lowrank wide-bench summary and raw outputs.
-4. Let `scrambled` zero-shot finish on `rogers-gpu-1` GPU1, then use freed
-   A5000 time for taskvec remaining broad-bench lanes and later scrambled MMLU.
+1. Let `taskvec_a0p25` HellaSwag and ARC finish on `rogers-gpu-1`.
+2. Parse both result JSONs, update README/log, commit, and push.
+3. Use the next freed A5000 lane for `taskvec_a0p25 mmlu_5shot` if we want the
+   long mitigation lane, or scrambled ARC/Hella if the priority is the random
+   perturbation control.
 
 Scientific next:
 
-1. fMRI bridge regression: compare format-averaged hub RDMs vs single-format
-   RDMs as predictors of fMRI RDMs.
+1. fMRI bridge: do not overclaim Ventral Visual hub evidence. If continuing,
+   run fixed-layer/nested-CV confirmation and then language-fMRI encoding.
 2. Benchmark mechanism: inspect WiC/ARC failures and tasks with gains to decide
    whether drops are lexical-sense-specific, adapter-rank-specific, or generic
    SFT perturbation.

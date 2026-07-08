@@ -1,0 +1,34 @@
+{
+  "arms": [
+    "base",
+    "scrambled",
+    "lowLR",
+    "lowrank",
+    "taskvec_a0p25",
+    "taskvec_a0p5",
+    "taskvec_a1p0"
+  ],
+  "betas_dir": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/vision_robustness/experiments/after_iclr_2024/things_fmri/betas_csv",
+  "folds": 5,
+  "hub_hidden_dir": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hidden_states",
+  "mid_layers": "10:20",
+  "n_concepts": 90,
+  "notes": [
+    "Concept-held-out folds score only distances within held-out concepts.",
+    "Best-layer tables are descriptive and should not be treated as nested-CV estimates.",
+    "Mid-layer comparison is the less layer-fished summary."
+  ],
+  "overlap_csv": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_fmri/concept_overlap.csv",
+  "regions": [
+    "Ventral Visual",
+    "ATL (Semantic)",
+    "Language"
+  ],
+  "ridge_alpha": 1.0,
+  "seed": 0,
+  "subjects": [
+    "01",
+    "02",
+    "03"
+  ]
+}

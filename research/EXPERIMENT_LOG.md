@@ -631,6 +631,68 @@ Initial read:
 - Layer-grid delta correlations are positive for cross-format RDM in Ventral
   Visual (`r=0.401`, `n=192`) and ATL (`r=0.306`, `n=192`), but layer-grid
   points are not independent and should be treated as descriptive.
-- The next decisive analysis is a held-out fMRI regression that compares
-  format-averaged hub RDMs against single-format RDMs for the same concepts and
-  ROIs.
+- The held-out fMRI regression below is the follow-up to this descriptive
+  bridge.
+
+## 2026-07-08 result: held-out fMRI semantic-hub regression
+
+Command:
+
+```bash
+python src/sft/run_fmri_hub_regression.py --regions 'Ventral Visual,ATL (Semantic),Language' --out_dir results/sft_fmri_hub_regression
+```
+
+Artifacts:
+
+- `src/sft/run_fmri_hub_regression.py`
+- `results/sft_fmri_hub_regression/cv_model_scores.csv`
+- `results/sft_fmri_hub_regression/cv_layer_summary.csv`
+- `results/sft_fmri_hub_regression/cv_best_layer_summary.csv`
+- `results/sft_fmri_hub_regression/cv_midlayer_summary.csv`
+- `results/sft_fmri_hub_regression/cv_model_comparison.csv`
+- `results/sft_fmri_hub_regression/regression_meta.json`
+- `results/sft_fmri_hub_regression/REPORT.md`
+
+Method:
+
+- 90 fMRI-overlap concepts, subjects 01/02/03, primary ROIs only.
+- Five concept-held-out folds; train and test distance pairs do not share
+  concepts.
+- Predictors are semantic-hub RDMs from `triplet`, `pairwise`,
+  `feature_listing`, their averaged RDM, and an RDM of the averaged
+  representation.
+- Primary non-layer-fished read uses the mid-layer band 10-20.
+
+Mid-layer held-out Pearson highlights:
+
+| Region | Arm | Mean repr r | Best single r | Delta |
+|---|---|---:|---:|---:|
+| Ventral Visual | `lowrank` | 0.1751 | 0.1742 | +0.0008 |
+| Ventral Visual | `taskvec_a0p25` | 0.1679 | 0.1702 | -0.0023 |
+| Ventral Visual | `lowLR` | 0.1623 | 0.1748 | -0.0125 |
+| ATL (Semantic) | `taskvec_a0p5` | 0.0356 | 0.0310 | +0.0046 |
+| ATL (Semantic) | `lowrank` | 0.0332 | 0.0326 | +0.0006 |
+| Language | `lowLR` | 0.0511 | 0.0423 | +0.0087 |
+| Language | `taskvec_a0p5` | 0.0511 | 0.0465 | +0.0046 |
+| Language | `lowrank` | 0.0503 | 0.0488 | +0.0015 |
+
+Descriptive best-layer highlights:
+
+- Ventral Visual best row: `taskvec_a0p25` `single_feature_listing`, layer 18,
+  held-out Pearson `r=0.2034`.
+- Ventral Visual lowrank: `single_feature_listing`, layer 18, `r=0.2010`.
+- ATL best row: `taskvec_a0p5` `single_pairwise`, layer 23, `r=0.0565`.
+- Language best row: `taskvec_a1p0` `mean_repr_plus_single_formats`, layer 18,
+  `r=0.0765`.
+
+Initial read:
+
+- This weakens the hypothesis that the semantic hub explains the Ventral Visual
+  fMRI effect. In Ventral Visual, the averaged/shared predictor is basically
+  tied with or worse than the best single prompt-format spoke.
+- ATL/Language show small aligned-state advantages for averaged/shared
+  predictors, especially Language (`lowLR` +0.0087 over best single;
+  `taskvec_a0p5` +0.0046), but absolute correlations are small.
+- The safe conclusion is: semantic-hub invariance is real inside the model; the
+  fMRI object-RSA result is mostly visual/object geometry; language/semantic ROI
+  evidence remains exploratory and needs fixed-layer or nested-CV confirmation.
