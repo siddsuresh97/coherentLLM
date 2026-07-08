@@ -1,7 +1,7 @@
 # Coherence-SFT project STATUS (where we are + open threads)
 
 **Last updated: 2026-07-08. Tasks 1-8 are ALL COMPLETE and committed to `coherence-sft`
-(latest: `9fa14bb`). This file was stale below this point (left as historical design record) —
+(current checked commit before Task 9 docs: `76dbc9f`). This file was stale below this point (left as historical design record) —
 read this top section first for where the project actually stands.**
 
 ## Handoff for a fresh agent picking this up
@@ -34,8 +34,11 @@ read this top section first for where the project actually stands.**
   THINGS-fMRI then Huth/Ivanova-style voxelwise encoding using the alpha-sweep as a dose-
   response) and `research/FUTURE_semantic_hub.md` (does coherence-SFT induce/sharpen a
   format-invariant mid-layer "semantic hub", ref arXiv:2411.04986) are both scoped proposals
-  with NO runs launched yet — pure future work, not in-flight. Neither has a CODEX_TASK_*.md
-  brief written; that would be the first step if picked up. Task-list items #15 (7 new frontier
+  with NO runs launched yet — pure future work, not in-flight. Task 9 and Task 10 briefs now
+  track these follow-ups:
+  `research/CODEX_TASK_9_FMRI_AND_SEMANTIC_HUB.md`,
+  `research/CODEX_TASK_10_BENCHMARK_DROPS.md`, and the running handoff log
+  `research/EXPERIMENT_LOG.md`. Task-list items #15 (7 new frontier
   models for the earlier, separate 18-model coherence benchmark) is also still pending and
   unrelated to the SFT thread.
 - **Do not fabricate data or invent bibtex entries** — every task brief above ends with this
