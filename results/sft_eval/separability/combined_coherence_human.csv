@@ -1,0 +1,7 @@
+source,state,model,gen_coherence,things_human_r2,coherence_col,human_r2_col
+sft_eval,base,llama-3.1-8b-instruct,0.322558,0.468093,gen_proc_mean,human_things_triplet_r2
+sft_eval,real,llama31-sft-real,0.699402,0.604927,gen_proc_mean,human_things_triplet_r2
+sft_eval,scrambled,llama31-sft-scrambled,0.031259,0.015870,gen_proc_mean,human_things_triplet_r2
+ch3_model_zoo,,olmo2-7b-instruct,0.436955,0.497040,cross_mean,human_procrustes_r2_triplet
+ch3_model_zoo,,olmo2-7b-dpo,0.389326,0.480005,cross_mean,human_procrustes_r2_triplet
+ch3_model_zoo,,olmo2-7b-sft,0.260065,0.370829,cross_mean,human_procrustes_r2_triplet

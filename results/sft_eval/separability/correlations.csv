@@ -1,0 +1,8 @@
+analysis,source,coherence_col,human_r2_col,n,pearson_r,p_value
+combined_primary,combined,gen_coherence,things_human_r2,6,0.914232389488,0.010718667688
+sft_eval_primary,sft_eval,gen_proc_mean,human_things_triplet_r2,3,0.931023200273,0.237834677429
+sft_eval_gen_human_things_triplet_r2,sft_eval,gen_proc_mean,gen_human_things_triplet_r2,3,0.931023200273,0.237834677429
+sft_eval_lp_human_things_triplet_r2,sft_eval,gen_proc_mean,lp_human_things_triplet_r2,3,-0.95591214937,0.189741894468
+sft_eval_human_things_triplet_r2,sft_eval,gen_proc_mean,human_things_triplet_r2,3,0.931023200273,0.237834677429
+ch3_model_zoo_primary,ch3_model_zoo,cross_mean,human_procrustes_r2_triplet,3,0.990422751561,0.0881785026603
+ch3_model_zoo_human_procrustes_r2_triplet,ch3_model_zoo,cross_mean,human_procrustes_r2_triplet,3,0.990422751561,0.0881785026603

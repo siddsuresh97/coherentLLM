@@ -1,0 +1,4 @@
+state,model,gen_coherence,things_human_r2,delta_gen_coherence_vs_base,delta_things_human_r2_vs_base,status
+base,llama-3.1-8b-instruct,0.322558,0.468093,0.000000,0.000000,baseline
+real,llama31-sft-real,0.699402,0.604927,0.376844,0.136834,both_gained
+scrambled,llama31-sft-scrambled,0.031259,0.015870,-0.291299,-0.452223,neither_gain
