@@ -1,7 +1,8 @@
 # Future direction: does coherence-SFT induce / sharpen a semantic hub?
 
-Ref: Wu, Yun, Andreas, Kim — "The Semantic Hub Hypothesis: Language Models Share
-Semantic Representations Across Languages and Modalities" (arXiv:2411.04986).
+Ref: Wu, Yu, Yogatama, Lu, and Kim — "The Semantic Hub Hypothesis: Language
+Models Share Semantic Representations Across Languages and Modalities"
+(arXiv:2411.04986).
 
 ## The idea in one sentence
 Coherence-SFT is, by construction, cross-format similarity supervision (triplet, pairwise,
@@ -77,7 +78,8 @@ Extract the similarity/coherence direction from ONE format and patch it during A
   (CPU). Test 2 needs forward hooks (HF path, reuse Task 8 machinery).
 
 ## Reading to ground it
-- Wu, Yun, Andreas, Kim 2024 (2411.04986) — the hub hypothesis + logit-lens + intervention method.
+- Wu, Yu, Yogatama, Lu, and Kim 2024/2025 (2411.04986) — the hub hypothesis +
+  logit-lens + intervention method.
 - Ralph/Lambon-Ralph et al. — ATL as the human transmodal semantic hub (for the brain bridge).
 - (pair with the logit-lens / cross-format convergence literature; pull exact bibtex when this
   becomes a chapter. Do NOT fabricate.)

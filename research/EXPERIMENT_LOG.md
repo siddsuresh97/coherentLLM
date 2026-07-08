@@ -50,6 +50,13 @@ to edit files; their memos should be integrated into this log and the task brief
 | Gibbs | `019f4341-806a-7d51-82f9-49fc95df0c88` | Local benchmark drop/gain diagnosis |
 | Nietzsche | `019f4341-bb81-7200-ba91-a7c09b9d4aa2` | Semantic-hub hypothesis and tests |
 
+## 2026-07-08 checkpoint: sidecar memo synthesis
+
+Added [`research/LITERATURE_AND_EXPERIMENT_PLAN.md`](LITERATURE_AND_EXPERIMENT_PLAN.md)
+as the handoff synthesis of the Huth/LeBel, Fedorenko/EvLab, benchmark-drop, and
+semantic-hub sidecar memos. The README now links this plan through a collapsible
+details panel.
+
 ## 2026-07-08 sidecar memo: Fedorenko / language-network evaluation
 
 Source: Kierkegaard, agent `019f4341-6757-78d3-9fb5-94f25969da6e`.

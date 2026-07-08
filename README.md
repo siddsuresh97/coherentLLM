@@ -33,6 +33,8 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 
 - Status/handoff: [`research/STATUS.md`](research/STATUS.md)
 - Full experiment log: [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.md)
+- Literature and experiment plan:
+  [`research/LITERATURE_AND_EXPERIMENT_PLAN.md`](research/LITERATURE_AND_EXPERIMENT_PLAN.md)
 - fMRI/semantic-hub task brief:
   [`research/CODEX_TASK_9_FMRI_AND_SEMANTIC_HUB.md`](research/CODEX_TASK_9_FMRI_AND_SEMANTIC_HUB.md)
 - Benchmark-drop task brief:
@@ -267,7 +269,35 @@ Speed/RSA note:
 </details>
 
 <details>
-<summary><strong>6. Next Actions</strong></summary>
+<summary><strong>6. Literature And Experiment Plans</strong></summary>
+
+The sidecar agents completed and their memos are synthesized in
+[`research/LITERATURE_AND_EXPERIMENT_PLAN.md`](research/LITERATURE_AND_EXPERIMENT_PLAN.md).
+The raw memo trail is in [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.md).
+
+Current plan:
+
+- Semantic hub: anchor to Wu, Yu, Yogatama, Lu, and Kim,
+  "The Semantic Hub Hypothesis" (`arXiv:2411.04986`, ICLR 2025). Our adaptation
+  treats triplet, pairwise, and feature prompts as elicitation "spokes" for the
+  same THINGS concept.
+- Huth/LeBel language-fMRI: use OpenNeuro `ds003020` / HuthLab
+  `deep-fMRI-dataset` if we launch a language encoding pass. Feed exact narrative
+  transcript streams, avoid chat templates, align word hidden states to TRs, and
+  score held-out voxelwise ridge predictions.
+- Fedorenko/EvLab language-network: prefer individually localized
+  `sentences > nonword lists` masks. Atlas/group language ROIs are exploratory.
+- Benchmark-drops: first finish eval-only controls (`lowrank`, `scrambled`,
+  `taskvec_a0p25`) before new training. Current hypothesis is a narrow semantic
+  SFT plus global LoRA perturbation and multiple-choice logit calibration shifts,
+  not a uniform capability collapse.
+- Scale-out: debug locally/direct-GPU first; use CHTC only after paths,
+  environment, output writing, and memory settings are known-good.
+
+</details>
+
+<details>
+<summary><strong>7. Next Actions</strong></summary>
 
 Immediate:
 
