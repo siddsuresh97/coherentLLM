@@ -1,0 +1,12 @@
+wrote results/sft_huth_lebel/audit.json
+wrote results/sft_huth_lebel/candidate_roots.csv
+wrote results/sft_huth_lebel/REPORT.md
+{
+  "best_candidate_path": null,
+  "best_candidate_readiness": {},
+  "can_run_huth_encoding_smoke": false,
+  "n_candidates_checked": 11,
+  "n_existing_paths": 1,
+  "n_plausible_ds003020_roots": 0,
+  "n_test_story_ready_roots": 0
+}

@@ -1,0 +1,12 @@
+path,exists,looks_like_ds003020,n_wav_files,n_textgrid_files,n_hf5_files_all_subjects,n_bold_files_all_subjects,test_story_wav_exists,test_story_textgrid_exists,n_subjects_with_test_story_hf5,n_subjects_with_test_story_bold
+/var/lib/condor/execute/slot1/dir_457053/scratch,True,False,0,0,0,0,False,False,0,0
+/var/lib/condor/execute/slot1/dir_457053/scratch/ds003020,False,False,0,0,0,0,False,False,0,0
+/var/lib/condor/execute/slot1/dir_457053/scratch/download/ds003020,False,False,0,0,0,0,False,False,0,0
+/var/lib/condor/execute/slot1/dir_457053/scratch/data/ds003020,False,False,0,0,0,0,False,False,0,0
+/var/lib/condor/execute/slot1/dir_457053/scratch/openneuro/ds003020,False,False,0,0,0,0,False,False,0,0
+/var/lib/condor/execute/slot1/dir_457053/scratch/download/openneuro/ds003020,False,False,0,0,0,0,False,False,0,0
+/var/lib/condor/execute/slot1/dir_457053/scratch/download/ds003020/ds003020,False,False,0,0,0,0,False,False,0,0
+/var/lib/condor/execute/slot1/dir_457053/scratch/download/ds003020/download/ds003020,False,False,0,0,0,0,False,False,0,0
+/var/lib/condor/execute/slot1/dir_457053/scratch/download/ds003020/data/ds003020,False,False,0,0,0,0,False,False,0,0
+/var/lib/condor/execute/slot1/dir_457053/scratch/download/ds003020/openneuro/ds003020,False,False,0,0,0,0,False,False,0,0
+/var/lib/condor/execute/slot1/dir_457053/scratch/download/ds003020/download/openneuro/ds003020,False,False,0,0,0,0,False,False,0,0

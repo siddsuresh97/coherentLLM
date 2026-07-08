@@ -193,7 +193,9 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   and `results/sft_huth_lebel/REPORT.md`. The corrected audit found zero
   plausible local/staged `ds003020` roots in the paths visible to this session.
   The experiment is therefore blocked on staging/downloading `ds003020`
-  assets, not on fMRI experiment design.
+  assets, not on fMRI experiment design. CHTC access was validated with audit
+  cluster `5513006`, which exited 0 and returned artifacts under
+  `results/sft_huth_lebel/chtc_5513006/`.
 - Bridge read: semantic-hub invariance is strong internally, but it does not yet
   explain object-fMRI RSA. Ventral Visual delta-vs-base vs mid hub RDM is
   positive but small-n (`r=0.600`, `n=6`, `p=0.208`); retrieval top-1 is not

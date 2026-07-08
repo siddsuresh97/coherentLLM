@@ -17,8 +17,8 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 - **fMRI:** the THINGS-fMRI pipeline works. Ventral Visual shows the expected
   object-RSA signal and scrambled-control separation, but aligned arms are
   mostly flat versus base in the primary visual ROI. The Huth/LeBel
-  narrative-fMRI lane now has a local/CHTC audit bundle, but no visible
-  `ds003020` root is staged yet.
+  narrative-fMRI lane now has a local/CHTC audit bundle and a completed CHTC
+  smoke run (`5513006`), but no visible `ds003020` root is staged yet.
 - **fMRI x hub bridge:** the new concept-held-out regression does not support a
   clean semantic-hub explanation of Ventral Visual RSA. Averaged hub predictors
   are roughly tied with single prompt spokes in Ventral Visual, while

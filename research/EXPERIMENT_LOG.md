@@ -929,4 +929,9 @@ Read:
   time, and `$STAGING` was empty.
 - CHTC audit smoke job submitted as cluster `5513006`. Initial status was idle
   and not held; `condor_q -better-analyze 5513006.0` reported 53 slots willing
-  to run and 102 more that would match if drained.
+  to run and 102 more that would match if drained. It then ran on
+  `e4070.chtc.wisc.edu`, used 1 CPU / 0 GPUs, transferred outputs, and exited
+  0. Pulled artifacts are under `results/sft_huth_lebel/chtc_5513006/`.
+- The CHTC-returned audit also found zero plausible `ds003020` roots in the job
+  sandbox/staging-visible paths. This confirms that the next Huth step is data
+  staging, not more scheduler debugging.

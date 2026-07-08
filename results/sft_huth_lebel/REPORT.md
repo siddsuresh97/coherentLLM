@@ -13,8 +13,9 @@ Generated: 2026-07-08T22:59:00.688548+00:00
   files staged locally/CHTC.
 - Reusable local study hook found: `/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/tribev2/tribev2/studies/lebel2023bold.py`
   (`exists=True`).
-- CHTC submission is currently gated on a reusable SSH ControlMaster/2FA
-  session, not on experiment code.
+- CHTC submission is now validated. Audit smoke cluster `5513006` completed
+  with exit code 0 and returned logs/artifacts under
+  `results/sft_huth_lebel/chtc_5513006/`.
 
 ## Checked Roots
 
@@ -70,3 +71,4 @@ Generated: 2026-07-08T22:59:00.688548+00:00
 
 - JSON audit: `results/sft_huth_lebel/audit.json`
 - Candidate CSV: `results/sft_huth_lebel/candidate_roots.csv`
+- CHTC smoke outputs: `results/sft_huth_lebel/chtc_5513006/`
