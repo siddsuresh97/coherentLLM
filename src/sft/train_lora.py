@@ -56,6 +56,12 @@ def parse_args():
         help="Pack short sequences when the selected backend supports it.",
     )
     parser.add_argument("--learning_rate", type=float, default=2e-4)
+    parser.add_argument(
+        "--lora_rank",
+        type=int,
+        default=64,
+        help="LoRA rank. lora_alpha is set to the same value.",
+    )
     parser.add_argument("--warmup_ratio", type=float, default=0.03)
     parser.add_argument("--weight_decay", type=float, default=0.0)
     parser.add_argument("--seed", type=int, default=3407)
@@ -227,7 +233,7 @@ def _extract_final_loss(trainer):
     return float(losses[-1]) if losses else None
 
 
-def _write_metrics(out_dir, backend, model_name, trainer, final_loss):
+def _write_metrics(out_dir, backend, model_name, trainer, final_loss, args=None):
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     metrics = {
@@ -238,6 +244,8 @@ def _write_metrics(out_dir, backend, model_name, trainer, final_loss):
         "epoch": trainer.state.epoch,
         "log_history": trainer.state.log_history,
     }
+    if args is not None:
+        metrics["train_args"] = vars(args)
     metrics_path = out / "training_metrics.json"
     with metrics_path.open("w") as f:
         json.dump(metrics, f, indent=2)
@@ -281,9 +289,9 @@ def train_with_unsloth(args, model_name):
 
     model = FastLanguageModel.get_peft_model(
         model,
-        r=64,
+        r=args.lora_rank,
         target_modules=TARGET_MODULES,
-        lora_alpha=64,
+        lora_alpha=args.lora_rank,
         lora_dropout=0.0,
         bias="none",
         use_gradient_checkpointing="unsloth",
@@ -312,7 +320,7 @@ def train_with_unsloth(args, model_name):
     trainer.train()
     final_loss = _extract_final_loss(trainer)
     _save_adapter_only(model, tokenizer, args.out)
-    _write_metrics(args.out, "unsloth", model_name, trainer, final_loss)
+    _write_metrics(args.out, "unsloth", model_name, trainer, final_loss, args)
     return final_loss
 
 
@@ -389,7 +397,19 @@ def _build_sft_trainer(
     max_seq_length,
     packing,
 ):
-    from trl import SFTTrainer
+    try:
+        from trl import SFTTrainer
+    except ImportError:
+        from transformers import Trainer
+
+        if data_collator is None:
+            data_collator = ResponseOnlyCollator(tokenizer, max_seq_length)
+        return Trainer(
+            model=model,
+            train_dataset=dataset,
+            data_collator=data_collator,
+            args=training_args,
+        )
 
     try:
         return SFTTrainer(
@@ -438,8 +458,8 @@ def train_with_peft(args, model_name):
     model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
     lora_config = LoraConfig(
         task_type=TaskType.CAUSAL_LM,
-        r=64,
-        lora_alpha=64,
+        r=args.lora_rank,
+        lora_alpha=args.lora_rank,
         lora_dropout=0.0,
         bias="none",
         target_modules=TARGET_MODULES,
@@ -465,7 +485,7 @@ def train_with_peft(args, model_name):
     trainer.train()
     final_loss = _extract_final_loss(trainer)
     _save_adapter_only(model, tokenizer, args.out)
-    _write_metrics(args.out, "peft", model_name, trainer, final_loss)
+    _write_metrics(args.out, "peft", model_name, trainer, final_loss, args)
     return final_loss
 
 
@@ -490,7 +510,7 @@ def _init_wandb(args):
         return
     run_name = (
         f"{Path(args.out).name}-{Path(args.data).stem}-"
-        f"steps{args.max_steps}-r64-seq{args.max_seq_length}"
+        f"steps{args.max_steps}-r{args.lora_rank}-seq{args.max_seq_length}"
     )
     wandb.init(
         project=args.wandb_project,
@@ -502,6 +522,8 @@ def _init_wandb(args):
 
 def main():
     args = parse_args()
+    if args.lora_rank < 1:
+        raise ValueError("--lora_rank must be >= 1")
     _init_wandb(args)
     model_name, local_snapshot = resolve_model(
         args.base_model,
