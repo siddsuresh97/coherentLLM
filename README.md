@@ -42,6 +42,8 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 - Benchmark-drop task brief:
   [`research/CODEX_TASK_10_BENCHMARK_DROPS.md`](research/CODEX_TASK_10_BENCHMARK_DROPS.md)
 - Semantic-hub report: [`results/sft_semantic_hub/REPORT.md`](results/sft_semantic_hub/REPORT.md)
+- Paper-adapted semantic-hub plan:
+  [`research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md`](research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md)
 - THINGS-fMRI RSA report: [`results/sft_fmri/REPORT.md`](results/sft_fmri/REPORT.md)
 - fMRI x semantic-hub bridge:
   [`results/sft_fmri_semantic_bridge/REPORT.md`](results/sft_fmri_semantic_bridge/REPORT.md)
@@ -375,7 +377,10 @@ Current plan:
 - Semantic hub: anchor to Wu, Yu, Yogatama, Lu, and Kim,
   "The Semantic Hub Hypothesis" (`arXiv:2411.04986`, ICLR 2025). Our adaptation
   treats triplet, pairwise, and feature prompts as elicitation "spokes" for the
-  same THINGS concept.
+  same THINGS concept. The next pass should mirror the paper more closely:
+  matched-vs-mismatched similarity baselines, logit-lens anchoring to
+  concept/neighbor tokens, symbolic S* spokes, and mid-layer causal
+  interventions.
 - Huth/LeBel language-fMRI: use OpenNeuro `ds003020` / HuthLab
   `deep-fMRI-dataset` if we launch a language encoding pass. Feed exact narrative
   transcript streams, avoid chat templates, align word hidden states to TRs, and
@@ -404,12 +409,16 @@ Immediate:
 
 Scientific next:
 
-1. fMRI bridge: do not overclaim Ventral Visual hub evidence. If continuing,
+1. Semantic hub: run the paper-adapted tests in
+   [`research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md`](research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md),
+   starting with CPU-only matched-vs-baseline similarity from existing hidden
+   states.
+2. fMRI bridge: do not overclaim Ventral Visual hub evidence. If continuing,
    run fixed-layer/nested-CV confirmation and then language-fMRI encoding.
-2. Benchmark mechanism: inspect WiC/ARC failures and tasks with gains to decide
+3. Benchmark mechanism: inspect WiC/ARC failures and tasks with gains to decide
    whether drops are lexical-sense-specific, adapter-rank-specific, or generic
    SFT perturbation.
-3. Mitigation: alpha sweep between `0.10` and `0.35`, then adapter
+4. Mitigation: alpha sweep between `0.10` and `0.35`, then adapter
    sparsification or KL-to-base only if eval-only controls justify more
    training.
 

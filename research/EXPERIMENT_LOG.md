@@ -184,6 +184,37 @@ Key implications for this project:
 - Expected pattern: `lowLR` and `lowrank` > `base` >> `scrambled`, with
   task-vector alpha monotonicity. If the gain appears only in final layers, it is
   more likely output/report formatting than a representational hub.
+
+## 2026-07-08 plan: paper-adapted semantic-hub tests
+
+User requested that the semantic-hub track follow the paper's tests more
+closely, not just our first prompt-format invariance proxy.
+
+Plan artifact:
+
+- `research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md`
+
+Key change:
+
+- Current `results/sft_semantic_hub/` is Stage 0: triplet/pairwise/feature
+  cross-format RDM, CKA, retrieval, and concept-vs-format alignment.
+- Next Stage 1 should use the paper's relative similarity logic:
+  same-concept cross-format similarity minus random, S*-close, and S*-far
+  mismatches.
+- Next Stage 2 should use logit-lens anchoring:
+  middle-layer concept/neighbor token margins versus task-surface answer tokens,
+  with careful prefix-space tokenization filtering.
+- Next Stage 3 should add a symbolic S* spoke with swapped/shuffled controls.
+- Next Stage 4 should run causal mid-layer patching/transplant interventions.
+
+Readout:
+
+- If middle-layer semantic margins and intervention effects rise for
+  `taskvec_a0p25`/`lowrank` while scrambled lacks the effect, that is stronger
+  evidence for an induced semantic hub than the current RDM-only result.
+- If these same metrics track ARC/MMLU/WiC/TruthfulQA damage, then the induced
+  hub may be entangled with output calibration and should become a mitigation
+  target rather than only a mechanistic success.
 - Causal tests should avoid broad activation-addition during free generation
   because Task 8 showed that route collapses generation. Use targeted
   cross-format patching under logprob scoring instead.

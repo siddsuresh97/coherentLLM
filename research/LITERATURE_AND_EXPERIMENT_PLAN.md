@@ -46,8 +46,11 @@ Operational test:
   layers more than early/late layers.
 - Metrics already implemented: cross-format RSA, linear CKA, same-concept
   retrieval top-1/top-5, and concept-vs-format alignment.
-- Next decisive model-only test: targeted cross-format activation patching
-  under logprob scoring, not free-generation activation steering.
+- Next decisive model-only tests: paper-style matched-vs-mismatched similarity
+  baselines, logit-lens semantic anchoring, symbolic S* spokes with
+  lexical-overlap controls, and targeted cross-format activation patching under
+  logprob scoring. See
+  [`SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md`](SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md).
 
 Current result:
 

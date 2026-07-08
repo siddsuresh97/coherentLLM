@@ -186,3 +186,8 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   explain object-fMRI RSA. Ventral Visual delta-vs-base vs mid hub RDM is
   positive but small-n (`r=0.600`, `n=6`, `p=0.208`); retrieval top-1 is not
   explanatory (`r=-0.086`).
+- Semantic-hub next step: the current triplet/pairwise/feature test is only a
+  first adaptation. The paper-adapted plan is in
+  `research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md`; it adds matched-vs-baseline
+  similarity, logit-lens semantic anchoring, symbolic S* spokes, and causal
+  interventions.
