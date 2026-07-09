@@ -48,3 +48,18 @@ The encoding smoke uses `sweetaspie,againstthewind` for ridge/CV training,
 holds out `wheretheressmoke`, and caps responses at `--max_voxels 2000` for the
 first pass. Remove the cap only after this CPU smoke returns valid
 `summary.csv` and `alpha_cv.csv`.
+
+After capped `UTS01`/`UTS02`/`UTS03` path checks pass, use the uncapped
+all-subject bundle smoke:
+
+```bash
+condor_submit huth_encoding_smoke_bundle_uncapped_all.sub
+```
+
+Current submitted instance: cluster `5513373` from
+`~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`, submitted at
+`2026-07-08 21:08:30 CDT`. It consumes the `5513306`
+`huth_extract_smoke_results.tgz` bundle, sets `MAX_VOXELS=0` so
+`run_encoding_smoke.sh` omits the voxel cap, evaluates
+`UTS01,UTS02,UTS03`, and requests CPU only (`4` CPUs, `16GB` memory, `20GB`
+disk).

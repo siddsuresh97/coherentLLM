@@ -2,19 +2,23 @@
 
 Generated: 2026-07-08T22:59:00.688548+00:00
 
-Manual update: 2026-07-09 after pulling CHTC extraction debug cluster `5513178`
-and submitting full smoke extraction cluster `5513245`.
+Manual update: 2026-07-09 after submitting uncapped CPU encoding cluster
+`5513373`.
 
 ## Current Read
 
-- Status: the Huth/LeBel narrative-encoding experiment now has enough staged
-  data for a first CHTC smoke test, but not yet for the full high-data run.
+- Status: the Huth/LeBel narrative-encoding experiment has passed the staged
+  smoke-data audit, GPU feature extraction, bundle-output recovery extraction,
+  and capped CPU encoding path checks. The first uncapped all-subject CPU
+  encoding smoke is submitted on CHTC as cluster `5513373` and was idle with no
+  hold at last check.
 - Best staged smoke root: `/staging/s/suresh27/datasets/ds003020-smoke`.
 - Staged data pieces: 3 WAVs, 3 TextGrids, and 9 author-preprocessed HF5 files
   for `sweetaspie`, `againstthewind`, and `wheretheressmoke` across
   `UTS01`-`UTS03`.
-- Blocking piece: full three-story smoke features and CPU ridge encoding must
-  complete before staging the 76.86 GB high-data subset.
+- Blocking piece: uncapped smoke encoding `5513373` must complete and return
+  full-voxel `summary.csv`/`alpha_cv.csv` before staging the 76.86 GB high-data
+  subset.
 - Reusable local study hook found: `/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/tribev2/tribev2/studies/lebel2023bold.py`
   (`exists=True`).
 - CHTC submission is now validated. Audit smoke cluster `5513006` completed
@@ -84,14 +88,25 @@ and submitting full smoke extraction cluster `5513245`.
   `UTS02,UTS03` from the validated `5513306` feature bundle. `UTS02` remains
   near zero; `UTS03` shows small positive smoke predictivity (`base` layer 16
   mean `r=0.015795`, `taskvec_a0p25` layer 16 mean `r=0.013765`).
+- Uncapped all-subject CPU encoding cluster `5513373` was submitted at
+  `2026-07-08 21:08:30 CDT` from
+  `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204` using
+  `huth_encoding_smoke_bundle_uncapped_all.sub`. It consumes the validated
+  `5513306` feature bundle, sets `MAX_VOXELS=0` so the wrapper omits
+  `--max_voxels`, evaluates `UTS01,UTS02,UTS03`, and requests CPU only
+  (`4` CPUs, `16GB` memory, `20GB` disk). At `2026-07-08 21:11:49 CDT` it was
+  idle with no hold, 5 willing matches in `condor_q -better-analyze`, and no
+  result bundle yet.
 - Duplicate recovery cluster `5513310` had identical settings and was removed
   while idle.
 - Duplicate cluster `5513244` held before model work because its submit
   expected a missing output tarball; it was removed with `condor_rm`.
 - The prepared CPU ridge follow-ups are
-  `chtc/huth_lebel_smoke/huth_encoding_smoke.sub` for staged features and
-  `chtc/huth_lebel_smoke/huth_encoding_smoke_bundle.sub` for bundle-returned
-  features.
+  `chtc/huth_lebel_smoke/huth_encoding_smoke.sub` for staged features,
+  `chtc/huth_lebel_smoke/huth_encoding_smoke_bundle.sub` for capped
+  bundle-returned features, and
+  `chtc/huth_lebel_smoke/huth_encoding_smoke_bundle_uncapped_all.sub` for the
+  queued uncapped all-subject smoke.
 
 ## Checked Roots
 
@@ -173,3 +188,8 @@ and submitting full smoke extraction cluster `5513245`.
   `5513350`
 - CHTC UTS02/UTS03 encoding outputs:
   `results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_uts02_uts03_5513350/`
+- Queued uncapped all-subject CPU encoding:
+  `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`, cluster
+  `5513373`
+- Local destination/checklist for `5513373`:
+  `results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_uncapped_all_5513373/`

@@ -14,12 +14,22 @@ This directory tracks the ds003020 natural-language fMRI path for testing whethe
   `chtc_huth_extract_debug_5513178/`, four arms, `sweetaspie`, first 64 words,
   layer 24. Wrapper and extractor exit codes are both `0`; each arm produced
   `hidden` arrays with shape `(64, 1, 4096)`.
-- Three-story smoke extraction is now running as CHTC cluster `5513245` from
-  `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926` on an L40S-class
-  GPU. It targets all smoke stories, arms
-  `base,lowLR,scrambled,taskvec_a0p25`, and layers `16,24,32`. This active run
-  writes feature NPZs to `/staging/s/suresh27/features/huth_lebel_smoke_llama31`;
-  package those into a feature bundle before submitting CPU encoding.
+- Three-story staged-output smoke extraction `5513245` wrote only the base
+  features before failing on `/staging/s/suresh27` quota while creating the
+  `lowLR` feature directory.
+- Bundle-output recovery extraction `5513306` passed from
+  `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`, returning
+  `huth_extract_smoke_results.tgz` with all 12 arm/story NPZs for
+  `base,lowLR,scrambled,taskvec_a0p25` across layers `16,24,32`.
+- Capped CPU encoding `5513337` passed for `UTS01`, and capped CPU scale check
+  `5513350` passed for `UTS02,UTS03`. These runs validate the path only because
+  they use two training stories and a 2000-voxel cap.
+- Uncapped all-subject CPU encoding is queued as cluster `5513373` from the
+  same `5513306` run directory. It uses
+  `chtc/huth_lebel_smoke/huth_encoding_smoke_bundle_uncapped_all.sub`,
+  `MAX_VOXELS=0`, subjects `UTS01,UTS02,UTS03`, no GPU request, and current
+  queued resources `request_cpus=4`, `request_memory=16GB`,
+  `request_disk=20GB`.
 - Duplicate cluster `5513244` held before work because its submit expected a
   missing output tarball; it was removed with `condor_rm`.
 
@@ -27,8 +37,9 @@ This directory tracks the ds003020 natural-language fMRI path for testing whethe
 
 - GPU feature extraction: `src/sft/huth_lebel_extract_word_states.py`
 - CPU ridge encoding: `src/sft/huth_lebel_smoke_encoding.py`
-- CHTC wrappers: `chtc/huth_lebel_smoke/huth_extract_smoke.sub` and
-  `chtc/huth_lebel_smoke/huth_encoding_smoke.sub`
+- CHTC wrappers: `chtc/huth_lebel_smoke/huth_extract_smoke.sub`,
+  `chtc/huth_lebel_smoke/huth_encoding_smoke_bundle.sub`, and
+  `chtc/huth_lebel_smoke/huth_encoding_smoke_bundle_uncapped_all.sub`
 - Full command plan: `ENCODING_PLAN.md`
 
 Expected first outputs:
@@ -52,4 +63,9 @@ Fedorenko/EvLab language-network claims require independent subject-specific lan
 - `chtc_5513059/extracted/sft_huth_lebel_stage_smoke/stage_summary.json`: successful staging byte audit.
 - `chtc_huth_extract_debug_5513178/`: successful first GPU feature extraction
   debug bundle.
+- `chtc_huth_extract_smoke_retry_5513306/`: successful bundle-output
+  three-story feature extraction metadata.
+- `chtc_huth_encoding_smoke_bundle_5513337/`: capped `UTS01` encoding smoke.
+- `chtc_huth_encoding_smoke_bundle_uts02_uts03_5513350/`: capped
+  `UTS02,UTS03` encoding smoke.
 - `ENCODING_PLAN.md`: executable smoke experiment and CHTC scaling plan.
