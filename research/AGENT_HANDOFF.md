@@ -1,6 +1,6 @@
 # Active Agent Handoff
 
-Last coordination snapshot: 2026-07-08 21:42 CDT.
+Last coordination snapshot: 2026-07-08 21:45 CDT.
 
 Branch: `coherence-sft`
 
@@ -17,8 +17,22 @@ Current queue snapshot:
 - Allocation: `1` GPU, `8` CPUs, `65536` MB RAM, `83886080` KB disk.
 - Queue state from `condor_q -batch suresh27`: `1` running, `0` idle,
   `0` held.
+- Assigned GPU for `5513407.0`: `NVIDIA A100-SXM4-40GB` on
+  `gpulab2004.chtc.wisc.edu`; remote stdout shows `gpu_probe_ok`,
+  `pip_install_exit rc=0`, `import_probe_ok`, and the 375-generation plan
+  before model generation.
+- Exact spare capacity is available: 40 unclaimed X86_64 CHTC slots satisfy
+  `1` GPU, `8` CPUs, at least `64GB` RAM, `>=40GB` GPU memory, and
+  `HasChtcStaging==true`.
 
 Held jobs: none.
+
+Monitor decision: no additional GPU job was submitted from this lane. Boole's
+concept suite is already running; rerunning completed MMLU shards would be
+duplicative; the checked-in Huth uncapped encoding path is CPU-only and already
+complete. The next safe CHTC GPU submission should come from a newly
+smoke-tested Huth/Fedorenko or semantic-hub bundle, or from a completed
+`5513407` pull/rescore follow-up.
 
 Completed since the previous handoff:
 
