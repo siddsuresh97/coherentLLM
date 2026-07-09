@@ -28,3 +28,4 @@ unsloth_compiled_cache/
 data/nova/
 data/sft/*.jsonl
 data/sft/S_star.npy
+chtc/exp3_directional_confusions/exp3_directional_confusions_bundle.tgz

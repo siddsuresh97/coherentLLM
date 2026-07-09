@@ -74,8 +74,10 @@ DEFAULT_CONFIG = {
     "n_items_per_target": 4,
     "far_control_min_quantile": 0.60,
     "bootstrap_samples": 2000,
+    "split_half_samples": 64,
     "null_permutations": 5000,
     "reliability_min_mean_pearson": 0.75,
+    "reliability_min_split_half_pearson": 0.70,
     "h1_min_error_items": 10,
     "triplet_protocol": {
         "scheme": "full_anchor_candidate_enumeration",
@@ -388,6 +390,7 @@ def build_rdm(args: argparse.Namespace) -> None:
     present = []
     missing = []
     rdms = {}
+    rows_by_run = {}
     for run in protocol_runs:
         raw_path = RAW_DIR / run / "triplet.csv"
         if not raw_path.exists():
@@ -395,6 +398,7 @@ def build_rdm(args: argparse.Namespace) -> None:
             continue
         present.append(run)
         rows = parse_triplet_raw(raw_path)
+        rows_by_run[run] = rows
         rdm = rdm_from_triplet_rows(rows, concepts)
         rdms[run] = rdm
         out = RDM_DIR / f"{run}.npy"
@@ -414,7 +418,35 @@ def build_rdm(args: argparse.Namespace) -> None:
             }
         )
     mean_corr = float(np.nanmean([row["upper_triangle_pearson"] for row in comparisons])) if comparisons else float("nan")
-    reliability_gate = bool(len(missing) == 0 and np.isfinite(mean_corr) and mean_corr >= config["reliability_min_mean_pearson"])
+    rng = np.random.default_rng(int(config["seed"]))
+    split_half = []
+    for run in present:
+        corrs = []
+        rows = rows_by_run[run]
+        for _ in range(int(config["split_half_samples"])):
+            order = rng.permutation(len(rows))
+            half = len(order) // 2
+            rows_a = [rows[i] for i in order[:half]]
+            rows_b = [rows[i] for i in order[half:]]
+            rdm_a = rdm_from_triplet_rows(rows_a, concepts)
+            rdm_b = rdm_from_triplet_rows(rows_b, concepts)
+            corrs.append(pearson_corr(upper_values(rdm_a), upper_values(rdm_b)))
+        split_half.append(
+            {
+                "run": run,
+                "n_splits": int(config["split_half_samples"]),
+                "mean_upper_triangle_pearson": float(np.nanmean(corrs)),
+                "p05_upper_triangle_pearson": float(np.nanquantile(corrs, 0.05)),
+            }
+        )
+    mean_split_half = float(np.nanmean([row["mean_upper_triangle_pearson"] for row in split_half])) if split_half else float("nan")
+    reliability_gate = bool(
+        len(missing) == 0
+        and np.isfinite(mean_corr)
+        and mean_corr >= config["reliability_min_mean_pearson"]
+        and np.isfinite(mean_split_half)
+        and mean_split_half >= config["reliability_min_split_half_pearson"]
+    )
 
     stacked = np.stack([rdms[run] for run in present], axis=0)
     rdm = np.mean(stacked, axis=0)
@@ -429,8 +461,11 @@ def build_rdm(args: argparse.Namespace) -> None:
         "aggregation": config["triplet_protocol"]["aggregation"],
         "reliability_gate": reliability_gate,
         "reliability_min_mean_pearson": config["reliability_min_mean_pearson"],
+        "reliability_min_split_half_pearson": config["reliability_min_split_half_pearson"],
         "pairwise_run_reliability": comparisons,
         "mean_pairwise_upper_triangle_pearson": mean_corr,
+        "split_half_reliability": split_half,
+        "mean_split_half_upper_triangle_pearson": mean_split_half,
         "status": "green" if reliability_gate else "red",
     }
     write_json(ARTIFACT_DIR / "rdm_meta.json", meta)
@@ -1034,13 +1069,14 @@ def resolve_vllm_model(args: argparse.Namespace, model_name: str):
     src = ROOT / "src"
     if str(src) not in sys.path:
         sys.path.insert(0, str(src))
-    from run_local import load_registry, resolve_model_path
 
     if args.model_path:
         model_path = args.model_path
         hf_cache = args.hf_cache or os.environ.get("HF_HOME") or str(ROOT / "out" / "hf_cache")
         spec = {"chat": not args.no_chat}
     else:
+        from run_local import load_registry, resolve_model_path
+
         reg = load_registry()
         if model_name not in reg["local"]:
             raise SystemExit(f"model {model_name} not in registry local: {list(reg['local'])}")
@@ -1275,6 +1311,7 @@ def update_report() -> None:
                 f"- Source runs: {', '.join(rdm_meta.get('source_runs', []))}",
                 f"- Missing runs: {', '.join(rdm_meta.get('missing_runs', [])) or 'none'}",
                 f"- Mean pairwise upper-triangle Pearson: `{rdm_meta.get('mean_pairwise_upper_triangle_pearson')}`",
+                f"- Mean split-half upper-triangle Pearson: `{rdm_meta.get('mean_split_half_upper_triangle_pearson')}`",
                 f"- Gate: `{rdm_meta.get('status')}`",
                 "",
             ]

@@ -8,7 +8,9 @@
   "n_items_per_target": 4,
   "null_permutations": 5000,
   "reliability_min_mean_pearson": 0.75,
+  "reliability_min_split_half_pearson": 0.7,
   "seed": 7303,
+  "split_half_samples": 64,
   "step1_concepts_file": "experiments/exp3_directional_confusions/concepts/step1_neutral.json",
   "triplet_protocol": {
     "aggregation": "For each anchor i and candidate j, count the fraction of triplets where j is chosen over the alternative candidate. Symmetrize by averaging i->j and j->i rates, then convert similarity to RDM as 1 - similarity.",
