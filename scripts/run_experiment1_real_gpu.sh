@@ -9,10 +9,11 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
+COHERENCE_ENV="${COHERENCE_ENV:-/mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence}"
 if command -v conda >/dev/null 2>&1; then
   # shellcheck disable=SC1091
   source "$(conda info --base)/etc/profile.d/conda.sh"
-  conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence
+  conda activate "$COHERENCE_ENV"
 fi
 
 export VLLM_LOGGING_LEVEL="${VLLM_LOGGING_LEVEL:-WARNING}"
@@ -31,9 +32,15 @@ GPU_MEM_UTIL="${GPU_MEM_UTIL:-0.88}"
 MAX_MODEL_LEN="${MAX_MODEL_LEN:-2048}"
 MAX_NUM_SEQS="${MAX_NUM_SEQS:-256}"
 TRAIN_STEPS="${TRAIN_STEPS:-400}"
+TRAIN_BATCH_SIZE="${TRAIN_BATCH_SIZE:-16}"
+TRAIN_GRAD_ACCUM="${TRAIN_GRAD_ACCUM:-2}"
+TRAIN_BACKEND="${TRAIN_BACKEND:-auto}"
 LORA_RANK="${LORA_RANK:-32}"
 SEED="${SEED:-1729}"
 SUPERVISION="${SUPERVISION:-feature}"  # feature or similarity
+TRIPLET_BACKEND="${TRIPLET_BACKEND:-vllm}"  # vllm or transformers
+TRIPLET_BATCH_SIZE="${TRIPLET_BATCH_SIZE:-16}"
+TRIPLET_LOAD_IN_4BIT="${TRIPLET_LOAD_IN_4BIT:-0}"
 
 if [ "$#" -gt 0 ]; then
   EDIT_IDS=("$@")
@@ -69,6 +76,10 @@ run_triplets() {
   local variant="$2"
   local lora_arg=()
   local model_path_arg=()
+  local backend_arg=(--backend "$TRIPLET_BACKEND" --batch-size "$TRIPLET_BATCH_SIZE")
+  if [ "$TRIPLET_LOAD_IN_4BIT" = "1" ]; then
+    backend_arg+=(--load-in-4bit)
+  fi
   if [ "${3:-}" != "" ]; then
     lora_arg=(--lora "$3")
   fi
@@ -84,6 +95,7 @@ run_triplets() {
     --gpu_mem_util "$GPU_MEM_UTIL" \
     --max_model_len "$MAX_MODEL_LEN" \
     --max_num_seqs "$MAX_NUM_SEQS" \
+    "${backend_arg[@]}" \
     --overwrite \
     "${lora_arg[@]}"
 }
@@ -214,6 +226,9 @@ for edit_id in "${EDIT_IDS[@]}"; do
     --max_steps "$TRAIN_STEPS" \
     --epochs 1 \
     --lora_rank "$LORA_RANK" \
+    --backend "$TRAIN_BACKEND" \
+    --per_device_batch_size "$TRAIN_BATCH_SIZE" \
+    --gradient_accumulation_steps "$TRAIN_GRAD_ACCUM" \
     --seed "$SEED" \
     --report_to none \
     "${train_model_arg[@]}"
@@ -226,6 +241,9 @@ for edit_id in "${EDIT_IDS[@]}"; do
     --max_steps "$TRAIN_STEPS" \
     --epochs 1 \
     --lora_rank "$LORA_RANK" \
+    --backend "$TRAIN_BACKEND" \
+    --per_device_batch_size "$TRAIN_BATCH_SIZE" \
+    --gradient_accumulation_steps "$TRAIN_GRAD_ACCUM" \
     --seed "$SEED" \
     --report_to none \
     "${train_model_arg[@]}"

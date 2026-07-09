@@ -1,15 +1,15 @@
 # Experiment 1 Report - Triplet Detection of Concept Moves
 
-Current status: the CPU-reproducible scaffold and simulated detection smoke test are in place; the first real CHTC pathway check is being submitted via the direct-similarity fallback because this checkout lacks the full NOVA feature parquet needed for feature-listing supervision.
+Current status: the CPU-reproducible scaffold and simulated detection smoke test are in place; local GPU execution is viable on `rogers-gpu-1` with the existing `coherence` env, using the direct-similarity fallback because this checkout lacks the full NOVA feature parquet needed for feature-listing supervision.
 
 ## Pipeline State
 
 - 0a feature-space base RDM: green
-- 0b behavioral triplet base RDM: queued on CHTC
+- 0b behavioral triplet base RDM: ready for local GPU run
 - 1 item selection: green
 - 2 edit operator pre-check: draft only
-- 3 two-LoRA training: queued on CHTC for `concentrated_drop_100` similarity fallback
-- 4 detection/localization: queued after LoRA training in the same CHTC job
+- 3 two-LoRA training: ready for local GPU run for `concentrated_drop_100` similarity fallback
+- 4 detection/localization: ready after local LoRA training
 - 5 resolution map: simulated smoke green; real map not started
 
 ## Item Choice
@@ -51,7 +51,7 @@ Artifacts:
 
 The archived 128-item Llama triplet embedding is useful as a provisional behavioral map, but it does not satisfy the hard gate. The CHTC pathway job first runs the frozen 30-item protocol for the base model at least twice with the canonical prompt and once with the paraphrase prompt, then refreshes `floor_stats.json` from those behavioral runs before any LoRA training.
 
-The original feature-listing supervision path is still implemented, but it requires `data/nova/verified_matrix_cogsci2025.parquet`, which is not present in this checkout. Rather than blocking on that missing file, the first CHTC check uses fallback lever 6.2: direct pairwise-similarity supervision from the committed `sft_similarity_data/concentrated_drop_100` files, while detection remains the held-out frozen triplet task.
+The original feature-listing supervision path is still implemented, but it requires `data/nova/verified_matrix_cogsci2025.parquet`, which is not present in this checkout. Rather than blocking on that missing file, the first real check uses fallback lever 6.2: direct pairwise-similarity supervision from the committed `sft_similarity_data/concentrated_drop_100` files, while detection remains the held-out frozen triplet task.
 
 Exact next runner pattern:
 
@@ -74,7 +74,13 @@ CHTC pathway-check path is prepared for the first real run:
 chtc/exp1_triplet_move/submit_exp1_pathway.sh
 ```
 
-The current CHTC path defaults to the similarity fallback:
+Local GPU path on `rogers-gpu-1`:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 COHERENCE_ENV=/mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence SUPERVISION=similarity TRIPLET_BACKEND=transformers TRIPLET_LOAD_IN_4BIT=1 TRIPLET_BATCH_SIZE=16 MAX_MODEL_LEN=1024 TRAIN_BACKEND=peft TRAIN_BATCH_SIZE=4 scripts/run_experiment1_real_gpu.sh concentrated_drop_100
+```
+
+The current CHTC path also defaults to the similarity fallback:
 
 ```bash
 chtc/exp1_triplet_move/submit_exp1_pathway.sh
@@ -91,7 +97,7 @@ chtc/exp1_triplet_move/submit_exp1_pathway.sh
 
 ## Live Risks
 
-- Missing true behavioral floor: CHTC pathway job collects required runs listed in `triplet_protocol.json` before training.
-- No local GPU in this environment: `nvidia-smi` cannot communicate with a local driver, so CHTC is the active GPU path.
+- Missing true behavioral floor: local/CHTC pathway job collects required runs listed in `triplet_protocol.json` before training.
+- Local GPU access requires escalated execution from this sandbox: outside the sandbox, `nvidia-smi` sees two idle RTX A5000 GPUs; inside the regular sandbox `/dev/nvidia*` is hidden.
 - Feature-listing data source is missing: restore `data/nova/verified_matrix_cogsci2025.parquet` before using `SUPERVISION=feature`; current run uses direct-similarity fallback instead.
 - Candidate edits are feature-space drafts only: promote them to `edits/` only after the behavioral gate is green.

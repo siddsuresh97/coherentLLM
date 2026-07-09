@@ -54,6 +54,10 @@ def main() -> None:
     parser.add_argument("--out-run", required=True, help="Output run directory under experiment raw/")
     parser.add_argument("--prompt-variant", choices=["canonical", "paraphrase"], default="canonical")
     parser.add_argument("--lora", default=None, help="Optional LoRA adapter directory")
+    parser.add_argument("--backend", choices=["vllm", "transformers"], default="vllm")
+    parser.add_argument("--batch-size", type=int, default=16, help="Transformers backend batch size")
+    parser.add_argument("--load-in-4bit", action="store_true", help="Use bitsandbytes 4-bit loading with Transformers")
+    parser.add_argument("--limit", type=int, default=0, help="Optional smoke-test limit on triplets; do not use for scored runs")
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--tensor_parallel", type=int, default=1)
     parser.add_argument("--max_model_len", type=int, default=4096)
@@ -94,58 +98,124 @@ def main() -> None:
     template_key = "prompt_template" if args.prompt_variant == "canonical" else "paraphrase_template"
     template = protocol[template_key]
     triplets = load_triplets()
+    if args.limit:
+        triplets = triplets[: args.limit]
     prompts = [format_prompt(template, *row) for row in triplets]
 
-    from vllm import LLM, SamplingParams
+    if args.backend == "vllm":
+        from vllm import LLM, SamplingParams
 
-    tp = spec.get("tensor_parallel", args.tensor_parallel)
-    llm_kwargs = dict(
-        model=model_path,
-        download_dir=hf_cache,
-        tensor_parallel_size=tp,
-        max_model_len=args.max_model_len,
-        gpu_memory_utilization=args.gpu_mem_util,
-        dtype="bfloat16",
-        trust_remote_code=True,
-    )
-    if args.max_num_seqs:
-        llm_kwargs["max_num_seqs"] = args.max_num_seqs
+        tp = spec.get("tensor_parallel", args.tensor_parallel)
+        llm_kwargs = dict(
+            model=model_path,
+            download_dir=hf_cache,
+            tensor_parallel_size=tp,
+            max_model_len=args.max_model_len,
+            gpu_memory_utilization=args.gpu_mem_util,
+            dtype="bfloat16",
+            trust_remote_code=True,
+        )
+        if args.max_num_seqs:
+            llm_kwargs["max_num_seqs"] = args.max_num_seqs
 
-    lora_request = None
-    if args.lora:
-        llm_kwargs["enable_lora"] = True
-        llm_kwargs["max_lora_rank"] = 64
-        from vllm.lora.request import LoRARequest
+        lora_request = None
+        if args.lora:
+            llm_kwargs["enable_lora"] = True
+            llm_kwargs["max_lora_rank"] = 64
+            from vllm.lora.request import LoRARequest
 
-        lora_request = LoRARequest(args.out_run, 1, os.path.abspath(args.lora))
+            lora_request = LoRARequest(args.out_run, 1, os.path.abspath(args.lora))
 
-    quant = spec.get("quantization")
-    if quant and os.environ.get("COHERENCE_FORCE_BF16") == "1":
-        print(f"[bf16] ignoring quantization={quant} because COHERENCE_FORCE_BF16=1")
-        quant = None
-    if quant:
-        llm_kwargs["quantization"] = quant
+        quant = spec.get("quantization")
+        if quant and os.environ.get("COHERENCE_FORCE_BF16") == "1":
+            print(f"[bf16] ignoring quantization={quant} because COHERENCE_FORCE_BF16=1")
+            quant = None
+        if quant:
+            llm_kwargs["quantization"] = quant
 
-    llm = LLM(**llm_kwargs)
-    sampling = SamplingParams(temperature=args.temperature, max_tokens=8)
-    if spec.get("chat", True):
-        convos = [
-            [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt}]
-            for prompt in prompts
-        ]
-        outputs = llm.chat(convos, sampling, lora_request=lora_request)
+        llm = LLM(**llm_kwargs)
+        sampling = SamplingParams(temperature=args.temperature, max_tokens=8)
+        if spec.get("chat", True):
+            convos = [
+                [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt}]
+                for prompt in prompts
+            ]
+            outputs = llm.chat(convos, sampling, lora_request=lora_request)
+        else:
+            outputs = llm.generate(prompts, sampling, lora_request=lora_request)
+        responses = [output.outputs[0].text.strip() for output in outputs]
     else:
-        outputs = llm.generate(prompts, sampling, lora_request=lora_request)
+        import torch
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+
+        tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=True, trust_remote_code=True)
+        if tokenizer.pad_token is None:
+            tokenizer.pad_token = tokenizer.eos_token
+        tokenizer.padding_side = "left"
+
+        model_kwargs = {
+            "torch_dtype": torch.bfloat16,
+            "device_map": "auto",
+            "trust_remote_code": True,
+        }
+        if args.load_in_4bit:
+            from transformers import BitsAndBytesConfig
+
+            model_kwargs["quantization_config"] = BitsAndBytesConfig(
+                load_in_4bit=True,
+                bnb_4bit_quant_type="nf4",
+                bnb_4bit_use_double_quant=True,
+                bnb_4bit_compute_dtype=torch.bfloat16,
+            )
+        model = AutoModelForCausalLM.from_pretrained(model_path, **model_kwargs)
+        if args.lora:
+            from peft import PeftModel
+
+            model = PeftModel.from_pretrained(model, args.lora)
+        model.eval()
+        input_device = next(model.parameters()).device
+
+        if spec.get("chat", True) and not args.no_chat:
+            texts = [
+                tokenizer.apply_chat_template(
+                    [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt}],
+                    tokenize=False,
+                    add_generation_prompt=True,
+                )
+                for prompt in prompts
+            ]
+        else:
+            texts = prompts
+
+        responses = []
+        do_sample = args.temperature > 0
+        for start in range(0, len(texts), args.batch_size):
+            batch = texts[start : start + args.batch_size]
+            encoded = tokenizer(batch, return_tensors="pt", padding=True, truncation=True, max_length=args.max_model_len)
+            encoded = {key: value.to(input_device) for key, value in encoded.items()}
+            gen_kwargs = {
+                "max_new_tokens": 8,
+                "do_sample": do_sample,
+                "pad_token_id": tokenizer.pad_token_id,
+                "eos_token_id": tokenizer.eos_token_id,
+            }
+            if do_sample:
+                gen_kwargs["temperature"] = args.temperature
+            with torch.inference_mode():
+                generated = model.generate(**encoded, **gen_kwargs)
+            new_tokens = generated[:, encoded["input_ids"].shape[1] :]
+            responses.extend(tokenizer.batch_decode(new_tokens, skip_special_tokens=True))
+        responses = [response.strip() for response in responses]
 
     with out_path.open("w", newline="") as handle:
         writer = csv.writer(handle)
         writer.writerow(["input", "prompt", "response", "prompt_variant"])
-        for (anchor, concept1, concept2), prompt, output in zip(triplets, prompts, outputs):
+        for (anchor, concept1, concept2), prompt, response in zip(triplets, prompts, responses):
             writer.writerow(
                 [
                     f"{anchor}|{concept1}|{concept2}",
                     prompt,
-                    output.outputs[0].text.strip(),
+                    response,
                     args.prompt_variant,
                 ]
             )
