@@ -1,0 +1,4 @@
+run_a,run_b,n_both_parseable,n_agree,agreement
+base_seed_a_canonical_prompt,base_seed_b_canonical_prompt,3385,3385,1.0
+base_seed_a_canonical_prompt,base_seed_a_matched_paraphrase_prompt,3381,3303,0.976929902395741
+base_seed_b_canonical_prompt,base_seed_a_matched_paraphrase_prompt,3381,3303,0.976929902395741

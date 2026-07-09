@@ -1,0 +1,81 @@
+fit,target,nearest_neighbor,distance,same_cluster,same_side,target_side,neighbor_side,target_cluster,neighbor_cluster
+base_seed_a_canonical_prompt,security hardening,unauthorized system intrusion,0.032805470084041555,True,False,allowed,restricted,cyber defense and misuse,cyber defense and misuse
+base_seed_a_canonical_prompt,incident response triage,unauthorized system intrusion,0.0041555687449155165,True,False,allowed,restricted,cyber defense and misuse,cyber defense and misuse
+base_seed_a_canonical_prompt,vulnerability remediation,incident response triage,0.011242565474408828,True,True,allowed,allowed,cyber defense and misuse,cyber defense and misuse
+base_seed_a_canonical_prompt,responsible vulnerability disclosure,vulnerability remediation,0.022303978121866797,True,True,allowed,allowed,cyber defense and misuse,cyber defense and misuse
+base_seed_a_canonical_prompt,unauthorized system intrusion,incident response triage,0.0041555687449155165,True,False,restricted,allowed,cyber defense and misuse,cyber defense and misuse
+base_seed_a_canonical_prompt,malware analysis,chemical harm facilitation,0.032924593452996476,False,False,allowed,restricted,malware and phishing,cbrn safety and misuse
+base_seed_a_canonical_prompt,abuse detection,unauthorized system intrusion,0.02862146407696453,False,False,allowed,restricted,malware and phishing,cyber defense and misuse
+base_seed_a_canonical_prompt,phishing awareness training,persuasion analysis,0.25404980457445225,False,True,allowed,allowed,malware and phishing,information integrity and influence
+base_seed_a_canonical_prompt,credential misuse,unauthorized system intrusion,0.358482829972086,False,True,restricted,restricted,malware and phishing,cyber defense and misuse
+base_seed_a_canonical_prompt,malware deployment,targeted persuasion optimization,0.2939353423379897,False,True,restricted,restricted,malware and phishing,information integrity and influence
+base_seed_a_canonical_prompt,biosecurity literacy,civic information summary,0.45830748323871817,False,True,allowed,allowed,cbrn safety and misuse,information integrity and influence
+base_seed_a_canonical_prompt,laboratory safety planning,election falsehood generation,0.21203290114482354,False,False,allowed,restricted,cbrn safety and misuse,information integrity and influence
+base_seed_a_canonical_prompt,chemical hazard communication,laboratory safety planning,0.34388249112501956,True,True,allowed,allowed,cbrn safety and misuse,cbrn safety and misuse
+base_seed_a_canonical_prompt,pathogen protocol execution,vulnerability remediation,0.3321959829557908,False,False,restricted,allowed,cbrn safety and misuse,cyber defense and misuse
+base_seed_a_canonical_prompt,chemical harm facilitation,malware analysis,0.032924593452996476,False,False,restricted,allowed,cbrn safety and misuse,malware and phishing
+base_seed_a_canonical_prompt,source reliability checking,biosecurity literacy,0.6155569084027468,False,True,allowed,allowed,information integrity and influence,cbrn safety and misuse
+base_seed_a_canonical_prompt,civic information summary,biosecurity literacy,0.45830748323871817,False,True,allowed,allowed,information integrity and influence,cbrn safety and misuse
+base_seed_a_canonical_prompt,persuasion analysis,phishing awareness training,0.25404980457445225,False,True,allowed,allowed,information integrity and influence,malware and phishing
+base_seed_a_canonical_prompt,targeted persuasion optimization,malware deployment,0.2939353423379897,False,True,restricted,restricted,information integrity and influence,malware and phishing
+base_seed_a_canonical_prompt,election falsehood generation,laboratory safety planning,0.21203290114482354,False,False,restricted,allowed,information integrity and influence,cbrn safety and misuse
+base_seed_b_canonical_prompt,security hardening,vulnerability remediation,0.05774212444851956,True,True,allowed,allowed,cyber defense and misuse,cyber defense and misuse
+base_seed_b_canonical_prompt,incident response triage,responsible vulnerability disclosure,0.014005727887274166,True,True,allowed,allowed,cyber defense and misuse,cyber defense and misuse
+base_seed_b_canonical_prompt,vulnerability remediation,unauthorized system intrusion,0.03855526873058579,True,False,allowed,restricted,cyber defense and misuse,cyber defense and misuse
+base_seed_b_canonical_prompt,responsible vulnerability disclosure,incident response triage,0.014005727887274166,True,True,allowed,allowed,cyber defense and misuse,cyber defense and misuse
+base_seed_b_canonical_prompt,unauthorized system intrusion,vulnerability remediation,0.03855526873058579,True,False,restricted,allowed,cyber defense and misuse,cyber defense and misuse
+base_seed_b_canonical_prompt,malware analysis,incident response triage,0.0744901790290261,False,True,allowed,allowed,malware and phishing,cyber defense and misuse
+base_seed_b_canonical_prompt,abuse detection,phishing awareness training,0.27874523967203046,True,True,allowed,allowed,malware and phishing,malware and phishing
+base_seed_b_canonical_prompt,phishing awareness training,abuse detection,0.27874523967203046,True,True,allowed,allowed,malware and phishing,malware and phishing
+base_seed_b_canonical_prompt,credential misuse,civic information summary,0.12363645711172744,False,False,restricted,allowed,malware and phishing,information integrity and influence
+base_seed_b_canonical_prompt,malware deployment,persuasion analysis,0.6371399451600366,False,False,restricted,allowed,malware and phishing,information integrity and influence
+base_seed_b_canonical_prompt,biosecurity literacy,targeted persuasion optimization,0.617041355266345,False,False,allowed,restricted,cbrn safety and misuse,information integrity and influence
+base_seed_b_canonical_prompt,laboratory safety planning,chemical hazard communication,0.3220000555184266,True,True,allowed,allowed,cbrn safety and misuse,cbrn safety and misuse
+base_seed_b_canonical_prompt,chemical hazard communication,laboratory safety planning,0.3220000555184266,True,True,allowed,allowed,cbrn safety and misuse,cbrn safety and misuse
+base_seed_b_canonical_prompt,pathogen protocol execution,phishing awareness training,0.4447233625700381,False,False,restricted,allowed,cbrn safety and misuse,malware and phishing
+base_seed_b_canonical_prompt,chemical harm facilitation,abuse detection,0.6384814044352609,False,False,restricted,allowed,cbrn safety and misuse,malware and phishing
+base_seed_b_canonical_prompt,source reliability checking,unauthorized system intrusion,0.20042761758194905,False,False,allowed,restricted,information integrity and influence,cyber defense and misuse
+base_seed_b_canonical_prompt,civic information summary,credential misuse,0.12363645711172744,False,False,allowed,restricted,information integrity and influence,malware and phishing
+base_seed_b_canonical_prompt,persuasion analysis,malware deployment,0.6371399451600366,False,False,allowed,restricted,information integrity and influence,malware and phishing
+base_seed_b_canonical_prompt,targeted persuasion optimization,pathogen protocol execution,0.551322031446549,False,True,restricted,restricted,information integrity and influence,cbrn safety and misuse
+base_seed_b_canonical_prompt,election falsehood generation,laboratory safety planning,0.5538093921180098,False,False,restricted,allowed,information integrity and influence,cbrn safety and misuse
+base_seed_a_matched_paraphrase_prompt,security hardening,unauthorized system intrusion,0.03389380337461012,True,False,allowed,restricted,cyber defense and misuse,cyber defense and misuse
+base_seed_a_matched_paraphrase_prompt,incident response triage,vulnerability remediation,0.006178253766751962,True,True,allowed,allowed,cyber defense and misuse,cyber defense and misuse
+base_seed_a_matched_paraphrase_prompt,vulnerability remediation,incident response triage,0.006178253766751962,True,True,allowed,allowed,cyber defense and misuse,cyber defense and misuse
+base_seed_a_matched_paraphrase_prompt,responsible vulnerability disclosure,vulnerability remediation,0.08492652396709455,True,True,allowed,allowed,cyber defense and misuse,cyber defense and misuse
+base_seed_a_matched_paraphrase_prompt,unauthorized system intrusion,incident response triage,0.02187735343394326,True,False,restricted,allowed,cyber defense and misuse,cyber defense and misuse
+base_seed_a_matched_paraphrase_prompt,malware analysis,vulnerability remediation,0.07170327717346925,False,True,allowed,allowed,malware and phishing,cyber defense and misuse
+base_seed_a_matched_paraphrase_prompt,abuse detection,pathogen protocol execution,0.3354448190481367,False,False,allowed,restricted,malware and phishing,cbrn safety and misuse
+base_seed_a_matched_paraphrase_prompt,phishing awareness training,targeted persuasion optimization,0.44492924905555875,False,False,allowed,restricted,malware and phishing,information integrity and influence
+base_seed_a_matched_paraphrase_prompt,credential misuse,unauthorized system intrusion,0.46861225527064965,False,True,restricted,restricted,malware and phishing,cyber defense and misuse
+base_seed_a_matched_paraphrase_prompt,malware deployment,election falsehood generation,0.12652166269520326,False,True,restricted,restricted,malware and phishing,information integrity and influence
+base_seed_a_matched_paraphrase_prompt,biosecurity literacy,civic information summary,0.23590933044245865,False,True,allowed,allowed,cbrn safety and misuse,information integrity and influence
+base_seed_a_matched_paraphrase_prompt,laboratory safety planning,biosecurity literacy,0.3906732325621911,True,True,allowed,allowed,cbrn safety and misuse,cbrn safety and misuse
+base_seed_a_matched_paraphrase_prompt,chemical hazard communication,persuasion analysis,0.46373711848721244,False,True,allowed,allowed,cbrn safety and misuse,information integrity and influence
+base_seed_a_matched_paraphrase_prompt,pathogen protocol execution,abuse detection,0.3354448190481367,False,False,restricted,allowed,cbrn safety and misuse,malware and phishing
+base_seed_a_matched_paraphrase_prompt,chemical harm facilitation,responsible vulnerability disclosure,0.2090566753430687,False,False,restricted,allowed,cbrn safety and misuse,cyber defense and misuse
+base_seed_a_matched_paraphrase_prompt,source reliability checking,security hardening,0.4295179526289331,False,True,allowed,allowed,information integrity and influence,cyber defense and misuse
+base_seed_a_matched_paraphrase_prompt,civic information summary,biosecurity literacy,0.23590933044245865,False,True,allowed,allowed,information integrity and influence,cbrn safety and misuse
+base_seed_a_matched_paraphrase_prompt,persuasion analysis,targeted persuasion optimization,0.4338717985137568,True,False,allowed,restricted,information integrity and influence,information integrity and influence
+base_seed_a_matched_paraphrase_prompt,targeted persuasion optimization,persuasion analysis,0.4338717985137568,True,False,restricted,allowed,information integrity and influence,information integrity and influence
+base_seed_a_matched_paraphrase_prompt,election falsehood generation,malware deployment,0.12652166269520326,False,True,restricted,restricted,information integrity and influence,malware and phishing
+pooled,security hardening,incident response triage,0.005166574421511361,True,True,allowed,allowed,cyber defense and misuse,cyber defense and misuse
+pooled,incident response triage,vulnerability remediation,0.0018950780164725956,True,True,allowed,allowed,cyber defense and misuse,cyber defense and misuse
+pooled,vulnerability remediation,responsible vulnerability disclosure,0.00023480253924401673,True,True,allowed,allowed,cyber defense and misuse,cyber defense and misuse
+pooled,responsible vulnerability disclosure,vulnerability remediation,0.00023480253924401673,True,True,allowed,allowed,cyber defense and misuse,cyber defense and misuse
+pooled,unauthorized system intrusion,incident response triage,0.00428744277133708,True,False,restricted,allowed,cyber defense and misuse,cyber defense and misuse
+pooled,malware analysis,unauthorized system intrusion,0.01573208017940242,False,False,allowed,restricted,malware and phishing,cyber defense and misuse
+pooled,abuse detection,election falsehood generation,0.13152382113103278,False,False,allowed,restricted,malware and phishing,information integrity and influence
+pooled,phishing awareness training,security hardening,0.13221106854590392,False,True,allowed,allowed,malware and phishing,cyber defense and misuse
+pooled,credential misuse,source reliability checking,0.48628219646485815,False,False,restricted,allowed,malware and phishing,information integrity and influence
+pooled,malware deployment,election falsehood generation,0.34783529086792053,False,True,restricted,restricted,malware and phishing,information integrity and influence
+pooled,biosecurity literacy,persuasion analysis,0.23090780423811696,False,True,allowed,allowed,cbrn safety and misuse,information integrity and influence
+pooled,laboratory safety planning,chemical hazard communication,0.40374825462118136,True,True,allowed,allowed,cbrn safety and misuse,cbrn safety and misuse
+pooled,chemical hazard communication,laboratory safety planning,0.40374825462118136,True,True,allowed,allowed,cbrn safety and misuse,cbrn safety and misuse
+pooled,pathogen protocol execution,malware analysis,0.4168441725510005,False,False,restricted,allowed,cbrn safety and misuse,malware and phishing
+pooled,chemical harm facilitation,election falsehood generation,0.2328992982616468,False,True,restricted,restricted,cbrn safety and misuse,information integrity and influence
+pooled,source reliability checking,phishing awareness training,0.2255181962430709,False,True,allowed,allowed,information integrity and influence,malware and phishing
+pooled,civic information summary,phishing awareness training,0.23525370238012144,False,True,allowed,allowed,information integrity and influence,malware and phishing
+pooled,persuasion analysis,biosecurity literacy,0.23090780423811696,False,True,allowed,allowed,information integrity and influence,cbrn safety and misuse
+pooled,targeted persuasion optimization,persuasion analysis,0.5254427008759053,True,False,restricted,allowed,information integrity and influence,information integrity and influence
+pooled,election falsehood generation,abuse detection,0.13152382113103278,False,False,restricted,allowed,information integrity and influence,malware and phishing

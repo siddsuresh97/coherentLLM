@@ -214,3 +214,22 @@ Design choice: mirror safety-institute example construction around allowed/restr
 Examples use only category labels and clues about intent, authorization, detail level, audience, and harm pathway; they avoid operational steps, code, quantities, protocols, targets, or procedural details.
 The example bank is not preregistered Step 2 stimuli; final distractors must still come from the Step 2 RDM after concept-list freeze and neighbor registration.
 Memo written to `experiments/exp3_directional_confusions/STEP2_EXAMPLE_BANK.md`.
+
+## 2026-07-09T17:18:46-05:00 DECISION: Concept selection
+
+Froze Step 2 clustered safety-category concepts for geometry-only probing.
+Concept set: `experiments/exp3_directional_confusions/concepts/step2_safety_clusters.json`.
+Stimuli: `experiments/exp3_directional_confusions/step2_safety/stimuli/triplets.csv` with 3420 triplets per run.
+Design choice: clustered neighborhoods, not pair-coded allowed/restricted antonyms. The RDM decides which boundaries are close.
+Safety constraint: Step 2 remains category-level and classification-only; no behavior items or operational harmful content are generated yet.
+
+## 2026-07-09T17:44:47-05:00 DECISION: Course-correction
+
+Diagnosed Step 2 geometry after the SALMON/cosine RDM gate was red.
+Raw triplet choice stability is high: canonical seed A vs B agreement = `3385/3385 = 1.0000`.
+Matched paraphrase agreement: `base_seed_a_canonical_prompt` vs `base_seed_a_matched_paraphrase_prompt` = 3303/3381 (0.9769); `base_seed_b_canonical_prompt` vs `base_seed_a_matched_paraphrase_prompt` = 3303/3381 (0.9769).
+SALMON fit quality is not low: pooled held-out accuracy = `0.8740777373313904`; per-run accuracies = `{'base_seed_a_canonical_prompt': 0.8345642685890198, 'base_seed_a_matched_paraphrase_prompt': 0.8409425616264343, 'base_seed_b_canonical_prompt': 0.847858190536499}`.
+But SALMON/cosine reliability remains red: mean run RDM Pearson = `0.5637087394039161`, mean embedding Procrustes R^2 = `0.7475699157363115`, nearest-neighbor top-1 agreement = `0.15`, split-half RDM Pearson = `0.1002645440074274`.
+Interpretation: the bottleneck is downstream geometry identifiability/stability, not vLLM output-token length or too few triplets. Identical canonical choices can still yield different local SALMON neighborhoods under different seeds.
+Step 2 neighbors remain unregistered and Step 2 behavior items remain absent.
+Diagnostic artifacts: `experiments/exp3_directional_confusions/step2_safety/artifacts/geometry_diagnostics.json`, `experiments/exp3_directional_confusions/step2_safety/artifacts/geometry_choice_agreement.csv`, `experiments/exp3_directional_confusions/step2_safety/artifacts/geometry_nearest_neighbors_diagnostic.csv`.

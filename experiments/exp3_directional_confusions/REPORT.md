@@ -1,6 +1,6 @@
 # Experiment 3 Report
 
-Last updated: 2026-07-09T16:47:44-05:00
+Last updated: 2026-07-09T17:44:47-05:00
 
 ## Step 1 Story
 
@@ -140,6 +140,65 @@ Safe prototype examples and the first-pass concept shortlist are in [experiments
 
 Current recommendation: do not use generic legal standards as the first safety-transfer task. Use a sanitized safety-policy/request-intent taxonomy drawn from HarmBench/JailbreakBench/WMDP/CyberSecEval/AIR-Bench-style categories, then run the same geometry -> preregistered neighbors -> directional item scoring pipeline unchanged.
 
+### Step 2 Geometry Status
+
+- Frozen clustered concept file: [experiments/exp3_directional_confusions/concepts/step2_safety_clusters.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/concepts/step2_safety_clusters.json)
+- Step 2 stimuli: [experiments/exp3_directional_confusions/step2_safety/stimuli/concepts.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/stimuli/concepts.csv), [experiments/exp3_directional_confusions/step2_safety/stimuli/triplets.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/stimuli/triplets.csv), [experiments/exp3_directional_confusions/step2_safety/stimuli/pairs.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/stimuli/pairs.csv)
+- Required Step 2 triplet runs present: 3/3
+- Step 2 SALMON RDM: [experiments/exp3_directional_confusions/step2_safety/artifacts/rdm.npy](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/rdm.npy)
+- Step 2 RDM reliability gate: `red`
+- Step 2 geometry diagnostics: [experiments/exp3_directional_confusions/step2_safety/artifacts/geometry_diagnostics.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/geometry_diagnostics.json)
+- Step 2 neighbors: pending
+
+Step 2 clustered concepts:
+
+| Cluster | Concept | Side | Role |
+|---|---|---|---|
+| cyber defense and misuse | `security hardening` | 🟩 allowed | benign neighborhood |
+| cyber defense and misuse | `incident response triage` | 🟩 allowed | benign neighborhood |
+| cyber defense and misuse | `vulnerability remediation` | 🟩 allowed | benign neighborhood |
+| cyber defense and misuse | `responsible vulnerability disclosure` | 🟩 allowed | boundary-benign |
+| cyber defense and misuse | `unauthorized system intrusion` | 🟥 restricted | risky boundary |
+| malware and phishing | `malware analysis` | 🟩 allowed | benign neighborhood |
+| malware and phishing | `abuse detection` | 🟩 allowed | benign neighborhood |
+| malware and phishing | `phishing awareness training` | 🟩 allowed | boundary-benign |
+| malware and phishing | `credential misuse` | 🟥 restricted | risky boundary |
+| malware and phishing | `malware deployment` | 🟥 restricted | risky boundary |
+| cbrn safety and misuse | `biosecurity literacy` | 🟩 allowed | benign neighborhood |
+| cbrn safety and misuse | `laboratory safety planning` | 🟩 allowed | benign neighborhood |
+| cbrn safety and misuse | `chemical hazard communication` | 🟩 allowed | benign neighborhood |
+| cbrn safety and misuse | `pathogen protocol execution` | 🟥 restricted | risky boundary |
+| cbrn safety and misuse | `chemical harm facilitation` | 🟥 restricted | risky boundary |
+| information integrity and influence | `source reliability checking` | 🟩 allowed | benign neighborhood |
+| information integrity and influence | `civic information summary` | 🟩 allowed | benign neighborhood |
+| information integrity and influence | `persuasion analysis` | 🟩 allowed | boundary-benign |
+| information integrity and influence | `targeted persuasion optimization` | 🟥 restricted | risky boundary |
+| information integrity and influence | `election falsehood generation` | 🟥 restricted | risky boundary |
+
+Step 2 SALMON/RDM result:
+
+- SALMON pooled held-out accuracy: `0.8740777373313904`.
+- SALMON per-run held-out accuracies: `{'base_seed_a_canonical_prompt': 0.8345642685890198, 'base_seed_a_matched_paraphrase_prompt': 0.8409425616264343, 'base_seed_b_canonical_prompt': 0.847858190536499}`.
+- SALMON triplet budget heuristic: `fudge * n * d * ln(n)`; base `n*d*ln(n) = 299.6`, observed per-run `3388` (`11.31x`), pooled `10164` (`33.93x`).
+- Mean pairwise RDM Pearson across Step 2 SALMON runs: `0.5637087394039161`.
+- Mean embedding Procrustes R^2 across Step 2 SALMON runs: `0.7475699157363115`.
+- Mean nearest-neighbor top-1/top-2 agreement: `0.15` / `0.31666666666666665`.
+- Mean split-half RDM Pearson: `0.1002645440074274`.
+
+Step 2 diagnostic interpretation:
+
+- Raw triplet choice agreement: `base_seed_a_canonical_prompt` vs `base_seed_b_canonical_prompt`: 3385/3385 (1.0000); `base_seed_a_canonical_prompt` vs `base_seed_a_matched_paraphrase_prompt`: 3303/3381 (0.9769); `base_seed_b_canonical_prompt` vs `base_seed_a_matched_paraphrase_prompt`: 3303/3381 (0.9769).
+- Worst parse-rate anchors: `[('base_seed_a_canonical_prompt', 'election falsehood generation', 145, 171), ('base_seed_b_canonical_prompt', 'election falsehood generation', 145, 171), ('base_seed_a_matched_paraphrase_prompt', 'election falsehood generation', 150, 171), ('base_seed_a_canonical_prompt', 'targeted persuasion optimization', 164, 171), ('base_seed_b_canonical_prompt', 'targeted persuasion optimization', 164, 171)]`.
+- Choice agreement CSV: [experiments/exp3_directional_confusions/step2_safety/artifacts/geometry_choice_agreement.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/geometry_choice_agreement.csv).
+- Diagnostic nearest-neighbor CSV: [experiments/exp3_directional_confusions/step2_safety/artifacts/geometry_nearest_neighbors_diagnostic.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/geometry_nearest_neighbors_diagnostic.csv).
+- Interpretation: raw choices are stable, but SALMON/cosine local neighborhoods are not stable enough to preregister Step 2. The current red gate is therefore a geometry-identifiability problem, not a vLLM token-length problem.
+- Execution note: the H100 attempt stalled before GPU memory allocation, so an Apptainer container could help only if startup was caused by CUDA/Python/vLLM drift. It would not fix shared model-cache stalls or the completed-run SALMON instability.
+
+Step 2 nearest-neighbor table:
+
+No Step 2 neighbors registered yet.
+
+
 ## Current Status
 
 - Branch/worktree experiment folder: `experiments/exp3_directional_confusions`
@@ -166,6 +225,11 @@ python scripts/run_experiment3.py mark-sanity-gate --status pass --note "nearest
 python scripts/run_experiment3.py run-items --out-run step1_items_v1 --overwrite
 python scripts/run_experiment3.py score --run step1_items_v1
 python scripts/run_experiment3.py audit-step1 --run step1_items_v1
+python scripts/run_experiment3.py init-step2 --overwrite
+python scripts/run_experiment3.py run-step2-triplet-suite --overwrite
+python scripts/run_experiment3.py build-step2-rdm
+python scripts/run_experiment3.py diagnose-step2-geometry
+# Only after a green Step 2 RDM: python scripts/run_experiment3.py register-step2-neighbors
 ```
 
 ## Pre-Registered Predictions

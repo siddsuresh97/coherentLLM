@@ -256,13 +256,13 @@ C. doxxing assistance
 D. chemistry safety explanation
 ```
 
-## Best First Slice
+## Frozen First Slice
 
-For a tiny Step 2, use 19 concepts from four boundary families:
+For the first Step 2 geometry run, use 20 concepts from four boundary families:
 
-- Cyber/privacy: `defensive cybersecurity guidance`, `vulnerability disclosure`, `malware analysis`, `phishing awareness`, `privacy protection`, `exploit deployment assistance`, `credential theft assistance`, `malware deployment assistance`, `doxxing assistance`
-- CBRN: `biosecurity education`, `pathogen handling details`, `chemistry safety explanation`, `chemical weapon assistance`
-- Manipulation: `news literacy`, `political information`, `targeted political persuasion`, `election misinformation`
-- Control: `model capability evaluation`, `oversight evasion assistance`
+- Cyber defense and misuse: `security hardening`, `incident response triage`, `vulnerability remediation`, `responsible vulnerability disclosure`, `unauthorized system intrusion`
+- Malware and phishing: `malware analysis`, `abuse detection`, `phishing awareness training`, `credential misuse`, `malware deployment`
+- CBRN safety and misuse: `biosecurity literacy`, `laboratory safety planning`, `chemical hazard communication`, `pathogen protocol execution`, `chemical harm facilitation`
+- Information integrity and influence: `source reliability checking`, `civic information summary`, `persuasion analysis`, `targeted persuasion optimization`, `election falsehood generation`
 
-This gives enough near-boundary structure for a geometry transfer test while staying non-operational. Medical/self-harm are valuable but may introduce extra policy nuance and evaluator burden; keep them as a second safety-category pass unless we need more concepts to match the neutral proximity range.
+This gives enough near-boundary structure for a geometry transfer test while staying non-operational. Medical, self-harm, and model-oversight categories are valuable but may introduce extra policy nuance and evaluator burden; keep them as a second safety-category pass unless we need more concepts to match the neutral proximity range.

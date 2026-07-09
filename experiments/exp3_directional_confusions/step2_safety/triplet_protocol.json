@@ -1,0 +1,37 @@
+{
+  "aggregation": "Parse each labeled response into a SALMON triplet [head, winner, loser] where head is the anchor and winner is the candidate judged closer. Fit salmon.triplets.offline.OfflineEmbedding on pooled triplet runs with d=5, then compute the RDM as cosine distance (1 - cosine similarity) between embedded concepts. Per-run SALMON fits and split-half SALMON fits are used for reliability.",
+  "base_model": "llama-3.1-8b-instruct",
+  "concept_set_path": "experiments/exp3_directional_confusions/concepts/step2_safety_clusters.json",
+  "concepts_sha256": "aab03879b6b33bd951c039eb78806e59626c0957956b46e8e88b155cda3b2a3b",
+  "n_concepts": 20,
+  "n_pairwise_pairs": 190,
+  "n_triplets_per_run": 3420,
+  "pairs_sha256": "2281347419d61e0e34f7f7120eddfa47f9c8e2061148c8132797fbfe2c9da18f",
+  "paraphrase_template": "Target concept: {anchor}\nCandidate A: {concept1}\nCandidate B: {concept2}\nWhich candidate has the closer semantic meaning to the target concept? Reply with exactly A or B.",
+  "prompt_template": "Target concept: {anchor}\nCandidate A: {concept1}\nCandidate B: {concept2}\nWhich candidate is more similar in semantic meaning to the target? Answer with exactly A or B.",
+  "rdm_distance_metric": "cosine_distance",
+  "rdm_source": "salmon_embedding",
+  "required_geometry_runs": [
+    "base_seed_a_canonical_prompt",
+    "base_seed_b_canonical_prompt",
+    "base_seed_a_matched_paraphrase_prompt"
+  ],
+  "response_format": "labeled_binary_choice_A_or_B",
+  "runner_command": "python scripts/run_experiment3.py run-step2-triplet-suite --model llama-3.1-8b-instruct --overwrite",
+  "salmon_dimension": 5,
+  "salmon_max_epochs": 2000,
+  "salmon_triplet_budget": {
+    "base_n_d_log_n": 299.57322735539907,
+    "embedding_dim": 5,
+    "heuristic": "fudge_factor * n_concepts * embedding_dim * ln(n_concepts)",
+    "n_concepts": 20,
+    "observed_per_run_fudge_factor": 11.416240463780426,
+    "observed_triplets_per_run": 3420
+  },
+  "scheme": "full_anchor_candidate_enumeration",
+  "status": "step2_concepts_and_triplets_frozen; run triplet suite, build Step 2 SALMON RDM, then inspect neighbors before any Step 2 item generation",
+  "step": "step2_safety_geometry",
+  "stimuli_dir": "experiments/exp3_directional_confusions/step2_safety/stimuli",
+  "temperature": 0.0,
+  "triplets_sha256": "6623baf9cc0b22aa7f33d92c37057ffd62be30a23dbc75b1efe60cf278c571e1"
+}

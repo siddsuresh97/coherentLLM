@@ -1,0 +1,170 @@
+{
+  "aggregation": "Parse each labeled response into a SALMON triplet [head, winner, loser] where head is the anchor and winner is the candidate judged closer. Fit salmon.triplets.offline.OfflineEmbedding on pooled triplet runs with d=5, then compute the RDM as cosine distance (1 - cosine similarity) between embedded concepts. Per-run SALMON fits and split-half SALMON fits are used for reliability.",
+  "built_at": "2026-07-09T17:39:39-05:00",
+  "concept_set_path": "experiments/exp3_directional_confusions/concepts/step2_safety_clusters.json",
+  "distance_metric": "cosine_distance",
+  "mean_nearest_neighbor_top1_agreement": 0.15,
+  "mean_nearest_neighbor_top2_agreement": 0.31666666666666665,
+  "mean_pairwise_embedding_procrustes_r2": 0.7475699157363115,
+  "mean_pairwise_upper_triangle_pearson": 0.5637087394039161,
+  "mean_split_half_upper_triangle_pearson": 0.1002645440074274,
+  "missing_runs": [],
+  "n_valid_triplets_total": 10164,
+  "pairwise_run_reliability": [
+    {
+      "embedding_procrustes_r2": 0.6848753600071232,
+      "nearest_neighbor_top1_agreement": 0.1,
+      "nearest_neighbor_top2_agreement": 0.25,
+      "run_a": "base_seed_a_canonical_prompt",
+      "run_b": "base_seed_b_canonical_prompt",
+      "upper_triangle_pearson": 0.5704160208182364
+    },
+    {
+      "embedding_procrustes_r2": 0.820371567363478,
+      "nearest_neighbor_top1_agreement": 0.35,
+      "nearest_neighbor_top2_agreement": 0.4,
+      "run_a": "base_seed_a_canonical_prompt",
+      "run_b": "base_seed_a_matched_paraphrase_prompt",
+      "upper_triangle_pearson": 0.555044673997547
+    },
+    {
+      "embedding_procrustes_r2": 0.7374628198383328,
+      "nearest_neighbor_top1_agreement": 0.0,
+      "nearest_neighbor_top2_agreement": 0.3,
+      "run_a": "base_seed_b_canonical_prompt",
+      "run_b": "base_seed_a_matched_paraphrase_prompt",
+      "upper_triangle_pearson": 0.5656655233959649
+    }
+  ],
+  "parse_metrics": {
+    "base_seed_a_canonical_prompt": {
+      "n_rows": 3420,
+      "n_valid_triplets": 3385,
+      "skipped": {
+        "unparsed_response": 35
+      }
+    },
+    "base_seed_a_matched_paraphrase_prompt": {
+      "n_rows": 3420,
+      "n_valid_triplets": 3394,
+      "skipped": {
+        "unparsed_response": 26
+      }
+    },
+    "base_seed_b_canonical_prompt": {
+      "n_rows": 3420,
+      "n_valid_triplets": 3385,
+      "skipped": {
+        "unparsed_response": 35
+      }
+    }
+  },
+  "per_run_embedding_paths": {
+    "base_seed_a_canonical_prompt": "experiments/exp3_directional_confusions/step2_safety/artifacts/embeddings/base_seed_a_canonical_prompt_salmon_d5.npy",
+    "base_seed_a_matched_paraphrase_prompt": "experiments/exp3_directional_confusions/step2_safety/artifacts/embeddings/base_seed_a_matched_paraphrase_prompt_salmon_d5.npy",
+    "base_seed_b_canonical_prompt": "experiments/exp3_directional_confusions/step2_safety/artifacts/embeddings/base_seed_b_canonical_prompt_salmon_d5.npy"
+  },
+  "per_run_salmon_fit_metrics": {
+    "base_seed_a_canonical_prompt": {
+      "ident": "step2_base_seed_a_canonical_prompt",
+      "max_epochs": 2000,
+      "n_test": 677,
+      "n_train": 2708,
+      "n_triplets": 3385,
+      "seed": 2697797856,
+      "test_loss": 0.3866370618343353,
+      "test_score": 0.8345642685890198
+    },
+    "base_seed_a_matched_paraphrase_prompt": {
+      "ident": "step2_base_seed_a_matched_paraphrase_prompt",
+      "max_epochs": 2000,
+      "n_test": 679,
+      "n_train": 2715,
+      "n_triplets": 3394,
+      "seed": 3175305558,
+      "test_loss": 0.390924870967865,
+      "test_score": 0.8409425616264343
+    },
+    "base_seed_b_canonical_prompt": {
+      "ident": "step2_base_seed_b_canonical_prompt",
+      "max_epochs": 2000,
+      "n_test": 677,
+      "n_train": 2708,
+      "n_triplets": 3385,
+      "seed": 1037428520,
+      "test_loss": 0.3670351505279541,
+      "test_score": 0.847858190536499
+    }
+  },
+  "pooled_embedding_path": "experiments/exp3_directional_confusions/step2_safety/artifacts/embeddings/pooled_salmon_d5.npy",
+  "pooled_embedding_sha256": "46aed4df1549cee6f4b31a9a1a3b0429383338bfd08d844659653901963638f9",
+  "pooled_fit_metrics": {
+    "ident": "pooled_step2",
+    "max_epochs": 2000,
+    "n_test": 2033,
+    "n_train": 8131,
+    "n_triplets": 10164,
+    "seed": 1569406521,
+    "test_loss": 0.34091895818710327,
+    "test_score": 0.8740777373313904
+  },
+  "rdm_path": "experiments/exp3_directional_confusions/step2_safety/artifacts/rdm.npy",
+  "rdm_sha256": "10cea07136dedeab50e52a1cb7009d5c8aa747669b26f82940f1886bdcb7e121",
+  "rdm_shape": [
+    20,
+    20
+  ],
+  "rdm_source": "salmon_embedding",
+  "reliability_gate": false,
+  "reliability_min_mean_pearson": 0.75,
+  "reliability_min_split_half_pearson": 0.7,
+  "salmon_dimension": 5,
+  "salmon_max_epochs": 2000,
+  "salmon_test_fraction": 0.2,
+  "salmon_triplet_budget": {
+    "base_n_d_log_n": 299.57322735539907,
+    "embedding_dim": 5,
+    "heuristic": "fudge_factor * n_concepts * embedding_dim * ln(n_concepts)",
+    "n_concepts": 20,
+    "observed_per_run_fudge_factor": 11.309421839557919,
+    "observed_total_fudge_factor": 33.928265518673754,
+    "observed_triplets_per_run": 3388,
+    "observed_triplets_total": 10164
+  },
+  "source_runs": [
+    "base_seed_a_canonical_prompt",
+    "base_seed_b_canonical_prompt",
+    "base_seed_a_matched_paraphrase_prompt"
+  ],
+  "split_half_reliability": [
+    {
+      "max_epochs_per_fit": 500,
+      "mean_embedding_procrustes_r2": 0.6208417495073091,
+      "mean_upper_triangle_pearson": 0.07971261231679548,
+      "n_splits": 2,
+      "p05_embedding_procrustes_r2": 0.5725814371590933,
+      "p05_upper_triangle_pearson": 0.01909731758997144,
+      "run": "base_seed_a_canonical_prompt"
+    },
+    {
+      "max_epochs_per_fit": 500,
+      "mean_embedding_procrustes_r2": 0.6444593841519615,
+      "mean_upper_triangle_pearson": 0.1180534375662879,
+      "n_splits": 2,
+      "p05_embedding_procrustes_r2": 0.6199836417207567,
+      "p05_upper_triangle_pearson": 0.10181547497973521,
+      "run": "base_seed_b_canonical_prompt"
+    },
+    {
+      "max_epochs_per_fit": 500,
+      "mean_embedding_procrustes_r2": 0.5754534797838793,
+      "mean_upper_triangle_pearson": 0.10302758213919881,
+      "n_splits": 2,
+      "p05_embedding_procrustes_r2": 0.4505113979140563,
+      "p05_upper_triangle_pearson": 0.07894448489925066,
+      "run": "base_seed_a_matched_paraphrase_prompt"
+    }
+  ],
+  "status": "red",
+  "step": "step2_safety_geometry"
+}

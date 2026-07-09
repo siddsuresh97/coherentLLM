@@ -1,0 +1,1648 @@
+{
+  "canonical_seed_pair_choice_agreement": {
+    "agreement": 1.0,
+    "n_agree": 3385,
+    "n_both_parseable": 3385,
+    "run_a": "base_seed_a_canonical_prompt",
+    "run_b": "base_seed_b_canonical_prompt"
+  },
+  "choice_summary": {
+    "anchor_parse_rates": {
+      "base_seed_a_canonical_prompt": {
+        "abuse detection": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "biosecurity literacy": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "chemical harm facilitation": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "chemical hazard communication": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "civic information summary": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "credential misuse": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "election falsehood generation": {
+          "n_rows": 171,
+          "n_valid": 145,
+          "parse_rate": 0.847953216374269
+        },
+        "incident response triage": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "laboratory safety planning": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "malware analysis": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "malware deployment": {
+          "n_rows": 171,
+          "n_valid": 170,
+          "parse_rate": 0.9941520467836257
+        },
+        "pathogen protocol execution": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "persuasion analysis": {
+          "n_rows": 171,
+          "n_valid": 170,
+          "parse_rate": 0.9941520467836257
+        },
+        "phishing awareness training": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "responsible vulnerability disclosure": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "security hardening": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "source reliability checking": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "targeted persuasion optimization": {
+          "n_rows": 171,
+          "n_valid": 164,
+          "parse_rate": 0.9590643274853801
+        },
+        "unauthorized system intrusion": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "vulnerability remediation": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        }
+      },
+      "base_seed_a_matched_paraphrase_prompt": {
+        "abuse detection": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "biosecurity literacy": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "chemical harm facilitation": {
+          "n_rows": 171,
+          "n_valid": 169,
+          "parse_rate": 0.9883040935672515
+        },
+        "chemical hazard communication": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "civic information summary": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "credential misuse": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "election falsehood generation": {
+          "n_rows": 171,
+          "n_valid": 150,
+          "parse_rate": 0.8771929824561403
+        },
+        "incident response triage": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "laboratory safety planning": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "malware analysis": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "malware deployment": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "pathogen protocol execution": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "persuasion analysis": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "phishing awareness training": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "responsible vulnerability disclosure": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "security hardening": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "source reliability checking": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "targeted persuasion optimization": {
+          "n_rows": 171,
+          "n_valid": 168,
+          "parse_rate": 0.9824561403508771
+        },
+        "unauthorized system intrusion": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "vulnerability remediation": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        }
+      },
+      "base_seed_b_canonical_prompt": {
+        "abuse detection": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "biosecurity literacy": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "chemical harm facilitation": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "chemical hazard communication": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "civic information summary": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "credential misuse": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "election falsehood generation": {
+          "n_rows": 171,
+          "n_valid": 145,
+          "parse_rate": 0.847953216374269
+        },
+        "incident response triage": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "laboratory safety planning": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "malware analysis": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "malware deployment": {
+          "n_rows": 171,
+          "n_valid": 170,
+          "parse_rate": 0.9941520467836257
+        },
+        "pathogen protocol execution": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "persuasion analysis": {
+          "n_rows": 171,
+          "n_valid": 170,
+          "parse_rate": 0.9941520467836257
+        },
+        "phishing awareness training": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "responsible vulnerability disclosure": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "security hardening": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "source reliability checking": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "targeted persuasion optimization": {
+          "n_rows": 171,
+          "n_valid": 164,
+          "parse_rate": 0.9590643274853801
+        },
+        "unauthorized system intrusion": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        },
+        "vulnerability remediation": {
+          "n_rows": 171,
+          "n_valid": 171,
+          "parse_rate": 1.0
+        }
+      }
+    },
+    "pairwise_choice_agreement": [
+      {
+        "agreement": 1.0,
+        "n_agree": 3385,
+        "n_both_parseable": 3385,
+        "run_a": "base_seed_a_canonical_prompt",
+        "run_b": "base_seed_b_canonical_prompt"
+      },
+      {
+        "agreement": 0.976929902395741,
+        "n_agree": 3303,
+        "n_both_parseable": 3381,
+        "run_a": "base_seed_a_canonical_prompt",
+        "run_b": "base_seed_a_matched_paraphrase_prompt"
+      },
+      {
+        "agreement": 0.976929902395741,
+        "n_agree": 3303,
+        "n_both_parseable": 3381,
+        "run_a": "base_seed_b_canonical_prompt",
+        "run_b": "base_seed_a_matched_paraphrase_prompt"
+      }
+    ],
+    "run_summaries": [
+      {
+        "n_rows": 3420,
+        "n_valid": 3385,
+        "parse_rate": 0.9897660818713451,
+        "run": "base_seed_a_canonical_prompt",
+        "status": "present"
+      },
+      {
+        "n_rows": 3420,
+        "n_valid": 3385,
+        "parse_rate": 0.9897660818713451,
+        "run": "base_seed_b_canonical_prompt",
+        "status": "present"
+      },
+      {
+        "n_rows": 3420,
+        "n_valid": 3394,
+        "parse_rate": 0.9923976608187135,
+        "run": "base_seed_a_matched_paraphrase_prompt",
+        "status": "present"
+      }
+    ],
+    "unparsed_samples": {
+      "base_seed_a_canonical_prompt": [
+        {
+          "anchor": "malware deployment",
+          "candidate_a": "chemical harm facilitation",
+          "candidate_b": "election falsehood generation",
+          "response_excerpt": "I can't provide"
+        },
+        {
+          "anchor": "persuasion analysis",
+          "candidate_a": "malware deployment",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "unauthorized system intrusion",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "malware analysis",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "abuse detection",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't provide"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "credential misuse",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "malware deployment",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "malware deployment",
+          "candidate_b": "election falsehood generation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "chemical harm facilitation",
+          "candidate_b": "election falsehood generation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "election falsehood generation",
+          "candidate_a": "security hardening",
+          "candidate_b": "malware deployment",
+          "response_excerpt": "I can't help"
+        }
+      ],
+      "base_seed_a_matched_paraphrase_prompt": [
+        {
+          "anchor": "chemical harm facilitation",
+          "candidate_a": "persuasion analysis",
+          "candidate_b": "targeted persuasion optimization",
+          "response_excerpt": "I cannot provide information"
+        },
+        {
+          "anchor": "chemical harm facilitation",
+          "candidate_a": "persuasion analysis",
+          "candidate_b": "election falsehood generation",
+          "response_excerpt": "I cannot provide information"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "malware deployment",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "malware deployment",
+          "candidate_b": "election falsehood generation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "chemical harm facilitation",
+          "candidate_b": "election falsehood generation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "election falsehood generation",
+          "candidate_a": "security hardening",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "election falsehood generation",
+          "candidate_a": "incident response triage",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "election falsehood generation",
+          "candidate_a": "vulnerability remediation",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "election falsehood generation",
+          "candidate_a": "responsible vulnerability disclosure",
+          "candidate_b": "malware deployment",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "election falsehood generation",
+          "candidate_a": "responsible vulnerability disclosure",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        }
+      ],
+      "base_seed_b_canonical_prompt": [
+        {
+          "anchor": "malware deployment",
+          "candidate_a": "chemical harm facilitation",
+          "candidate_b": "election falsehood generation",
+          "response_excerpt": "I can't provide"
+        },
+        {
+          "anchor": "persuasion analysis",
+          "candidate_a": "malware deployment",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "unauthorized system intrusion",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "malware analysis",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "abuse detection",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't provide"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "credential misuse",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "malware deployment",
+          "candidate_b": "chemical harm facilitation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "malware deployment",
+          "candidate_b": "election falsehood generation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "targeted persuasion optimization",
+          "candidate_a": "chemical harm facilitation",
+          "candidate_b": "election falsehood generation",
+          "response_excerpt": "I can't help"
+        },
+        {
+          "anchor": "election falsehood generation",
+          "candidate_a": "security hardening",
+          "candidate_b": "malware deployment",
+          "response_excerpt": "I can't help"
+        }
+      ]
+    }
+  },
+  "conclusion": "The main failure is not long outputs, vLLM sampling, or too few triplets. The raw model choices are almost identical across geometry prompts. The failure is downstream: SALMON has multiple high-accuracy embeddings for these abstract safety-category constraints, so local nearest neighbors are not stable enough to preregister Step 2 items.",
+  "created_at": "2026-07-09T17:44:47-05:00",
+  "diagnostic_nearest_neighbors": [
+    {
+      "distance": 0.032805470084041555,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "unauthorized system intrusion",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "restricted",
+      "same_cluster": true,
+      "same_side": false,
+      "target": "security hardening",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.0041555687449155165,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "unauthorized system intrusion",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "restricted",
+      "same_cluster": true,
+      "same_side": false,
+      "target": "incident response triage",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.011242565474408828,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "incident response triage",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "vulnerability remediation",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.022303978121866797,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "vulnerability remediation",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "responsible vulnerability disclosure",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.0041555687449155165,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "incident response triage",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": false,
+      "target": "unauthorized system intrusion",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.032924593452996476,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "chemical harm facilitation",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "malware analysis",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.02862146407696453,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "unauthorized system intrusion",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "abuse detection",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.25404980457445225,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "persuasion analysis",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "phishing awareness training",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.358482829972086,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "unauthorized system intrusion",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "credential misuse",
+      "target_cluster": "malware and phishing",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.2939353423379897,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "targeted persuasion optimization",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "malware deployment",
+      "target_cluster": "malware and phishing",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.45830748323871817,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "civic information summary",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "biosecurity literacy",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.21203290114482354,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "election falsehood generation",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "laboratory safety planning",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.34388249112501956,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "laboratory safety planning",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "chemical hazard communication",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.3321959829557908,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "vulnerability remediation",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "pathogen protocol execution",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.032924593452996476,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "malware analysis",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "chemical harm facilitation",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.6155569084027468,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "biosecurity literacy",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "source reliability checking",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.45830748323871817,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "biosecurity literacy",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "civic information summary",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.25404980457445225,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "phishing awareness training",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "persuasion analysis",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.2939353423379897,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "malware deployment",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "targeted persuasion optimization",
+      "target_cluster": "information integrity and influence",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.21203290114482354,
+      "fit": "base_seed_a_canonical_prompt",
+      "nearest_neighbor": "laboratory safety planning",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "election falsehood generation",
+      "target_cluster": "information integrity and influence",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.05774212444851956,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "vulnerability remediation",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "security hardening",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.014005727887274166,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "responsible vulnerability disclosure",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "incident response triage",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.03855526873058579,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "unauthorized system intrusion",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "restricted",
+      "same_cluster": true,
+      "same_side": false,
+      "target": "vulnerability remediation",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.014005727887274166,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "incident response triage",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "responsible vulnerability disclosure",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.03855526873058579,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "vulnerability remediation",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": false,
+      "target": "unauthorized system intrusion",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.0744901790290261,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "incident response triage",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "malware analysis",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.27874523967203046,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "phishing awareness training",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "abuse detection",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.27874523967203046,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "abuse detection",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "phishing awareness training",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.12363645711172744,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "civic information summary",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "credential misuse",
+      "target_cluster": "malware and phishing",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.6371399451600366,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "persuasion analysis",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "malware deployment",
+      "target_cluster": "malware and phishing",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.617041355266345,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "targeted persuasion optimization",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "biosecurity literacy",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.3220000555184266,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "chemical hazard communication",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "laboratory safety planning",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.3220000555184266,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "laboratory safety planning",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "chemical hazard communication",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.4447233625700381,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "phishing awareness training",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "pathogen protocol execution",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.6384814044352609,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "abuse detection",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "chemical harm facilitation",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.20042761758194905,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "unauthorized system intrusion",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "source reliability checking",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.12363645711172744,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "credential misuse",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "civic information summary",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.6371399451600366,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "malware deployment",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "persuasion analysis",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.551322031446549,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "pathogen protocol execution",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "targeted persuasion optimization",
+      "target_cluster": "information integrity and influence",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.5538093921180098,
+      "fit": "base_seed_b_canonical_prompt",
+      "nearest_neighbor": "laboratory safety planning",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "election falsehood generation",
+      "target_cluster": "information integrity and influence",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.03389380337461012,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "unauthorized system intrusion",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "restricted",
+      "same_cluster": true,
+      "same_side": false,
+      "target": "security hardening",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.006178253766751962,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "vulnerability remediation",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "incident response triage",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.006178253766751962,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "incident response triage",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "vulnerability remediation",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.08492652396709455,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "vulnerability remediation",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "responsible vulnerability disclosure",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.02187735343394326,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "incident response triage",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": false,
+      "target": "unauthorized system intrusion",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.07170327717346925,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "vulnerability remediation",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "malware analysis",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.3354448190481367,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "pathogen protocol execution",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "abuse detection",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.44492924905555875,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "targeted persuasion optimization",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "phishing awareness training",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.46861225527064965,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "unauthorized system intrusion",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "credential misuse",
+      "target_cluster": "malware and phishing",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.12652166269520326,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "election falsehood generation",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "malware deployment",
+      "target_cluster": "malware and phishing",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.23590933044245865,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "civic information summary",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "biosecurity literacy",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.3906732325621911,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "biosecurity literacy",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "laboratory safety planning",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.46373711848721244,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "persuasion analysis",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "chemical hazard communication",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.3354448190481367,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "abuse detection",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "pathogen protocol execution",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.2090566753430687,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "responsible vulnerability disclosure",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "chemical harm facilitation",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.4295179526289331,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "security hardening",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "source reliability checking",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.23590933044245865,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "biosecurity literacy",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "civic information summary",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.4338717985137568,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "targeted persuasion optimization",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "restricted",
+      "same_cluster": true,
+      "same_side": false,
+      "target": "persuasion analysis",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.4338717985137568,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "persuasion analysis",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": false,
+      "target": "targeted persuasion optimization",
+      "target_cluster": "information integrity and influence",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.12652166269520326,
+      "fit": "base_seed_a_matched_paraphrase_prompt",
+      "nearest_neighbor": "malware deployment",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "election falsehood generation",
+      "target_cluster": "information integrity and influence",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.005166574421511361,
+      "fit": "pooled",
+      "nearest_neighbor": "incident response triage",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "security hardening",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.0018950780164725956,
+      "fit": "pooled",
+      "nearest_neighbor": "vulnerability remediation",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "incident response triage",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.00023480253924401673,
+      "fit": "pooled",
+      "nearest_neighbor": "responsible vulnerability disclosure",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "vulnerability remediation",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.00023480253924401673,
+      "fit": "pooled",
+      "nearest_neighbor": "vulnerability remediation",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "responsible vulnerability disclosure",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.00428744277133708,
+      "fit": "pooled",
+      "nearest_neighbor": "incident response triage",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": false,
+      "target": "unauthorized system intrusion",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.01573208017940242,
+      "fit": "pooled",
+      "nearest_neighbor": "unauthorized system intrusion",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "malware analysis",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.13152382113103278,
+      "fit": "pooled",
+      "nearest_neighbor": "election falsehood generation",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "abuse detection",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.13221106854590392,
+      "fit": "pooled",
+      "nearest_neighbor": "security hardening",
+      "neighbor_cluster": "cyber defense and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "phishing awareness training",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.48628219646485815,
+      "fit": "pooled",
+      "nearest_neighbor": "source reliability checking",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "credential misuse",
+      "target_cluster": "malware and phishing",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.34783529086792053,
+      "fit": "pooled",
+      "nearest_neighbor": "election falsehood generation",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "malware deployment",
+      "target_cluster": "malware and phishing",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.23090780423811696,
+      "fit": "pooled",
+      "nearest_neighbor": "persuasion analysis",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "biosecurity literacy",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.40374825462118136,
+      "fit": "pooled",
+      "nearest_neighbor": "chemical hazard communication",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "laboratory safety planning",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.40374825462118136,
+      "fit": "pooled",
+      "nearest_neighbor": "laboratory safety planning",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": true,
+      "target": "chemical hazard communication",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.4168441725510005,
+      "fit": "pooled",
+      "nearest_neighbor": "malware analysis",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "pathogen protocol execution",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.2328992982616468,
+      "fit": "pooled",
+      "nearest_neighbor": "election falsehood generation",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "restricted",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "chemical harm facilitation",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.2255181962430709,
+      "fit": "pooled",
+      "nearest_neighbor": "phishing awareness training",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "source reliability checking",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.23525370238012144,
+      "fit": "pooled",
+      "nearest_neighbor": "phishing awareness training",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "civic information summary",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.23090780423811696,
+      "fit": "pooled",
+      "nearest_neighbor": "biosecurity literacy",
+      "neighbor_cluster": "cbrn safety and misuse",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": true,
+      "target": "persuasion analysis",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "distance": 0.5254427008759053,
+      "fit": "pooled",
+      "nearest_neighbor": "persuasion analysis",
+      "neighbor_cluster": "information integrity and influence",
+      "neighbor_side": "allowed",
+      "same_cluster": true,
+      "same_side": false,
+      "target": "targeted persuasion optimization",
+      "target_cluster": "information integrity and influence",
+      "target_side": "restricted"
+    },
+    {
+      "distance": 0.13152382113103278,
+      "fit": "pooled",
+      "nearest_neighbor": "abuse detection",
+      "neighbor_cluster": "malware and phishing",
+      "neighbor_side": "allowed",
+      "same_cluster": false,
+      "same_side": false,
+      "target": "election falsehood generation",
+      "target_cluster": "information integrity and influence",
+      "target_side": "restricted"
+    }
+  ],
+  "execution_note": "The failed H100 attempt stalled before GPU memory allocation, consistent with model-load/shared-filesystem or runtime startup. An Apptainer container could help if the issue is CUDA/Python/vLLM environment drift, but it would not fix a shared model-cache stall or the SALMON non-identifiability seen in the completed local A5000 run.",
+  "interpretation": "Raw triplet choices are stable, but SALMON/cosine nearest-neighbor geometry is unstable across fits. Because the Step 2 RDM gate is red, these nearest neighbors are diagnostic and must not be preregistered.",
+  "matched_paraphrase_choice_agreement": [
+    {
+      "agreement": 0.976929902395741,
+      "n_agree": 3303,
+      "n_both_parseable": 3381,
+      "run_a": "base_seed_a_canonical_prompt",
+      "run_b": "base_seed_a_matched_paraphrase_prompt"
+    },
+    {
+      "agreement": 0.976929902395741,
+      "n_agree": 3303,
+      "n_both_parseable": 3381,
+      "run_a": "base_seed_b_canonical_prompt",
+      "run_b": "base_seed_a_matched_paraphrase_prompt"
+    }
+  ],
+  "rdm_reliability": {
+    "mean_nearest_neighbor_top1_agreement": 0.15,
+    "mean_nearest_neighbor_top2_agreement": 0.31666666666666665,
+    "mean_pairwise_embedding_procrustes_r2": 0.7475699157363115,
+    "mean_pairwise_upper_triangle_pearson": 0.5637087394039161,
+    "mean_split_half_upper_triangle_pearson": 0.1002645440074274
+  },
+  "rdm_status": "red",
+  "salmon_fit": {
+    "per_run_heldout_accuracy": {
+      "base_seed_a_canonical_prompt": 0.8345642685890198,
+      "base_seed_a_matched_paraphrase_prompt": 0.8409425616264343,
+      "base_seed_b_canonical_prompt": 0.847858190536499
+    },
+    "pooled_heldout_accuracy": 0.8740777373313904,
+    "triplet_budget": {
+      "base_n_d_log_n": 299.57322735539907,
+      "embedding_dim": 5,
+      "heuristic": "fudge_factor * n_concepts * embedding_dim * ln(n_concepts)",
+      "n_concepts": 20,
+      "observed_per_run_fudge_factor": 11.309421839557919,
+      "observed_total_fudge_factor": 33.928265518673754,
+      "observed_triplets_per_run": 3388,
+      "observed_triplets_total": 10164
+    }
+  },
+  "status": "diagnostic_only",
+  "worst_anchor_parse_rates": [
+    {
+      "anchor": "election falsehood generation",
+      "n_rows": 171,
+      "n_valid": 145,
+      "parse_rate": 0.847953216374269,
+      "run": "base_seed_a_canonical_prompt"
+    },
+    {
+      "anchor": "election falsehood generation",
+      "n_rows": 171,
+      "n_valid": 145,
+      "parse_rate": 0.847953216374269,
+      "run": "base_seed_b_canonical_prompt"
+    },
+    {
+      "anchor": "election falsehood generation",
+      "n_rows": 171,
+      "n_valid": 150,
+      "parse_rate": 0.8771929824561403,
+      "run": "base_seed_a_matched_paraphrase_prompt"
+    },
+    {
+      "anchor": "targeted persuasion optimization",
+      "n_rows": 171,
+      "n_valid": 164,
+      "parse_rate": 0.9590643274853801,
+      "run": "base_seed_a_canonical_prompt"
+    },
+    {
+      "anchor": "targeted persuasion optimization",
+      "n_rows": 171,
+      "n_valid": 164,
+      "parse_rate": 0.9590643274853801,
+      "run": "base_seed_b_canonical_prompt"
+    },
+    {
+      "anchor": "targeted persuasion optimization",
+      "n_rows": 171,
+      "n_valid": 168,
+      "parse_rate": 0.9824561403508771,
+      "run": "base_seed_a_matched_paraphrase_prompt"
+    },
+    {
+      "anchor": "chemical harm facilitation",
+      "n_rows": 171,
+      "n_valid": 169,
+      "parse_rate": 0.9883040935672515,
+      "run": "base_seed_a_matched_paraphrase_prompt"
+    },
+    {
+      "anchor": "malware deployment",
+      "n_rows": 171,
+      "n_valid": 170,
+      "parse_rate": 0.9941520467836257,
+      "run": "base_seed_a_canonical_prompt"
+    },
+    {
+      "anchor": "persuasion analysis",
+      "n_rows": 171,
+      "n_valid": 170,
+      "parse_rate": 0.9941520467836257,
+      "run": "base_seed_a_canonical_prompt"
+    },
+    {
+      "anchor": "malware deployment",
+      "n_rows": 171,
+      "n_valid": 170,
+      "parse_rate": 0.9941520467836257,
+      "run": "base_seed_b_canonical_prompt"
+    },
+    {
+      "anchor": "persuasion analysis",
+      "n_rows": 171,
+      "n_valid": 170,
+      "parse_rate": 0.9941520467836257,
+      "run": "base_seed_b_canonical_prompt"
+    },
+    {
+      "anchor": "abuse detection",
+      "n_rows": 171,
+      "n_valid": 171,
+      "parse_rate": 1.0,
+      "run": "base_seed_a_canonical_prompt"
+    }
+  ]
+}

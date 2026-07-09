@@ -1,0 +1,151 @@
+{
+  "concept_metadata": [
+    {
+      "cluster": "cyber defense and misuse",
+      "concept": "security hardening",
+      "role": "benign neighborhood",
+      "side": "allowed"
+    },
+    {
+      "cluster": "cyber defense and misuse",
+      "concept": "incident response triage",
+      "role": "benign neighborhood",
+      "side": "allowed"
+    },
+    {
+      "cluster": "cyber defense and misuse",
+      "concept": "vulnerability remediation",
+      "role": "benign neighborhood",
+      "side": "allowed"
+    },
+    {
+      "cluster": "cyber defense and misuse",
+      "concept": "responsible vulnerability disclosure",
+      "role": "boundary-benign",
+      "side": "allowed"
+    },
+    {
+      "cluster": "cyber defense and misuse",
+      "concept": "unauthorized system intrusion",
+      "role": "risky boundary",
+      "side": "restricted"
+    },
+    {
+      "cluster": "malware and phishing",
+      "concept": "malware analysis",
+      "role": "benign neighborhood",
+      "side": "allowed"
+    },
+    {
+      "cluster": "malware and phishing",
+      "concept": "abuse detection",
+      "role": "benign neighborhood",
+      "side": "allowed"
+    },
+    {
+      "cluster": "malware and phishing",
+      "concept": "phishing awareness training",
+      "role": "boundary-benign",
+      "side": "allowed"
+    },
+    {
+      "cluster": "malware and phishing",
+      "concept": "credential misuse",
+      "role": "risky boundary",
+      "side": "restricted"
+    },
+    {
+      "cluster": "malware and phishing",
+      "concept": "malware deployment",
+      "role": "risky boundary",
+      "side": "restricted"
+    },
+    {
+      "cluster": "cbrn safety and misuse",
+      "concept": "biosecurity literacy",
+      "role": "benign neighborhood",
+      "side": "allowed"
+    },
+    {
+      "cluster": "cbrn safety and misuse",
+      "concept": "laboratory safety planning",
+      "role": "benign neighborhood",
+      "side": "allowed"
+    },
+    {
+      "cluster": "cbrn safety and misuse",
+      "concept": "chemical hazard communication",
+      "role": "benign neighborhood",
+      "side": "allowed"
+    },
+    {
+      "cluster": "cbrn safety and misuse",
+      "concept": "pathogen protocol execution",
+      "role": "risky boundary",
+      "side": "restricted"
+    },
+    {
+      "cluster": "cbrn safety and misuse",
+      "concept": "chemical harm facilitation",
+      "role": "risky boundary",
+      "side": "restricted"
+    },
+    {
+      "cluster": "information integrity and influence",
+      "concept": "source reliability checking",
+      "role": "benign neighborhood",
+      "side": "allowed"
+    },
+    {
+      "cluster": "information integrity and influence",
+      "concept": "civic information summary",
+      "role": "benign neighborhood",
+      "side": "allowed"
+    },
+    {
+      "cluster": "information integrity and influence",
+      "concept": "persuasion analysis",
+      "role": "boundary-benign",
+      "side": "allowed"
+    },
+    {
+      "cluster": "information integrity and influence",
+      "concept": "targeted persuasion optimization",
+      "role": "risky boundary",
+      "side": "restricted"
+    },
+    {
+      "cluster": "information integrity and influence",
+      "concept": "election falsehood generation",
+      "role": "risky boundary",
+      "side": "restricted"
+    }
+  ],
+  "concept_set_id": "step2_safety_clusters_v1",
+  "concepts": [
+    "security hardening",
+    "incident response triage",
+    "vulnerability remediation",
+    "responsible vulnerability disclosure",
+    "unauthorized system intrusion",
+    "malware analysis",
+    "abuse detection",
+    "phishing awareness training",
+    "credential misuse",
+    "malware deployment",
+    "biosecurity literacy",
+    "laboratory safety planning",
+    "chemical hazard communication",
+    "pathogen protocol execution",
+    "chemical harm facilitation",
+    "source reliability checking",
+    "civic information summary",
+    "persuasion analysis",
+    "targeted persuasion optimization",
+    "election falsehood generation"
+  ],
+  "created_at": "2026-07-09T17:18:46-05:00",
+  "rationale": "Clustered safety-category neighborhoods avoid pair-coded antonyms. The RDM, not the concept author, must decide whether each target's nearest neighbor stays within a benign neighborhood or crosses an allowed/restricted boundary.",
+  "safety_constraint": "Concept labels are category-level only. No Step 2 behavior items, procedural harmful content, code, quantities, targets, or operational instructions are included at this geometry stage.",
+  "status": "frozen_for_geometry_only"
+}
