@@ -40,12 +40,19 @@
 	265367534  -  Total Bytes Sent By Job
 	1610195  -  Total Bytes Received By Job
 	Partitionable Resources :     Usage  Request Allocated Assigned
-	   Cpus                 :      0           8         8 
-	   Disk (KB)            : 858855    83886080  83886080 
+	   Cpus                 :      0           8         8
+
+	   Disk (KB)            : 858855    83886080  83886080
+
 	   GPUs                 :      0.88        1         1 "GPU-c7d03fd0"
-	   GpusMemory (MB)      :  18515                       
-	   IoHeavy              :                            0 
-	   Memory (MB)          :   1432       65536     65536 
-	   TimeExecute (s)      :    510                       
-	   TimeSlotBusy (s)     :    516                       
+	   GpusMemory (MB)      :  18515
+
+	   IoHeavy              :                            0
+
+	   Memory (MB)          :   1432       65536     65536
+
+	   TimeExecute (s)      :    510
+
+	   TimeSlotBusy (s)     :    516
+
 ...

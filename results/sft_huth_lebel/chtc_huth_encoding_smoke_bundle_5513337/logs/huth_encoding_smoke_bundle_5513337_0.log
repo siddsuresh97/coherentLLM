@@ -37,12 +37,20 @@
 	266975420  -  Run Bytes Received By Job
 	7888  -  Total Bytes Sent By Job
 	266975420  -  Total Bytes Received By Job
-	Partitionable Resources :     Usage  Request Allocated 
-	   Cpus                 :      0.01        4         4 
-	   Disk (KB)            : 696409    41943040  41943040 
-	   GPUs                 :                            0 
-	   IoHeavy              :                            0 
-	   Memory (MB)          :    348       24576     24576 
-	   TimeExecute (s)      :     56                       
-	   TimeSlotBusy (s)     :     62                       
+	Partitionable Resources :     Usage  Request Allocated
+
+	   Cpus                 :      0.01        4         4
+
+	   Disk (KB)            : 696409    41943040  41943040
+
+	   GPUs                 :                            0
+
+	   IoHeavy              :                            0
+
+	   Memory (MB)          :    348       24576     24576
+
+	   TimeExecute (s)      :     56
+
+	   TimeSlotBusy (s)     :     62
+
 ...
