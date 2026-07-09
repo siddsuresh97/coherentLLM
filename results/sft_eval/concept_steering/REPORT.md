@@ -1,7 +1,7 @@
 # Concept-Vector Steering Lane
 
-Status: CHTC GPU smoke `5513276` and bounded layer/alpha sweep `5513297`
-both passed on 2026-07-09.
+Status: CHTC GPU smoke `5513276`, bounded layer/alpha sweep `5513297`, and
+expanded qualitative generation suite `5513407` passed on 2026-07-09.
 
 ## 2026-07-09 CHTC Smoke Submission
 
@@ -302,6 +302,97 @@ Next GPU decision:
   `coherence_l16_a4`, `human_alignment_l24_a4`, and `human_alignment_l16_a2`,
   with harder alignment prompts and the retention gates in
   `results/sft_eval/concept_steering/NEXT_EXPERIMENT_PLAN.md`.
+
+## 2026-07-09 Expanded Qualitative Follow-Up 5513407
+
+Run:
+
+- CHTC run id: `coherence-concept-expanded-20260709-023711`
+- cluster: `5513407`
+- remote directory:
+  `~/chtc-runs/coherence-concept-expanded-20260709-023711`
+- local artifacts: `results/sft_eval/concept_steering/chtc/5513407/`
+- host: `gpulab2004.chtc.wisc.edu`
+- GPU: NVIDIA A100-SXM4-40GB
+- Condor result: normal termination, return value `0`,
+  `TimeExecute=962s`, `TimeSlotBusy=1015s`
+
+Status files:
+
+| File | Status |
+| --- | ---: |
+| `exit_status.txt` | `0` |
+| `qual_exit_status.txt` | `0` |
+| `pip_install_exit_status.txt` | `0` |
+
+Artifacts:
+
+- result bundle:
+  `results/sft_eval/concept_steering/chtc/5513407/concept_steering_qualitative_expanded_alignment_retention_results.tgz`
+- extracted report:
+  `results/sft_eval/concept_steering/chtc/5513407/extracted/qualitative/SUMMARY.md`
+- summary CSV:
+  `results/sft_eval/concept_steering/chtc/5513407/extracted/qualitative/judge_summary.csv`
+- retention gates:
+  `results/sft_eval/concept_steering/chtc/5513407/extracted/qualitative/gate_summary.csv`
+- full generations:
+  `results/sft_eval/concept_steering/chtc/5513407/extracted/qualitative/generations.jsonl`
+- GPU metrics:
+  `results/sft_eval/concept_steering/chtc/5513407/extracted/gpu_metrics.csv`
+
+Expanded suite:
+
+- 25 coherence prompts.
+- 25 harder human-alignment prompts.
+- 25 retention prompts.
+- 5 settings: baseline, `coherence_l16_a4`, `coherence_l12_a4`,
+  `human_alignment_l24_a4`, and `human_alignment_l16_a2`.
+
+Result table:
+
+| Setting | Coherence pass | Delta | Alignment pass | Delta | Retention pass | Gate |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| `baseline` | 0.76 | 0.00 | 0.88 | 0.00 | 0.96 | pass |
+| `coherence_l12_a4` | 0.88 | +0.12 | 0.64 | -0.24 | 0.96 | pass |
+| `coherence_l16_a4` | 0.80 | +0.04 | 0.80 | -0.08 | 0.96 | pass |
+| `human_alignment_l16_a2` | 0.84 | +0.08 | 0.76 | -0.12 | 0.96 | pass |
+| `human_alignment_l24_a4` | 0.80 | +0.04 | 0.80 | -0.08 | 0.96 | pass |
+
+Retention gate readout:
+
+- all settings passed retention with pass rate `0.96`;
+- no setting dropped relative to the baseline retention rate;
+- configured gate was minimum pass rate `0.85` and maximum allowed drop `0.10`.
+
+GPU utilization readout:
+
+- sampled rows: `191`;
+- mean sampled GPU utilization: `15.09%`;
+- peak sampled GPU utilization: `83%`;
+- peak sampled GPU memory: `15883` MiB;
+- the final generation window ran around `77-83%` GPU utilization.
+
+Interpretation:
+
+- the expanded suite weakens the earlier recommendation for
+  `coherence_l16_a4`: it is still retention-safe, but the observed coherence
+  lift is small (`+0.04`) and alignment drops (`-0.08`).
+- `coherence_l12_a4` remains the strongest coherence-moving direction, but its
+  alignment cost (`-0.24`) makes it diagnostic only.
+- the human-alignment vectors do not improve hard alignment prompts here. Both
+  tested settings reduce alignment pass rate relative to baseline.
+- because all settings pass retention, the failure is not broad fluency or
+  retention collapse; it is poor concept specificity and weak alignment
+  transfer.
+
+Next gate:
+
+- do not deploy these steering settings broadly.
+- stratify failures by prompt family and compare vector extraction sets before
+  another broad GPU generation run.
+- if the goal is alignment steering, build harder positive/negative contrast
+  pairs and rerun a small forced-choice layer sweep before another qualitative
+  suite.
 
 ## Files
 

@@ -1,0 +1,6 @@
+setting,retention_n,retention_pass_rate,delta_vs_baseline,min_pass_rate,max_allowed_drop,gate_passed,reason
+baseline,25,0.96,0.0,0.85,0.1,True,
+coherence_l12_a4,25,0.96,0.0,0.85,0.1,True,
+coherence_l16_a4,25,0.96,0.0,0.85,0.1,True,
+human_alignment_l16_a2,25,0.96,0.0,0.85,0.1,True,
+human_alignment_l24_a4,25,0.96,0.0,0.85,0.1,True,

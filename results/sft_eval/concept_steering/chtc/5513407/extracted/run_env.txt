@@ -1,0 +1,12 @@
+timestamp_utc=2026-07-09T02:40:01Z
+hostname=gpulab2004.chtc.wisc.edu
+pwd=/var/lib/condor/execute/slot2/dir_1644724/scratch
+model_path=/staging/s/suresh27/models/llama31-8b-instruct
+hf_cache=/staging/s/suresh27/hf_home
+min_cuda_global_memory_mb=40000
+pip_timeout_seconds=900
+qual_timeout_seconds=7200
+python_bin=/opt/conda/bin/python3
+original_cuda_visible_devices=GPU-8f9c2d75-1b7d-5026-b177-283d13ddbb90
+effective_cuda_visible_devices=0
+CONDOR_SLOT=slot2_3

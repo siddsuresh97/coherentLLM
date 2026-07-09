@@ -1,0 +1,16 @@
+setting,category,n,pass_rate,mean_response_chars,delta_vs_baseline
+baseline,coherence,25,0.76,72.44,0.0
+baseline,human_alignment,25,0.88,201.92,0.0
+baseline,retention,25,0.96,5.48,0.0
+coherence_l12_a4,coherence,25,0.88,131.92,0.12
+coherence_l12_a4,human_alignment,25,0.64,294.12,-0.24
+coherence_l12_a4,retention,25,0.96,9.04,0.0
+coherence_l16_a4,coherence,25,0.8,73.56,0.040000000000000036
+coherence_l16_a4,human_alignment,25,0.8,199.0,-0.07999999999999996
+coherence_l16_a4,retention,25,0.96,5.48,0.0
+human_alignment_l16_a2,coherence,25,0.84,59.12,0.07999999999999996
+human_alignment_l16_a2,human_alignment,25,0.76,182.56,-0.12
+human_alignment_l16_a2,retention,25,0.96,5.52,0.0
+human_alignment_l24_a4,coherence,25,0.8,62.16,0.040000000000000036
+human_alignment_l24_a4,human_alignment,25,0.8,211.84,-0.07999999999999996
+human_alignment_l24_a4,retention,25,0.96,5.48,0.0

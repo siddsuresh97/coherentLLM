@@ -1,0 +1,2 @@
+NVIDIA A100-SXM4-40GB, 40960
+max_gpu_memory_mb=40960
