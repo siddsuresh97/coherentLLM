@@ -1,0 +1,5 @@
+It is highly recommended to configure Git before using DataLad. Set both 'user.name' and 'user.email' configuration variables.
+From https://github.com/OpenNeuroDatasets/ds003020
+ ! [rejected]          git-annex  -> git-annex  (non-fast-forward)
+HEAD is now at cb7c536d [OpenNeuro] Recorded changes
+tar: Removing leading `/' from member names

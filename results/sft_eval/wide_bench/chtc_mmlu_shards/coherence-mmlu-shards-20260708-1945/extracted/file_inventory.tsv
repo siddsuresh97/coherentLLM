@@ -1,0 +1,15 @@
+lm_eval_stdout.txt	2264
+lm_eval_exit_status.txt	2
+adapter_file_sample.txt	436
+run_env.txt	652
+shard_summary.json	207
+python.txt	87
+pip_install.txt	57829
+staged_path_sizes.txt	99
+command.txt	538
+nvidia_smi.txt	1689
+file_inventory.tsv	0
+gpu_memory_query.txt	20
+lm_eval_stderr.txt	12716
+model_file_sample.txt	727
+imports_after_install.txt	137

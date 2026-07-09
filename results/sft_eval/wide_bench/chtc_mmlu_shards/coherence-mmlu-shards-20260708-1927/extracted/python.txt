@@ -1,0 +1,2 @@
+Python 3.12.8
+pip 24.3.1 from /usr/local/lib/python3.12/dist-packages/pip (python 3.12)

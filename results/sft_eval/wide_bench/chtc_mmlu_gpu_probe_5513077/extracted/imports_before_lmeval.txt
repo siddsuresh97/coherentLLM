@@ -1,0 +1,6 @@
+torch=2.5.1+cu124
+vllm=IMPORT_ERROR:ModuleNotFoundError:No module named 'vllm'
+lm_eval=IMPORT_ERROR:ModuleNotFoundError:No module named 'lm_eval'
+torch_cuda_available=True
+torch_cuda_device_count=1
+torch_cuda_device_name=NVIDIA GeForce GTX 1080 Ti

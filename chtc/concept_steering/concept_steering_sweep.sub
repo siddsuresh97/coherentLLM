@@ -1,0 +1,44 @@
+RUN_MODE = sweep
+LAYERS_SPEC = 12,16,20,24
+ALPHAS_SPEC = -4+-2+0+2+4
+MAX_PAIRS = ALL
+MAX_ITEMS = ALL
+EXTRACT_BATCH = 2
+EVAL_BATCH = 2
+DTYPE = bfloat16
+OUT_TAG = layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4
+MIN_CUDA_GLOBAL_MEMORY_MB = 40000
+PIP_TIMEOUT_SECONDS = 900
+EXTRACT_TIMEOUT_SECONDS = 7200
+EVAL_TIMEOUT_SECONDS = 14400
+MODEL_PATH = /staging/s/suresh27/models/llama31-8b-instruct
+HF_CACHE = /staging/s/suresh27/hf_home
+
+universe = container
+container_image = docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
+docker_override_entrypoint = true
+requirements = (TARGET.CUDAGlobalMemoryMb >= $(MIN_CUDA_GLOBAL_MEMORY_MB))
+rank = TARGET.CUDAGlobalMemoryMb
+
+batch_name = coherence_concept_steering_sweep_$(Cluster)
+log = logs/concept_steering_$(RUN_MODE)_$(Cluster)_$(Process).log
+output = logs/concept_steering_$(RUN_MODE)_$(Cluster)_$(Process).out
+error = logs/concept_steering_$(RUN_MODE)_$(Cluster)_$(Process).err
+
+executable = run_concept_steering.sh
+arguments = $(RUN_MODE) $(LAYERS_SPEC) $(ALPHAS_SPEC) $(MAX_PAIRS) $(MAX_ITEMS) $(EXTRACT_BATCH) $(EVAL_BATCH) $(DTYPE) $(OUT_TAG)
+transfer_input_files = run_concept_steering.sh,src,data
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_output_files = concept_steering_$(RUN_MODE)_$(OUT_TAG)_results.tgz
+stream_output = TRUE
+stream_error = TRUE
+environment = "MIN_CUDA_GLOBAL_MEMORY_MB=$(MIN_CUDA_GLOBAL_MEMORY_MB) PIP_TIMEOUT_SECONDS=$(PIP_TIMEOUT_SECONDS) EXTRACT_TIMEOUT_SECONDS=$(EXTRACT_TIMEOUT_SECONDS) EVAL_TIMEOUT_SECONDS=$(EVAL_TIMEOUT_SECONDS) MODEL_PATH=$(MODEL_PATH) HF_CACHE=$(HF_CACHE)"
+
+request_gpus = 1
+request_cpus = 8
+request_memory = 64GB
+request_disk = 80GB
++is_resumable = true
+
+queue 1

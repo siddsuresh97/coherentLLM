@@ -5,8 +5,8 @@ Last updated: 2026-07-08
 This map groups the current wide-benchmark deltas by the skill each benchmark
 mostly probes. Deltas are relative to the base Llama-3.1-8B-Instruct run in
 `results/sft_eval/wide_bench/raw_task_summary.csv`. The `taskvec_a0p25` ARC
-and HellaSwag results and the scrambled ARC results are from completed split
-runs under `results/sft_eval/wide_bench/runs/`.
+and HellaSwag results and the scrambled ARC/HellaSwag results are from
+completed split runs under `results/sft_eval/wide_bench/runs/`.
 
 | Task | Skill proxy | Base | Lowrank delta | Taskvec 0.25 delta | Scrambled delta | Read |
 |---|---|---:|---:|---:|---:|---|
@@ -18,7 +18,7 @@ runs under `results/sft_eval/wide_bench/runs/`.
 | WinoGrande | Coreference and discourse commonsense | 0.762 | -0.018 | -0.015 |  | Preserved |
 | ARC-Easy | Grade-school science retrieval | 0.850 | -0.145 | -0.042 | -0.544 | Improved by task-vector but still hurt; catastrophic under scrambled SFT |
 | ARC-Challenge | Hard science reasoning | 0.649 | -0.141 | -0.090 | -0.424 | Improved by task-vector but still hurt; catastrophic under scrambled SFT |
-| HellaSwag | Script and event plausibility | 0.685 | -0.002 | -0.005 | running | Preserved by lowrank and task-vector |
+| HellaSwag | Script and event plausibility | 0.685 | -0.002 | -0.005 | -0.398 | Preserved by coherent lowrank/task-vector, badly hurt by scrambled SFT |
 | MMLU | Broad exam knowledge and reasoning | 0.693 | -0.101 |  |  | Hurt; task-vector pending |
 
 ## Interpretation
@@ -26,8 +26,11 @@ runs under `results/sft_eval/wide_bench/runs/`.
 The induced skill looks closest to format-invariant semantic association over
 object concepts: it helps hidden-state hub metrics and the THINGS-style semantic
 tasks, and it survives best on benchmarks that can be solved with broad event,
-affordance, or discourse plausibility. That explains why HellaSwag, WinoGrande,
-and task-vector PIQA are flat or near-flat.
+affordance, or discourse plausibility. The key nuance from the scrambled
+controls is that preservation is not generic. HellaSwag is flat for coherent
+lowrank/task-vector states but collapses under scrambled SFT, so coherent
+semantic structure preserves script/event plausibility while arbitrary adapter
+perturbation does not.
 
 The hurt skills are those that need sharper decision boundaries than associative
 similarity: lexical sense discrimination in WiC, science/exam retrieval in ARC
@@ -35,9 +38,17 @@ and MMLU, and option calibration in OpenBookQA. The ARC result is now more
 nuanced: task-vector `alpha=0.25` recovers a large part of the lowrank ARC loss
 but still remains below base, so the mitigation helps science retrieval without
 fully restoring the base model's multiple-choice ranking surface. The scrambled
-ARC control is much worse (`ARC-Easy -0.544`, `ARC-Challenge -0.424`), so ARC is
-not just detecting the induced semantic skill; it is also highly sensitive to
-generic rank-64 adapter/SFT perturbation.
+ARC control is much worse (`ARC-Easy -0.544`, `ARC-Challenge -0.424`), and
+scrambled HellaSwag is also much worse (`-0.398`), so these benchmarks are not
+only measuring the induced semantic skill; they are also sensitive to incoherent
+rank-64 adapter/SFT perturbation.
+
+No broad benchmark is clearly boosted above base yet. The useful gains are
+relative mitigations: `taskvec_a0p25` improves ARC-Easy by `+0.103` and
+ARC-Challenge by `+0.051` over lowrank, and improves PIQA/OpenBookQA over
+lowrank, while preserving HellaSwag and WinoGrande. That pattern says the
+task-vector keeps part of the semantic/coherence benefit while reducing, but
+not eliminating, the capability cost.
 
 TruthfulQA is not one of the largest lowrank drops in the current numbers:
 lowrank is only `-0.010` and lowLR is `-0.017`, both flat by the current
@@ -65,10 +76,9 @@ ranking story rather than a simple "truth skill got worse" story.
 
 ## Next Tests
 
-- Finish `taskvec_a0p25` MMLU 5-shot to see whether the ARC mitigation extends
-  to broad exam knowledge.
-- Finish scrambled HellaSwag 10-shot to test whether script/event plausibility
-  remains uniquely preserved under a random-label perturbation.
+- Finish `taskvec_a0p25` MMLU 5-shot through the split local shards or CHTC
+  shards, then decide whether alpha-0.25 helps broad exam knowledge the way it
+  helps ARC.
 - Use the TruthfulQA item-level deltas to group failure classes:
   medical/safety myths, conspiracy lures, stereotype/generalization lures, and
   ordinary factual confusions.

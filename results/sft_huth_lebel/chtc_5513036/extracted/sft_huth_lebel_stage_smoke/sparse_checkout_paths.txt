@@ -1,0 +1,16 @@
+dataset_description.json
+stimuli/sweetaspie.wav
+derivatives/TextGrids/sweetaspie.TextGrid
+derivatives/preprocessed_data/UTS01/sweetaspie.hf5
+derivatives/preprocessed_data/UTS02/sweetaspie.hf5
+derivatives/preprocessed_data/UTS03/sweetaspie.hf5
+stimuli/againstthewind.wav
+derivatives/TextGrids/againstthewind.TextGrid
+derivatives/preprocessed_data/UTS01/againstthewind.hf5
+derivatives/preprocessed_data/UTS02/againstthewind.hf5
+derivatives/preprocessed_data/UTS03/againstthewind.hf5
+stimuli/wheretheressmoke.wav
+derivatives/TextGrids/wheretheressmoke.TextGrid
+derivatives/preprocessed_data/UTS01/wheretheressmoke.hf5
+derivatives/preprocessed_data/UTS02/wheretheressmoke.hf5
+derivatives/preprocessed_data/UTS03/wheretheressmoke.hf5

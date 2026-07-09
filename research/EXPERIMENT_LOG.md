@@ -24,12 +24,16 @@ Tracking convention:
 - `research/CODEX_TASK_9_FMRI_AND_SEMANTIC_HUB.md`
   - Goal: test whether coherence-SFT improves brain predictivity and whether a
     format-invariant hidden-state semantic hub mediates it.
-  - Status: brief created; no fMRI or hidden-state production runs launched yet.
+  - Status: THINGS-fMRI RSA, semantic-hub extraction/scoring, hub-fMRI bridge,
+    and paper-style similarity baseline are complete. Huth/LeBel `ds003020`
+    smoke data are staged on CHTC and ready for a tiny encoding smoke.
 
 - `research/CODEX_TASK_10_BENCHMARK_DROPS.md`
   - Goal: diagnose why lowLR/lowrank gain semantic/human-alignment tasks but drop
     on standard capability benchmarks, and propose mitigation experiments.
-  - Status: brief created; existing results only so far.
+  - Status: lowrank/task-vector/scrambled partial wide-bench controls are
+    running or complete. The remaining long mitigation row is
+    `taskvec_a0p25` MMLU.
 
 ## Current branch state
 
@@ -40,8 +44,10 @@ Tracking convention:
 
 ## Sidecar agents
 
-The following sidecar agents were launched on 2026-07-08. They were instructed not
-to edit files; their memos should be integrated into this log and the task briefs.
+The following sidecar agents were launched on 2026-07-08. Their early read-only
+memos are integrated below. Later, longer-running goal assignments may edit only
+their declared write scopes; main-lane commits should mention which agent-owned
+artifacts were integrated.
 
 | Agent | ID | Scope |
 |---|---|---|
@@ -49,6 +55,18 @@ to edit files; their memos should be integrated into this log and the task brief
 | Kierkegaard | `019f4341-6757-78d3-9fb5-94f25969da6e` | Evelina Fedorenko / Ivanova language-network evaluation literature |
 | Gibbs | `019f4341-806a-7d51-82f9-49fc95df0c88` | Local benchmark drop/gain diagnosis |
 | Nietzsche | `019f4341-bb81-7200-ba91-a7c09b9d4aa2` | Semantic-hub hypothesis and tests |
+
+Long-running goal assignments issued after CHTC access was validated:
+
+| Agent | ID | Goal / write scope |
+|---|---|---|
+| Einstein | `019f4437-611a-7f71-bd3c-997517e90bc7` | Concept-vector steering for coherence and human-alignment contrasts. Owns `data/sft/steering_contrasts/`, `src/sft/extract_concept_vectors.py`, `src/sft/run_concept_steering_eval.py`, and `results/sft_eval/concept_steering/`. |
+| Sagan | `019f4437-630c-7f02-ba72-0da158f1fa52` | CHTC MMLU shard execution and merge tooling. Owns `chtc/mmlu_shards/`, `src/sft/merge_mmlu_shards.py`, and `results/sft_eval/wide_bench/chtc_mmlu_shards/`. |
+| Peirce | `019f4341-554b-7b50-b654-2e2dc09ffb2f` | Huth/LeBel encoding smoke plan and scripts. Owns new `src/sft/huth_lebel_*.py` files and `results/sft_huth_lebel/ENCODING_PLAN.md`. |
+| Kierkegaard | `019f4341-6757-78d3-9fb5-94f25969da6e` | Benchmark skill diagnostics, including hurt/boosted skill grouping and TruthfulQA mechanism. Owns `results/sft_eval/wide_bench/skill_diagnostics/` and optional `src/sft/analyze_skill_diagnostics.py`. |
+| Halley | `019f444f-f116-7520-91e9-e4efb5f0b6ef` | Long-running fMRI/semantic-hub literature and experiment-plan goal. Owns `results/sft_huth_lebel/SEMANTIC_HUB_EXPERIMENT_PLAN.md` and `results/sft_huth_lebel/LITERATURE_NOTES.md`. |
+| Godel | `019f4450-0dcc-7b52-9af2-1a6e55a7c7d0` | Long-running concept-vector steering smoke/CHTC plan goal. Owns `chtc/concept_steering/`, `results/sft_eval/concept_steering/CHTC_PLAN.md`, and `results/sft_eval/concept_steering/SMOKE_STATUS.md`. |
+| Mendel | `019f4450-2d32-7e11-983c-4a93e42671b5` | Long-running benchmark-drop mitigation and mechanism plan goal. Owns `results/sft_eval/wide_bench/skill_diagnostics/MITIGATION_PLAN.md` and `results/sft_eval/wide_bench/skill_diagnostics/HANDOFF.md`. |
 
 ## 2026-07-08 checkpoint: sidecar memo synthesis
 
@@ -1089,3 +1107,230 @@ Read:
 - The still-running scrambled HellaSwag lane will test whether script/event
   plausibility is preserved under random-label SFT or only under coherent
   semantic adapters.
+
+## 2026-07-08 result: CHTC Huth/LeBel smoke staging complete
+
+Purpose:
+
+- Materialize only the 7.88 GB `ds003020` smoke subset on CHTC staging so the
+  Huth/LeBel lane can move from data discovery to an encoding smoke.
+
+Artifacts:
+
+- Fixed stage script: `chtc/huth_lebel_stage_smoke/run_stage_smoke.sh`
+- Successful cluster artifacts:
+  `results/sft_huth_lebel/chtc_5513059/`
+- Extracted stage summary:
+  `results/sft_huth_lebel/chtc_5513059/extracted/sft_huth_lebel_stage_smoke/stage_summary.json`
+- Extracted staged-root audit:
+  `results/sft_huth_lebel/chtc_5513059/extracted/sft_huth_lebel_stage_smoke/audit/REPORT.md`
+
+Result:
+
+- Cluster `5513059` exited 0.
+- Staged root: `/staging/s/suresh27/datasets/ds003020-smoke`.
+- Files staged: 15 planned manifest files.
+- Missing files: 0.
+- Expected bytes and actual bytes both equal `7,877,643,435`.
+- `du` reports `7.4G` for the staged smoke root.
+- The staged-root audit finds 3 TextGrids, 3 WAVs, 9 author-preprocessed HF5
+  files, and `wheretheressmoke` test-story evidence.
+
+Read:
+
+- The Huth/LeBel lane is no longer blocked on data discovery or smoke-subset
+  staging. It is blocked on writing and validating the first tiny encoding
+  smoke: extract no-chat-template narrative hidden states, align word features
+  to TRs with FIR delays, and fit a held-out ridge model.
+- The local `/mnt/dv` checkout is not visible to CHTC execute nodes; use
+  `/staging/s/suresh27/datasets/ds003020-smoke` inside CHTC jobs.
+
+## 2026-07-08 result: scrambled HellaSwag complete
+
+Purpose:
+
+- Test whether HellaSwag/script-event plausibility is genuinely preserved by
+  coherent lowrank/task-vector states, or whether it is merely insensitive to
+  rank-64 adapter perturbation.
+
+Artifact:
+
+- `results/sft_eval/wide_bench/runs/scrambled_hellaswag_10shot/__mnt__dv__wid__projects3__Rogers-muri-human-ai__shared_models__models--meta-llama--Llama-3.1-8B-Instruct__snapshots__0e9e39f249a16976918f6564b8830bc894c89659/results_2026-07-08T18-59-17.175041.json`
+
+Result:
+
+- `hellaswag` sample length: 1000.
+- `acc=0.284`.
+- `acc_norm=0.287`.
+- Base HellaSwag `acc_norm=0.685`, so scrambled delta is `-0.398`.
+
+Read:
+
+- HellaSwag is not generically immune to adapter/SFT perturbation. It is
+  preserved by coherent lowrank/task-vector states (`lowrank=0.683`,
+  `taskvec_a0p25=0.680`) but badly hurt by scrambled SFT.
+- This supports a skill-specific read: coherent semantic training preserves
+  event/script plausibility, while incoherent/random-label geometry damages the
+  same benchmark nearly as severely as ARC.
+
+## 2026-07-08 active: task-vector MMLU throughput and CHTC probe
+
+Purpose:
+
+- Fill the missing `taskvec_a0p25` MMLU 5-shot row and avoid wasting local GPU
+  time on a single slow monolithic run.
+
+Local speed findings:
+
+- A short `mmlu_anatomy` batch probe at `gpu_mem_util=0.82`, `batch_size=4`
+  OOMed during loglikelihood scoring.
+- The same short probe at `gpu_mem_util=0.72`, `batch_size=4` succeeded and
+  reached about 8.4 requests/s.
+- Full MMLU is still slow because long-context subjects such as
+  `mmlu_professional_law` and `mmlu_moral_scenarios` run around 1.8-2.6
+  requests/s and emit repeated `Context length ... exceeds max length (2047)`
+  truncation warnings.
+
+Active local fallback:
+
+- The original monolithic `taskvec_a0p25` MMLU run was stopped after about
+  20k/54k requests because it was too slow and produced no partial JSON.
+- MMLU is now split into two balanced local A5000 shards:
+  `taskvec_a0p25_mmlu_5shot_shard00of02` and
+  `taskvec_a0p25_mmlu_5shot_shard01of02`.
+- Both use `gpu_mem_util=0.72`, `batch_size=4`, and remain valid fallbacks.
+
+CHTC scale-out:
+
+- Base model staged to
+  `/staging/s/suresh27/models/llama31-8b-instruct/`.
+- Task-vector adapter staged to
+  `/staging/s/suresh27/adapters/taskvec_a0p25/`.
+- First GPU probe cluster `5513068` reached an A100-SXM4-80GB node but failed
+  because the `vllm-openai` container entrypoint treated the script as API
+  server arguments.
+- The fixed probe uses `docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime`,
+  installs `vllm==0.6.6.post1` and `lm-eval==0.4.12` in scratch, and writes a
+  result tarball through an EXIT trap.
+- Fixed probe cluster `5513077` is active. If it succeeds, submit independent
+  MMLU shards on CHTC and merge before treating the row as final.
+
+## 2026-07-08 result: benchmark skill diagnostics
+
+Source:
+
+- Kierkegaard, agent `019f4341-6757-78d3-9fb5-94f25969da6e`.
+
+Artifacts:
+
+- `src/sft/analyze_skill_diagnostics.py`
+- `results/sft_eval/wide_bench/skill_diagnostics/REPORT.md`
+- `results/sft_eval/wide_bench/skill_diagnostics/task_skill_deltas.csv`
+- `results/sft_eval/wide_bench/skill_diagnostics/skill_summary.csv`
+- `results/sft_eval/wide_bench/skill_diagnostics/semantic_human_summary.csv`
+- `results/sft_eval/wide_bench/skill_diagnostics/truthfulqa_mechanism.csv`
+- `results/sft_eval/wide_bench/skill_diagnostics/mmlu_extreme_drops.csv`
+
+Verification:
+
+```bash
+python -m py_compile src/sft/analyze_skill_diagnostics.py
+```
+
+Read:
+
+- The induced positive skill is representation-level semantic geometry:
+  semantic coherence, THINGS-style human similarity, and cross-format
+  consistency.
+- The hurt families are sharp option-ranking tasks: ARC/OpenBookQA,
+  broad MMLU exam knowledge, WiC lexical sense discrimination, and
+  TruthfulQA-style plausible-lure calibration.
+- Lowrank and `taskvec_a0p25` preserve HellaSwag/WinoGrande, but scrambled SFT
+  badly damages HellaSwag. Preservation is therefore specific to coherent
+  semantic states, not generic adapter perturbation.
+- Worst MMLU drops are concentrated in moral/professional/formal/biomedical
+  subtasks, especially moral scenarios, formal logic, and medical genetics.
+
+## 2026-07-08 result: concept-vector steering lane scaffold
+
+Source:
+
+- Einstein, agent `019f4437-611a-7f71-bd3c-997517e90bc7`.
+
+Commit:
+
+- `99c0c60` pushed to `origin/coherence-sft`.
+
+Artifacts:
+
+- `data/sft/steering_contrasts/metadata.json`
+- `data/sft/steering_contrasts/coherence.jsonl`
+- `data/sft/steering_contrasts/human_alignment.jsonl`
+- `data/sft/steering_contrasts/retention_probe.jsonl`
+- `src/sft/extract_concept_vectors.py`
+- `src/sft/run_concept_steering_eval.py`
+- `results/sft_eval/concept_steering/REPORT.md`
+- `results/sft_eval/concept_steering/sweep_config.json`
+
+Validation:
+
+```bash
+python -m py_compile src/sft/extract_concept_vectors.py src/sft/run_concept_steering_eval.py
+python src/sft/extract_concept_vectors.py --dry-run --concepts coherence human_alignment
+python src/sft/run_concept_steering_eval.py --dry-run --smoke --layers 16 --alphas 0 2
+```
+
+Read:
+
+- The lane is ready for a smoke-first CAA/ActAdd-style sweep over coherence and
+  human-alignment contrast vectors.
+- No GPU extraction or steering sweep has run yet; the report contains the
+  commands and should be used before spending long GPU time.
+
+## 2026-07-08 active: fixed CHTC GPU smoke retries
+
+MMLU:
+
+- Unconstrained environment probe `5513077` exited 0 but landed on an 11GB GTX
+  1080 Ti. It proved the PyTorch CUDA image can install/import
+  `vllm==0.6.6.post1` and `lm-eval==0.4.12`, not that full MMLU can run.
+- MMLU smoke `5513124` used the high-memory GPU constraint and landed on an
+  NVIDIA L40, but failed before `lm_eval` because
+  `docker://vllm/vllm-openai:v0.6.6.post1` had incompatible
+  `huggingface-hub==1.22.0` for its installed `transformers`.
+- Submit files now use
+  `docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-devel` and install Python
+  packages into job scratch.
+- Fixed MMLU smoke retry `5513177` ran on `gpu5001.chtc.wisc.edu`, an NVIDIA
+  H200 with `143158` MB advertised GPU memory. It validated staged model/adaptor
+  access, UUID-style `CUDA_VISIBLE_DEVICES` normalization, package pinning, and
+  model weight loading. It failed during vLLM LoRA/Triton profiling because the
+  runtime image lacked a C compiler.
+- Active MMLU smoke retry: devel-image cluster `5513195`, run directory
+  `~/chtc-runs/coherence-mmlu-shards-20260709-004133`. It is idle but
+  satisfiable at last check; `condor_q -better-analyze` reported six immediately
+  willing high-memory GPU slots and 46 more if drained.
+
+Huth/LeBel:
+
+- Added `chtc/huth_lebel_smoke/` with a debug extraction job over
+  `sweetaspie`, first 64 words, layer 24, and arms
+  `base,lowLR,scrambled,taskvec_a0p25`.
+- Patched `src/sft/huth_lebel_extract_word_states.py` with `--model_path` and
+  `--hf_cache` so CHTC jobs can use staged model paths directly.
+- Staged missing CHTC adapters:
+  `/staging/s/suresh27/adapters/lowLR` and
+  `/staging/s/suresh27/adapters/scrambled`; each has a real 641 MB
+  `adapter_model.safetensors`. `taskvec_a0p25` was already staged.
+- The first Huth debug submission `5513145` used the old vLLM image and was
+  removed after the MMLU image incompatibility was identified.
+- Fixed Huth debug retry: cluster `5513178`, run directory
+  `~/chtc-runs/coherence-huth-extract-debug-20260708-1945`.
+- User log confirms it is executing on `gpu4000.chtc.wisc.edu`, an NVIDIA L40
+  with `45468` MB advertised GPU memory. This is sufficient for the 64-word,
+  one-layer debug extraction if the staged model/adapters load cleanly.
+
+Current rule:
+
+- Use `TARGET.CUDAGlobalMemoryMb >= 40000` for CHTC Llama GPU jobs. Do not
+  relax this to make jobs start faster; small GPUs produce false progress.

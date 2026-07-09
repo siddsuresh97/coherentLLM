@@ -2,16 +2,19 @@
 
 Generated: 2026-07-08T22:59:00.688548+00:00
 
+Manual update: 2026-07-08 after CHTC staging cluster `5513059` and extraction
+debug cluster `5513178`.
+
 ## Current Read
 
-- Status: the Huth/LeBel narrative-encoding experiment is not runnable yet
-  from the paths visible to this session.
-- Best candidate root checked: `none`.
-- Blocking data pieces: need `ds003020` with `stimuli/*.wav`,
-  `derivatives/TextGrids/*.TextGrid` or `derivative/TextGrids/*.TextGrid`,
-  and either author preprocessed
-  `derivatives/preprocessed_data/UTS*/<story>.hf5` or fMRIPrep/BIDS BOLD
-  files staged locally/CHTC.
+- Status: the Huth/LeBel narrative-encoding experiment now has enough staged
+  data for a first CHTC smoke test, but not yet for the full high-data run.
+- Best staged smoke root: `/staging/s/suresh27/datasets/ds003020-smoke`.
+- Staged data pieces: 3 WAVs, 3 TextGrids, and 9 author-preprocessed HF5 files
+  for `sweetaspie`, `againstthewind`, and `wheretheressmoke` across
+  `UTS01`-`UTS03`.
+- Blocking piece: validate the tiny CHTC extraction/encoding smoke before
+  staging the 76.86 GB high-data subset.
 - Reusable local study hook found: `/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/tribev2/tribev2/studies/lebel2023bold.py`
   (`exists=True`).
 - CHTC submission is now validated. Audit smoke cluster `5513006` completed
@@ -25,6 +28,14 @@ Generated: 2026-07-08T22:59:00.688548+00:00
   smoke subset is 7.88 GB (`sweetaspie`, `againstthewind`,
   `wheretheressmoke` for `UTS01`-`UTS03`), and the full `UTS01`-`UTS03`
   author-preprocessed subset is 76.86 GB across 420 manifest files.
+- Smoke staging cluster `5513059` completed with exit code 0 and returned
+  artifacts under `results/sft_huth_lebel/chtc_5513059/`. Its stage summary
+  reports all 15 planned files present, `7,877,643,435` expected bytes and
+  actual bytes, and zero missing paths.
+- GPU-side extraction debug cluster `5513178` is running from
+  `~/chtc-runs/coherence-huth-extract-debug-20260708-1945` on an NVIDIA L40.
+  It extracts layer 24 for the first 64 words of `sweetaspie` across
+  `base,lowLR,scrambled,taskvec_a0p25`.
 
 ## Checked Roots
 
@@ -85,3 +96,6 @@ Generated: 2026-07-08T22:59:00.688548+00:00
 - Smoke manifest: `results/sft_huth_lebel/staging_manifest_smoke.csv`
 - High-data manifest: `results/sft_huth_lebel/staging_manifest_highdata.csv`
 - CHTC smoke outputs: `results/sft_huth_lebel/chtc_5513006/`
+- CHTC staging smoke outputs: `results/sft_huth_lebel/chtc_5513059/`
+- CHTC extraction debug outputs, once pulled:
+  `results/sft_huth_lebel/chtc_huth_extract_debug_5513178/`

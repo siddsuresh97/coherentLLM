@@ -17,28 +17,34 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 - **fMRI:** the THINGS-fMRI pipeline works. Ventral Visual shows the expected
   object-RSA signal and scrambled-control separation, but aligned arms are
   mostly flat versus base in the primary visual ROI. The Huth/LeBel
-  narrative-fMRI lane now has a local/CHTC audit bundle and a completed CHTC
-  smoke run (`5513006`). The OpenNeuro metadata layout is verified and a CHTC
-  staging manifest is ready: smoke is 7.88 GB; the `UTS01`-`UTS03` high-data
-  subset is 76.86 GB, under the observed 100 GB staging quota. A CPU-only CHTC
-  smoke staging retry is active as cluster `5513036`.
+  narrative-fMRI lane now has local/CHTC audit bundles and a completed CHTC
+  staging smoke (`5513059`): `/staging/s/suresh27/datasets/ds003020-smoke`
+  contains all 15 planned smoke files, 7.88 GB, with no missing manifest paths.
+  The next step is a tiny Huth-style encoding smoke, not more data discovery.
 - **fMRI x hub bridge:** the new concept-held-out regression does not support a
   clean semantic-hub explanation of Ventral Visual RSA. Averaged hub predictors
   are roughly tied with single prompt spokes in Ventral Visual, while
   ATL/Language show small aligned-state advantages that remain exploratory.
 - **Benchmarks:** task-vector `alpha=0.25` improves ARC retention over lowrank
   (`ARC-Easy 0.808`, `ARC-Challenge 0.559`) but still drops versus base
-  (`0.850`, `0.649`). HellaSwag and WinoGrande are near-preserved; MMLU is the
-  remaining long mitigation cell. Bounded TruthfulQA log-sample diagnostics
-  show lowrank improves by suppressing false-answer pressure, `taskvec_a0p25`
-  is aggregate-flat but increases plausible-false pressure, and scrambled SFT
+  (`0.850`, `0.649`). HellaSwag and WinoGrande are near-preserved under
+  coherent lowrank/task-vector states, while scrambled SFT badly hurts
+  HellaSwag too (`acc_norm=0.287`, delta `-0.398`). MMLU is the remaining long
+  mitigation cell. Bounded TruthfulQA log-sample diagnostics show lowrank
+  improves by suppressing false-answer pressure, `taskvec_a0p25` is
+  aggregate-flat but increases plausible-false pressure, and scrambled SFT
   catastrophically hurts item-level calibration.
-- **Runtime:** GPU0 finished scrambled ARC and is now running scrambled
-  HellaSwag as the next random-perturbation control; GPU1 is running
-  `taskvec_a0p25` MMLU with `gpu_mem_util=0.72`,
-  `batch_size=2`. H100 handled rank-16
-  lowrank MMLU, but rank-64 LoRA vLLM evals (`taskvec_a0p25`, `scrambled`)
-  stall before GPU allocation on `opt-a007`, even after local adapter staging.
+- **Runtime:** the missing `taskvec_a0p25` MMLU row is split across both local
+  A5000s as fallback, but CHTC is now the faster path. CHTC smoke `5513177`
+  proved H200 placement, UUID-device normalization, dependency pinning, and
+  model loading, then failed because the runtime image lacked a C compiler for
+  Triton/vLLM LoRA kernels. Devel-image retry `5513195` is queued with
+  satisfiable high-memory GPU requirements. Huth extraction debug `5513178` is
+  still running on an L40. Both CHTC lanes require
+  `TARGET.CUDAGlobalMemoryMb >= 40000`, so small GPUs are no longer absorbing
+  jobs. H100 handled rank-16 lowrank MMLU, but rank-64 LoRA vLLM evals
+  (`taskvec_a0p25`, `scrambled`) stall before GPU allocation on `opt-a007`,
+  even after local adapter staging.
 
 ### Reading Map
 
@@ -57,15 +63,21 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   [`research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md`](research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md)
 - TruthfulQA log-sample diagnostic:
   [`results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md`](results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md)
+- Benchmark skill diagnostics:
+  [`results/sft_eval/wide_bench/skill_diagnostics/REPORT.md`](results/sft_eval/wide_bench/skill_diagnostics/REPORT.md)
 - THINGS-fMRI RSA report: [`results/sft_fmri/REPORT.md`](results/sft_fmri/REPORT.md)
 - Huth/LeBel language-fMRI audit:
   [`results/sft_huth_lebel/REPORT.md`](results/sft_huth_lebel/REPORT.md)
 - Huth/LeBel ds003020 staging plan:
   [`results/sft_huth_lebel/STAGING_PLAN.md`](results/sft_huth_lebel/STAGING_PLAN.md)
+- Huth/LeBel encoding plan:
+  [`results/sft_huth_lebel/ENCODING_PLAN.md`](results/sft_huth_lebel/ENCODING_PLAN.md)
 - fMRI x semantic-hub bridge:
   [`results/sft_fmri_semantic_bridge/REPORT.md`](results/sft_fmri_semantic_bridge/REPORT.md)
 - Held-out fMRI hub regression:
   [`results/sft_fmri_hub_regression/REPORT.md`](results/sft_fmri_hub_regression/REPORT.md)
+- Concept-vector steering lane:
+  [`results/sft_eval/concept_steering/REPORT.md`](results/sft_eval/concept_steering/REPORT.md)
 
 <details>
 <summary><strong>1. Semantic Hub Result</strong></summary>
@@ -293,6 +305,7 @@ Completed partial metrics:
 | `scrambled` | zero-shot | TruthfulQA-MC2 | acc | 0.482 |
 | `scrambled` | 25-shot | ARC-Easy | acc_norm | 0.306 |
 | `scrambled` | 25-shot | ARC-Challenge | acc_norm | 0.225 |
+| `scrambled` | 10-shot | HellaSwag | acc_norm | 0.287 |
 
 Base/lowLR/lowrank retention summary:
 
@@ -313,6 +326,8 @@ Skill-level read:
 
 - Detailed map:
   [`results/sft_eval/wide_bench/skill_map.md`](results/sft_eval/wide_bench/skill_map.md).
+- Deeper skill diagnostics:
+  [`results/sft_eval/wide_bench/skill_diagnostics/REPORT.md`](results/sft_eval/wide_bench/skill_diagnostics/REPORT.md).
 - Preserved or near-preserved skills: script/event plausibility
   (HellaSwag), coreference/discourse commonsense (WinoGrande), and physical
   affordance commonsense under task-vector mitigation (PIQA).
@@ -347,6 +362,9 @@ Read:
   strengthens the read that ARC/science multiple-choice ranking is highly
   perturbation-sensitive, while task-vector mitigation preserves a real part of
   the useful semantic signal.
+- Scrambled HellaSwag is also bad (`acc_norm=0.287` vs base `0.685`). This
+  changes the interpretation: script/event plausibility is preserved by coherent
+  lowrank/task-vector states, but not by arbitrary rank-64 SFT perturbation.
 - Bounded TruthfulQA log-sample diagnostics are now trackable in
   [`results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md`](results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md).
   On the 200-item diagnostic slice, base is `0.5224`, lowrank is `0.5528`,
@@ -362,10 +380,11 @@ Read:
   Recurring worst drops are safety/myth/misconception lures such as
   defibrillation for flatline, washing chicken, Latin-American language
   overgeneralization, Agenda 21, and voodoo dolls.
-- Current active follow-ups: scrambled HellaSwag on GPU0 and
-  `taskvec_a0p25` MMLU 5-shot on GPU1. The MMLU run is not a repeat of the
-  finished base/lowLR/lowrank MMLU rows; it fills the missing task-vector
-  mitigation row.
+- Current active follow-up: `taskvec_a0p25` MMLU 5-shot. The local run is split
+  across both A5000s while CHTC smoke job `5513177` tests the scaled path on a
+  high-memory GPU.
+  This is not a repeat of the finished base/lowLR/lowrank MMLU rows; it fills
+  the missing task-vector mitigation row.
 
 </details>
 
@@ -374,10 +393,13 @@ Read:
 
 Current confirmed settings:
 
-- Current active A5000 lanes: GPU0 scrambled `hellaswag_10shot`; GPU1
-  `taskvec_a0p25 mmlu_5shot`.
+- Current active A5000 lanes: GPU0 and GPU1 are both running split
+  `taskvec_a0p25 mmlu_5shot` shards.
 - A5000 broad-bench long loglikelihood runs should use conservative settings:
   `gpu_mem_util=0.72` and `batch_size=2` for ARC/Hella.
+- Short MMLU batch probes showed `batch_size=4`, `gpu_mem_util=0.72` works on
+  short subjects, but long-context MMLU subjects still bottleneck around
+  1.8-2.6 requests/s with many truncation warnings.
 - `gpu_mem_util=0.82` with auto batch OOMed during prompt-logprob scoring.
 - `gpu_mem_util=0.65` plus `batch_size=8` left too little KV cache and failed
   vLLM initialization.
@@ -407,6 +429,13 @@ CHTC scale-out rule:
   output behavior have been validated.
 - Use CHTC for scaling independent, already-working lanes; do not use it as the
   first place to debug vLLM, adapter loading, datasets, or result writing.
+- CHTC APs do not see this local `/mnt/dv` checkout directly. Large reusable
+  inputs should be staged or downloaded inside the job; the current staged
+  model inputs are under `/staging/s/suresh27/models/` and
+  `/staging/s/suresh27/adapters/`.
+- The unconstrained CHTC GPU probe can land on small cards. Require
+  `TARGET.CUDAGlobalMemoryMb >= 40000` for vLLM/HF Llama jobs; this targets
+  L40S/A100/H200-class slots and excludes 11GB/16GB cards.
 - For CHTC access, run `chtc-master start` from this session, choose a Duo Push
   option, ask the user to approve the push, then verify with `chtc-master check`
   and `chtc-ssh 'hostname -f; condor_q -totals; echo STAGING=$STAGING'`.
@@ -447,8 +476,10 @@ Current plan:
   Metadata from the OpenNeuro GitHub mirror verifies the current `derivatives/`
   layout and DataLad annex file sizes; the staging plan is in
   [`results/sft_huth_lebel/STAGING_PLAN.md`](results/sft_huth_lebel/STAGING_PLAN.md).
-  No downloaded/staged `ds003020` root is visible yet, so the next concrete step
-  is a CPU-only CHTC downloader for the 7.88 GB smoke subset.
+  The 7.88 GB smoke subset is now staged on CHTC at
+  `/staging/s/suresh27/datasets/ds003020-smoke`; next is a small CHTC encoding
+  smoke over `sweetaspie`/`againstthewind` to held-out `wheretheressmoke`.
+  GPU-side debug extraction is queued as CHTC cluster `5513178`.
 - Fedorenko/EvLab language-network: prefer individually localized
   `sentences > nonword lists` masks. Atlas/group language ROIs are exploratory.
 - Benchmark-drops: first finish eval-only controls (`lowrank`, `scrambled`,
@@ -465,12 +496,13 @@ Current plan:
 
 Immediate:
 
-1. Let scrambled ARC and task-vector MMLU continue. When each finishes, parse
-   the JSON, update the README/log/skill map, and commit/push.
-2. Keep the already-running `taskvec_a0p25` MMLU lane unless it becomes clearly
-   redundant.
-3. Next free GPU lane should go to paper-style semantic-hub logit lens or to
-   scrambled ARC/Hella if the priority is the random-perturbation control.
+1. Keep the split local `taskvec_a0p25` MMLU lanes running as fallback while
+   CHTC smoke `5513177` validates the PyTorch-container high-memory GPU path.
+2. If the CHTC smoke succeeds, submit independent MMLU shards there and merge
+   before treating the row as final.
+3. Next free GPU lane should go to paper-style semantic-hub logit lens, concept
+   vector steering, or Huth/LeBel feature extraction after the encoding smoke
+   scripts pass locally.
 
 Scientific next:
 
@@ -478,9 +510,9 @@ Scientific next:
    [`research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md`](research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md),
    starting with CPU-only matched-vs-baseline similarity from existing hidden
    states.
-2. Huth/LeBel language-fMRI: submit a CPU-only CHTC downloader for the
-   manifest-listed smoke subset, rerun the audit on staged data, then start GPU
-   feature extraction only after the smoke root passes.
+2. Huth/LeBel language-fMRI: use the staged smoke subset to run the tiny
+   no-chat-template hidden-state extraction, word-to-TR alignment, and ridge
+   encoding smoke before staging the 76.86 GB high-data subset.
 3. fMRI bridge: do not overclaim Ventral Visual hub evidence. If continuing,
    run fixed-layer/nested-CV confirmation after the Huth smoke path is staged.
 4. Benchmark mechanism: inspect WiC/ARC failures and tasks with gains to decide

@@ -1,0 +1,29 @@
+RUN_MODE = extract_debug
+MIN_CUDA_GLOBAL_MEMORY_MB = 40000
+
+universe = container
+container_image = docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
+docker_override_entrypoint = true
+requirements = (TARGET.CUDAGlobalMemoryMb >= $(MIN_CUDA_GLOBAL_MEMORY_MB))
+rank = TARGET.CUDAGlobalMemoryMb
+
+batch_name = coherence_huth_extract_debug_$(Cluster)
+log = logs/huth_$(RUN_MODE)_$(Cluster)_$(Process).log
+output = logs/huth_$(RUN_MODE)_$(Cluster)_$(Process).out
+error = logs/huth_$(RUN_MODE)_$(Cluster)_$(Process).err
+
+executable = run_extract_debug.sh
+arguments =
+transfer_input_files = run_extract_debug.sh,src
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_output_files = huth_extract_debug_results.tgz
+environment = "MIN_CUDA_GLOBAL_MEMORY_MB=$(MIN_CUDA_GLOBAL_MEMORY_MB)"
+
+request_gpus = 1
+request_cpus = 8
+request_memory = 64GB
+request_disk = 80GB
++is_resumable = true
+
+queue 1

@@ -1,0 +1,146 @@
+2026-07-09:00:37:08 WARNING  [config.evaluate_config:287] --limit SHOULD ONLY BE USED FOR TESTING. REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT.
+2026-07-09:00:37:08 INFO     [config.evaluate_config:307] Using default fewshot_as_multiturn=True.
+2026-07-09:00:37:13 INFO     [_cli.run:388] Selected Tasks: ['mmlu_abstract_algebra']
+2026-07-09:00:37:14 INFO     [evaluator:214] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-07-09:00:37:14 INFO     [evaluator:239] Initializing vllm model, with arguments: {'pretrained': '/staging/s/suresh27/models/llama31-8b-instruct', 'dtype': 'bfloat16', 'tensor_parallel_size': 1, 'gpu_memory_utilization': 0.72, 'max_model_len': 2048, 'trust_remote_code': True, 'enable_lora': True, 'lora_local_path': '/staging/s/suresh27/adapters/taskvec_a0p25', 'max_lora_rank': 64}
+`torch_dtype` is deprecated! Use `dtype` instead!
+[W709 00:37:24.316110301 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:55<02:47, 55.70s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [01:29<01:26, 43.03s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [01:39<00:27, 27.61s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [02:28<00:00, 36.30s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [02:28<00:00, 37.18s/it]
+
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/worker/model_runner_base.py", line 116, in _wrapper
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/worker/model_runner.py", line 1691, in execute_model
+[rank0]:     hidden_or_intermediate_states = model_executable(
+[rank0]:                                     ^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/torch/nn/modules/module.py", line 1747, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/model_executor/models/llama.py", line 568, in forward
+[rank0]:     model_output = self.model(input_ids, positions, kv_caches,
+[rank0]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/compilation/decorators.py", line 168, in __call__
+[rank0]:     return self.forward(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/model_executor/models/llama.py", line 351, in forward
+[rank0]:     hidden_states = self.get_input_embeddings(input_ids)
+[rank0]:                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/model_executor/models/llama.py", line 336, in get_input_embeddings
+[rank0]:     return self.embed_tokens(input_ids)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/torch/nn/modules/module.py", line 1747, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/lora/layers.py", line 255, in forward
+[rank0]:     self.punica_wrapper.add_lora_embedding(full_output,
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/lora/punica_wrapper/punica_gpu.py", line 258, in add_lora_embedding
+[rank0]:     expand_fun(y, x, lora_b_stacked, add_inputs)
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/lora/punica_wrapper/punica_gpu.py", line 75, in _expand_prefill
+[rank0]:     sgmv_expand(
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/torch/_ops.py", line 1116, in __call__
+[rank0]:     return self._op(*args, **(kwargs or {}))
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/lora/ops/sgmv_expand.py", line 175, in _sgmv_expand
+[rank0]:     _sgmv_expand_kernel[grid](
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/triton/runtime/jit.py", line 345, in <lambda>
+[rank0]:     return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)
+[rank0]:                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/triton/runtime/jit.py", line 607, in run
+[rank0]:     device = driver.active.get_current_device()
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/triton/runtime/driver.py", line 23, in __getattr__
+[rank0]:     self._initialize_obj()
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/triton/runtime/driver.py", line 20, in _initialize_obj
+[rank0]:     self._obj = self._init_fn()
+[rank0]:                 ^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/triton/runtime/driver.py", line 9, in _create_driver
+[rank0]:     return actives[0]()
+[rank0]:            ^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/triton/backends/nvidia/driver.py", line 371, in __init__
+[rank0]:     self.utils = CudaUtils()  # TODO: make static
+[rank0]:                  ^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/triton/backends/nvidia/driver.py", line 80, in __init__
+[rank0]:     mod = compile_module_from_src(Path(os.path.join(dirname, "driver.c")).read_text(), "cuda_utils")
+[rank0]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/triton/backends/nvidia/driver.py", line 57, in compile_module_from_src
+[rank0]:     so = _build(name, src_path, tmpdir, library_dirs(), include_dir, libraries)
+[rank0]:          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/triton/runtime/build.py", line 32, in _build
+[rank0]:     raise RuntimeError("Failed to find C compiler. Please specify via CC environment variable.")
+[rank0]: RuntimeError: Failed to find C compiler. Please specify via CC environment variable.
+
+[rank0]: The above exception was the direct cause of the following exception:
+
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank0]:   File "<frozen runpy>", line 88, in _run_code
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/lm_eval/__main__.py", line 14, in <module>
+[rank0]:     cli_evaluate()
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/lm_eval/__main__.py", line 10, in cli_evaluate
+[rank0]:     parser.execute(args)
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/lm_eval/_cli/harness.py", line 60, in execute
+[rank0]:     args.func(args)
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/lm_eval/_cli/run.py", line 391, in _execute
+[rank0]:     results = simple_evaluate(
+[rank0]:               ^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/lm_eval/utils.py", line 575, in _wrapper
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/lm_eval/evaluator.py", line 242, in simple_evaluate
+[rank0]:     lm = lm_eval.api.registry.get_model(model).create_from_arg_obj(
+[rank0]:          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/lm_eval/api/model.py", line 169, in create_from_arg_obj
+[rank0]:     return cls(**arg_dict, **additional_config)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/lm_eval/models/vllm_causallms.py", line 146, in __init__
+[rank0]:     self.model = LLM(**self.model_args)  # type: ignore[invalid-argument-type]
+[rank0]:                  ^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/utils.py", line 986, in inner
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/entrypoints/llm.py", line 230, in __init__
+[rank0]:     self.llm_engine = self.engine_class.from_engine_args(
+[rank0]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/engine/llm_engine.py", line 517, in from_engine_args
+[rank0]:     engine = cls(
+[rank0]:              ^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/engine/llm_engine.py", line 276, in __init__
+[rank0]:     self._initialize_kv_caches()
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/engine/llm_engine.py", line 416, in _initialize_kv_caches
+[rank0]:     self.model_executor.determine_num_available_blocks())
+[rank0]:     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/executor/gpu_executor.py", line 68, in determine_num_available_blocks
+[rank0]:     return self.driver_worker.determine_num_available_blocks()
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/worker/worker.py", line 202, in determine_num_available_blocks
+[rank0]:     self.model_runner.profile_run()
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/worker/model_runner.py", line 1331, in profile_run
+[rank0]:     self.execute_model(model_input, kv_caches, intermediate_tensors)
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/var/lib/condor/execute/slot2/dir_2943416/scratch/pydeps/vllm/worker/model_runner_base.py", line 152, in _wrapper
+[rank0]:     raise type(err)(
+[rank0]: RuntimeError: Error in model execution (input dumped to /tmp/err_execute_model_input_20260709-003954.pkl): Failed to find C compiler. Please specify via CC environment variable.
+[rank0]:[W709 00:39:54.107239173 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())

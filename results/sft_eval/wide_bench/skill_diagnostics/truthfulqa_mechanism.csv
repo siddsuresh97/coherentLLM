@@ -1,0 +1,6 @@
+arm,full_mc2_acc,full_delta_vs_base,diagnostic_n,diagnostic_mc2_acc,diagnostic_delta_acc,delta_truth_logodds,delta_true_mass,delta_false_pressure,frac_false_pressure_up,mechanism
+base,0.5504737077659664,0.0,200,0.5224422448038044,,,,,,Reference arm.
+lowLR,0.5332141509697766,-0.017259556796189734,,,,,,,,No logsample slice present for lowLR; full MC2 is within the flat threshold.
+lowrank,0.5406164754825878,-0.009857232283378536,200,0.5528344170527982,0.030392172248993626,0.3946377918394573,-3.544447547969461,-3.9390853398089183,0.335,False-answer pressure falls more than truthful-answer mass on the 200-item slice.
+taskvec_a0p25,0.5228796439393488,-0.027594063826617554,200,0.5266516456587305,0.004209400854925682,-0.6239475500859688,4.3026022027410855,4.9265497528270545,0.84,False-answer pressure rises more than truthful-answer mass; aggregate MC2 is nearly flat but calibration worsens.
+scrambled,0.48199417975065023,-0.06847952801531615,200,0.4701069663596513,-0.05233527844415336,3.0815422002189807,-59.027436413495685,-62.10897861371467,0,"Suppresses true and false likelihoods extremely hard, causing catastrophic item-level flips."

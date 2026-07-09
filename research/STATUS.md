@@ -50,8 +50,9 @@ read this top section first for where the project actually stands.**
   invariance, but not yet a clean concept-dominant hub because concept-minus-format alignment stays
   negative for every arm. Next Task 9 step is the bridge: correlate arm/layer hub metrics with fMRI
   RSA and test whether format-averaged hub RDMs predict fMRI better than single-format RDMs. The
-  stronger language-fMRI/Huth/Fedorenko run now has audit code, a CHTC smoke, and a concrete
-  `ds003020` staging manifest, but it still needs actual downloaded/staged data before encoding.
+  stronger language-fMRI/Huth/Fedorenko run now has audit code, a CHTC smoke, a concrete
+  `ds003020` staging manifest, and a completed CHTC smoke staging job. The staged smoke root
+  is ready for a tiny encoding smoke before the high-data subset is staged.
   Task 10
   lowrank and task-vector wide-benchmark mitigation is in flight. Task 9 and Task
   10 briefs now track these follow-ups:
@@ -189,27 +190,42 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   tied with or worse than the best single prompt-format spoke. ATL/Language
   show small aligned-state averaged-predictor advantages, but the absolute
   effects are exploratory.
-- Current active A5000 lanes are scrambled `hellaswag_10shot` on GPU0 and
-  `taskvec_a0p25 mmlu_5shot` on GPU1. The MMLU lane uses `gpu_mem_util=0.72
-  --batch_size 2`; it is not a duplicate of the completed base/lowLR/lowrank
-  MMLU rows, but the missing task-vector mitigation row.
+- Current active A5000 lanes are split `taskvec_a0p25 mmlu_5shot` shards on
+  GPU0 and GPU1. They use `gpu_mem_util=0.72 --batch_size 4`; short MMLU
+  probes pass at this setting, but long-context subjects still run slowly and
+  emit truncation warnings at `max_model_len=2048`. This is not a duplicate of
+  the completed base/lowLR/lowrank MMLU rows, but the missing task-vector
+  mitigation row.
+- CHTC MMLU scale-out is now staged and smoke-tested through the scheduler. Use
+  the PyTorch CUDA image, not `vllm/vllm-openai`, because the latter has a
+  `huggingface-hub`/`transformers` incompatibility on CHTC. Require
+  `TARGET.CUDAGlobalMemoryMb >= 40000`. Smoke `5513177` ran on an H200 and
+  loaded the model, but failed because the runtime image lacked a C compiler
+  for Triton/vLLM LoRA kernels. The active retry is devel-image cluster
+  `5513195` from `~/chtc-runs/coherence-mmlu-shards-20260709-004133`; it is
+  idle but satisfiable at last check.
+- Scrambled HellaSwag 10-shot is complete: `acc_norm=0.287` on 1000 examples
+  versus base `0.685` (`delta=-0.398`). HellaSwag is therefore preserved by
+  coherent lowrank/task-vector states, not by arbitrary rank-64 SFT
+  perturbation.
 - Huth/LeBel language-fMRI now has a trackable audit script, CHTC-ready CPU
   audit bundle, and staging manifest: `src/sft/huth_lebel_audit.py`,
   `src/sft/plan_huth_lebel_staging.py`, `chtc/huth_lebel_audit/`,
   `results/sft_huth_lebel/REPORT.md`, and
-  `results/sft_huth_lebel/STAGING_PLAN.md`. The corrected default audit found
-  zero plausible downloaded/staged `ds003020` roots in the paths visible to
-  this session. A metadata-only OpenNeuro Git clone at `/tmp/ds003020-git`
-  verifies the current `derivatives/` layout and DataLad annex file sizes:
-  the smoke subset is 7.88 GB across `sweetaspie`, `againstthewind`, and
-  `wheretheressmoke`; the `UTS01`-`UTS03` high-data subset is 76.86 GB across
-  420 manifest files, fitting the observed 100 GB CHTC staging quota if only
-  needed WAV/TextGrid/HF5 assets are staged. The experiment is blocked on a
-  CPU-only downloader/staging job, not on fMRI experiment design or scheduler
-  access. CHTC access was validated with audit cluster `5513006`, which exited
-  0 and returned artifacts under `results/sft_huth_lebel/chtc_5513006/`.
-  The active CHTC smoke staging retry is cluster `5513036`; it uses sparse
-  checkout plus git-annex/DataLad in `/staging/s/suresh27/datasets/ds003020-smoke`.
+  `results/sft_huth_lebel/STAGING_PLAN.md`. The corrected default local audit
+  found zero plausible downloaded/staged `ds003020` roots in paths visible to
+  this session, but the CHTC staging retry `5513059` succeeded and staged all
+  15 smoke files under `/staging/s/suresh27/datasets/ds003020-smoke`
+  (`7.88 GB`, no missing paths). The `UTS01`-`UTS03` high-data subset remains
+  76.86 GB across 420 manifest files, fitting the observed 100 GB CHTC staging
+  quota if only needed WAV/TextGrid/HF5 assets are staged. The experiment is
+  now in a small encoding-smoke phase, not data discovery. The GPU-side debug
+  extraction is running as fixed CHTC cluster `5513178` on an NVIDIA L40;
+  lowLR and scrambled adapters have also been staged under
+  `/staging/s/suresh27/adapters/`.
+- Concept-vector steering scaffolding is committed and pushed as `99c0c60`.
+  It adds coherence/human-alignment contrast datasets and dry-run validated
+  extraction/eval scripts, but no GPU steering sweep has run yet.
 - Bridge read: semantic-hub invariance is strong internally, but it does not yet
   explain object-fMRI RSA. Ventral Visual delta-vs-base vs mid hub RDM is
   positive but small-n (`r=0.600`, `n=6`, `p=0.208`); retrieval top-1 is not

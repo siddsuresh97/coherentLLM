@@ -1,0 +1,162 @@
+{
+  "dataset_root": "/staging/s/suresh27/datasets/ds003020-smoke",
+  "n_files": 15,
+  "n_missing": 0,
+  "missing": [],
+  "expected_bytes": 7877643435,
+  "actual_bytes": 7877643435,
+  "expected_gb": 7.877643435,
+  "actual_gb": 7.877643435,
+  "files": [
+    {
+      "relative_path": "stimuli/sweetaspie.wav",
+      "kind": "wav",
+      "subject": "",
+      "story": "sweetaspie",
+      "expected_bytes": 59255932,
+      "actual_bytes": 59255932,
+      "exists": true,
+      "is_symlink": true
+    },
+    {
+      "relative_path": "derivatives/TextGrids/sweetaspie.TextGrid",
+      "kind": "textgrid",
+      "subject": "",
+      "story": "sweetaspie",
+      "expected_bytes": 386762,
+      "actual_bytes": 386762,
+      "exists": true,
+      "is_symlink": true
+    },
+    {
+      "relative_path": "derivatives/preprocessed_data/UTS01/sweetaspie.hf5",
+      "kind": "hf5",
+      "subject": "UTS01",
+      "story": "sweetaspie",
+      "expected_bytes": 101896304,
+      "actual_bytes": 101896304,
+      "exists": true,
+      "is_symlink": true
+    },
+    {
+      "relative_path": "derivatives/preprocessed_data/UTS02/sweetaspie.hf5",
+      "kind": "hf5",
+      "subject": "UTS02",
+      "story": "sweetaspie",
+      "expected_bytes": 118381304,
+      "actual_bytes": 118381304,
+      "exists": true,
+      "is_symlink": true
+    },
+    {
+      "relative_path": "derivatives/preprocessed_data/UTS03/sweetaspie.hf5",
+      "kind": "hf5",
+      "subject": "UTS03",
+      "story": "sweetaspie",
+      "expected_bytes": 120020384,
+      "actual_bytes": 120020384,
+      "exists": true,
+      "is_symlink": true
+    },
+    {
+      "relative_path": "stimuli/againstthewind.wav",
+      "kind": "wav",
+      "subject": "",
+      "story": "againstthewind",
+      "expected_bytes": 63532454,
+      "actual_bytes": 63532454,
+      "exists": true,
+      "is_symlink": true
+    },
+    {
+      "relative_path": "derivatives/TextGrids/againstthewind.TextGrid",
+      "kind": "textgrid",
+      "subject": "",
+      "story": "againstthewind",
+      "expected_bytes": 456043,
+      "actual_bytes": 456043,
+      "exists": true,
+      "is_symlink": true
+    },
+    {
+      "relative_path": "derivatives/preprocessed_data/UTS01/againstthewind.hf5",
+      "kind": "hf5",
+      "subject": "UTS01",
+      "story": "againstthewind",
+      "expected_bytes": 110333408,
+      "actual_bytes": 110333408,
+      "exists": true,
+      "is_symlink": true
+    },
+    {
+      "relative_path": "derivatives/preprocessed_data/UTS02/againstthewind.hf5",
+      "kind": "hf5",
+      "subject": "UTS02",
+      "story": "againstthewind",
+      "expected_bytes": 128183408,
+      "actual_bytes": 128183408,
+      "exists": true,
+      "is_symlink": true
+    },
+    {
+      "relative_path": "derivatives/preprocessed_data/UTS03/againstthewind.hf5",
+      "kind": "hf5",
+      "subject": "UTS03",
+      "story": "againstthewind",
+      "expected_bytes": 129958208,
+      "actual_bytes": 129958208,
+      "exists": true,
+      "is_symlink": true
+    },
+    {
+      "relative_path": "stimuli/wheretheressmoke.wav",
+      "kind": "wav",
+      "subject": "",
+      "story": "wheretheressmoke",
+      "expected_bytes": 106181968,
+      "actual_bytes": 106181968,
+      "exists": true,
+      "is_symlink": true
+    },
+    {
+      "relative_path": "derivatives/TextGrids/wheretheressmoke.TextGrid",
+      "kind": "textgrid",
+      "subject": "",
+      "story": "wheretheressmoke",
+      "expected_bytes": 998492,
+      "actual_bytes": 998492,
+      "exists": true,
+      "is_symlink": true
+    },
+    {
+      "relative_path": "derivatives/preprocessed_data/UTS01/wheretheressmoke.hf5",
+      "kind": "hf5",
+      "subject": "UTS01",
+      "story": "wheretheressmoke",
+      "expected_bytes": 2077476776,
+      "actual_bytes": 2077476776,
+      "exists": true,
+      "is_symlink": true
+    },
+    {
+      "relative_path": "derivatives/preprocessed_data/UTS02/wheretheressmoke.hf5",
+      "kind": "hf5",
+      "subject": "UTS02",
+      "story": "wheretheressmoke",
+      "expected_bytes": 2413581776,
+      "actual_bytes": 2413581776,
+      "exists": true,
+      "is_symlink": true
+    },
+    {
+      "relative_path": "derivatives/preprocessed_data/UTS03/wheretheressmoke.hf5",
+      "kind": "hf5",
+      "subject": "UTS03",
+      "story": "wheretheressmoke",
+      "expected_bytes": 2447000216,
+      "actual_bytes": 2447000216,
+      "exists": true,
+      "is_symlink": true
+    }
+  ]
+}

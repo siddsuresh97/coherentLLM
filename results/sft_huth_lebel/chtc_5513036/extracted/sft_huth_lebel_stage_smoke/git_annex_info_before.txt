@@ -1,0 +1,22 @@
+trusted repositories: 0
+semitrusted repositories: 5
+	00000000-0000-0000-0000-000000000001 -- web
+	00000000-0000-0000-0000-000000000002 -- bittorrent
+	2d584fb4-4599-4c6d-b08e-51eaad43d01a -- [s3-PUBLIC]
+	c7a387ca-8b90-412c-889f-efc34883a2d6 -- chtc-ds003020-smoke [here]
+	c8ac4a72-0900-4d77-83ff-3b4e30ba2967 -- root@openneuro-prod-dataset-worker-0:/datasets/ds003020
+untrusted repositories: 0
+transfers in progress: none
+available local disk space: 2.57 petabytes (+100 megabytes reserved)
+local annex keys: 0
+local annex size: 0 bytes
+annexed files in working tree: 15
+size of annexed files in working tree: 7.88 gigabytes
+combined annex size of all repositories: 579.39 gigabytes
+annex sizes of repositories: 
+	 289.5 GB: bdc0758c-ea8d-4aba-b363-f8c63f3c8c30
+	284.36 GB: 2d584fb4-4599-4c6d-b08e-51eaad43d01a -- [s3-PUBLIC]
+	  5.53 GB: c8ac4a72-0900-4d77-83ff-3b4e30ba2967 -- root@openneuro-prod-dataset-worker-0:/datasets/ds003020
+backend usage: 
+	MD5E: 15
+bloom filter size: 32 mebibytes (0% full)

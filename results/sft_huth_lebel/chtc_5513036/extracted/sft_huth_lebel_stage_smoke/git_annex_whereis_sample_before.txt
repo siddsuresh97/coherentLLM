@@ -1,0 +1,18 @@
+whereis stimuli/sweetaspie.wav (2 copies) 
+  	2d584fb4-4599-4c6d-b08e-51eaad43d01a -- [s3-PUBLIC]
+  	bdc0758c-ea8d-4aba-b363-f8c63f3c8c30
+
+  s3-PUBLIC: https://s3.amazonaws.com/openneuro.org/ds003020/stimuli/sweetaspie.wav?versionId=eNuWWcozzK3X_xUz6PilcSBWVXcSvkEu
+ok
+whereis derivatives/TextGrids/sweetaspie.TextGrid (2 copies) 
+  	2d584fb4-4599-4c6d-b08e-51eaad43d01a -- [s3-PUBLIC]
+  	bdc0758c-ea8d-4aba-b363-f8c63f3c8c30
+
+  s3-PUBLIC: https://s3.amazonaws.com/openneuro.org/ds003020/derivative/TextGrids/sweetaspie.TextGrid?versionId=9zumFiFE025lmcvmY4cMzWrZpe3xrXAy
+ok
+whereis derivatives/preprocessed_data/UTS01/sweetaspie.hf5 (2 copies) 
+  	2d584fb4-4599-4c6d-b08e-51eaad43d01a -- [s3-PUBLIC]
+  	bdc0758c-ea8d-4aba-b363-f8c63f3c8c30
+
+  s3-PUBLIC: https://s3.amazonaws.com/openneuro.org/ds003020/derivative/preprocessed_data/UTS01/sweetaspie.hf5?versionId=DRU2fjbFsp9Wdm7JaLtlhqwa9tIb5KF2
+ok

@@ -1,0 +1,26 @@
+It is highly recommended to configure Git before using DataLad. Set both 'user.name' and 'user.email' configuration variables.
+Cloning into '/staging/s/suresh27/datasets/ds003020-smoke'...
+From https://github.com/OpenNeuroDatasets/ds003020
+ * [new branch]        git-annex  -> git-annex
+Note: switching to '3.1.1'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at cb7c536d [OpenNeuro] Recorded changes
+  Remote origin not usable by git-annex; setting annex-ignore
+  https://github.com/OpenNeuroDatasets/ds003020.git/config download failed: Not Found
+run_stage_smoke.sh: line 74: python: command not found
+tar: Removing leading `/' from member names

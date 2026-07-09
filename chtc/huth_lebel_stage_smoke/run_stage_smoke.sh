@@ -6,6 +6,7 @@ ANNEX_JOBS="${ANNEX_JOBS:-4}"
 REPO_URL="${REPO_URL:-https://github.com/OpenNeuroDatasets/ds003020.git}"
 SNAPSHOT_TAG="${SNAPSHOT_TAG:-3.1.1}"
 MANIFEST="${MANIFEST:-staging_manifest_smoke.csv}"
+PYTHON_BIN="${PYTHON_BIN:-python3}"
 SCRATCH_ROOT="$PWD"
 OUT_DIR="$SCRATCH_ROOT/results/sft_huth_lebel_stage_smoke"
 TARBALL="$SCRATCH_ROOT/huth_lebel_stage_smoke_results.tgz"
@@ -22,6 +23,7 @@ trap 'status=$?; echo "exit_status=$status" > "$OUT_DIR/exit_status.txt"; tar -c
   echo "snapshot_tag=$SNAPSHOT_TAG"
   echo "annex_jobs=$ANNEX_JOBS"
   echo "manifest=$MANIFEST"
+  echo "python_bin=$PYTHON_BIN"
 } | tee "$OUT_DIR/stage_env.txt"
 
 echo "Tool versions:"
@@ -71,12 +73,12 @@ echo "Annex info after get:"
 git annex info | tee "$OUT_DIR/git_annex_info_after.txt"
 
 cd "$SCRATCH_ROOT"
-python huth_lebel_audit.py \
+"$PYTHON_BIN" huth_lebel_audit.py \
   --roots "$DATASET_ROOT" \
   --out_dir "$OUT_DIR/audit" \
   --max_scan_depth 2
 
-python - "$DATASET_ROOT" "$MANIFEST" "$OUT_DIR/stage_summary.json" <<'PY'
+"$PYTHON_BIN" - "$DATASET_ROOT" "$MANIFEST" "$OUT_DIR/stage_summary.json" <<'PY'
 import csv
 import json
 import os

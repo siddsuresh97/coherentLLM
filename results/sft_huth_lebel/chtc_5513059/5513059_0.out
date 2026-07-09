@@ -1,0 +1,134 @@
+started=2026-07-08T23:57:37+00:00
+hostname=suresh27-5513059.0-e4012.chtc.wisc.edu
+pwd=/var/lib/condor/execute/slot1/dir_1004558/scratch
+dataset_root=/staging/s/suresh27/datasets/ds003020-smoke
+repo_url=https://github.com/OpenNeuroDatasets/ds003020.git
+snapshot_tag=3.1.1
+annex_jobs=4
+manifest=staging_manifest_smoke.csv
+python_bin=python3
+Tool versions:
+git version 2.53.0
+git-annex version: 10.20251029
+build flags: Assistant Webapp Pairing Inotify DBus DesktopNotify TorrentParser MagicMime Benchmark Feeds Testsuite S3 WebDAV Servant
+dependency versions: aws-0.24.1 bloomfilter-2.0.1.2 crypton-0.34 DAV-1.3.4 feed-1.3.2.1 ghc-9.6.6 http-client-0.7.17 persistent-sqlite-2.13.3.0 torrent-10000.1.3 uuid-1.3.15 yesod-1.6.2.1
+key/value backends: SHA256E SHA256 SHA512E SHA512 SHA224E SHA224 SHA384E SHA384 SHA3_256E SHA3_256 SHA3_512E SHA3_512 SHA3_224E SHA3_224 SHA3_384E SHA3_384 SKEIN256E SKEIN256 SKEIN512E SKEIN512 BLAKE2B256E BLAKE2B256 BLAKE2B512E BLAKE2B512 BLAKE2B160E BLAKE2B160 BLAKE2B224E BLAKE2B224 BLAKE2B384E BLAKE2B384 BLAKE2BP512E BLAKE2BP512 BLAKE2S256E BLAKE2S256 BLAKE2S160E BLAKE2S160 BLAKE2S224E BLAKE2S224 BLAKE2SP256E BLAKE2SP256 BLAKE2SP224E BLAKE2SP224 SHA1E SHA1 MD5E MD5 WORM URL GITBUNDLE GITMANIFEST VURL X*
+remote types: git gcrypt p2p S3 bup directory rsync web bittorrent webdav adb tahoe glacier ddar git-lfs httpalso borg rclone hook external compute mask
+operating system: linux x86_64
+supported repository versions: 8 9 10
+upgrade supported from repository versions: 0 1 2 3 4 5 6 7 8 9 10
+datalad 1.3.1
+init chtc-ds003020-smoke ok
+(recording state in git...)
+Annex info before get:
+trusted repositories: 0
+semitrusted repositories: 5
+	00000000-0000-0000-0000-000000000001 -- web
+	00000000-0000-0000-0000-000000000002 -- bittorrent
+	2d584fb4-4599-4c6d-b08e-51eaad43d01a -- [s3-PUBLIC]
+	c7a387ca-8b90-412c-889f-efc34883a2d6 -- chtc-ds003020-smoke [here]
+	c8ac4a72-0900-4d77-83ff-3b4e30ba2967 -- root@openneuro-prod-dataset-worker-0:/datasets/ds003020
+untrusted repositories: 0
+transfers in progress: none
+available local disk space: 2.57 petabytes (+100 megabytes reserved)
+local annex keys: 15
+local annex size: 7.88 gigabytes
+annexed files in working tree: 15
+size of annexed files in working tree: 7.88 gigabytes
+combined annex size of all repositories: 587.27 gigabytes
+annex sizes of repositories: 
+	 289.5 GB: bdc0758c-ea8d-4aba-b363-f8c63f3c8c30
+	284.36 GB: 2d584fb4-4599-4c6d-b08e-51eaad43d01a -- [s3-PUBLIC]
+	  7.88 GB: c7a387ca-8b90-412c-889f-efc34883a2d6 -- chtc-ds003020-smoke [here]
+	  5.53 GB: c8ac4a72-0900-4d77-83ff-3b4e30ba2967 -- root@openneuro-prod-dataset-worker-0:/datasets/ds003020
+backend usage: 
+	MD5E: 15
+bloom filter size: 32 mebibytes (0% full)
+Manifest paths:
+stimuli/sweetaspie.wav
+derivatives/TextGrids/sweetaspie.TextGrid
+derivatives/preprocessed_data/UTS01/sweetaspie.hf5
+derivatives/preprocessed_data/UTS02/sweetaspie.hf5
+derivatives/preprocessed_data/UTS03/sweetaspie.hf5
+stimuli/againstthewind.wav
+derivatives/TextGrids/againstthewind.TextGrid
+derivatives/preprocessed_data/UTS01/againstthewind.hf5
+derivatives/preprocessed_data/UTS02/againstthewind.hf5
+derivatives/preprocessed_data/UTS03/againstthewind.hf5
+stimuli/wheretheressmoke.wav
+derivatives/TextGrids/wheretheressmoke.TextGrid
+derivatives/preprocessed_data/UTS01/wheretheressmoke.hf5
+derivatives/preprocessed_data/UTS02/wheretheressmoke.hf5
+derivatives/preprocessed_data/UTS03/wheretheressmoke.hf5
+Whereis sample before get:
+whereis stimuli/sweetaspie.wav (3 copies) 
+  	2d584fb4-4599-4c6d-b08e-51eaad43d01a -- [s3-PUBLIC]
+  	bdc0758c-ea8d-4aba-b363-f8c63f3c8c30
+  	c7a387ca-8b90-412c-889f-efc34883a2d6 -- chtc-ds003020-smoke [here]
+
+  s3-PUBLIC: https://s3.amazonaws.com/openneuro.org/ds003020/stimuli/sweetaspie.wav?versionId=eNuWWcozzK3X_xUz6PilcSBWVXcSvkEu
+ok
+whereis derivatives/TextGrids/sweetaspie.TextGrid (3 copies) 
+  	2d584fb4-4599-4c6d-b08e-51eaad43d01a -- [s3-PUBLIC]
+  	bdc0758c-ea8d-4aba-b363-f8c63f3c8c30
+  	c7a387ca-8b90-412c-889f-efc34883a2d6 -- chtc-ds003020-smoke [here]
+
+  s3-PUBLIC: https://s3.amazonaws.com/openneuro.org/ds003020/derivative/TextGrids/sweetaspie.TextGrid?versionId=9zumFiFE025lmcvmY4cMzWrZpe3xrXAy
+ok
+whereis derivatives/preprocessed_data/UTS01/sweetaspie.hf5 (3 copies) 
+  	2d584fb4-4599-4c6d-b08e-51eaad43d01a -- [s3-PUBLIC]
+  	bdc0758c-ea8d-4aba-b363-f8c63f3c8c30
+  	c7a387ca-8b90-412c-889f-efc34883a2d6 -- chtc-ds003020-smoke [here]
+
+  s3-PUBLIC: https://s3.amazonaws.com/openneuro.org/ds003020/derivative/preprocessed_data/UTS01/sweetaspie.hf5?versionId=DRU2fjbFsp9Wdm7JaLtlhqwa9tIb5KF2
+ok
+Annex info after get:
+trusted repositories: 0
+semitrusted repositories: 5
+	00000000-0000-0000-0000-000000000001 -- web
+	00000000-0000-0000-0000-000000000002 -- bittorrent
+	2d584fb4-4599-4c6d-b08e-51eaad43d01a -- [s3-PUBLIC]
+	c7a387ca-8b90-412c-889f-efc34883a2d6 -- chtc-ds003020-smoke [here]
+	c8ac4a72-0900-4d77-83ff-3b4e30ba2967 -- root@openneuro-prod-dataset-worker-0:/datasets/ds003020
+untrusted repositories: 0
+transfers in progress: none
+available local disk space: 2.57 petabytes (+100 megabytes reserved)
+local annex keys: 15
+local annex size: 7.88 gigabytes
+annexed files in working tree: 15
+size of annexed files in working tree: 7.88 gigabytes
+combined annex size of all repositories: 587.27 gigabytes
+annex sizes of repositories: 
+	 289.5 GB: bdc0758c-ea8d-4aba-b363-f8c63f3c8c30
+	284.36 GB: 2d584fb4-4599-4c6d-b08e-51eaad43d01a -- [s3-PUBLIC]
+	  7.88 GB: c7a387ca-8b90-412c-889f-efc34883a2d6 -- chtc-ds003020-smoke [here]
+	  5.53 GB: c8ac4a72-0900-4d77-83ff-3b4e30ba2967 -- root@openneuro-prod-dataset-worker-0:/datasets/ds003020
+backend usage: 
+	MD5E: 15
+bloom filter size: 32 mebibytes (0% full)
+wrote /var/lib/condor/execute/slot1/dir_1004558/scratch/results/sft_huth_lebel_stage_smoke/audit/audit.json
+wrote /var/lib/condor/execute/slot1/dir_1004558/scratch/results/sft_huth_lebel_stage_smoke/audit/candidate_roots.csv
+wrote /var/lib/condor/execute/slot1/dir_1004558/scratch/results/sft_huth_lebel_stage_smoke/audit/REPORT.md
+{
+  "best_candidate_path": "/staging/s/suresh27/datasets/ds003020-smoke",
+  "best_candidate_readiness": {
+    "audio_ready": true,
+    "preprocessed_hf5_ready": true,
+    "raw_or_fmriprep_bold_ready": false,
+    "test_story_ready": true,
+    "word_timing_ready": true
+  },
+  "can_run_huth_encoding_smoke": true,
+  "n_candidates_checked": 6,
+  "n_existing_paths": 1,
+  "n_plausible_ds003020_roots": 1,
+  "n_test_story_ready_roots": 1
+}
+{
+  "n_files": 15,
+  "n_missing": 0,
+  "expected_gb": 7.877643435,
+  "actual_gb": 7.877643435
+}
+7.4G	/staging/s/suresh27/datasets/ds003020-smoke
+finished=2026-07-09T00:01:45+00:00
