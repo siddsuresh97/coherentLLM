@@ -1,0 +1,20 @@
+{
+  "commit": "712464e11fae1e57aeb01806412df83290ebf731",
+  "inputs": [
+    "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/wide_bench/skill_diagnostics/task_skill_deltas.csv",
+    "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/wide_bench/skill_diagnostics/skill_summary.csv",
+    "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/wide_bench/skill_diagnostics/semantic_human_summary.csv",
+    "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/wide_bench/skill_diagnostics/truthfulqa_mechanism.csv"
+  ],
+  "outputs": [
+    "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/wide_bench/attribution/headline_task_attribution.csv",
+    "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/wide_bench/attribution/skill_family_attribution.csv",
+    "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/wide_bench/attribution/semantic_target_gains.csv",
+    "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/wide_bench/attribution/truthfulqa_attribution.csv",
+    "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/wide_bench/attribution/mitigation_targets.csv"
+  ],
+  "notes": [
+    "No benchmarks are run by this script.",
+    "taskvec_a0p25 aggregate MMLU remains pending until Sagan's MMLU lane merges it."
+  ]
+}
