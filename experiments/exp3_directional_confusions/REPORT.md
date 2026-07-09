@@ -1,6 +1,103 @@
 # Experiment 3 Report
 
-Last updated: 2026-07-09T15:10:13-05:00
+Last updated: 2026-07-09T15:22:17-05:00
+
+## Plain-English Result
+
+Step 1 found a positive result for H1 on neutral concepts.
+
+The model's triplet geometry predicted the direction of its later multiple-choice mistakes. When the model was wrong, it usually chose the distractor that had been preregistered as the target's nearest neighbor in the triplet RDM.
+
+Main result:
+
+- Model made `45` parseable errors on `72` neutral concept items.
+- `36/45` errors (`80.0%`) landed on the geometry-predicted near neighbor.
+- A shuffled-neighbor null expected about `33.3%`; its 95th percentile was `44.4%`.
+- Monte Carlo shuffle p-value: `0.0002`.
+- Base-rate control expected `45.4%`; observed was `80.0%`, so lift was `+34.6` percentage points.
+- Quantitative H2 slope was negative: `-0.620`, 95% CI `[-0.877, -0.359]`.
+- Predicted-vs-actual confusion agreement was `r = 0.634`.
+
+Interpretation: this was not just "the model made errors." The errors had the predicted destination. In this neutral set, representational proximity predicted which wrong answer the model moved toward.
+
+## What I Ran
+
+Model:
+
+- `llama-3.1-8b-instruct`
+- Local weights: `meta-llama/Llama-3.1-8B-Instruct`
+- Served with `vLLM` from the H100 environment.
+- Actual H100 path used: `/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659`
+
+Concept set:
+
+- 18 neutral Leuven concrete concepts: reptiles/amphibians plus tools.
+- Examples: `alligator`, `crocodile`, `snake`, `cobra`, `tortoise`, `turtle`, `axe`, `saw`.
+- Step 2 safety concepts were not started.
+
+Geometry prompt, canonical:
+
+```text
+System: You are a helpful assistant who gives responses to questions.
+
+Target concept: {anchor}
+Candidate A: {concept1}
+Candidate B: {concept2}
+Which candidate is more similar in semantic meaning to the target? Answer with exactly A or B.
+```
+
+Geometry prompt, paraphrase reliability run:
+
+```text
+System: You are a helpful assistant who gives responses to questions.
+
+Compare the target to two candidates.
+Target: {anchor}
+A: {concept1}
+B: {concept2}
+Which candidate is closer in meaning to the target? Reply with only A or B.
+```
+
+Geometry run details:
+
+- Temperature `0.0`.
+- Full anchor/candidate enumeration: `2448` triplets per run.
+- Required runs: two canonical runs plus one paraphrase run.
+- Initial loose concept-name prompt failed reliability because the model sometimes answered a third unlisted concept. I fixed this by switching to labeled A/B prompts before registering neighbors.
+
+Item prompt format:
+
+```text
+Which option is the best match for this description?
+- {feature clue}
+- {feature clue}
+- {feature clue}
+Answer with only A, B, C, or D.
+
+Options:
+A. {distractor_or_target}
+B. {distractor_or_target}
+C. {distractor_or_target}
+D. {distractor_or_target}
+```
+
+Each item included:
+
+- the correct target concept,
+- one preregistered near distractor from the RDM,
+- two far-control distractors,
+- counterbalanced answer positions.
+
+There were `72` items total: `4` per target.
+
+## What Changed In The Repo
+
+- Created branch `exp3-directional-confusions`.
+- Added `scripts/run_experiment3.py` with the Step 1 pipeline.
+- Added `experiments/exp3_directional_confusions/` with concept set, protocol, raw responses, RDMs, preregistered neighbors, generated items, scored results, report, and research log.
+- Added CHTC runner files under `chtc/exp3_directional_confusions/`.
+- Added a single-load `run-triplet-suite` command so all geometry runs can reuse one vLLM load.
+- Pushed the experiment branch to origin.
 
 ## Current status
 
