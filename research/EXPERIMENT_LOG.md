@@ -1448,11 +1448,33 @@ Full shard submission:
   `mmlu_full_retry_missing_staging.sub` and
   `mmlu_full_retry_missing_staging_manifest.tsv` for exactly shards `1`, `3`,
   `5`, `6`, and `7`.
+- Cache-quota failure: original shards `0` and `2`, plus retry shards `5`, `6`,
+  and `7`, failed after model load because `lm-eval`/`datasets` tried to write
+  MMLU files and lock files under `/staging/s/suresh27/hf_home` or
+  `/staging/s/suresh27/hf_datasets_cache`, which hit `Errno 122` disk quota.
+- Fix: `run_mmlu_shard.sh` now defaults `HF_HOME`, `HF_HUB_CACHE`, and
+  `HF_DATASETS_CACHE` to job scratch (`$PWD/hf_home` and
+  `$PWD/hf_datasets_cache`) while still reading model/adapters from `/staging`.
+- Cache retry submitted: cluster `5513309`, using
+  `mmlu_full_retry_cache_quota.sub` and
+  `mmlu_full_retry_cache_quota_manifest.tsv` for exactly shards `5`, `6`, and
+  `7`.
+- Cache retry submitted: cluster `5513313`, using
+  `mmlu_full_retry_cache_quota_extra.sub` and
+  `mmlu_full_retry_cache_quota_extra_manifest.tsv` for exactly shards `0` and
+  `2`.
 - Commands run:
   `chtc-push chtc/mmlu_shards/mmlu_full_retry_missing_staging_manifest.tsv 'chtc-runs/coherence-mmlu-shards-20260709-004133/'`;
   `chtc-push chtc/mmlu_shards/mmlu_full_retry_missing_staging.sub 'chtc-runs/coherence-mmlu-shards-20260709-004133/'`;
-  `chtc-ssh 'cd ~/chtc-runs/coherence-mmlu-shards-20260709-004133 && condor_submit mmlu_full_retry_missing_staging.sub'`.
-- Next read: monitor `5513268` and `5513291`, pull original and retry
+  `chtc-ssh 'cd ~/chtc-runs/coherence-mmlu-shards-20260709-004133 && condor_submit mmlu_full_retry_missing_staging.sub'`;
+  `chtc-push chtc/mmlu_shards/run_mmlu_shard.sh 'chtc-runs/coherence-mmlu-shards-20260709-004133/'`;
+  `chtc-push chtc/mmlu_shards/mmlu_full_retry_cache_quota_manifest.tsv 'chtc-runs/coherence-mmlu-shards-20260709-004133/'`;
+  `chtc-push chtc/mmlu_shards/mmlu_full_retry_cache_quota.sub 'chtc-runs/coherence-mmlu-shards-20260709-004133/'`;
+  `chtc-ssh 'cd ~/chtc-runs/coherence-mmlu-shards-20260709-004133 && condor_submit mmlu_full_retry_cache_quota.sub'`;
+  `chtc-push chtc/mmlu_shards/mmlu_full_retry_cache_quota_extra_manifest.tsv 'chtc-runs/coherence-mmlu-shards-20260709-004133/'`;
+  `chtc-push chtc/mmlu_shards/mmlu_full_retry_cache_quota_extra.sub 'chtc-runs/coherence-mmlu-shards-20260709-004133/'`;
+  `chtc-ssh 'cd ~/chtc-runs/coherence-mmlu-shards-20260709-004133 && condor_submit mmlu_full_retry_cache_quota_extra.sub'`.
+- Next read: monitor `5513291`, `5513309`, and `5513313`, pull original and retry
   tarballs into
   `results/sft_eval/wide_bench/chtc_mmlu_shards/coherence-mmlu-shards-20260709-004133/`,
   then merge with `src/sft/merge_mmlu_shards.py`.

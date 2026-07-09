@@ -130,9 +130,9 @@ if ! command -v cc >/dev/null 2>&1 && ! command -v gcc >/dev/null 2>&1; then
   exit 68
 fi
 
-export HF_HOME="${HF_HOME:-/staging/s/suresh27/hf_home}"
-export HF_HUB_CACHE="${HF_HUB_CACHE:-/staging/s/suresh27/hf_home/hub}"
-export HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-/staging/s/suresh27/hf_datasets_cache}"
+export HF_HOME="${HF_HOME:-${PWD}/hf_home}"
+export HF_HUB_CACHE="${HF_HUB_CACHE:-${HF_HOME}/hub}"
+export HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-${PWD}/hf_datasets_cache}"
 export TRITON_CACHE_DIR="${TRITON_CACHE_DIR:-${PWD}/triton_cache}"
 export VLLM_CACHE_ROOT="${VLLM_CACHE_ROOT:-${PWD}/vllm_cache}"
 export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"

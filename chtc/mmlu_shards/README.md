@@ -20,13 +20,17 @@ The full run uses the 57 MMLU subject tasks only. Aggregate tasks such as `mmlu`
 - `mmlu_full.sub`: eight-GPU full submit file.
 - `mmlu_full_retry_missing_staging_manifest.tsv`: retry manifest for shards that failed in cluster `5513268` after landing on hosts without `/staging`.
 - `mmlu_full_retry_missing_staging.sub`: retry submit file using the staging requirement for that manifest.
+- `mmlu_full_retry_cache_quota_manifest.tsv`: retry manifest for shards that failed after the shared staging Hugging Face cache hit disk quota.
+- `mmlu_full_retry_cache_quota.sub`: retry submit file for the cache-quota recovery manifest.
+- `mmlu_full_retry_cache_quota_extra_manifest.tsv`: second cache-quota retry manifest for shards that failed after the first cache retry was already submitted.
+- `mmlu_full_retry_cache_quota_extra.sub`: submit file for the second cache-quota recovery manifest.
 - `run_mmlu_shard.sh`: container runner. It checks staged paths, records GPU/env diagnostics, installs missing `lm-eval`/`vllm` packages if needed, runs `lm_eval`, and always returns a tarball.
 
 The submit files use `docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-devel`, matching the successful CHTC GPU probe path while also providing a C compiler for Triton/vLLM runtime kernels. The runner installs a per-job Python overlay when needed. The overlay pins `vllm==0.6.6.post1`, `lm-eval==0.4.12`, `huggingface-hub>=0.24,<1.0`, and `datasets>=2.16,<5` so dependency resolution stays compatible with `transformers`.
 
 CHTC may expose the assigned GPU through a UUID-valued `CUDA_VISIBLE_DEVICES` such as `GPU-...`. The runner records that original value and then normalizes the effective value to `0`, because this container exposes only the assigned GPU and vLLM `0.6.6` expects numeric CUDA device IDs.
 
-The runner writes `progress.log` and streams step markers to HTCondor stdout. Smoke jobs use a 15-minute pip timeout and a 1-hour lm-eval timeout; full shards use the same pip timeout and a 4-hour lm-eval timeout.
+The runner writes `progress.log` and streams step markers to HTCondor stdout. Smoke jobs use a 15-minute pip timeout and a 1-hour lm-eval timeout; full shards use the same pip timeout and a 4-hour lm-eval timeout. Hugging Face hub and datasets caches default to job scratch (`$PWD/hf_home` and `$PWD/hf_datasets_cache`) to avoid filling shared staging quota.
 
 ## Submit
 
@@ -56,6 +60,23 @@ For the 2026-07-09 recovery run only, retry the shards that failed on non-stagin
 chtc-push chtc/mmlu_shards/mmlu_full_retry_missing_staging_manifest.tsv "chtc-runs/${RUN_ID}/"
 chtc-push chtc/mmlu_shards/mmlu_full_retry_missing_staging.sub "chtc-runs/${RUN_ID}/"
 chtc-ssh "cd ~/chtc-runs/${RUN_ID} && condor_submit mmlu_full_retry_missing_staging.sub"
+```
+
+If shards fail because the shared staging Hugging Face cache is out of quota, push the updated runner plus the cache-quota retry files and submit only the failed shards:
+
+```bash
+chtc-push chtc/mmlu_shards/run_mmlu_shard.sh "chtc-runs/${RUN_ID}/"
+chtc-push chtc/mmlu_shards/mmlu_full_retry_cache_quota_manifest.tsv "chtc-runs/${RUN_ID}/"
+chtc-push chtc/mmlu_shards/mmlu_full_retry_cache_quota.sub "chtc-runs/${RUN_ID}/"
+chtc-ssh "cd ~/chtc-runs/${RUN_ID} && condor_submit mmlu_full_retry_cache_quota.sub"
+```
+
+If more shards reveal the same cache-quota failure after that retry is already submitted, use the extra manifest:
+
+```bash
+chtc-push chtc/mmlu_shards/mmlu_full_retry_cache_quota_extra_manifest.tsv "chtc-runs/${RUN_ID}/"
+chtc-push chtc/mmlu_shards/mmlu_full_retry_cache_quota_extra.sub "chtc-runs/${RUN_ID}/"
+chtc-ssh "cd ~/chtc-runs/${RUN_ID} && condor_submit mmlu_full_retry_cache_quota_extra.sub"
 ```
 
 Useful status commands:

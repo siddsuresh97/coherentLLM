@@ -46,7 +46,10 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   full 8-shard MMLU array is running as `5513268`. Shards `1`, `3`, `5`, `6`,
   and `7` landed on non-staging hosts and exited before model load; the
   staging-constrained recovery cluster is `5513291` for exactly those five
-  shards. Huth extraction debug `5513178` completed cleanly; staged-output
+  shards. Shards `0`, `2`, `5`, `6`, and `7` then exposed shared staging
+  Hugging Face cache quota failures, so the runner now uses job-scratch caches
+  by default and cache-quota retries are queued as `5513309` (`5`-`7`) and
+  `5513313` (`0`, `2`). Huth extraction debug `5513178` completed cleanly; staged-output
   three-story smoke `5513245` wrote the base features but failed on staging
   directory quota, so bundle-output recovery `5513306` is queued. Concept steering
   smoke `5513235` exposed a staging visibility failure on a non-staging

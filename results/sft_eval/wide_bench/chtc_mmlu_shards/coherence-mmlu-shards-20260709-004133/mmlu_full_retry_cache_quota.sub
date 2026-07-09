@@ -1,0 +1,42 @@
+RUN_MODE = full_cache
+STATE_NAME = taskvec_a0p25
+LIMIT = 1000
+NUM_FEWSHOT = 5
+BATCH_SIZE = 2
+GPU_MEM_UTIL = 0.72
+MAX_MODEL_LEN = 2048
+MIN_CUDA_GLOBAL_MEMORY_MB = 40000
+PIP_TIMEOUT_SECONDS = 900
+LMEVAL_TIMEOUT_SECONDS = 14400
+MODEL_PATH = /staging/s/suresh27/models/llama31-8b-instruct
+ADAPTER_PATH = /staging/s/suresh27/adapters/taskvec_a0p25
+MAX_LORA_RANK = 64
+
+universe = container
+container_image = docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-devel
+docker_override_entrypoint = true
+requirements = (TARGET.HasCHTCStaging == true) && (TARGET.CUDAGlobalMemoryMb >= $(MIN_CUDA_GLOBAL_MEMORY_MB))
+rank = TARGET.CUDAGlobalMemoryMb
+
+batch_name = coherence_mmlu_full_retry_cache_$(Cluster)
+log = logs/mmlu_$(RUN_MODE)_$(Cluster)_$(Process)_$(SHARD_ID).log
+output = logs/mmlu_$(RUN_MODE)_$(Cluster)_$(Process)_$(SHARD_ID).out
+error = logs/mmlu_$(RUN_MODE)_$(Cluster)_$(Process)_$(SHARD_ID).err
+
+executable = run_mmlu_shard.sh
+arguments = $(RUN_MODE) $(STATE_NAME) $(SHARD_ID) $(TASK_SPEC) $(LIMIT) $(EXPECTED_N) $(NUM_FEWSHOT) $(MODEL_PATH) $(ADAPTER_PATH) $(MAX_LORA_RANK) $(BATCH_SIZE) $(GPU_MEM_UTIL) $(MAX_MODEL_LEN)
+transfer_input_files = run_mmlu_shard.sh,mmlu_full_retry_cache_quota_manifest.tsv,mmlu_subjects.csv
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_output_files = mmlu_$(RUN_MODE)_$(STATE_NAME)_$(SHARD_ID)_results.tgz
+stream_output = TRUE
+stream_error = TRUE
+environment = "MIN_CUDA_GLOBAL_MEMORY_MB=$(MIN_CUDA_GLOBAL_MEMORY_MB) PIP_TIMEOUT_SECONDS=$(PIP_TIMEOUT_SECONDS) LMEVAL_TIMEOUT_SECONDS=$(LMEVAL_TIMEOUT_SECONDS)"
+
+request_gpus = 1
+request_cpus = 8
+request_memory = 40GB
+request_disk = 80GB
++is_resumable = true
+
+queue SHARD_ID,TASK_SPEC,EXPECTED_N from mmlu_full_retry_cache_quota_manifest.tsv
