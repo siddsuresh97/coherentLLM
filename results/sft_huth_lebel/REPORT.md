@@ -91,26 +91,32 @@ Manual update: 2026-07-09 after completing uncapped CPU encoding cluster
 - Uncapped all-subject CPU encoding cluster `5513373` was submitted at
   `2026-07-08 21:08:30 CDT` from
   `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204` using
-  `huth_encoding_smoke_bundle_uncapped_all.sub`. It consumes the validated
-  `5513306` feature bundle, sets `MAX_VOXELS=0` so the wrapper omits
-  `--max_voxels`, evaluates `UTS01,UTS02,UTS03`, and requests CPU only
+  `huth_encoding_smoke_bundle_uncapped_all.sub`. It consumed the validated
+  `5513306` feature bundle, set `MAX_VOXELS=0` so the wrapper omitted
+  `--max_voxels`, evaluated `UTS01,UTS02,UTS03`, and requested CPU only
   (`4` CPUs, `16GB` memory, `20GB` disk). It was initially idle with no hold
-  and 5 willing matches at `2026-07-08 21:11:49 CDT`, then began executing on
-  `oconnor2007.chtc.wisc.edu` at `2026-07-08 21:13:46 CDT` with `GPUs=0`.
-  It completed normally with `ExitCode=0` after about `986` seconds.
+  and 5 willing matches at `2026-07-08 21:11:49 CDT`, then executed on
+  `oconnor2007.chtc.wisc.edu` from `2026-07-08 21:13:46` to
+  `2026-07-08 21:30:09 CDT` with `GPUs=0`. It completed normally with
+  `ExitCode=0`, peak logged memory `1722 MB`, and about `986` seconds of slot
+  busy time.
 - Uncapped encoding outcome: pulled artifacts are under
   `results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_uncapped_all_5513373/`.
   `exit_status.txt == 0`, `encoding_exit_status.txt == 0`, and
   `summary.csv` has all 36 expected rows (`3` subjects x `4` arms x `3`
-  layers) with full voxel counts (`81126`-`95556` finite voxels by subject).
+  layers) with full voxel counts: `UTS01=81126`, `UTS02=94251`,
+  `UTS03=95556`. `alpha_cv.csv` has all 360 expected alpha-CV rows.
 - Uncapped smoke read: mean held-out Pearson `r` values are small but positive
   for most arms. At layer 16, averaged across `UTS01`-`UTS03`, base is highest
   (`0.009785`), followed by `taskvec_a0p25` (`0.009137`), `lowLR`
-  (`0.008287`), and `scrambled` (`0.004988`). `taskvec_a0p25` is close to base
-  and better than `lowLR`, but it does not improve over base on this smoke.
-  Treat this as evidence that the full-voxel path works and that task-vector
-  features are not obviously worse than aligned LoRA; do not treat it as a
-  final Huth/Fedorenko arm comparison.
+  (`0.008287`), and `scrambled` (`0.004988`). `base` is the best subject-level
+  row for all three subjects (`UTS01` base L16 mean `r=0.007640`, `UTS02`
+  base L32 mean `r=0.011303`, `UTS03` base L16 mean `r=0.011305`).
+  `taskvec_a0p25` beats same-layer base only for `UTS02` L16 (`0.011037` vs
+  `0.010409`); `lowLR` trails base in all nine subject/layer cells;
+  `scrambled` is usually lower and is negative for `UTS02` L24/L32. Treat this
+  as evidence that the full-voxel path works; do not treat it as a final
+  Huth/Fedorenko arm comparison.
 - Duplicate recovery cluster `5513310` had identical settings and was removed
   while idle.
 - Duplicate cluster `5513244` held before model work because its submit
@@ -120,7 +126,37 @@ Manual update: 2026-07-09 after completing uncapped CPU encoding cluster
   `chtc/huth_lebel_smoke/huth_encoding_smoke_bundle.sub` for capped
   bundle-returned features, and
   `chtc/huth_lebel_smoke/huth_encoding_smoke_bundle_uncapped_all.sub` for the
-  queued uncapped all-subject smoke.
+  completed uncapped all-subject smoke.
+
+## Uncapped 5513373 Exact Mean-r Results
+
+All rows use `sweetaspie,againstthewind` for training and held-out
+`wheretheressmoke` for testing. Values are mean voxelwise Pearson `r` over all
+finite voxels.
+
+| Subject | Arm | L16 | L24 | L32 |
+|---|---|---:|---:|---:|
+| `UTS01` | `base` | 0.007640 | 0.005942 | 0.003637 |
+| `UTS01` | `lowLR` | 0.005228 | 0.004545 | -0.000024 |
+| `UTS01` | `scrambled` | 0.003554 | 0.005323 | 0.000069 |
+| `UTS01` | `taskvec_a0p25` | 0.005663 | 0.004924 | 0.001469 |
+| `UTS02` | `base` | 0.010409 | 0.008560 | 0.011303 |
+| `UTS02` | `lowLR` | 0.009891 | 0.006204 | 0.004589 |
+| `UTS02` | `scrambled` | 0.001885 | -0.000144 | -0.009166 |
+| `UTS02` | `taskvec_a0p25` | 0.011037 | 0.005836 | 0.005713 |
+| `UTS03` | `base` | 0.011305 | 0.009458 | 0.007635 |
+| `UTS03` | `lowLR` | 0.009744 | 0.008265 | 0.005761 |
+| `UTS03` | `scrambled` | 0.009525 | 0.005687 | 0.002701 |
+| `UTS03` | `taskvec_a0p25` | 0.010710 | 0.009034 | 0.005410 |
+
+Subject-mean rows by arm/layer:
+
+| Arm | L16 | L24 | L32 |
+|---|---:|---:|---:|
+| `base` | 0.009785 | 0.007987 | 0.007525 |
+| `lowLR` | 0.008287 | 0.006338 | 0.003442 |
+| `scrambled` | 0.004988 | 0.003622 | -0.002132 |
+| `taskvec_a0p25` | 0.009137 | 0.006598 | 0.004197 |
 
 ## Checked Roots
 

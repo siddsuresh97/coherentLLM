@@ -1,6 +1,6 @@
 # Active Agent Handoff
 
-Last coordination snapshot: 2026-07-08 21:28 CT.
+Last coordination snapshot: 2026-07-08 21:36 CT.
 
 Branch: `coherence-sft`
 
@@ -10,9 +10,7 @@ Persistent objective: determine what the coherence-trained model improves, what 
 
 Source: `chtc-ssh 'condor_q -batch suresh27'` with the active `chtc-master` wrapper.
 
-| Cluster | Batch | State | Owner |
-| --- | --- | --- | --- |
-| `5513373.0` | `coherence_huth_encoding_smoke_bundle_uncapped_all_5513373` | running | Sartre / Huth fMRI |
+No jobs are currently in the queue: `0` running, `0` idle, `0` held.
 
 Held jobs: none.
 
@@ -23,13 +21,14 @@ Completed since the previous handoff:
   writer bug; corrected/rescored artifacts are committed under
   `results/sft_eval/concept_steering/chtc/5513347/rescored_v2/`.
 - The concept checkpoint is pushed in `30e6601`.
+- Huth uncapped encoding `5513373.0` completed with `ExitCode=0` and
+  `RemoteWallClockTime=986.0`; the result checkpoint is pushed in `ff86cb4`.
 
 ## Active Agent Goals
 
 | Agent | ID | Lane | Current goal |
 | --- | --- | --- | --- |
 | Boole | `019f44b4-b2fd-7960-bd39-440dbb17743f` | Concept steering scale-up | Build a validated expanded judged generation suite and submit one short CHTC GPU job only after local dry-run checks pass. |
-| Sartre | `019f44b4-d7ea-7131-9ea2-26181b412bd3` | Huth / language-fMRI | Monitor running uncapped CPU encoding job `5513373`, pull results when complete, and commit a Huth-only scientific checkpoint. |
 
 Completed agents already closed:
 
@@ -42,6 +41,7 @@ Completed agents already closed:
 | Curie | `019f44a4-3d12-7e52-8879-d9d0a27617ba` | `aecf2cc` |
 | Feynman | `019f44a4-3d55-7231-9c2c-84ef85427a1c` | `2afd0f2` |
 | Russell / main-thread concept pickup | `019f445f-a869-70c2-bccc-dfa9c1d9314c` | `30e6601` |
+| Sartre / main-thread Huth pickup | `019f44b4-d7ea-7131-9ea2-26181b412bd3` | `ff86cb4` |
 
 ## Current Scientific Checkpoints
 
@@ -53,7 +53,12 @@ Completed agents already closed:
   generation candidate; human-alignment layer 24 alpha 4 and layer 16 alpha 2
   are retention-safe but baseline-saturated; layer-12 human-alignment steering
   is a failure mode.
-- Huth feature extraction bundle `5513306` produced all planned arm/story feature files; capped encoding smokes validated the path but are not yet a scientific subject-level comparison.
+- Huth feature extraction bundle `5513306` produced all planned arm/story
+  feature files. Uncapped encoding `5513373` returned all 36 full-voxel rows
+  across `UTS01`-`UTS03`, four arms, and three layers. Layer-16 mean held-out
+  Pearson `r` across subjects is base `0.009785`, `taskvec_a0p25` `0.009137`,
+  `lowLR` `0.008287`, and scrambled `0.004988`; this validates the full-voxel
+  smoke path but does not show task-vector improvement over base.
 - The semantic-hub/MEMP paper-method lane is committed in `aecf2cc`; use
   `taskvec_a0p25` as the primary arm and gate claims on paper-style controls.
 - The retention failure-suite gate is committed in `2afd0f2`; the first smoke is
