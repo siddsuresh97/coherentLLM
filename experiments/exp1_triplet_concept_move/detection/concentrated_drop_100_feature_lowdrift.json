@@ -1,0 +1,342 @@
+{
+  "detection": {
+    "boundary_crossed_control_only": false,
+    "boundary_crossed_floor_adjusted": false,
+    "target_rank": 30,
+    "target_snr_control_only": 0.4918406872070476,
+    "target_snr_floor_adjusted": 0.4918406872070476,
+    "target_top_ranked": false
+  },
+  "edit_id": "concentrated_drop_100",
+  "global": {
+    "floor_rms_used": 0.08837798012172736,
+    "floor_source": "protocol_floor.overall_rms_floor_mean",
+    "upper_rms_control_null": 0.2351282709005514,
+    "upper_rms_edit": 0.19541273378051632
+  },
+  "inputs": {
+    "edit_spec": "experiments/exp1_triplet_concept_move/candidate_edits/concentrated_drop_100.json",
+    "rdm_base": "experiments/exp1_triplet_concept_move/artifacts/rdms/rdm_base.npy",
+    "rdm_control": "experiments/exp1_triplet_concept_move/rdms/control_feature_lowdrift_concentrated_drop_100/rdm.npy",
+    "rdm_edit": "experiments/exp1_triplet_concept_move/rdms/edit_feature_lowdrift_concentrated_drop_100/rdm.npy"
+  },
+  "localization": {
+    "neighbor_pair_rank": 20,
+    "top_target_pairs": [
+      {
+        "abs_null_delta": 0.125,
+        "abs_target_delta": 0.2142857142857142,
+        "concept": "blender",
+        "rank": 1,
+        "signed_target_delta": -0.2142857142857142
+      },
+      {
+        "abs_null_delta": 0.1071428571428571,
+        "abs_target_delta": 0.2142857142857142,
+        "concept": "drill",
+        "rank": 2,
+        "signed_target_delta": 0.2142857142857142
+      },
+      {
+        "abs_null_delta": 0.3214285714285714,
+        "abs_target_delta": 0.2142857142857142,
+        "concept": "blackberry",
+        "rank": 3,
+        "signed_target_delta": -0.2142857142857142
+      },
+      {
+        "abs_null_delta": 0.3928571428571429,
+        "abs_target_delta": 0.1964285714285714,
+        "concept": "artichoke",
+        "rank": 4,
+        "signed_target_delta": -0.1964285714285714
+      },
+      {
+        "abs_null_delta": 0.4464285714285715,
+        "abs_target_delta": 0.1607142857142857,
+        "concept": "anteater",
+        "rank": 5,
+        "signed_target_delta": -0.1607142857142857
+      },
+      {
+        "abs_null_delta": 0.0714285714285714,
+        "abs_target_delta": 0.1428571428571429,
+        "concept": "car",
+        "rank": 6,
+        "signed_target_delta": 0.1428571428571429
+      },
+      {
+        "abs_null_delta": 0.1785714285714286,
+        "abs_target_delta": 0.1428571428571429,
+        "concept": "crowbar",
+        "rank": 7,
+        "signed_target_delta": 0.1428571428571429
+      },
+      {
+        "abs_null_delta": 0.017857142857142794,
+        "abs_target_delta": 0.125,
+        "concept": "bell",
+        "rank": 8,
+        "signed_target_delta": 0.125
+      },
+      {
+        "abs_null_delta": 0.1071428571428571,
+        "abs_target_delta": 0.1071428571428572,
+        "concept": "tumbleweed",
+        "rank": 9,
+        "signed_target_delta": 0.1071428571428572
+      },
+      {
+        "abs_null_delta": 0.2857142857142858,
+        "abs_target_delta": 0.1071428571428571,
+        "concept": "bird",
+        "rank": 10,
+        "signed_target_delta": 0.1071428571428571
+      }
+    ]
+  },
+  "ranking": [
+    {
+      "concept": "bench",
+      "edit_row_rms": 0.2071364870771854,
+      "null_row_rms": 0.18340142786751246,
+      "rank": 1,
+      "snr_control_only": 1.129415891062849,
+      "snr_floor_adjusted": 1.129415891062849
+    },
+    {
+      "concept": "dress",
+      "edit_row_rms": 0.1801958138136807,
+      "null_row_rms": 0.17869453884359868,
+      "rank": 2,
+      "snr_control_only": 1.008401347796062,
+      "snr_floor_adjusted": 1.008401347796062
+    },
+    {
+      "concept": "bison",
+      "edit_row_rms": 0.16091940932771728,
+      "null_row_rms": 0.16496832912092135,
+      "rank": 3,
+      "snr_control_only": 0.9754563811443091,
+      "snr_floor_adjusted": 0.9754563811443091
+    },
+    {
+      "concept": "beetle",
+      "edit_row_rms": 0.19215572136327083,
+      "null_row_rms": 0.19782308397792975,
+      "rank": 4,
+      "snr_control_only": 0.9713513584931716,
+      "snr_floor_adjusted": 0.9713513584931716
+    },
+    {
+      "concept": "ostrich",
+      "edit_row_rms": 0.2054575145584342,
+      "null_row_rms": 0.21157459842025567,
+      "rank": 5,
+      "snr_control_only": 0.9710878153261528,
+      "snr_floor_adjusted": 0.9710878153261528
+    },
+    {
+      "concept": "blender",
+      "edit_row_rms": 0.18938908786143205,
+      "null_row_rms": 0.19695964928958382,
+      "rank": 6,
+      "snr_control_only": 0.9615628812527941,
+      "snr_floor_adjusted": 0.9615628812527941
+    },
+    {
+      "concept": "car",
+      "edit_row_rms": 0.21266319229427313,
+      "null_row_rms": 0.23038363348655186,
+      "rank": 7,
+      "snr_control_only": 0.9230828990579615,
+      "snr_floor_adjusted": 0.9230828990579615
+    },
+    {
+      "concept": "beaver",
+      "edit_row_rms": 0.22940312050185532,
+      "null_row_rms": 0.25122850862670426,
+      "rank": 8,
+      "snr_control_only": 0.9131253525161077,
+      "snr_floor_adjusted": 0.9131253525161077
+    },
+    {
+      "concept": "bell",
+      "edit_row_rms": 0.24161246530751984,
+      "null_row_rms": 0.2664164870012633,
+      "rank": 9,
+      "snr_control_only": 0.906897572395263,
+      "snr_floor_adjusted": 0.906897572395263
+    },
+    {
+      "concept": "cheetah",
+      "edit_row_rms": 0.1616012742858462,
+      "null_row_rms": 0.17847904013966634,
+      "rank": 10,
+      "snr_control_only": 0.9054355859342773,
+      "snr_floor_adjusted": 0.9054355859342773
+    },
+    {
+      "concept": "missile",
+      "edit_row_rms": 0.18471572201408215,
+      "null_row_rms": 0.20551102608807145,
+      "rank": 11,
+      "snr_control_only": 0.8988117354585271,
+      "snr_floor_adjusted": 0.8988117354585271
+    },
+    {
+      "concept": "file",
+      "edit_row_rms": 0.21105424692307095,
+      "null_row_rms": 0.24186264065748725,
+      "rank": 12,
+      "snr_control_only": 0.8726202870742428,
+      "snr_floor_adjusted": 0.8726202870742428
+    },
+    {
+      "concept": "ant",
+      "edit_row_rms": 0.19527764027402694,
+      "null_row_rms": 0.22759856848052504,
+      "rank": 13,
+      "snr_control_only": 0.8579915136449389,
+      "snr_floor_adjusted": 0.8579915136449389
+    },
+    {
+      "concept": "bassoon",
+      "edit_row_rms": 0.1970154689447472,
+      "null_row_rms": 0.23452266342980524,
+      "rank": 14,
+      "snr_control_only": 0.8400700642891842,
+      "snr_floor_adjusted": 0.8400700642891842
+    },
+    {
+      "concept": "artichoke",
+      "edit_row_rms": 0.15585144454145428,
+      "null_row_rms": 0.18743401372310167,
+      "rank": 15,
+      "snr_control_only": 0.8315003314803647,
+      "snr_floor_adjusted": 0.8315003314803647
+    },
+    {
+      "concept": "bear",
+      "edit_row_rms": 0.17693213073974712,
+      "null_row_rms": 0.21297319711233076,
+      "rank": 16,
+      "snr_control_only": 0.8307718207677837,
+      "snr_floor_adjusted": 0.8307718207677837
+    },
+    {
+      "concept": "blackberry",
+      "edit_row_rms": 0.16914790383231357,
+      "null_row_rms": 0.20379168794630176,
+      "rank": 17,
+      "snr_control_only": 0.8300039394976861,
+      "snr_floor_adjusted": 0.8300039394976861
+    },
+    {
+      "concept": "bird",
+      "edit_row_rms": 0.1489982383036566,
+      "null_row_rms": 0.18080499680153347,
+      "rank": 18,
+      "snr_control_only": 0.8240825250377865,
+      "snr_floor_adjusted": 0.8240825250377865
+    },
+    {
+      "concept": "burrito",
+      "edit_row_rms": 0.30182779460023923,
+      "null_row_rms": 0.36710250683943485,
+      "rank": 19,
+      "snr_control_only": 0.8221894129757447,
+      "snr_floor_adjusted": 0.8221894129757447
+    },
+    {
+      "concept": "boar",
+      "edit_row_rms": 0.16486831799980384,
+      "null_row_rms": 0.20705684472099156,
+      "rank": 20,
+      "snr_control_only": 0.7962466453208218,
+      "snr_floor_adjusted": 0.7962466453208218
+    },
+    {
+      "concept": "anteater",
+      "edit_row_rms": 0.15947800361894082,
+      "null_row_rms": 0.201785441823784,
+      "rank": 21,
+      "snr_control_only": 0.7903345364142296,
+      "snr_floor_adjusted": 0.7903345364142296
+    },
+    {
+      "concept": "crowbar",
+      "edit_row_rms": 0.3442883715123424,
+      "null_row_rms": 0.43802434146482455,
+      "rank": 22,
+      "snr_control_only": 0.7860028288861439,
+      "snr_floor_adjusted": 0.7860028288861439
+    },
+    {
+      "concept": "candle",
+      "edit_row_rms": 0.15525058629871352,
+      "null_row_rms": 0.19837814422704667,
+      "rank": 23,
+      "snr_control_only": 0.7825992470270665,
+      "snr_floor_adjusted": 0.7825992470270665
+    },
+    {
+      "concept": "chocolate",
+      "edit_row_rms": 0.18153331796481872,
+      "null_row_rms": 0.23294669467836704,
+      "rank": 24,
+      "snr_control_only": 0.7792912374887503,
+      "snr_floor_adjusted": 0.7792912374887503
+    },
+    {
+      "concept": "tree",
+      "edit_row_rms": 0.129493478108455,
+      "null_row_rms": 0.16774443338944417,
+      "rank": 25,
+      "snr_control_only": 0.7719688545957064,
+      "snr_floor_adjusted": 0.7719688545957064
+    },
+    {
+      "concept": "camel",
+      "edit_row_rms": 0.13828108071461942,
+      "null_row_rms": 0.1808354020816276,
+      "rank": 26,
+      "snr_control_only": 0.7646792559578599,
+      "snr_floor_adjusted": 0.7646792559578599
+    },
+    {
+      "concept": "drill",
+      "edit_row_rms": 0.24106572698968232,
+      "null_row_rms": 0.3242046240924077,
+      "rank": 27,
+      "snr_control_only": 0.7435604216458418,
+      "snr_floor_adjusted": 0.7435604216458418
+    },
+    {
+      "concept": "tumbleweed",
+      "edit_row_rms": 0.19046015429211638,
+      "null_row_rms": 0.29389085255591924,
+      "rank": 28,
+      "snr_control_only": 0.6480642477835444,
+      "snr_floor_adjusted": 0.6480642477835444
+    },
+    {
+      "concept": "cactus",
+      "edit_row_rms": 0.1523190427397049,
+      "null_row_rms": 0.2353417342482172,
+      "rank": 29,
+      "snr_control_only": 0.6472249523709744,
+      "snr_floor_adjusted": 0.6472249523709744
+    },
+    {
+      "concept": "antelope",
+      "edit_row_rms": 0.11027842059651144,
+      "null_row_rms": 0.22421573380342996,
+      "rank": 30,
+      "snr_control_only": 0.4918406872070476,
+      "snr_floor_adjusted": 0.4918406872070476
+    }
+  ],
+  "target_concept": "antelope",
+  "target_neighbor": "bison"
+}
