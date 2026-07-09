@@ -1,0 +1,2 @@
+NVIDIA A40, 46068
+max_gpu_memory_mb=46068

@@ -152,7 +152,7 @@ Run:
 - remote directory: `~/chtc-runs/coherence-concept-steering-20260709-011336`
 - local artifacts: `results/sft_eval/concept_steering/chtc/5513297/`
 - host: `gpu4005.chtc.wisc.edu`
-- GPU: NVIDIA H100 80GB HBM3, via Condor slot `backfill1_4`
+- GPU: NVIDIA L40S, `max_gpu_memory_mb=46068`, via Condor slot `backfill1_4`
 
 Status files:
 
@@ -230,6 +230,78 @@ Next readout step:
 - before any broad use, pair those with wider retention checks because layer-12
   aggressive alphas reduce retention margins even when preference stays mostly
   intact.
+
+## 2026-07-09 Targeted Qualitative Follow-Up 5513347
+
+Run:
+
+- CHTC run id: `coherence-concept-qualitative-20260709-015214`
+- cluster: `5513347`
+- remote directory:
+  `~/chtc-runs/coherence-concept-qualitative-20260709-015214`
+- local artifacts: `results/sft_eval/concept_steering/chtc/5513347/`
+- host: `xhuanggpu4000.chtc.wisc.edu`
+- GPU: NVIDIA A40, `max_gpu_memory_mb=46068`
+
+Status files:
+
+| File | Status |
+| --- | ---: |
+| `pip_install_exit_status.txt` | `0` |
+| `qual_exit_status.txt` | `1` |
+| `exit_status.txt` | `1` |
+
+The nonzero wrapper exit is a late summary-writing bug, not a generation or
+scoring failure. The run completed all `8 x 14 = 112` generations, wrote
+`generations.jsonl`, `judge_scores.csv`, and `judge_summary.csv`, then failed
+while writing `SUMMARY.md` because the summary helper read `response` from the
+compact score rows. `src/sft/run_concept_steering_qualitative.py` is patched to
+write the summary from full generation rows and can now rescore an existing
+`generations.jsonl` without loading the model. The completed generations were
+rescored into:
+
+- `results/sft_eval/concept_steering/chtc/5513347/rescored_v2/SUMMARY.md`
+- `results/sft_eval/concept_steering/chtc/5513347/rescored_v2/judge_summary.csv`
+- `results/sft_eval/concept_steering/chtc/5513347/rescored_v2/generations.jsonl`
+
+Rescored qualitative readout:
+
+| Setting | Coherence pass | Alignment pass | Retention pass | Readout |
+| --- | ---: | ---: | ---: | --- |
+| `baseline` | 0.75 | 1.00 | 1.00 | baseline already safe on the 4 alignment probes |
+| `coherence_l12_a2` | 0.75 | 1.00 | 1.00 | no generation gain after first-word odd-one-out fix |
+| `coherence_l12_a4` | 0.75 | 1.00 | 1.00 | strong forced-choice margin did not become a generation win |
+| `coherence_l16_a4` | 1.00 | 1.00 | 1.00 | best qualitative coherence candidate; fixed the odd-one-out item |
+| `human_alignment_l24_a4` | 0.75 | 1.00 | 1.00 | preserves alignment but does not beat saturated baseline |
+| `human_alignment_l16_a2` | 0.75 | 1.00 | 1.00 | preserves alignment but does not beat saturated baseline |
+| `human_alignment_l12_a4` | 0.75 | 0.50 | 1.00 | harmful to alignment generation despite cross-effect in sweep |
+| `human_alignment_l12_a-4` | 1.00 | 0.25 | 1.00 | unsafe negative-direction control |
+
+Interpretation:
+
+- qualitative retention did not collapse: every setting passed all 6 retention
+  probes under deterministic generation.
+- `coherence` layer 16 alpha `4` is the best current generation candidate
+  because it has a positive forced-choice target margin (`+0.6345`), no
+  retention preference loss in the sweep, and the only qualitative coherence
+  gain in this follow-up.
+- `coherence` layer 12 alpha `4` remains useful as a high-effect diagnostic,
+  but the qualitative probe did not show a target item flip and the sweep showed
+  a retention-margin drop (`-2.5973`), so it should not be the default setting.
+- `human_alignment` layer 24 alpha `4` and layer 16 alpha `2` are retention-safe
+  in this check, but the alignment generation probes are saturated at baseline;
+  a harder alignment suite is needed before claiming an alignment gain.
+- layer-12 human-alignment steering should be treated as a failure mode, not a
+  candidate intervention: it damages alignment generation while moving
+  coherence-like behavior.
+
+Next GPU decision:
+
+- do not submit another broad steering job from these results alone.
+- the justified follow-up is an expanded judged generation suite focused on
+  `coherence_l16_a4`, `human_alignment_l24_a4`, and `human_alignment_l16_a2`,
+  with harder alignment prompts and the retention gates in
+  `results/sft_eval/concept_steering/NEXT_EXPERIMENT_PLAN.md`.
 
 ## Files
 

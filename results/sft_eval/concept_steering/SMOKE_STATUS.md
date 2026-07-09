@@ -142,5 +142,23 @@ Passing smoke:
 
 ## Next Action
 
-Run qualitative generation/judge probes for the strongest low-risk settings and
-pair them with wider retention checks before using steering in broad evals.
+Qualitative generation/judge follow-up cluster `5513347` has completed and
+artifacts were pulled to
+`results/sft_eval/concept_steering/chtc/5513347/`.
+
+- Condor transfer completed, but the wrapper returned `1` after all 112
+  generations and judge rows were written.
+- The failure was a late `SUMMARY.md` writer bug, now patched in
+  `src/sft/run_concept_steering_qualitative.py`.
+- Rescored outputs are in
+  `results/sft_eval/concept_steering/chtc/5513347/rescored_v2/`.
+- Best qualitative candidate: `coherence_l16_a4`, which passed all 4
+  coherence probes and all retention/alignment probes.
+- `human_alignment_l24_a4` and `human_alignment_l16_a2` preserved alignment and
+  retention, but did not beat the saturated alignment baseline.
+- Layer-12 human-alignment steering is a failure mode: it damaged alignment
+  generation in the targeted check.
+
+Next action: build an expanded judged generation suite before spending another
+GPU job. Do not launch a broad steering run until the suite includes harder
+alignment prompts and the retention gates in `NEXT_EXPERIMENT_PLAN.md`.

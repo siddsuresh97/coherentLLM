@@ -1,0 +1,239 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MIN_CUDA_GLOBAL_MEMORY_MB="${MIN_CUDA_GLOBAL_MEMORY_MB:-40000}"
+PIP_TIMEOUT_SECONDS="${PIP_TIMEOUT_SECONDS:-900}"
+QUAL_TIMEOUT_SECONDS="${QUAL_TIMEOUT_SECONDS:-7200}"
+MODEL_PATH="${MODEL_PATH:-/staging/s/suresh27/models/llama31-8b-instruct}"
+HF_CACHE="${HF_CACHE:-/staging/s/suresh27/hf_home}"
+OUT_TAG="${OUT_TAG:-best_thresholds}"
+
+RESULT_DIR="${PWD}/concept_steering_qualitative_${OUT_TAG}"
+QUAL_DIR="${RESULT_DIR}/qualitative"
+PYDEPS="${PWD}/pydeps"
+OUT_BUNDLE="concept_steering_qualitative_${OUT_TAG}_results.tgz"
+GPU_METRICS="${RESULT_DIR}/gpu_metrics.csv"
+MONITOR_PID=""
+
+mkdir -p "${RESULT_DIR}" "${QUAL_DIR}" "${PYDEPS}" configs
+
+log_step() {
+  printf '[%s] %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$*" | tee -a "${RESULT_DIR}/progress.log"
+}
+
+finish() {
+  status=$?
+  if [[ -n "${MONITOR_PID}" ]]; then
+    kill "${MONITOR_PID}" 2>/dev/null || true
+    wait "${MONITOR_PID}" 2>/dev/null || true
+  fi
+  log_step "runner_exit status=${status}"
+  echo "${status}" > "${RESULT_DIR}/exit_status.txt"
+  find "${RESULT_DIR}" -maxdepth 5 -type f -printf '%P\t%s\n' > "${RESULT_DIR}/file_inventory.tsv" 2>/dev/null || true
+  tar -czf "${OUT_BUNDLE}" -C "${RESULT_DIR}" . 2>/dev/null || true
+  exit "${status}"
+}
+trap finish EXIT
+
+PYTHON_BIN="$(command -v python3 || command -v python)"
+
+ORIGINAL_CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-unset}"
+if [[ "${CUDA_VISIBLE_DEVICES:-}" == GPU-* ]]; then
+  export CUDA_VISIBLE_DEVICES=0
+fi
+
+cat > configs/models.yaml <<YAML
+hf_cache: ${HF_CACHE}
+
+local:
+  llama-3.1-8b-instruct:
+    path: ${MODEL_PATH}
+    chat: true
+YAML
+
+export PYTHONPATH="${PWD}/src:${PYDEPS}:${PYTHONPATH:-}"
+export HF_HOME="${HF_CACHE}"
+export HF_HUB_CACHE="${HF_CACHE}/hub"
+export HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-${PWD}/hf_datasets_cache}"
+export TRANSFORMERS_OFFLINE=1
+export HF_HUB_OFFLINE=1
+export TRITON_CACHE_DIR="${PWD}/triton_cache"
+export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
+export PYTHONUNBUFFERED=1
+export PIP_NO_CACHE_DIR=1
+
+log_step "runner_start qualitative out_tag=${OUT_TAG}"
+
+{
+  echo "timestamp_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  echo "hostname=$(hostname)"
+  echo "pwd=${PWD}"
+  echo "model_path=${MODEL_PATH}"
+  echo "hf_cache=${HF_CACHE}"
+  echo "min_cuda_global_memory_mb=${MIN_CUDA_GLOBAL_MEMORY_MB}"
+  echo "pip_timeout_seconds=${PIP_TIMEOUT_SECONDS}"
+  echo "qual_timeout_seconds=${QUAL_TIMEOUT_SECONDS}"
+  echo "python_bin=${PYTHON_BIN}"
+  echo "original_cuda_visible_devices=${ORIGINAL_CUDA_VISIBLE_DEVICES}"
+  echo "effective_cuda_visible_devices=${CUDA_VISIBLE_DEVICES:-unset}"
+  echo "CONDOR_SLOT=${_CONDOR_SLOT:-unset}"
+} > "${RESULT_DIR}/run_env.txt"
+
+{
+  "${PYTHON_BIN}" --version
+  "${PYTHON_BIN}" -m pip --version
+} > "${RESULT_DIR}/python.txt" 2>&1 || true
+
+log_step "gpu_probe_start"
+(nvidia-smi || true) > "${RESULT_DIR}/nvidia_smi.txt" 2>&1
+(nvidia-smi --query-gpu=name,memory.total --format=csv,noheader,nounits || true) > "${RESULT_DIR}/gpu_memory_query.txt" 2>&1
+"${PYTHON_BIN}" - <<'PY' "${RESULT_DIR}/gpu_memory_query.txt" "${MIN_CUDA_GLOBAL_MEMORY_MB}" > "${RESULT_DIR}/gpu_check.txt" 2>&1
+import re
+import sys
+from pathlib import Path
+
+query_path = Path(sys.argv[1])
+minimum = int(sys.argv[2])
+text = query_path.read_text()
+print(text.strip())
+memories = []
+for line in text.strip().splitlines():
+    parts = [part.strip() for part in line.split(",")]
+    if len(parts) >= 2 and re.fullmatch(r"\d+", parts[1]):
+        memories.append(int(parts[1]))
+if not memories:
+    print("Could not determine GPU memory from nvidia-smi.", file=sys.stderr)
+    sys.exit(67)
+if max(memories) < minimum:
+    print(f"GPU memory {max(memories)} MB is below required {minimum} MB.", file=sys.stderr)
+    sys.exit(67)
+print(f"max_gpu_memory_mb={max(memories)}")
+PY
+log_step "gpu_probe_ok"
+
+{
+  echo "timestamp_utc,index,name,utilization_gpu_pct,utilization_memory_pct,memory_used_mib,memory_total_mib,power_draw_w,temperature_c"
+  while true; do
+    if command -v nvidia-smi >/dev/null 2>&1; then
+      nvidia-smi --query-gpu=timestamp,index,name,utilization.gpu,utilization.memory,memory.used,memory.total,power.draw,temperature.gpu \
+        --format=csv,noheader,nounits 2>/dev/null || true
+    fi
+    sleep 5
+  done
+} >> "${GPU_METRICS}" &
+MONITOR_PID="$!"
+
+if [[ ! -r "${MODEL_PATH}/config.json" ]]; then
+  echo "Missing model config at ${MODEL_PATH}/config.json" >&2
+  exit 66
+fi
+if [[ ! -r vectors/coherence_caa_vectors.npz || ! -r vectors/human_alignment_caa_vectors.npz ]]; then
+  echo "Missing transferred vector files under vectors/." >&2
+  exit 66
+fi
+
+(du -sh "${MODEL_PATH}" vectors 2>&1 || true) > "${RESULT_DIR}/input_sizes.txt"
+
+needs_install="$("${PYTHON_BIN}" - <<'PY'
+import importlib.util
+from importlib.metadata import PackageNotFoundError, version
+
+mods = ["torch", "transformers", "accelerate", "safetensors", "yaml", "numpy", "tokenizers"]
+missing = [name for name in mods if importlib.util.find_spec(name) is None]
+try:
+    hub_version = version("huggingface-hub")
+    hub_bad = int(hub_version.split(".", 1)[0]) >= 1
+except PackageNotFoundError:
+    hub_bad = True
+print("1" if missing or hub_bad else "0")
+PY
+)"
+
+if [[ "${needs_install}" == "1" ]]; then
+  log_step "pip_install_start timeout=${PIP_TIMEOUT_SECONDS}s"
+  set +e
+  timeout "${PIP_TIMEOUT_SECONDS}" "${PYTHON_BIN}" -m pip install --upgrade --no-deps --target "${PYDEPS}" \
+    "huggingface-hub>=0.24.0,<1.0" \
+    "transformers>=4.45.0,<5.0.0" \
+    "accelerate>=0.33.0" \
+    "safetensors>=0.4.5" \
+    "pyyaml>=6.0" \
+    "numpy<2.3" \
+    "tokenizers>=0.22.0,<0.23.0" \
+    "regex" \
+    "filelock" \
+    "requests" \
+    "tqdm" \
+    "packaging" \
+    "psutil" \
+    "typing-extensions" \
+    > "${RESULT_DIR}/pip_install.txt" 2>&1
+  pip_rc=$?
+  set -e
+  echo "${pip_rc}" > "${RESULT_DIR}/pip_install_exit_status.txt"
+  log_step "pip_install_exit rc=${pip_rc}"
+  if [[ "${pip_rc}" -ne 0 ]]; then
+    exit "${pip_rc}"
+  fi
+else
+  echo "all required modules already import and huggingface-hub is <1.0" > "${RESULT_DIR}/pip_install.txt"
+  echo "0" > "${RESULT_DIR}/pip_install_exit_status.txt"
+  log_step "pip_install_skipped"
+fi
+
+log_step "import_probe_start"
+"${PYTHON_BIN}" - <<'PY' > "${RESULT_DIR}/imports_after_install.txt" 2>&1
+import importlib
+
+for name in ("torch", "transformers", "accelerate", "safetensors", "yaml", "numpy", "tokenizers"):
+    mod = importlib.import_module(name)
+    print(f"{name}={getattr(mod, '__version__', 'unknown')}")
+
+import torch
+print(f"torch_cuda_available={torch.cuda.is_available()}")
+print(f"torch_cuda_device_count={torch.cuda.device_count()}")
+if torch.cuda.is_available():
+    print(f"torch_cuda_device_name={torch.cuda.get_device_name(0)}")
+PY
+log_step "import_probe_ok"
+
+CMD=(
+  "${PYTHON_BIN}" src/sft/run_concept_steering_qualitative.py
+  --vector-dir vectors
+  --out-dir "${QUAL_DIR}"
+  --max-new-tokens 96
+  --dtype bfloat16
+  --device cuda
+  --overwrite
+)
+
+printf '%q ' "${CMD[@]}" > "${RESULT_DIR}/command.txt"
+printf '\n' >> "${RESULT_DIR}/command.txt"
+
+log_step "qual_start timeout=${QUAL_TIMEOUT_SECONDS}s"
+set +e
+timeout "${QUAL_TIMEOUT_SECONDS}" "${CMD[@]}" \
+  > >(tee "${RESULT_DIR}/qual_stdout.txt") \
+  2> >(tee "${RESULT_DIR}/qual_stderr.txt" >&2)
+qual_rc=$?
+set -e
+echo "${qual_rc}" > "${RESULT_DIR}/qual_exit_status.txt"
+log_step "qual_exit rc=${qual_rc}"
+if [[ "${qual_rc}" -ne 0 ]]; then
+  exit "${qual_rc}"
+fi
+
+{
+  echo "# Concept Steering Qualitative Job Summary"
+  echo
+  echo "- out tag: ${OUT_TAG}"
+  echo "- qualitative dir: qualitative/"
+  echo
+  if [[ -r "${QUAL_DIR}/SUMMARY.md" ]]; then
+    sed -n '1,220p' "${QUAL_DIR}/SUMMARY.md"
+  else
+    echo "Missing qualitative/SUMMARY.md"
+  fi
+} > "${RESULT_DIR}/job_summary.md"
+
+log_step "complete"

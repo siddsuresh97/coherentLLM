@@ -1,0 +1,1 @@
+/opt/conda/bin/python3 src/sft/run_concept_steering_qualitative.py --vector-dir vectors --out-dir /var/lib/condor/execute/slot1/dir_351750/scratch/concept_steering_qualitative_best_thresholds/qualitative --max-new-tokens 96 --dtype bfloat16 --device cuda --overwrite
