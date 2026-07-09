@@ -1,0 +1,10 @@
+[2026-07-09T03:13:34Z] gpu_probe_start
+[2026-07-09T03:13:35Z] gpu_probe_ok memory_mb=46068
+[2026-07-09T03:13:35Z] staged_input_check
+[2026-07-09T03:13:35Z] pip_install_start timeout=900s packages=huggingface-hub>=0.24.0,<1.0 datasets>=2.16.0,<5.0.0 vllm==0.6.6.post1 lm-eval==0.4.12
+[2026-07-09T03:15:56Z] pip_install_exit rc=0
+[2026-07-09T03:15:56Z] import_probe_start
+[2026-07-09T03:16:02Z] import_probe_ok
+[2026-07-09T03:16:02Z] gate_start timeout=5400s
+[2026-07-09T03:21:03Z] gate_exit rc=0
+[2026-07-09T03:21:03Z] runner_exit status=0
