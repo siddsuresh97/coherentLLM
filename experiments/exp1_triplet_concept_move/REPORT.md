@@ -1,6 +1,6 @@
 # Experiment 1 Report - Triplet Detection of Concept Moves
 
-Current status: the local `concentrated_drop_100` pathway check is running on `rogers-gpu-1` using the direct-similarity fallback because this checkout lacks the full NOVA feature parquet needed for feature-listing supervision. The behavioral floor is green; control LoRA training finished; edit LoRA training is in progress.
+Current status: the local `concentrated_drop_100` pathway check completed on `rogers-gpu-1` using the direct-similarity fallback because this checkout lacks the full NOVA feature parquet needed for feature-listing supervision. The behavioral floor is green, the edited concept ranked first, but SNR was exactly 1.0, so the edit did not exceed the control null.
 
 ## Pipeline State
 
@@ -8,9 +8,9 @@ Current status: the local `concentrated_drop_100` pathway check is running on `r
 - 0b behavioral triplet base RDM: green from local frozen-protocol runs
 - 1 item selection: green
 - 2 edit operator pre-check: draft only
-- 3 two-LoRA training: in progress for `concentrated_drop_100` similarity fallback
-- 4 detection/localization: pending post-LoRA triplet runs
-- 5 resolution map: simulated smoke green; real map not started
+- 3 two-LoRA training: green for `concentrated_drop_100` similarity fallback
+- 4 detection/localization: partial; target top-ranked but not above null
+- 5 resolution map: one real cell produced; no SNR > 1 boundary yet
 
 ## Item Choice
 
@@ -39,6 +39,22 @@ Artifacts:
 
 Active run: `concentrated_drop_100`, `SUPERVISION=similarity` (fallback lever 6.2, direct pairwise-similarity supervision). Detection is still the held-out frozen triplet task.
 
+### Audit Map
+
+Use this map to verify any claim in this report:
+
+| Question | Answer | Source file |
+|---|---|---|
+| Which model? | `llama-3.1-8b-instruct`, exact local Llama-3.1-8B-Instruct snapshot listed below | `experiments/exp1_triplet_concept_move/config.json`, `configs/models.yaml` |
+| Which concepts? | 30-item set; target `antelope`, concentrated neighbor `bison` | `experiments/exp1_triplet_concept_move/items.json` |
+| Which detection prompt? | Canonical and paraphrase triplet templates listed below | `experiments/exp1_triplet_concept_move/triplet_protocol.json` |
+| Which system prompt? | `You are a helpful assistant who gives responses to questions.` | `src/prompts.py` |
+| Which training prompt? | 1-7 pairwise semantic similarity prompt listed below | `src/prompts.py`, `experiments/exp1_triplet_concept_move/sft_similarity_data/concentrated_drop_100/manifest.json` |
+| Which raw base outputs? | Three frozen-protocol base triplet CSVs | `experiments/exp1_triplet_concept_move/raw/base_seed_*/*` |
+| Did the floor pass? | Yes, status green; floor numbers listed below | `experiments/exp1_triplet_concept_move/floor_stats.json` |
+| Which LoRA settings? | PEFT QLoRA, rank 32, 400 steps per arm, seed 1729 | `scripts/run_experiment1_real_gpu.sh`, `src/sft/train_lora.py` |
+| Was WandB live? | No; this run is file-logged and uploadable after completion | `scripts/upload_experiment1_wandb.py`, this report, `RESEARCH_LOG.md` |
+
 Model:
 - Registry name: `llama-3.1-8b-instruct`
 - Exact local snapshot: `/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659`
@@ -58,6 +74,14 @@ Triplet detection protocol:
 - Base floor runs: `base_seed_a_canonical_prompt`, `base_seed_b_canonical_prompt`, `base_seed_a_paraphrase_prompt`
 - Generation settings: temperature 0, max new tokens 8, max context length 1024, batch size 16
 
+Concrete detection prompt example from the active protocol:
+
+```text
+System: You are a helpful assistant who gives responses to questions.
+User: Answer using only one word - bison or toaster and not antelope. Which is more similar in semantic meaning to antelope?
+Expected answer format: one word, either "bison" or "toaster".
+```
+
 Behavioral floor result:
 - Status: green
 - Mean upper-triangle Pearson: 0.8066
@@ -70,6 +94,15 @@ Training supervision:
 - Control data: 4,872 examples, replay pairs excluding target pairs
 - Edit data: 5,220 examples, same replay plus 348 edited target-pair examples
 - Data manifest: `experiments/exp1_triplet_concept_move/sft_similarity_data/concentrated_drop_100/manifest.json`
+
+Concrete fallback training prompt example:
+
+```text
+User: Answer with only one number from 1 to 7, considering 1 as 'extremely dissimilar', 2 as 'very dissimilar', 3 as 'likely dissimilar', 4 as 'neutral', 5 as 'likely similar', 6 as 'very similar', and 7 as 'extremely similar': How semantically similar is antelope and bison?
+Assistant: 1
+```
+
+The exact numeric target for any pair is generated from the intended feature-RDM edit and recorded in the generated JSONL files under `sft_similarity_data/concentrated_drop_100/`.
 
 LoRA training settings:
 - Backend: PEFT QLoRA, 4-bit NF4, bf16 compute
@@ -93,7 +126,7 @@ CUDA_VISIBLE_DEVICES=0 TRANSFORMERS_NO_TORCHVISION=1 TRANSFORMERS_OFFLINE=1 HF_H
 | `concentrated_drop_015` | 0.0179 | 0.324 | not trained | n/a |
 | `concentrated_drop_035` | 0.0466 | 0.369 | not trained | n/a |
 | `concentrated_drop_065` | 0.1103 | 0.451 | not trained | n/a |
-| `concentrated_drop_100` | 0.2623 | 0.390 | not trained | n/a |
+| `concentrated_drop_100` | 0.2623 | 0.390 | partial: target rank 1, boundary not crossed | 1.000 |
 | `diffuse_drop_015` | 0.0558 | 0.241 | not trained | n/a |
 | `diffuse_drop_035` | 0.1137 | 0.256 | not trained | n/a |
 | `diffuse_drop_065` | 0.2093 | 0.328 | not trained | n/a |
@@ -104,6 +137,10 @@ CUDA_VISIBLE_DEVICES=0 TRANSFORMERS_NO_TORCHVISION=1 TRANSFORMERS_OFFLINE=1 HF_H
 The archived 128-item Llama triplet embedding was useful as a provisional behavioral map, but it did not satisfy the hard gate. The active local pathway job collected the frozen 30-item protocol for the base model twice with the canonical prompt and once with the paraphrase prompt, then refreshed `floor_stats.json` from those behavioral runs before LoRA training.
 
 The original feature-listing supervision path is still implemented, but it requires `data/nova/verified_matrix_cogsci2025.parquet`, which is not present in this checkout. Rather than blocking on that missing file, the first real check uses fallback lever 6.2: direct pairwise-similarity supervision from the committed `sft_similarity_data/concentrated_drop_100` files, while detection remains the held-out frozen triplet task.
+
+Verdict on this cell: partial / did not fire above null. The target concept `antelope` ranked first, and the edited neighbor pair `antelope`-`bison` was the top target-pair change, but the edit and control LoRAs produced matched row-change magnitudes (`target_snr_control_only=1.0`, `boundary_crossed=false`). The current interpretation is that pairwise-similarity fine-tuning induced a broad behavioral drift also present in the control LoRA. That makes the null too large for attribution.
+
+Next course-correction: use a matched-target similarity control for fallback runs. The current fallback control omitted target pairs while the edit arm added edited target pairs; the next fallback should keep target-pair exposure matched by training control on base target-pair ratings and edit on altered target-pair ratings. That isolates label/content change from mere target-pair exposure and should tighten the two-LoRA null.
 
 Re-run base floor manually, if needed:
 
@@ -143,6 +180,8 @@ chtc/exp1_triplet_move/submit_exp1_pathway.sh
 - `antelope` has a clear local feature-space neighbor (`bison`) plus a broader animal cluster, so a concentrated push has a concrete target pair.
 - The frozen triplet protocol has 12180 judgments per run and hashes the exact stimuli files.
 - Behavioral base is now real, not provisional: the local frozen-protocol floor is green with mean upper-triangle Pearson 0.8066 and base RDM saved to `artifacts/rdms/rdm_base.npy`.
+- The first real fallback cell did not cross the detection boundary: `concentrated_drop_100` produced target rank 1 but SNR 1.000 and `boundary_crossed=false`.
+- Control and edit row changes were effectively identical under the current fallback supervision, so this is evidence of an overly broad control-null drift, not a positive attribution result.
 - Simulated oracle smoke test recovers injected moves through the triplet pipeline: concentrated edits cross median SNR > 1 at `concentrated_drop_065` (median SNR 1.263; target top-ranked in 4/5 seeds) and are clean at `concentrated_drop_100` (median SNR 2.075; target top-ranked in 5/5 seeds). This validates the scorer/heatmap mechanics only, not the model-edit claim.
 - Fallback lever 6.2 is staged: `sft_similarity_data/concentrated_drop_100/manifest.json` dry-runs direct pairwise-similarity supervision with 4,872 control examples and 5,220 edit examples, while keeping detection held out as triplets.
 

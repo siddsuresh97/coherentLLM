@@ -126,3 +126,27 @@
 - System prompt for triplet generation: `You are a helpful assistant who gives responses to questions.`
 - Training prompt for the current fallback only: `Answer with only one number from 1 to 7, considering 1 as 'extremely dissimilar', 2 as 'very dissimilar', 3 as 'likely dissimilar', 4 as 'neutral', 5 as 'likely similar', 6 as 'very similar', and 7 as 'extremely similar': How semantically similar is {a} and {b}?`
 - Why this matters: the current run does not test feature-listing supervision. It tests whether a deliberately strong similarity-supervised concept move can be recovered by the frozen triplet detector.
+
+### NOTE 2026-07-09 14:50 - Report audit map added
+- Added an `Audit Map` section to `REPORT.md` that points each key claim to the source artifact: model/config, item set, prompt protocol, raw base CSVs, green floor stats, LoRA settings, and WandB upload plan.
+- Added concrete examples for both roles: a detection triplet prompt (`antelope` anchor, `bison` vs `toaster`) and a fallback training pairwise prompt (`antelope and bison -> 1`), with the latter verified against `sft_similarity_data/concentrated_drop_100/edit.jsonl`.
+
+## 2026-07-09 15:25 Local similarity fallback result
+- Goal this session: finish the first real local pathway check for `concentrated_drop_100` under direct pairwise-similarity fallback supervision.
+- What I ran / built: collected three base frozen-protocol triplet runs, trained control and edit PEFT QLoRA adapters, recovered control/edit triplet RDMs, scored detection, and summarized the one-cell real heatmap.
+- Result (numbers; plots saved to /figs with filenames): behavioral floor is green; control final logged loss 0.0032; edit final logged loss 0.0015; detection output is `detection/concentrated_drop_100.json`; `target_rank=1`; `target_snr_control_only=1.0`; `boundary_crossed=false`; real one-cell heatmap saved to `figs/resolution_heatmap.png`.
+- Interpretation (what the result means, not just restating it): partial only. The target concept was top-ranked and the intended neighbor pair was the top target-pair change, but the edit did not exceed the control null. Control and edit row-change magnitudes were effectively matched, so this is not a positive attribution result under the experiment's SNR > 1 criterion.
+- Lit found + how it changes the plan: no new literature in this operational result step.
+- Decision / next step + WHY this over the alternatives I considered: next use a matched-target similarity control rather than rerunning the same fallback. The current control omitted target pairs while the edit arm added edited target-pair examples, so the run confounds target-pair exposure with label/content change. A matched-target control should include base target-pair ratings while the edit arm uses altered target-pair ratings. I reject simply increasing steps/rank first because the problem is not weak training; both adapters trained to very low losses and both moved behavior about equally.
+- Open risks: the result may also reflect the Transformers 4-bit inference backend or the pairwise-to-triplet transfer itself; after tightening the control, if SNR still stays at 1, consider a stronger direct triplet-supervision lever or a narrower target-only replay design.
+
+### DECISION 2026-07-09 15:25 - Did it work?
+- Verdict: partial / did not fire above null.
+- Evidence: `antelope` was top-ranked (`target_rank=1`), but `target_snr_control_only=1.0`, `target_snr_floor_adjusted=1.0`, and `boundary_crossed=false`.
+- Why this is not counted as success: the success criterion requires the edit effect at the target concept to exceed the matched control-null drift. Here, the matched null was as large as the edit effect.
+
+### DECISION 2026-07-09 15:25 - Course-correction to matched-target control
+- What specifically in the result told me the cause: every inspected ranking row had edit and null row RMS values equal to the reported precision, and the target-pair localization table showed equal target/null deltas. That means the issue is not failure to move the RDM; it is that the control LoRA moved it just as much.
+- Hypothesis for failure: the fallback pairwise control was too broad and not exposure-matched. It trained on replay pairs excluding target pairs, while the edit arm trained on replay plus target-pair examples. The difference between arms is therefore both "target pair is present" and "target pair label changed", not only the edit.
+- Next lever and why: implement a matched-target similarity fallback where the control arm includes base target-pair ratings and the edit arm includes altered target-pair ratings, with the same number and shape of examples. This directly tests whether label/content change, not target exposure or general pairwise calibration, produces the triplet attribution signal.
+- What would confirm or kill the hypothesis: if matched-target control tightens null drift and SNR rises above 1, the previous null was the problem. If SNR remains at 1 with both arms exposure-matched, then pairwise-similarity supervision may be too globally entangling or the triplet detector may need direct triplet-supervision fallback.
