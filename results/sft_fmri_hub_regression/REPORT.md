@@ -14,6 +14,36 @@ arms are selected after looking at test scores.
 - `cv_best_layer_summary.csv`: best layer per region/arm/model.
 - `cv_midlayer_summary.csv`: mean score over the configured mid-layer band.
 - `cv_model_comparison.csv`: mid-layer mean-format vs best single-format comparison.
+- `POSITIVE_SIGNAL_REVIEW.md`: post-hoc positive-signal audit with same-layer
+  base controls and subject-consistency tables.
+- `positive_midlayer_mean_repr.csv`
+- `positive_subject_consistency.csv`
+- `positive_best_layer_same_base.csv`
+
+## 2026-07-09 Positive-Signal Audit
+
+The strongest current positive brain-alignment lead is the held-out semantic-hub
+regression, not the original direct THINGS-fMRI RSA.
+
+In the fixed mid-layer band `10:20`, `mean_repr` held-out Pearson `r` improves
+over base for all coherent/non-scrambled arms across all three target regions
+(`15/15` arm-region comparisons), while scrambled is below base in all three
+regions.
+
+Key task-vector cells:
+
+| Region | Arm | Mean repr r | Delta vs base | Subject consistency |
+|---|---|---:|---:|---:|
+| Ventral Visual | `taskvec_a0p25` | 0.1679 | +0.0535 | 3/3 |
+| ATL (Semantic) | `taskvec_a0p5` | 0.0356 | +0.0324 | 2/3 |
+| Language | `taskvec_a0p5` | 0.0511 | +0.0507 | 2/3 |
+
+Read: coherence tuning/task-vector movement appears to make mid-layer semantic
+geometry more predictive of held-out object-fMRI RDM distances. This is a
+promising representational brain-alignment result, but it remains post-hoc:
+direct Ventral Visual RSA is flat versus base, Huth/LeBel smoke is not
+base-beating, and `taskvec_a0p5` is not retention-safe. Treat this as the
+lead to confirm with fixed metrics and paired subject/concept bootstrap.
 
 ## Primary Mid-Layer Comparison
 
@@ -115,3 +145,8 @@ hub representation predicts held-out fMRI geometry better than the best
 individual prompt spoke in the same mid-layer band. If it is negative,
 the fMRI signal is better explained by a task-specific prompt format
 or by visual/object geometry not captured by the hub average.
+
+The 2026-07-09 audit above changes the near-term priority: the mid-layer
+`mean_repr` base-delta pattern is consistent enough to justify a confirmatory
+fixed-metric run. It does not yet override the negative/flat direct RSA and
+Huth/LeBel smoke results.

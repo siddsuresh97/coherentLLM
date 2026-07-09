@@ -1,9 +1,11 @@
 # Coherence-SFT project STATUS (where we are + open threads)
 
-**Last updated: 2026-07-08. Tasks 1-8 are ALL COMPLETE and committed to `coherence-sft`.
+**Last updated: 2026-07-09. Tasks 1-8 are ALL COMPLETE and committed to `coherence-sft`.
 Task 9 fMRI audit/hidden-state/RSA is implemented, committed, and pushed.
 Semantic-hub extraction/scoring has run for all seven arms and is part of the
-current result checkpoint. This file was stale below this point (left as historical design record) —
+current result checkpoint. The latest post-hoc positive lead is the
+held-out fMRI semantic-hub regression audit:
+`results/sft_fmri_hub_regression/POSITIVE_SIGNAL_REVIEW.md`. This file was stale below this point (left as historical design record) —
 read this top section first for where the project actually stands.**
 
 ## Handoff for a fresh agent picking this up
@@ -42,7 +44,11 @@ read this top section first for where the project actually stands.**
   `scrambled`, `lowLR`, `lowrank`, `taskvec_a0p25`, `taskvec_a0p5`, and `taskvec_a1p0` with shape
   `90 x 33 x 4096`. RSA runs end-to-end. Primary Ventral Visual RSA is strong but aligned arms are
   essentially flat vs base (`base=0.1990`, `lowLR=0.2010`, `lowrank=0.2013`), while scrambled is
-  much lower (`0.1293`). See `results/sft_fmri/REPORT.md`. Task 9 Track B semantic hub has also
+  much lower (`0.1293`). See `results/sft_fmri/REPORT.md`. The positive brain-alignment lead is
+  instead in held-out fMRI semantic-hub regression: all coherent/non-scrambled arms beat base for
+  mid-layer `mean_repr` across Ventral Visual, ATL, and Language (`15/15` comparisons), while
+  scrambled is below base in all three regions. See
+  `results/sft_fmri_hub_regression/POSITIVE_SIGNAL_REVIEW.md`. Task 9 Track B semantic hub has also
   run on 128 held-out concepts across triplet/pairwise/feature-listing prompt spokes. Mid-layer
   cross-format RDM Spearman rises from base `0.3230` to `0.6211-0.6770` for lowLR/lowrank/taskvec
   arms, led by `taskvec_a0p25`; see `results/sft_semantic_hub/REPORT.md`.

@@ -2,7 +2,7 @@
 
 ## Current Scientific Report
 
-Last updated: 2026-07-08 23:54 CDT on branch `coherence-sft`.
+Last updated: 2026-07-09 00:00 CDT on branch `coherence-sft`.
 
 This README is the high-level dashboard. Expand the sections below for the
 details, exact metrics, artifact paths, and next decisions. The continuously
@@ -13,6 +13,7 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 | Area | Current conclusion | What would make it conclusive |
 | --- | --- | --- |
 | Semantic hub | Positive but qualified: `taskvec_a0p25` gives the strongest cross-format clustering after CSLS/hubness controls, but it is not a clean universal hub. | Logit-lens/causal intervention evidence that the clustered state drives concept-token behavior without the TruthfulQA false-lure failure. |
+| THINGS-fMRI hub regression | New positive lead: in concept-held-out fMRI semantic-hub regression, every coherent/non-scrambled arm beats base across Ventral Visual, ATL, and Language for mid-layer `mean_repr`; scrambled is below base in all three regions. | Pre-registered fixed-layer/fixed-metric replication with paired subject/concept bootstrap, then extension to high-data Huth/Fedorenko language fMRI. |
 | Concept steering | Not conclusive positive. Steering can move coherence scores, but the best coherence setting trades off alignment, the retention-safe setting is weak, and human-alignment steering did not improve harder alignment prompts. | A setting that improves held-out coherence or alignment prompts while preserving retention and avoiding cross-concept side effects. |
 | Huth/LeBel fMRI | Technical pipeline validated, but no base-beating task-vector result. The uncapped smoke has base highest on subject-mean layer-16 Pearson `r` (`0.009785` vs `taskvec_a0p25` `0.009137`). | High-data multi-story/fold Huth run with fixed or nested layer selection and paired subject/fold deltas versus base. |
 | Fedorenko/EvLab | No conclusive Fedorenko-style claim yet. Current ds003020 path is Huth-style natural listening; there are no subject-specific language localizer masks in the staged path. | Individual language fROIs or a dataset with localizer contrasts, then language-network-specific encoding/RSA tests. |
@@ -53,10 +54,15 @@ now tracked in
   staging-unblock lane now has a packed-story plan that turns the 420-file
   high-data raw manifest into 84 story archives, plus exact cleanup candidates
   in [`results/sft_huth_lebel/STAGING_UNBLOCK_REPORT.md`](results/sft_huth_lebel/STAGING_UNBLOCK_REPORT.md).
-- **fMRI x hub bridge:** the new concept-held-out regression does not support a
-  clean semantic-hub explanation of Ventral Visual RSA. Averaged hub predictors
-  are roughly tied with single prompt spokes in Ventral Visual, while
-  ATL/Language show small aligned-state advantages that remain exploratory.
+- **fMRI x hub bridge:** the post-hoc positive-signal audit now gives the best
+  current brain-alignment lead. In held-out fMRI semantic-hub regression,
+  mid-layer `mean_repr` beats base for all 15 coherent arm x region comparisons
+  across Ventral Visual, ATL, and Language, while scrambled is below base in all
+  3 regions. The strongest task-vector reads are `taskvec_a0p25` in Ventral
+  Visual (`+0.0535`, 3/3 subjects positive) and `taskvec_a0p5` in ATL/Language
+  (`+0.0324` / `+0.0507`, 2/3 subjects positive). This is a real positive lead,
+  but not yet the final brain claim: direct Ventral Visual RSA is still flat
+  versus base, the audit is post-hoc, and `taskvec_a0p5` is not retention-safe.
 - **Benchmarks:** task-vector `alpha=0.25` improves ARC retention over lowrank
   (`ARC-Easy 0.808`, `ARC-Challenge 0.559`) but still drops versus base
   (`0.850`, `0.649`). HellaSwag and WinoGrande are near-preserved under
@@ -159,6 +165,8 @@ now tracked in
   [`results/sft_fmri_semantic_bridge/REPORT.md`](results/sft_fmri_semantic_bridge/REPORT.md)
 - Held-out fMRI hub regression:
   [`results/sft_fmri_hub_regression/REPORT.md`](results/sft_fmri_hub_regression/REPORT.md)
+- fMRI hub-regression positive-signal audit:
+  [`results/sft_fmri_hub_regression/POSITIVE_SIGNAL_REVIEW.md`](results/sft_fmri_hub_regression/POSITIVE_SIGNAL_REVIEW.md)
 - Concept-vector steering lane:
   [`results/sft_eval/concept_steering/REPORT.md`](results/sft_eval/concept_steering/REPORT.md)
 

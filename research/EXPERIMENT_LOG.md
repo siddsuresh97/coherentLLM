@@ -1,6 +1,6 @@
 # Coherence-SFT Experiment Log
 
-Last updated: 2026-07-08 23:54 CDT
+Last updated: 2026-07-09 00:00 CDT
 
 ## Read this first
 
@@ -43,7 +43,7 @@ validation from scientific evidence.
 | Lane | Hypothesis | What we did | What we found | Conclusion | Next steps |
 | --- | --- | --- | --- | --- | --- |
 | Semantic hub / MEMP | Coherence SFT induces a more format-invariant semantic memory state across THINGS prompt spokes. | Extracted hidden states; ran paper-style matched-vs-random similarity; added hubness, CSLS, and mutual-nearest controls. | `taskvec_a0p25` is strongest: CSLS top-5 `0.675` vs base `0.128`, CSLS MNN `0.132` vs base `0.002`, but strict identity and hubness-corrected top-1 remain limited. | Positive but qualified. The safe claim is stronger cross-format semantic clustering, not a clean universal hub. | Run logit-lens and causal patching/activation intervention tests; gate any higher-alpha hub candidate on TruthfulQA/WiC retention. |
-| THINGS fMRI / hub bridge | If the semantic hub is brain-relevant, aligned states should improve object-fMRI RSA or hub metrics should explain ROI gains. | Ran THINGS-fMRI RSA and concept-held-out hub-to-fMRI regressions across visual/semantic ROIs. | Ventral Visual has the expected object-RSA signal and scrambled separation, but aligned arms are mostly flat versus base; hub predictors do not cleanly explain Ventral Visual RSA. | Not a positive hub-brain result for Ventral Visual. ATL/Language hints are exploratory. | Use fixed-layer or nested-CV confirmation only if continuing; do not overclaim Ventral Visual evidence. |
+| THINGS fMRI / hub bridge | If the semantic hub is brain-relevant, aligned states should improve object-fMRI RSA or predict held-out fMRI RDM geometry better than base. | Ran THINGS-fMRI RSA, concept-held-out hub-to-fMRI regressions, then a positive-signal audit with same-layer base controls. | Direct Ventral Visual RSA is still flat versus base, but held-out hub regression has a strong post-hoc lead: 15/15 coherent arm x region mid-layer `mean_repr` comparisons beat base across Ventral Visual/ATL/Language; scrambled is below base in 3/3 regions. | Positive but not conclusive. The safe claim is improved brain-predictive semantic geometry under held-out RDM regression, not a final fMRI encoding win. | Pre-register the mid-layer `mean_repr` metric, run paired subject/concept bootstrap, and then repeat in high-data Huth/Fedorenko language fMRI. |
 | Huth/LeBel narrative fMRI | Coherence/task-vector features should improve held-out natural-language BOLD prediction. | Audited/staged ds003020 smoke data; ran GPU word-state extraction; ran capped and uncapped full-voxel CPU ridge encoding on `UTS01`-`UTS03`. | Pipeline works, but base wins the uncapped smoke: layer-16 subject mean `base=0.009785`, `taskvec_a0p25=0.009137`, `lowLR=0.008287`, `scrambled=0.004988`. | Technical validation only; no base-beating Huth/LeBel task-vector result yet. | Run high-data multi-story/fold Huth encoding with packed story artifacts after staging file quota is unblocked. |
 | Fedorenko / EvLab language network | Coherence-induced semantic structure may align better with language-network representations. | Literature and method audit; checked whether current ds003020 path can support Fedorenko-style claims. | Current path is Huth-style natural listening and lacks subject-specific language localizer masks or language > control contrasts. | No conclusive Fedorenko/EvLab result. Atlas or broad language-like ROIs are exploratory only. | Add subject-specific language localizers or a dataset with localizer contrasts before claiming language-network effects. |
 | Concept steering | Difference-of-means coherence/alignment vectors can steer desired behavior without broad retention cost. | Built contrast sets and CHTC steering pipeline; ran smoke `5513276`, sweep `5513297`, qualitative judged suite `5513407`. | Steering moves behavior, but best coherence gain trades off alignment (`coherence_l12_a4`: `+0.12` coherence, `-0.24` alignment); retention-safe `coherence_l16_a4` is weak (`+0.04` coherence, `-0.08` alignment); human-alignment vectors did not improve harder prompts. | Not conclusive positive. Machinery works, but no clean useful steering setting yet. | Build stricter held-out coherence/alignment prompts and side-effect gates before another broad steering run. |
@@ -64,6 +64,36 @@ report, not only implicit in scripts. It covers:
 - Concept-vector contrast prompts, qualitative generation prompts, and
   retention probes.
 - Retention-gate `lm_eval` templates and exact TruthfulQA log-sample paths.
+
+## 2026-07-09 checkpoint: fMRI hub-regression positive-signal audit
+
+Added `src/sft/analyze_fmri_positive_signal.py` and generated
+`results/sft_fmri_hub_regression/POSITIVE_SIGNAL_REVIEW.md` plus three CSV
+tables:
+
+- `positive_midlayer_mean_repr.csv`
+- `positive_subject_consistency.csv`
+- `positive_best_layer_same_base.csv`
+
+Main finding: the strongest current positive brain-alignment lead is the
+concept-held-out semantic-hub regression, not the original direct RSA. In the
+fixed mid-layer band `10:20`, all coherent/non-scrambled arms beat base for
+`mean_repr` held-out Pearson `r` across Ventral Visual, ATL, and Language
+(`15/15` arm-region comparisons). Scrambled is below base in all three regions.
+The most useful task-vector cells are:
+
+- Ventral Visual: `taskvec_a0p25` mean-repr `r=0.1679`, delta `+0.0535`, with
+  `3/3` subjects positive versus base.
+- ATL: `taskvec_a0p5` mean-repr `r=0.0356`, delta `+0.0324`, with `2/3`
+  subjects positive.
+- Language: `taskvec_a0p5` mean-repr `r=0.0511`, delta `+0.0507`, with `2/3`
+  subjects positive; `lowLR` and `lowrank` are also positive in `3/3` subjects.
+
+Caution: this is a post-hoc representational RDM-prediction signal. Direct
+Ventral Visual RSA remains flat versus base, Huth/LeBel smoke is not
+base-beating, and `taskvec_a0p5` is not retention-safe. The next confirmatory
+step should freeze the metric/layers and run paired bootstrap or a true held-out
+replication before treating this as the main cognitive-neuroscience claim.
 
 ## Active task briefs
 

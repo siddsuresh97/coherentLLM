@@ -1,6 +1,6 @@
 # Active Agent Handoff
 
-Last coordination snapshot: 2026-07-08 23:54 CDT.
+Last coordination snapshot: 2026-07-09 00:00 CDT.
 
 Branch: `coherence-sft`
 
@@ -11,6 +11,12 @@ Persistent objective: determine what the coherence-trained model improves, what 
 - Prompt provenance: exact prompt templates, chat serialization examples, and
   complete prompt-row artifact paths are now centralized in
   `research/PROMPT_PROVENANCE.md`.
+- Positive brain-alignment lead: `results/sft_fmri_hub_regression/POSITIVE_SIGNAL_REVIEW.md`
+  shows a post-hoc but coherent result in held-out fMRI semantic-hub
+  regression. In mid-layer `mean_repr`, all coherent/non-scrambled arms beat
+  base across Ventral Visual, ATL, and Language (`15/15` comparisons), while
+  scrambled is below base in all three. Treat this as the next confirmatory
+  target, not as a final fMRI claim.
 - Concept steering: not conclusive positive. `5513407` technically passed, but
   the strongest coherence gain trades off alignment, the retention-safe
   coherence setting is weak, and human-alignment vectors did not improve harder
