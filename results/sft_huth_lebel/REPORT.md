@@ -72,7 +72,7 @@ and submitting full smoke extraction cluster `5513245`.
   directory using `huth_encoding_smoke_bundle.sub`.
 - Encoding outcome: `5513337` terminated normally with return value `0`, and
   the pulled bundle under
-  `results/sft_huth_lebel/chtc_huth_extract_smoke_retry_5513306/extracted_encoding/`
+  `results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_5513337/`
   contains `encoding_exit_status.txt == 0`, `summary.csv`, `alpha_cv.csv`, and
   `run_metadata.json`.
 - Encoding smoke read: the path is validated for feature-bundle ingestion,
@@ -80,8 +80,10 @@ and submitting full smoke extraction cluster `5513245`.
   held-out Pearson scoring. The metrics are near zero because this is only
   `UTS01`, two short training stories, and `--max_voxels 2000`; do not treat it
   as a scientific arm comparison.
-- Active CPU-only scale check: cluster `5513350` runs the same capped bundle
-  encoding for `UTS02,UTS03` from the validated `5513306` feature bundle.
+- CPU-only scale check `5513350` passed for the same capped bundle encoding on
+  `UTS02,UTS03` from the validated `5513306` feature bundle. `UTS02` remains
+  near zero; `UTS03` shows small positive smoke predictivity (`base` layer 16
+  mean `r=0.015795`, `taskvec_a0p25` layer 16 mean `r=0.013765`).
 - Duplicate recovery cluster `5513310` had identical settings and was removed
   while idle.
 - Duplicate cluster `5513244` held before model work because its submit
@@ -166,6 +168,8 @@ and submitting full smoke extraction cluster `5513245`.
   `5513337`
 - CHTC encoding smoke outputs:
   `results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_5513337/`
-- Active UTS02/UTS03 encoding scale check:
+- Passed UTS02/UTS03 encoding scale check:
   `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`, cluster
   `5513350`
+- CHTC UTS02/UTS03 encoding outputs:
+  `results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_uts02_uts03_5513350/`

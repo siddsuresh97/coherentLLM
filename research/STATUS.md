@@ -237,8 +237,11 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   `wheretheressmoke`: encoding status `0`, `summary.csv`, and `alpha_cv.csv`.
   The smoke validates the path but is not a scientific arm comparison because it
   uses `UTS01`, two short training stories, and a 2000-voxel cap. CPU-only
-  scale check `5513350` is submitted for capped `UTS02,UTS03` encoding from the
-  same feature bundle.
+  scale check `5513350` passed for capped `UTS02,UTS03` encoding from the same
+  feature bundle. `UTS03` shows small positive smoke predictivity
+  (`base` layer 16 mean `r=0.015795`; `taskvec_a0p25` layer 16 mean
+  `r=0.013765`), while `UTS02` remains near zero. This validates the
+  three-subject smoke path, not a final arm comparison.
 - Concept-vector steering scaffolding is committed and pushed as `99c0c60`.
   It adds coherence/human-alignment contrast datasets and dry-run validated
   extraction/eval scripts. The first CHTC GPU smoke is submitted as cluster

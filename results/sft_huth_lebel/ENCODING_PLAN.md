@@ -35,8 +35,10 @@ Updated: 2026-07-09
 - Smoke metric read: near-zero held-out scores are expected for this path check
   because it uses only `UTS01`, two short training stories, and `--max_voxels
   2000`. Treat it as a pipeline validation, not an arm-comparison result.
-- Active CPU-only scale check: cluster `5513350` runs the same capped bundle
-  encoding for `UTS02,UTS03` from the validated `5513306` feature bundle.
+- CPU-only scale check `5513350` passed for the same capped bundle encoding on
+  `UTS02,UTS03` from the validated `5513306` feature bundle. Best rows:
+  `UTS02` scrambled layer 16 mean `r=0.001870`; `UTS03` base layer 16 mean
+  `r=0.015795`, with `taskvec_a0p25` layer 16 mean `r=0.013765`.
 - Duplicate cluster `5513310` had identical settings and was removed while
   idle.
 

@@ -1,0 +1,41 @@
+[subject] UTS02
+[response] UTS02/sweetaspie: (157, 2000)
+[response] UTS02/againstthewind: (170, 2000)
+[response] UTS02/wheretheressmoke: (291, 2000)
+[arm] UTS02/base
+[score] UTS02/base/layer16: mean_r=-0.00384 median_r=-0.00422 alpha=10
+[score] UTS02/base/layer24: mean_r=-0.00346 median_r=-0.00353 alpha=10
+[score] UTS02/base/layer32: mean_r=0.00029 median_r=-0.00131 alpha=215.443
+[arm] UTS02/lowLR
+[score] UTS02/lowLR/layer16: mean_r=-0.00427 median_r=-0.00448 alpha=10
+[score] UTS02/lowLR/layer24: mean_r=0.00122 median_r=0.00153 alpha=1000
+[score] UTS02/lowLR/layer32: mean_r=-0.00097 median_r=-0.00123 alpha=1000
+[arm] UTS02/scrambled
+[score] UTS02/scrambled/layer16: mean_r=0.00187 median_r=0.00132 alpha=1000
+[score] UTS02/scrambled/layer24: mean_r=0.00086 median_r=0.00113 alpha=1000
+[score] UTS02/scrambled/layer32: mean_r=0.00115 median_r=0.00076 alpha=359.381
+[arm] UTS02/taskvec_a0p25
+[score] UTS02/taskvec_a0p25/layer16: mean_r=-0.00395 median_r=-0.00286 alpha=10
+[score] UTS02/taskvec_a0p25/layer24: mean_r=-0.00415 median_r=-0.00519 alpha=10
+[score] UTS02/taskvec_a0p25/layer32: mean_r=-0.00241 median_r=-0.00265 alpha=1000
+[subject] UTS03
+[response] UTS03/sweetaspie: (157, 2000)
+[response] UTS03/againstthewind: (170, 2000)
+[response] UTS03/wheretheressmoke: (291, 2000)
+[arm] UTS03/base
+[score] UTS03/base/layer16: mean_r=0.01579 median_r=0.01042 alpha=1000
+[score] UTS03/base/layer24: mean_r=0.01151 median_r=0.00922 alpha=1000
+[score] UTS03/base/layer32: mean_r=0.01111 median_r=0.00987 alpha=1000
+[arm] UTS03/lowLR
+[score] UTS03/lowLR/layer16: mean_r=0.01426 median_r=0.01006 alpha=1000
+[score] UTS03/lowLR/layer24: mean_r=0.00916 median_r=0.00769 alpha=1000
+[score] UTS03/lowLR/layer32: mean_r=0.00822 median_r=0.00539 alpha=1000
+[arm] UTS03/scrambled
+[score] UTS03/scrambled/layer16: mean_r=0.00442 median_r=0.00352 alpha=1000
+[score] UTS03/scrambled/layer24: mean_r=0.00319 median_r=0.00277 alpha=215.443
+[score] UTS03/scrambled/layer32: mean_r=0.00131 median_r=0.00008 alpha=1000
+[arm] UTS03/taskvec_a0p25
+[score] UTS03/taskvec_a0p25/layer16: mean_r=0.01376 median_r=0.00910 alpha=1000
+[score] UTS03/taskvec_a0p25/layer24: mean_r=0.00656 median_r=0.00539 alpha=1000
+[score] UTS03/taskvec_a0p25/layer32: mean_r=0.00786 median_r=0.00547 alpha=1000
+[write] /var/lib/condor/execute/slot1/dir_2680225/scratch/huth_encoding_smoke_bundle_uts02_uts03/encoding/summary.csv

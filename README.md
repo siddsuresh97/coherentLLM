@@ -26,8 +26,9 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   only the base features before hitting staging directory quota; bundle-output
   recovery extraction `5513306` passed with all 12 arm/story NPZs, and capped
   CPU ridge encoding `5513337` passed as a path-validation smoke. CPU-only
-  `UTS02,UTS03` scale check `5513350` is submitted from the same feature
-  bundle.
+  `UTS02,UTS03` scale check `5513350` also passed from the same feature
+  bundle; `UTS03` shows small positive smoke predictivity, but this is still a
+  two-training-story, 2000-voxel path check.
 - **fMRI x hub bridge:** the new concept-held-out regression does not support a
   clean semantic-hub explanation of Ventral Visual RSA. Averaged hub predictors
   are roughly tied with single prompt spokes in Ventral Visual, while
@@ -57,7 +58,7 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   three-story smoke `5513245` wrote the base features but failed on staging
   directory quota; bundle-output recovery `5513306` passed and CPU encoding
   smoke `5513337` passed; capped `UTS02,UTS03` encoding scale check `5513350`
-  is queued/running. Concept steering
+  also passed. Concept steering
   smoke `5513235` exposed a staging visibility failure on a non-staging
   backfill node; retry `5513261` exposed pip dependency shadowing; fixed
   no-deps retry `5513276` passed and produced vectors plus 18 smoke eval rows;
@@ -503,9 +504,10 @@ Current plan:
   `/staging/s/suresh27/datasets/ds003020-smoke`. GPU-side debug extraction
   `5513178` passed, bundle-output three-story extraction `5513306` passed, and
   capped CPU ridge encoding `5513337` passed over
-  `sweetaspie`/`againstthewind` to held-out `wheretheressmoke`. The smoke
-  validates the path; the correlations are near zero under the current
-  `UTS01` two-training-story, 2000-voxel cap.
+  `sweetaspie`/`againstthewind` to held-out `wheretheressmoke`. The follow-up
+  capped `UTS02,UTS03` scale check `5513350` also passed, validating all three
+  smoke subjects. The correlations are still smoke-level under the
+  two-training-story, 2000-voxel cap.
 - Fedorenko/EvLab language-network: prefer individually localized
   `sentences > nonword lists` masks. Atlas/group language ROIs are exploratory.
 - Benchmark-drops: first finish eval-only controls (`lowrank`, `scrambled`,

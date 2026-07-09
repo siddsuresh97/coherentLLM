@@ -1424,6 +1424,18 @@ New Huth smoke submission:
 - Submitted CPU-only scale check `5513350` from the same run directory with
   `huth_encoding_smoke_bundle_uts02_uts03.sub`; it runs capped
   `UTS02,UTS03` encoding from the validated `5513306` feature bundle.
+- Outcome: `5513350` ran on `oconnor2003.chtc.wisc.edu`, terminated normally
+  with return value `0`, and returned
+  `huth_encoding_smoke_bundle_uts02_uts03_results.tgz`.
+- Local artifacts:
+  `results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_uts02_uts03_5513350/`.
+- Pass evidence: `exit_status.txt == 0`, `encoding_exit_status.txt == 0`, and
+  `summary.csv` has 24 subject/arm/layer rows.
+- Smoke score read: `UTS02` best row is `scrambled` layer 16
+  (`mean_r=0.001870`, `median_r=0.001318`); `UTS03` best row is `base` layer
+  16 (`mean_r=0.015795`, `median_r=0.010420`). `taskvec_a0p25` is close to
+  base on `UTS03` layer 16 (`mean_r=0.013765`) but negative on `UTS02`; this is
+  still a capped path-validation smoke, not a final arm comparison.
 - Duplicate retry `5513310` was submitted with identical settings and removed
   while idle with `condor_rm 5513310`.
 
@@ -1438,9 +1450,9 @@ Duplicate avoided:
 
 Next read:
 
-- Next scale point: monitor and pull cluster `5513350`; if it passes, either
-  remove the `--max_voxels 2000` cap for `UTS01` or stage the high-data
-  subject/story subset only after the smoke report is committed.
+- Next scale point: either remove the `--max_voxels 2000` cap for the
+  three-subject smoke or stage the high-data subject/story subset after the
+  smoke report is committed.
 
 ## 2026-07-09 active: MMLU CHTC smoke passed; full shards submitted
 

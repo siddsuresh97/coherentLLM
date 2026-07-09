@@ -35,8 +35,8 @@ Current state from repo reports:
   `5513245` failed on staging directory quota after writing only base features;
   bundle-output recovery extraction `5513306` passed with all 12 expected
   arm/story NPZs; CPU ridge encoding smoke `5513337` passed as a path-validation
-  smoke. CPU-only scale check `5513350` is now queued/running for capped
-  `UTS02,UTS03` encoding from the same feature bundle.
+  smoke. CPU-only scale check `5513350` passed for capped `UTS02,UTS03`
+  encoding from the same feature bundle.
 - The next expensive scientific step should scale cautiously: either uncap
   `UTS01` smoke voxels or run the same capped smoke on `UTS02`/`UTS03` before
   staging the high-data subset.
@@ -416,9 +416,9 @@ Current read:
 Next tests to implement:
 
 0. Huth scale check.
-   - Monitor cluster `5513350`, which runs the same capped encoding smoke on
-     `UTS02`/`UTS03` from the already-validated `5513306` feature bundle.
-   - If it passes, decide whether to remove the 2000-voxel cap for `UTS01` or
+   - Cluster `5513350` passed the same capped encoding smoke on `UTS02`/`UTS03`
+     from the already-validated `5513306` feature bundle.
+   - Next decision: remove the 2000-voxel cap for the three-subject smoke or
      stage the high-data subset.
 
 1. Logit-lens semantic anchoring.

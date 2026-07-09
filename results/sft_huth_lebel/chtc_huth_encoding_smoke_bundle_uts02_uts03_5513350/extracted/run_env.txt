@@ -1,0 +1,14 @@
+timestamp_utc=2026-07-09T01:57:40Z
+hostname=suresh27-5513350.0-oconnor2003.chtc.wisc.edu
+pwd=/var/lib/condor/execute/slot1/dir_2680225/scratch
+python=/usr/local/bin/python3
+RESULT_NAME=huth_encoding_smoke_bundle_uts02_uts03
+FEATURE_BUNDLE=huth_extract_smoke_results.tgz
+FEATURE_DIR=
+SUBJECTS=UTS02,UTS03
+TRAIN_STORIES=sweetaspie,againstthewind
+TEST_STORY=wheretheressmoke
+ARMS=base,lowLR,scrambled,taskvec_a0p25
+LAYERS=16,24,32
+MAX_VOXELS=2000
+RIDGE_SOLVER=auto
