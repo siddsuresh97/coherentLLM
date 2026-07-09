@@ -1,0 +1,24 @@
+universe = container
+container_image = docker://datalad/buildenv-git-annex:latest
+
+batch_name = coherence_huth_lebel_pack_story_smoke_$(Cluster)
+log = logs/$(Cluster)_$(Process).log
+output = logs/$(Cluster)_$(Process).out
+error = logs/$(Cluster)_$(Process).err
+
+executable = /bin/bash
+arguments = run_pack_story_smoke.sh
+transfer_input_files = run_pack_story_smoke.sh, huth_lebel_pack_stories.py, staging_manifest_smoke.csv
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_output_files = huth_lebel_pack_story_smoke_results.tgz
+
+environment = "DATASET_ROOT=/staging/s/suresh27/datasets/ds003020-smoke MANIFEST=staging_manifest_smoke.csv STORY=againstthewind"
+
+requirements = (Target.HasCHTCStaging == true)
+request_cpus = 2
+request_memory = 4GB
+request_disk = 10GB
++is_resumable = true
+
+queue 1

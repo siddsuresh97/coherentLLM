@@ -1,0 +1,9 @@
+started=2026-07-09T03:08:01+00:00
+hostname=suresh27-5513422.0-e4049.chtc.wisc.edu
+pwd=/var/lib/condor/execute/slot1/dir_2031524/scratch
+dataset_root=/staging/s/suresh27/datasets/ds003020-smoke
+manifest=staging_manifest_smoke.csv
+story=againstthewind
+python_bin=python3
+zstd_path=tar (GNU tar) 1.35
+finished=2026-07-09T03:08:28+00:00

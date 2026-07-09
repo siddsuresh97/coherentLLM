@@ -1,0 +1,12 @@
+0	/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/file_inventory.tsv
+43	/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/plan/smoke_pack_stories.txt
+284	/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/verify_result.json
+298	/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/run_env.txt
+356	/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/pack_result.json
+409	/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/plan/smoke_story_pack_summary.json
+1232	/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/extracted/dataset_description.json
+1232	/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/plan/smoke_story_pack_manifest.csv
+1856	/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/extracted/HUTH_LEBEL_PACK_MANIFEST.json
+456043	/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/extracted/derivatives/TextGrids/againstthewind.TextGrid
+63532454	/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/extracted/stimuli/againstthewind.wav
+399848250	/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/packs/againstthewind.tar.gz

@@ -165,6 +165,12 @@ these two paths:
      `story.tar.zst`.
    - Store packs under `/staging/s/suresh27/datasets/ds003020-highdata-packs/`.
    - Later jobs unpack only needed stories into scratch.
+   - Current implementation:
+     `src/sft/huth_lebel_pack_stories.py`,
+     `chtc/huth_lebel_highdata_packs/huth_lebel_pack_highdata.sub`, and
+     `results/sft_huth_lebel/highdata_story_pack_manifest.csv`.
+   - Current planned reduction: 420 raw files to 84 story archives, saving 336
+     file entries before feature outputs.
 
 2. Fallback: free staging file count and disk, then raw-stage high-data.
    - Current high-data adds 420 files and 76.86 GB.
@@ -180,6 +186,10 @@ chtc-ssh 'get_quotas'
 chtc-ssh 'condor_q -batch suresh27'
 chtc-ssh 'du -sh /staging/s/suresh27/datasets/ds003020-smoke /staging/s/suresh27/models /staging/s/suresh27/adapters'
 ```
+
+Current cleanup recommendation is in `STAGING_UNBLOCK_REPORT.md`: remove only
+the rebuildable MMLU HF dataset cache after confirming no MMLU jobs are active;
+keep staged models/adapters.
 
 ### Stage 2: High-Data Extraction
 

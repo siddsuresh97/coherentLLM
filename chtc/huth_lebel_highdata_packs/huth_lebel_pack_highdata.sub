@@ -1,0 +1,28 @@
+universe = container
+container_image = docker://datalad/buildenv-git-annex:latest
+
+batch_name = coherence_huth_lebel_pack_highdata_$(Cluster)
+log = logs/$(Cluster)_$(Process).log
+output = logs/$(Cluster)_$(Process).out
+error = logs/$(Cluster)_$(Process).err
+
+executable = /bin/bash
+arguments = run_pack_highdata_story.sh $(story)
+transfer_input_files = run_pack_highdata_story.sh, huth_lebel_pack_stories.py, staging_manifest_highdata.csv
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_output_files = huth_lebel_pack_highdata_story_$(story)_results.tgz
+
+environment = "PACK_ROOT=/staging/s/suresh27/datasets/ds003020-highdata-packs MANIFEST=staging_manifest_highdata.csv ANNEX_JOBS=4"
+
+requirements = (Target.HasCHTCStaging == true)
+request_cpus = 2
+request_memory = 6GB
+request_disk = 8GB
++is_resumable = true
+
+# Submit only after staging file count is below quota. Start with one story:
+#   queue story from highdata_pack_stories_smoke.txt
+# Then scale with:
+#   queue story from highdata_pack_stories.txt
+queue story from highdata_pack_stories_smoke.txt

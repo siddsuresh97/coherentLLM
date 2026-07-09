@@ -1,0 +1,28 @@
+extracted file size mismatch:
+[
+  {
+    "relative_path": "derivatives/preprocessed_data/UTS01/againstthewind.hf5",
+    "expected_bytes": 110333408,
+    "actual_bytes": -1
+  },
+  {
+    "relative_path": "derivatives/preprocessed_data/UTS02/againstthewind.hf5",
+    "expected_bytes": 128183408,
+    "actual_bytes": -1
+  },
+  {
+    "relative_path": "derivatives/preprocessed_data/UTS03/againstthewind.hf5",
+    "expected_bytes": 129958208,
+    "actual_bytes": -1
+  },
+  {
+    "relative_path": "derivatives/TextGrids/againstthewind.TextGrid",
+    "expected_bytes": 456043,
+    "actual_bytes": -1
+  },
+  {
+    "relative_path": "stimuli/againstthewind.wav",
+    "expected_bytes": 63532454,
+    "actual_bytes": -1
+  }
+]

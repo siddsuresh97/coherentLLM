@@ -67,6 +67,12 @@ completed and high-data staging was rechecked.
   `24.3209/100` GB. The next safe staging design is one packed artifact per
   story, e.g. `ds003020-highdata-packs/<story>.tar.zst`, unpacked in scratch by
   feature-extraction and encoding jobs.
+- High-data packed-story plan status at `2026-07-08 21:58 CDT`: implemented
+  locally. `src/sft/huth_lebel_pack_stories.py plan` groups
+  `staging_manifest_highdata.csv` into 84 story archives instead of 420 loose
+  raw files, a 336-entry reduction. The pack manifest is
+  `highdata_story_pack_manifest.csv`; the quota/cleanup report is
+  `STAGING_UNBLOCK_REPORT.md`.
 - Duplicate recovery cluster `5513310` was removed while idle.
 - Duplicate cluster `5513244` held before model work because its submit
   expected a missing output tarball; it was removed with `condor_rm`.
@@ -103,6 +109,12 @@ completed and high-data staging was rechecked.
 - Smoke manifest: `results/sft_huth_lebel/staging_manifest_smoke.csv`
 - High-data manifest: `results/sft_huth_lebel/staging_manifest_highdata.csv`
 - Summary JSON: `results/sft_huth_lebel/staging_summary.json`
+- High-data pack manifest:
+  `results/sft_huth_lebel/highdata_story_pack_manifest.csv`
+- High-data pack summary:
+  `results/sft_huth_lebel/highdata_story_pack_summary.json`
+- Staging unblock report:
+  `results/sft_huth_lebel/STAGING_UNBLOCK_REPORT.md`
 
 ## Next
 

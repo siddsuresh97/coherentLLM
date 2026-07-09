@@ -48,6 +48,15 @@ This directory tracks the ds003020 natural-language fMRI path for testing whethe
   `/staging/s/suresh27` is at `1120/1000` files despite only `24.3209/100` GB
   used. Use packed story artifacts or free file count before staging the
   84-story, 420-file, 76.86 GB high-data manifest.
+- High-data staging unblock work is tracked in `STAGING_UNBLOCK_REPORT.md`.
+  A packed-story plan is now generated: 420 raw high-data files become 84
+  planned story archives under
+  `/staging/s/suresh27/datasets/ds003020-highdata-packs`, reducing the planned
+  file count by 336 entries. The preferred cleanup candidate is the rebuildable
+  MMLU HF dataset cache at `/staging/s/suresh27/hf_datasets_cache`; no cleanup
+  has been performed yet. Pack-smoke retry `5513422` passed on CHTC with
+  `ExitCode=0`, proving the tar dereference path handles ds003020 git-annex
+  symlinks.
 - Duplicate cluster `5513244` held before work because its submit expected a
   missing output tarball; it was removed with `condor_rm`.
 
@@ -92,6 +101,14 @@ Fedorenko/EvLab language-network claims require independent subject-specific lan
 - `ENCODING_PLAN.md`: executable smoke experiment and CHTC scaling plan.
 - `NEXT_EXPERIMENT_PLAN.md`: current Huth/Fedorenko high-data plan, semantic
   hub/MEMP bridge design, exact runnable command shapes, and blockers.
+- `STAGING_UNBLOCK_REPORT.md`: current CHTC file-quota audit, cleanup
+  candidates, packed-story manifests, and pack-smoke status.
+- `chtc_huth_pack_smoke_retry_5513422/`: successful CHTC pack-smoke proof
+  files for `againstthewind`.
+- `highdata_story_pack_manifest.csv`: 84 planned story pack rows for the
+  `UTS01`-`UTS03` high-data subset.
+- `staging_cleanup_candidates.csv`: exact CHTC staging paths proposed for
+  cleanup or retention.
 
 ## Uncapped 5513373 Mean-r Table
 

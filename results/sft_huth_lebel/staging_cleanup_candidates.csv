@@ -1,0 +1,7 @@
+path,files,dirs,symlinks,bytes,entry_count,gb,classification,recommendation,rationale
+/staging/s/suresh27/hf_datasets_cache,258,115,0,4081496,373,0.004081496,rebuildable_cache,preferred_cleanup,"MMLU is complete; this is a tiny rebuildable HF datasets cache that alone frees enough file entries to move from 1120/1000 to about 747/1000."
+/staging/s/suresh27/features/huth_lebel_smoke_llama31,9,3,0,83939228,12,0.083939228,stale_huth_smoke_feature_cache,cleanup_after_confirm,"Leftover base-only staged features from failed cluster 5513245; bundle-output extraction 5513306 already returned all planned smoke features."
+/staging/s/suresh27/datasets/ds003020-smoke,127,134,15,7887287913,276,7.887287913,validated_smoke_dataset,cleanup_after_pack_smoke_or_keep_until_highdata,"Smoke staging already served clusters 5513059, 5513306, 5513373; remove only after the pack smoke is pulled or if staging file count remains blocked."
+/staging/s/suresh27/hf_home,244,54,114,3999360,412,0.00399936,rebuildable_hf_cache,defer_until_active_jobs_finish,"Tiny but many entries; may be touched by active HF jobs, so avoid cleanup while concept or other HF jobs run."
+/staging/s/suresh27/models,10,1,0,16069722669,11,16.069722669,shared_model,keep,"Required by Llama/Huth/concept lanes; low file count and expensive to restage."
+/staging/s/suresh27/adapters,23,6,0,2065377020,29,2.065377020,shared_adapters,keep,"Required for lowLR/scrambled/taskvec arms; low file count and needed by active and planned jobs."

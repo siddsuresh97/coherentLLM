@@ -1,0 +1,40 @@
+000 (5513418.000.000) 2026-07-08 21:57:16 Job submitted from host: <128.105.68.113:9618?addrs=128.105.68.113-9618+[2607-f388-2200-100-eaeb-d3ff-fea7-d05e]-9618&alias=ap2002.chtc.wisc.edu&noUDP&sock=schedd_7841_da2f>
+    [ JobBatchName = "coherence_huth_lebel_pack_story_smoke_5513418" ]
+...
+040 (5513418.000.000) 2026-07-08 22:00:25 Started transferring input files
+	Transferring to host: <128.105.69.119:9618?addrs=128.105.69.119-9618+[2607-f388-2200-100-1270-fdff-fe56-ccdc]-9618&alias=e4068.chtc.wisc.edu&noUDP&sock=slot1_43_3956190_7fa6_51068>
+...
+040 (5513418.000.000) 2026-07-08 22:00:25 Finished transferring input files
+...
+001 (5513418.000.000) 2026-07-08 22:00:34 Job executing on host: <128.105.69.119:9618?addrs=128.105.69.119-9618+[2607-f388-2200-100-1270-fdff-fe56-ccdc]-9618&alias=e4068.chtc.wisc.edu&noUDP&sock=startd_14827_aace>
+	SlotName: slot1_43@e4068.chtc.wisc.edu
+	CondorScratchDir = "/var/lib/condor/execute/slot1/dir_3350049/scratch"
+	Cpus = 2
+	Disk = 10485760
+	GPUs = 0
+	IoHeavy = 0
+	Memory = 4096
+...
+040 (5513418.000.000) 2026-07-08 22:01:26 Started transferring output files
+...
+040 (5513418.000.000) 2026-07-08 22:01:26 Finished transferring output files
+...
+005 (5513418.000.000) 2026-07-08 22:01:37 Job terminated.
+	(1) Normal termination (return value 1)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	6563  -  Run Bytes Sent By Job
+	1408016  -  Run Bytes Received By Job
+	6563  -  Total Bytes Sent By Job
+	1408016  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated
+	   Cpus                 :        0        2         2
+	   Disk (KB)            :     1568 10485760  10485760
+	   GPUs                 :                           0
+	   IoHeavy              :                           0
+	   Memory (MB)          :              4096      4096
+	   TimeExecute (s)      :        2
+	   TimeSlotBusy (s)     :       61
+...

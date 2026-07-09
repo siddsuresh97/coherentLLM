@@ -1,0 +1,1 @@
+794M	/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke

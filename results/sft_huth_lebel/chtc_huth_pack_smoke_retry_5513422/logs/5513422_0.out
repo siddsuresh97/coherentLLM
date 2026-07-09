@@ -1,0 +1,39 @@
+started=2026-07-09T03:08:01+00:00
+hostname=suresh27-5513422.0-e4049.chtc.wisc.edu
+pwd=/var/lib/condor/execute/slot1/dir_2031524/scratch
+dataset_root=/staging/s/suresh27/datasets/ds003020-smoke
+manifest=staging_manifest_smoke.csv
+story=againstthewind
+python_bin=python3
+zstd_path=tar (GNU tar) 1.35
+{
+  "compression": "zst",
+  "file_count_reduction": 12,
+  "generated": "2026-07-09T03:08:01.350239+00:00",
+  "label": "smoke",
+  "n_stories": 3,
+  "pack_root": "/staging/s/suresh27/datasets/ds003020-highdata-packs",
+  "packed_file_count": 3,
+  "source_file_count": 15,
+  "source_manifest": "staging_manifest_smoke.csv",
+  "total_expected_source_bytes": 7877643435,
+  "total_expected_source_gb": 7.877643435
+}
+{
+  "archive": "/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/packs/againstthewind.tar.gz",
+  "archive_bytes": 399848250,
+  "compression": "gz",
+  "expected_source_bytes": 432463521,
+  "n_source_files": 5,
+  "sha256": "728b01346aed14f512d66bdb8699dbbde37455e1287e50a7392ddc9ce6f0cc7a",
+  "story": "againstthewind"
+}
+{
+  "archive": "/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/packs/againstthewind.tar.gz",
+  "n_archive_members": 7,
+  "n_expected_source_files": 5,
+  "story": "againstthewind",
+  "verified_extracted_sizes": true,
+  "verified_members": true
+}
+finished=2026-07-09T03:08:28+00:00

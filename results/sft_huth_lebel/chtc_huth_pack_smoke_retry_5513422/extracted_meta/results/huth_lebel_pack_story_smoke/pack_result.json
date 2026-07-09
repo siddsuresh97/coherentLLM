@@ -1,0 +1,9 @@
+{
+  "archive": "/var/lib/condor/execute/slot1/dir_2031524/scratch/results/huth_lebel_pack_story_smoke/packs/againstthewind.tar.gz",
+  "archive_bytes": 399848250,
+  "compression": "gz",
+  "expected_source_bytes": 432463521,
+  "n_source_files": 5,
+  "sha256": "728b01346aed14f512d66bdb8699dbbde37455e1287e50a7392ddc9ce6f0cc7a",
+  "story": "againstthewind"
+}
