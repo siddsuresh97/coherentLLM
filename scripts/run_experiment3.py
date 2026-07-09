@@ -1115,6 +1115,33 @@ def build_llm(args: argparse.Namespace, spec: dict, model_path: str, hf_cache: s
     return LLM(**llm_kwargs)
 
 
+def write_triplet_outputs(
+    llm,
+    spec: dict,
+    triplets: list[tuple[str, str, str]],
+    prompts: list[str],
+    sampling,
+    out_path: Path,
+    prompt_variant: str,
+) -> None:
+    src = ROOT / "src"
+    if str(src) not in sys.path:
+        sys.path.insert(0, str(src))
+    from prompts import SYSTEM_PROMPT
+
+    if spec.get("chat", True):
+        convos = [[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt}] for prompt in prompts]
+        outputs = llm.chat(convos, sampling)
+    else:
+        outputs = llm.generate(prompts, sampling)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with out_path.open("w", newline="") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(["input", "prompt", "response", "prompt_variant"])
+        for (anchor, concept1, concept2), prompt, output in zip(triplets, prompts, outputs):
+            writer.writerow([f"{anchor}|{concept1}|{concept2}", prompt, output.outputs[0].text.strip(), prompt_variant])
+
+
 def run_triplets(args: argparse.Namespace) -> None:
     ensure_dirs()
     config = load_config()
@@ -1133,25 +1160,49 @@ def run_triplets(args: argparse.Namespace) -> None:
     triplets = load_triplets()
     prompts = [format_triplet_prompt(template, *row) for row in triplets]
 
-    src = ROOT / "src"
-    if str(src) not in sys.path:
-        sys.path.insert(0, str(src))
-    from prompts import SYSTEM_PROMPT
     from vllm import SamplingParams
 
     llm = build_llm(args, spec, model_path, hf_cache)
     sampling = SamplingParams(temperature=args.temperature if args.temperature is not None else config["triplet_protocol"]["temperature"], max_tokens=8)
-    if spec.get("chat", True):
-        convos = [[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt}] for prompt in prompts]
-        outputs = llm.chat(convos, sampling)
-    else:
-        outputs = llm.generate(prompts, sampling)
-    with out_path.open("w", newline="") as handle:
-        writer = csv.writer(handle)
-        writer.writerow(["input", "prompt", "response", "prompt_variant"])
-        for (anchor, concept1, concept2), prompt, output in zip(triplets, prompts, outputs):
-            writer.writerow([f"{anchor}|{concept1}|{concept2}", prompt, output.outputs[0].text.strip(), args.prompt_variant])
+    write_triplet_outputs(llm, spec, triplets, prompts, sampling, out_path, args.prompt_variant)
     print(f"[done] {len(triplets)} triplets -> {display_path(out_path)}")
+
+
+def run_triplet_suite(args: argparse.Namespace) -> None:
+    ensure_dirs()
+    config = load_config()
+    protocol = load_protocol()
+    model_name = args.model or protocol["base_model"]
+    run_variants = []
+    for run_name in protocol["required_geometry_runs"]:
+        if "paraphrase" in run_name:
+            run_variants.append((run_name, "paraphrase"))
+        else:
+            run_variants.append((run_name, "canonical"))
+
+    pending = []
+    for run_name, prompt_variant in run_variants:
+        out_path = RAW_DIR / run_name / "triplet.csv"
+        if out_path.exists() and not args.overwrite:
+            print(f"[skip] {display_path(out_path)} exists")
+            continue
+        pending.append((run_name, prompt_variant, out_path))
+    if not pending:
+        return
+
+    spec, model_path, hf_cache = resolve_vllm_model(args, model_name)
+    print(f"[model] {model_name} -> {model_path}")
+    from vllm import SamplingParams
+
+    llm = build_llm(args, spec, model_path, hf_cache)
+    sampling = SamplingParams(temperature=args.temperature if args.temperature is not None else config["triplet_protocol"]["temperature"], max_tokens=8)
+    triplets = load_triplets()
+    for run_name, prompt_variant, out_path in pending:
+        template_key = "prompt_template" if prompt_variant == "canonical" else "paraphrase_template"
+        template = protocol[template_key]
+        prompts = [format_triplet_prompt(template, *row) for row in triplets]
+        write_triplet_outputs(llm, spec, triplets, prompts, sampling, out_path, prompt_variant)
+        print(f"[done] {len(triplets)} triplets -> {display_path(out_path)}")
 
 
 def run_items(args: argparse.Namespace) -> None:
@@ -1374,6 +1425,10 @@ def main() -> None:
     p_run_triplets.add_argument("--prompt-variant", choices=["canonical", "paraphrase"], default="canonical")
     add_vllm_args(p_run_triplets)
     p_run_triplets.set_defaults(func=run_triplets)
+
+    p_run_triplet_suite = sub.add_parser("run-triplet-suite")
+    add_vllm_args(p_run_triplet_suite)
+    p_run_triplet_suite.set_defaults(func=run_triplet_suite)
 
     p_build = sub.add_parser("build-rdm")
     p_build.add_argument("--runs", nargs="*", default=None)

@@ -184,11 +184,7 @@ case "${MODE}" in
     {
       printf '%q ' "${PYTHON_BIN}" scripts/run_experiment3.py init --no-log
       printf '\n'
-      printf '%q ' "${PYTHON_BIN}" scripts/run_experiment3.py run-triplets --out-run base_seed_a_canonical_prompt --prompt-variant canonical "${common_vllm_args[@]}"
-      printf '\n'
-      printf '%q ' "${PYTHON_BIN}" scripts/run_experiment3.py run-triplets --out-run base_seed_b_canonical_prompt --prompt-variant canonical "${common_vllm_args[@]}"
-      printf '\n'
-      printf '%q ' "${PYTHON_BIN}" scripts/run_experiment3.py run-triplets --out-run base_seed_a_paraphrase_prompt --prompt-variant paraphrase "${common_vllm_args[@]}"
+      printf '%q ' "${PYTHON_BIN}" scripts/run_experiment3.py run-triplet-suite "${common_vllm_args[@]}"
       printf '\n'
       printf '%q ' "${PYTHON_BIN}" scripts/run_experiment3.py build-rdm
       printf '\n'
@@ -199,9 +195,7 @@ case "${MODE}" in
     } > "${RESULT_DIR}/command.txt"
     log_step "pipeline_start mode=${MODE}"
     run_with_timeout "${PYTHON_BIN}" scripts/run_experiment3.py init --no-log
-    run_with_timeout "${PYTHON_BIN}" scripts/run_experiment3.py run-triplets --out-run base_seed_a_canonical_prompt --prompt-variant canonical "${common_vllm_args[@]}"
-    run_with_timeout "${PYTHON_BIN}" scripts/run_experiment3.py run-triplets --out-run base_seed_b_canonical_prompt --prompt-variant canonical "${common_vllm_args[@]}"
-    run_with_timeout "${PYTHON_BIN}" scripts/run_experiment3.py run-triplets --out-run base_seed_a_paraphrase_prompt --prompt-variant paraphrase "${common_vllm_args[@]}"
+    run_with_timeout "${PYTHON_BIN}" scripts/run_experiment3.py run-triplet-suite "${common_vllm_args[@]}"
     run_with_timeout "${PYTHON_BIN}" scripts/run_experiment3.py build-rdm
     run_with_timeout "${PYTHON_BIN}" scripts/run_experiment3.py register-neighbors
     run_with_timeout "${PYTHON_BIN}" scripts/run_experiment3.py generate-items
