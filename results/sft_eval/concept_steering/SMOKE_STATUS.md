@@ -5,7 +5,7 @@ Last updated: 2026-07-09.
 ## Current State
 
 Prepared, locally dry-run validated, and passed on CHTC as cluster `5513276`.
-The bounded layer/alpha sweep is queued as cluster `5513297`.
+The bounded layer/alpha sweep also passed as cluster `5513297`.
 
 Owned files added in this handoff:
 
@@ -121,19 +121,26 @@ Passing smoke:
   `coherence` on coherence `+0.0625`, and `human_alignment` on
   human-alignment `+0.0419`, relative to alpha `0`.
 
+## Bounded Sweep Result
+
+- cluster: `5513297`
+- local artifacts: `results/sft_eval/concept_steering/chtc/5513297/`
+- host: `gpu4005.chtc.wisc.edu`
+- GPU: NVIDIA H100 80GB HBM3
+- `exit_status.txt`, `extract_exit_status.txt`, `eval_exit_status.txt`, and
+  `pip_install_exit_status.txt` are all `0`.
+- `sweep/sweep_results.csv` has 120 rows over 2 steering concepts, 4 layers,
+  5 alphas, and 3 eval sets.
+- strongest target margin movement: `coherence` layer 12 alpha `4`
+  (`+1.0222` vs alpha `0`) and `human_alignment` layer 24 alpha `4`
+  (`+0.1197` vs alpha `0`).
+- retention preference stayed in `0.8-1.0`, but aggressive layer-12 settings
+  reduced retention margins.
+- specificity is imperfect: `human_alignment -> coherence` at layer 12 alpha
+  `4` produced the largest cross-effect (`+2.5565` margin, `+0.125`
+  preference).
+
 ## Next Action
 
-Monitor sweep cluster `5513297`, run directory
-`~/chtc-runs/coherence-concept-steering-20260709-011336`.
-
-Smoke success requires all three status files in the returned tarball to be
-`0`:
-
-- `exit_status.txt`
-- `extract_exit_status.txt`
-- `eval_exit_status.txt`
-
-For the sweep, pull
-`concept_steering_sweep_layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4_results.tgz`
-after completion and inspect `sweep/SUMMARY.md` and `sweep/sweep_results.csv`
-before considering any broader retention eval.
+Run qualitative generation/judge probes for the strongest low-risk settings and
+pair them with wider retention checks before using steering in broad evals.

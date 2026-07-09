@@ -1,0 +1,29 @@
+{
+  "alphas": [
+    -4.0,
+    -2.0,
+    0.0,
+    2.0,
+    4.0
+  ],
+  "eval_sets": {
+    "coherence": 8,
+    "human_alignment": 8,
+    "retention": 10
+  },
+  "layers": [
+    12,
+    16,
+    20,
+    24
+  ],
+  "max_items": null,
+  "model": "llama-3.1-8b-instruct",
+  "norm_match": false,
+  "smoke": false,
+  "steer_concepts": [
+    "coherence",
+    "human_alignment"
+  ],
+  "vector_mode": "unit"
+}

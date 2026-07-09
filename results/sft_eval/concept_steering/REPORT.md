@@ -1,7 +1,7 @@
 # Concept-Vector Steering Lane
 
-Status: CHTC GPU smoke passed on 2026-07-09 as cluster `5513276`.
-Bounded layer/alpha sweep is queued as cluster `5513297`.
+Status: CHTC GPU smoke `5513276` and bounded layer/alpha sweep `5513297`
+both passed on 2026-07-09.
 
 ## 2026-07-09 CHTC Smoke Submission
 
@@ -143,10 +143,36 @@ Interpretation:
   coherence margin at alpha `2`; the larger sweep must quantify matching vs
   nonmatching movement.
 
-## 2026-07-09 Bounded Sweep
+## 2026-07-09 Passing Bounded Sweep 5513297
 
-Cluster `5513297` is queued from the same patched run directory:
-`~/chtc-runs/coherence-concept-steering-20260709-011336`.
+Run:
+
+- CHTC run id: `coherence-concept-steering-20260709-011336`
+- cluster: `5513297`
+- remote directory: `~/chtc-runs/coherence-concept-steering-20260709-011336`
+- local artifacts: `results/sft_eval/concept_steering/chtc/5513297/`
+- host: `gpu4005.chtc.wisc.edu`
+- GPU: NVIDIA H100 80GB HBM3, via Condor slot `backfill1_4`
+
+Status files:
+
+| File | Status |
+| --- | ---: |
+| `exit_status.txt` | `0` |
+| `extract_exit_status.txt` | `0` |
+| `eval_exit_status.txt` | `0` |
+| `pip_install_exit_status.txt` | `0` |
+
+Artifacts:
+
+- result bundle:
+  `results/sft_eval/concept_steering/chtc/5513297/concept_steering_sweep_layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4_results.tgz`
+- summary:
+  `results/sft_eval/concept_steering/chtc/5513297/extracted/sweep/SUMMARY.md`
+- metrics:
+  `results/sft_eval/concept_steering/chtc/5513297/extracted/sweep/sweep_results.csv`
+- per-item details:
+  `results/sft_eval/concept_steering/chtc/5513297/extracted/sweep/sweep_details.csv`
 
 Sweep arguments:
 
@@ -154,11 +180,56 @@ Sweep arguments:
 sweep 12,16,20,24 -4+-2+0+2+4 ALL ALL 2 2 bfloat16 layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4
 ```
 
-This is the planned bounded scale-up: full contrast/eval sets, layers
-`12,16,20,24`, alphas `-4,-2,0,2,4`, and batch size 2. Pull
-`concept_steering_sweep_layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4_results.tgz`
-after completion and compare target, nonmatching, and retention rows against
-alpha `0`.
+Sweep shape:
+
+- 120 summary rows.
+- 2 steering concepts: `coherence`, `human_alignment`.
+- 4 layers: `12,16,20,24`.
+- 5 alphas: `-4,-2,0,2,4`.
+- 3 eval sets: `coherence` (`n=8`), `human_alignment` (`n=8`),
+  `retention` (`n=10`).
+
+Best target margin movements relative to alpha `0`:
+
+| Steering vector | Target eval | Layer | Alpha | Preference | Margin | Margin vs alpha 0 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| `coherence` | `coherence` | 12 | 4 | 0.625 | 0.8780 | +1.0222 |
+| `coherence` | `coherence` | 16 | 4 | 0.625 | 0.4903 | +0.6345 |
+| `human_alignment` | `human_alignment` | 24 | 4 | 0.875 | 0.9894 | +0.1197 |
+| `human_alignment` | `human_alignment` | 16 | 2 | 0.875 | 0.9584 | +0.0887 |
+| `human_alignment` | `human_alignment` | 24 | 2 | 0.875 | 0.9518 | +0.0821 |
+
+Retention readout:
+
+- alpha `0` retention baseline was `positive_preference=0.900` and
+  `mean_delta_logprob=8.4232`.
+- no setting catastrophically collapsed the retention forced-choice probe:
+  retention preference stayed in `0.8-1.0`.
+- aggressive layer-12 settings reduced retention margins:
+  `coherence` layer 12 alpha `4` changed margin by `-2.5973`, and
+  `human_alignment` layer 12 alpha `-4` changed margin by `-5.1625`.
+
+Specificity readout:
+
+- `coherence` steering is most useful at layer 12 alpha `4`, but
+  `positive_preference` is unchanged from baseline, so the measurable effect is
+  margin rather than item flips.
+- `human_alignment` steering also mainly improves margins; target preference is
+  already high at alpha `0` (`0.875`).
+- specificity is imperfect. The largest cross-effect is
+  `human_alignment -> coherence` at layer 12 alpha `4`, which raises coherence
+  margin by `+2.5565` and preference by `+0.125`.
+- next steering work should therefore treat layer 12 as a shared semantic/
+  task-quality direction candidate, not as a cleanly separated alignment vector.
+
+Next readout step:
+
+- run qualitative generation/judge probes at the best low-risk settings:
+  `coherence` layer 12 alpha `4`, `human_alignment` layer 24 alpha `4`, and a
+  weaker `human_alignment` layer 16 alpha `2`.
+- before any broad use, pair those with wider retention checks because layer-12
+  aggressive alphas reduce retention margins even when preference stays mostly
+  intact.
 
 ## Files
 

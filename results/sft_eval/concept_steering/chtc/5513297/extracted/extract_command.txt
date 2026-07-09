@@ -1,0 +1,1 @@
+/opt/conda/bin/python3 src/sft/extract_concept_vectors.py --concepts coherence human_alignment --batch-size 2 --out-dir /var/lib/condor/execute/slot1/dir_1776370/scratch/concept_steering_sweep_layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4/vectors --dtype bfloat16 --device cuda --overwrite 

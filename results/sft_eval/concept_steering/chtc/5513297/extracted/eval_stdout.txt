@@ -1,0 +1,44 @@
+[plan] {"alphas": [-4.0, -2.0, 0.0, 2.0, 4.0], "eval_sets": {"coherence": 8, "human_alignment": 8, "retention": 10}, "layers": [12, 16, 20, 24], "max_items": null, "model": "llama-3.1-8b-instruct", "norm_match": false, "smoke": false, "steer_concepts": ["coherence", "human_alignment"], "vector_mode": "unit"}
+[model] loading /staging/s/suresh27/models/llama31-8b-instruct on cuda (bfloat16)
+[eval] steer=coherence layer=12 alpha=-4
+[eval] steer=coherence layer=12 alpha=-2
+[eval] steer=coherence layer=12 alpha=0
+[eval] steer=coherence layer=12 alpha=2
+[eval] steer=coherence layer=12 alpha=4
+[eval] steer=coherence layer=16 alpha=-4
+[eval] steer=coherence layer=16 alpha=-2
+[eval] steer=coherence layer=16 alpha=0
+[eval] steer=coherence layer=16 alpha=2
+[eval] steer=coherence layer=16 alpha=4
+[eval] steer=coherence layer=20 alpha=-4
+[eval] steer=coherence layer=20 alpha=-2
+[eval] steer=coherence layer=20 alpha=0
+[eval] steer=coherence layer=20 alpha=2
+[eval] steer=coherence layer=20 alpha=4
+[eval] steer=coherence layer=24 alpha=-4
+[eval] steer=coherence layer=24 alpha=-2
+[eval] steer=coherence layer=24 alpha=0
+[eval] steer=coherence layer=24 alpha=2
+[eval] steer=coherence layer=24 alpha=4
+[eval] steer=human_alignment layer=12 alpha=-4
+[eval] steer=human_alignment layer=12 alpha=-2
+[eval] steer=human_alignment layer=12 alpha=0
+[eval] steer=human_alignment layer=12 alpha=2
+[eval] steer=human_alignment layer=12 alpha=4
+[eval] steer=human_alignment layer=16 alpha=-4
+[eval] steer=human_alignment layer=16 alpha=-2
+[eval] steer=human_alignment layer=16 alpha=0
+[eval] steer=human_alignment layer=16 alpha=2
+[eval] steer=human_alignment layer=16 alpha=4
+[eval] steer=human_alignment layer=20 alpha=-4
+[eval] steer=human_alignment layer=20 alpha=-2
+[eval] steer=human_alignment layer=20 alpha=0
+[eval] steer=human_alignment layer=20 alpha=2
+[eval] steer=human_alignment layer=20 alpha=4
+[eval] steer=human_alignment layer=24 alpha=-4
+[eval] steer=human_alignment layer=24 alpha=-2
+[eval] steer=human_alignment layer=24 alpha=0
+[eval] steer=human_alignment layer=24 alpha=2
+[eval] steer=human_alignment layer=24 alpha=4
+[summary] wrote /var/lib/condor/execute/slot1/dir_1776370/scratch/concept_steering_sweep_layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4/sweep/SUMMARY.md
+[done] wrote /var/lib/condor/execute/slot1/dir_1776370/scratch/concept_steering_sweep_layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4/sweep

@@ -1,0 +1,48 @@
+[data] coherence split=train n=24 task_families={'feature_truth': 5, 'triplet_similarity': 13, 'pairwise_similarity': 6}
+[data] human_alignment split=train n=18 task_families={'honesty_uncertainty': 1, 'privacy': 1, 'deception_refusal': 1, 'honesty_citations': 1, 'self_harm_support': 1, 'fairness': 1, 'academic_integrity': 1, 'financial_uncertainty': 1, 'data_security': 1, 'legal_uncertainty': 1, 'impersonation': 1, 'epistemic_humility': 1, 'deescalation': 1, 'password_safety': 1, 'calibrated_debugging': 1, 'paywall_policy': 1, 'sensitive_advice': 1, 'copyright_boundary': 1}
+[model] loading /staging/s/suresh27/models/llama31-8b-instruct on cuda (bfloat16)
+[extract] processed 2/24
+[extract] processed 4/24
+[extract] processed 6/24
+[extract] processed 8/24
+[extract] processed 10/24
+[extract] processed 12/24
+[extract] processed 14/24
+[extract] processed 16/24
+[extract] processed 18/24
+[extract] processed 20/24
+[extract] processed 22/24
+[extract] processed 24/24
+[extract] processed 2/24
+[extract] processed 4/24
+[extract] processed 6/24
+[extract] processed 8/24
+[extract] processed 10/24
+[extract] processed 12/24
+[extract] processed 14/24
+[extract] processed 16/24
+[extract] processed 18/24
+[extract] processed 20/24
+[extract] processed 22/24
+[extract] processed 24/24
+[done] wrote /var/lib/condor/execute/slot1/dir_1776370/scratch/concept_steering_sweep_layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4/vectors/coherence_caa_vectors.npz and /var/lib/condor/execute/slot1/dir_1776370/scratch/concept_steering_sweep_layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4/vectors/coherence_caa_vectors.json
+[extract] processed 2/18
+[extract] processed 4/18
+[extract] processed 6/18
+[extract] processed 8/18
+[extract] processed 10/18
+[extract] processed 12/18
+[extract] processed 14/18
+[extract] processed 16/18
+[extract] processed 18/18
+[extract] processed 2/18
+[extract] processed 4/18
+[extract] processed 6/18
+[extract] processed 8/18
+[extract] processed 10/18
+[extract] processed 12/18
+[extract] processed 14/18
+[extract] processed 16/18
+[extract] processed 18/18
+[done] wrote /var/lib/condor/execute/slot1/dir_1776370/scratch/concept_steering_sweep_layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4/vectors/human_alignment_caa_vectors.npz and /var/lib/condor/execute/slot1/dir_1776370/scratch/concept_steering_sweep_layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4/vectors/human_alignment_caa_vectors.json
+[summary] wrote /var/lib/condor/execute/slot1/dir_1776370/scratch/concept_steering_sweep_layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4/vectors/extraction_summary.csv
