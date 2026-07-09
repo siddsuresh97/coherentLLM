@@ -46,7 +46,10 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   mechanism read: `lowLR` is MC2-flat on the bounded slice (`0.566` vs base
   `0.568`) but suppresses false-answer pressure, while `taskvec_a0p25` improves
   MC2 (`0.604`) and truth log-odds but raises false-answer pressure on `82.5%`
-  of paired items.
+  of paired items. Scale-up gate `5513434` is now running the same three arms
+  at limit 200 across TruthfulQA MC2, WiC, and OpenBookQA to test whether that
+  false-lure mechanism persists and whether word-sense / elementary science
+  skills are preserved.
 - **Concept steering:** expanded judged generation suite `5513407` passed on
   CHTC, but it does not justify broad steering yet. All tested settings passed
   retention (`0.96` pass rate), while `coherence_l12_a4` gave the largest
@@ -72,7 +75,9 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   qualitative run `5513407` passed on an A100 40GB with 375 generations and
   wrote final concept-steering gate tables. Retention failure-suite gate
   `5513424` passed on an L40S in 520s and wrote the TruthfulQA mechanism
-  diagnostics. MMLU CHTC jobs now require
+  diagnostics. Retention scale-up gate `5513434` is running on
+  `gpu4006.chtc.wisc.edu` with a 46GB GPU after passing GPU and staged-input
+  probes. MMLU CHTC jobs now require
   `TARGET.HasCHTCStaging == true` plus `TARGET.CUDAGlobalMemoryMb >= 40000`;
   other CHTC Llama GPU lanes require at least the 40GB GPU floor so small GPUs
   are no longer absorbing jobs. H100 handled rank-16 lowrank MMLU, but

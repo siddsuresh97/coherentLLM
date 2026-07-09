@@ -1,6 +1,6 @@
 # Coherence-SFT Experiment Log
 
-Last updated: 2026-07-08 22:24 CDT
+Last updated: 2026-07-08 22:34 CDT
 
 ## Read this first
 
@@ -1815,3 +1815,54 @@ Interpretation:
   calibration risk despite the MC2 gain.
 - The next mitigation gate should explicitly constrain false-pressure-up
   fraction and not use MC2 alone as the promotion signal.
+
+## 2026-07-08 active: retention failure-suite scale-up submitted
+
+Objective: keep a useful GPU job running and scale the TruthfulQA mechanism
+read without touching CHTC staging quota.
+
+Run:
+
+- CHTC cluster: `5513434.0`
+- Remote directory:
+  `~/chtc-runs/coherence-retention-scaleup-20260709-033234`
+- Submit file:
+  `chtc/retention_failure_suite/retention_failure_suite_scaleup.sub`
+- Local submission note:
+  `results/sft_eval/wide_bench/failure_suite/chtc_5513434/SUBMISSION.md`
+
+Gate:
+
+- Arms: `base`, `taskvec_a0p25`, `lowLR`
+- Tasks: `truthfulqa_mc2`, `wic`, `openbookqa`
+- Limit: `200`
+- Requirement:
+  `TARGET.HasCHTCStaging == true && TARGET.CUDAGlobalMemoryMb >= 40000`
+- Requested resources: `1` GPU, `8` CPUs, `48GB` memory, `80GB` disk.
+
+Local validation:
+
+- `bash -n chtc/retention_failure_suite/run_retention_failure_suite.sh`
+- `git diff --check`
+- `python src/sft/run_retention_failure_suite_gate.py --dry-run --manifest results/sft_eval/wide_bench/failure_suite/suite_manifest.json --out-dir /tmp/retention_failure_suite_scaleup_dryrun --arms base taskvec_a0p25 lowLR --tasks truthfulqa_mc2 wic openbookqa --limit 200 --model-path /staging/s/suresh27/models/llama31-8b-instruct`
+
+Queue and early runtime:
+
+- Submitted at 2026-07-08 22:34 CDT; Condor cluster `5513434`.
+- `condor_q -batch suresh27` immediately showed `1` running, `0` idle,
+  `0` held.
+- `condor_q 5513434 -better-analyze` reported the job is running, 36 slots
+  match the full requirement expression, and 3 slots were immediately willing.
+- Assigned host at first check:
+  `slot2_2@gpu4006.chtc.wisc.edu`.
+- Early stdout showed `gpu_probe_ok memory_mb=46068`, `staged_input_check`, and
+  `pip_install_start`.
+
+Read to perform after pull:
+
+- TruthfulQA: compare MC2 and truth log-odds against false-pressure-up. Do not
+  promote a mitigation if `frac_false_pressure_up > 0.60`, even if aggregate
+  MC2 improves.
+- WiC/OpenBookQA: categorize whether the coherence/task-vector skill is
+  preserving, hurting, or boosting word-sense disambiguation and elementary
+  science QA relative to base and lowLR.

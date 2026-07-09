@@ -1,6 +1,6 @@
 # Active Agent Handoff
 
-Last coordination snapshot: 2026-07-08 22:29 CDT.
+Last coordination snapshot: 2026-07-08 22:34 CDT.
 
 Branch: `coherence-sft`
 
@@ -12,8 +12,16 @@ Source: `chtc-ssh 'condor_q -batch suresh27'` with the active `chtc-master` wrap
 
 Current queue snapshot:
 
-- Queue state from `condor_q -batch suresh27`: `0` running, `0` idle,
+- Queue state from `condor_q -batch suresh27`: `1` running, `0` idle,
   `0` held.
+- Retention failure-suite scale-up `5513434.0` is running on
+  `slot2_2@gpu4006.chtc.wisc.edu` with `RequestCpus=8`,
+  `RequestMemory=49152`, `RequestDisk=83886080`, and `RequestGPUs=1`.
+  It passed the 46GB GPU probe, staged-input check, and started package setup.
+  Remote run directory:
+  `~/chtc-runs/coherence-retention-scaleup-20260709-033234`.
+  Local submission note:
+  `results/sft_eval/wide_bench/failure_suite/chtc_5513434/SUBMISSION.md`.
 - Retention failure-suite TruthfulQA gate `5513424.0` completed with
   `ExitCode=0`, `RemoteWallClockTime=520.0`, and host
   `slot2_2@gpu4006.chtc.wisc.edu`. It used one NVIDIA L40S GPU and wrote
@@ -56,11 +64,13 @@ Huth/Fedorenko staging blocker:
 
 Held jobs: none.
 
-Monitor decision: no additional GPU job was submitted from this lane. The
-concept GPU suite is complete, rerunning completed MMLU shards would be
-duplicative, and the checked-in Huth uncapped encoding path is CPU-only and
-already complete. The next safe CHTC GPU submission should come from a newly
-smoke-tested Huth/Fedorenko or semantic-hub bundle.
+Monitor decision: submitted one safe GPU follow-up, scale-up cluster `5513434`,
+because the queue was empty and the existing failure-suite runner could scale
+without adding staged files. The concept GPU suite is complete, rerunning
+completed MMLU shards would be duplicative, and the checked-in Huth uncapped
+encoding path is CPU-only and already complete. The next separate CHTC GPU
+submission should come from a newly smoke-tested Huth/Fedorenko or semantic-hub
+bundle.
 
 Completed since the previous handoff:
 
@@ -88,6 +98,9 @@ Completed since the previous handoff:
 - Retention failure-suite TruthfulQA gate `5513424` passed. Bounded MC2:
   base `0.5682`, lowLR `0.5661`, taskvec `0.6037`; paired false-pressure-up
   fraction is lowLR `0.275` versus taskvec `0.825`.
+- Retention failure-suite scale-up `5513434` was submitted and started. It runs
+  `base`, `taskvec_a0p25`, and `lowLR` at limit 200 across `truthfulqa_mc2`,
+  `wic`, and `openbookqa`.
 
 ## Active Agent Goals
 
@@ -146,6 +159,9 @@ Completed agents already closed:
   aggregate-flat but suppresses false pressure, while `taskvec_a0p25` improves
   MC2 but increases false pressure on most paired items. Use this before
   approving any mitigation that looks good on aggregate TruthfulQA alone.
+- Scale-up cluster `5513434` is the active retention job. It should answer
+  whether the TruthfulQA false-pressure risk persists at limit 200 and whether
+  the same arms preserve or damage word-sense and elementary-science slices.
 
 ## Coordination Rules
 

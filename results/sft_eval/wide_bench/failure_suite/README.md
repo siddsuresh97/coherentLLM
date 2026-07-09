@@ -79,6 +79,29 @@ Read:
   should keep the false-pressure-up fraction below the gate threshold while
   preserving the task-vector's MC2 gain.
 
+## 2026-07-09 Active CHTC Scale-Up 5513434
+
+Run:
+
+- CHTC cluster: `5513434.0`
+- Remote run:
+  `~/chtc-runs/coherence-retention-scaleup-20260709-033234`
+- Local submission note:
+  `results/sft_eval/wide_bench/failure_suite/chtc_5513434/SUBMISSION.md`
+- Host/GPU at submission check: `gpu4006.chtc.wisc.edu`, 46GB advertised GPU
+  memory.
+- Early status: running, GPU probe passed, staged-input check passed, package
+  setup started.
+
+Gate:
+
+- Arms: `base`, `taskvec_a0p25`, `lowLR`
+- Tasks: `truthfulqa_mc2`, `wic`, `openbookqa`
+- Limit: `200`
+- Promotion read: do not treat MC2 alone as sufficient. Keep
+  `frac_false_pressure_up <= 0.60` as the hard TruthfulQA mechanism gate while
+  checking whether WiC/OpenBookQA retention is flat, hurt, or boosted.
+
 ## Suite Lanes
 
 P0 slices:
