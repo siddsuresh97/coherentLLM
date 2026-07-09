@@ -2,6 +2,9 @@
 
 Submitted: 2026-07-08 22:34 CDT
 
+Status: completed successfully. See `RESULT.md` for metrics and runtime
+evidence.
+
 ## Run
 
 - CHTC cluster: `5513434.0`

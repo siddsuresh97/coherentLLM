@@ -1,6 +1,6 @@
 # Active Agent Handoff
 
-Last coordination snapshot: 2026-07-08 22:34 CDT.
+Last coordination snapshot: 2026-07-08 22:54 CDT.
 
 Branch: `coherence-sft`
 
@@ -8,20 +8,28 @@ Persistent objective: determine what the coherence-trained model improves, what 
 
 ## Live CHTC State
 
-Source: `chtc-ssh 'condor_q -batch suresh27'` with the active `chtc-master` wrapper.
+Source: `chtc-master check`, `chtc-ssh 'condor_q -batch suresh27'`, and
+`chtc-ssh 'condor_q -totals'` with the active `chtc-master` wrapper.
 
 Current queue snapshot:
 
-- Queue state from `condor_q -batch suresh27`: `1` running, `0` idle,
+- Queue state from `condor_q -batch suresh27`: `0` running, `0` idle,
   `0` held.
-- Retention failure-suite scale-up `5513434.0` is running on
-  `slot2_2@gpu4006.chtc.wisc.edu` with `RequestCpus=8`,
-  `RequestMemory=49152`, `RequestDisk=83886080`, and `RequestGPUs=1`.
-  It passed the 46GB GPU probe, staged-input check, and started package setup.
-  Remote run directory:
-  `~/chtc-runs/coherence-retention-scaleup-20260709-033234`.
-  Local submission note:
-  `results/sft_eval/wide_bench/failure_suite/chtc_5513434/SUBMISSION.md`.
+- `chtc-master check` reports the master session is alive.
+- Retention failure-suite scale-up `5513434.0` completed normally on
+  `slot2_2@gpu4006.chtc.wisc.edu` with `ExitCode=0`,
+  `TimeExecute=848s`, `RequestCpus=8`, `RequestMemory=49152`,
+  `RequestDisk=83886080`, and `RequestGPUs=1`. Assigned GPU was NVIDIA L40S
+  (`GlobalMemoryMb=45460`; `nvidia-smi` total `46068` MiB). GPU metrics show
+  max sampled utilization `100%` and max sampled memory `39183` MiB. Pulled
+  artifacts are under
+  `results/sft_eval/wide_bench/failure_suite/chtc_5513434/`.
+- `5513434` result: on limit-200 TruthfulQA MC2, `lowLR` improves base by
+  `+0.0229` and passes the false-pressure gate (`0.355` false-pressure-up),
+  while `taskvec_a0p25` barely improves MC2 (`+0.0038`) and fails the gate
+  (`0.820`). WiC drops hard for both arms (`lowLR -0.170`,
+  `taskvec -0.160`). OpenBookQA acc_norm is less damaged under taskvec
+  (`-0.030`) than lowLR (`-0.065`), but both remain below base.
 - Retention failure-suite TruthfulQA gate `5513424.0` completed with
   `ExitCode=0`, `RemoteWallClockTime=520.0`, and host
   `slot2_2@gpu4006.chtc.wisc.edu`. It used one NVIDIA L40S GPU and wrote
@@ -64,13 +72,12 @@ Huth/Fedorenko staging blocker:
 
 Held jobs: none.
 
-Monitor decision: submitted one safe GPU follow-up, scale-up cluster `5513434`,
-because the queue was empty and the existing failure-suite runner could scale
-without adding staged files. The concept GPU suite is complete, rerunning
-completed MMLU shards would be duplicative, and the checked-in Huth uncapped
-encoding path is CPU-only and already complete. The next separate CHTC GPU
-submission should come from a newly smoke-tested Huth/Fedorenko or semantic-hub
-bundle.
+Monitor decision: queue is currently empty after `5513434` completed. Do not
+rerun completed MMLU, concept-steering, or Huth smoke jobs just to fill GPUs.
+The next CHTC GPU submission should be a newly smoke-tested non-duplicate lane:
+paper-style semantic-hub logit lens / causal patching, a false-pressure
+mitigation gate, or Huth/Fedorenko high-data extraction after packed staging is
+ready.
 
 Completed since the previous handoff:
 
@@ -98,9 +105,13 @@ Completed since the previous handoff:
 - Retention failure-suite TruthfulQA gate `5513424` passed. Bounded MC2:
   base `0.5682`, lowLR `0.5661`, taskvec `0.6037`; paired false-pressure-up
   fraction is lowLR `0.275` versus taskvec `0.825`.
-- Retention failure-suite scale-up `5513434` was submitted and started. It runs
+- Retention failure-suite scale-up `5513434` completed and was pulled. It ran
   `base`, `taskvec_a0p25`, and `lowLR` at limit 200 across `truthfulqa_mc2`,
-  `wic`, and `openbookqa`.
+  `wic`, and `openbookqa`; see
+  `results/sft_eval/wide_bench/failure_suite/chtc_5513434/RESULT.md`.
+- Semantic-hub/MEMP hubness control completed locally. New artifacts:
+  `results/sft_semantic_hub/hubness/` and
+  `results/sft_semantic_hub/mechanism_synthesis/`.
 
 ## Active Agent Goals
 
@@ -124,6 +135,7 @@ Completed agents already closed:
 | Lorentz | `019f44c9-168f-72c2-9418-46846bae3072` | `ee50f23` |
 | Franklin | `019f44c8-e4f2-7b32-ba56-7f22db31c131` | `342847c` |
 | Cicero | `019f44d6-6b30-71d2-845a-b9fe2712bd29` | `5aa2823`, `01ff9b6` |
+| Hooke | `019f44f5-558c-7742-b717-2917fe834bb9` | read-only semantic-hub handoff |
 
 ## Current Scientific Checkpoints
 
@@ -153,15 +165,20 @@ Completed agents already closed:
   staged models/adapters.
 - The semantic-hub/MEMP paper-method lane is committed in `aecf2cc`; use
   `taskvec_a0p25` as the primary arm and gate claims on paper-style controls.
+  The local hubness control strengthens but qualifies this: `taskvec_a0p25`
+  has the best staged retrieval profile, but retrieval is still partly
+  hub-skewed. The stronger broad/strict hub arms (`taskvec_a0p5`,
+  `taskvec_a1p0`) are diagnostic until staged and retention-gated.
 - The retention failure-suite gate is committed in `2afd0f2`; the first smoke is
   `python src/sft/build_retention_failure_suite_manifest.py --check`.
 - The first GPU-backed failure-suite gate is complete in `5513424`: lowLR is
   aggregate-flat but suppresses false pressure, while `taskvec_a0p25` improves
   MC2 but increases false pressure on most paired items. Use this before
   approving any mitigation that looks good on aggregate TruthfulQA alone.
-- Scale-up cluster `5513434` is the active retention job. It should answer
-  whether the TruthfulQA false-pressure risk persists at limit 200 and whether
-  the same arms preserve or damage word-sense and elementary-science slices.
+- Scale-up cluster `5513434` is complete. It confirms the TruthfulQA
+  false-pressure risk for `taskvec_a0p25` at limit 200 and shows both `lowLR`
+  and taskvec damage WiC. `taskvec_a0p25` is less bad than `lowLR` on
+  OpenBookQA acc_norm but still below base.
 
 ## Coordination Rules
 

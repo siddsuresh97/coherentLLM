@@ -79,28 +79,53 @@ Read:
   should keep the false-pressure-up fraction below the gate threshold while
   preserving the task-vector's MC2 gain.
 
-## 2026-07-09 Active CHTC Scale-Up 5513434
+## 2026-07-09 CHTC Scale-Up 5513434
 
 Run:
 
 - CHTC cluster: `5513434.0`
 - Remote run:
   `~/chtc-runs/coherence-retention-scaleup-20260709-033234`
-- Local submission note:
+- Local artifacts:
   `results/sft_eval/wide_bench/failure_suite/chtc_5513434/SUBMISSION.md`
-- Host/GPU at submission check: `gpu4006.chtc.wisc.edu`, 46GB advertised GPU
-  memory.
-- Early status: running, GPU probe passed, staged-input check passed, package
-  setup started.
+- Host/GPU: `gpu4006.chtc.wisc.edu`, NVIDIA L40S, 45GB Condor-advertised /
+  46GB `nvidia-smi` memory
+- Exit evidence: Condor `ExitCode=0`, `TimeExecute=848s`,
+  `exit_status.txt == 0`, `gate_exit_status.txt == 0`
+- GPU metrics: max sampled GPU utilization `100%`, max sampled memory
+  `39183` MiB
 
 Gate:
 
 - Arms: `base`, `taskvec_a0p25`, `lowLR`
 - Tasks: `truthfulqa_mc2`, `wic`, `openbookqa`
 - Limit: `200`
-- Promotion read: do not treat MC2 alone as sufficient. Keep
-  `frac_false_pressure_up <= 0.60` as the hard TruthfulQA mechanism gate while
-  checking whether WiC/OpenBookQA retention is flat, hurt, or boosted.
+
+TruthfulQA paired deltas vs base:
+
+| Arm | Delta MC2 | Delta truth log-odds | Delta true mass | Delta false pressure | False pressure up |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `lowLR` | +0.0229 | -0.0188 | -2.2445 | -2.2257 | 0.355 |
+| `taskvec_a0p25` | +0.0038 | -0.5586 | +4.1479 | +4.7066 | 0.820 |
+
+WiC/OpenBookQA bounded retention:
+
+| Arm | WiC acc | WiC delta | OpenBookQA acc | OpenBookQA acc_norm | OpenBookQA acc_norm delta |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `base` | 0.660 | 0.000 | 0.405 | 0.510 | 0.000 |
+| `lowLR` | 0.490 | -0.170 | 0.355 | 0.445 | -0.065 |
+| `taskvec_a0p25` | 0.500 | -0.160 | 0.390 | 0.480 | -0.030 |
+
+Read:
+
+- `lowLR` is the safer TruthfulQA arm at this size: it improves MC2 more than
+  `taskvec_a0p25` and keeps `frac_false_pressure_up` below the `0.60` gate.
+- `taskvec_a0p25` still carries the plausible-false-lure pressure problem:
+  false pressure rises more than true mass and truth log-odds drops hard.
+- Both arms strongly hurt WiC, so lexical sense disambiguation remains a
+  primary damaged skill.
+- `taskvec_a0p25` partly mitigates OpenBookQA relative to `lowLR`, but neither
+  arm preserves elementary-science option ranking versus base.
 
 ## Suite Lanes
 

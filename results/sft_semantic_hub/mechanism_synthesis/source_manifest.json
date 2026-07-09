@@ -1,0 +1,21 @@
+{
+  "created_utc": "2026-07-09T03:53:16.435566+00:00",
+  "script": "src/sft/compile_semantic_hub_mechanism_synthesis.py",
+  "inputs": {
+    "memp_controls": "results/sft_semantic_hub/memp_paper_harness/control_summary.csv",
+    "fmri_bridge": "results/sft_fmri_hub_regression/cv_model_comparison.csv",
+    "mitigation_targets": "results/sft_eval/mitigation/summary.csv",
+    "taskvec_targets": "results/sft_eval/steer/sweep_summary.csv",
+    "skill_families": "results/sft_eval/wide_bench/attribution/skill_family_attribution.csv",
+    "task_deltas": "results/sft_eval/wide_bench/skill_diagnostics/task_skill_deltas.csv",
+    "truthfulqa_mechanism": "results/sft_eval/wide_bench/skill_diagnostics/truthfulqa_mechanism.csv",
+    "truthfulqa_chtc40": "results/sft_eval/wide_bench/failure_suite/chtc_5513424/extracted/gate/truthfulqa_analysis/paired_delta_summary.csv",
+    "truthfulqa_chtc200": "results/sft_eval/wide_bench/failure_suite/chtc_5513434/extracted/gate/truthfulqa_analysis/paired_delta_summary.csv",
+    "retention_chtc200_gate": "results/sft_eval/wide_bench/failure_suite/chtc_5513434/extracted/gate",
+    "hubness": "results/sft_semantic_hub/hubness/hubness_summary.csv"
+  },
+  "notes": [
+    "Uses existing artifacts only; no model inference is launched.",
+    "CHTC run 5513434 is included after successful local pull."
+  ]
+}

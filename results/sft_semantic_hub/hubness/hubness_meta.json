@@ -1,0 +1,16 @@
+{
+  "created_utc": "2026-07-09T03:51:52.376917+00:00",
+  "script": "src/sft/run_semantic_hub_hubness.py",
+  "hidden_dir": "results/sft_semantic_hub/hidden_states",
+  "arms": [
+    "base",
+    "scrambled",
+    "lowLR",
+    "lowrank",
+    "taskvec_a0p25",
+    "taskvec_a0p5",
+    "taskvec_a1p0"
+  ],
+  "mid_layers": "10:20",
+  "metric_note": "top1 occurrence statistics are averaged across ordered prompt-format retrieval pairs"
+}

@@ -2,7 +2,7 @@
 
 ## Current Scientific Report
 
-Last updated: 2026-07-08 on branch `coherence-sft`.
+Last updated: 2026-07-08 22:53 CDT on branch `coherence-sft`.
 
 This README is the high-level dashboard. Expand the sections below for the
 details, exact metrics, artifact paths, and next decisions. The continuously
@@ -14,6 +14,12 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   cross-format invariance inside the model. The stricter paper-style baseline
   also shows matched concepts beating random mismatches, but exact identity over
   S*-close neighbors is still small; logit-lens and interventions are needed.
+  The new hubness control says `taskvec_a0p25` has the best currently staged
+  retrieval profile: top-5 cross-format retrieval `0.539`, top-1 unique
+  fraction `0.300`, and max mid-layer attractor occurrence `29.2`, versus base
+  top-5 `0.080` and max attractor `94.2`. This is reduced, not eliminated,
+  hubness, so the claim is stronger cross-format semantic clustering rather
+  than a clean universal semantic hub.
 - **fMRI:** the THINGS-fMRI pipeline works. Ventral Visual shows the expected
   object-RSA signal and scrambled-control separation, but aligned arms are
   mostly flat versus base in the primary visual ROI. The Huth/LeBel
@@ -42,14 +48,14 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   HellaSwag too (`acc_norm=0.287`, delta `-0.398`). CHTC MMLU now gives
   `taskvec_a0p25` micro acc `0.623` (`-0.070` vs base, `+0.031` vs lowrank)
   and macro acc `0.618` (`-0.074`), so it is partial mitigation rather than
-  broad retention recovery. CHTC TruthfulQA gate `5513424` sharpens the
-  mechanism read: `lowLR` is MC2-flat on the bounded slice (`0.566` vs base
-  `0.568`) but suppresses false-answer pressure, while `taskvec_a0p25` improves
-  MC2 (`0.604`) and truth log-odds but raises false-answer pressure on `82.5%`
-  of paired items. Scale-up gate `5513434` is now running the same three arms
-  at limit 200 across TruthfulQA MC2, WiC, and OpenBookQA to test whether that
-  false-lure mechanism persists and whether word-sense / elementary science
-  skills are preserved.
+  broad retention recovery. CHTC TruthfulQA gate `5513424` first exposed the
+  false-lure mechanism, and scale-up gate `5513434` now confirms it at limit
+  200: `lowLR` improves MC2 by `+0.0229` and passes the false-pressure gate
+  (`0.355` false-pressure-up), while `taskvec_a0p25` barely improves MC2
+  (`+0.0038`) and fails the mechanism gate (`0.820`). Both arms damage WiC
+  hard (`lowLR -0.170`, `taskvec -0.160`); on OpenBookQA acc_norm,
+  `taskvec_a0p25` is less bad than `lowLR` (`-0.030` vs `-0.065`) but still
+  below base.
 - **Concept steering:** expanded judged generation suite `5513407` passed on
   CHTC, but it does not justify broad steering yet. All tested settings passed
   retention (`0.96` pass rate), while `coherence_l12_a4` gave the largest
@@ -75,9 +81,10 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   qualitative run `5513407` passed on an A100 40GB with 375 generations and
   wrote final concept-steering gate tables. Retention failure-suite gate
   `5513424` passed on an L40S in 520s and wrote the TruthfulQA mechanism
-  diagnostics. Retention scale-up gate `5513434` is running on
-  `gpu4006.chtc.wisc.edu` with a 46GB GPU after passing GPU and staged-input
-  probes. MMLU CHTC jobs now require
+  diagnostics. Retention scale-up gate `5513434` also passed on
+  `gpu4006.chtc.wisc.edu` with an NVIDIA L40S: Condor exit `0`,
+  `TimeExecute=848s`, max sampled GPU utilization `100%`, and max sampled GPU
+  memory `39183` MiB. MMLU CHTC jobs now require
   `TARGET.HasCHTCStaging == true` plus `TARGET.CUDAGlobalMemoryMb >= 40000`;
   other CHTC Llama GPU lanes require at least the 40GB GPU floor so small GPUs
   are no longer absorbing jobs. H100 handled rank-16 lowrank MMLU, but
@@ -98,6 +105,10 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 - Semantic-hub report: [`results/sft_semantic_hub/REPORT.md`](results/sft_semantic_hub/REPORT.md)
 - Paper-style semantic-hub similarity report:
   [`results/sft_semantic_hub_paper/REPORT.md`](results/sft_semantic_hub_paper/REPORT.md)
+- Semantic-hub mechanism synthesis:
+  [`results/sft_semantic_hub/mechanism_synthesis/REPORT.md`](results/sft_semantic_hub/mechanism_synthesis/REPORT.md)
+- Semantic-hub hubness control:
+  [`results/sft_semantic_hub/hubness/REPORT.md`](results/sft_semantic_hub/hubness/REPORT.md)
 - Paper-adapted semantic-hub plan:
   [`research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md`](research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md)
 - TruthfulQA log-sample diagnostic:
@@ -432,6 +443,14 @@ Read:
   overgeneralization, Agenda 21, and voodoo dolls.
 - Completed follow-up: `taskvec_a0p25` MMLU 5-shot is now merged from CHTC.
   Local fallback shards completed too, but the official row is pure CHTC.
+- Completed retention scale-up: CHTC `5513434` ran `base`, `lowLR`, and
+  `taskvec_a0p25` at limit 200 on TruthfulQA MC2, WiC, and OpenBookQA.
+  `lowLR` is now the safer TruthfulQA arm (`+0.0229` MC2, `0.355`
+  false-pressure-up), while `taskvec_a0p25` fails the false-lure gate
+  (`+0.0038` MC2, `0.820` false-pressure-up). Both hurt WiC; taskvec partly
+  mitigates OpenBookQA relative to lowLR but remains below base. Full artifacts
+  are in
+  [`results/sft_eval/wide_bench/failure_suite/chtc_5513434/`](results/sft_eval/wide_bench/failure_suite/chtc_5513434/).
 
 </details>
 
@@ -555,9 +574,9 @@ Immediate:
 1. Use the completed MMLU row to gate future task-vector alpha or replay
    experiments on cheap MMLU/ARC/WiC/TruthfulQA failure slices before launching
    another full MMLU.
-2. Next free GPU lane should go to paper-style semantic-hub logit lens, concept
-   vector steering, or Huth/LeBel feature extraction after the encoding smoke
-   scripts pass locally.
+2. Next free GPU lane should go to a non-duplicate follow-up: paper-style
+   semantic-hub logit lens / causal patching, a false-pressure mitigation gate,
+   or Huth/LeBel high-data feature extraction after packed staging is ready.
 
 Scientific next:
 

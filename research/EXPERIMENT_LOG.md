@@ -1,6 +1,6 @@
 # Coherence-SFT Experiment Log
 
-Last updated: 2026-07-08 22:34 CDT
+Last updated: 2026-07-08 22:54 CDT
 
 ## Read this first
 
@@ -1816,10 +1816,10 @@ Interpretation:
 - The next mitigation gate should explicitly constrain false-pressure-up
   fraction and not use MC2 alone as the promotion signal.
 
-## 2026-07-08 active: retention failure-suite scale-up submitted
+## 2026-07-08 checkpoint: retention failure-suite scale-up completed
 
-Objective: keep a useful GPU job running and scale the TruthfulQA mechanism
-read without touching CHTC staging quota.
+Objective: scale the TruthfulQA false-lure mechanism read and add word-sense /
+elementary-science retention slices without touching CHTC staging quota.
 
 Run:
 
@@ -1830,6 +1830,8 @@ Run:
   `chtc/retention_failure_suite/retention_failure_suite_scaleup.sub`
 - Local submission note:
   `results/sft_eval/wide_bench/failure_suite/chtc_5513434/SUBMISSION.md`
+- Local result note:
+  `results/sft_eval/wide_bench/failure_suite/chtc_5513434/RESULT.md`
 
 Gate:
 
@@ -1846,23 +1848,110 @@ Local validation:
 - `git diff --check`
 - `python src/sft/run_retention_failure_suite_gate.py --dry-run --manifest results/sft_eval/wide_bench/failure_suite/suite_manifest.json --out-dir /tmp/retention_failure_suite_scaleup_dryrun --arms base taskvec_a0p25 lowLR --tasks truthfulqa_mc2 wic openbookqa --limit 200 --model-path /staging/s/suresh27/models/llama31-8b-instruct`
 
-Queue and early runtime:
+Runtime:
 
 - Submitted at 2026-07-08 22:34 CDT; Condor cluster `5513434`.
-- `condor_q -batch suresh27` immediately showed `1` running, `0` idle,
-  `0` held.
-- `condor_q 5513434 -better-analyze` reported the job is running, 36 slots
-  match the full requirement expression, and 3 slots were immediately willing.
-- Assigned host at first check:
+- Completed normally at 2026-07-08 22:48 CDT with return value `0`.
+- Assigned host:
   `slot2_2@gpu4006.chtc.wisc.edu`.
-- Early stdout showed `gpu_probe_ok memory_mb=46068`, `staged_input_check`, and
-  `pip_install_start`.
+- Assigned GPU: NVIDIA L40S, Condor `GlobalMemoryMb=45460`, `nvidia-smi`
+  total `46068` MiB.
+- Condor runtime: `TimeExecute=848s`, `TimeSlotBusy=849s`, peak memory usage
+  `6491` MB, disk usage `7493952` KB.
+- GPU metrics: 169 samples, max utilization `100%`, max memory `39183` MiB.
+- Exit evidence: `exit_status.txt == 0`, `gate_exit_status.txt == 0`.
 
-Read to perform after pull:
+TruthfulQA limit-200 results:
 
-- TruthfulQA: compare MC2 and truth log-odds against false-pressure-up. Do not
-  promote a mitigation if `frac_false_pressure_up > 0.60`, even if aggregate
-  MC2 improves.
-- WiC/OpenBookQA: categorize whether the coherence/task-vector skill is
-  preserving, hurting, or boosting word-sense disambiguation and elementary
-  science QA relative to base and lowLR.
+| Arm | MC2 | Delta MC2 | Truth log-odds | Delta truth log-odds | False pressure up |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `base` | 0.5230 | 0.0000 | 0.6227 | 0.0000 |  |
+| `lowLR` | 0.5459 | +0.0229 | 0.6039 | -0.0188 | 0.355 |
+| `taskvec_a0p25` | 0.5268 | +0.0038 | 0.0641 | -0.5586 | 0.820 |
+
+WiC/OpenBookQA limit-200 results:
+
+| Arm | WiC acc | WiC delta | OpenBookQA acc | OpenBookQA acc_norm | OpenBookQA acc_norm delta |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `base` | 0.660 | 0.000 | 0.405 | 0.510 | 0.000 |
+| `lowLR` | 0.490 | -0.170 | 0.355 | 0.445 | -0.065 |
+| `taskvec_a0p25` | 0.500 | -0.160 | 0.390 | 0.480 | -0.030 |
+
+Interpretation:
+
+- `lowLR` is the safer TruthfulQA arm at this bounded size: it improves MC2
+  more than `taskvec_a0p25` and keeps false-pressure-up below the hard `0.60`
+  gate.
+- `taskvec_a0p25` still fails the plausible-lure mechanism gate. It raises
+  true mass by `+4.1479`, but false pressure rises more (`+4.7066`), and mean
+  truth log-odds falls by `-0.5586`.
+- Both aligned arms strongly hurt WiC, so lexical sense disambiguation remains
+  a primary damaged skill.
+- `taskvec_a0p25` partly mitigates OpenBookQA relative to `lowLR`, but neither
+  arm preserves elementary-science option ranking versus base.
+- Current CHTC queue after pull: `0` running, `0` idle, `0` held. Do not submit
+  duplicate MMLU/concept/Huth smoke jobs just to fill GPUs; the next GPU lane
+  should be a newly smoke-tested semantic-hub logit-lens/causal-patching job, a
+  false-pressure mitigation gate, or Huth high-data extraction after packed
+  staging is ready.
+
+## 2026-07-08 checkpoint: semantic-hub hubness control and mechanism synthesis
+
+Objective: determine whether paper-style semantic-hub retrieval gains reflect
+real cross-format same-concept alignment or a nearest-neighbor hubness artifact.
+
+Implementation:
+
+- Added `src/sft/run_semantic_hub_hubness.py`.
+- Added `src/sft/compile_semantic_hub_mechanism_synthesis.py`.
+- Outputs:
+  `results/sft_semantic_hub/hubness/` and
+  `results/sft_semantic_hub/mechanism_synthesis/`.
+
+Validation:
+
+- `python -m py_compile src/sft/run_semantic_hub_hubness.py`
+- `python src/sft/run_semantic_hub_hubness.py`
+- `python -m py_compile src/sft/compile_semantic_hub_mechanism_synthesis.py`
+- `python src/sft/compile_semantic_hub_mechanism_synthesis.py`
+
+Hubness result, mid-layers 10-20:
+
+| Arm | Top1 | Top5 | Unique top1 | Max attractor | Gini | Read |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| `base` | 0.0192 | 0.0800 | 0.0346 | 94.2 | 0.9829 | weak retrieval; hubness is not the main claim |
+| `scrambled` | 0.1094 | 0.2667 | 0.1838 | 57.4 | 0.9088 | retrieval may be inflated by hub concepts |
+| `lowLR` | 0.0729 | 0.3063 | 0.1602 | 48.8 | 0.9102 | retrieval may be inflated by hub concepts |
+| `lowrank` | 0.0968 | 0.4079 | 0.1961 | 35.0 | 0.8888 | retrieval may be inflated by hub concepts |
+| `taskvec_a0p25` | 0.2062 | 0.5393 | 0.2996 | 29.2 | 0.8024 | strong retrieval with reduced, not eliminated, hubness |
+| `taskvec_a0p5` | 0.1578 | 0.4744 | 0.2444 | 40.5 | 0.8477 | strong retrieval but still hub-skewed |
+| `taskvec_a1p0` | 0.0637 | 0.1896 | 0.1081 | 75.7 | 0.9448 | weak retrieval; hubness is not the main claim |
+
+Top attractors:
+
+- `base`: `file`, `spear`, `brussels sprouts`, `fig`, `burrito`.
+- `scrambled`: `peacock`, `basket`, `brussels sprouts`, `pelican`, `camel`.
+- `taskvec_a0p25`: `boa`, `corkscrew`, `pelican`, `brussels sprouts`,
+  `slingshot`.
+- `taskvec_a0p5`: `drill`, `aloe`, `corkscrew`, `file`, `tumbleweed`.
+- `taskvec_a1p0`: `file`, `penguin`, `chisel`, `corkscrew`, `blackberry`.
+
+Mechanism synthesis:
+
+- `taskvec_a0p25` is the best currently staged internal hub candidate because
+  it combines high top-5 retrieval (`0.5393`) with lower attractor
+  concentration than the other high-hub arms.
+- It is not a clean hub: top-1 Gini is still `0.8024`, strict S*-close margin
+  is only `0.0011`, and the CHTC-40 TruthfulQA false-pressure-up rate is
+  `0.825`.
+- `taskvec_a0p5` and `taskvec_a1p0` are scientifically interesting diagnostic
+  alphas, but they are not staged on CHTC and have not passed wide-bench or
+  false-pressure gates.
+
+Next:
+
+- Add CSLS or mutual-nearest-neighbor retrieval as a stricter hubness
+  correction.
+- Then spend CHTC GPU time on the paper-style logit-lens or causal patching
+  lanes, a false-pressure mitigation gate, or Huth high-data extraction after
+  packed staging is ready. Do not run another duplicate hidden-state extraction.

@@ -1,0 +1,41 @@
+RUN_ID = scaleup_truth_wic_obqa_200
+ARMS_SPEC = base+taskvec_a0p25+lowLR
+TASKS_SPEC = truthfulqa_mc2+wic+openbookqa
+LIMIT = 200
+BATCH_SIZE = auto
+GPU_MEM_UTIL = 0.72
+MAX_MODEL_LEN = 2048
+MIN_CUDA_GLOBAL_MEMORY_MB = 40000
+PIP_TIMEOUT_SECONDS = 900
+LMEVAL_TIMEOUT_SECONDS = 14400
+MODEL_PATH = /staging/s/suresh27/models/llama31-8b-instruct
+
+universe = container
+container_image = docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-devel
+docker_override_entrypoint = true
+requirements = (TARGET.HasCHTCStaging == true) && (TARGET.CUDAGlobalMemoryMb >= $(MIN_CUDA_GLOBAL_MEMORY_MB))
+rank = TARGET.CUDAGlobalMemoryMb
+
+batch_name = coherence_retention_failure_suite_$(Cluster)
+log = logs/retention_failure_suite_$(Cluster)_$(Process).log
+output = logs/retention_failure_suite_$(Cluster)_$(Process).out
+error = logs/retention_failure_suite_$(Cluster)_$(Process).err
+
+executable = run_retention_failure_suite.sh
+arguments = $(RUN_ID) $(ARMS_SPEC) $(TASKS_SPEC) $(LIMIT) $(MODEL_PATH) $(BATCH_SIZE) $(GPU_MEM_UTIL) $(MAX_MODEL_LEN) $(LMEVAL_TIMEOUT_SECONDS)
+transfer_input_files = run_retention_failure_suite.sh,run_retention_failure_suite_gate.py,analyze_truthfulqa_logsamples.py,suite_manifest.json
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_output_files = retention_failure_suite_$(RUN_ID)_results.tgz
+stream_output = TRUE
+stream_error = TRUE
+environment = "MIN_CUDA_GLOBAL_MEMORY_MB=$(MIN_CUDA_GLOBAL_MEMORY_MB) PIP_TIMEOUT_SECONDS=$(PIP_TIMEOUT_SECONDS)"
+
+request_gpus = 1
+request_cpus = 8
+request_memory = 48GB
+request_disk = 80GB
++GPUJobLength = "short"
++is_resumable = true
+
+queue 1

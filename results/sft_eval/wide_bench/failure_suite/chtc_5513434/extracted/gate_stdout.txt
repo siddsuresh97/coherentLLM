@@ -1,0 +1,185 @@
+[run] arm=base task=truthfulqa_mc2 limit=200
+INFO 07-09 03:37:13 config.py:510] This model supports multiple tasks: {'score', 'classify', 'generate', 'reward', 'embed'}. Defaulting to 'generate'.
+INFO 07-09 03:37:13 llm_engine.py:234] Initializing an LLM engine (v0.6.6.post1) with config: model='/staging/s/suresh27/models/llama31-8b-instruct', speculative_config=None, tokenizer='/staging/s/suresh27/models/llama31-8b-instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=1234, served_model_name=/staging/s/suresh27/models/llama31-8b-instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False,
+INFO 07-09 03:37:15 selector.py:120] Using Flash Attention backend.
+INFO 07-09 03:37:15 model_runner.py:1094] Starting to load model /staging/s/suresh27/models/llama31-8b-instruct...
+INFO 07-09 03:37:25 model_runner.py:1099] Loading model weights took 14.9888 GB
+INFO 07-09 03:37:26 worker.py:241] Memory profiling takes 0.63 seconds
+INFO 07-09 03:37:26 worker.py:241] the current vLLM instance can use total_gpu_memory (44.39GiB) x gpu_memory_utilization (0.72) = 31.96GiB
+INFO 07-09 03:37:26 worker.py:241] model weights take 14.99GiB; non_torch_memory takes 0.11GiB; PyTorch activation peak memory takes 1.19GiB; the rest of the memory reserved for KV Cache is 15.68GiB.
+INFO 07-09 03:37:26 gpu_executor.py:76] # GPU blocks: 8029, # CPU blocks: 2048
+INFO 07-09 03:37:26 gpu_executor.py:80] Maximum concurrency for 2048 tokens per request: 62.73x
+INFO 07-09 03:37:28 model_runner.py:1415] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 07-09 03:37:51 model_runner.py:1535] Graph capturing finished in 23 secs, took 0.22 GiB
+INFO 07-09 03:37:51 llm_engine.py:431] init engine (profile, create kv cache, warmup model) took 25.91 seconds
+vllm ({'pretrained': '/staging/s/suresh27/models/llama31-8b-instruct', 'dtype': 'bfloat16', 'tensor_parallel_size': 1, 'gpu_memory_utilization': 0.72, 'max_model_len': 2048}), gen_kwargs: ({}), limit: 200.0, num_fewshot: 0, batch_size: auto
+|    Tasks     |Version|Filter|n-shot|Metric|   |Value|   |Stderr|
+|--------------|------:|------|-----:|------|---|----:|---|-----:|
+|truthfulqa_mc2|      3|none  |     0|acc   |↑  |0.523|±  |0.0326|
+
+[run] arm=base task=wic limit=200
+INFO 07-09 03:38:45 config.py:510] This model supports multiple tasks: {'reward', 'classify', 'embed', 'score', 'generate'}. Defaulting to 'generate'.
+INFO 07-09 03:38:45 llm_engine.py:234] Initializing an LLM engine (v0.6.6.post1) with config: model='/staging/s/suresh27/models/llama31-8b-instruct', speculative_config=None, tokenizer='/staging/s/suresh27/models/llama31-8b-instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=1234, served_model_name=/staging/s/suresh27/models/llama31-8b-instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False,
+INFO 07-09 03:38:47 selector.py:120] Using Flash Attention backend.
+INFO 07-09 03:38:47 model_runner.py:1094] Starting to load model /staging/s/suresh27/models/llama31-8b-instruct...
+INFO 07-09 03:38:56 model_runner.py:1099] Loading model weights took 14.9888 GB
+INFO 07-09 03:38:57 worker.py:241] Memory profiling takes 0.66 seconds
+INFO 07-09 03:38:57 worker.py:241] the current vLLM instance can use total_gpu_memory (44.39GiB) x gpu_memory_utilization (0.72) = 31.96GiB
+INFO 07-09 03:38:57 worker.py:241] model weights take 14.99GiB; non_torch_memory takes 0.11GiB; PyTorch activation peak memory takes 1.19GiB; the rest of the memory reserved for KV Cache is 15.68GiB.
+INFO 07-09 03:38:57 gpu_executor.py:76] # GPU blocks: 8029, # CPU blocks: 2048
+INFO 07-09 03:38:57 gpu_executor.py:80] Maximum concurrency for 2048 tokens per request: 62.73x
+INFO 07-09 03:38:59 model_runner.py:1415] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 07-09 03:39:24 model_runner.py:1535] Graph capturing finished in 25 secs, took 0.22 GiB
+INFO 07-09 03:39:24 llm_engine.py:431] init engine (profile, create kv cache, warmup model) took 28.05 seconds
+vllm ({'pretrained': '/staging/s/suresh27/models/llama31-8b-instruct', 'dtype': 'bfloat16', 'tensor_parallel_size': 1, 'gpu_memory_utilization': 0.72, 'max_model_len': 2048}), gen_kwargs: ({}), limit: 200.0, num_fewshot: 0, batch_size: auto
+|Tasks|Version|Filter|n-shot|Metric|   |Value|   |Stderr|
+|-----|------:|------|-----:|------|---|----:|---|-----:|
+|wic  |      1|none  |     0|acc   |↑  | 0.66|±  |0.0336|
+
+[run] arm=base task=openbookqa limit=200
+INFO 07-09 03:39:51 config.py:510] This model supports multiple tasks: {'embed', 'score', 'classify', 'generate', 'reward'}. Defaulting to 'generate'.
+INFO 07-09 03:39:51 llm_engine.py:234] Initializing an LLM engine (v0.6.6.post1) with config: model='/staging/s/suresh27/models/llama31-8b-instruct', speculative_config=None, tokenizer='/staging/s/suresh27/models/llama31-8b-instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=1234, served_model_name=/staging/s/suresh27/models/llama31-8b-instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False,
+INFO 07-09 03:39:52 selector.py:120] Using Flash Attention backend.
+INFO 07-09 03:39:53 model_runner.py:1094] Starting to load model /staging/s/suresh27/models/llama31-8b-instruct...
+INFO 07-09 03:40:03 model_runner.py:1099] Loading model weights took 14.9888 GB
+INFO 07-09 03:40:03 worker.py:241] Memory profiling takes 0.64 seconds
+INFO 07-09 03:40:03 worker.py:241] the current vLLM instance can use total_gpu_memory (44.39GiB) x gpu_memory_utilization (0.72) = 31.96GiB
+INFO 07-09 03:40:03 worker.py:241] model weights take 14.99GiB; non_torch_memory takes 0.11GiB; PyTorch activation peak memory takes 1.19GiB; the rest of the memory reserved for KV Cache is 15.68GiB.
+INFO 07-09 03:40:03 gpu_executor.py:76] # GPU blocks: 8029, # CPU blocks: 2048
+INFO 07-09 03:40:03 gpu_executor.py:80] Maximum concurrency for 2048 tokens per request: 62.73x
+INFO 07-09 03:40:05 model_runner.py:1415] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 07-09 03:40:28 model_runner.py:1535] Graph capturing finished in 22 secs, took 0.22 GiB
+INFO 07-09 03:40:28 llm_engine.py:431] init engine (profile, create kv cache, warmup model) took 25.01 seconds
+vllm ({'pretrained': '/staging/s/suresh27/models/llama31-8b-instruct', 'dtype': 'bfloat16', 'tensor_parallel_size': 1, 'gpu_memory_utilization': 0.72, 'max_model_len': 2048}), gen_kwargs: ({}), limit: 200.0, num_fewshot: 0, batch_size: auto
+|  Tasks   |Version|Filter|n-shot| Metric |   |Value|   |Stderr|
+|----------|------:|------|-----:|--------|---|----:|---|-----:|
+|openbookqa|      1|none  |     0|acc     |↑  |0.405|±  |0.0348|
+|          |       |none  |     0|acc_norm|↑  |0.510|±  |0.0354|
+
+[run] arm=taskvec_a0p25 task=truthfulqa_mc2 limit=200
+INFO 07-09 03:40:55 config.py:510] This model supports multiple tasks: {'reward', 'score', 'generate', 'embed', 'classify'}. Defaulting to 'generate'.
+INFO 07-09 03:40:55 llm_engine.py:234] Initializing an LLM engine (v0.6.6.post1) with config: model='/staging/s/suresh27/models/llama31-8b-instruct', speculative_config=None, tokenizer='/staging/s/suresh27/models/llama31-8b-instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=1234, served_model_name=/staging/s/suresh27/models/llama31-8b-instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False,
+INFO 07-09 03:40:57 selector.py:120] Using Flash Attention backend.
+INFO 07-09 03:40:57 model_runner.py:1094] Starting to load model /staging/s/suresh27/models/llama31-8b-instruct...
+INFO 07-09 03:41:07 model_runner.py:1099] Loading model weights took 14.9927 GB
+INFO 07-09 03:41:07 punica_selector.py:11] Using PunicaWrapperGPU.
+INFO 07-09 03:41:10 worker.py:241] Memory profiling takes 2.51 seconds
+INFO 07-09 03:41:10 worker.py:241] the current vLLM instance can use total_gpu_memory (44.39GiB) x gpu_memory_utilization (0.72) = 31.96GiB
+INFO 07-09 03:41:10 worker.py:241] model weights take 14.99GiB; non_torch_memory takes 0.45GiB; PyTorch activation peak memory takes 1.19GiB; the rest of the memory reserved for KV Cache is 15.34GiB.
+INFO 07-09 03:41:10 gpu_executor.py:76] # GPU blocks: 7852, # CPU blocks: 2048
+INFO 07-09 03:41:10 gpu_executor.py:80] Maximum concurrency for 2048 tokens per request: 61.34x
+INFO 07-09 03:41:12 model_runner.py:1415] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 07-09 03:41:36 model_runner.py:1535] Graph capturing finished in 24 secs, took 0.37 GiB
+INFO 07-09 03:41:36 llm_engine.py:431] init engine (profile, create kv cache, warmup model) took 29.03 seconds
+WARNING 07-09 03:41:38 tokenizer.py:191] No tokenizer found in /staging/s/suresh27/adapters/taskvec_a0p25, using base model tokenizer instead. (Exception: Tokenizer class TokenizersBackend does not exist or is not currently imported.)
+vllm ({'pretrained': '/staging/s/suresh27/models/llama31-8b-instruct', 'dtype': 'bfloat16', 'tensor_parallel_size': 1, 'gpu_memory_utilization': 0.72, 'max_model_len': 2048, 'enable_lora': True, 'lora_local_path': '/staging/s/suresh27/adapters/taskvec_a0p25', 'max_lora_rank': 64}), gen_kwargs: ({}), limit: 200.0, num_fewshot: 0, batch_size: auto
+|    Tasks     |Version|Filter|n-shot|Metric|   |Value |   |Stderr|
+|--------------|------:|------|-----:|------|---|-----:|---|-----:|
+|truthfulqa_mc2|      3|none  |     0|acc   |↑  |0.5268|±  |0.0304|
+
+[run] arm=taskvec_a0p25 task=wic limit=200
+INFO 07-09 03:42:36 config.py:510] This model supports multiple tasks: {'generate', 'embed', 'classify', 'reward', 'score'}. Defaulting to 'generate'.
+INFO 07-09 03:42:36 llm_engine.py:234] Initializing an LLM engine (v0.6.6.post1) with config: model='/staging/s/suresh27/models/llama31-8b-instruct', speculative_config=None, tokenizer='/staging/s/suresh27/models/llama31-8b-instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=1234, served_model_name=/staging/s/suresh27/models/llama31-8b-instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False,
+INFO 07-09 03:42:37 selector.py:120] Using Flash Attention backend.
+INFO 07-09 03:42:38 model_runner.py:1094] Starting to load model /staging/s/suresh27/models/llama31-8b-instruct...
+INFO 07-09 03:42:47 model_runner.py:1099] Loading model weights took 14.9927 GB
+INFO 07-09 03:42:47 punica_selector.py:11] Using PunicaWrapperGPU.
+INFO 07-09 03:42:48 worker.py:241] Memory profiling takes 1.16 seconds
+INFO 07-09 03:42:48 worker.py:241] the current vLLM instance can use total_gpu_memory (44.39GiB) x gpu_memory_utilization (0.72) = 31.96GiB
+INFO 07-09 03:42:48 worker.py:241] model weights take 14.99GiB; non_torch_memory takes 0.45GiB; PyTorch activation peak memory takes 1.19GiB; the rest of the memory reserved for KV Cache is 15.34GiB.
+INFO 07-09 03:42:49 gpu_executor.py:76] # GPU blocks: 7852, # CPU blocks: 2048
+INFO 07-09 03:42:49 gpu_executor.py:80] Maximum concurrency for 2048 tokens per request: 61.34x
+INFO 07-09 03:42:51 model_runner.py:1415] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 07-09 03:43:15 model_runner.py:1535] Graph capturing finished in 24 secs, took 0.37 GiB
+INFO 07-09 03:43:15 llm_engine.py:431] init engine (profile, create kv cache, warmup model) took 27.32 seconds
+WARNING 07-09 03:43:16 tokenizer.py:191] No tokenizer found in /staging/s/suresh27/adapters/taskvec_a0p25, using base model tokenizer instead. (Exception: Tokenizer class TokenizersBackend does not exist or is not currently imported.)
+vllm ({'pretrained': '/staging/s/suresh27/models/llama31-8b-instruct', 'dtype': 'bfloat16', 'tensor_parallel_size': 1, 'gpu_memory_utilization': 0.72, 'max_model_len': 2048, 'enable_lora': True, 'lora_local_path': '/staging/s/suresh27/adapters/taskvec_a0p25', 'max_lora_rank': 64}), gen_kwargs: ({}), limit: 200.0, num_fewshot: 0, batch_size: auto
+|Tasks|Version|Filter|n-shot|Metric|   |Value|   |Stderr|
+|-----|------:|------|-----:|------|---|----:|---|-----:|
+|wic  |      1|none  |     0|acc   |↑  |  0.5|±  |0.0354|
+
+[run] arm=taskvec_a0p25 task=openbookqa limit=200
+INFO 07-09 03:43:41 config.py:510] This model supports multiple tasks: {'score', 'embed', 'classify', 'generate', 'reward'}. Defaulting to 'generate'.
+INFO 07-09 03:43:41 llm_engine.py:234] Initializing an LLM engine (v0.6.6.post1) with config: model='/staging/s/suresh27/models/llama31-8b-instruct', speculative_config=None, tokenizer='/staging/s/suresh27/models/llama31-8b-instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=1234, served_model_name=/staging/s/suresh27/models/llama31-8b-instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False,
+INFO 07-09 03:43:42 selector.py:120] Using Flash Attention backend.
+INFO 07-09 03:43:43 model_runner.py:1094] Starting to load model /staging/s/suresh27/models/llama31-8b-instruct...
+INFO 07-09 03:43:53 model_runner.py:1099] Loading model weights took 14.9927 GB
+INFO 07-09 03:43:53 punica_selector.py:11] Using PunicaWrapperGPU.
+INFO 07-09 03:43:54 worker.py:241] Memory profiling takes 1.13 seconds
+INFO 07-09 03:43:54 worker.py:241] the current vLLM instance can use total_gpu_memory (44.39GiB) x gpu_memory_utilization (0.72) = 31.96GiB
+INFO 07-09 03:43:54 worker.py:241] model weights take 14.99GiB; non_torch_memory takes 0.45GiB; PyTorch activation peak memory takes 1.19GiB; the rest of the memory reserved for KV Cache is 15.34GiB.
+INFO 07-09 03:43:54 gpu_executor.py:76] # GPU blocks: 7852, # CPU blocks: 2048
+INFO 07-09 03:43:54 gpu_executor.py:80] Maximum concurrency for 2048 tokens per request: 61.34x
+INFO 07-09 03:43:56 model_runner.py:1415] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 07-09 03:44:20 model_runner.py:1535] Graph capturing finished in 24 secs, took 0.37 GiB
+INFO 07-09 03:44:20 llm_engine.py:431] init engine (profile, create kv cache, warmup model) took 27.41 seconds
+WARNING 07-09 03:44:22 tokenizer.py:191] No tokenizer found in /staging/s/suresh27/adapters/taskvec_a0p25, using base model tokenizer instead. (Exception: Tokenizer class TokenizersBackend does not exist or is not currently imported.)
+vllm ({'pretrained': '/staging/s/suresh27/models/llama31-8b-instruct', 'dtype': 'bfloat16', 'tensor_parallel_size': 1, 'gpu_memory_utilization': 0.72, 'max_model_len': 2048, 'enable_lora': True, 'lora_local_path': '/staging/s/suresh27/adapters/taskvec_a0p25', 'max_lora_rank': 64}), gen_kwargs: ({}), limit: 200.0, num_fewshot: 0, batch_size: auto
+|  Tasks   |Version|Filter|n-shot| Metric |   |Value|   |Stderr|
+|----------|------:|------|-----:|--------|---|----:|---|-----:|
+|openbookqa|      1|none  |     0|acc     |↑  | 0.39|±  |0.0346|
+|          |       |none  |     0|acc_norm|↑  | 0.48|±  |0.0354|
+
+[run] arm=lowLR task=truthfulqa_mc2 limit=200
+INFO 07-09 03:44:48 config.py:510] This model supports multiple tasks: {'score', 'classify', 'reward', 'embed', 'generate'}. Defaulting to 'generate'.
+INFO 07-09 03:44:48 llm_engine.py:234] Initializing an LLM engine (v0.6.6.post1) with config: model='/staging/s/suresh27/models/llama31-8b-instruct', speculative_config=None, tokenizer='/staging/s/suresh27/models/llama31-8b-instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=1234, served_model_name=/staging/s/suresh27/models/llama31-8b-instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False,
+INFO 07-09 03:44:49 selector.py:120] Using Flash Attention backend.
+INFO 07-09 03:44:50 model_runner.py:1094] Starting to load model /staging/s/suresh27/models/llama31-8b-instruct...
+INFO 07-09 03:45:00 model_runner.py:1099] Loading model weights took 14.9927 GB
+INFO 07-09 03:45:00 punica_selector.py:11] Using PunicaWrapperGPU.
+INFO 07-09 03:45:01 worker.py:241] Memory profiling takes 1.20 seconds
+INFO 07-09 03:45:01 worker.py:241] the current vLLM instance can use total_gpu_memory (44.39GiB) x gpu_memory_utilization (0.72) = 31.96GiB
+INFO 07-09 03:45:01 worker.py:241] model weights take 14.99GiB; non_torch_memory takes 0.45GiB; PyTorch activation peak memory takes 1.19GiB; the rest of the memory reserved for KV Cache is 15.34GiB.
+INFO 07-09 03:45:01 gpu_executor.py:76] # GPU blocks: 7852, # CPU blocks: 2048
+INFO 07-09 03:45:01 gpu_executor.py:80] Maximum concurrency for 2048 tokens per request: 61.34x
+INFO 07-09 03:45:03 model_runner.py:1415] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 07-09 03:45:27 model_runner.py:1535] Graph capturing finished in 24 secs, took 0.37 GiB
+INFO 07-09 03:45:27 llm_engine.py:431] init engine (profile, create kv cache, warmup model) took 27.79 seconds
+vllm ({'pretrained': '/staging/s/suresh27/models/llama31-8b-instruct', 'dtype': 'bfloat16', 'tensor_parallel_size': 1, 'gpu_memory_utilization': 0.72, 'max_model_len': 2048, 'enable_lora': True, 'lora_local_path': '/staging/s/suresh27/adapters/lowLR', 'max_lora_rank': 64}), gen_kwargs: ({}), limit: 200.0, num_fewshot: 0, batch_size: auto
+|    Tasks     |Version|Filter|n-shot|Metric|   |Value |   |Stderr|
+|--------------|------:|------|-----:|------|---|-----:|---|-----:|
+|truthfulqa_mc2|      3|none  |     0|acc   |↑  |0.5459|±  |0.0308|
+
+[run] arm=lowLR task=wic limit=200
+INFO 07-09 03:46:27 config.py:510] This model supports multiple tasks: {'reward', 'generate', 'score', 'classify', 'embed'}. Defaulting to 'generate'.
+INFO 07-09 03:46:27 llm_engine.py:234] Initializing an LLM engine (v0.6.6.post1) with config: model='/staging/s/suresh27/models/llama31-8b-instruct', speculative_config=None, tokenizer='/staging/s/suresh27/models/llama31-8b-instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=1234, served_model_name=/staging/s/suresh27/models/llama31-8b-instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False,
+INFO 07-09 03:46:29 selector.py:120] Using Flash Attention backend.
+INFO 07-09 03:46:29 model_runner.py:1094] Starting to load model /staging/s/suresh27/models/llama31-8b-instruct...
+INFO 07-09 03:46:39 model_runner.py:1099] Loading model weights took 14.9927 GB
+INFO 07-09 03:46:39 punica_selector.py:11] Using PunicaWrapperGPU.
+INFO 07-09 03:46:40 worker.py:241] Memory profiling takes 1.16 seconds
+INFO 07-09 03:46:40 worker.py:241] the current vLLM instance can use total_gpu_memory (44.39GiB) x gpu_memory_utilization (0.72) = 31.96GiB
+INFO 07-09 03:46:40 worker.py:241] model weights take 14.99GiB; non_torch_memory takes 0.45GiB; PyTorch activation peak memory takes 1.19GiB; the rest of the memory reserved for KV Cache is 15.34GiB.
+INFO 07-09 03:46:40 gpu_executor.py:76] # GPU blocks: 7852, # CPU blocks: 2048
+INFO 07-09 03:46:40 gpu_executor.py:80] Maximum concurrency for 2048 tokens per request: 61.34x
+INFO 07-09 03:46:42 model_runner.py:1415] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 07-09 03:47:07 model_runner.py:1535] Graph capturing finished in 24 secs, took 0.37 GiB
+INFO 07-09 03:47:07 llm_engine.py:431] init engine (profile, create kv cache, warmup model) took 27.82 seconds
+vllm ({'pretrained': '/staging/s/suresh27/models/llama31-8b-instruct', 'dtype': 'bfloat16', 'tensor_parallel_size': 1, 'gpu_memory_utilization': 0.72, 'max_model_len': 2048, 'enable_lora': True, 'lora_local_path': '/staging/s/suresh27/adapters/lowLR', 'max_lora_rank': 64}), gen_kwargs: ({}), limit: 200.0, num_fewshot: 0, batch_size: auto
+|Tasks|Version|Filter|n-shot|Metric|   |Value|   |Stderr|
+|-----|------:|------|-----:|------|---|----:|---|-----:|
+|wic  |      1|none  |     0|acc   |↑  | 0.49|±  |0.0354|
+
+[run] arm=lowLR task=openbookqa limit=200
+INFO 07-09 03:47:34 config.py:510] This model supports multiple tasks: {'reward', 'embed', 'generate', 'score', 'classify'}. Defaulting to 'generate'.
+INFO 07-09 03:47:34 llm_engine.py:234] Initializing an LLM engine (v0.6.6.post1) with config: model='/staging/s/suresh27/models/llama31-8b-instruct', speculative_config=None, tokenizer='/staging/s/suresh27/models/llama31-8b-instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=1234, served_model_name=/staging/s/suresh27/models/llama31-8b-instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False,
+INFO 07-09 03:47:35 selector.py:120] Using Flash Attention backend.
+INFO 07-09 03:47:36 model_runner.py:1094] Starting to load model /staging/s/suresh27/models/llama31-8b-instruct...
+INFO 07-09 03:47:45 model_runner.py:1099] Loading model weights took 14.9927 GB
+INFO 07-09 03:47:45 punica_selector.py:11] Using PunicaWrapperGPU.
+INFO 07-09 03:47:47 worker.py:241] Memory profiling takes 1.13 seconds
+INFO 07-09 03:47:47 worker.py:241] the current vLLM instance can use total_gpu_memory (44.39GiB) x gpu_memory_utilization (0.72) = 31.96GiB
+INFO 07-09 03:47:47 worker.py:241] model weights take 14.99GiB; non_torch_memory takes 0.45GiB; PyTorch activation peak memory takes 1.19GiB; the rest of the memory reserved for KV Cache is 15.34GiB.
+INFO 07-09 03:47:47 gpu_executor.py:76] # GPU blocks: 7852, # CPU blocks: 2048
+INFO 07-09 03:47:47 gpu_executor.py:80] Maximum concurrency for 2048 tokens per request: 61.34x
+INFO 07-09 03:47:49 model_runner.py:1415] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 07-09 03:48:12 model_runner.py:1535] Graph capturing finished in 24 secs, took 0.37 GiB
+INFO 07-09 03:48:12 llm_engine.py:431] init engine (profile, create kv cache, warmup model) took 26.94 seconds
+vllm ({'pretrained': '/staging/s/suresh27/models/llama31-8b-instruct', 'dtype': 'bfloat16', 'tensor_parallel_size': 1, 'gpu_memory_utilization': 0.72, 'max_model_len': 2048, 'enable_lora': True, 'lora_local_path': '/staging/s/suresh27/adapters/lowLR', 'max_lora_rank': 64}), gen_kwargs: ({}), limit: 200.0, num_fewshot: 0, batch_size: auto
+|  Tasks   |Version|Filter|n-shot| Metric |   |Value|   |Stderr|
+|----------|------:|------|-----:|--------|---|----:|---|-----:|
+|openbookqa|      1|none  |     0|acc     |↑  |0.355|±  |0.0339|
+|          |       |none  |     0|acc_norm|↑  |0.445|±  |0.0352|
+
+[ok] wrote /var/lib/condor/execute/slot2/dir_2511196/scratch/retention_failure_suite_scaleup_truth_wic_obqa_200/gate/truthfulqa_analysis
+[ok] wrote /var/lib/condor/execute/slot2/dir_2511196/scratch/retention_failure_suite_scaleup_truth_wic_obqa_200/gate
