@@ -128,6 +128,24 @@ Manual update: 2026-07-09 after completing uncapped CPU encoding cluster
   `chtc/huth_lebel_smoke/huth_encoding_smoke_bundle_uncapped_all.sub` for the
   completed uncapped all-subject smoke.
 
+## Current Scientific Conclusion
+
+This is a validated pipeline, not a conclusive positive Huth/Fedorenko result.
+
+- Huth/LeBel: no base-beating task-vector effect in the smoke. At layer 16,
+  subject-mean held-out Pearson `r` is `base=0.009785`,
+  `taskvec_a0p25=0.009137`, `lowLR=0.008287`, `scrambled=0.004988`.
+- The smoke is still useful because it proves the full-voxel CHTC path,
+  story-feature extraction, word/TR alignment, FIR-delayed ridge fitting,
+  alpha CV, and held-out scoring.
+- The first plausible scientific test is the high-data `UTS01`-`UTS03`
+  multi-story/fold run with fixed or nested layer selection. Do not treat
+  `5513373` as the final Huth arm comparison.
+- Fedorenko/EvLab: no conclusive language-network claim yet. Strong claims
+  require independent subject-specific language localizers, typically a
+  sentences > nonword-lists contrast. Without those, atlas or broad
+  language-like ROI summaries are exploratory only.
+
 ## Uncapped 5513373 Exact Mean-r Results
 
 All rows use `sweetaspie,againstthewind` for training and held-out

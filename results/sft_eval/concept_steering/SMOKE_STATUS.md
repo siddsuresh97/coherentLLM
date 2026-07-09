@@ -7,6 +7,25 @@ Last updated: 2026-07-09.
 Prepared, locally dry-run validated, and passed on CHTC as cluster `5513276`.
 The bounded layer/alpha sweep also passed as cluster `5513297`.
 
+## Current Scientific Conclusion
+
+The concept-steering result is not conclusive positive. The implementation is
+validated and the vectors can move judged behavior, but the current steering
+settings do not yet give a clean useful intervention:
+
+- `coherence_l12_a4` gives the largest expanded-suite coherence gain
+  (`+0.12`) but has a large alignment cost (`-0.24`).
+- `coherence_l16_a4` is retention-safe, but only weakly helpful (`+0.04`
+  coherence, `-0.08` alignment).
+- Current human-alignment vectors did not improve the harder alignment prompts.
+- The bounded sweep showed imperfect specificity, including a large
+  cross-effect from `human_alignment -> coherence` at layer 12 alpha `4`.
+
+Do not present this as evidence that steering solved coherence or alignment.
+The valid read is: the steering machinery works, there is a manipulable
+coherence direction, and the next experiment needs harder prompts plus a
+retention/side-effect gate before broad steering claims.
+
 Owned files added in this handoff:
 
 - `chtc/concept_steering/run_concept_steering.sh`
@@ -159,6 +178,7 @@ artifacts were pulled to
 - Layer-12 human-alignment steering is a failure mode: it damaged alignment
   generation in the targeted check.
 
-Next action: build an expanded judged generation suite before spending another
-GPU job. Do not launch a broad steering run until the suite includes harder
-alignment prompts and the retention gates in `NEXT_EXPERIMENT_PLAN.md`.
+Next action: build a stricter judged generation suite before spending another
+GPU job on steering. Do not launch a broad steering run until the suite includes
+harder alignment prompts, held-out coherence prompts, and the retention gates in
+`NEXT_EXPERIMENT_PLAN.md`.

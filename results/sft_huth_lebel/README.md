@@ -60,6 +60,30 @@ This directory tracks the ds003020 natural-language fMRI path for testing whethe
 - Duplicate cluster `5513244` held before work because its submit expected a
   missing output tarball; it was removed with `condor_rm`.
 
+## Current Scientific Conclusion
+
+The Huth/LeBel lane is technically validated but not scientifically positive
+yet. The uncapped all-subject smoke proves the feature extraction, alignment,
+ridge fitting, alpha CV, and held-out scoring path works. It does not show a
+base-beating coherence/task-vector effect:
+
+- Subject-mean layer-16 Pearson `r`: `base=0.009785`,
+  `taskvec_a0p25=0.009137`, `lowLR=0.008287`, `scrambled=0.004988`.
+- Base is the best subject-level row for all three staged subjects in the
+  uncapped smoke.
+- `taskvec_a0p25` beats same-layer base only in one cell:
+  `UTS02` layer 16 (`0.011037` vs `0.010409`).
+
+The right next experiment is the high-data Huth/LeBel run with packed story
+artifacts and fixed or nested layer selection. Do not claim an Alex Huth /
+LeBel positive effect from the smoke results.
+
+Fedorenko/EvLab status is separate: there is no conclusive Fedorenko-style
+language-network result yet. The current `ds003020` path is natural-listening
+encoding, not an individual language-localizer experiment. Atlas or broad
+language-like summaries must stay exploratory until subject-specific language
+fROIs or localizer contrasts are added.
+
 ## Executable Smoke Pipeline
 
 - GPU feature extraction: `src/sft/huth_lebel_extract_word_states.py`

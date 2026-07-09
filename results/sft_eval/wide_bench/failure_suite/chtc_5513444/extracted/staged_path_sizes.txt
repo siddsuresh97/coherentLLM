@@ -1,0 +1,2 @@
+15G	/staging/s/suresh27/models/llama31-8b-instruct
+657M	/var/lib/condor/execute/slot2/dir_2809285/scratch/adapters/taskvec_a0p5

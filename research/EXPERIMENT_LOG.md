@@ -1,6 +1,6 @@
 # Coherence-SFT Experiment Log
 
-Last updated: 2026-07-08 23:04 CDT
+Last updated: 2026-07-08 23:43 CDT
 
 ## Read this first
 
@@ -18,6 +18,35 @@ Tracking convention:
 - Every meaningful checkpoint should be committed and pushed to `origin/coherence-sft`.
 - Append command summaries, artifact paths, and interpretation here after each major run.
 - Do not treat a partial/stale artifact as a result unless this log explicitly marks it as valid.
+
+Current conclusion snapshot:
+
+- Concept steering is not a conclusive positive result. The machinery works and
+  coherence can be moved, but current settings either trade off alignment or
+  are too weak, and human-alignment steering did not improve harder alignment
+  prompts.
+- Huth/LeBel is technically validated but not base-beating. In the uncapped
+  all-subject smoke, base layer 16 has subject-mean Pearson `r=0.009785`
+  versus `taskvec_a0p25=0.009137`.
+- Fedorenko/EvLab is not conclusive yet because the staged ds003020 path lacks
+  subject-specific language localizer masks. Treat language-like atlas summaries
+  as exploratory until localizers or a suitable dataset are added.
+
+## Experiment Decision Table
+
+This table is the current handoff summary. It distinguishes engineering
+validation from scientific evidence.
+
+| Lane | Hypothesis | What we did | What we found | Conclusion | Next steps |
+| --- | --- | --- | --- | --- | --- |
+| Semantic hub / MEMP | Coherence SFT induces a more format-invariant semantic memory state across THINGS prompt spokes. | Extracted hidden states; ran paper-style matched-vs-random similarity; added hubness, CSLS, and mutual-nearest controls. | `taskvec_a0p25` is strongest: CSLS top-5 `0.675` vs base `0.128`, CSLS MNN `0.132` vs base `0.002`, but strict identity and hubness-corrected top-1 remain limited. | Positive but qualified. The safe claim is stronger cross-format semantic clustering, not a clean universal hub. | Run logit-lens and causal patching/activation intervention tests; gate any higher-alpha hub candidate on TruthfulQA/WiC retention. |
+| THINGS fMRI / hub bridge | If the semantic hub is brain-relevant, aligned states should improve object-fMRI RSA or hub metrics should explain ROI gains. | Ran THINGS-fMRI RSA and concept-held-out hub-to-fMRI regressions across visual/semantic ROIs. | Ventral Visual has the expected object-RSA signal and scrambled separation, but aligned arms are mostly flat versus base; hub predictors do not cleanly explain Ventral Visual RSA. | Not a positive hub-brain result for Ventral Visual. ATL/Language hints are exploratory. | Use fixed-layer or nested-CV confirmation only if continuing; do not overclaim Ventral Visual evidence. |
+| Huth/LeBel narrative fMRI | Coherence/task-vector features should improve held-out natural-language BOLD prediction. | Audited/staged ds003020 smoke data; ran GPU word-state extraction; ran capped and uncapped full-voxel CPU ridge encoding on `UTS01`-`UTS03`. | Pipeline works, but base wins the uncapped smoke: layer-16 subject mean `base=0.009785`, `taskvec_a0p25=0.009137`, `lowLR=0.008287`, `scrambled=0.004988`. | Technical validation only; no base-beating Huth/LeBel task-vector result yet. | Run high-data multi-story/fold Huth encoding with packed story artifacts after staging file quota is unblocked. |
+| Fedorenko / EvLab language network | Coherence-induced semantic structure may align better with language-network representations. | Literature and method audit; checked whether current ds003020 path can support Fedorenko-style claims. | Current path is Huth-style natural listening and lacks subject-specific language localizer masks or language > control contrasts. | No conclusive Fedorenko/EvLab result. Atlas or broad language-like ROIs are exploratory only. | Add subject-specific language localizers or a dataset with localizer contrasts before claiming language-network effects. |
+| Concept steering | Difference-of-means coherence/alignment vectors can steer desired behavior without broad retention cost. | Built contrast sets and CHTC steering pipeline; ran smoke `5513276`, sweep `5513297`, qualitative judged suite `5513407`. | Steering moves behavior, but best coherence gain trades off alignment (`coherence_l12_a4`: `+0.12` coherence, `-0.24` alignment); retention-safe `coherence_l16_a4` is weak (`+0.04` coherence, `-0.08` alignment); human-alignment vectors did not improve harder prompts. | Not conclusive positive. Machinery works, but no clean useful steering setting yet. | Build stricter held-out coherence/alignment prompts and side-effect gates before another broad steering run. |
+| Benchmark drops / skill diagnosis | Coherence SFT should help semantic consistency while hurting specific benchmark skills rather than causing a uniform collapse. | Ran wide-bench controls for base, lowLR, lowrank, scrambled, and `taskvec_a0p25`; merged full CHTC MMLU for `taskvec_a0p25`; built skill diagnostics. | HellaSwag/WinoGrande mostly retained for coherent arms; ARC/OpenBookQA/MMLU partly mitigated by `taskvec_a0p25` but still below base; WiC is strongly hurt. | Drops are task-family specific: lexical sense disambiguation, science option ranking, and false-lure calibration are main risks. | Use cheap failure-suite gates before full MMLU; prioritize WiC, TruthfulQA, ARC/OpenBookQA mitigation. |
+| TruthfulQA false-lure mechanism | Task-vector mitigation might improve aggregate accuracy while increasing plausible-false-answer pressure. | Ran CHTC TruthfulQA smoke `5513424` and scale-up `5513434` with log samples and false-pressure diagnostics. | At limit 200, `lowLR` improves MC2 `+0.0229` and passes false-pressure-up `0.355`; `taskvec_a0p25` barely improves MC2 `+0.0038` and fails with false-pressure-up `0.820`. | Conclusive risk for `taskvec_a0p25`: it raises plausible false-lure pressure. | Promote only candidates with controlled false-pressure, not accuracy alone. |
+| `taskvec_a0p5` retention gate | Higher alpha may preserve semantic-hub signal or expose worse retention tradeoffs. | Ran CHTC cluster `5513444` for `base+taskvec_a0p5` on TruthfulQA/WiC/OpenBookQA limit 200 using a tarred home-transferred adapter. | `taskvec_a0p5` loses TruthfulQA MC2 (`-0.0169`), drops truth log-odds (`-0.9308`), passes false-pressure-up (`0.305`), but still hurts WiC (`-0.160`) and OpenBookQA acc_norm (`-0.085`). | Not a promotion candidate. It suppresses false pressure by lowering both true and false mass, while aggregate retention worsens. | Do not spend full MMLU on `a0p5`; use lower-alpha/replay/KL candidates and keep the false-pressure gate. |
 
 ## Active task briefs
 
@@ -1968,7 +1997,7 @@ Next:
   extraction after packed staging is ready. Do not run another duplicate
   hidden-state extraction.
 
-## 2026-07-08 active: taskvec_a0p5 retention gate on CHTC
+## 2026-07-08 result: taskvec_a0p5 retention gate on CHTC
 
 Objective: use currently idle CHTC GPUs on a non-duplicate, already
 locally-validated follow-up. The target is the same bounded retention
@@ -2025,13 +2054,46 @@ Submission:
   `chtc/retention_failure_suite/retention_failure_suite_a0p5_homeadapter.sub`
 - Local provenance:
   `results/sft_eval/wide_bench/failure_suite/chtc_5513444/SUBMISSION.md`
+- Local result:
+  `results/sft_eval/wide_bench/failure_suite/chtc_5513444/RESULT.md`
+
+Runtime:
+
+- Completed normally at 2026-07-08 23:40 CDT with Condor return `0`.
+- Host/GPU: `gpu2010.chtc.wisc.edu`, NVIDIA A100-SXM4-80GB.
+- Condor `TimeExecute=1216s`; max sampled GPU utilization `100%`; max sampled
+  GPU memory `64923` MiB.
+- `exit_status.txt == 0`; `gate_exit_status.txt == 0`.
+
+TruthfulQA limit-200 result:
+
+| Arm | MC2 | Delta MC2 | Truth log-odds | Delta truth log-odds | False pressure up |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `base` | 0.5237 | 0.0000 | 0.6636 | 0.0000 |  |
+| `taskvec_a0p5` | 0.5068 | -0.0169 | -0.2673 | -0.9308 | 0.305 |
+
+WiC/OpenBookQA limit-200 result:
+
+| Arm | WiC acc | WiC delta | OpenBookQA acc | OpenBookQA acc_norm | OpenBookQA acc_norm delta |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `base` | 0.650 | 0.000 | 0.405 | 0.510 | 0.000 |
+| `taskvec_a0p5` | 0.490 | -0.160 | 0.255 | 0.425 | -0.085 |
+
+Interpretation:
+
+- `taskvec_a0p5` passes the false-pressure-up threshold (`0.305 <= 0.60`), but
+  this is not a useful mitigation because MC2 and truth log-odds both drop.
+- The mechanism is suppression rather than repair: true mass falls by
+  `-3.8411`, false pressure falls by `-2.9103`, and best true-vs-false margin
+  falls by `-0.9385`.
+- WiC remains badly hurt (`-0.160`), and OpenBookQA acc_norm (`-0.085`) is
+  worse than both `taskvec_a0p25` (`-0.030`) and `lowLR` (`-0.065`) from
+  `5513434`.
+- Do not promote `taskvec_a0p5` and do not spend full MMLU on it.
 
 Next:
 
-- Monitor `5513444`; if it holds, inspect `condor_q -better-analyze 5513444`
-  and the `.err/.out/.log` files in the remote run directory.
-- When complete, pull
-  `retention_failure_suite_a0p5_truth_wic_obqa_200_results.tgz`, extract it
-  under `results/sft_eval/wide_bench/failure_suite/chtc_5513444/`, synthesize
-  TruthfulQA false-pressure/WiC/OpenBookQA results, update the README, commit,
-  and push.
+- Keep `taskvec_a0p25` as the best semantic-hub candidate for mechanism work,
+  but do not ignore its TruthfulQA false-lure failure.
+- Search lower-alpha, replay, KL-to-base, or sparsified-adapter candidates that
+  preserve semantic clustering while passing WiC and false-pressure gates.

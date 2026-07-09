@@ -127,7 +127,7 @@ Read:
 - `taskvec_a0p25` partly mitigates OpenBookQA relative to `lowLR`, but neither
   arm preserves elementary-science option ranking versus base.
 
-## 2026-07-09 Active CHTC A0.5 Gate 5513444
+## 2026-07-09 CHTC A0.5 Gate 5513444
 
 Run:
 
@@ -136,9 +136,14 @@ Run:
   `~/chtc-runs/coherence-retention-a0p5-20260709-041400`
 - Local provenance:
   `results/sft_eval/wide_bench/failure_suite/chtc_5513444/SUBMISSION.md`
+- Local result:
+  `results/sft_eval/wide_bench/failure_suite/chtc_5513444/RESULT.md`
 - Submit file:
   `chtc/retention_failure_suite/retention_failure_suite_a0p5_homeadapter.sub`
-- Status: initially idle at submit check; running by 2026-07-08 23:19 CDT.
+- Host/GPU: `gpu2010.chtc.wisc.edu`, NVIDIA A100-SXM4-80GB
+- Exit evidence: Condor return `0`, `TimeExecute=1216s`,
+  `exit_status.txt == 0`, `gate_exit_status.txt == 0`
+- GPU metrics: max sampled utilization `100%`, max sampled memory `64923` MiB
 
 Gate:
 
@@ -149,13 +154,29 @@ Gate:
   `/home` and unpacked inside job scratch; no new `/staging` adapter directory
   is required.
 
-Purpose:
+TruthfulQA paired deltas vs base:
 
-- Test whether the higher-alpha semantic-hub signal survives the same
-  TruthfulQA false-pressure, WiC, and OpenBookQA gate that `taskvec_a0p25`
-  just failed/partly mitigated.
-- Avoid a duplicate MMLU run and avoid worsening the current CHTC staging
-  file-count quota.
+| Arm | Delta MC2 | Delta truth log-odds | Delta true mass | Delta false pressure | False pressure up |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `taskvec_a0p5` | -0.0169 | -0.9308 | -3.8411 | -2.9103 | 0.305 |
+
+WiC/OpenBookQA bounded retention:
+
+| Arm | WiC acc | WiC delta | OpenBookQA acc | OpenBookQA acc_norm | OpenBookQA acc_norm delta |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `base` | 0.650 | 0.000 | 0.405 | 0.510 | 0.000 |
+| `taskvec_a0p5` | 0.490 | -0.160 | 0.255 | 0.425 | -0.085 |
+
+Read:
+
+- `taskvec_a0p5` passes the false-pressure-up threshold (`0.305 <= 0.60`) but
+  does so by suppressing both true and false answer mass; truth log-odds falls
+  by `-0.9308` and MC2 falls by `-0.0169`.
+- WiC remains badly hurt (`-0.160`), matching the lexical-sense failure seen
+  for `taskvec_a0p25`.
+- OpenBookQA acc_norm drops by `-0.085`, worse than both `taskvec_a0p25`
+  (`-0.030`) and `lowLR` (`-0.065`) in the prior scale-up.
+- Do not promote `taskvec_a0p5` or spend a full MMLU run on it.
 
 ## Suite Lanes
 

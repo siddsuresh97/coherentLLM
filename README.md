@@ -2,11 +2,24 @@
 
 ## Current Scientific Report
 
-Last updated: 2026-07-08 23:16 CDT on branch `coherence-sft`.
+Last updated: 2026-07-08 23:43 CDT on branch `coherence-sft`.
 
 This README is the high-level dashboard. Expand the sections below for the
 details, exact metrics, artifact paths, and next decisions. The continuously
 updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.md).
+
+### Current Conclusions
+
+| Area | Current conclusion | What would make it conclusive |
+| --- | --- | --- |
+| Semantic hub | Positive but qualified: `taskvec_a0p25` gives the strongest cross-format clustering after CSLS/hubness controls, but it is not a clean universal hub. | Logit-lens/causal intervention evidence that the clustered state drives concept-token behavior without the TruthfulQA false-lure failure. |
+| Concept steering | Not conclusive positive. Steering can move coherence scores, but the best coherence setting trades off alignment, the retention-safe setting is weak, and human-alignment steering did not improve harder alignment prompts. | A setting that improves held-out coherence or alignment prompts while preserving retention and avoiding cross-concept side effects. |
+| Huth/LeBel fMRI | Technical pipeline validated, but no base-beating task-vector result. The uncapped smoke has base highest on subject-mean layer-16 Pearson `r` (`0.009785` vs `taskvec_a0p25` `0.009137`). | High-data multi-story/fold Huth run with fixed or nested layer selection and paired subject/fold deltas versus base. |
+| Fedorenko/EvLab | No conclusive Fedorenko-style claim yet. Current ds003020 path is Huth-style natural listening; there are no subject-specific language localizer masks in the staged path. | Individual language fROIs or a dataset with localizer contrasts, then language-network-specific encoding/RSA tests. |
+| Benchmarks | Conclusive harm/mitigation pattern: `taskvec_a0p25` partially mitigates ARC/OpenBookQA/MMLU versus lowrank but fails TruthfulQA false-pressure/WiC; `taskvec_a0p5` suppresses false pressure but loses MC2, WiC, and OpenBookQA. | A mitigation alpha/replay/steering setting that passes TruthfulQA false-pressure, WiC, and science/MMLU slices before full MMLU. |
+
+The fuller hypothesis/test/finding/next-step table is in
+[`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.md#experiment-decision-table).
 
 ### Headlines
 
@@ -55,16 +68,19 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   (`+0.0038`) and fails the mechanism gate (`0.820`). Both arms damage WiC
   hard (`lowLR -0.170`, `taskvec -0.160`); on OpenBookQA acc_norm,
   `taskvec_a0p25` is less bad than `lowLR` (`-0.030` vs `-0.065`) but still
-  below base. Active follow-up: CHTC cluster `5513444` is running
-  `taskvec_a0p5` on the same TruthfulQA/WiC/OpenBookQA gate using a tarred
-  adapter transferred through CHTC `/home`, not more `/staging` files.
+  below base. CHTC `a0p5` gate `5513444` completed on the same slices:
+  `taskvec_a0p5` lowers TruthfulQA MC2 (`-0.0169`) and truth log-odds
+  (`-0.9308`), passes the false-pressure-up threshold (`0.305`), but still
+  hurts WiC (`-0.160`) and OpenBookQA acc_norm (`-0.085`). Conclusion:
+  `a0p5` is not a promotion candidate; it trades false-lure suppression for
+  worse aggregate retention.
 - **Concept steering:** expanded judged generation suite `5513407` passed on
-  CHTC, but it does not justify broad steering yet. All tested settings passed
-  retention (`0.96` pass rate), while `coherence_l12_a4` gave the largest
-  coherence gain (`+0.12`) with a large alignment cost (`-0.24`).
-  `coherence_l16_a4` is retention-safe but only weakly helpful (`+0.04`
-  coherence, `-0.08` alignment), and the human-alignment vectors did not
-  improve harder alignment prompts.
+  CHTC technically, but the scientific read is not conclusive positive. All
+  tested settings passed retention (`0.96` pass rate), while
+  `coherence_l12_a4` gave the largest coherence gain (`+0.12`) with a large
+  alignment cost (`-0.24`). `coherence_l16_a4` is retention-safe but only
+  weakly helpful (`+0.04` coherence, `-0.08` alignment), and the
+  human-alignment vectors did not improve harder alignment prompts.
 - **Runtime:** CHTC MMLU finished as a pure 8-shard merge from
   `~/chtc-runs/coherence-mmlu-shards-20260709-004133`. Smoke `5513195`
   passed on an H100; full cluster `5513268` needed staging retry `5513291`
@@ -92,10 +108,11 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   are no longer absorbing jobs. H100 handled rank-16 lowrank MMLU, but
   rank-64 LoRA vLLM evals
   (`taskvec_a0p25`, `scrambled`) stall before GPU allocation on `opt-a007`,
-  even after local adapter staging. Active CHTC job `5513444` was submitted at
-  2026-07-08 23:15 CDT and was running by 23:19 CDT for the `taskvec_a0p5`
-  retention gate after local compile, shell syntax, dry-run, and dereferenced
-  adapter-bundle checks passed.
+  even after local adapter staging. CHTC job `5513444` completed normally on
+  `gpu2010.chtc.wisc.edu` with an NVIDIA A100-SXM4-80GB: Condor return `0`,
+  `TimeExecute=1216s`, max sampled GPU utilization `100%`, and max sampled GPU
+  memory `64923` MiB. It used a dereferenced `taskvec_a0p5` adapter tarball
+  transferred through CHTC `/home`, avoiding additional `/staging` files.
 
 ### Reading Map
 

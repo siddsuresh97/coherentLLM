@@ -1,10 +1,26 @@
 # Active Agent Handoff
 
-Last coordination snapshot: 2026-07-08 23:16 CDT.
+Last coordination snapshot: 2026-07-08 23:43 CDT.
 
 Branch: `coherence-sft`
 
 Persistent objective: determine what the coherence-trained model improves, what it hurts, why those effects appear, and which experiments can push the cognitive-science and LLM-research story forward.
+
+## Current Scientific Conclusion Snapshot
+
+- Concept steering: not conclusive positive. `5513407` technically passed, but
+  the strongest coherence gain trades off alignment, the retention-safe
+  coherence setting is weak, and human-alignment vectors did not improve harder
+  alignment prompts.
+- Huth/LeBel: technical pipeline validated, no base-beating task-vector result.
+  Uncapped smoke subject-mean layer-16 Pearson `r` is `base=0.009785` vs
+  `taskvec_a0p25=0.009137`.
+- Fedorenko/EvLab: no conclusive language-network result. Current ds003020
+  smoke is Huth-style natural listening and lacks subject-specific language
+  localizer masks.
+- `taskvec_a0p5`: not a promotion candidate. The completed CHTC `5513444`
+  gate passes false-pressure-up (`0.305`) but loses TruthfulQA MC2 (`-0.0169`),
+  WiC (`-0.160`), and OpenBookQA acc_norm (`-0.085`).
 
 ## Live CHTC State
 
@@ -13,17 +29,20 @@ Source: `chtc-master check`, `chtc-ssh 'condor_q -batch suresh27'`, and
 
 Current queue snapshot:
 
-- Queue state from `condor_q -batch suresh27`: `1` running, `0` idle,
-  `0` held. The single running job is retention gate `5513444.0`.
+- Queue state from `condor_q 5513444 -nobatch`: `0` running, `0` idle,
+  `0` held after `5513444.0` completed and left the queue.
 - `chtc-master check` reports the master session is alive.
-- Active retention follow-up `5513444.0` was submitted at 2026-07-08 23:15 CDT
-  from `~/chtc-runs/coherence-retention-a0p5-20260709-041400`. It runs
-  `base+taskvec_a0p5` at limit 200 on `truthfulqa_mc2+wic+openbookqa` with
-  `TARGET.HasCHTCStaging == true` and `TARGET.CUDAGlobalMemoryMb >= 40000`.
-  The `taskvec_a0p5` adapter is transferred as
-  `taskvec_a0p5_adapter.tgz` from CHTC `/home` and unpacked in job scratch, so
-  this job does not add files to over-quota `/staging`. It was running by
-  2026-07-08 23:19 CDT.
+- Retention follow-up `5513444.0` completed normally on
+  `gpu2010.chtc.wisc.edu` with an NVIDIA A100-SXM4-80GB, Condor return `0`,
+  `TimeExecute=1216s`, max sampled GPU utilization `100%`, and max sampled GPU
+  memory `64923` MiB. It ran `base+taskvec_a0p5` at limit 200 on
+  `truthfulqa_mc2+wic+openbookqa` with a `taskvec_a0p5_adapter.tgz` transferred
+  through CHTC `/home`, avoiding more `/staging` files. Pulled artifacts are
+  under `results/sft_eval/wide_bench/failure_suite/chtc_5513444/`.
+- `5513444` result: `taskvec_a0p5` loses TruthfulQA MC2 by `-0.0169` and
+  truth log-odds by `-0.9308`, while passing false-pressure-up (`0.305`). It
+  still damages WiC (`0.490`, delta `-0.160`) and OpenBookQA acc_norm
+  (`0.425`, delta `-0.085`). Do not promote `a0p5`.
 - Retention failure-suite scale-up `5513434.0` completed normally on
   `slot2_2@gpu4006.chtc.wisc.edu` with `ExitCode=0`,
   `TimeExecute=848s`, `RequestCpus=8`, `RequestMemory=49152`,
@@ -80,12 +99,12 @@ Huth/Fedorenko staging blocker:
 
 Held jobs: none.
 
-Monitor decision: watch `5513444` and pull it when complete. Do not rerun
-completed MMLU, concept-steering, or Huth smoke jobs just to fill GPUs. The
-next CHTC GPU submission after `5513444` should be a newly smoke-tested
-non-duplicate lane: paper-style semantic-hub logit lens / causal patching, a
-false-pressure mitigation gate, or Huth/Fedorenko high-data extraction after
-packed staging is ready.
+Monitor decision: queue is empty after `5513444`. Do not rerun completed MMLU,
+concept-steering, Huth smoke, or `a0p5` retention jobs just to fill GPUs. The
+next CHTC GPU submission should be a newly smoke-tested non-duplicate lane:
+paper-style semantic-hub logit lens / causal patching, a false-pressure
+mitigation gate for a new candidate, or Huth/Fedorenko high-data extraction
+after packed staging is ready.
 
 Completed since the previous handoff:
 
@@ -121,8 +140,8 @@ Completed since the previous handoff:
   `results/sft_semantic_hub/hubness/` and
   `results/sft_semantic_hub/mechanism_synthesis/`.
 - Retention runner now supports configurable adapter roots and a first-class
-  `taskvec_a0p5` arm. CHTC cluster `5513444` is active for the `a0p5`
-  TruthfulQA/WiC/OpenBookQA gate.
+  `taskvec_a0p5` arm. CHTC cluster `5513444` completed; `a0p5` is not a
+  promotion candidate.
 
 ## Active Agent Goals
 

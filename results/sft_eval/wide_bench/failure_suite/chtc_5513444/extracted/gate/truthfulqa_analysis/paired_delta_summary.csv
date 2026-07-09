@@ -1,0 +1,2 @@
+arm,n_paired,mean_delta_mc2_acc,mean_delta_truth_logodds,mean_delta_true_logsumexp,mean_delta_false_logsumexp,mean_delta_best_margin,frac_acc_down,frac_false_pressure_up
+taskvec_a0p5,200,-0.016896982101882282,-0.9308304878771394,-3.8411239319549226,-2.9102934440777832,-0.9385035151110546,0.565,0.305

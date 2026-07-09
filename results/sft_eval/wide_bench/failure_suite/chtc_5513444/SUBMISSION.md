@@ -1,11 +1,12 @@
 # CHTC Retention A0.5 Gate Submission
 
-Status: running on CHTC as of 2026-07-08 23:19 CDT.
+Status: completed normally on CHTC.
 
 ## Run
 
 - Cluster: `5513444.0`
 - Submitted: 2026-07-08 23:15 CDT
+- Completed: 2026-07-08 23:40 CDT
 - Remote run directory:
   `~/chtc-runs/coherence-retention-a0p5-20260709-041400`
 - Submit file:
@@ -72,3 +73,16 @@ Follow-up queue check at 2026-07-08 23:19 CDT:
 ```text
 1 jobs; 0 completed, 0 removed, 0 idle, 1 running, 0 held, 0 suspended
 ```
+
+## Completion
+
+- Host: `gpu2010.chtc.wisc.edu`
+- GPU: NVIDIA A100-SXM4-80GB
+- Condor return value: `0`
+- `TimeExecute`: `1216s`
+- Max sampled GPU utilization: `100%`
+- Max sampled GPU memory: `64923` MiB
+- Output bundle:
+  `retention_failure_suite_a0p5_truth_wic_obqa_200_results.tgz`
+
+Result synthesis: see `RESULT.md`.
