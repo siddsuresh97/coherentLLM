@@ -2,7 +2,7 @@
 
 ## Current Scientific Report
 
-Last updated: 2026-07-08 23:04 CDT on branch `coherence-sft`.
+Last updated: 2026-07-08 23:16 CDT on branch `coherence-sft`.
 
 This README is the high-level dashboard. Expand the sections below for the
 details, exact metrics, artifact paths, and next decisions. The continuously
@@ -55,7 +55,9 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   (`+0.0038`) and fails the mechanism gate (`0.820`). Both arms damage WiC
   hard (`lowLR -0.170`, `taskvec -0.160`); on OpenBookQA acc_norm,
   `taskvec_a0p25` is less bad than `lowLR` (`-0.030` vs `-0.065`) but still
-  below base.
+  below base. Active follow-up: CHTC cluster `5513444` is running
+  `taskvec_a0p5` on the same TruthfulQA/WiC/OpenBookQA gate using a tarred
+  adapter transferred through CHTC `/home`, not more `/staging` files.
 - **Concept steering:** expanded judged generation suite `5513407` passed on
   CHTC, but it does not justify broad steering yet. All tested settings passed
   retention (`0.96` pass rate), while `coherence_l12_a4` gave the largest
@@ -90,7 +92,10 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   are no longer absorbing jobs. H100 handled rank-16 lowrank MMLU, but
   rank-64 LoRA vLLM evals
   (`taskvec_a0p25`, `scrambled`) stall before GPU allocation on `opt-a007`,
-  even after local adapter staging.
+  even after local adapter staging. Active CHTC job `5513444` was submitted at
+  2026-07-08 23:15 CDT and was running by 23:19 CDT for the `taskvec_a0p5`
+  retention gate after local compile, shell syntax, dry-run, and dereferenced
+  adapter-bundle checks passed.
 
 ### Reading Map
 
@@ -578,12 +583,16 @@ Current plan:
 
 Immediate:
 
-1. Use the completed MMLU row to gate future task-vector alpha or replay
-   experiments on cheap MMLU/ARC/WiC/TruthfulQA failure slices before launching
-   another full MMLU.
-2. Next free GPU lane should go to a non-duplicate follow-up: paper-style
-   semantic-hub logit lens / causal patching, a false-pressure mitigation gate,
-   or Huth/LeBel high-data feature extraction after packed staging is ready.
+1. Monitor CHTC cluster `5513444`, pull results into
+   `results/sft_eval/wide_bench/failure_suite/chtc_5513444/`, then update this
+   README with the `taskvec_a0p5` TruthfulQA false-pressure, WiC, and
+   OpenBookQA read.
+2. Use the completed MMLU row and cheap failure-suite gates to screen future
+   task-vector alpha or replay experiments before launching another full MMLU.
+3. Next free GPU lane after `5513444` should go to a non-duplicate follow-up:
+   paper-style semantic-hub logit lens / causal patching, a false-pressure
+   mitigation gate, or Huth/LeBel high-data feature extraction after packed
+   staging is ready.
 
 Scientific next:
 

@@ -127,6 +127,36 @@ Read:
 - `taskvec_a0p25` partly mitigates OpenBookQA relative to `lowLR`, but neither
   arm preserves elementary-science option ranking versus base.
 
+## 2026-07-09 Active CHTC A0.5 Gate 5513444
+
+Run:
+
+- CHTC cluster: `5513444.0`
+- Remote run:
+  `~/chtc-runs/coherence-retention-a0p5-20260709-041400`
+- Local provenance:
+  `results/sft_eval/wide_bench/failure_suite/chtc_5513444/SUBMISSION.md`
+- Submit file:
+  `chtc/retention_failure_suite/retention_failure_suite_a0p5_homeadapter.sub`
+- Status: initially idle at submit check; running by 2026-07-08 23:19 CDT.
+
+Gate:
+
+- Arms: `base`, `taskvec_a0p5`
+- Tasks: `truthfulqa_mc2`, `wic`, `openbookqa`
+- Limit: `200`
+- Adapter transfer: dereferenced `taskvec_a0p5_adapter.tgz` copied to CHTC
+  `/home` and unpacked inside job scratch; no new `/staging` adapter directory
+  is required.
+
+Purpose:
+
+- Test whether the higher-alpha semantic-hub signal survives the same
+  TruthfulQA false-pressure, WiC, and OpenBookQA gate that `taskvec_a0p25`
+  just failed/partly mitigated.
+- Avoid a duplicate MMLU run and avoid worsening the current CHTC staging
+  file-count quota.
+
 ## Suite Lanes
 
 P0 slices:

@@ -1967,3 +1967,71 @@ Next:
   `taskvec_a0p25`, a false-pressure mitigation gate, or Huth high-data
   extraction after packed staging is ready. Do not run another duplicate
   hidden-state extraction.
+
+## 2026-07-08 active: taskvec_a0p5 retention gate on CHTC
+
+Objective: use currently idle CHTC GPUs on a non-duplicate, already
+locally-validated follow-up. The target is the same bounded retention
+failure-suite used for `5513434`, but with `taskvec_a0p5`, because CSLS shows a
+strong but more one-way semantic retrieval signal and this alpha has not yet
+passed the false-lure/WiC/OpenBookQA gate.
+
+Operational state:
+
+- `chtc-master check`: master session alive.
+- `condor_q -batch suresh27` before submit: `0` running, `0` idle, `0` held.
+- Live availability probe for `1` GPU, `8` CPUs, `48GB` RAM, `>=40GB` GPU
+  memory, and `HasCHTCStaging==true`: 42 unclaimed matching slots.
+- Staging quota remains over file count: `/staging/s/suresh27` is
+  `24.3209/100` GB but `1120/1000` files. Therefore this run does not create a
+  staged `taskvec_a0p5` adapter directory.
+
+Implementation:
+
+- Added `taskvec_a0p5` to `src/sft/run_retention_failure_suite_gate.py`.
+- Added `--adapter-root` / `RETENTION_ADAPTER_ROOT` support so CHTC jobs can
+  use adapters unpacked into job scratch.
+- Updated `chtc/retention_failure_suite/run_retention_failure_suite.sh` to
+  unpack `LOCAL_ADAPTER_BUNDLES` entries like
+  `taskvec_a0p5=taskvec_a0p5_adapter.tgz` and check only the adapter paths
+  requested by `ARMS_SPEC`.
+- Added
+  `chtc/retention_failure_suite/retention_failure_suite_a0p5_homeadapter.sub`.
+
+Validation:
+
+- `python -m py_compile src/sft/run_retention_failure_suite_gate.py src/sft/analyze_truthfulqa_logsamples.py`
+- `bash -n chtc/retention_failure_suite/run_retention_failure_suite.sh`
+- `python src/sft/run_retention_failure_suite_gate.py --dry-run --manifest results/sft_eval/wide_bench/failure_suite/suite_manifest.json --out-dir /tmp/retention_failure_suite_a0p5_dryrun --arms base taskvec_a0p5 --tasks truthfulqa_mc2 wic openbookqa --limit 200 --model-path /staging/s/suresh27/models/llama31-8b-instruct --adapter-root adapters`
+- `tar -czhf /tmp/taskvec_a0p5_adapter.tgz -C out/adapters_taskvec_scaled/a0p5 .`
+- Adapter bundle check: `/tmp/taskvec_a0p5_adapter.tgz` is 596 MB and contains
+  dereferenced `adapter_model.safetensors`, tokenizer/config files, and
+  metadata.
+- `git diff --check`
+
+Submission:
+
+- Remote run:
+  `~/chtc-runs/coherence-retention-a0p5-20260709-041400`
+- CHTC cluster: `5513444.0`
+- Submitted at 2026-07-08 23:15 CDT.
+- Initial queue check: `0` running, `1` idle, `0` held.
+- Follow-up queue check at 2026-07-08 23:19 CDT: `1` running, `0` idle,
+  `0` held.
+- Arms: `base`, `taskvec_a0p5`.
+- Tasks: `truthfulqa_mc2`, `wic`, `openbookqa`.
+- Limit: `200`.
+- Submit file:
+  `chtc/retention_failure_suite/retention_failure_suite_a0p5_homeadapter.sub`
+- Local provenance:
+  `results/sft_eval/wide_bench/failure_suite/chtc_5513444/SUBMISSION.md`
+
+Next:
+
+- Monitor `5513444`; if it holds, inspect `condor_q -better-analyze 5513444`
+  and the `.err/.out/.log` files in the remote run directory.
+- When complete, pull
+  `retention_failure_suite_a0p5_truth_wic_obqa_200_results.tgz`, extract it
+  under `results/sft_eval/wide_bench/failure_suite/chtc_5513444/`, synthesize
+  TruthfulQA false-pressure/WiC/OpenBookQA results, update the README, commit,
+  and push.

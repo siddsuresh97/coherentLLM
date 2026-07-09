@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -18,11 +19,13 @@ ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_MANIFEST = ROOT / "results" / "sft_eval" / "wide_bench" / "failure_suite" / "suite_manifest.json"
 
 DEFAULT_MODEL_PATH = "/staging/s/suresh27/models/llama31-8b-instruct"
+DEFAULT_ADAPTER_ROOT = "/staging/s/suresh27/adapters"
 ARM_SPECS = {
-    "base": {"adapter_path": "NONE", "max_lora_rank": 64},
-    "taskvec_a0p25": {"adapter_path": "/staging/s/suresh27/adapters/taskvec_a0p25", "max_lora_rank": 64},
-    "lowLR": {"adapter_path": "/staging/s/suresh27/adapters/lowLR", "max_lora_rank": 64},
-    "lowrank": {"adapter_path": "/staging/s/suresh27/adapters/lowrank", "max_lora_rank": 16},
+    "base": {"adapter_name": None, "max_lora_rank": 64},
+    "taskvec_a0p25": {"adapter_name": "taskvec_a0p25", "max_lora_rank": 64},
+    "taskvec_a0p5": {"adapter_name": "taskvec_a0p5", "max_lora_rank": 64},
+    "lowLR": {"adapter_name": "lowLR", "max_lora_rank": 64},
+    "lowrank": {"adapter_name": "lowrank", "max_lora_rank": 16},
 }
 
 
@@ -34,6 +37,11 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--tasks", nargs="+", default=["truthfulqa_mc2"])
     ap.add_argument("--limit", type=int, default=None, help="Override manifest slice limit.")
     ap.add_argument("--model-path", default=DEFAULT_MODEL_PATH)
+    ap.add_argument(
+        "--adapter-root",
+        default=os.environ.get("RETENTION_ADAPTER_ROOT", DEFAULT_ADAPTER_ROOT),
+        help="Root containing arm adapter directories; useful for CHTC jobs that unpack adapters into scratch.",
+    )
     ap.add_argument("--batch-size", default="auto")
     ap.add_argument("--gpu-mem-util", type=float, default=0.72)
     ap.add_argument("--max-model-len", type=int, default=2048)
@@ -69,7 +77,7 @@ def normalize_arms(arms: list[str]) -> list[str]:
     return arms
 
 
-def model_args(model_path: str, arm: str, gpu_mem_util: float, max_model_len: int) -> str:
+def model_args(model_path: str, adapter_root: str, arm: str, gpu_mem_util: float, max_model_len: int) -> str:
     spec = ARM_SPECS[arm]
     parts = [
         f"pretrained={model_path}",
@@ -79,8 +87,9 @@ def model_args(model_path: str, arm: str, gpu_mem_util: float, max_model_len: in
         f"max_model_len={max_model_len}",
         "trust_remote_code=True",
     ]
-    adapter_path = spec["adapter_path"]
-    if adapter_path != "NONE":
+    adapter_name = spec["adapter_name"]
+    if adapter_name is not None:
+        adapter_path = Path(adapter_root) / adapter_name
         parts.extend(
             [
                 "enable_lora=True",
@@ -113,7 +122,7 @@ def build_commands(args: argparse.Namespace, slices: list[dict]) -> list[dict]:
                 "--model",
                 "vllm",
                 "--model_args",
-                model_args(args.model_path, arm, args.gpu_mem_util, args.max_model_len),
+                model_args(args.model_path, args.adapter_root, arm, args.gpu_mem_util, args.max_model_len),
                 "--tasks",
                 task,
                 "--limit",
@@ -203,6 +212,7 @@ def write_summary(args: argparse.Namespace, commands: list[dict], analysis_dir: 
         f"- Arms: `{', '.join(args.arms)}`",
         f"- Tasks: `{', '.join(args.tasks)}`",
         f"- Limit override: `{args.limit if args.limit is not None else 'manifest limits'}`",
+        f"- Adapter root: `{args.adapter_root}`",
         f"- Command count: `{len(commands)}`",
         "",
     ]

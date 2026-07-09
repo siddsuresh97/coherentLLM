@@ -4,7 +4,10 @@ This bundle runs GPU-backed gates from the committed retention failure-suite
 manifest. The initial smoke is intentionally narrow: `truthfulqa_mc2`, limit
 40, for `base`, `taskvec_a0p25`, and the staged `lowLR` adapter. The scale-up
 submit file runs the same arms at limit 200 across `truthfulqa_mc2`, `wic`, and
-`openbookqa`.
+`openbookqa`. The `a0p5_homeadapter` submit file runs `base` and
+`taskvec_a0p5` on the same slices, but transfers a tarred adapter from CHTC
+`/home` into job scratch instead of adding files to the over-quota staging
+area.
 
 The smoke tests whether the drop mechanism is visible in fresh CHTC logs:
 paired TruthfulQA MC2, truth-logodds, true-answer mass, false-answer pressure,
@@ -17,6 +20,7 @@ python -m py_compile src/sft/run_retention_failure_suite_gate.py src/sft/analyze
 bash -n chtc/retention_failure_suite/run_retention_failure_suite.sh
 python src/sft/run_retention_failure_suite_gate.py --dry-run --manifest results/sft_eval/wide_bench/failure_suite/suite_manifest.json --out-dir /tmp/retention_failure_suite_dryrun --arms base taskvec_a0p25 lowLR --tasks truthfulqa_mc2 --limit 16 --model-path /staging/s/suresh27/models/llama31-8b-instruct
 python src/sft/run_retention_failure_suite_gate.py --dry-run --manifest results/sft_eval/wide_bench/failure_suite/suite_manifest.json --out-dir /tmp/retention_failure_suite_scaleup_dryrun --arms base taskvec_a0p25 lowLR --tasks truthfulqa_mc2 wic openbookqa --limit 200 --model-path /staging/s/suresh27/models/llama31-8b-instruct
+python src/sft/run_retention_failure_suite_gate.py --dry-run --manifest results/sft_eval/wide_bench/failure_suite/suite_manifest.json --out-dir /tmp/retention_failure_suite_a0p5_dryrun --arms base taskvec_a0p5 --tasks truthfulqa_mc2 wic openbookqa --limit 200 --model-path /staging/s/suresh27/models/llama31-8b-instruct --adapter-root adapters
 ```
 
 ## Submit
@@ -27,6 +31,7 @@ Copy the bundle files to a CHTC run directory with:
 chtc-push chtc/retention_failure_suite/run_retention_failure_suite.sh "chtc-runs/<run-id>/"
 chtc-push chtc/retention_failure_suite/retention_failure_suite_smoke.sub "chtc-runs/<run-id>/"
 chtc-push chtc/retention_failure_suite/retention_failure_suite_scaleup.sub "chtc-runs/<run-id>/"
+chtc-push chtc/retention_failure_suite/retention_failure_suite_a0p5_homeadapter.sub "chtc-runs/<run-id>/"
 chtc-push src/sft/run_retention_failure_suite_gate.py "chtc-runs/<run-id>/"
 chtc-push src/sft/analyze_truthfulqa_logsamples.py "chtc-runs/<run-id>/"
 chtc-push results/sft_eval/wide_bench/failure_suite/suite_manifest.json "chtc-runs/<run-id>/"
@@ -36,11 +41,24 @@ chtc-ssh "cd ~/chtc-runs/<run-id> && mkdir -p logs && condor_submit retention_fa
 For the scale-up, submit `retention_failure_suite_scaleup.sub` instead of the
 smoke submit file.
 
+For the `taskvec_a0p5` gate, build a dereferenced adapter bundle locally and
+push it to the same CHTC run directory before submitting:
+
+```bash
+tar -czhf /tmp/taskvec_a0p5_adapter.tgz -C out/adapters_taskvec_scaled/a0p5 .
+chtc-push /tmp/taskvec_a0p5_adapter.tgz "chtc-runs/<run-id>/taskvec_a0p5_adapter.tgz"
+chtc-ssh "cd ~/chtc-runs/<run-id> && mkdir -p logs && condor_submit retention_failure_suite_a0p5_homeadapter.sub"
+```
+
 Required staged inputs:
 
 - `/staging/s/suresh27/models/llama31-8b-instruct`
 - `/staging/s/suresh27/adapters/taskvec_a0p25`
 - `/staging/s/suresh27/adapters/lowLR`
+
+The `taskvec_a0p5` submit file only requires the staged base model plus the
+transferred `taskvec_a0p5_adapter.tgz`; it does not require
+`/staging/s/suresh27/adapters/taskvec_a0p5`.
 
 `/staging/s/suresh27/adapters/lowrank` was not present during the initial
 smoke setup, so the first CHTC gate uses `lowLR` as the staged comparison arm.

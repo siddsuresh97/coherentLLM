@@ -1,6 +1,6 @@
 # Active Agent Handoff
 
-Last coordination snapshot: 2026-07-08 23:04 CDT.
+Last coordination snapshot: 2026-07-08 23:16 CDT.
 
 Branch: `coherence-sft`
 
@@ -13,9 +13,17 @@ Source: `chtc-master check`, `chtc-ssh 'condor_q -batch suresh27'`, and
 
 Current queue snapshot:
 
-- Queue state from `condor_q -batch suresh27`: `0` running, `0` idle,
-  `0` held.
+- Queue state from `condor_q -batch suresh27`: `1` running, `0` idle,
+  `0` held. The single running job is retention gate `5513444.0`.
 - `chtc-master check` reports the master session is alive.
+- Active retention follow-up `5513444.0` was submitted at 2026-07-08 23:15 CDT
+  from `~/chtc-runs/coherence-retention-a0p5-20260709-041400`. It runs
+  `base+taskvec_a0p5` at limit 200 on `truthfulqa_mc2+wic+openbookqa` with
+  `TARGET.HasCHTCStaging == true` and `TARGET.CUDAGlobalMemoryMb >= 40000`.
+  The `taskvec_a0p5` adapter is transferred as
+  `taskvec_a0p5_adapter.tgz` from CHTC `/home` and unpacked in job scratch, so
+  this job does not add files to over-quota `/staging`. It was running by
+  2026-07-08 23:19 CDT.
 - Retention failure-suite scale-up `5513434.0` completed normally on
   `slot2_2@gpu4006.chtc.wisc.edu` with `ExitCode=0`,
   `TimeExecute=848s`, `RequestCpus=8`, `RequestMemory=49152`,
@@ -41,8 +49,8 @@ Current queue snapshot:
   `TimeExecute=962s`, `TimeSlotBusy=1015s`, and peak GPU memory `14202` MB.
 - Pulled concept artifacts are under
   `results/sft_eval/concept_steering/chtc/5513407/`.
-- Exact spare capacity is available: 40 unclaimed X86_64 CHTC slots satisfy
-  `1` GPU, `8` CPUs, at least `64GB` RAM, `>=40GB` GPU memory, and
+- Exact spare capacity is available: 42 unclaimed X86_64 CHTC slots satisfy
+  `1` GPU, `8` CPUs, at least `48GB` RAM, `>=40GB` GPU memory, and
   `HasChtcStaging==true`.
 - Huth/Fedorenko pack-smoke cluster `5513418.0` failed with `ExitCode=1`
   because the first packer archived ds003020 git-annex symlinks instead of
@@ -72,12 +80,12 @@ Huth/Fedorenko staging blocker:
 
 Held jobs: none.
 
-Monitor decision: queue is currently empty after `5513434` completed. Do not
-rerun completed MMLU, concept-steering, or Huth smoke jobs just to fill GPUs.
-The next CHTC GPU submission should be a newly smoke-tested non-duplicate lane:
-paper-style semantic-hub logit lens / causal patching, a false-pressure
-mitigation gate, or Huth/Fedorenko high-data extraction after packed staging is
-ready.
+Monitor decision: watch `5513444` and pull it when complete. Do not rerun
+completed MMLU, concept-steering, or Huth smoke jobs just to fill GPUs. The
+next CHTC GPU submission after `5513444` should be a newly smoke-tested
+non-duplicate lane: paper-style semantic-hub logit lens / causal patching, a
+false-pressure mitigation gate, or Huth/Fedorenko high-data extraction after
+packed staging is ready.
 
 Completed since the previous handoff:
 
@@ -112,6 +120,9 @@ Completed since the previous handoff:
 - Semantic-hub/MEMP hubness control completed locally. New artifacts:
   `results/sft_semantic_hub/hubness/` and
   `results/sft_semantic_hub/mechanism_synthesis/`.
+- Retention runner now supports configurable adapter roots and a first-class
+  `taskvec_a0p5` arm. CHTC cluster `5513444` is active for the `a0p5`
+  TruthfulQA/WiC/OpenBookQA gate.
 
 ## Active Agent Goals
 

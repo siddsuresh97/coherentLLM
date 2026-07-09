@@ -21,6 +21,7 @@ PIP_TIMEOUT_SECONDS="${PIP_TIMEOUT_SECONDS:-900}"
 RESULT_DIR="${PWD}/retention_failure_suite_${RUN_ID}"
 OUT_BUNDLE="retention_failure_suite_${RUN_ID}_results.tgz"
 PYDEPS="${PWD}/pydeps"
+ADAPTER_ROOT="${ADAPTER_ROOT:-/staging/s/suresh27/adapters}"
 
 mkdir -p "${RESULT_DIR}" "${PYDEPS}"
 
@@ -68,6 +69,8 @@ fi
   echo "tasks_spec=${TASKS_SPEC}"
   echo "limit=${LIMIT}"
   echo "model_path=${MODEL_PATH}"
+  echo "adapter_root=${ADAPTER_ROOT}"
+  echo "local_adapter_bundles=${LOCAL_ADAPTER_BUNDLES:-}"
   echo "batch_size=${BATCH_SIZE}"
   echo "gpu_mem_util=${GPU_MEM_UTIL}"
   echo "max_model_len=${MAX_MODEL_LEN}"
@@ -94,6 +97,33 @@ if (( GPU_MEM_MB < MIN_CUDA_GLOBAL_MEMORY_MB )); then
 fi
 log_step "gpu_probe_ok memory_mb=${GPU_MEM_MB}"
 
+IFS='+' read -r -a ARMS <<< "${ARMS_SPEC}"
+IFS='+' read -r -a TASKS <<< "${TASKS_SPEC}"
+
+if [[ -n "${LOCAL_ADAPTER_BUNDLES:-}" ]]; then
+  LOCAL_ADAPTER_ROOT="${PWD}/adapters"
+  mkdir -p "${LOCAL_ADAPTER_ROOT}"
+  IFS='+' read -r -a BUNDLE_SPECS <<< "${LOCAL_ADAPTER_BUNDLES}"
+  for spec in "${BUNDLE_SPECS[@]}"; do
+    [[ -z "${spec}" ]] && continue
+    if [[ "${spec}" != *=* ]]; then
+      echo "Invalid LOCAL_ADAPTER_BUNDLES entry '${spec}', expected arm=tarball.tgz" >&2
+      exit 65
+    fi
+    arm="${spec%%=*}"
+    bundle="${spec#*=}"
+    target="${LOCAL_ADAPTER_ROOT}/${arm}"
+    if [[ ! -r "${bundle}" ]]; then
+      echo "Missing local adapter bundle: ${bundle}" >&2
+      exit 66
+    fi
+    mkdir -p "${target}"
+    tar -xzf "${bundle}" -C "${target}"
+    log_step "local_adapter_bundle_unpacked arm=${arm} bundle=${bundle} target=${target}"
+  done
+  ADAPTER_ROOT="${LOCAL_ADAPTER_ROOT}"
+fi
+
 {
   echo "timestamp_utc,gpu_index,name,utilization_gpu_pct,utilization_memory_pct,memory_used_mb,memory_total_mb,power_draw_w,temperature_c"
   while true; do
@@ -109,7 +139,19 @@ log_step "gpu_probe_ok memory_mb=${GPU_MEM_MB}"
 MONITOR_PID="$!"
 
 log_step "staged_input_check"
-for p in "${MODEL_PATH}" "/staging/s/suresh27/adapters/taskvec_a0p25" "/staging/s/suresh27/adapters/lowLR"; do
+adapter_paths=()
+for arm in "${ARMS[@]}"; do
+  case "${arm}" in
+    base) ;;
+    taskvec_a0p25|taskvec_a0p5|lowLR|lowrank) adapter_paths+=("${ADAPTER_ROOT}/${arm}") ;;
+    *)
+      echo "Unknown arm for input check: ${arm}" >&2
+      exit 65
+      ;;
+  esac
+done
+
+for p in "${MODEL_PATH}" "${adapter_paths[@]}"; do
   if [[ ! -e "${p}" ]]; then
     echo "Missing staged path: ${p}" >&2
     exit 66
@@ -119,7 +161,11 @@ if [[ ! -r "${MODEL_PATH}/config.json" ]]; then
   echo "Missing model config at ${MODEL_PATH}/config.json" >&2
   exit 66
 fi
-(du -sh "${MODEL_PATH}" /staging/s/suresh27/adapters/taskvec_a0p25 /staging/s/suresh27/adapters/lowLR 2>&1 || true) > "${RESULT_DIR}/staged_path_sizes.txt"
+if [[ "${#adapter_paths[@]}" -gt 0 ]]; then
+  (du -sh "${MODEL_PATH}" "${adapter_paths[@]}" 2>&1 || true) > "${RESULT_DIR}/staged_path_sizes.txt"
+else
+  (du -sh "${MODEL_PATH}" 2>&1 || true) > "${RESULT_DIR}/staged_path_sizes.txt"
+fi
 
 export HF_HOME="${HF_HOME:-${PWD}/hf_home}"
 export HF_HUB_CACHE="${HF_HUB_CACHE:-${HF_HOME}/hub}"
@@ -198,9 +244,6 @@ if torch.cuda.is_available():
 PY
 log_step "import_probe_ok"
 
-IFS='+' read -r -a ARMS <<< "${ARMS_SPEC}"
-IFS='+' read -r -a TASKS <<< "${TASKS_SPEC}"
-
 CMD=(
   "${PYTHON_BIN}" run_retention_failure_suite_gate.py
   --manifest suite_manifest.json
@@ -209,6 +252,7 @@ CMD=(
   --tasks "${TASKS[@]}"
   --limit "${LIMIT}"
   --model-path "${MODEL_PATH}"
+  --adapter-root "${ADAPTER_ROOT}"
   --batch-size "${BATCH_SIZE}"
   --gpu-mem-util "${GPU_MEM_UTIL}"
   --max-model-len "${MAX_MODEL_LEN}"
