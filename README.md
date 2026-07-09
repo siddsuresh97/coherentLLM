@@ -17,10 +17,13 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 - **fMRI:** the THINGS-fMRI pipeline works. Ventral Visual shows the expected
   object-RSA signal and scrambled-control separation, but aligned arms are
   mostly flat versus base in the primary visual ROI. The Huth/LeBel
-  narrative-fMRI lane now has local/CHTC audit bundles and a completed CHTC
-  staging smoke (`5513059`): `/staging/s/suresh27/datasets/ds003020-smoke`
-  contains all 15 planned smoke files, 7.88 GB, with no missing manifest paths.
-  The next step is a tiny Huth-style encoding smoke, not more data discovery.
+  narrative-fMRI lane now has local/CHTC audit bundles, completed CHTC staging
+  smoke (`5513059`), and a passed GPU extraction debug (`5513178`). The staged
+  dataset at `/staging/s/suresh27/datasets/ds003020-smoke` contains all 15
+  planned smoke files, 7.88 GB, with no missing manifest paths. The extraction
+  debug produced four arm NPZ files for `sweetaspie` with `hidden` shape
+  `(64, 1, 4096)`. The next step is already running: three-story extraction
+  smoke `5513245`, followed by the capped CPU ridge encoding smoke.
 - **fMRI x hub bridge:** the new concept-held-out regression does not support a
   clean semantic-hub explanation of Ventral Visual RSA. Averaged hub predictors
   are roughly tied with single prompt spokes in Ventral Visual, while
@@ -38,9 +41,14 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   A5000s as fallback, but CHTC is now the faster path. CHTC smoke `5513177`
   proved H200 placement, UUID-device normalization, dependency pinning, and
   model loading, then failed because the runtime image lacked a C compiler for
-  Triton/vLLM LoRA kernels. Devel-image retry `5513195` is queued with
-  satisfiable high-memory GPU requirements. Huth extraction debug `5513178` is
-  still running on an L40. Both CHTC lanes require
+  Triton/vLLM LoRA kernels. Devel-image retry `5513195` completed successfully
+  on an H100 80GB (`mmlu_abstract_algebra`, 20 examples, `acc=0.30`), and the
+  full 8-shard MMLU array is now submitted as `5513268`. Huth extraction debug
+  `5513178` completed cleanly, and the three-story Huth smoke `5513245` is
+  running on an L40S. Concept steering smoke `5513235` exposed a staging
+  visibility failure on a non-staging backfill node; retry `5513261` exposed
+  pip dependency shadowing; fixed no-deps retry `5513281` is queued and
+  satisfiable. These CHTC lanes require
   `TARGET.CUDAGlobalMemoryMb >= 40000`, so small GPUs are no longer absorbing
   jobs. H100 handled rank-16 lowrank MMLU, but rank-64 LoRA vLLM evals
   (`taskvec_a0p25`, `scrambled`) stall before GPU allocation on `opt-a007`,

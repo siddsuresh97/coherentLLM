@@ -5,7 +5,8 @@ Last updated: 2026-07-09.
 ## Current State
 
 Prepared, locally dry-run validated, and submitted to CHTC for the first GPU
-smoke.
+smoke. The first smoke failed before model load because the worker did not
+expose CHTC staging; the retry submit files now require staged-storage access.
 
 Owned files added in this handoff:
 
@@ -84,6 +85,28 @@ Queue state immediately after submission:
   willing high-memory GPU slot and 51 additional possible matches if drained.
 - local GPU path: not usable from this session because `nvidia-smi` could not
   communicate with the NVIDIA driver.
+
+Failure diagnosis:
+
+- cluster `5513235` ran on `jcaicedogpu0002.chtc.wisc.edu` with an NVIDIA L40S
+  and passed the GPU-memory probe.
+- it exited with status `66` before pip/model load because
+  `/staging/s/suresh27/models/llama31-8b-instruct/config.json` was not visible
+  inside the worker container.
+- the CHTC login node can read that path, so the staged model is present.
+- the failed worker advertises `HasChtcStaging` as false; both smoke and sweep
+  submit files now require `TARGET.HasChtcStaging =?= true`.
+- retry cluster `5513261` ran on `gpu5000.chtc.wisc.edu` with an NVIDIA H200
+  and confirmed staged model visibility.
+- `5513261` failed in extraction after the pip overlay installed
+  `torch==2.13.0`, shadowing the container's PyTorch 2.5.1 and causing a
+  `torchvision::nms` registration error while importing `LlamaForCausalLM`.
+- the runner now uses `pip install --no-deps` for the overlay and explicitly
+  lists non-torch dependencies so the container's CUDA-matched torch stack is
+  preserved.
+- fixed no-deps retry cluster `5513281` was submitted from
+  `~/chtc-runs/coherence-concept-steering-20260709-011445`; first poll is idle,
+  no hold reason, and satisfiable.
 
 Smoke success requires all three status files in the returned tarball to be
 `0`:

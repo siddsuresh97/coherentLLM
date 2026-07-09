@@ -4,6 +4,7 @@ set -euo pipefail
 RESULT_NAME="${RESULT_NAME:-huth_encoding_smoke}"
 OUT_BUNDLE="${OUT_BUNDLE:-${RESULT_NAME}_results.tgz}"
 FEATURE_BUNDLE="${FEATURE_BUNDLE:-huth_extract_smoke_results.tgz}"
+FEATURE_DIR="${FEATURE_DIR:-}"
 SUBJECTS="${SUBJECTS:-UTS01}"
 TRAIN_STORIES="${TRAIN_STORIES:-sweetaspie,againstthewind}"
 TEST_STORY="${TEST_STORY:-wheretheressmoke}"
@@ -35,6 +36,7 @@ export PYTHONPATH="${PWD}/src:${PYDEPS}:${PYTHONPATH:-}"
   echo "python=${PYTHON_BIN}"
   echo "RESULT_NAME=${RESULT_NAME}"
   echo "FEATURE_BUNDLE=${FEATURE_BUNDLE}"
+  echo "FEATURE_DIR=${FEATURE_DIR}"
   echo "SUBJECTS=${SUBJECTS}"
   echo "TRAIN_STORIES=${TRAIN_STORIES}"
   echo "TEST_STORY=${TEST_STORY}"
@@ -77,19 +79,21 @@ for name in ("h5py", "numpy"):
     print(f"{name}={getattr(mod, '__version__', 'unknown')}")
 PY
 
-if [[ ! -f "${FEATURE_BUNDLE}" ]]; then
-  echo "missing feature bundle: ${FEATURE_BUNDLE}" >&2
-  exit 66
-fi
 if [[ ! -e /staging/s/suresh27/datasets/ds003020-smoke ]]; then
   echo "missing staged ds003020 smoke dataset" >&2
   exit 67
 fi
 
-tar -xzf "${FEATURE_BUNDLE}" -C "${UNPACK_DIR}"
-FEATURE_DIR="${UNPACK_DIR}/features"
+if [[ -z "${FEATURE_DIR}" ]]; then
+  if [[ ! -f "${FEATURE_BUNDLE}" ]]; then
+    echo "missing feature bundle: ${FEATURE_BUNDLE}" >&2
+    exit 66
+  fi
+  tar -xzf "${FEATURE_BUNDLE}" -C "${UNPACK_DIR}"
+  FEATURE_DIR="${UNPACK_DIR}/features"
+fi
 if [[ ! -d "${FEATURE_DIR}" ]]; then
-  echo "feature bundle did not contain features/" >&2
+  echo "missing feature directory: ${FEATURE_DIR}" >&2
   exit 68
 fi
 

@@ -17,7 +17,7 @@ HF_CACHE = /staging/s/suresh27/hf_home
 universe = container
 container_image = docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
 docker_override_entrypoint = true
-requirements = (TARGET.CUDAGlobalMemoryMb >= $(MIN_CUDA_GLOBAL_MEMORY_MB))
+requirements = (TARGET.CUDAGlobalMemoryMb >= $(MIN_CUDA_GLOBAL_MEMORY_MB)) && (TARGET.HasChtcStaging =?= true)
 rank = TARGET.CUDAGlobalMemoryMb
 
 batch_name = coherence_concept_steering_smoke_$(Cluster)

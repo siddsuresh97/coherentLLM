@@ -1,0 +1,2 @@
+NVIDIA H200, 143771
+max_gpu_memory_mb=143771

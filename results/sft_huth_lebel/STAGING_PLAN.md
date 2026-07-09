@@ -39,9 +39,8 @@ completed and full smoke extraction cluster `5513245` was submitted.
   `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926`. This active run
   uses the staged-output wrapper, so features should appear under
   `/staging/s/suresh27/features/huth_lebel_smoke_llama31`; its returned
-  `huth_extract_smoke_results.tgz` is status/metadata. Before submitting
-  encoding, bundle those staged features into
-  `huth_extract_smoke_results_with_features.tgz`.
+  `huth_extract_smoke_results.tgz` is status/metadata. The CPU encoding submit
+  file reads the staged feature directory directly.
 - Duplicate cluster `5513244` held before model work because its submit
   expected a missing output tarball; it was removed with `condor_rm`.
 

@@ -53,9 +53,8 @@ and submitting full smoke extraction cluster `5513245`.
   expected a missing output tarball; it was removed with `condor_rm`.
 - The prepared CPU ridge follow-up is
   `chtc/huth_lebel_smoke/huth_encoding_smoke.sub`; for active cluster
-  `5513245`, first bundle staged features into
-  `huth_extract_smoke_results_with_features.tgz`, then submit a copy of the
-  encoding submit file with `FEATURE_BUNDLE` pointing to that bundle.
+  `5513245`, submit it from the same run directory after extraction passes.
+  It reads `/staging/s/suresh27/features/huth_lebel_smoke_llama31` directly.
 
 ## Checked Roots
 

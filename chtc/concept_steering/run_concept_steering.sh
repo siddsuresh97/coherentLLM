@@ -163,13 +163,21 @@ PY
 if [[ "${needs_install}" == "1" ]]; then
   log_step "pip_install_start timeout=${PIP_TIMEOUT_SECONDS}s"
   set +e
-  timeout "${PIP_TIMEOUT_SECONDS}" "${PYTHON_BIN}" -m pip install --upgrade --target "${PYDEPS}" \
+  timeout "${PIP_TIMEOUT_SECONDS}" "${PYTHON_BIN}" -m pip install --upgrade --no-deps --target "${PYDEPS}" \
     "huggingface-hub>=0.24.0,<1.0" \
     "transformers>=4.45.0,<5.0.0" \
     "accelerate>=0.33.0" \
     "safetensors>=0.4.5" \
     "pyyaml>=6.0" \
     "numpy<2.3" \
+    "tokenizers>=0.22.0,<0.23.0" \
+    "regex" \
+    "filelock" \
+    "requests" \
+    "tqdm" \
+    "packaging" \
+    "psutil" \
+    "typing-extensions" \
     > "${RESULT_DIR}/pip_install.txt" 2>&1
   pip_rc=$?
   set -e

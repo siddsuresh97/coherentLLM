@@ -1,0 +1,3 @@
+[data] coherence split=train n=4 task_families={'feature_truth': 1, 'triplet_similarity': 3}
+[data] human_alignment split=train n=4 task_families={'honesty_uncertainty': 1, 'privacy': 1, 'deception_refusal': 1, 'honesty_citations': 1}
+[model] loading /staging/s/suresh27/models/llama31-8b-instruct on cuda (bfloat16)

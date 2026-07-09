@@ -21,9 +21,8 @@ Updated: 2026-07-09
   `huth_extract_smoke_results.tgz` is a status/metadata bundle.
 - Duplicate cluster `5513244` held before model work because its submit
   expected a missing output tarball; it was removed with `condor_rm`.
-- The checked-in retry template now returns feature NPZs inside
-  `huth_extract_smoke_results.tgz`, but do not resubmit while `5513245` is
-  running unless it fails.
+- The checked-in encoding template reads the staged feature directory directly;
+  do not resubmit extraction while `5513245` is running unless it fails.
 
 The local workspace does not currently mount `/staging/s/suresh27/datasets/ds003020-smoke`, so the repo-side validation below checks syntax and synthetic I/O. Real smoke execution should run on the CHTC node or AP where the staged root is visible.
 
@@ -156,26 +155,20 @@ chtc-pull 'chtc-runs/coherence-huth-extract-smoke-20260709-005926/huth_extract_s
   results/sft_huth_lebel/chtc_huth_extract_smoke_5513245/
 ```
 
-2. If `extract_exit_status.txt == 0` and staged NPZs exist, create the feature
-   bundle expected by the CPU encoding submit file:
+2. If `extract_exit_status.txt == 0` and staged NPZs exist, submit CPU
+   encoding from the same run directory:
 
 ```bash
-chtc-ssh 'cd ~/chtc-runs/coherence-huth-extract-smoke-20260709-005926 && rm -rf huth_extract_bundle_for_encoding && mkdir -p huth_extract_bundle_for_encoding && tar -xzf huth_extract_smoke_results.tgz -C huth_extract_bundle_for_encoding && mkdir -p huth_extract_bundle_for_encoding/features && cp -a /staging/s/suresh27/features/huth_lebel_smoke_llama31/. huth_extract_bundle_for_encoding/features/ && tar -czf huth_extract_smoke_results_with_features.tgz -C huth_extract_bundle_for_encoding .'
+chtc-ssh 'cd ~/chtc-runs/coherence-huth-extract-smoke-20260709-005926 && condor_submit huth_encoding_smoke.sub'
 ```
 
-3. Submit CPU encoding with that feature bundle:
-
-```bash
-chtc-ssh 'cd ~/chtc-runs/coherence-huth-extract-smoke-20260709-005926 && sed "s/^FEATURE_BUNDLE = .*/FEATURE_BUNDLE = huth_extract_smoke_results_with_features.tgz/" huth_encoding_smoke.sub > huth_encoding_smoke_with_features.sub && condor_submit huth_encoding_smoke_with_features.sub'
-```
-
-The submit file transfers the feature bundle, unpacks it, and runs the first
-capped CPU smoke:
+The submit file reads `/staging/s/suresh27/features/huth_lebel_smoke_llama31`
+directly and runs the first capped CPU smoke:
 
 ```bash
 python src/sft/huth_lebel_smoke_encoding.py \
   --ds_root /staging/s/suresh27/datasets/ds003020-smoke \
-  --features_dir feature_bundle/features \
+  --features_dir /staging/s/suresh27/features/huth_lebel_smoke_llama31 \
   --out_dir huth_encoding_smoke/encoding \
   --subjects UTS01 \
   --train_stories sweetaspie,againstthewind \

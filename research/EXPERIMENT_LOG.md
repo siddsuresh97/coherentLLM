@@ -1320,6 +1320,26 @@ Next read:
 - compare target rows against alpha `0` and verify retention rows do not
   collapse before submitting the full layer/alpha sweep.
 
+Update:
+
+- First smoke cluster `5513235` completed with wrapper exit status `66`.
+- Pulled failure artifacts to `results/sft_eval/concept_steering/chtc/5513235/`.
+- Failure cause: worker `jcaicedogpu0002.chtc.wisc.edu` had a valid L40S GPU
+  but did not expose `/staging/s/suresh27/models/llama31-8b-instruct/config.json`;
+  that node advertises `HasChtcStaging=false`.
+- Submit files now require `TARGET.HasChtcStaging =?= true`.
+- Retry cluster `5513261` submitted from
+  `~/chtc-runs/coherence-concept-steering-20260709-010738`.
+- `5513261` ran on `gpu5000.chtc.wisc.edu`, NVIDIA H200, and saw staged
+  storage, but failed during extraction because pip installed
+  `torch==2.13.0+cu130` into the overlay and shadowed the container's working
+  torch/torchvision stack.
+- Runner fix: use `pip --no-deps` and explicit non-torch dependencies.
+- Fixed retry cluster `5513281` submitted from
+  `~/chtc-runs/coherence-concept-steering-20260709-011445`.
+- First poll: `5513281` is idle but satisfiable under the staging-visible
+  requirement; no hold reason.
+
 ## 2026-07-09 active: Huth/LeBel extraction debug passed; three-story smoke running
 
 Completed debug extraction:
@@ -1349,9 +1369,7 @@ New Huth smoke submission:
   with `45468` MB advertised GPU memory.
 - Active-run caveat: `5513245` uses the staged-output wrapper, so features are
   expected under `/staging/s/suresh27/features/huth_lebel_smoke_llama31`.
-  The CPU encoding submit file expects a tarball containing `features/`; bundle
-  the staged directory into `huth_extract_smoke_results_with_features.tgz`
-  before submitting encoding.
+  The CPU encoding submit file now reads that staged feature directory directly.
 
 Duplicate avoided:
 
@@ -1367,9 +1385,32 @@ Next read:
 - Pull `huth_extract_smoke_results.tgz` after cluster `5513245` completes.
 - Check `extract_exit_status.txt == 0` and verify `npz_shapes.tsv` lists all
   12 arm/story NPZ files.
-- Bundle staged features into `huth_extract_smoke_results_with_features.tgz`,
-  then submit a copy of `huth_encoding_smoke.sub` with `FEATURE_BUNDLE` pointed
-  at that bundle.
+- Submit `huth_encoding_smoke.sub` from the same run directory; it reads
+  `/staging/s/suresh27/features/huth_lebel_smoke_llama31` directly.
+
+## 2026-07-09 active: MMLU CHTC smoke passed; full shards submitted
+
+Completed smoke:
+
+- CHTC cluster: `5513195`
+- Remote directory: `~/chtc-runs/coherence-mmlu-shards-20260709-004133`
+- Local artifact directory:
+  `results/sft_eval/wide_bench/chtc_mmlu_shards/coherence-mmlu-shards-20260709-004133/`
+- GPU: `gpu4003.chtc.wisc.edu`, NVIDIA H100 80GB HBM3
+- Wrapper status: `exit_status.txt == 0`
+- `lm_eval` status: `lm_eval_exit_status.txt == 0`
+- Smoke task: `mmlu_abstract_algebra`, `limit=20`, `found_n=20`,
+  `missing_tasks=[]`
+- Smoke metric: `acc,none=0.3`
+
+Full shard submission:
+
+- Submitted cluster: `5513268`
+- Jobs: 8 shard procs, `0` through `7`
+- First poll: all 8 idle, no hold reasons.
+- Next read: monitor `5513268`, pull each
+  `mmlu_full_taskvec_a0p25_<shard>_results.tgz`, then merge with
+  `src/sft/merge_mmlu_shards.py`.
 
 ## 2026-07-08 active: fixed CHTC GPU smoke retries
 

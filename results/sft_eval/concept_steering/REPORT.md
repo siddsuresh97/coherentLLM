@@ -34,6 +34,61 @@ Initial CHTC state:
 - Local GPU smoke was skipped because this Codex session could not see a local
   NVIDIA driver through `nvidia-smi`.
 
+Outcome:
+
+- cluster `5513235` started on `jcaicedogpu0002.chtc.wisc.edu`, an NVIDIA L40S
+  worker, and passed the GPU probe.
+- it failed with exit status `66` before model loading because
+  `/staging/s/suresh27/models/llama31-8b-instruct/config.json` was not visible
+  in the worker container.
+- the staged model path is present on the CHTC login node; the failed worker
+  advertised `HasChtcStaging` as false.
+- `concept_steering_smoke.sub` and `concept_steering_sweep.sub` now require
+  `TARGET.HasChtcStaging =?= true`.
+
+## 2026-07-09 CHTC Smoke Retry 5513261
+
+Run:
+
+- CHTC run id: `coherence-concept-steering-20260709-010738`
+- cluster: `5513261`
+- remote directory: `~/chtc-runs/coherence-concept-steering-20260709-010738`
+- local artifacts: `results/sft_eval/concept_steering/chtc/5513261/`
+
+Outcome:
+
+- ran on `gpu5000.chtc.wisc.edu`, NVIDIA H200, with
+  `max_gpu_memory_mb=143771`.
+- passed staged model visibility checks; `model_file_sample.txt` includes
+  `/staging/s/suresh27/models/llama31-8b-instruct/config.json`.
+- pip/import stage exited `0`.
+- extraction exited `1` while importing `LlamaForCausalLM`.
+
+Diagnosis:
+
+- the pip overlay installed `torch==2.13.0+cu130` as an `accelerate`
+  dependency.
+- that shadowed the container's CUDA 12.4 PyTorch 2.5.1 while leaving the base
+  `torchvision==0.20.1+cu124` on the path.
+- `transformers` imported `torchvision`, which failed registering
+  `torchvision::nms`; `AutoModelForCausalLM` then reported it could not import
+  `LlamaForCausalLM`.
+
+Patch:
+
+- `chtc/concept_steering/run_concept_steering.sh` now installs the Python
+  overlay with `pip --no-deps`.
+- the install list explicitly includes non-torch runtime dependencies and
+  intentionally avoids replacing the container's torch stack.
+
+Retry:
+
+- cluster `5513281` was submitted from
+  `~/chtc-runs/coherence-concept-steering-20260709-011445`.
+- first poll: queued/idle, no hold reason; `condor_q -better-analyze` reports
+  one currently willing staging-visible high-memory GPU slot and 47 more if
+  drained.
+
 Expected result bundle after completion:
 
 ```text

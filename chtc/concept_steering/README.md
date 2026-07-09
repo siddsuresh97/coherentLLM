@@ -22,6 +22,7 @@ jobs should consume `/staging/s/suresh27/adapters/*`.
 - eval items: 2 coherence, 2 human-alignment, 2 retention items
 - model dtype: `bfloat16`
 - GPU requirement: `TARGET.CUDAGlobalMemoryMb >= 40000`
+- storage requirement: `TARGET.HasChtcStaging =?= true`
 
 The extractor always stores all layer rows in each `.npz`; the smoke consumes
 only layer 24 during steering. Expected `sweep_results.csv` shape is:
@@ -100,3 +101,21 @@ Smoke succeeds if:
 
 The scale-up sweep should be launched only after the smoke shows finite scores
 and no import/model-loading failures.
+
+## Failure Note
+
+The first CHTC smoke, cluster `5513235`, landed on
+`jcaicedogpu0002.chtc.wisc.edu` and failed before model loading because the
+worker container could not read
+`/staging/s/suresh27/models/llama31-8b-instruct/config.json`. The login node
+could read that path, and the failed worker advertised `HasChtcStaging` as
+false. The submit files now require `TARGET.HasChtcStaging =?= true` so retries
+land only on workers that expose CHTC staging.
+
+The second smoke, cluster `5513261`, landed correctly on `gpu5000.chtc.wisc.edu`
+with an NVIDIA H200 and saw the staged model. It failed during extraction after
+the Python overlay installed `torch==2.13.0` as an `accelerate` dependency,
+shadowing the container's CUDA 12.4 PyTorch 2.5.1 and breaking the matching
+`torchvision` import path. The runner now installs the lightweight Python
+overlay with `pip --no-deps` and explicitly lists non-torch dependencies, so
+the base image keeps its tested `torch`/`torchvision` pair.
