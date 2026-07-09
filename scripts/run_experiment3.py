@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import inspect
 import itertools
 import json
 import math
@@ -2498,6 +2499,11 @@ def build_llm(args: argparse.Namespace, spec: dict, model_path: str, hf_cache: s
         dtype="bfloat16",
         trust_remote_code=True,
     )
+    if not args.disable_prefix_caching:
+        if "enable_prefix_caching" in inspect.signature(LLM.__init__).parameters:
+            llm_kwargs["enable_prefix_caching"] = True
+        else:
+            print("[vllm] installed vLLM does not expose enable_prefix_caching; using default KV cache behavior", file=sys.stderr)
     if args.max_num_seqs:
         llm_kwargs["max_num_seqs"] = args.max_num_seqs
     quant = spec.get("quantization")
@@ -3519,6 +3525,7 @@ def add_vllm_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--max_model_len", type=int, default=4096)
     parser.add_argument("--gpu_mem_util", type=float, default=0.90)
     parser.add_argument("--max_num_seqs", type=int, default=0)
+    parser.add_argument("--disable-prefix-caching", action="store_true")
     parser.add_argument("--overwrite", action="store_true")
 
 

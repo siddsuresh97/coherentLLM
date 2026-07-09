@@ -1,0 +1,101 @@
+method,leaf_rank,concept,cluster,side
+count_rdm,0,election falsehood generation,information integrity and influence,restricted
+count_rdm,1,persuasion analysis,information integrity and influence,allowed
+count_rdm,2,targeted persuasion optimization,information integrity and influence,restricted
+count_rdm,3,civic information summary,information integrity and influence,allowed
+count_rdm,4,source reliability checking,information integrity and influence,allowed
+count_rdm,5,chemical harm facilitation,cbrn safety and misuse,restricted
+count_rdm,6,pathogen protocol execution,cbrn safety and misuse,restricted
+count_rdm,7,biosecurity literacy,cbrn safety and misuse,allowed
+count_rdm,8,malware deployment,malware and phishing,restricted
+count_rdm,9,credential misuse,malware and phishing,restricted
+count_rdm,10,phishing awareness training,malware and phishing,allowed
+count_rdm,11,abuse detection,malware and phishing,allowed
+count_rdm,12,malware analysis,malware and phishing,allowed
+count_rdm,13,unauthorized system intrusion,cyber defense and misuse,restricted
+count_rdm,14,responsible vulnerability disclosure,cyber defense and misuse,allowed
+count_rdm,15,incident response triage,cyber defense and misuse,allowed
+count_rdm,16,security hardening,cyber defense and misuse,allowed
+count_rdm,17,vulnerability remediation,cyber defense and misuse,allowed
+count_rdm,18,laboratory safety planning,cbrn safety and misuse,allowed
+count_rdm,19,chemical hazard communication,cbrn safety and misuse,allowed
+salmon_d5,0,malware deployment,malware and phishing,restricted
+salmon_d5,1,chemical harm facilitation,cbrn safety and misuse,restricted
+salmon_d5,2,abuse detection,malware and phishing,allowed
+salmon_d5,3,election falsehood generation,information integrity and influence,restricted
+salmon_d5,4,credential misuse,malware and phishing,restricted
+salmon_d5,5,source reliability checking,information integrity and influence,allowed
+salmon_d5,6,pathogen protocol execution,cbrn safety and misuse,restricted
+salmon_d5,7,civic information summary,information integrity and influence,allowed
+salmon_d5,8,phishing awareness training,malware and phishing,allowed
+salmon_d5,9,malware analysis,malware and phishing,allowed
+salmon_d5,10,unauthorized system intrusion,cyber defense and misuse,restricted
+salmon_d5,11,security hardening,cyber defense and misuse,allowed
+salmon_d5,12,incident response triage,cyber defense and misuse,allowed
+salmon_d5,13,vulnerability remediation,cyber defense and misuse,allowed
+salmon_d5,14,responsible vulnerability disclosure,cyber defense and misuse,allowed
+salmon_d5,15,laboratory safety planning,cbrn safety and misuse,allowed
+salmon_d5,16,chemical hazard communication,cbrn safety and misuse,allowed
+salmon_d5,17,targeted persuasion optimization,information integrity and influence,restricted
+salmon_d5,18,biosecurity literacy,cbrn safety and misuse,allowed
+salmon_d5,19,persuasion analysis,information integrity and influence,allowed
+salmon_d15,0,biosecurity literacy,cbrn safety and misuse,allowed
+salmon_d15,1,persuasion analysis,information integrity and influence,allowed
+salmon_d15,2,targeted persuasion optimization,information integrity and influence,restricted
+salmon_d15,3,chemical harm facilitation,cbrn safety and misuse,restricted
+salmon_d15,4,malware deployment,malware and phishing,restricted
+salmon_d15,5,election falsehood generation,information integrity and influence,restricted
+salmon_d15,6,laboratory safety planning,cbrn safety and misuse,allowed
+salmon_d15,7,chemical hazard communication,cbrn safety and misuse,allowed
+salmon_d15,8,credential misuse,malware and phishing,restricted
+salmon_d15,9,pathogen protocol execution,cbrn safety and misuse,restricted
+salmon_d15,10,phishing awareness training,malware and phishing,allowed
+salmon_d15,11,source reliability checking,information integrity and influence,allowed
+salmon_d15,12,abuse detection,malware and phishing,allowed
+salmon_d15,13,civic information summary,information integrity and influence,allowed
+salmon_d15,14,malware analysis,malware and phishing,allowed
+salmon_d15,15,unauthorized system intrusion,cyber defense and misuse,restricted
+salmon_d15,16,security hardening,cyber defense and misuse,allowed
+salmon_d15,17,responsible vulnerability disclosure,cyber defense and misuse,allowed
+salmon_d15,18,incident response triage,cyber defense and misuse,allowed
+salmon_d15,19,vulnerability remediation,cyber defense and misuse,allowed
+spose_official_d40_lam0p008,0,election falsehood generation,information integrity and influence,restricted
+spose_official_d40_lam0p008,1,persuasion analysis,information integrity and influence,allowed
+spose_official_d40_lam0p008,2,targeted persuasion optimization,information integrity and influence,restricted
+spose_official_d40_lam0p008,3,chemical harm facilitation,cbrn safety and misuse,restricted
+spose_official_d40_lam0p008,4,security hardening,cyber defense and misuse,allowed
+spose_official_d40_lam0p008,5,phishing awareness training,malware and phishing,allowed
+spose_official_d40_lam0p008,6,unauthorized system intrusion,cyber defense and misuse,restricted
+spose_official_d40_lam0p008,7,malware deployment,malware and phishing,restricted
+spose_official_d40_lam0p008,8,credential misuse,malware and phishing,restricted
+spose_official_d40_lam0p008,9,malware analysis,malware and phishing,allowed
+spose_official_d40_lam0p008,10,abuse detection,malware and phishing,allowed
+spose_official_d40_lam0p008,11,vulnerability remediation,cyber defense and misuse,allowed
+spose_official_d40_lam0p008,12,incident response triage,cyber defense and misuse,allowed
+spose_official_d40_lam0p008,13,responsible vulnerability disclosure,cyber defense and misuse,allowed
+spose_official_d40_lam0p008,14,pathogen protocol execution,cbrn safety and misuse,restricted
+spose_official_d40_lam0p008,15,biosecurity literacy,cbrn safety and misuse,allowed
+spose_official_d40_lam0p008,16,source reliability checking,information integrity and influence,allowed
+spose_official_d40_lam0p008,17,civic information summary,information integrity and influence,allowed
+spose_official_d40_lam0p008,18,laboratory safety planning,cbrn safety and misuse,allowed
+spose_official_d40_lam0p008,19,chemical hazard communication,cbrn safety and misuse,allowed
+spose_softplus_d40_l1_0p01,0,election falsehood generation,information integrity and influence,restricted
+spose_softplus_d40_l1_0p01,1,persuasion analysis,information integrity and influence,allowed
+spose_softplus_d40_l1_0p01,2,targeted persuasion optimization,information integrity and influence,restricted
+spose_softplus_d40_l1_0p01,3,civic information summary,information integrity and influence,allowed
+spose_softplus_d40_l1_0p01,4,chemical harm facilitation,cbrn safety and misuse,restricted
+spose_softplus_d40_l1_0p01,5,laboratory safety planning,cbrn safety and misuse,allowed
+spose_softplus_d40_l1_0p01,6,chemical hazard communication,cbrn safety and misuse,allowed
+spose_softplus_d40_l1_0p01,7,biosecurity literacy,cbrn safety and misuse,allowed
+spose_softplus_d40_l1_0p01,8,source reliability checking,information integrity and influence,allowed
+spose_softplus_d40_l1_0p01,9,malware deployment,malware and phishing,restricted
+spose_softplus_d40_l1_0p01,10,pathogen protocol execution,cbrn safety and misuse,restricted
+spose_softplus_d40_l1_0p01,11,security hardening,cyber defense and misuse,allowed
+spose_softplus_d40_l1_0p01,12,unauthorized system intrusion,cyber defense and misuse,restricted
+spose_softplus_d40_l1_0p01,13,incident response triage,cyber defense and misuse,allowed
+spose_softplus_d40_l1_0p01,14,vulnerability remediation,cyber defense and misuse,allowed
+spose_softplus_d40_l1_0p01,15,credential misuse,malware and phishing,restricted
+spose_softplus_d40_l1_0p01,16,phishing awareness training,malware and phishing,allowed
+spose_softplus_d40_l1_0p01,17,responsible vulnerability disclosure,cyber defense and misuse,allowed
+spose_softplus_d40_l1_0p01,18,malware analysis,malware and phishing,allowed
+spose_softplus_d40_l1_0p01,19,abuse detection,malware and phishing,allowed

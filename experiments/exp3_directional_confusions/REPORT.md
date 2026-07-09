@@ -1,6 +1,6 @@
 # Experiment 3 Report
 
-Last updated: 2026-07-09T18:13:30-05:00
+Last updated: 2026-07-09T18:22:12-05:00
 
 ## Step 1 Story
 
@@ -11,7 +11,7 @@ We are testing whether triplet geometry predicts the destination of model errors
 ### What did we run?
 
 - Model: `llama-3.1-8b-instruct`.
-- Serving: local vLLM; triplet and item prompts use temperature `0.0`.
+- Serving: local vLLM; triplet and item prompts use temperature `0.0`. Completed runs used vLLM's standard paged KV cache. The runner now also requests explicit prefix caching when the installed vLLM exposes `enable_prefix_caching`; use `--disable-prefix-caching` to turn that off.
 - Concept set: 18 neutral Leuven concrete concepts in [experiments/exp3_directional_confusions/concepts/step1_neutral.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/concepts/step1_neutral.json).
 - Stimuli: [experiments/exp3_directional_confusions/stimuli/concepts.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/stimuli/concepts.csv), [experiments/exp3_directional_confusions/stimuli/triplets.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/stimuli/triplets.csv), [experiments/exp3_directional_confusions/stimuli/pairs.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/stimuli/pairs.csv).
 - Geometry raw responses: [base_seed_a_canonical_prompt](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/raw/base_seed_a_canonical_prompt/triplet.csv), [base_seed_b_canonical_prompt](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/raw/base_seed_b_canonical_prompt/triplet.csv), [base_seed_a_matched_paraphrase_prompt](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/raw/base_seed_a_matched_paraphrase_prompt/triplet.csv).
@@ -201,7 +201,28 @@ Step 2 embedding-backend/rank diagnostic, using only the existing triplet CSVs:
 - SPoSE check: the official SPoSE codebase is [ViCCo-Group/SPoSE](https://github.com/ViCCo-Group/SPoSE). Its README describes odd-one-out/similarity training over `N x 3` triplets, and the code uses L1 regularization plus a nonnegativity penalty. A local SPoSE-style diagnostic was more stable than SALMON: best quick-grid setting (`dim=40`, `l1=0.01`) gave pooled test `0.9547`, Pearson `0.9207`, Spearman `0.8764`, row-wise Spearman `0.8058`, NN top-1/top-2 `0.4670` / `0.6500`. An official-like noncollapsed setting (`dim=40`, `lambda=0.008`) gave pooled test `0.9606`, Pearson `0.9094`, Spearman `0.8611`, row-wise Spearman `0.7551`.
 - Artifacts: [experiments/exp3_directional_confusions/step2_safety/artifacts/salmon_dimension_sweep.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/salmon_dimension_sweep.csv), [experiments/exp3_directional_confusions/step2_safety/artifacts/embedding_backend_comparison.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/embedding_backend_comparison.csv).
 
+### Step 2 Geometry Visual Sanity Check
+
+What we were trying to find: whether the existing Step 2 triplets produce a geometry that looks semantically usable before registering any safety-transfer neighbors. This used only existing triplet CSVs; no new model triplets or item responses were run.
+
+What I ran: [scripts/visualize_exp3_step2_geometry.py](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/scripts/visualize_exp3_step2_geometry.py), comparing count-RDM, existing SALMON `d=5`, visual SALMON `d=15`, SPoSE official-like `d=40, lambda=0.008`, and SPoSE softplus `d=40, l1=0.01`.
+
+Core artifacts: [visual_summary.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/visual_summary.json), [cluster_summary_by_method.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/cluster_summary_by_method.csv), [nearest_neighbors_by_method.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/nearest_neighbors_by_method.csv), [cluster_order_by_method.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/cluster_order_by_method.csv).
+
+| Method | Visuals | Main readout | Interpretation |
+|---|---|---|---|
+| Count-RDM | [heatmap](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/count_rdm_clustered_rdm.png), [MDS](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/count_rdm_mds.png) | `5/20` nearest neighbors stay in manual cluster; side silhouette `0.091` | Very stable rank geometry, but too much hub structure around cyber-defense concepts for clean local predictions. |
+| SALMON `d=15` | [heatmap](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/salmon_d15_clustered_rdm.png), [MDS](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/salmon_d15_mds.png) | `8/20` nearest neighbors stay in manual cluster; side silhouette `0.237` | Better allowed/restricted separation, but local neighborhoods remain mixed. |
+| SPoSE official-like | [heatmap](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/spose_official_d40_lam0p008_clustered_rdm.png), [MDS](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/spose_official_d40_lam0p008_mds.png) | `15/20` nearest neighbors stay in manual cluster; side silhouette `0.209`; visual fit test accuracy `0.968` | Best current candidate for Step 2 geometry, but still needs manual neighbor sanity gate. |
+| SPoSE softplus | [heatmap](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/spose_softplus_d40_l1_0p01_clustered_rdm.png), [MDS](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/spose_softplus_d40_l1_0p01_mds.png) | `12/20` nearest neighbors stay in manual cluster; side silhouette `0.101` | Supports the SPoSE broad structure, but has more odd local crossings than the official-like fit. |
+
+What made sense: SPoSE official-like gives plausible boundary-neighbor pairs: `credential misuse -> malware analysis`, `pathogen protocol execution -> biosecurity literacy`, `chemical harm facilitation -> chemical hazard communication`, and `persuasion analysis <-> targeted persuasion optimization`.
+
+What did not fully make sense: several nearest neighbors are still questionable for preregistration: `election falsehood generation -> incident response triage`, `unauthorized system intrusion -> malware analysis`, and `malware deployment -> responsible vulnerability disclosure`. Those could reflect broad "misuse request" geometry, but they are not clean enough to call the Step 2 sanity gate passed.
+
 Interpretation: the triplet data are not the weak link. The weak link is the unregularized low-dimensional SALMON geometry when we ask it for exact local neighbors on abstract safety categories. For Step 2, the next defensible move is to freeze a geometry backend before generating items: either use a rank/count-RDM scoring variant, or rerun a clean SPoSE-backed geometry and sanity gate. Do not register Step 2 neighbors from the current SALMON `d=5` RDM.
+
+Updated recommendation: use SPoSE official-like geometry as the leading candidate, inspect the full nearest-neighbor table, and either prune/rename the concepts that produce nonsensical neighbors or explicitly preregister them as risky predictions. Do not generate Step 2 behavior items until that sanity gate is passed.
 
 Step 2 nearest-neighbor table:
 
@@ -221,6 +242,8 @@ No Step 2 neighbors registered yet.
 - Directional items generated for current RDM: yes
 - Item response runs present: step1_items_v1
 - H1 verdict: `green_directional`
+- Step 2 geometry visualized: yes
+- Step 2 neighbors registered: no
 
 ## Commands
 
@@ -238,6 +261,7 @@ python scripts/run_experiment3.py init-step2 --overwrite
 python scripts/run_experiment3.py run-step2-triplet-suite --overwrite
 python scripts/run_experiment3.py build-step2-rdm
 python scripts/run_experiment3.py diagnose-step2-geometry
+python scripts/visualize_exp3_step2_geometry.py
 # Only after a green Step 2 RDM: python scripts/run_experiment3.py register-step2-neighbors
 ```
 

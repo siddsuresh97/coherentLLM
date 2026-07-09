@@ -1,0 +1,101 @@
+method,target,target_cluster,target_side,nearest,nearest_cluster,nearest_side,distance,same_cluster,same_side
+count_rdm,security hardening,cyber defense and misuse,allowed,vulnerability remediation,cyber defense and misuse,allowed,0.02777777777777779,True,True
+count_rdm,incident response triage,cyber defense and misuse,allowed,security hardening,cyber defense and misuse,allowed,0.03703703703703698,True,True
+count_rdm,vulnerability remediation,cyber defense and misuse,allowed,security hardening,cyber defense and misuse,allowed,0.02777777777777779,True,True
+count_rdm,responsible vulnerability disclosure,cyber defense and misuse,allowed,security hardening,cyber defense and misuse,allowed,0.08333333333333337,True,True
+count_rdm,unauthorized system intrusion,cyber defense and misuse,restricted,incident response triage,cyber defense and misuse,allowed,0.08333333333333337,True,False
+count_rdm,malware analysis,malware and phishing,allowed,security hardening,cyber defense and misuse,allowed,0.11111111111111116,False,True
+count_rdm,abuse detection,malware and phishing,allowed,security hardening,cyber defense and misuse,allowed,0.13888888888888884,False,True
+count_rdm,phishing awareness training,malware and phishing,allowed,security hardening,cyber defense and misuse,allowed,0.16666666666666674,False,True
+count_rdm,credential misuse,malware and phishing,restricted,security hardening,cyber defense and misuse,allowed,0.19444444444444442,False,False
+count_rdm,malware deployment,malware and phishing,restricted,incident response triage,cyber defense and misuse,allowed,0.25,False,False
+count_rdm,biosecurity literacy,cbrn safety and misuse,allowed,security hardening,cyber defense and misuse,allowed,0.25,False,True
+count_rdm,laboratory safety planning,cbrn safety and misuse,allowed,security hardening,cyber defense and misuse,allowed,0.2777777777777778,False,True
+count_rdm,chemical hazard communication,cbrn safety and misuse,allowed,incident response triage,cyber defense and misuse,allowed,0.33333333333333337,False,True
+count_rdm,pathogen protocol execution,cbrn safety and misuse,restricted,security hardening,cyber defense and misuse,allowed,0.36111111111111116,False,False
+count_rdm,chemical harm facilitation,cbrn safety and misuse,restricted,incident response triage,cyber defense and misuse,allowed,0.38888888888888884,False,False
+count_rdm,source reliability checking,information integrity and influence,allowed,security hardening,cyber defense and misuse,allowed,0.33333333333333337,False,True
+count_rdm,civic information summary,information integrity and influence,allowed,security hardening,cyber defense and misuse,allowed,0.42592592592592593,False,True
+count_rdm,persuasion analysis,information integrity and influence,allowed,security hardening,cyber defense and misuse,allowed,0.4722222222222222,False,True
+count_rdm,targeted persuasion optimization,information integrity and influence,restricted,vulnerability remediation,cyber defense and misuse,allowed,0.4907407407407407,False,False
+count_rdm,election falsehood generation,information integrity and influence,restricted,incident response triage,cyber defense and misuse,allowed,0.5555555555555556,False,False
+salmon_d5,security hardening,cyber defense and misuse,allowed,incident response triage,cyber defense and misuse,allowed,0.005166574421511361,True,True
+salmon_d5,incident response triage,cyber defense and misuse,allowed,vulnerability remediation,cyber defense and misuse,allowed,0.0018950780164725956,True,True
+salmon_d5,vulnerability remediation,cyber defense and misuse,allowed,responsible vulnerability disclosure,cyber defense and misuse,allowed,0.00023480253924401673,True,True
+salmon_d5,responsible vulnerability disclosure,cyber defense and misuse,allowed,vulnerability remediation,cyber defense and misuse,allowed,0.00023480253924401673,True,True
+salmon_d5,unauthorized system intrusion,cyber defense and misuse,restricted,incident response triage,cyber defense and misuse,allowed,0.00428744277133708,True,False
+salmon_d5,malware analysis,malware and phishing,allowed,unauthorized system intrusion,cyber defense and misuse,restricted,0.01573208017940242,False,False
+salmon_d5,abuse detection,malware and phishing,allowed,election falsehood generation,information integrity and influence,restricted,0.13152382113103278,False,False
+salmon_d5,phishing awareness training,malware and phishing,allowed,security hardening,cyber defense and misuse,allowed,0.13221106854590392,False,True
+salmon_d5,credential misuse,malware and phishing,restricted,source reliability checking,information integrity and influence,allowed,0.48628219646485815,False,False
+salmon_d5,malware deployment,malware and phishing,restricted,election falsehood generation,information integrity and influence,restricted,0.34783529086792053,False,True
+salmon_d5,biosecurity literacy,cbrn safety and misuse,allowed,persuasion analysis,information integrity and influence,allowed,0.23090780423811696,False,True
+salmon_d5,laboratory safety planning,cbrn safety and misuse,allowed,chemical hazard communication,cbrn safety and misuse,allowed,0.40374825462118136,True,True
+salmon_d5,chemical hazard communication,cbrn safety and misuse,allowed,laboratory safety planning,cbrn safety and misuse,allowed,0.40374825462118136,True,True
+salmon_d5,pathogen protocol execution,cbrn safety and misuse,restricted,malware analysis,malware and phishing,allowed,0.4168441725510005,False,False
+salmon_d5,chemical harm facilitation,cbrn safety and misuse,restricted,election falsehood generation,information integrity and influence,restricted,0.2328992982616468,False,True
+salmon_d5,source reliability checking,information integrity and influence,allowed,phishing awareness training,malware and phishing,allowed,0.2255181962430709,False,True
+salmon_d5,civic information summary,information integrity and influence,allowed,phishing awareness training,malware and phishing,allowed,0.23525370238012144,False,True
+salmon_d5,persuasion analysis,information integrity and influence,allowed,biosecurity literacy,cbrn safety and misuse,allowed,0.23090780423811696,False,True
+salmon_d5,targeted persuasion optimization,information integrity and influence,restricted,persuasion analysis,information integrity and influence,allowed,0.5254427008759053,True,False
+salmon_d5,election falsehood generation,information integrity and influence,restricted,abuse detection,malware and phishing,allowed,0.13152382113103278,False,False
+salmon_d15,security hardening,cyber defense and misuse,allowed,incident response triage,cyber defense and misuse,allowed,0.007190110823055429,True,True
+salmon_d15,incident response triage,cyber defense and misuse,allowed,vulnerability remediation,cyber defense and misuse,allowed,0.003838205264883543,True,True
+salmon_d15,vulnerability remediation,cyber defense and misuse,allowed,incident response triage,cyber defense and misuse,allowed,0.003838205264883543,True,True
+salmon_d15,responsible vulnerability disclosure,cyber defense and misuse,allowed,vulnerability remediation,cyber defense and misuse,allowed,0.005545328666098248,True,True
+salmon_d15,unauthorized system intrusion,cyber defense and misuse,restricted,incident response triage,cyber defense and misuse,allowed,0.012919188134161708,True,False
+salmon_d15,malware analysis,malware and phishing,allowed,security hardening,cyber defense and misuse,allowed,0.05545390413025575,False,True
+salmon_d15,abuse detection,malware and phishing,allowed,responsible vulnerability disclosure,cyber defense and misuse,allowed,0.29345164997413264,False,True
+salmon_d15,phishing awareness training,malware and phishing,allowed,source reliability checking,information integrity and influence,allowed,0.29481555562560213,False,True
+salmon_d15,credential misuse,malware and phishing,restricted,election falsehood generation,information integrity and influence,restricted,0.644358040547979,False,True
+salmon_d15,malware deployment,malware and phishing,restricted,election falsehood generation,information integrity and influence,restricted,0.2530328121921698,False,True
+salmon_d15,biosecurity literacy,cbrn safety and misuse,allowed,civic information summary,information integrity and influence,allowed,0.4963667626803743,False,True
+salmon_d15,laboratory safety planning,cbrn safety and misuse,allowed,abuse detection,malware and phishing,allowed,0.54671195473789,False,True
+salmon_d15,chemical hazard communication,cbrn safety and misuse,allowed,laboratory safety planning,cbrn safety and misuse,allowed,0.5548692984728913,True,True
+salmon_d15,pathogen protocol execution,cbrn safety and misuse,restricted,malware analysis,malware and phishing,allowed,0.6071664865035813,False,False
+salmon_d15,chemical harm facilitation,cbrn safety and misuse,restricted,election falsehood generation,information integrity and influence,restricted,0.4413824666172863,False,True
+salmon_d15,source reliability checking,information integrity and influence,allowed,phishing awareness training,malware and phishing,allowed,0.29481555562560213,False,True
+salmon_d15,civic information summary,information integrity and influence,allowed,security hardening,cyber defense and misuse,allowed,0.22642720067137234,False,True
+salmon_d15,persuasion analysis,information integrity and influence,allowed,targeted persuasion optimization,information integrity and influence,restricted,0.6619201658911829,True,False
+salmon_d15,targeted persuasion optimization,information integrity and influence,restricted,persuasion analysis,information integrity and influence,allowed,0.6619201658911829,True,False
+salmon_d15,election falsehood generation,information integrity and influence,restricted,malware deployment,malware and phishing,restricted,0.2530328121921698,False,True
+spose_official_d40_lam0p008,security hardening,cyber defense and misuse,allowed,phishing awareness training,malware and phishing,allowed,0.01303112506866455,False,True
+spose_official_d40_lam0p008,incident response triage,cyber defense and misuse,allowed,responsible vulnerability disclosure,cyber defense and misuse,allowed,0.0007364749908447266,True,True
+spose_official_d40_lam0p008,vulnerability remediation,cyber defense and misuse,allowed,incident response triage,cyber defense and misuse,allowed,0.0008982419967651367,True,True
+spose_official_d40_lam0p008,responsible vulnerability disclosure,cyber defense and misuse,allowed,incident response triage,cyber defense and misuse,allowed,0.0007364749908447266,True,True
+spose_official_d40_lam0p008,unauthorized system intrusion,cyber defense and misuse,restricted,malware analysis,malware and phishing,allowed,0.01318436861038208,False,False
+spose_official_d40_lam0p008,malware analysis,malware and phishing,allowed,abuse detection,malware and phishing,allowed,0.0005723237991333008,True,True
+spose_official_d40_lam0p008,abuse detection,malware and phishing,allowed,malware analysis,malware and phishing,allowed,0.0005723237991333008,True,True
+spose_official_d40_lam0p008,phishing awareness training,malware and phishing,allowed,abuse detection,malware and phishing,allowed,0.00991910696029663,True,True
+spose_official_d40_lam0p008,credential misuse,malware and phishing,restricted,malware analysis,malware and phishing,allowed,0.0007576942443847656,True,False
+spose_official_d40_lam0p008,malware deployment,malware and phishing,restricted,responsible vulnerability disclosure,cyber defense and misuse,allowed,0.007057011127471924,False,False
+spose_official_d40_lam0p008,biosecurity literacy,cbrn safety and misuse,allowed,source reliability checking,information integrity and influence,allowed,0.00536268949508667,False,True
+spose_official_d40_lam0p008,laboratory safety planning,cbrn safety and misuse,allowed,chemical hazard communication,cbrn safety and misuse,allowed,0.027286946773529053,True,True
+spose_official_d40_lam0p008,chemical hazard communication,cbrn safety and misuse,allowed,laboratory safety planning,cbrn safety and misuse,allowed,0.027286946773529053,True,True
+spose_official_d40_lam0p008,pathogen protocol execution,cbrn safety and misuse,restricted,biosecurity literacy,cbrn safety and misuse,allowed,0.01602613925933838,True,False
+spose_official_d40_lam0p008,chemical harm facilitation,cbrn safety and misuse,restricted,chemical hazard communication,cbrn safety and misuse,allowed,0.07091110944747925,True,False
+spose_official_d40_lam0p008,source reliability checking,information integrity and influence,allowed,civic information summary,information integrity and influence,allowed,0.0004544854164123535,True,True
+spose_official_d40_lam0p008,civic information summary,information integrity and influence,allowed,source reliability checking,information integrity and influence,allowed,0.0004544854164123535,True,True
+spose_official_d40_lam0p008,persuasion analysis,information integrity and influence,allowed,targeted persuasion optimization,information integrity and influence,restricted,0.007650017738342285,True,False
+spose_official_d40_lam0p008,targeted persuasion optimization,information integrity and influence,restricted,persuasion analysis,information integrity and influence,allowed,0.007650017738342285,True,False
+spose_official_d40_lam0p008,election falsehood generation,information integrity and influence,restricted,incident response triage,cyber defense and misuse,allowed,0.5900540351867676,False,False
+spose_softplus_d40_l1_0p01,security hardening,cyber defense and misuse,allowed,abuse detection,malware and phishing,allowed,0.19939273595809937,False,True
+spose_softplus_d40_l1_0p01,incident response triage,cyber defense and misuse,allowed,responsible vulnerability disclosure,cyber defense and misuse,allowed,0.13987469673156738,True,True
+spose_softplus_d40_l1_0p01,vulnerability remediation,cyber defense and misuse,allowed,responsible vulnerability disclosure,cyber defense and misuse,allowed,0.08812373876571655,True,True
+spose_softplus_d40_l1_0p01,responsible vulnerability disclosure,cyber defense and misuse,allowed,malware analysis,malware and phishing,allowed,0.04071521759033203,False,True
+spose_softplus_d40_l1_0p01,unauthorized system intrusion,cyber defense and misuse,restricted,responsible vulnerability disclosure,cyber defense and misuse,allowed,0.16550540924072266,True,False
+spose_softplus_d40_l1_0p01,malware analysis,malware and phishing,allowed,abuse detection,malware and phishing,allowed,0.03885263204574585,True,True
+spose_softplus_d40_l1_0p01,abuse detection,malware and phishing,allowed,malware analysis,malware and phishing,allowed,0.03885263204574585,True,True
+spose_softplus_d40_l1_0p01,phishing awareness training,malware and phishing,allowed,abuse detection,malware and phishing,allowed,0.0643308162689209,True,True
+spose_softplus_d40_l1_0p01,credential misuse,malware and phishing,restricted,abuse detection,malware and phishing,allowed,0.09959995746612549,True,False
+spose_softplus_d40_l1_0p01,malware deployment,malware and phishing,restricted,pathogen protocol execution,cbrn safety and misuse,restricted,0.0680047869682312,False,True
+spose_softplus_d40_l1_0p01,biosecurity literacy,cbrn safety and misuse,allowed,source reliability checking,information integrity and influence,allowed,0.11167752742767334,False,True
+spose_softplus_d40_l1_0p01,laboratory safety planning,cbrn safety and misuse,allowed,chemical hazard communication,cbrn safety and misuse,allowed,0.08369296789169312,True,True
+spose_softplus_d40_l1_0p01,chemical hazard communication,cbrn safety and misuse,allowed,laboratory safety planning,cbrn safety and misuse,allowed,0.08369296789169312,True,True
+spose_softplus_d40_l1_0p01,pathogen protocol execution,cbrn safety and misuse,restricted,malware deployment,malware and phishing,restricted,0.0680047869682312,False,True
+spose_softplus_d40_l1_0p01,chemical harm facilitation,cbrn safety and misuse,restricted,chemical hazard communication,cbrn safety and misuse,allowed,0.1452043056488037,True,False
+spose_softplus_d40_l1_0p01,source reliability checking,information integrity and influence,allowed,malware deployment,malware and phishing,restricted,0.07808136940002441,False,False
+spose_softplus_d40_l1_0p01,civic information summary,information integrity and influence,allowed,biosecurity literacy,cbrn safety and misuse,allowed,0.17903363704681396,False,True
+spose_softplus_d40_l1_0p01,persuasion analysis,information integrity and influence,allowed,targeted persuasion optimization,information integrity and influence,restricted,0.12201946973800659,True,False
+spose_softplus_d40_l1_0p01,targeted persuasion optimization,information integrity and influence,restricted,persuasion analysis,information integrity and influence,allowed,0.12201946973800659,True,False
+spose_softplus_d40_l1_0p01,election falsehood generation,information integrity and influence,restricted,responsible vulnerability disclosure,cyber defense and misuse,allowed,0.7161648273468018,False,False
