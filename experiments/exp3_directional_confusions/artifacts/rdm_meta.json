@@ -1,0 +1,58 @@
+{
+  "aggregation": "For each anchor i and candidate j, count the fraction of triplets where j is chosen over the alternative candidate. Symmetrize by averaging i->j and j->i rates, then convert similarity to RDM as 1 - similarity.",
+  "built_at": "2026-07-09T15:05:58-05:00",
+  "mean_pairwise_upper_triangle_pearson": 0.8307935259132994,
+  "mean_split_half_upper_triangle_pearson": 0.8199290023048541,
+  "missing_runs": [],
+  "pairwise_run_reliability": [
+    {
+      "run_a": "base_seed_a_canonical_prompt",
+      "run_b": "base_seed_b_canonical_prompt",
+      "upper_triangle_pearson": 1.0
+    },
+    {
+      "run_a": "base_seed_a_canonical_prompt",
+      "run_b": "base_seed_a_paraphrase_prompt",
+      "upper_triangle_pearson": 0.746190288869949
+    },
+    {
+      "run_a": "base_seed_b_canonical_prompt",
+      "run_b": "base_seed_a_paraphrase_prompt",
+      "upper_triangle_pearson": 0.746190288869949
+    }
+  ],
+  "rdm_path": "experiments/exp3_directional_confusions/artifacts/rdm.npy",
+  "rdm_shape": [
+    18,
+    18
+  ],
+  "reliability_gate": true,
+  "reliability_min_mean_pearson": 0.75,
+  "reliability_min_split_half_pearson": 0.7,
+  "source_runs": [
+    "base_seed_a_canonical_prompt",
+    "base_seed_b_canonical_prompt",
+    "base_seed_a_paraphrase_prompt"
+  ],
+  "split_half_reliability": [
+    {
+      "mean_upper_triangle_pearson": 0.8057382371605291,
+      "n_splits": 64,
+      "p05_upper_triangle_pearson": 0.7794374294813494,
+      "run": "base_seed_a_canonical_prompt"
+    },
+    {
+      "mean_upper_triangle_pearson": 0.8073145411788644,
+      "n_splits": 64,
+      "p05_upper_triangle_pearson": 0.7799250760397819,
+      "run": "base_seed_b_canonical_prompt"
+    },
+    {
+      "mean_upper_triangle_pearson": 0.8467342285751688,
+      "n_splits": 64,
+      "p05_upper_triangle_pearson": 0.8193389513073396,
+      "run": "base_seed_a_paraphrase_prompt"
+    }
+  ],
+  "status": "green"
+}

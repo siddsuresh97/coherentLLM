@@ -1,0 +1,356 @@
+{
+  "predictions": [
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "blindworm",
+          "distance": 0.5833333333333334
+        },
+        {
+          "concept": "salamander",
+          "distance": 0.5520833333333334
+        }
+      ],
+      "near": "crocodile",
+      "near_distance": 0.0,
+      "target": "alligator"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "chisel",
+          "distance": 0.5208333333333334
+        },
+        {
+          "concept": "tortoise",
+          "distance": 0.5104166666666666
+        }
+      ],
+      "near": "crocodile",
+      "near_distance": 0.03125,
+      "target": "caiman"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "axe",
+          "distance": 0.5416666666666666
+        },
+        {
+          "concept": "saw",
+          "distance": 0.5625
+        }
+      ],
+      "near": "alligator",
+      "near_distance": 0.0,
+      "target": "crocodile"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "chisel",
+          "distance": 0.6666666666666666
+        },
+        {
+          "concept": "toad",
+          "distance": 0.6354166666666666
+        }
+      ],
+      "near": "snake",
+      "near_distance": 0.0,
+      "target": "boa python"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "tortoise",
+          "distance": 0.65625
+        },
+        {
+          "concept": "salamander",
+          "distance": 0.6458333333333334
+        }
+      ],
+      "near": "snake",
+      "near_distance": 0.03125,
+      "target": "cobra"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "toad",
+          "distance": 0.5625
+        },
+        {
+          "concept": "chisel",
+          "distance": 0.5625
+        }
+      ],
+      "near": "boa python",
+      "near_distance": 0.0,
+      "target": "snake"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "chisel",
+          "distance": 0.65625
+        },
+        {
+          "concept": "alligator",
+          "distance": 0.5833333333333334
+        }
+      ],
+      "near": "salamander",
+      "near_distance": 0.09375,
+      "target": "blindworm"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "chisel",
+          "distance": 0.65625
+        },
+        {
+          "concept": "tortoise",
+          "distance": 0.59375
+        }
+      ],
+      "near": "gecko",
+      "near_distance": 0.0625,
+      "target": "chameleon"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "chisel",
+          "distance": 0.7291666666666666
+        },
+        {
+          "concept": "saw",
+          "distance": 0.75
+        }
+      ],
+      "near": "lizard",
+      "near_distance": 0.041666666666666664,
+      "target": "gecko"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "hammer",
+          "distance": 0.6666666666666666
+        },
+        {
+          "concept": "axe",
+          "distance": 0.6770833333333334
+        }
+      ],
+      "near": "gecko",
+      "near_distance": 0.041666666666666664,
+      "target": "lizard"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "saw",
+          "distance": 0.7708333333333334
+        },
+        {
+          "concept": "chisel",
+          "distance": 0.78125
+        }
+      ],
+      "near": "blindworm",
+      "near_distance": 0.09375,
+      "target": "salamander"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "saw",
+          "distance": 0.7916666666666666
+        },
+        {
+          "concept": "chisel",
+          "distance": 0.8125
+        }
+      ],
+      "near": "salamander",
+      "near_distance": 0.125,
+      "target": "toad"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "chisel",
+          "distance": 0.8020833333333334
+        },
+        {
+          "concept": "hammer",
+          "distance": 0.84375
+        }
+      ],
+      "near": "turtle",
+      "near_distance": 0.0,
+      "target": "tortoise"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "chisel",
+          "distance": 0.7291666666666666
+        },
+        {
+          "concept": "hammer",
+          "distance": 0.75
+        }
+      ],
+      "near": "tortoise",
+      "near_distance": 0.0,
+      "target": "turtle"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "gecko",
+          "distance": 0.84375
+        },
+        {
+          "concept": "turtle",
+          "distance": 0.84375
+        }
+      ],
+      "near": "saw",
+      "near_distance": 0.041666666666666664,
+      "target": "axe"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "gecko",
+          "distance": 0.7291666666666666
+        },
+        {
+          "concept": "turtle",
+          "distance": 0.7291666666666666
+        }
+      ],
+      "near": "axe",
+      "near_distance": 0.34375,
+      "target": "chisel"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "blindworm",
+          "distance": 0.8020833333333334
+        },
+        {
+          "concept": "salamander",
+          "distance": 0.8020833333333334
+        }
+      ],
+      "near": "axe",
+      "near_distance": 0.08333333333333333,
+      "target": "hammer"
+    },
+    {
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "toad",
+          "distance": 0.7916666666666666
+        },
+        {
+          "concept": "turtle",
+          "distance": 0.7916666666666666
+        }
+      ],
+      "near": "axe",
+      "near_distance": 0.041666666666666664,
+      "target": "saw"
+    }
+  ],
+  "rdm_meta": {
+    "aggregation": "For each anchor i and candidate j, count the fraction of triplets where j is chosen over the alternative candidate. Symmetrize by averaging i->j and j->i rates, then convert similarity to RDM as 1 - similarity.",
+    "built_at": "2026-07-09T15:05:58-05:00",
+    "mean_pairwise_upper_triangle_pearson": 0.8307935259132994,
+    "mean_split_half_upper_triangle_pearson": 0.8199290023048541,
+    "missing_runs": [],
+    "pairwise_run_reliability": [
+      {
+        "run_a": "base_seed_a_canonical_prompt",
+        "run_b": "base_seed_b_canonical_prompt",
+        "upper_triangle_pearson": 1.0
+      },
+      {
+        "run_a": "base_seed_a_canonical_prompt",
+        "run_b": "base_seed_a_paraphrase_prompt",
+        "upper_triangle_pearson": 0.746190288869949
+      },
+      {
+        "run_a": "base_seed_b_canonical_prompt",
+        "run_b": "base_seed_a_paraphrase_prompt",
+        "upper_triangle_pearson": 0.746190288869949
+      }
+    ],
+    "rdm_path": "experiments/exp3_directional_confusions/artifacts/rdm.npy",
+    "rdm_shape": [
+      18,
+      18
+    ],
+    "reliability_gate": true,
+    "reliability_min_mean_pearson": 0.75,
+    "reliability_min_split_half_pearson": 0.7,
+    "source_runs": [
+      "base_seed_a_canonical_prompt",
+      "base_seed_b_canonical_prompt",
+      "base_seed_a_paraphrase_prompt"
+    ],
+    "split_half_reliability": [
+      {
+        "mean_upper_triangle_pearson": 0.8057382371605291,
+        "n_splits": 64,
+        "p05_upper_triangle_pearson": 0.7794374294813494,
+        "run": "base_seed_a_canonical_prompt"
+      },
+      {
+        "mean_upper_triangle_pearson": 0.8073145411788644,
+        "n_splits": 64,
+        "p05_upper_triangle_pearson": 0.7799250760397819,
+        "run": "base_seed_b_canonical_prompt"
+      },
+      {
+        "mean_upper_triangle_pearson": 0.8467342285751688,
+        "n_splits": 64,
+        "p05_upper_triangle_pearson": 0.8193389513073396,
+        "run": "base_seed_a_paraphrase_prompt"
+      }
+    ],
+    "status": "green"
+  },
+  "rdm_path": "experiments/exp3_directional_confusions/artifacts/rdm.npy",
+  "registered_at": "2026-07-09T15:05:58-05:00",
+  "sanity_gate": "passed",
+  "sanity_gate_marked_at": "2026-07-09T15:07:20-05:00",
+  "sanity_gate_note": "Predicted neighbors are human-sane for the neutral reptiles/amphibians/tools set; no target maps to an absurd cross-domain neighbor. Some coarse local choices such as blindworm-salamander are acceptable for this first gate.",
+  "status": "pre_registered_before_item_scoring"
+}
