@@ -1,0 +1,13 @@
+timestamp_utc=2026-07-09T01:02:34Z
+hostname=mkhodakgpu4000.chtc.wisc.edu
+pwd=/var/lib/condor/execute/slot1/dir_2470382/scratch
+python=/opt/conda/bin/python3
+CUDA_VISIBLE_DEVICES=GPU-c7d03fd0-754e-9df9-8e35-2c63a7b5df74
+MIN_CUDA_GLOBAL_MEMORY_MB=40000
+FEATURE_DIR=/staging/s/suresh27/features/huth_lebel_smoke_llama31
+STORIES=sweetaspie,againstthewind,wheretheressmoke
+ARMS=base,lowLR,scrambled,taskvec_a0p25
+LAYERS=16,24,32
+BATCH_SIZE=4
+MAX_CONTEXT_TOKENS=512
+LIMIT_WORDS=0

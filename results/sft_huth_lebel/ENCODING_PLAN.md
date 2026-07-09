@@ -14,15 +14,20 @@ Updated: 2026-07-09
 - Extraction debug cluster `5513178` passed: four arm NPZs for `sweetaspie`,
   first 64 words, layer `24`, shape `64 x 1 x 4096`, with both wrapper and
   extraction exit statuses `0`.
-- Full three-story feature extraction is running as CHTC cluster `5513245`
-  from `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926`. This
-  active job uses the staged-output wrapper, so feature NPZs are expected under
-  `/staging/s/suresh27/features/huth_lebel_smoke_llama31`; its returned
-  `huth_extract_smoke_results.tgz` is a status/metadata bundle.
+- Full three-story staged-output extraction cluster `5513245` ran from
+  `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926`. It successfully
+  wrote the three `base` NPZs, then failed creating the `lowLR` staging
+  directory with `OSError: [Errno 122] Disk quota exceeded`.
 - Duplicate cluster `5513244` held before model work because its submit
   expected a missing output tarball; it was removed with `condor_rm`.
-- The checked-in encoding template reads the staged feature directory directly;
-  do not resubmit extraction while `5513245` is running unless it fails.
+- The checked-in staged encoding template reads the staged feature directory
+  directly. The recovery template
+  `chtc/huth_lebel_smoke/huth_encoding_smoke_bundle.sub` consumes the returned
+  feature tarball instead, avoiding new writes under `/staging/s/suresh27`.
+- Active bundle-output recovery extraction: cluster `5513306`, remote
+  directory `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`.
+- Duplicate cluster `5513310` had identical settings and was removed while
+  idle.
 
 The local workspace does not currently mount `/staging/s/suresh27/datasets/ds003020-smoke`, so the repo-side validation below checks syntax and synthetic I/O. Real smoke execution should run on the CHTC node or AP where the staged root is visible.
 
@@ -146,7 +151,7 @@ python src/sft/huth_lebel_extract_word_states.py \
 
 3. Submit CPU encoding jobs after features exist. The first CPU job can use `--max_voxels 2000`; the confirmatory smoke should remove the cap and optionally use `--save_voxel_corrs`.
 
-Current exact follow-up once cluster `5513245` completes:
+Current exact follow-up after the `5513245` staging-quota failure:
 
 1. Pull/inspect the returned status bundle.
 
@@ -155,20 +160,26 @@ chtc-pull 'chtc-runs/coherence-huth-extract-smoke-20260709-005926/huth_extract_s
   results/sft_huth_lebel/chtc_huth_extract_smoke_5513245/
 ```
 
-2. If `extract_exit_status.txt == 0` and staged NPZs exist, submit CPU
-   encoding from the same run directory:
+2. Monitor active bundle-output GPU extraction cluster `5513306`. Its wrapper
+   leaves `FEATURE_DIR` unset, seeds the already-written staged `base` features
+   into scratch with `SEED_FEATURE_DIR`, and returns feature NPZs inside
+   `huth_extract_smoke_results.tgz`.
+
+3. If the bundle extraction returns `extract_exit_status.txt == 0` and
+   `npz_shapes.tsv` lists all 12 arm/story NPZs, submit CPU encoding from the
+   same run directory:
 
 ```bash
-chtc-ssh 'cd ~/chtc-runs/coherence-huth-extract-smoke-20260709-005926 && condor_submit huth_encoding_smoke.sub'
+chtc-ssh 'cd ~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204 && condor_submit huth_encoding_smoke_bundle.sub'
 ```
 
-The submit file reads `/staging/s/suresh27/features/huth_lebel_smoke_llama31`
-directly and runs the first capped CPU smoke:
+The bundle submit file unpacks `huth_extract_smoke_results.tgz` and runs the
+first capped CPU smoke:
 
 ```bash
 python src/sft/huth_lebel_smoke_encoding.py \
   --ds_root /staging/s/suresh27/datasets/ds003020-smoke \
-  --features_dir /staging/s/suresh27/features/huth_lebel_smoke_llama31 \
+  --features_dir feature_bundle/features \
   --out_dir huth_encoding_smoke/encoding \
   --subjects UTS01 \
   --train_stories sweetaspie,againstthewind \

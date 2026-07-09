@@ -34,6 +34,16 @@ When that extraction job exits with `extract_exit_status.txt == 0` and
 condor_submit huth_encoding_smoke.sub
 ```
 
+If `/staging/s/suresh27` cannot accept new feature directories, use the
+bundle-output path instead. The checked-in `huth_extract_smoke.sub` leaves
+`FEATURE_DIR` unset, so `run_extract_smoke.sh` writes features under
+`huth_extract_smoke/features` and returns them inside
+`huth_extract_smoke_results.tgz`. Then submit:
+
+```bash
+condor_submit huth_encoding_smoke_bundle.sub
+```
+
 The encoding smoke uses `sweetaspie,againstthewind` for ridge/CV training,
 holds out `wheretheressmoke`, and caps responses at `--max_voxels 2000` for the
 first pass. Remove the cap only after this CPU smoke returns valid

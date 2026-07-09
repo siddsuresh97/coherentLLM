@@ -46,8 +46,9 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   full 8-shard MMLU array is running as `5513268`. Shards `1`, `3`, `5`, `6`,
   and `7` landed on non-staging hosts and exited before model load; the
   staging-constrained recovery cluster is `5513291` for exactly those five
-  shards. Huth extraction debug `5513178` completed cleanly, and the
-  three-story Huth smoke `5513245` is running on an L40S. Concept steering
+  shards. Huth extraction debug `5513178` completed cleanly; staged-output
+  three-story smoke `5513245` wrote the base features but failed on staging
+  directory quota, so bundle-output recovery `5513306` is queued. Concept steering
   smoke `5513235` exposed a staging visibility failure on a non-staging
   backfill node; retry `5513261` exposed pip dependency shadowing; fixed
   no-deps retry `5513276` passed and produced vectors plus 18 smoke eval rows;

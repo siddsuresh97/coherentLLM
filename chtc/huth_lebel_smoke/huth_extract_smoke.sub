@@ -1,5 +1,6 @@
 RUN_MODE = extract_smoke
 MIN_CUDA_GLOBAL_MEMORY_MB = 40000
+SEED_FEATURE_DIR = /staging/s/suresh27/features/huth_lebel_smoke_llama31
 STORIES = sweetaspie,againstthewind,wheretheressmoke
 ARMS = base,lowLR,scrambled,taskvec_a0p25
 LAYERS = 16,24,32
@@ -24,7 +25,7 @@ transfer_input_files = run_extract_smoke.sh,src
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
 transfer_output_files = huth_extract_smoke_results.tgz
-environment = "MIN_CUDA_GLOBAL_MEMORY_MB=$(MIN_CUDA_GLOBAL_MEMORY_MB) STORIES=$(STORIES) ARMS=$(ARMS) LAYERS=$(LAYERS) BATCH_SIZE=$(BATCH_SIZE) MAX_CONTEXT_TOKENS=$(MAX_CONTEXT_TOKENS) LIMIT_WORDS=$(LIMIT_WORDS)"
+environment = "MIN_CUDA_GLOBAL_MEMORY_MB=$(MIN_CUDA_GLOBAL_MEMORY_MB) SEED_FEATURE_DIR=$(SEED_FEATURE_DIR) STORIES=$(STORIES) ARMS=$(ARMS) LAYERS=$(LAYERS) BATCH_SIZE=$(BATCH_SIZE) MAX_CONTEXT_TOKENS=$(MAX_CONTEXT_TOKENS) LIMIT_WORDS=$(LIMIT_WORDS)"
 
 request_gpus = 1
 request_cpus = 8

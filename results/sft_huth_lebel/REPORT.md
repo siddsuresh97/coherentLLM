@@ -43,18 +43,30 @@ and submitting full smoke extraction cluster `5513245`.
   `taskvec_a0p25` each produced `features/<arm>/sweetaspie.npz` with hidden
   shape `64 x 1 x 4096`, layer index `24`, and float16 activations. The shared
   word table has 64 rows.
-- Full smoke extraction cluster `5513245` is running from
+- Full smoke extraction cluster `5513245` ran from
   `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926` on an L40S-class
-  GPU. It extracts all three story features for layers `16,24,32` and should
-  write NPZs under `/staging/s/suresh27/features/huth_lebel_smoke_llama31`.
-  Its returned `huth_extract_smoke_results.tgz` is expected to contain status
-  and shape metadata, not necessarily the feature NPZs.
+  GPU. It loaded the model, extracted all three `base` story features for
+  layers `16,24,32`, then failed with `OSError: [Errno 122] Disk quota
+  exceeded` while creating
+  `/staging/s/suresh27/features/huth_lebel_smoke_llama31/lowLR`.
+- Staged feature evidence from `5513245`: `base/sweetaspie.npz`
+  (`697 x 3 x 4096`), `base/againstthewind.npz` (`842 x 3 x 4096`), and
+  `base/wheretheressmoke.npz` (`1859 x 3 x 4096`). Adapter-arm features were
+  not written.
+- Recovery path: rerun the three-story extraction using the bundle-output
+  submit path, which writes features in job scratch and returns them inside
+  `huth_extract_smoke_results.tgz` instead of creating new staging
+  directories.
+- Active recovery: cluster `5513306`, remote directory
+  `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`.
+- Duplicate recovery cluster `5513310` had identical settings and was removed
+  while idle.
 - Duplicate cluster `5513244` held before model work because its submit
   expected a missing output tarball; it was removed with `condor_rm`.
-- The prepared CPU ridge follow-up is
-  `chtc/huth_lebel_smoke/huth_encoding_smoke.sub`; for active cluster
-  `5513245`, submit it from the same run directory after extraction passes.
-  It reads `/staging/s/suresh27/features/huth_lebel_smoke_llama31` directly.
+- The prepared CPU ridge follow-ups are
+  `chtc/huth_lebel_smoke/huth_encoding_smoke.sub` for staged features and
+  `chtc/huth_lebel_smoke/huth_encoding_smoke_bundle.sub` for bundle-returned
+  features.
 
 ## Checked Roots
 
@@ -118,6 +130,9 @@ and submitting full smoke extraction cluster `5513245`.
 - CHTC staging smoke outputs: `results/sft_huth_lebel/chtc_5513059/`
 - CHTC extraction debug outputs:
   `results/sft_huth_lebel/chtc_huth_extract_debug_5513178/`
-- Next CHTC full smoke extraction run:
+- Failed staged-output full smoke extraction:
   `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926`, cluster
   `5513245`
+- Active bundle-output recovery extraction:
+  `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`, cluster
+  `5513306`

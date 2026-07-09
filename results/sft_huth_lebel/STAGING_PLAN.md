@@ -35,12 +35,19 @@ completed and full smoke extraction cluster `5513245` was submitted.
   Pulled artifacts are in
   `results/sft_huth_lebel/chtc_huth_extract_debug_5513178/`; all four arms
   produced layer-24 `sweetaspie` features with hidden shape `64 x 1 x 4096`.
-- Full smoke extraction status: cluster `5513245` is running from
-  `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926`. This active run
-  uses the staged-output wrapper, so features should appear under
-  `/staging/s/suresh27/features/huth_lebel_smoke_llama31`; its returned
-  `huth_extract_smoke_results.tgz` is status/metadata. The CPU encoding submit
-  file reads the staged feature directory directly.
+- Full smoke extraction status: cluster `5513245` ran from
+  `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926`. It wrote the
+  three `base` feature NPZs under
+  `/staging/s/suresh27/features/huth_lebel_smoke_llama31`, then failed with
+  `OSError: [Errno 122] Disk quota exceeded` while creating the `lowLR`
+  feature directory. New directories under `/staging/s/suresh27` currently
+  fail with the same quota error, so the recovery path avoids writing features
+  to staging.
+- Active recovery extraction: cluster `5513306`, remote directory
+  `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`. It seeds
+  the existing staged `base` features into job scratch and should return all
+  features in `huth_extract_smoke_results.tgz`.
+- Duplicate recovery cluster `5513310` was removed while idle.
 - Duplicate cluster `5513244` held before model work because its submit
   expected a missing output tarball; it was removed with `condor_rm`.
 
@@ -77,16 +84,15 @@ completed and full smoke extraction cluster `5513245` was submitted.
 
 ## Next
 
-1. Poll and pull cluster `5513245` after completion. Pass criteria:
-   `extract_exit_status.txt == 0`, `npz_shapes.tsv` contains all 12 arm/story
-   NPZs or the staged feature directory contains all 12 arm/story NPZs, each
-   with layers `16,24,32`, and no adapter load failures.
-2. Package staged features into
-   `huth_extract_smoke_results_with_features.tgz`, then submit the CPU ridge
-   smoke from `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926` with
-   `huth_encoding_smoke_with_features.sub`.
-3. Verify artifact writing, feature shapes, TR alignment, and voxelwise Pearson
+1. Monitor active bundle-output recovery extraction cluster `5513306`.
+2. Pass criteria: `extract_exit_status.txt == 0` and `npz_shapes.tsv` contains
+   all 12 arm/story NPZs, each with layers `16,24,32`, and no adapter load
+   failures.
+3. Submit `huth_encoding_smoke_bundle.sub` from the same run directory so CPU
+   encoding unpacks `huth_extract_smoke_results.tgz` rather than reading staged
+   features.
+4. Verify artifact writing, feature shapes, TR alignment, and voxelwise Pearson
    scoring in `summary.csv` and `alpha_cv.csv` before using more GPUs.
-4. If the smoke passes, stage the high-data `UTS01`-`UTS03` subset under
+5. If the smoke passes, stage the high-data `UTS01`-`UTS03` subset under
    `/staging/s/suresh27/datasets/ds003020-highdata`.
-5. Run the full high-data encoding jobs only after the smoke report is committed.
+6. Run the full high-data encoding jobs only after the smoke report is committed.

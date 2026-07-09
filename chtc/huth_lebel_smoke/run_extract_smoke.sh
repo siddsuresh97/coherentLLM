@@ -3,6 +3,7 @@ set -euo pipefail
 
 RESULT_DIR="${PWD}/huth_extract_smoke"
 FEATURE_DIR="${FEATURE_DIR:-${RESULT_DIR}/features}"
+SEED_FEATURE_DIR="${SEED_FEATURE_DIR:-}"
 PYDEPS="${PWD}/pydeps"
 OUT_BUNDLE="huth_extract_smoke_results.tgz"
 export FEATURE_DIR
@@ -46,6 +47,7 @@ LIMIT_WORDS="${LIMIT_WORDS:-0}"
   echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"
   echo "MIN_CUDA_GLOBAL_MEMORY_MB=${MIN_CUDA_GLOBAL_MEMORY_MB:-unset}"
   echo "FEATURE_DIR=${FEATURE_DIR}"
+  echo "SEED_FEATURE_DIR=${SEED_FEATURE_DIR}"
   echo "STORIES=${STORIES}"
   echo "ARMS=${ARMS}"
   echo "LAYERS=${LAYERS}"
@@ -130,6 +132,16 @@ do
     exit 66
   fi
 done
+
+if [[ -n "${SEED_FEATURE_DIR}" ]]; then
+  if [[ ! -d "${SEED_FEATURE_DIR}" ]]; then
+    echo "missing seed feature directory: ${SEED_FEATURE_DIR}" >&2
+    exit 69
+  fi
+  find "${SEED_FEATURE_DIR}" -maxdepth 3 -type f -printf '%P\t%s\n' \
+    > "${RESULT_DIR}/seed_feature_inventory.tsv" || true
+  cp -a "${SEED_FEATURE_DIR}/." "${FEATURE_DIR}/"
+fi
 
 CMD=(
   "${PYTHON_BIN}" src/sft/huth_lebel_extract_word_states.py

@@ -1380,11 +1380,25 @@ New Huth smoke submission:
 - Job purpose: extract all three smoke stories
   `sweetaspie,againstthewind,wheretheressmoke` for arms
   `base,lowLR,scrambled,taskvec_a0p25` and layers `16,24,32`.
-- First placement: running on `mkhodakgpu4000.chtc.wisc.edu`, NVIDIA L40S
+- First placement: ran on `mkhodakgpu4000.chtc.wisc.edu`, NVIDIA L40S
   with `45468` MB advertised GPU memory.
-- Active-run caveat: `5513245` uses the staged-output wrapper, so features are
-  expected under `/staging/s/suresh27/features/huth_lebel_smoke_llama31`.
-  The CPU encoding submit file now reads that staged feature directory directly.
+- Outcome: model loading succeeded and the job wrote the three `base` story
+  features for layers `16,24,32`, then exited `1` with
+  `OSError: [Errno 122] Disk quota exceeded` while creating
+  `/staging/s/suresh27/features/huth_lebel_smoke_llama31/lowLR`.
+- Pulled failure/status artifacts to
+  `results/sft_huth_lebel/chtc_huth_extract_smoke_5513245/`.
+- Staged feature evidence from `5513245`: `base/sweetaspie.npz`
+  (`697 x 3 x 4096`), `base/againstthewind.npz` (`842 x 3 x 4096`), and
+  `base/wheretheressmoke.npz` (`1859 x 3 x 4096`).
+- Recovery: `run_extract_smoke.sh` now supports `SEED_FEATURE_DIR`; it copies
+  the successful staged base features into job scratch, uses `--skip_existing`,
+  extracts the missing adapter arms, and returns all features inside
+  `huth_extract_smoke_results.tgz`.
+- Active retry: cluster `5513306`, remote directory
+  `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`.
+- Duplicate retry `5513310` was submitted with identical settings and removed
+  while idle with `condor_rm 5513310`.
 
 Duplicate avoided:
 
@@ -1397,11 +1411,12 @@ Duplicate avoided:
 
 Next read:
 
-- Pull `huth_extract_smoke_results.tgz` after cluster `5513245` completes.
+- Pull `huth_extract_smoke_results.tgz` after cluster `5513306` completes.
 - Check `extract_exit_status.txt == 0` and verify `npz_shapes.tsv` lists all
   12 arm/story NPZ files.
-- Submit `huth_encoding_smoke.sub` from the same run directory; it reads
-  `/staging/s/suresh27/features/huth_lebel_smoke_llama31` directly.
+- Submit `huth_encoding_smoke_bundle.sub` from the same run directory so CPU
+  encoding reads the returned feature bundle instead of writing new staging
+  directories.
 
 ## 2026-07-09 active: MMLU CHTC smoke passed; full shards submitted
 
