@@ -62,4 +62,5 @@ Current submitted instance: cluster `5513373` from
 `huth_extract_smoke_results.tgz` bundle, sets `MAX_VOXELS=0` so
 `run_encoding_smoke.sh` omits the voxel cap, evaluates
 `UTS01,UTS02,UTS03`, and requests CPU only (`4` CPUs, `16GB` memory, `20GB`
-disk).
+disk). It began executing on `oconnor2007.chtc.wisc.edu` at
+`2026-07-08 21:13:46 CDT` with `GPUs=0`.

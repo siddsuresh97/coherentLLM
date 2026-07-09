@@ -10,8 +10,7 @@ Manual update: 2026-07-09 after submitting uncapped CPU encoding cluster
 - Status: the Huth/LeBel narrative-encoding experiment has passed the staged
   smoke-data audit, GPU feature extraction, bundle-output recovery extraction,
   and capped CPU encoding path checks. The first uncapped all-subject CPU
-  encoding smoke is submitted on CHTC as cluster `5513373` and was idle with no
-  hold at last check.
+  encoding smoke is running on CHTC as cluster `5513373`.
 - Best staged smoke root: `/staging/s/suresh27/datasets/ds003020-smoke`.
 - Staged data pieces: 3 WAVs, 3 TextGrids, and 9 author-preprocessed HF5 files
   for `sweetaspie`, `againstthewind`, and `wheretheressmoke` across
@@ -94,9 +93,10 @@ Manual update: 2026-07-09 after submitting uncapped CPU encoding cluster
   `huth_encoding_smoke_bundle_uncapped_all.sub`. It consumes the validated
   `5513306` feature bundle, sets `MAX_VOXELS=0` so the wrapper omits
   `--max_voxels`, evaluates `UTS01,UTS02,UTS03`, and requests CPU only
-  (`4` CPUs, `16GB` memory, `20GB` disk). At `2026-07-08 21:11:49 CDT` it was
-  idle with no hold, 5 willing matches in `condor_q -better-analyze`, and no
-  result bundle yet.
+  (`4` CPUs, `16GB` memory, `20GB` disk). It was initially idle with no hold
+  and 5 willing matches at `2026-07-08 21:11:49 CDT`, then began executing on
+  `oconnor2007.chtc.wisc.edu` at `2026-07-08 21:13:46 CDT` with `GPUs=0`.
+  No result bundle had returned at the last checkpoint.
 - Duplicate recovery cluster `5513310` had identical settings and was removed
   while idle.
 - Duplicate cluster `5513244` held before model work because its submit

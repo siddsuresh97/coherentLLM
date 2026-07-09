@@ -39,12 +39,14 @@ Updated: 2026-07-09
   `UTS02,UTS03` from the validated `5513306` feature bundle. Best rows:
   `UTS02` scrambled layer 16 mean `r=0.001870`; `UTS03` base layer 16 mean
   `r=0.015795`, with `taskvec_a0p25` layer 16 mean `r=0.013765`.
-- Uncapped all-subject CPU encoding cluster `5513373` is queued from the same
+- Uncapped all-subject CPU encoding cluster `5513373` is running from the same
   `5513306` run directory using
   `huth_encoding_smoke_bundle_uncapped_all.sub`. It evaluates
-  `UTS01,UTS02,UTS03` with `MAX_VOXELS=0` and no GPU request. The queued
-  resource request is `4` CPUs, `16GB` memory, and `20GB` disk; at
-  `2026-07-08 21:11:49 CDT` it was idle with no hold and 5 willing matches.
+  `UTS01,UTS02,UTS03` with `MAX_VOXELS=0` and no GPU request. The resource
+  request is `4` CPUs, `16GB` memory, and `20GB` disk; at
+  `2026-07-08 21:11:49 CDT` it was idle with no hold and 5 willing matches,
+  then began executing on `oconnor2007.chtc.wisc.edu` at
+  `2026-07-08 21:13:46 CDT` with `GPUs=0`.
 - Duplicate cluster `5513310` had identical settings and was removed while
   idle.
 

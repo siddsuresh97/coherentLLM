@@ -24,12 +24,13 @@ This directory tracks the ds003020 natural-language fMRI path for testing whethe
 - Capped CPU encoding `5513337` passed for `UTS01`, and capped CPU scale check
   `5513350` passed for `UTS02,UTS03`. These runs validate the path only because
   they use two training stories and a 2000-voxel cap.
-- Uncapped all-subject CPU encoding is queued as cluster `5513373` from the
+- Uncapped all-subject CPU encoding is running as cluster `5513373` from the
   same `5513306` run directory. It uses
   `chtc/huth_lebel_smoke/huth_encoding_smoke_bundle_uncapped_all.sub`,
   `MAX_VOXELS=0`, subjects `UTS01,UTS02,UTS03`, no GPU request, and current
-  queued resources `request_cpus=4`, `request_memory=16GB`,
-  `request_disk=20GB`.
+  resources `request_cpus=4`, `request_memory=16GB`, `request_disk=20GB`.
+  The event log shows input transfer completed and execution started on
+  `oconnor2007.chtc.wisc.edu` at `2026-07-08 21:13:46 CDT` with `GPUs=0`.
 - Duplicate cluster `5513244` held before work because its submit expected a
   missing output tarball; it was removed with `condor_rm`.
 

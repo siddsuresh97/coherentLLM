@@ -1,6 +1,6 @@
 # CHTC Huth Uncapped Encoding Smoke 5513373
 
-Status at checkpoint: submitted and queued, no hold.
+Status at checkpoint: running, no hold.
 
 - Cluster: `5513373`
 - Submit event: `2026-07-08 21:08:30 CDT`
@@ -18,6 +18,9 @@ Status at checkpoint: submitted and queued, no hold.
 - Voxel cap: none (`MAX_VOXELS=0`; the wrapper omits `--max_voxels`)
 - Resources after in-place tuning: `request_cpus=4`, `request_memory=16GB`,
   `request_disk=20GB`
+- Execution: input transfer finished at `2026-07-08 21:13:44 CDT`; job began
+  executing on `oconnor2007.chtc.wisc.edu` at `2026-07-08 21:13:46 CDT` with
+  `GPUs=0`
 
 Monitor:
 
