@@ -275,3 +275,9 @@
 - What specifically in the result told me the cause: `antelope`-`bison` moved as intended, but the top residual pairs were `boar`/`ostrich`, `boar`/`burrito`, and `beaver`/`ostrich`. That pattern points to spillover through edited alternatives and insufficient replay/retention, not an edit that is too weak.
 - Next lever and why: lower LR to `5e-5`, reduce editable repeats from 24 to 12, increase target-preserve/replay rows, and train longer enough to see the target signal. This should reduce broad alternative movement while preserving the direct relation edit.
 - Rejected alternatives: increasing steps or LR would likely worsen spillover; changing concept pair would hide whether the targeted lever can be made local; activation steering is premature because direct behavioral SFT has not been optimized yet.
+
+### NOTE 2026-07-09 18:48 - Replay-heavy v2 W&B runs launched
+- Control run: `https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/1fqn9vw3`.
+- Edit run: `https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/fna9k90i`.
+- Settings: PEFT QLoRA, Llama-3.1-8B-Instruct snapshot `0e9e39f249a16976918f6564b8830bc894c89659`, `rank=16`, `learning_rate=5e-5`, `max_steps=600`, batch size 4, no gradient accumulation, seed 1729. Both arms have 3,648 examples: 54 editable rows repeated 12 times, 900 target-preserve rows repeated twice, and 1,200 replay rows.
+- Why this size and not the previous ~100K-example scale: the v1 failure mode was spillover through alternative concepts, not lack of convergence. This run tests the data-ratio hypothesis cheaply before scaling, because simply adding many more examples would not identify whether replay/preserve pressure is the missing ingredient.

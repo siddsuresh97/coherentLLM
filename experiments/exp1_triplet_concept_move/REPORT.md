@@ -64,7 +64,7 @@ Replay-heavy v2 setup:
 - Data: [sft_triplet_data/concentrated_drop_100_triplet_targeted_v2_replayheavy/control.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v2_replayheavy/control.jsonl), [sft_triplet_data/concentrated_drop_100_triplet_targeted_v2_replayheavy/edit.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v2_replayheavy/edit.jsonl), [manifest](sft_triplet_data/concentrated_drop_100_triplet_targeted_v2_replayheavy/manifest.json).
 - Counts: 3,648 examples per arm; 54 editable rows repeated 12 times, 900 target-preserve rows repeated twice, and 1,200 replay rows.
 - Training plan: online W&B, `rank=16`, `lr=5e-5`, `max_steps=600`.
-- W&B links: pending until launch.
+- W&B links: [control](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/1fqn9vw3), [edit](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/fna9k90i).
 
 Example control/edit pair:
 
