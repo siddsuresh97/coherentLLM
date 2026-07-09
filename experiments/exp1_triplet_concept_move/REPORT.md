@@ -1,18 +1,53 @@
 # Experiment 1 Report - Triplet Detection of Concept Moves
 
-Current status: the local `concentrated_drop_100` pathway check completed on `rogers-gpu-1` using the direct-similarity fallback because this checkout lacks the full NOVA feature parquet needed for feature-listing supervision. The behavioral floor is green, the edited concept ranked first, but SNR was exactly 1.0, so the edit did not exceed the control null.
+Short answer: the first real pathway check was **partial, not successful**. The detector did identify the intended concept (`antelope`) as the largest mover, but the edit LoRA and the control LoRA moved the triplet geometry by the same amount. Under the experiment rule, that is not detection, because the edit did not exceed the fine-tuning drift null.
+
+## Hypothesis, Test, Verdict
+
+Hypothesis: if we deliberately move one concept relation in training, then black-box triplet judgments should show that the edited concept's row in the behavioral RDM changed more than ordinary LoRA fine-tuning drift. For this first pathway check, the intended move was: make `antelope` less similar to its close neighbor `bison`.
+
+What I tried: I first established the frozen triplet baseline and its reliability floor for Llama-3.1-8B-Instruct. Then I trained two LoRAs with the same settings:
+
+- Control LoRA: fine-tuning drift null, trained on replay similarity examples that did not include target-pair edits.
+- Edit LoRA: same replay examples plus edited target-pair similarity examples that push `antelope` away from `bison`.
+
+This was not the final intended feature-listing edit. It used fallback lever 6.2, direct pairwise-similarity supervision, because the feature-listing parquet file needed for the intended NOVA supervision is missing from this checkout.
+
+Did it work? **No, not by the success criterion.** It worked only in a weak sense: `antelope` ranked first as the concept with the largest row change, and the `antelope`-`bison` pair changed most among the target pairs. But the measured SNR was exactly `1.000`, and `boundary_crossed=false` in [detection/concentrated_drop_100.json](detection/concentrated_drop_100.json). Success requires SNR > 1, meaning edit movement larger than control drift.
+
+Why did it not work? The control null was too large. The control and edit LoRAs produced essentially equal triplet-RDM row changes. That means the issue is not simply "the model did not move"; it is "the control moved just as much as the edit." The most likely design problem is that the current fallback control was not target-exposure matched: the edit arm saw target-pair examples, while the control arm did not see the corresponding base target-pair examples.
+
+Next test: use a matched-target similarity control. The control arm should see the same `antelope` target pairs with base labels, and the edit arm should see the same target pairs with altered labels. If SNR rises above 1 after that, the previous failure was the null design. If SNR stays near 1, the pairwise-similarity fallback may be too globally entangling and the next lever should be direct triplet supervision or restored feature-listing supervision.
+
+## How To Read The Numbers
+
+- `RDM_base`: the unedited model's triplet geometry.
+- `RDM_control - RDM_base`: how much ordinary LoRA fine-tuning moves behavior.
+- `RDM_edit - RDM_base`: how much the edited LoRA moves behavior.
+- SNR: target-concept row change under edit divided by the matched control-null row change.
+- Boundary: SNR > 1 means the edit effect is larger than fine-tuning drift; SNR <= 1 is not a positive detection.
 
 ## Pipeline State
 
-- 0a feature-space base RDM: green
-- 0b behavioral triplet base RDM: green from local frozen-protocol runs
-- 1 item selection: green
-- 2 edit operator pre-check: draft only
-- 3 two-LoRA training: green for `concentrated_drop_100` similarity fallback
-- 4 detection/localization: partial; target top-ranked but not above null
-- 5 resolution map: one real cell produced; no SNR > 1 boundary yet
+- 0a feature-space base RDM: green.
+- 0b behavioral triplet base RDM: green from local frozen-protocol runs.
+- 1 item selection: green.
+- 2 edit operator pre-check: drafted in feature space, but not promoted to the final feature-listing run because the NOVA parquet is missing.
+- 3 two-LoRA training: green for the `concentrated_drop_100` direct-similarity fallback.
+- 4 detection/localization: partial; target top-ranked, but not above the control null.
+- 5 resolution map: one real cell produced; no SNR > 1 boundary yet.
 
-## Item Choice
+## What Ran So Far
+
+| Stage | What was done | Result | Main evidence |
+|---|---|---|---|
+| Base geometry | Ran the frozen 30-concept triplet task on the base model and re-ran it for the floor. | Green baseline; mean upper-triangle Pearson 0.8066. | [floor_stats.json](floor_stats.json), [artifacts/rdms/rdm_base.npy](artifacts/rdms/rdm_base.npy) |
+| Item choice | Chose `antelope` as target and `bison` as the close neighbor to push away from. | Good local animal-cluster test case. | [items.json](items.json), [figs/feature_mds.png](figs/feature_mds.png) |
+| Edit lever | Used direct pairwise-similarity fallback instead of feature-listing supervision. | Necessary because `data/nova/verified_matrix_cogsci2025.parquet` is missing. | [sft_similarity_data/concentrated_drop_100/manifest.json](sft_similarity_data/concentrated_drop_100/manifest.json) |
+| Training | Trained one control LoRA and one edit LoRA for 400 steps each. | Both adapters trained; losses went low. | [scripts/run_experiment1_real_gpu.sh](../../scripts/run_experiment1_real_gpu.sh), [src/sft/train_lora.py](../../src/sft/train_lora.py) |
+| Detection | Recovered control/edit triplet RDMs with the same frozen prompt and scored row changes. | Partial only: `target_rank=1`, but SNR `1.000`. | [detection/concentrated_drop_100.json](detection/concentrated_drop_100.json), [figs/resolution_heatmap.png](figs/resolution_heatmap.png) |
+
+## Item Choice And Edit
 
 Target: `antelope`. Neighbor for concentrated move: `bison`.
 
