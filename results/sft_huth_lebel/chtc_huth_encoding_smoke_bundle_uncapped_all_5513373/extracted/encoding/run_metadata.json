@@ -1,0 +1,157 @@
+{
+  "alphas": [
+    10.0,
+    16.68100537200059,
+    27.825594022071243,
+    46.41588833612777,
+    77.4263682681127,
+    129.1549665014884,
+    215.44346900318823,
+    359.38136638046257,
+    599.4842503189409,
+    1000.0
+  ],
+  "arms": [
+    "base",
+    "lowLR",
+    "scrambled",
+    "taskvec_a0p25"
+  ],
+  "delays_seconds": [
+    2.0,
+    4.0,
+    6.0,
+    8.0
+  ],
+  "delays_tr": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "ds_root": "/staging/s/suresh27/datasets/ds003020-smoke",
+  "features_dir": "/var/lib/condor/execute/slot1/dir_3515485/scratch/feature_bundle/features",
+  "lanczos_window": 3,
+  "layers": [
+    16,
+    24,
+    32
+  ],
+  "metrics": {
+    "alpha_selection": "leave-one-training-story-out CV; held-out test story unused",
+    "primary": "voxelwise Pearson r on held-out story",
+    "summary": "mean/median/p95 Pearson r over finite voxels"
+  },
+  "response_meta": {
+    "UTS01": {
+      "againstthewind": {
+        "dataset_key": "/data",
+        "n_voxels_total": 81126,
+        "path": "/staging/s/suresh27/datasets/ds003020-smoke/derivatives/preprocessed_data/UTS01/againstthewind.hf5",
+        "shape": [
+          170,
+          81126
+        ],
+        "voxel_offset": 0
+      },
+      "sweetaspie": {
+        "dataset_key": "/data",
+        "n_voxels_total": 81126,
+        "path": "/staging/s/suresh27/datasets/ds003020-smoke/derivatives/preprocessed_data/UTS01/sweetaspie.hf5",
+        "shape": [
+          157,
+          81126
+        ],
+        "voxel_offset": 0
+      },
+      "wheretheressmoke": {
+        "dataset_key": "/data",
+        "n_voxels_total": 81126,
+        "path": "/staging/s/suresh27/datasets/ds003020-smoke/derivatives/preprocessed_data/UTS01/wheretheressmoke.hf5",
+        "shape": [
+          291,
+          81126
+        ],
+        "voxel_offset": 0
+      }
+    },
+    "UTS02": {
+      "againstthewind": {
+        "dataset_key": "/data",
+        "n_voxels_total": 94251,
+        "path": "/staging/s/suresh27/datasets/ds003020-smoke/derivatives/preprocessed_data/UTS02/againstthewind.hf5",
+        "shape": [
+          170,
+          94251
+        ],
+        "voxel_offset": 0
+      },
+      "sweetaspie": {
+        "dataset_key": "/data",
+        "n_voxels_total": 94251,
+        "path": "/staging/s/suresh27/datasets/ds003020-smoke/derivatives/preprocessed_data/UTS02/sweetaspie.hf5",
+        "shape": [
+          157,
+          94251
+        ],
+        "voxel_offset": 0
+      },
+      "wheretheressmoke": {
+        "dataset_key": "/data",
+        "n_voxels_total": 94251,
+        "path": "/staging/s/suresh27/datasets/ds003020-smoke/derivatives/preprocessed_data/UTS02/wheretheressmoke.hf5",
+        "shape": [
+          291,
+          94251
+        ],
+        "voxel_offset": 0
+      }
+    },
+    "UTS03": {
+      "againstthewind": {
+        "dataset_key": "/data",
+        "n_voxels_total": 95556,
+        "path": "/staging/s/suresh27/datasets/ds003020-smoke/derivatives/preprocessed_data/UTS03/againstthewind.hf5",
+        "shape": [
+          170,
+          95556
+        ],
+        "voxel_offset": 0
+      },
+      "sweetaspie": {
+        "dataset_key": "/data",
+        "n_voxels_total": 95556,
+        "path": "/staging/s/suresh27/datasets/ds003020-smoke/derivatives/preprocessed_data/UTS03/sweetaspie.hf5",
+        "shape": [
+          157,
+          95556
+        ],
+        "voxel_offset": 0
+      },
+      "wheretheressmoke": {
+        "dataset_key": "/data",
+        "n_voxels_total": 95556,
+        "path": "/staging/s/suresh27/datasets/ds003020-smoke/derivatives/preprocessed_data/UTS03/wheretheressmoke.hf5",
+        "shape": [
+          291,
+          95556
+        ],
+        "voxel_offset": 0
+      }
+    }
+  },
+  "ridge_solver": "auto",
+  "subjects": [
+    "UTS01",
+    "UTS02",
+    "UTS03"
+  ],
+  "test_story": "wheretheressmoke",
+  "tr": 2.0,
+  "train_stories": [
+    "sweetaspie",
+    "againstthewind"
+  ],
+  "trim_end_tr": 5,
+  "trim_start_tr": 5
+}

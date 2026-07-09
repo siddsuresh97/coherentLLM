@@ -2,22 +2,23 @@
 
 Generated: 2026-07-08T22:59:00.688548+00:00
 
-Manual update: 2026-07-09 after submitting uncapped CPU encoding cluster
+Manual update: 2026-07-09 after completing uncapped CPU encoding cluster
 `5513373`.
 
 ## Current Read
 
 - Status: the Huth/LeBel narrative-encoding experiment has passed the staged
   smoke-data audit, GPU feature extraction, bundle-output recovery extraction,
-  and capped CPU encoding path checks. The first uncapped all-subject CPU
-  encoding smoke is running on CHTC as cluster `5513373`.
+  capped CPU encoding path checks, and the first uncapped all-subject CPU
+  encoding smoke on CHTC as cluster `5513373`.
 - Best staged smoke root: `/staging/s/suresh27/datasets/ds003020-smoke`.
 - Staged data pieces: 3 WAVs, 3 TextGrids, and 9 author-preprocessed HF5 files
   for `sweetaspie`, `againstthewind`, and `wheretheressmoke` across
   `UTS01`-`UTS03`.
-- Blocking piece: uncapped smoke encoding `5513373` must complete and return
-  full-voxel `summary.csv`/`alpha_cv.csv` before staging the 76.86 GB high-data
-  subset.
+- Current blocking piece: decide whether to scale beyond the smoke subset. The
+  uncapped smoke encoding `5513373` returned full-voxel
+  `summary.csv`/`alpha_cv.csv`; the remaining scientific limitation is data
+  volume, not pipeline correctness.
 - Reusable local study hook found: `/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/tribev2/tribev2/studies/lebel2023bold.py`
   (`exists=True`).
 - CHTC submission is now validated. Audit smoke cluster `5513006` completed
@@ -96,7 +97,20 @@ Manual update: 2026-07-09 after submitting uncapped CPU encoding cluster
   (`4` CPUs, `16GB` memory, `20GB` disk). It was initially idle with no hold
   and 5 willing matches at `2026-07-08 21:11:49 CDT`, then began executing on
   `oconnor2007.chtc.wisc.edu` at `2026-07-08 21:13:46 CDT` with `GPUs=0`.
-  No result bundle had returned at the last checkpoint.
+  It completed normally with `ExitCode=0` after about `986` seconds.
+- Uncapped encoding outcome: pulled artifacts are under
+  `results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_uncapped_all_5513373/`.
+  `exit_status.txt == 0`, `encoding_exit_status.txt == 0`, and
+  `summary.csv` has all 36 expected rows (`3` subjects x `4` arms x `3`
+  layers) with full voxel counts (`81126`-`95556` finite voxels by subject).
+- Uncapped smoke read: mean held-out Pearson `r` values are small but positive
+  for most arms. At layer 16, averaged across `UTS01`-`UTS03`, base is highest
+  (`0.009785`), followed by `taskvec_a0p25` (`0.009137`), `lowLR`
+  (`0.008287`), and `scrambled` (`0.004988`). `taskvec_a0p25` is close to base
+  and better than `lowLR`, but it does not improve over base on this smoke.
+  Treat this as evidence that the full-voxel path works and that task-vector
+  features are not obviously worse than aligned LoRA; do not treat it as a
+  final Huth/Fedorenko arm comparison.
 - Duplicate recovery cluster `5513310` had identical settings and was removed
   while idle.
 - Duplicate cluster `5513244` held before model work because its submit
@@ -188,8 +202,8 @@ Manual update: 2026-07-09 after submitting uncapped CPU encoding cluster
   `5513350`
 - CHTC UTS02/UTS03 encoding outputs:
   `results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_uts02_uts03_5513350/`
-- Queued uncapped all-subject CPU encoding:
+- Passed uncapped all-subject CPU encoding:
   `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`, cluster
   `5513373`
-- Local destination/checklist for `5513373`:
+- Local destination/results for `5513373`:
   `results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_uncapped_all_5513373/`

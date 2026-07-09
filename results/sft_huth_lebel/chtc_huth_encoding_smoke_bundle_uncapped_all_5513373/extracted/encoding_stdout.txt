@@ -1,0 +1,61 @@
+[subject] UTS01
+[response] UTS01/sweetaspie: (157, 81126)
+[response] UTS01/againstthewind: (170, 81126)
+[response] UTS01/wheretheressmoke: (291, 81126)
+[arm] UTS01/base
+[score] UTS01/base/layer16: mean_r=0.00764 median_r=0.00754 alpha=1000
+[score] UTS01/base/layer24: mean_r=0.00594 median_r=0.00563 alpha=215.443
+[score] UTS01/base/layer32: mean_r=0.00364 median_r=0.00335 alpha=359.381
+[arm] UTS01/lowLR
+[score] UTS01/lowLR/layer16: mean_r=0.00523 median_r=0.00498 alpha=1000
+[score] UTS01/lowLR/layer24: mean_r=0.00454 median_r=0.00432 alpha=215.443
+[score] UTS01/lowLR/layer32: mean_r=-0.00002 median_r=-0.00000 alpha=129.155
+[arm] UTS01/scrambled
+[score] UTS01/scrambled/layer16: mean_r=0.00355 median_r=0.00314 alpha=129.155
+[score] UTS01/scrambled/layer24: mean_r=0.00532 median_r=0.00532 alpha=129.155
+[score] UTS01/scrambled/layer32: mean_r=0.00007 median_r=0.00001 alpha=215.443
+[arm] UTS01/taskvec_a0p25
+[score] UTS01/taskvec_a0p25/layer16: mean_r=0.00566 median_r=0.00549 alpha=1000
+[score] UTS01/taskvec_a0p25/layer24: mean_r=0.00492 median_r=0.00458 alpha=215.443
+[score] UTS01/taskvec_a0p25/layer32: mean_r=0.00147 median_r=0.00112 alpha=599.484
+[subject] UTS02
+[response] UTS02/sweetaspie: (157, 94251)
+[response] UTS02/againstthewind: (170, 94251)
+[response] UTS02/wheretheressmoke: (291, 94251)
+[arm] UTS02/base
+[score] UTS02/base/layer16: mean_r=0.01041 median_r=0.00924 alpha=1000
+[score] UTS02/base/layer24: mean_r=0.00856 median_r=0.00793 alpha=1000
+[score] UTS02/base/layer32: mean_r=0.01130 median_r=0.00965 alpha=1000
+[arm] UTS02/lowLR
+[score] UTS02/lowLR/layer16: mean_r=0.00989 median_r=0.00923 alpha=1000
+[score] UTS02/lowLR/layer24: mean_r=0.00620 median_r=0.00585 alpha=1000
+[score] UTS02/lowLR/layer32: mean_r=0.00459 median_r=0.00411 alpha=1000
+[arm] UTS02/scrambled
+[score] UTS02/scrambled/layer16: mean_r=0.00189 median_r=0.00202 alpha=10
+[score] UTS02/scrambled/layer24: mean_r=-0.00014 median_r=0.00008 alpha=1000
+[score] UTS02/scrambled/layer32: mean_r=-0.00917 median_r=-0.00874 alpha=1000
+[arm] UTS02/taskvec_a0p25
+[score] UTS02/taskvec_a0p25/layer16: mean_r=0.01104 median_r=0.01002 alpha=1000
+[score] UTS02/taskvec_a0p25/layer24: mean_r=0.00584 median_r=0.00529 alpha=1000
+[score] UTS02/taskvec_a0p25/layer32: mean_r=0.00571 median_r=0.00491 alpha=1000
+[subject] UTS03
+[response] UTS03/sweetaspie: (157, 95556)
+[response] UTS03/againstthewind: (170, 95556)
+[response] UTS03/wheretheressmoke: (291, 95556)
+[arm] UTS03/base
+[score] UTS03/base/layer16: mean_r=0.01131 median_r=0.01014 alpha=1000
+[score] UTS03/base/layer24: mean_r=0.00946 median_r=0.00805 alpha=1000
+[score] UTS03/base/layer32: mean_r=0.00763 median_r=0.00675 alpha=1000
+[arm] UTS03/lowLR
+[score] UTS03/lowLR/layer16: mean_r=0.00974 median_r=0.00893 alpha=1000
+[score] UTS03/lowLR/layer24: mean_r=0.00827 median_r=0.00694 alpha=1000
+[score] UTS03/lowLR/layer32: mean_r=0.00576 median_r=0.00518 alpha=1000
+[arm] UTS03/scrambled
+[score] UTS03/scrambled/layer16: mean_r=0.00952 median_r=0.00898 alpha=1000
+[score] UTS03/scrambled/layer24: mean_r=0.00569 median_r=0.00564 alpha=1000
+[score] UTS03/scrambled/layer32: mean_r=0.00270 median_r=0.00247 alpha=1000
+[arm] UTS03/taskvec_a0p25
+[score] UTS03/taskvec_a0p25/layer16: mean_r=0.01071 median_r=0.00968 alpha=1000
+[score] UTS03/taskvec_a0p25/layer24: mean_r=0.00903 median_r=0.00785 alpha=1000
+[score] UTS03/taskvec_a0p25/layer32: mean_r=0.00541 median_r=0.00488 alpha=1000
+[write] /var/lib/condor/execute/slot1/dir_3515485/scratch/huth_encoding_smoke_bundle_uncapped_all/encoding/summary.csv

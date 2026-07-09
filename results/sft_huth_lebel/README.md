@@ -24,13 +24,24 @@ This directory tracks the ds003020 natural-language fMRI path for testing whethe
 - Capped CPU encoding `5513337` passed for `UTS01`, and capped CPU scale check
   `5513350` passed for `UTS02,UTS03`. These runs validate the path only because
   they use two training stories and a 2000-voxel cap.
-- Uncapped all-subject CPU encoding is running as cluster `5513373` from the
-  same `5513306` run directory. It uses
+- Uncapped all-subject CPU encoding `5513373` passed from the same `5513306`
+  run directory. It used
   `chtc/huth_lebel_smoke/huth_encoding_smoke_bundle_uncapped_all.sub`,
-  `MAX_VOXELS=0`, subjects `UTS01,UTS02,UTS03`, no GPU request, and current
-  resources `request_cpus=4`, `request_memory=16GB`, `request_disk=20GB`.
-  The event log shows input transfer completed and execution started on
-  `oconnor2007.chtc.wisc.edu` at `2026-07-08 21:13:46 CDT` with `GPUs=0`.
+  `MAX_VOXELS=0`, subjects `UTS01,UTS02,UTS03`, no GPU request, and resources
+  `request_cpus=4`, `request_memory=16GB`, `request_disk=20GB`. The event log
+  shows execution on `oconnor2007.chtc.wisc.edu` from
+  `2026-07-08 21:13:46` to `2026-07-08 21:30:09 CDT` with `GPUs=0`, and
+  Condor history reports `ExitCode=0`.
+- Uncapped `5513373` validation passed: `exit_status.txt == 0`,
+  `encoding_exit_status.txt == 0`, `summary.csv` has all 36 full-voxel rows,
+  and `alpha_cv.csv` has all 360 alpha-CV rows. Full voxel counts were used:
+  `UTS01=81126`, `UTS02=94251`, `UTS03=95556`.
+- Uncapped smoke read: `base` is the best subject-level row for all three
+  subjects (`UTS01` base L16 mean `r=0.007640`, `UTS02` base L32 mean
+  `r=0.011303`, `UTS03` base L16 mean `r=0.011305`). `taskvec_a0p25` beats
+  same-layer base only for `UTS02` L16 (`0.011037` vs `0.010409`);
+  `lowLR` trails base in all nine subject/layer cells; `scrambled` is usually
+  lower and is negative for `UTS02` L24/L32.
 - Duplicate cluster `5513244` held before work because its submit expected a
   missing output tarball; it was removed with `condor_rm`.
 
@@ -69,4 +80,28 @@ Fedorenko/EvLab language-network claims require independent subject-specific lan
 - `chtc_huth_encoding_smoke_bundle_5513337/`: capped `UTS01` encoding smoke.
 - `chtc_huth_encoding_smoke_bundle_uts02_uts03_5513350/`: capped
   `UTS02,UTS03` encoding smoke.
+- `chtc_huth_encoding_smoke_bundle_uncapped_all_5513373/`: uncapped
+  `UTS01,UTS02,UTS03` full-voxel smoke, result bundle, Condor logs, exact
+  summary table, and extracted CSVs.
 - `ENCODING_PLAN.md`: executable smoke experiment and CHTC scaling plan.
+
+## Uncapped 5513373 Mean-r Table
+
+These rows use `sweetaspie,againstthewind` for training and held-out
+`wheretheressmoke` for testing. Values are mean voxelwise Pearson `r` over all
+finite voxels.
+
+| Subject | Arm | L16 | L24 | L32 |
+|---|---|---:|---:|---:|
+| `UTS01` | `base` | 0.007640 | 0.005942 | 0.003637 |
+| `UTS01` | `lowLR` | 0.005228 | 0.004545 | -0.000024 |
+| `UTS01` | `scrambled` | 0.003554 | 0.005323 | 0.000069 |
+| `UTS01` | `taskvec_a0p25` | 0.005663 | 0.004924 | 0.001469 |
+| `UTS02` | `base` | 0.010409 | 0.008560 | 0.011303 |
+| `UTS02` | `lowLR` | 0.009891 | 0.006204 | 0.004589 |
+| `UTS02` | `scrambled` | 0.001885 | -0.000144 | -0.009166 |
+| `UTS02` | `taskvec_a0p25` | 0.011037 | 0.005836 | 0.005713 |
+| `UTS03` | `base` | 0.011305 | 0.009458 | 0.007635 |
+| `UTS03` | `lowLR` | 0.009744 | 0.008265 | 0.005761 |
+| `UTS03` | `scrambled` | 0.009525 | 0.005687 | 0.002701 |
+| `UTS03` | `taskvec_a0p25` | 0.010710 | 0.009034 | 0.005410 |

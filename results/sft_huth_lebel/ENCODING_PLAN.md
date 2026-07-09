@@ -39,14 +39,18 @@ Updated: 2026-07-09
   `UTS02,UTS03` from the validated `5513306` feature bundle. Best rows:
   `UTS02` scrambled layer 16 mean `r=0.001870`; `UTS03` base layer 16 mean
   `r=0.015795`, with `taskvec_a0p25` layer 16 mean `r=0.013765`.
-- Uncapped all-subject CPU encoding cluster `5513373` is running from the same
+- Uncapped all-subject CPU encoding cluster `5513373` passed from the same
   `5513306` run directory using
-  `huth_encoding_smoke_bundle_uncapped_all.sub`. It evaluates
+  `huth_encoding_smoke_bundle_uncapped_all.sub`. It evaluated
   `UTS01,UTS02,UTS03` with `MAX_VOXELS=0` and no GPU request. The resource
-  request is `4` CPUs, `16GB` memory, and `20GB` disk; at
-  `2026-07-08 21:11:49 CDT` it was idle with no hold and 5 willing matches,
-  then began executing on `oconnor2007.chtc.wisc.edu` at
-  `2026-07-08 21:13:46 CDT` with `GPUs=0`.
+  request was `4` CPUs, `16GB` memory, and `20GB` disk; it began executing on
+  `oconnor2007.chtc.wisc.edu` at `2026-07-08 21:13:46 CDT` with `GPUs=0` and
+  completed with `ExitCode=0` after about `986` seconds. The returned
+  `summary.csv` has all 36 expected full-voxel rows.
+- Uncapped layer-16 subject means: base `0.009785`, `taskvec_a0p25`
+  `0.009137`, `lowLR` `0.008287`, and scrambled `0.004988`. The current smoke
+  validates full-voxel execution and suggests `taskvec_a0p25` is closer to base
+  than `lowLR`, but still does not beat base.
 - Duplicate cluster `5513310` had identical settings and was removed while
   idle.
 
@@ -219,14 +223,15 @@ python src/sft/huth_lebel_smoke_encoding.py \
   --overwrite
 ```
 
-4. Uncapped all-subject CPU encoding smoke submitted:
+4. Uncapped all-subject CPU encoding smoke passed:
 
 ```bash
 chtc-ssh 'cd ~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204 && condor_submit huth_encoding_smoke_bundle_uncapped_all.sub'
 ```
 
 Cluster: `5513373`. Submit event:
-`2026-07-08 21:08:30 CDT`. The submit file sets:
+`2026-07-08 21:08:30 CDT`. Condor history: `ExitCode=0`,
+`RemoteWallClockTime=986.0`. The submit file sets:
 
 ```text
 SUBJECTS = UTS01,UTS02,UTS03
@@ -238,20 +243,24 @@ request_disk = 20GB
 
 `MAX_VOXELS=0` is intentional: `run_encoding_smoke.sh` treats `0` as no cap and
 does not pass `--max_voxels` to `src/sft/huth_lebel_smoke_encoding.py`.
-Monitor with:
+Pulled result:
 
 ```bash
-chtc-ssh 'condor_q 5513373 -nobatch'
+results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_uncapped_all_5513373/
 ```
 
-When complete, pull
+Pull command:
+
+```bash
+chtc-pull 'chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204/huth_encoding_smoke_bundle_uncapped_all_results.tgz' \
+  results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_uncapped_all_5513373/
+```
+
+This bundle contains
 `huth_encoding_smoke_bundle_uncapped_all_results.tgz` from the same run
-directory into
-`results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_uncapped_all_5513373/`,
-extract it, verify `encoding_exit_status.txt == 0`, and summarize
-`encoding/summary.csv` by subject, arm, and layer. Treat results as a smoke
-read only: training is still two short stories and the held-out story is fixed
-to `wheretheressmoke`.
+directory, `encoding_exit_status.txt == 0`, `encoding/summary.csv`, and
+`encoding/alpha_cv.csv`. Treat results as a smoke read only: training is still
+two short stories and the held-out story is fixed to `wheretheressmoke`.
 
 5. For high-data scaling after smoke:
    - Stage `/staging/s/suresh27/datasets/ds003020-highdata`.
