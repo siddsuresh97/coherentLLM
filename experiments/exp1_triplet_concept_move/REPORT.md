@@ -1,6 +1,6 @@
 # Experiment 1 Report - Detecting a Concept Move from Triplets
 
-Current status: baseline and noise floor are green, but the model-edit pathway has **not yet produced a clean positive detection**. The latest completed NOVA feature-listing run moved behavior, but the movement was broad and the edited concept was not localized.
+Current status: baseline and noise floor are green, but the model-edit pathway has **not yet produced a clean positive detection**. The latest completed NOVA feature-listing run moved behavior, but the movement was broad and the edited concept was not localized. A lower-drift run is ready, but from this Codex execution path online W&B upload is blocked by policy, and the user requested online training only.
 
 ## Hypothesis
 
@@ -20,6 +20,7 @@ Success requires both:
 | 1 | Direct pairwise similarity fallback | No | Partial / not success | `antelope` ranked 1, but SNR was exactly 1.000 because control drift matched edit drift. |
 | 2 | NOVA feature-listing SFT | Yes | Did not localize | SNR was 1.055, but `antelope` ranked 23; many non-target rows moved more. |
 | 3 | Matched pairwise similarity fallback | Yes | Prepared, strong run stopped | The strong `rank=32`, `lr=2e-4` setting looked too broad/unstable, so I stopped before treating it as evidence. |
+| 4 | Lower-drift NOVA feature-listing | Yes | Blocked / not completed | Online W&B launch was blocked by execution policy; an offline fallback was started and then interrupted at about step 134 after the user restated online-only training. |
 
 Main interpretation: the detector and scorer work, and the model's triplet behavior can move, but the current LoRA settings are too broad for attribution. This is probably a training-strength/null-tightness issue, not evidence that triplets can never detect the move.
 
@@ -57,7 +58,7 @@ Evidence: [results/sft_eval/mitigation/summary.csv](../../results/sft_eval/mitig
 
 ## Next Run
 
-Use the same matched NOVA feature-listing data, but a lower-drift recipe:
+Use the same matched NOVA feature-listing data, but a lower-drift recipe. This should be launched from an environment where W&B online upload is allowed:
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 \
@@ -81,6 +82,8 @@ The runner now:
 - Refuses to silently continue without W&B when `--report_to wandb` is requested.
 
 W&B note: the code is ready for online W&B, but this Codex session could not upload the completed run because sending private experiment artifacts to W&B was blocked by execution policy. No workaround was attempted.
+
+Latest W&B status: online training was attempted from Codex on 2026-07-09 and blocked before launch. I briefly started the same lower-drift run in local/offline W&B mode as a safer fallback, but stopped both jobs at about step 134/400 when the user clarified that training should always be online. Those interrupted offline runs are not counted as completed experiment results.
 
 Relevant files: [scripts/run_experiment1_real_gpu.sh](../../scripts/run_experiment1_real_gpu.sh), [src/sft/train_lora.py](../../src/sft/train_lora.py), [scripts/upload_experiment1_wandb.py](../../scripts/upload_experiment1_wandb.py).
 
@@ -163,7 +166,7 @@ Assistant: 1
 | 0b behavioral RDM + floor | Green | Frozen protocol and floor are established. |
 | 1 item selection | Green | `antelope` target, `bison` concentrated neighbor. |
 | 2 edit operator | Green for `concentrated_drop_100` | Intended feature-RDM move is specified. |
-| 3 two-LoRA null | In progress | Completed strong feature-listing run; next run is lower drift. |
+| 3 two-LoRA null | Blocked for next run | Completed strong feature-listing run; lower-drift run should be online-W&B only, but Codex cannot upload to W&B from this policy-restricted path. |
 | 4 detection/localization | Red for latest completed run | SNR barely above 1, but target rank 23. |
 | 5 resolution map | Not done | Only one real cell has been evaluated. |
 
