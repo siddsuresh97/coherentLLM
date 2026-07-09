@@ -1,0 +1,31 @@
+{
+  "control_assignments.csv": {
+    "control_concept": "wrong concept used for the control",
+    "control_type": "control family assigned before scoring hidden-state similarities",
+    "lexical_similarity": "surface-form lexical score between query and control",
+    "sstar_similarity": "S* similarity between query concept and control concept"
+  },
+  "control_summary.csv": {
+    "best_layer_name": "descriptive best layer by paired_delta; not a primary selector",
+    "mid_p_perm_greater": "mean layer-level sign-flip p-value over the mid-layer band",
+    "mid_paired_delta": "mean paired_delta over the fixed mid-layer band"
+  },
+  "controls_by_layer.csv": {
+    "arm": "model arm / adapter condition",
+    "ci_high": "bootstrap 97.5% bound over concept-level paired deltas",
+    "ci_low": "bootstrap 2.5% bound over concept-level paired deltas",
+    "control_score": "mean cosine similarity for matched wrong-control concept",
+    "control_type": "random, close_neighbor, far_neighbor, lexical, or category_proxy",
+    "format_a": "source prompt spoke; __mean__ rows average format pairs",
+    "format_b": "target prompt spoke; __mean__ rows average format pairs",
+    "layer": "integer layer index; 0 is embedding for current hidden-state files",
+    "layer_name": "stored layer label",
+    "matched_score": "mean cosine similarity for same concept across spokes",
+    "n_concepts": "number of query concepts scored",
+    "p_perm_greater": "one-sided paired sign-flip p-value for positive delta",
+    "paired_delta": "mean matched_score - control_score over concepts",
+    "retrieval_margin": "same-concept similarity minus best nonself similarity",
+    "retrieval_top1": "same-concept retrieval top-1 among all concepts",
+    "retrieval_top5": "same-concept retrieval top-5 among all concepts"
+  }
+}

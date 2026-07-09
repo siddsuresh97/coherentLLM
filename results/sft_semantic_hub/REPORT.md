@@ -34,6 +34,41 @@ Layer-resolved semantic-hub metrics computed from extracted hidden states.
 - Treat this as evidence for stronger cross-format invariance, not yet a clean concept-dominant semantic hub: concept-minus-format alignment remains negative for every arm.
 - Next bridge: correlate arm/layer hub metrics with fMRI RSA and inspect whether format-averaged hub RDMs explain fMRI better than single-format RDMs.
 
+## MEMP Paper-Style Control Harness
+
+New runnable harness:
+`src/sft/run_semantic_hub_memp.py`.
+
+Trackable output directory:
+`results/sft_semantic_hub/memp_paper_harness/`.
+
+Implemented paper-method pieces:
+
+- machine-readable config: `memp_paper_config.json`;
+- run manifest: `memp_paper_harness/manifest.json`;
+- metric schema: `memp_paper_harness/metric_schema.json`;
+- local dry-run mode that validates arms, layers, controls, and output schema;
+- Wu et al. Eq. 1-style matched-vs-control similarity across prompt spokes;
+- fixed mid-layer readout over layers `10:20`;
+- controls for random nonmatches, S*-close, S*-far, lexical-surface matches,
+  and S*-cluster category proxies.
+
+Key mid-layer readout from the full local CPU run:
+
+| Arm | Random Delta | Lexical Delta | Category-Proxy Delta | S*-Close Delta | Top-1 |
+|---|---:|---:|---:|---:|---:|
+| `taskvec_a0p25` | 0.0403 | 0.0355 | 0.0106 | 0.0011 | 0.2062 |
+| `taskvec_a0p5` | 0.0668 | 0.0546 | 0.0182 | 0.0070 | 0.1578 |
+| `taskvec_a1p0` | 0.0491 | 0.0382 | 0.0154 | 0.0099 | 0.0637 |
+| `base` | 0.0021 | 0.0016 | 0.0007 | -0.0002 | 0.0192 |
+
+Read: task-vector arms clearly beat base on broad, lexical, and category-proxy
+controls. The exact-identity S*-close margin is still small, so the claim should
+remain "stronger semantic clustering / format invariance" rather than a proven
+clean concept hub. `taskvec_a0p25` remains the best retrieval tradeoff;
+`taskvec_a0p5` and `taskvec_a1p0` remain diagnostic because they win broader
+and stricter deltas respectively.
+
 ## Best-Layer Summary
 
 | Arm | Best Layer | Best RDM Spearman | Best CKA | Best Top-1 | Best Concept-Format |
@@ -51,3 +86,4 @@ Layer-resolved semantic-hub metrics computed from extracted hidden states.
 - Hidden-state input: `/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hidden_states`
 - Layer metrics: `/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hub_by_layer.csv`
 - Summary: `/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hub_summary.csv`
+- MEMP harness report: `/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/memp_paper_harness/REPORT.md`

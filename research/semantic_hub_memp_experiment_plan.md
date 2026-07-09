@@ -122,6 +122,18 @@ Decision rule:
 - Failure/qualification: same-random improves while same-close stays near zero,
   which indicates broad semantic smoothing rather than exact concept identity.
 
+Implementation checkpoint:
+
+```bash
+python src/sft/run_semantic_hub_memp.py --overwrite
+```
+
+This writes a machine-readable config, run manifest, metric schema, control
+assignment table, layer table, summary table, and report under
+`results/sft_semantic_hub/memp_paper_harness/`. It extends the earlier E1 scorer
+with lexical and category-proxy controls while keeping the same fixed `10:20`
+middle-layer readout.
+
 ### E2: Hubness And Retrieval Artifact Checks
 
 Question: do retrieval gains reflect concept matching, or do a few generic
@@ -199,15 +211,19 @@ Decision rule:
 
 Question: do similarity gains survive non-semantic confounds?
 
-Script TODO: extend `src/sft/semantic_hub_hubness.py` or create
-`src/sft/semantic_hub_controls.py`.
+Implemented first-pass script: `src/sft/run_semantic_hub_memp.py`.
 
-Controls to add:
+Implemented controls:
 
-- same S* neighborhood but wrong concept identity;
-- category-balanced random negatives, using NOVA/THINGS feature-space clusters
-  if no explicit category table is available;
+- same S* neighborhood but wrong concept identity (`close_neighbor`);
+- S*-far easy negative;
+- deterministic random nonmatches;
 - lexical overlap and token-count matched negatives;
+- category-proxy negatives using deterministic clusters over the S* concept
+  similarity matrix when no explicit category table is available.
+
+Still planned controls:
+
 - single-token-only subset for logit-lens anchors;
 - prompt length as a covariate;
 - close/far swap in symbolic strings while preserving lexical content;
@@ -218,11 +234,18 @@ Primary tables:
 
 - `control_type`, `arm`, `layer`, `format_pair`, `matched_score`,
   `control_score`, `paired_delta`, `ci_low`, `ci_high`, `p_perm`, `n_concepts`.
+- actual output: `results/sft_semantic_hub/memp_paper_harness/controls_by_layer.csv`.
+- summary: `results/sft_semantic_hub/memp_paper_harness/control_summary.csv`.
 
 Decision rule:
 
 - The hub claim survives only if same-concept deltas remain positive against
   S*-close, lexical/token-count, and category-balanced controls.
+
+Current read: task-vector arms survive random, lexical, and category-proxy
+controls clearly, but the S*-close exact-identity margin remains small. Keep the
+claim at "stronger semantic clustering / format invariance" until logit-lens
+anchoring and causal interventions pass.
 
 ### E5: Logit-Lens Semantic Anchoring
 

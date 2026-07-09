@@ -25,7 +25,7 @@ prompt spokes.
 
 | Paper method | Paper object | Repo analogue | Current status | Next artifact |
 |---|---|---|---|---|
-| Relative similarity, Eq. 1 | matched cross-language/modality inputs vs nonmatches | same held-out concept across triplet/pairwise/feature spokes vs random, S*-close, and S*-far controls | implemented in `src/sft/run_semantic_hub_paper_similarity.py`; report exists in `results/sft_semantic_hub_paper/` | keep as baseline; add lexical/category controls |
+| Relative similarity, Eq. 1 | matched cross-language/modality inputs vs nonmatches | same held-out concept across triplet/pairwise/feature spokes vs random, S*-close, S*-far, lexical, and category-proxy controls | implemented in `src/sft/run_semantic_hub_paper_similarity.py` and the runnable harness `src/sft/run_semantic_hub_memp.py` | use `results/sft_semantic_hub/memp_paper_harness/` as the trackable control schema |
 | Middle-layer hub localization | layer curves showing strongest matched-over-baseline effects in intermediate layers | Llama-3.1-8B layers `10:20`, with all layers retained | implemented for RDM/CKA/retrieval and paper-style similarity | add cluster/permutation statistics over layer curves |
 | RDM/RSA geometry | structure agreement across equivalent inputs | cross-format concept RDM Spearman | implemented in `src/sft/run_semantic_hub.py` | report alongside paper-style deltas |
 | CKA geometry | representation-space similarity across spokes | linear CKA across format-specific concept matrices | implemented in `src/sft/run_semantic_hub.py` | use as secondary geometry metric |
@@ -33,7 +33,7 @@ prompt spokes.
 | Logit-lens anchoring, Eq. 2-3 | hidden states closer to dominant-language semantic tokens than surface-form tokens | concept/neighbor token logits vs `A/B/yes/no` or option-string surface logits | not implemented | `results/sft_semantic_hub_paper/logit_lens_by_layer.csv` |
 | Formal/code spoke | non-natural-language surface forms sharing semantics with text | symbolic S* spoke with close/far neighbors and similarities | not implemented | `results/sft_semantic_hub_paper/symbolic_similarity_by_layer.csv` |
 | Causal intervention | ActAdd/patching in shared space changes output in another data type | same-concept spoke patch, concept transplant, and activation addition across prompt formats | not implemented | `results/sft_semantic_hub_paper/intervention_by_layer.csv` |
-| Negative controls | unrelated inputs, baselines, surface confounds | scrambled arm, random concept, S*-close concept, shuffled vector, wrong layer, lexical/category matched controls | partial | `controls_by_layer.csv`, `hubness_by_layer.csv` |
+| Negative controls | unrelated inputs, baselines, surface confounds | scrambled arm, random concept, S*-close concept, lexical controls, S*-cluster category proxies, shuffled vector, wrong layer | lexical/category controls implemented locally; shuffled/wrong-layer intervention controls still planned | `results/sft_semantic_hub/memp_paper_harness/controls_by_layer.csv`; later `hubness_by_layer.csv` |
 
 ## Current Result Anchors
 
@@ -51,6 +51,17 @@ From `results/sft_semantic_hub_paper/REPORT.md`:
 - Best mid-layer same-minus-S*-close: `taskvec_a1p0` at `0.0099`.
 - `taskvec_a0p25` has the best retrieval tradeoff but only `0.0011` on
   same-minus-S*-close.
+
+From `results/sft_semantic_hub/memp_paper_harness/REPORT.md`:
+
+- Full local CPU harness uses all 128 concepts, all 33 stored layers, and the
+  fixed `10:20` mid-layer band.
+- `taskvec_a0p25` mid-layer deltas: random `0.0403`, lexical `0.0355`,
+  category-proxy `0.0106`, S*-close `0.0011`, top-1 `0.2062`.
+- `taskvec_a0p5` has the strongest broad/category deltas: random `0.0668`,
+  lexical `0.0546`, category-proxy `0.0182`.
+- `taskvec_a1p0` has the strongest S*-close exact-identity delta: `0.0099`,
+  but weaker retrieval (`0.0637` top-1).
 
 Interpretation: the current run supports stronger cross-format semantic
 clustering in aligned/task-vector arms. It does not yet prove exact-concept
@@ -77,6 +88,29 @@ python src/sft/run_semantic_hub_paper_similarity.py \
   --arms base taskvec_a0p25 scrambled \
   --mid_layers 10:20 \
   --n_boot 100
+```
+
+CPU MEMP harness dry-run and smoke:
+
+```bash
+python src/sft/run_semantic_hub_memp.py \
+  --dry-run \
+  --out-dir /tmp/semantic_hub_memp_dryrun \
+  --max-concepts 16 \
+  --layers 10:12 \
+  --arms base taskvec_a0p25 scrambled \
+  --n-boot 20 \
+  --n-perm 20 \
+  --overwrite
+
+python src/sft/run_semantic_hub_memp.py \
+  --out-dir /tmp/semantic_hub_memp_compute_smoke \
+  --arms base taskvec_a0p25 scrambled \
+  --layers 10:12 \
+  --max-concepts 32 \
+  --n-boot 50 \
+  --n-perm 50 \
+  --overwrite
 ```
 
 GPU hidden-state smoke if new spokes are added:
@@ -110,6 +144,11 @@ Add these as semantic-hub-specific helpers only:
   concept transplant, and activation addition.
 - `src/sft/semantic_hub_compile_paper_report.py`: merge CSVs, bootstrap deltas,
   FDR, layer-cluster tests, and Markdown report.
+
+Implemented helper:
+
+- `src/sft/run_semantic_hub_memp.py`: config/manifest/schema harness plus
+  lexical and category-proxy control scoring from existing hidden states.
 
 ## Local Vs CHTC
 

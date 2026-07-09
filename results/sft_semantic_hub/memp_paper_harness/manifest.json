@@ -1,0 +1,207 @@
+{
+  "arms": [
+    {
+      "arm": "base",
+      "path": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hidden_states/base.npz",
+      "shape": [
+        3,
+        128,
+        33,
+        4096
+      ],
+      "status": "available"
+    },
+    {
+      "arm": "scrambled",
+      "path": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hidden_states/scrambled.npz",
+      "shape": [
+        3,
+        128,
+        33,
+        4096
+      ],
+      "status": "available"
+    },
+    {
+      "arm": "lowLR",
+      "path": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hidden_states/lowLR.npz",
+      "shape": [
+        3,
+        128,
+        33,
+        4096
+      ],
+      "status": "available"
+    },
+    {
+      "arm": "lowrank",
+      "path": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hidden_states/lowrank.npz",
+      "shape": [
+        3,
+        128,
+        33,
+        4096
+      ],
+      "status": "available"
+    },
+    {
+      "arm": "taskvec_a0p25",
+      "path": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hidden_states/taskvec_a0p25.npz",
+      "shape": [
+        3,
+        128,
+        33,
+        4096
+      ],
+      "status": "available"
+    },
+    {
+      "arm": "taskvec_a0p5",
+      "path": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hidden_states/taskvec_a0p5.npz",
+      "shape": [
+        3,
+        128,
+        33,
+        4096
+      ],
+      "status": "available"
+    },
+    {
+      "arm": "taskvec_a1p0",
+      "path": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hidden_states/taskvec_a1p0.npz",
+      "shape": [
+        3,
+        128,
+        33,
+        4096
+      ],
+      "status": "available"
+    }
+  ],
+  "concepts": {
+    "first_scored": [
+      "accordion",
+      "acorn",
+      "airplane",
+      "aloe",
+      "ant",
+      "anteater",
+      "antelope",
+      "anvil",
+      "apple",
+      "artichoke"
+    ],
+    "n_available": 128,
+    "n_scored": 128,
+    "subset_policy": "all"
+  },
+  "controls": {
+    "category_clusters": 16,
+    "category_source": "auto_sstar_kmeans_proxy",
+    "selected": [
+      "random",
+      "close_neighbor",
+      "far_neighbor",
+      "lexical",
+      "category_proxy"
+    ]
+  },
+  "created_utc": "2026-07-09T02:59:31.455948+00:00",
+  "dry_run": false,
+  "formats": [
+    "triplet",
+    "pairwise",
+    "feature_listing"
+  ],
+  "git_sha": "59916be",
+  "inputs": {
+    "config": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/memp_paper_config.json",
+    "hidden_dir": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hidden_states",
+    "neighbor_table": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/hidden_states/neighbor_table.csv"
+  },
+  "layers": {
+    "mid_layer_end": 20,
+    "mid_layer_names": [
+      "layer_10",
+      "layer_11",
+      "layer_12",
+      "layer_13",
+      "layer_14",
+      "layer_15",
+      "layer_16",
+      "layer_17",
+      "layer_18",
+      "layer_19",
+      "layer_20"
+    ],
+    "mid_layer_start": 10,
+    "n_available": 33,
+    "selected_layers": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ]
+  },
+  "method_note": "Text-only MEMP analogue of semantic-hub Eq. 1: same concept across prompt spokes vs controlled wrong concepts.",
+  "outputs": {
+    "control_assignments": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/memp_paper_harness/control_assignments.csv",
+    "control_summary": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/memp_paper_harness/control_summary.csv",
+    "controls_by_layer": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/memp_paper_harness/controls_by_layer.csv",
+    "manifest": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/memp_paper_harness/manifest.json",
+    "metric_schema": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/memp_paper_harness/metric_schema.json",
+    "report": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/memp_paper_harness/REPORT.md",
+    "run_config": "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_semantic_hub/memp_paper_harness/run_config.json"
+  },
+  "paper_method_pieces": {
+    "implemented": [
+      "relative matched-vs-control similarity",
+      "middle-layer primary readout",
+      "random, S*-close, S*-far, lexical, and category-proxy controls",
+      "bootstrap CIs and paired sign-flip p-values",
+      "machine-readable config, manifest, and schema"
+    ],
+    "still_planned": [
+      "logit-lens semantic anchoring",
+      "symbolic S* spoke extraction",
+      "causal activation interventions",
+      "cluster-corrected layer statistics"
+    ]
+  },
+  "paper_source": "https://arxiv.org/abs/2411.04986",
+  "script": "src/sft/run_semantic_hub_memp.py",
+  "statistics": {
+    "n_boot": 300,
+    "n_perm": 1000,
+    "seed": 17
+  }
+}

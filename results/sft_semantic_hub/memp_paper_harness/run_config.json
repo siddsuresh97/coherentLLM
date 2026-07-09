@@ -1,0 +1,56 @@
+{
+  "arms": [
+    "base",
+    "scrambled",
+    "lowLR",
+    "lowrank",
+    "taskvec_a0p25",
+    "taskvec_a0p5",
+    "taskvec_a1p0"
+  ],
+  "category_control": {
+    "n_clusters": 16,
+    "note": "Proxy category labels are deterministic clusters over the S* concept-similarity matrix. Replace with an explicit category table when one is available.",
+    "source": "auto_sstar_kmeans_proxy"
+  },
+  "controls": [
+    "random",
+    "close_neighbor",
+    "far_neighbor",
+    "lexical",
+    "category_proxy"
+  ],
+  "experiment": "semantic_hub_memp_paper_style",
+  "hidden_dir": "results/sft_semantic_hub/hidden_states",
+  "layers": "all",
+  "mid_layers": "10:20",
+  "out_dir": "results/sft_semantic_hub/memp_paper_harness",
+  "paper_method_pieces": {
+    "implemented": [
+      "Eq. 1 relative similarity: matched cross-spoke states vs nonmatches",
+      "middle-layer band fixed before scoring",
+      "random, S*-close, S*-far, lexical, and category-proxy controls",
+      "bootstrap confidence intervals over concepts",
+      "sign-flip permutation p-values over paired deltas",
+      "machine-readable manifest and metric schema"
+    ],
+    "planned": [
+      "logit-lens dominant-token anchoring",
+      "symbolic S* spoke extraction",
+      "causal cross-spoke activation patching / addition",
+      "cluster-level layer statistics and FDR correction"
+    ]
+  },
+  "paper_source": "https://arxiv.org/abs/2411.04986",
+  "primary_arms": [
+    "base",
+    "taskvec_a0p25",
+    "scrambled"
+  ],
+  "repo_analogue": "same held-out concept across prompt-format spokes",
+  "statistics": {
+    "n_boot": 300,
+    "n_perm": 1000,
+    "seed": 17
+  }
+}
