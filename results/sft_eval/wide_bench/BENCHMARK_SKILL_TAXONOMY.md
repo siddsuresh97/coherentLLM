@@ -242,11 +242,11 @@ support them.
 
 Priority follow-ups:
 
-1. Finish comparable `taskvec_a0p25` MMLU before claiming broad retention.
-   Existing local tables do not include this cell. The decision gate should be:
-   task-vector MMLU micro delta materially better than lowrank, preferably
-   around `>= -0.06`, and worst subjects improved in moral scenarios, formal
-   logic, and medical genetics.
+1. Treat completed `taskvec_a0p25` MMLU as partial mitigation, not broad
+   retention. It improves micro accuracy by `+0.031` over lowrank but remains
+   `-0.070` below base, so follow-up should focus on the residual worst
+   subjects: moral scenarios, formal logic, medical genetics, nutrition,
+   professional psychology, and high-school statistics.
 
 2. Add a cheap failure-suite before any more full MMLU runs. Include
    `mmlu_moral_scenarios`, `mmlu_formal_logic`, `mmlu_medical_genetics`,

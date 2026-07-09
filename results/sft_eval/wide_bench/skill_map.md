@@ -1,12 +1,14 @@
 # Wide-Benchmark Skill Map
 
-Last updated: 2026-07-08
+Last updated: 2026-07-09
 
 This map groups the current wide-benchmark deltas by the skill each benchmark
 mostly probes. Deltas are relative to the base Llama-3.1-8B-Instruct run in
 `results/sft_eval/wide_bench/raw_task_summary.csv`. The `taskvec_a0p25` ARC
 and HellaSwag results and the scrambled ARC/HellaSwag results are from
-completed split runs under `results/sft_eval/wide_bench/runs/`.
+completed split runs under `results/sft_eval/wide_bench/runs/`; the
+`taskvec_a0p25` MMLU result is from the completed 57-subject CHTC shard merge
+under `results/sft_eval/wide_bench/chtc_mmlu_shards/coherence-mmlu-shards-20260709-004133/merged/`.
 
 | Task | Skill proxy | Base | Lowrank delta | Taskvec 0.25 delta | Scrambled delta | Read |
 |---|---|---:|---:|---:|---:|---|
@@ -19,7 +21,7 @@ completed split runs under `results/sft_eval/wide_bench/runs/`.
 | ARC-Easy | Grade-school science retrieval | 0.850 | -0.145 | -0.042 | -0.544 | Improved by task-vector but still hurt; catastrophic under scrambled SFT |
 | ARC-Challenge | Hard science reasoning | 0.649 | -0.141 | -0.090 | -0.424 | Improved by task-vector but still hurt; catastrophic under scrambled SFT |
 | HellaSwag | Script and event plausibility | 0.685 | -0.002 | -0.005 | -0.398 | Preserved by coherent lowrank/task-vector, badly hurt by scrambled SFT |
-| MMLU | Broad exam knowledge and reasoning | 0.693 | -0.101 |  |  | Hurt; task-vector pending |
+| MMLU | Broad exam knowledge and reasoning | 0.693 | -0.101 | -0.070 |  | Hurt; task-vector partially mitigates lowrank |
 
 ## Interpretation
 
@@ -44,11 +46,12 @@ only measuring the induced semantic skill; they are also sensitive to incoherent
 rank-64 adapter/SFT perturbation.
 
 No broad benchmark is clearly boosted above base yet. The useful gains are
-relative mitigations: `taskvec_a0p25` improves ARC-Easy by `+0.103` and
-ARC-Challenge by `+0.051` over lowrank, and improves PIQA/OpenBookQA over
-lowrank, while preserving HellaSwag and WinoGrande. That pattern says the
-task-vector keeps part of the semantic/coherence benefit while reducing, but
-not eliminating, the capability cost.
+relative mitigations: `taskvec_a0p25` improves ARC-Easy by `+0.103`,
+ARC-Challenge by `+0.051`, and MMLU by `+0.031` micro accuracy over lowrank,
+and improves PIQA/OpenBookQA over lowrank, while preserving HellaSwag and
+WinoGrande. That pattern says the task-vector keeps part of the
+semantic/coherence benefit while reducing, but not eliminating, the capability
+cost.
 
 TruthfulQA is not one of the largest lowrank drops in the current numbers:
 lowrank is only `-0.010` and lowLR is `-0.017`, both flat by the current
@@ -76,9 +79,9 @@ ranking story rather than a simple "truth skill got worse" story.
 
 ## Next Tests
 
-- Finish `taskvec_a0p25` MMLU 5-shot through the split local shards or CHTC
-  shards, then decide whether alpha-0.25 helps broad exam knowledge the way it
-  helps ARC.
+- Use the completed `taskvec_a0p25` MMLU merge to build a cheap failure slice:
+  moral scenarios, formal logic, medical genetics, nutrition, professional
+  psychology, and high-school statistics.
 - Use the TruthfulQA item-level deltas to group failure classes:
   medical/safety myths, conspiracy lures, stereotype/generalization lures, and
   ordinary factual confusions.

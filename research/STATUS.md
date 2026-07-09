@@ -165,7 +165,10 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   WinoGrande, and task-vector `alpha=0.25` is also flat on HellaSwag
   (`0.680` vs base `0.685`). Task-vector ARC improves over lowrank
   (`ARC-Easy 0.808` vs `0.705`, `ARC-Challenge 0.559` vs `0.508`) but remains
-  below base (`0.850`, `0.649`). Lowrank still drops MMLU, WiC, and
+  below base (`0.850`, `0.649`). CHTC MMLU now shows `taskvec_a0p25` partially
+  mitigates lowrank but still drops versus base: micro acc `0.622964`
+  (`-0.069959` vs base, `+0.031093` vs lowrank), macro acc `0.617931`
+  (`-0.074210` vs base). Lowrank still drops MMLU, WiC, and
   OpenBookQA. The skill map is in
   `results/sft_eval/wide_bench/skill_map.md`: preserved skills look like
   event/discourse/affordance plausibility, while hurt skills are lexical sense
@@ -190,20 +193,18 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   tied with or worse than the best single prompt-format spoke. ATL/Language
   show small aligned-state averaged-predictor advantages, but the absolute
   effects are exploratory.
-- Current active A5000 lanes are split `taskvec_a0p25 mmlu_5shot` shards on
-  GPU0 and GPU1. They use `gpu_mem_util=0.72 --batch_size 4`; short MMLU
-  probes pass at this setting, but long-context subjects still run slowly and
-  emit truncation warnings at `max_model_len=2048`. This is not a duplicate of
-  the completed base/lowLR/lowrank MMLU rows, but the missing task-vector
-  mitigation row.
-- CHTC MMLU scale-out is now staged and smoke-tested through the scheduler. Use
-  the PyTorch CUDA image, not `vllm/vllm-openai`, because the latter has a
-  `huggingface-hub`/`transformers` incompatibility on CHTC. Require
-  `TARGET.CUDAGlobalMemoryMb >= 40000`. Smoke `5513177` ran on an H200 and
-  loaded the model, but failed because the runtime image lacked a C compiler
-  for Triton/vLLM LoRA kernels. The active retry is devel-image cluster
-  `5513195` from `~/chtc-runs/coherence-mmlu-shards-20260709-004133`; it is
-  idle but satisfiable at last check.
+- The split local A5000 `taskvec_a0p25 mmlu_5shot` fallback shards completed
+  and are retained as provenance, but the official row is the pure CHTC merge.
+- CHTC MMLU scale-out completed from
+  `~/chtc-runs/coherence-mmlu-shards-20260709-004133`. Use the PyTorch devel
+  CUDA image, not `vllm/vllm-openai`, because the latter has a
+  `huggingface-hub`/`transformers` incompatibility on CHTC. Require both
+  `TARGET.HasCHTCStaging == true` and `TARGET.CUDAGlobalMemoryMb >= 40000`.
+  Smoke `5513195` passed, full cluster `5513268` required missing-staging
+  retry `5513291` and scratch-cache retries `5513309`/`5513313`, and the final
+  merge under
+  `results/sft_eval/wide_bench/chtc_mmlu_shards/coherence-mmlu-shards-20260709-004133/merged/`
+  covers all 57 subject tasks with no duplicate contamination.
 - Scrambled HellaSwag 10-shot is complete: `acc_norm=0.287` on 1000 examples
   versus base `0.685` (`delta=-0.398`). HellaSwag is therefore preserved by
   coherent lowrank/task-vector states, not by arbitrary rank-64 SFT

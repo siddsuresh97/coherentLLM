@@ -160,7 +160,7 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 def write_csv(path: Path, rows: list[dict[str, object]], fields: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fields)
+        writer = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         for row in rows:
             writer.writerow({field: row.get(field, "") for field in fields})
@@ -296,6 +296,11 @@ def load_wide_rows() -> list[dict[str, object]]:
             }
         )
 
+    existing_summary_keys = {
+        (str(r["task"]), str(r["model"]), str(r["metric"]))
+        for r in records
+    }
+
     for path in sorted((WIDE / "runs").glob("*/*/results_*.json")):
         parsed = run_state_from_name(path.relative_to(WIDE / "runs").parts[0])
         if parsed is None:
@@ -310,6 +315,8 @@ def load_wide_rows() -> list[dict[str, object]]:
             if picked is None:
                 continue
             metric, value = picked
+            if (task, model, metric) in existing_summary_keys:
+                continue
             base = base_by_task_metric.get((task, metric), base_by_task.get(task, math.nan))
             delta = value - base if not math.isnan(base) else math.nan
             records.append(
@@ -479,7 +486,7 @@ def build_truthfulqa_mechanism(records: list[dict[str, object]]) -> list[dict[st
 
 def top_mmlu_drops(records: list[dict[str, object]], per_model: int = 12) -> list[dict[str, object]]:
     out: list[dict[str, object]] = []
-    for model in ["lowLR", "lowrank"]:
+    for model in ["lowLR", "lowrank", "taskvec_a0p25"]:
         rows = [
             r
             for r in records
@@ -628,7 +635,7 @@ def write_report(records: list[dict[str, object]], skill_rows: list[dict[str, ob
         )
 
     mmlu_report_rows: list[dict[str, object]] = []
-    for model in ["lowLR", "lowrank"]:
+    for model in ["lowLR", "lowrank", "taskvec_a0p25"]:
         mmlu_report_rows.extend([r for r in mmlu_drops if r["model"] == model][:8])
     mmlu_table = [
         [
@@ -697,7 +704,7 @@ def write_report(records: list[dict[str, object]], skill_rows: list[dict[str, ob
         "",
         "## Where Drops Happen",
         "",
-        "- MMLU: lowLR drops from 0.693 to 0.594 (`-0.099` micro; `-0.093` macro). Lowrank drops to 0.592 (`-0.101` micro; `-0.092` macro). The damage is broad, not one subject.",
+        "- MMLU: lowLR drops from 0.693 to 0.594 (`-0.099` micro; `-0.093` macro). Lowrank drops to 0.592 (`-0.101` micro; `-0.092` macro). `taskvec_a0p25` improves the aggregate relative to lowrank (`0.623`, `-0.070` micro; `0.618`, `-0.074` macro), but the damage is still broad.",
         "- ARC/OpenBookQA: lowrank ARC-Easy/Challenge drops `-0.145`/`-0.141`; task-vector recovers part of ARC (`-0.042`/`-0.090`) but remains below base. OpenBookQA remains hurt for lowLR/lowrank/task-vector.",
         "- WiC: lowLR, lowrank, task-vector, and scrambled all land near chance, around 0.50. This is the cleanest lexical/disambiguation failure and likely reflects weakened context-specific sense boundaries.",
         "- Professional/law/moral: MMLU moral scenarios is the largest lowrank drop (`-0.317`) and also the largest lowLR drop (`-0.248`). Professional psychology, professional medicine, professional law, moral disputes, philosophy, and business ethics are also mostly down.",
@@ -729,12 +736,12 @@ def write_report(records: list[dict[str, object]], skill_rows: list[dict[str, ob
         "- Adapter/output-surface perturbation: scrambled-label runs crater ARC, HellaSwag, CommonsenseQA, and TruthfulQA, so some loss comes from LoRA/SFT perturbing the answer-ranking surface even without useful semantic alignment.",
         "- Sense-boundary collapse: WiC drops across aligned and scrambled variants, suggesting global semantic association is a poor substitute for local sense disambiguation.",
         "- Long-option calibration: MMLU moral/professional/law prompts often have long, semantically close answer options. The coherence objective may make related distractors too competitive.",
-        "- Partial task-vector coverage: `taskvec_a0p25` has no completed aggregate MMLU row in the current artifacts, so ARC improvements cannot yet be generalized to MMLU.",
+        "- Partial mitigation: `taskvec_a0p25` improves ARC and MMLU relative to lowrank, but not enough to recover calibrated multiple-choice performance to base.",
         "- Metric comparability: full TruthfulQA and 200-item logsample diagnostics answer related but different questions. The diagnostic is mechanistic, not the final benchmark score.",
         "",
         "## Mitigation Ideas",
         "",
-        "- Treat `taskvec_a0p25` as the current best representation-use arm, but do not assume it fixes retention until aggregate MMLU completes.",
+        "- Treat `taskvec_a0p25` as the current best representation-use arm and a partial ARC/MMLU retention mitigation, not a broad retention fix.",
         "- Add a small retention/KL replay mix during SFT: ARC/OpenBookQA, WiC-style sense contrasts, TruthfulQA false-lure calibration, and MMLU moral/professional/formal examples. Keep the base-logit KL on multiple-choice prompts.",
         "- Sweep task-vector alpha on the failure set (`0.1`, `0.2`, `0.25`, `0.3`, `0.5`) and score ARC, WiC, TruthfulQA logsamples, and a small MMLU diagnostic before running full MMLU.",
         "- For TruthfulQA, optimize relative true-vs-false mass rather than aggregate MC2 alone. Track `false_pressure_up` and worst lure classes.",
@@ -742,8 +749,8 @@ def write_report(records: list[dict[str, object]], skill_rows: list[dict[str, ob
         "",
         "## Concrete Next Experiments",
         "",
-        "1. Finish the comparable `taskvec_a0p25` MMLU 5-shot aggregate row, then re-run this script to fill the missing table cell.",
-        "2. Run a cheap MMLU slice before full runs: moral_scenarios, formal_logic, medical_genetics, nutrition, professional_psychology, and high_school_statistics.",
+        "1. Run a cheap MMLU slice before future full runs: moral_scenarios, formal_logic, medical_genetics, nutrition, professional_psychology, and high_school_statistics.",
+        "2. Compare task-vector alpha candidates on this failure slice before spending another full MMLU run.",
         "3. Extend TruthfulQA logsamples to lowLR or the full 817 items if affordable; cluster item drops by lure type and compare false-answer pressure.",
         "4. Build a WiC slice by part of speech and lemma similarity to test whether the failure is global same-lemma sense collapse.",
         "5. Try retention replay or KL regularization against base logits on the specific failure families, then compare semantic coherence and failure-family deltas, not only aggregate retention.",
@@ -754,7 +761,7 @@ def write_report(records: list[dict[str, object]], skill_rows: list[dict[str, ob
         "- `skill_summary.csv`: mean skill-family deltas by arm.",
         "- `semantic_human_summary.csv`: representation/human-similarity gains and external similarity rows.",
         "- `truthfulqa_mechanism.csv`: full MC2 plus logsample decomposition.",
-        "- `mmlu_extreme_drops.csv`: largest MMLU subtask drops for lowLR and lowrank.",
+        "- `mmlu_extreme_drops.csv`: largest MMLU subtask drops for lowLR, lowrank, and `taskvec_a0p25`.",
         "",
     ]
     (OUT / "REPORT.md").write_text("\n".join(lines))

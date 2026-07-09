@@ -1,5 +1,5 @@
 {
-  "commit": "712464e11fae1e57aeb01806412df83290ebf731",
+  "commit": "82c8af54aa62aa876ef4839b442c4ca47ddd0e01",
   "inputs": [
     "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/wide_bench/skill_diagnostics/task_skill_deltas.csv",
     "/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/coherence_experiments/results/sft_eval/wide_bench/skill_diagnostics/skill_summary.csv",
@@ -15,6 +15,6 @@
   ],
   "notes": [
     "No benchmarks are run by this script.",
-    "taskvec_a0p25 aggregate MMLU remains pending until Sagan's MMLU lane merges it."
+    "taskvec_a0p25 aggregate MMLU is populated from the completed CHTC shard merge."
   ]
 }

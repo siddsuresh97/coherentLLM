@@ -31,9 +31,11 @@ Tracking convention:
 - `research/CODEX_TASK_10_BENCHMARK_DROPS.md`
   - Goal: diagnose why lowLR/lowrank gain semantic/human-alignment tasks but drop
     on standard capability benchmarks, and propose mitigation experiments.
-  - Status: lowrank/task-vector/scrambled partial wide-bench controls are
-    running or complete. The remaining long mitigation row is
-    `taskvec_a0p25` MMLU.
+  - Status: lowrank/task-vector/scrambled wide-bench controls now include the
+    completed `taskvec_a0p25` MMLU row. Use
+    `results/sft_eval/wide_bench/skill_diagnostics/REPORT.md` and
+    `results/sft_eval/wide_bench/BENCHMARK_ATTRIBUTION.md` for the current
+    dropped/flat/boosted skill read.
 
 ## Current branch state
 
@@ -1499,6 +1501,33 @@ Full shard submission:
   `mmlu_full_retry_cache_quota_extra.sub` and
   `mmlu_full_retry_cache_quota_extra_manifest.tsv` for exactly shards `0` and
   `2`.
+- Final CHTC outcome: all eight MMLU shards completed successfully after the
+  staging and scratch-cache retries. Successful shard artifacts are
+  `mmlu_full_cache2_taskvec_a0p25_shard_00_results.tgz`,
+  `mmlu_full_retry_taskvec_a0p25_shard_01_results.tgz`,
+  `mmlu_full_cache2_taskvec_a0p25_shard_02_results.tgz`,
+  `mmlu_full_retry_taskvec_a0p25_shard_03_results.tgz`,
+  `mmlu_full_taskvec_a0p25_shard_04_results.tgz`,
+  `mmlu_full_cache_taskvec_a0p25_shard_05_results.tgz`,
+  `mmlu_full_cache_taskvec_a0p25_shard_06_results.tgz`, and
+  `mmlu_full_cache_taskvec_a0p25_shard_07_results.tgz`.
+- Merge command used only those successful CHTC tarballs:
+  `python src/sft/merge_mmlu_shards.py --inputs <8 successful CHTC tarballs> --state-name taskvec_a0p25 --base-csv results/sft_eval/wide_bench/raw_task_summary.csv --out-dir results/sft_eval/wide_bench/chtc_mmlu_shards/coherence-mmlu-shards-20260709-004133/merged --require-complete`.
+- Merge evidence:
+  `results/sft_eval/wide_bench/chtc_mmlu_shards/coherence-mmlu-shards-20260709-004133/merged/REPORT.md`
+  reports 57/57 subject tasks, missing count 0, weighted MMLU acc
+  `0.6229641693811075` over `n=13508`, and macro acc
+  `0.6179309385787863`.
+- Wide-bench rows updated: `summary.csv`, `raw_task_summary.csv`,
+  `skill_diagnostics/*`, and `attribution/*` now include the official
+  `taskvec_a0p25` MMLU aggregate. The read is partial mitigation:
+  `+0.031093` micro acc over lowrank but still `-0.069959` versus base.
+- Local fallback: both local split outputs completed
+  (`taskvec_a0p25_mmlu_5shot_shard00of02`,
+  `taskvec_a0p25_mmlu_5shot_shard01of02`) and merge cleanly to weighted MMLU
+  `0.6238525318329878`. They were not mixed into the official row because a
+  hybrid duplicate check found overlapping local/CHTC subject metrics differ
+  slightly; the largest absolute overlap delta was `0.03`.
 - Commands run:
   `chtc-push chtc/mmlu_shards/mmlu_full_retry_missing_staging_manifest.tsv 'chtc-runs/coherence-mmlu-shards-20260709-004133/'`;
   `chtc-push chtc/mmlu_shards/mmlu_full_retry_missing_staging.sub 'chtc-runs/coherence-mmlu-shards-20260709-004133/'`;
@@ -1510,10 +1539,8 @@ Full shard submission:
   `chtc-push chtc/mmlu_shards/mmlu_full_retry_cache_quota_extra_manifest.tsv 'chtc-runs/coherence-mmlu-shards-20260709-004133/'`;
   `chtc-push chtc/mmlu_shards/mmlu_full_retry_cache_quota_extra.sub 'chtc-runs/coherence-mmlu-shards-20260709-004133/'`;
   `chtc-ssh 'cd ~/chtc-runs/coherence-mmlu-shards-20260709-004133 && condor_submit mmlu_full_retry_cache_quota_extra.sub'`.
-- Next read: monitor `5513291`, `5513309`, and `5513313`, pull original and retry
-  tarballs into
-  `results/sft_eval/wide_bench/chtc_mmlu_shards/coherence-mmlu-shards-20260709-004133/`,
-  then merge with `src/sft/merge_mmlu_shards.py`.
+- Next read: use the cheap MMLU failure slice before any further full MMLU
+  runs; do not treat `taskvec_a0p25` as a broad retention fix.
 
 ## 2026-07-08 active: fixed CHTC GPU smoke retries
 

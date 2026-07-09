@@ -5,189 +5,252 @@ MMLU aggregate,mmlu,MMLU aggregate,lowLR,acc,0.5936482084690554,13508,0.69292271
 MMLU aggregate,mmlu,MMLU aggregate,lowLR,macro_acc,0.599330182528788,61,0.6921409997114877,-0.09281081718269968,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU aggregate,mmlu,MMLU aggregate,lowrank,acc,0.5918714835652946,13508,0.6929227124666865,-0.10105122890139184,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU aggregate,mmlu,MMLU aggregate,lowrank,macro_acc,0.599900054842557,61,0.6921409997114877,-0.09224094486893064,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU aggregate,mmlu,MMLU aggregate,taskvec_a0p25,acc,0.6229641693811075,13508,0.6929227124666865,-0.06995854308557892,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU aggregate,mmlu,MMLU aggregate,taskvec_a0p25,macro_acc,0.6179309385787863,57,0.6921409997114877,-0.07421006113270134,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU aggregate,mmlu_humanities,MMLU humanities,base,acc,0.663869575641333,4171,0.663869575641333,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU aggregate,mmlu_humanities,MMLU humanities,lowLR,acc,0.5483097578518341,4171,0.663869575641333,-0.11555981778949886,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU aggregate,mmlu_humanities,MMLU humanities,lowrank,acc,0.541356988731719,4171,0.663869575641333,-0.12251258690961397,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU aggregate,mmlu_humanities,MMLU humanities,taskvec_a0p25,acc,0.5993766482857827,4171,0.663869575641333,-0.06449292735555023,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU aggregate,mmlu_other,MMLU other,base,acc,0.7463791438686836,3107,0.7463791438686836,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU aggregate,mmlu_other,MMLU other,lowLR,acc,0.657547473447055,3107,0.7463791438686836,-0.08883167042162865,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU aggregate,mmlu_other,MMLU other,lowrank,acc,0.6626971355004828,3107,0.7463791438686836,-0.08368200836820083,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU aggregate,mmlu_other,MMLU other,taskvec_a0p25,acc,0.6733183134856775,3107,0.7463791438686836,-0.07306083038300615,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU aggregate,mmlu_social_sciences,MMLU social sciences,base,acc,0.7799805004874878,3077,0.7799805004874878,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU aggregate,mmlu_social_sciences,MMLU social sciences,lowLR,acc,0.6798830029249269,3077,0.7799805004874878,-0.10009749756256092,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU aggregate,mmlu_social_sciences,MMLU social sciences,lowrank,acc,0.6847578810529736,3077,0.7799805004874878,-0.09522261943451416,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU aggregate,mmlu_social_sciences,MMLU social sciences,taskvec_a0p25,acc,0.7068573285667858,3077,0.7799805004874878,-0.07312317192070195,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU aggregate,mmlu_stem,MMLU stem,base,acc,0.5937202664129401,3153,0.5937202664129401,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU aggregate,mmlu_stem,MMLU stem,lowLR,acc,0.5065017443704408,3153,0.5937202664129401,-0.08721852204249925,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU aggregate,mmlu_stem,MMLU stem,lowrank,acc,0.49825562955915004,3153,0.5937202664129401,-0.09546463685379003,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU aggregate,mmlu_stem,MMLU stem,taskvec_a0p25,acc,0.5226768157310498,3153,0.5937202664129401,-0.07104345068189022,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_global_facts,MMLU global facts,base,acc,0.4,100,0.4,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_global_facts,MMLU global facts,lowLR,acc,0.35,100,0.4,-0.050000000000000044,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_global_facts,MMLU global facts,lowrank,acc,0.37,100,0.4,-0.030000000000000027,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU factual/history/policy,mmlu_global_facts,MMLU global facts,taskvec_a0p25,acc,0.36,100,0.4,-0.040000000000000036,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_european_history,MMLU high school european history,base,acc,0.7696969696969697,165,0.7696969696969697,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_european_history,MMLU high school european history,lowLR,acc,0.7393939393939394,165,0.7696969696969697,-0.030303030303030276,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_european_history,MMLU high school european history,lowrank,acc,0.7333333333333333,165,0.7696969696969697,-0.036363636363636376,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU factual/history/policy,mmlu_high_school_european_history,MMLU high school european history,taskvec_a0p25,acc,0.7515151515151515,165,0.7696969696969697,-0.018181818181818188,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_geography,MMLU high school geography,base,acc,0.8484848484848485,198,0.8484848484848485,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_geography,MMLU high school geography,lowLR,acc,0.7171717171717171,198,0.8484848484848485,-0.13131313131313138,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_geography,MMLU high school geography,lowrank,acc,0.7272727272727273,198,0.8484848484848485,-0.12121212121212122,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU factual/history/policy,mmlu_high_school_geography,MMLU high school geography,taskvec_a0p25,acc,0.7272727272727273,198,0.8484848484848485,-0.12121212121212122,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_government_and_politics,MMLU high school government and politics,base,acc,0.9119170984455959,193,0.9119170984455959,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_government_and_politics,MMLU high school government and politics,lowLR,acc,0.8082901554404145,193,0.9119170984455959,-0.10362694300518138,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_government_and_politics,MMLU high school government and politics,lowrank,acc,0.7979274611398963,193,0.9119170984455959,-0.11398963730569955,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU factual/history/policy,mmlu_high_school_government_and_politics,MMLU high school government and politics,taskvec_a0p25,acc,0.8341968911917098,193,0.9119170984455959,-0.07772020725388606,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_us_history,MMLU high school us history,base,acc,0.8235294117647058,204,0.8235294117647058,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_us_history,MMLU high school us history,lowLR,acc,0.7205882352941176,204,0.8235294117647058,-0.1029411764705882,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_us_history,MMLU high school us history,lowrank,acc,0.7352941176470589,204,0.8235294117647058,-0.08823529411764697,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU factual/history/policy,mmlu_high_school_us_history,MMLU high school us history,taskvec_a0p25,acc,0.7794117647058824,204,0.8235294117647058,-0.044117647058823484,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_world_history,MMLU high school world history,base,acc,0.8396624472573839,237,0.8396624472573839,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_world_history,MMLU high school world history,lowLR,acc,0.7974683544303798,237,0.8396624472573839,-0.04219409282700415,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_high_school_world_history,MMLU high school world history,lowrank,acc,0.8016877637130801,237,0.8396624472573839,-0.03797468354430378,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU factual/history/policy,mmlu_high_school_world_history,MMLU high school world history,taskvec_a0p25,acc,0.810126582278481,237,0.8396624472573839,-0.029535864978902926,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_international_law,MMLU international law,base,acc,0.8264462809917356,121,0.8264462809917356,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_international_law,MMLU international law,lowLR,acc,0.7355371900826446,121,0.8264462809917356,-0.09090909090909094,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_international_law,MMLU international law,lowrank,acc,0.7355371900826446,121,0.8264462809917356,-0.09090909090909094,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU factual/history/policy,mmlu_international_law,MMLU international law,taskvec_a0p25,acc,0.8347107438016529,121,0.8264462809917356,0.008264462809917328,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_prehistory,MMLU prehistory,base,acc,0.7530864197530864,324,0.7530864197530864,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_prehistory,MMLU prehistory,lowLR,acc,0.6450617283950617,324,0.7530864197530864,-0.10802469135802473,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_prehistory,MMLU prehistory,lowrank,acc,0.6574074074074074,324,0.7530864197530864,-0.095679012345679,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU factual/history/policy,mmlu_prehistory,MMLU prehistory,taskvec_a0p25,acc,0.6851851851851852,324,0.7530864197530864,-0.0679012345679012,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_security_studies,MMLU security studies,base,acc,0.7183673469387755,245,0.7183673469387755,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_security_studies,MMLU security studies,lowLR,acc,0.6816326530612244,245,0.7183673469387755,-0.03673469387755102,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_security_studies,MMLU security studies,lowrank,acc,0.6571428571428571,245,0.7183673469387755,-0.061224489795918324,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU factual/history/policy,mmlu_security_studies,MMLU security studies,taskvec_a0p25,acc,0.7183673469387755,245,0.7183673469387755,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_us_foreign_policy,MMLU us foreign policy,base,acc,0.89,100,0.89,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_us_foreign_policy,MMLU us foreign policy,lowLR,acc,0.8,100,0.89,-0.08999999999999997,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_us_foreign_policy,MMLU us foreign policy,lowrank,acc,0.81,100,0.89,-0.07999999999999996,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU factual/history/policy,mmlu_us_foreign_policy,MMLU us foreign policy,taskvec_a0p25,acc,0.79,100,0.89,-0.09999999999999998,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_world_religions,MMLU world religions,base,acc,0.8304093567251462,171,0.8304093567251462,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_world_religions,MMLU world religions,lowLR,acc,0.7543859649122807,171,0.8304093567251462,-0.07602339181286544,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU factual/history/policy,mmlu_world_religions,MMLU world religions,lowrank,acc,0.7602339181286549,171,0.8304093567251462,-0.07017543859649122,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU factual/history/policy,mmlu_world_religions,MMLU world religions,taskvec_a0p25,acc,0.7543859649122807,171,0.8304093567251462,-0.07602339181286544,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU miscellaneous/broad,mmlu_miscellaneous,MMLU miscellaneous,base,acc,0.8378033205619413,783,0.8378033205619413,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU miscellaneous/broad,mmlu_miscellaneous,MMLU miscellaneous,lowLR,acc,0.7624521072796935,783,0.8378033205619413,-0.07535121328224781,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU miscellaneous/broad,mmlu_miscellaneous,MMLU miscellaneous,lowrank,acc,0.7573435504469987,783,0.8378033205619413,-0.08045977011494254,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU miscellaneous/broad,mmlu_miscellaneous,MMLU miscellaneous,taskvec_a0p25,acc,0.7803320561941252,783,0.8378033205619413,-0.05747126436781613,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_business_ethics,MMLU business ethics,base,acc,0.74,100,0.74,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_business_ethics,MMLU business ethics,lowLR,acc,0.6,100,0.74,-0.14,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_business_ethics,MMLU business ethics,lowrank,acc,0.61,100,0.74,-0.13,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU professional/law/moral,mmlu_business_ethics,MMLU business ethics,taskvec_a0p25,acc,0.55,100,0.74,-0.18999999999999995,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_jurisprudence,MMLU jurisprudence,base,acc,0.7777777777777778,108,0.7777777777777778,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_jurisprudence,MMLU jurisprudence,lowLR,acc,0.7685185185185185,108,0.7777777777777778,-0.0092592592592593,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_jurisprudence,MMLU jurisprudence,lowrank,acc,0.7314814814814815,108,0.7777777777777778,-0.04629629629629628,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU professional/law/moral,mmlu_jurisprudence,MMLU jurisprudence,taskvec_a0p25,acc,0.75,108,0.7777777777777778,-0.02777777777777779,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_management,MMLU management,base,acc,0.8155339805825242,103,0.8155339805825242,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_management,MMLU management,lowLR,acc,0.8058252427184466,103,0.8155339805825242,-0.009708737864077666,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_management,MMLU management,lowrank,acc,0.8446601941747572,103,0.8155339805825242,0.029126213592232997,boosted,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU professional/law/moral,mmlu_management,MMLU management,taskvec_a0p25,acc,0.7378640776699029,103,0.8155339805825242,-0.07766990291262132,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_moral_disputes,MMLU moral disputes,base,acc,0.7658959537572254,346,0.7658959537572254,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_moral_disputes,MMLU moral disputes,lowLR,acc,0.6734104046242775,346,0.7658959537572254,-0.09248554913294793,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_moral_disputes,MMLU moral disputes,lowrank,acc,0.6734104046242775,346,0.7658959537572254,-0.09248554913294793,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU professional/law/moral,mmlu_moral_disputes,MMLU moral disputes,taskvec_a0p25,acc,0.6791907514450867,346,0.7658959537572254,-0.08670520231213874,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_moral_scenarios,MMLU moral scenarios,base,acc,0.5698324022346368,895,0.5698324022346368,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_moral_scenarios,MMLU moral scenarios,lowLR,acc,0.3217877094972067,895,0.5698324022346368,-0.24804469273743013,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_moral_scenarios,MMLU moral scenarios,lowrank,acc,0.25251396648044694,895,0.5698324022346368,-0.3173184357541899,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU professional/law/moral,mmlu_moral_scenarios,MMLU moral scenarios,taskvec_a0p25,acc,0.4659217877094972,895,0.5698324022346368,-0.10391061452513961,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_philosophy,MMLU philosophy,base,acc,0.7395498392282959,311,0.7395498392282959,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_philosophy,MMLU philosophy,lowLR,acc,0.6559485530546624,311,0.7395498392282959,-0.0836012861736335,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_philosophy,MMLU philosophy,lowrank,acc,0.6784565916398714,311,0.7395498392282959,-0.06109324758842449,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU professional/law/moral,mmlu_philosophy,MMLU philosophy,taskvec_a0p25,acc,0.6720257234726688,311,0.7395498392282959,-0.06752411575562711,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_professional_accounting,MMLU professional accounting,base,acc,0.5460992907801419,282,0.5460992907801419,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_professional_accounting,MMLU professional accounting,lowLR,acc,0.4929078014184397,282,0.5460992907801419,-0.05319148936170215,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_professional_accounting,MMLU professional accounting,lowrank,acc,0.4929078014184397,282,0.5460992907801419,-0.05319148936170215,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU professional/law/moral,mmlu_professional_accounting,MMLU professional accounting,taskvec_a0p25,acc,0.48936170212765956,282,0.5460992907801419,-0.056737588652482296,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_professional_law,MMLU professional law,base,acc,0.496,1000,0.496,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_professional_law,MMLU professional law,lowLR,acc,0.434,1000,0.496,-0.062,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_professional_law,MMLU professional law,lowrank,acc,0.452,1000,0.496,-0.043999999999999984,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU professional/law/moral,mmlu_professional_law,MMLU professional law,taskvec_a0p25,acc,0.465,1000,0.496,-0.030999999999999972,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_professional_medicine,MMLU professional medicine,base,acc,0.7757352941176471,272,0.7757352941176471,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_professional_medicine,MMLU professional medicine,lowLR,acc,0.6360294117647058,272,0.7757352941176471,-0.13970588235294124,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_professional_medicine,MMLU professional medicine,lowrank,acc,0.6948529411764706,272,0.7757352941176471,-0.08088235294117652,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU professional/law/moral,mmlu_professional_medicine,MMLU professional medicine,taskvec_a0p25,acc,0.6580882352941176,272,0.7757352941176471,-0.11764705882352944,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_professional_psychology,MMLU professional psychology,base,acc,0.7287581699346405,612,0.7287581699346405,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_professional_psychology,MMLU professional psychology,lowLR,acc,0.6029411764705882,612,0.7287581699346405,-0.12581699346405228,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_professional_psychology,MMLU professional psychology,lowrank,acc,0.6225490196078431,612,0.7287581699346405,-0.10620915032679734,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU professional/law/moral,mmlu_professional_psychology,MMLU professional psychology,taskvec_a0p25,acc,0.6633986928104575,612,0.7287581699346405,-0.065359477124183,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_public_relations,MMLU public relations,base,acc,0.6909090909090909,110,0.6909090909090909,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_public_relations,MMLU public relations,lowLR,acc,0.6272727272727273,110,0.6909090909090909,-0.0636363636363636,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU professional/law/moral,mmlu_public_relations,MMLU public relations,lowrank,acc,0.6454545454545455,110,0.6909090909090909,-0.045454545454545414,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU professional/law/moral,mmlu_public_relations,MMLU public relations,taskvec_a0p25,acc,0.6636363636363637,110,0.6909090909090909,-0.027272727272727226,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_abstract_algebra,MMLU abstract algebra,base,acc,0.37,100,0.37,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_abstract_algebra,MMLU abstract algebra,lowLR,acc,0.34,100,0.37,-0.02999999999999997,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_abstract_algebra,MMLU abstract algebra,lowrank,acc,0.36,100,0.37,-0.010000000000000009,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU quantitative/formal,mmlu_abstract_algebra,MMLU abstract algebra,taskvec_a0p25,acc,0.38,100,0.37,0.010000000000000009,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_college_mathematics,MMLU college mathematics,base,acc,0.4,100,0.4,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_college_mathematics,MMLU college mathematics,lowLR,acc,0.37,100,0.4,-0.030000000000000027,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_college_mathematics,MMLU college mathematics,lowrank,acc,0.43,100,0.4,0.02999999999999997,boosted,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU quantitative/formal,mmlu_college_mathematics,MMLU college mathematics,taskvec_a0p25,acc,0.37,100,0.4,-0.030000000000000027,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_elementary_mathematics,MMLU elementary mathematics,base,acc,0.4708994708994709,378,0.4708994708994709,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_elementary_mathematics,MMLU elementary mathematics,lowLR,acc,0.4126984126984127,378,0.4708994708994709,-0.0582010582010582,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_elementary_mathematics,MMLU elementary mathematics,lowrank,acc,0.3835978835978836,378,0.4708994708994709,-0.08730158730158727,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU quantitative/formal,mmlu_elementary_mathematics,MMLU elementary mathematics,taskvec_a0p25,acc,0.41005291005291006,378,0.4708994708994709,-0.060846560846560815,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_formal_logic,MMLU formal logic,base,acc,0.5793650793650794,126,0.5793650793650794,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_formal_logic,MMLU formal logic,lowLR,acc,0.3888888888888889,126,0.5793650793650794,-0.19047619047619052,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_formal_logic,MMLU formal logic,lowrank,acc,0.38095238095238093,126,0.5793650793650794,-0.19841269841269848,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU quantitative/formal,mmlu_formal_logic,MMLU formal logic,taskvec_a0p25,acc,0.373015873015873,126,0.5793650793650794,-0.2063492063492064,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_high_school_mathematics,MMLU high school mathematics,base,acc,0.4222222222222222,270,0.4222222222222222,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_high_school_mathematics,MMLU high school mathematics,lowLR,acc,0.34814814814814815,270,0.4222222222222222,-0.07407407407407407,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_high_school_mathematics,MMLU high school mathematics,lowrank,acc,0.32592592592592595,270,0.4222222222222222,-0.09629629629629627,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU quantitative/formal,mmlu_high_school_mathematics,MMLU high school mathematics,taskvec_a0p25,acc,0.3333333333333333,270,0.4222222222222222,-0.0888888888888889,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_high_school_statistics,MMLU high school statistics,base,acc,0.6157407407407407,216,0.6157407407407407,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_high_school_statistics,MMLU high school statistics,lowLR,acc,0.4444444444444444,216,0.6157407407407407,-0.17129629629629628,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_high_school_statistics,MMLU high school statistics,lowrank,acc,0.48148148148148145,216,0.6157407407407407,-0.13425925925925924,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU quantitative/formal,mmlu_high_school_statistics,MMLU high school statistics,taskvec_a0p25,acc,0.5092592592592593,216,0.6157407407407407,-0.1064814814814814,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_logical_fallacies,MMLU logical fallacies,base,acc,0.803680981595092,163,0.803680981595092,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_logical_fallacies,MMLU logical fallacies,lowLR,acc,0.6809815950920245,163,0.803680981595092,-0.12269938650306755,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU quantitative/formal,mmlu_logical_fallacies,MMLU logical fallacies,lowrank,acc,0.7116564417177914,163,0.803680981595092,-0.09202453987730064,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU quantitative/formal,mmlu_logical_fallacies,MMLU logical fallacies,taskvec_a0p25,acc,0.7300613496932515,163,0.803680981595092,-0.07361963190184051,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_anatomy,MMLU anatomy,base,acc,0.674074074074074,135,0.674074074074074,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_anatomy,MMLU anatomy,lowLR,acc,0.6074074074074074,135,0.674074074074074,-0.06666666666666665,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_anatomy,MMLU anatomy,lowrank,acc,0.5777777777777777,135,0.674074074074074,-0.09629629629629632,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU science/biomedical,mmlu_anatomy,MMLU anatomy,taskvec_a0p25,acc,0.6370370370370371,135,0.674074074074074,-0.03703703703703698,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_astronomy,MMLU astronomy,base,acc,0.75,152,0.75,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_astronomy,MMLU astronomy,lowLR,acc,0.5986842105263158,152,0.75,-0.15131578947368418,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_astronomy,MMLU astronomy,lowrank,acc,0.5986842105263158,152,0.75,-0.15131578947368418,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU science/biomedical,mmlu_astronomy,MMLU astronomy,taskvec_a0p25,acc,0.6381578947368421,152,0.75,-0.11184210526315785,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_clinical_knowledge,MMLU clinical knowledge,base,acc,0.7547169811320755,265,0.7547169811320755,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_clinical_knowledge,MMLU clinical knowledge,lowLR,acc,0.6415094339622641,265,0.7547169811320755,-0.1132075471698114,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_clinical_knowledge,MMLU clinical knowledge,lowrank,acc,0.690566037735849,265,0.7547169811320755,-0.06415094339622651,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU science/biomedical,mmlu_clinical_knowledge,MMLU clinical knowledge,taskvec_a0p25,acc,0.7245283018867924,265,0.7547169811320755,-0.030188679245283123,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_college_biology,MMLU college biology,base,acc,0.8263888888888888,144,0.8263888888888888,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_college_biology,MMLU college biology,lowLR,acc,0.6736111111111112,144,0.8263888888888888,-0.15277777777777768,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_college_biology,MMLU college biology,lowrank,acc,0.7291666666666666,144,0.8263888888888888,-0.09722222222222221,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU science/biomedical,mmlu_college_biology,MMLU college biology,taskvec_a0p25,acc,0.7291666666666666,144,0.8263888888888888,-0.09722222222222221,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_college_chemistry,MMLU college chemistry,base,acc,0.48,100,0.48,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_college_chemistry,MMLU college chemistry,lowLR,acc,0.4,100,0.48,-0.07999999999999996,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_college_chemistry,MMLU college chemistry,lowrank,acc,0.41,100,0.48,-0.07,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU science/biomedical,mmlu_college_chemistry,MMLU college chemistry,taskvec_a0p25,acc,0.4,100,0.48,-0.07999999999999996,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_college_medicine,MMLU college medicine,base,acc,0.6820809248554913,173,0.6820809248554913,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_college_medicine,MMLU college medicine,lowLR,acc,0.5722543352601156,173,0.6820809248554913,-0.10982658959537572,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_college_medicine,MMLU college medicine,lowrank,acc,0.5895953757225434,173,0.6820809248554913,-0.09248554913294793,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU science/biomedical,mmlu_college_medicine,MMLU college medicine,taskvec_a0p25,acc,0.5953757225433526,173,0.6820809248554913,-0.08670520231213874,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_college_physics,MMLU college physics,base,acc,0.43137254901960786,102,0.43137254901960786,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_college_physics,MMLU college physics,lowLR,acc,0.3137254901960784,102,0.43137254901960786,-0.11764705882352944,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_college_physics,MMLU college physics,lowrank,acc,0.30392156862745096,102,0.43137254901960786,-0.1274509803921569,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU science/biomedical,mmlu_college_physics,MMLU college physics,taskvec_a0p25,acc,0.38235294117647056,102,0.43137254901960786,-0.0490196078431373,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_conceptual_physics,MMLU conceptual physics,base,acc,0.6127659574468085,235,0.6127659574468085,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_conceptual_physics,MMLU conceptual physics,lowLR,acc,0.5531914893617021,235,0.6127659574468085,-0.05957446808510636,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_conceptual_physics,MMLU conceptual physics,lowrank,acc,0.5404255319148936,235,0.6127659574468085,-0.07234042553191489,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU science/biomedical,mmlu_conceptual_physics,MMLU conceptual physics,taskvec_a0p25,acc,0.5574468085106383,235,0.6127659574468085,-0.05531914893617018,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_high_school_biology,MMLU high school biology,base,acc,0.8129032258064516,310,0.8129032258064516,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_high_school_biology,MMLU high school biology,lowLR,acc,0.7161290322580646,310,0.8129032258064516,-0.09677419354838701,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_high_school_biology,MMLU high school biology,lowrank,acc,0.7225806451612903,310,0.8129032258064516,-0.0903225806451613,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU science/biomedical,mmlu_high_school_biology,MMLU high school biology,taskvec_a0p25,acc,0.7741935483870968,310,0.8129032258064516,-0.03870967741935483,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_high_school_chemistry,MMLU high school chemistry,base,acc,0.6206896551724138,203,0.6206896551724138,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_high_school_chemistry,MMLU high school chemistry,lowLR,acc,0.5073891625615764,203,0.6206896551724138,-0.11330049261083741,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_high_school_chemistry,MMLU high school chemistry,lowrank,acc,0.5123152709359606,203,0.6206896551724138,-0.10837438423645318,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU science/biomedical,mmlu_high_school_chemistry,MMLU high school chemistry,taskvec_a0p25,acc,0.5270935960591133,203,0.6206896551724138,-0.09359605911330049,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_high_school_physics,MMLU high school physics,base,acc,0.4503311258278146,151,0.4503311258278146,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_high_school_physics,MMLU high school physics,lowLR,acc,0.41721854304635764,151,0.4503311258278146,-0.033112582781456956,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_high_school_physics,MMLU high school physics,lowrank,acc,0.304635761589404,151,0.4503311258278146,-0.14569536423841062,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU science/biomedical,mmlu_high_school_physics,MMLU high school physics,taskvec_a0p25,acc,0.3973509933774834,151,0.4503311258278146,-0.052980132450331174,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_medical_genetics,MMLU medical genetics,base,acc,0.82,100,0.82,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_medical_genetics,MMLU medical genetics,lowLR,acc,0.64,100,0.82,-0.17999999999999994,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_medical_genetics,MMLU medical genetics,lowrank,acc,0.62,100,0.82,-0.19999999999999996,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU science/biomedical,mmlu_medical_genetics,MMLU medical genetics,taskvec_a0p25,acc,0.65,100,0.82,-0.16999999999999993,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_nutrition,MMLU nutrition,base,acc,0.8071895424836601,306,0.8071895424836601,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_nutrition,MMLU nutrition,lowLR,acc,0.6503267973856209,306,0.8071895424836601,-0.1568627450980392,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_nutrition,MMLU nutrition,lowrank,acc,0.6437908496732027,306,0.8071895424836601,-0.1633986928104575,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU science/biomedical,mmlu_nutrition,MMLU nutrition,taskvec_a0p25,acc,0.6633986928104575,306,0.8071895424836601,-0.14379084967320266,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_virology,MMLU virology,base,acc,0.5240963855421686,166,0.5240963855421686,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_virology,MMLU virology,lowLR,acc,0.4759036144578313,166,0.5240963855421686,-0.04819277108433734,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU science/biomedical,mmlu_virology,MMLU virology,lowrank,acc,0.45180722891566266,166,0.5240963855421686,-0.07228915662650598,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU science/biomedical,mmlu_virology,MMLU virology,taskvec_a0p25,acc,0.4819277108433735,166,0.5240963855421686,-0.04216867469879515,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_econometrics,MMLU econometrics,base,acc,0.5789473684210527,114,0.5789473684210527,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_econometrics,MMLU econometrics,lowLR,acc,0.43859649122807015,114,0.5789473684210527,-0.1403508771929825,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_econometrics,MMLU econometrics,lowrank,acc,0.45614035087719296,114,0.5789473684210527,-0.1228070175438597,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU social/behavioral/business,mmlu_econometrics,MMLU econometrics,taskvec_a0p25,acc,0.41228070175438597,114,0.5789473684210527,-0.16666666666666669,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_high_school_macroeconomics,MMLU high school macroeconomics,base,acc,0.6948717948717948,390,0.6948717948717948,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_high_school_macroeconomics,MMLU high school macroeconomics,lowLR,acc,0.6025641025641025,390,0.6948717948717948,-0.09230769230769231,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_high_school_macroeconomics,MMLU high school macroeconomics,lowrank,acc,0.5794871794871795,390,0.6948717948717948,-0.11538461538461531,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU social/behavioral/business,mmlu_high_school_macroeconomics,MMLU high school macroeconomics,taskvec_a0p25,acc,0.6256410256410256,390,0.6948717948717948,-0.0692307692307692,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_high_school_microeconomics,MMLU high school microeconomics,base,acc,0.773109243697479,238,0.773109243697479,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_high_school_microeconomics,MMLU high school microeconomics,lowLR,acc,0.6848739495798319,238,0.773109243697479,-0.08823529411764708,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_high_school_microeconomics,MMLU high school microeconomics,lowrank,acc,0.6722689075630253,238,0.773109243697479,-0.10084033613445376,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU social/behavioral/business,mmlu_high_school_microeconomics,MMLU high school microeconomics,taskvec_a0p25,acc,0.6848739495798319,238,0.773109243697479,-0.08823529411764708,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_high_school_psychology,MMLU high school psychology,base,acc,0.8715596330275229,545,0.8715596330275229,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_high_school_psychology,MMLU high school psychology,lowLR,acc,0.7834862385321101,545,0.8715596330275229,-0.08807339449541285,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_high_school_psychology,MMLU high school psychology,lowrank,acc,0.7908256880733945,545,0.8715596330275229,-0.08073394495412844,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU social/behavioral/business,mmlu_high_school_psychology,MMLU high school psychology,taskvec_a0p25,acc,0.7981651376146789,545,0.8715596330275229,-0.07339449541284404,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_human_aging,MMLU human aging,base,acc,0.6995515695067265,223,0.6995515695067265,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_human_aging,MMLU human aging,lowLR,acc,0.6502242152466368,223,0.6995515695067265,-0.04932735426008972,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_human_aging,MMLU human aging,lowrank,acc,0.6233183856502242,223,0.6995515695067265,-0.07623318385650224,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU social/behavioral/business,mmlu_human_aging,MMLU human aging,taskvec_a0p25,acc,0.6771300448430493,223,0.6995515695067265,-0.022421524663677195,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_human_sexuality,MMLU human sexuality,base,acc,0.8015267175572519,131,0.8015267175572519,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_human_sexuality,MMLU human sexuality,lowLR,acc,0.6183206106870229,131,0.8015267175572519,-0.18320610687022898,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_human_sexuality,MMLU human sexuality,lowrank,acc,0.6717557251908397,131,0.8015267175572519,-0.1297709923664122,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU social/behavioral/business,mmlu_human_sexuality,MMLU human sexuality,taskvec_a0p25,acc,0.648854961832061,131,0.8015267175572519,-0.15267175572519087,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_marketing,MMLU marketing,base,acc,0.8974358974358975,234,0.8974358974358975,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_marketing,MMLU marketing,lowLR,acc,0.8547008547008547,234,0.8974358974358975,-0.042735042735042805,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_marketing,MMLU marketing,lowrank,acc,0.8333333333333334,234,0.8974358974358975,-0.0641025641025641,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU social/behavioral/business,mmlu_marketing,MMLU marketing,taskvec_a0p25,acc,0.8675213675213675,234,0.8974358974358975,-0.02991452991452992,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_sociology,MMLU sociology,base,acc,0.835820895522388,201,0.835820895522388,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_sociology,MMLU sociology,lowLR,acc,0.7611940298507462,201,0.835820895522388,-0.07462686567164178,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU social/behavioral/business,mmlu_sociology,MMLU sociology,lowrank,acc,0.7860696517412935,201,0.835820895522388,-0.04975124378109452,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU social/behavioral/business,mmlu_sociology,MMLU sociology,taskvec_a0p25,acc,0.8059701492537313,201,0.835820895522388,-0.02985074626865669,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_college_computer_science,MMLU college computer science,base,acc,0.55,100,0.55,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_college_computer_science,MMLU college computer science,lowLR,acc,0.53,100,0.55,-0.020000000000000018,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_college_computer_science,MMLU college computer science,lowrank,acc,0.46,100,0.55,-0.09000000000000002,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU technical/computing,mmlu_college_computer_science,MMLU college computer science,taskvec_a0p25,acc,0.45,100,0.55,-0.10000000000000003,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_computer_security,MMLU computer security,base,acc,0.79,100,0.79,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_computer_security,MMLU computer security,lowLR,acc,0.66,100,0.79,-0.13,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_computer_security,MMLU computer security,lowrank,acc,0.69,100,0.79,-0.10000000000000009,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU technical/computing,mmlu_computer_security,MMLU computer security,taskvec_a0p25,acc,0.7,100,0.79,-0.09000000000000008,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_electrical_engineering,MMLU electrical engineering,base,acc,0.6551724137931034,145,0.6551724137931034,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_electrical_engineering,MMLU electrical engineering,lowLR,acc,0.5655172413793104,145,0.6551724137931034,-0.08965517241379306,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_electrical_engineering,MMLU electrical engineering,lowrank,acc,0.5379310344827586,145,0.6551724137931034,-0.11724137931034484,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU technical/computing,mmlu_electrical_engineering,MMLU electrical engineering,taskvec_a0p25,acc,0.5793103448275863,145,0.6551724137931034,-0.07586206896551717,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_high_school_computer_science,MMLU high school computer science,base,acc,0.74,100,0.74,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_high_school_computer_science,MMLU high school computer science,lowLR,acc,0.67,100,0.74,-0.06999999999999995,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_high_school_computer_science,MMLU high school computer science,lowrank,acc,0.64,100,0.74,-0.09999999999999998,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU technical/computing,mmlu_high_school_computer_science,MMLU high school computer science,taskvec_a0p25,acc,0.66,100,0.74,-0.07999999999999996,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_machine_learning,MMLU machine learning,base,acc,0.5446428571428571,112,0.5446428571428571,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_machine_learning,MMLU machine learning,lowLR,acc,0.4642857142857143,112,0.5446428571428571,-0.0803571428571428,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 MMLU technical/computing,mmlu_machine_learning,MMLU machine learning,lowrank,acc,0.45535714285714285,112,0.5446428571428571,-0.08928571428571425,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
+MMLU technical/computing,mmlu_machine_learning,MMLU machine learning,taskvec_a0p25,acc,0.42857142857142855,112,0.5446428571428571,-0.11607142857142855,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 lexical/disambiguation,wic,WiC,base,acc,0.6520376175548589,638,0.6520376175548589,0.0,preserved,results/sft_eval/wide_bench/summary.csv,wide summary
 lexical/disambiguation,wic,WiC,lowLR,acc,0.5,638,0.6520376175548589,-0.1520376175548589,hurt,results/sft_eval/wide_bench/summary.csv,wide summary
 lexical/disambiguation,wic,WiC,lowrank,acc,0.49843260188087773,638,0.6520376175548589,-0.15360501567398116,hurt,results/sft_eval/wide_bench/summary.csv,wide summary

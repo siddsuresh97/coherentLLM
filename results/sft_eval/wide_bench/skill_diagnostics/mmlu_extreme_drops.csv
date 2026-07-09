@@ -23,3 +23,15 @@ lowrank,MMLU social/behavioral/business,mmlu_human_sexuality,MMLU human sexualit
 lowrank,MMLU science/biomedical,mmlu_college_physics,MMLU college physics,0.43137254901960786,0.30392156862745096,-0.1274509803921569,102
 lowrank,MMLU social/behavioral/business,mmlu_econometrics,MMLU econometrics,0.5789473684210527,0.45614035087719296,-0.1228070175438597,114
 lowrank,MMLU factual/history/policy,mmlu_high_school_geography,MMLU high school geography,0.8484848484848485,0.7272727272727273,-0.12121212121212122,198
+taskvec_a0p25,MMLU quantitative/formal,mmlu_formal_logic,MMLU formal logic,0.5793650793650794,0.373015873015873,-0.2063492063492064,126
+taskvec_a0p25,MMLU professional/law/moral,mmlu_business_ethics,MMLU business ethics,0.74,0.55,-0.18999999999999995,100
+taskvec_a0p25,MMLU science/biomedical,mmlu_medical_genetics,MMLU medical genetics,0.82,0.65,-0.16999999999999993,100
+taskvec_a0p25,MMLU social/behavioral/business,mmlu_econometrics,MMLU econometrics,0.5789473684210527,0.41228070175438597,-0.16666666666666669,114
+taskvec_a0p25,MMLU social/behavioral/business,mmlu_human_sexuality,MMLU human sexuality,0.8015267175572519,0.648854961832061,-0.15267175572519087,131
+taskvec_a0p25,MMLU science/biomedical,mmlu_nutrition,MMLU nutrition,0.8071895424836601,0.6633986928104575,-0.14379084967320266,306
+taskvec_a0p25,MMLU factual/history/policy,mmlu_high_school_geography,MMLU high school geography,0.8484848484848485,0.7272727272727273,-0.12121212121212122,198
+taskvec_a0p25,MMLU professional/law/moral,mmlu_professional_medicine,MMLU professional medicine,0.7757352941176471,0.6580882352941176,-0.11764705882352944,272
+taskvec_a0p25,MMLU technical/computing,mmlu_machine_learning,MMLU machine learning,0.5446428571428571,0.42857142857142855,-0.11607142857142855,112
+taskvec_a0p25,MMLU science/biomedical,mmlu_astronomy,MMLU astronomy,0.75,0.6381578947368421,-0.11184210526315785,152
+taskvec_a0p25,MMLU quantitative/formal,mmlu_high_school_statistics,MMLU high school statistics,0.6157407407407407,0.5092592592592593,-0.1064814814814814,216
+taskvec_a0p25,MMLU professional/law/moral,mmlu_moral_scenarios,MMLU moral scenarios,0.5698324022346368,0.4659217877094972,-0.10391061452513961,895

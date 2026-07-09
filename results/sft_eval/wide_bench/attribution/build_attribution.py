@@ -54,7 +54,7 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 def write_csv(path: Path, rows: list[dict[str, object]], fieldnames: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer = csv.DictWriter(f, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         for row in rows:
             writer.writerow({name: row.get(name, "") for name in fieldnames})
@@ -136,9 +136,9 @@ def task_read(task: str, skill: str) -> dict[str, str]:
         return {
             "attribution_class": "exam knowledge and close-option ranking damage",
             "overlap_with_induced_skill": "low",
-            "mechanism_read": "Completed lowLR/lowrank MMLU drops are broad across families; task-vector aggregate is pending.",
+            "mechanism_read": "Task-vector improves MMLU over lowrank but still drops broadly across exam families.",
             "mitigation_priority": "highest",
-            "next_eval": "Ingest Sagan's taskvec MMLU merge, then use moral/formal/biomedical slices as cheap gates.",
+            "next_eval": "Use moral/formal/biomedical slices as cheap gates before any future full MMLU.",
         }
     return {
         "attribution_class": "unclassified",
@@ -325,11 +325,11 @@ def mitigation_rows() -> list[dict[str, str]]:
     return [
         {
             "priority": "P0",
-            "target": "taskvec_a0p25 MMLU attribution gap",
-            "question": "Does alpha 0.25 mitigate broad MMLU the way it mitigates ARC?",
-            "cheap_gate": "Ingest Sagan's existing shard merge; do not rerun MMLU from this lane.",
-            "pass_signal": "MMLU micro delta clearly better than lowrank, target >= -0.06.",
-            "mitigation_if_fail": "Treat task-vector as representation-useful but not broad-retention-safe.",
+            "target": "taskvec_a0p25 MMLU residual drop",
+            "question": "Can a cheaper slice distinguish partial mitigation from broad retention recovery?",
+            "cheap_gate": "moral_scenarios, formal_logic, medical_genetics, nutrition, professional_psychology, high_school_statistics.",
+            "pass_signal": "Failure-slice mean delta >= -0.06 while semantic gains stay high.",
+            "mitigation_if_fail": "Treat task-vector as representation-useful and only partially retention-safe.",
         },
         {
             "priority": "P1",
@@ -519,7 +519,7 @@ def main() -> None:
         ],
         "notes": [
             "No benchmarks are run by this script.",
-            "taskvec_a0p25 aggregate MMLU remains pending until Sagan's MMLU lane merges it.",
+            "taskvec_a0p25 aggregate MMLU is populated from the completed CHTC shard merge.",
         ],
     }
     with (OUT / "metadata.json").open("w") as f:

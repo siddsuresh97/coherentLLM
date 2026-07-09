@@ -37,24 +37,20 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   (`ARC-Easy 0.808`, `ARC-Challenge 0.559`) but still drops versus base
   (`0.850`, `0.649`). HellaSwag and WinoGrande are near-preserved under
   coherent lowrank/task-vector states, while scrambled SFT badly hurts
-  HellaSwag too (`acc_norm=0.287`, delta `-0.398`). MMLU is the remaining long
-  mitigation cell. Bounded TruthfulQA log-sample diagnostics show lowrank
-  improves by suppressing false-answer pressure, `taskvec_a0p25` is
+  HellaSwag too (`acc_norm=0.287`, delta `-0.398`). CHTC MMLU now gives
+  `taskvec_a0p25` micro acc `0.623` (`-0.070` vs base, `+0.031` vs lowrank)
+  and macro acc `0.618` (`-0.074`), so it is partial mitigation rather than
+  broad retention recovery. Bounded TruthfulQA log-sample diagnostics show
+  lowrank improves by suppressing false-answer pressure, `taskvec_a0p25` is
   aggregate-flat but increases plausible-false pressure, and scrambled SFT
   catastrophically hurts item-level calibration.
-- **Runtime:** the missing `taskvec_a0p25` MMLU row is split across both local
-  A5000s as fallback, but CHTC is now the faster path. CHTC smoke `5513177`
-  proved H200 placement, UUID-device normalization, dependency pinning, and
-  model loading, then failed because the runtime image lacked a C compiler for
-  Triton/vLLM LoRA kernels. Devel-image retry `5513195` completed successfully
-  on an H100 80GB (`mmlu_abstract_algebra`, 20 examples, `acc=0.30`), and the
-  full 8-shard MMLU array is running as `5513268`. Shards `1`, `3`, `5`, `6`,
-  and `7` landed on non-staging hosts and exited before model load; the
-  staging-constrained recovery cluster is `5513291` for exactly those five
-  shards. Shards `0`, `2`, `5`, `6`, and `7` then exposed shared staging
-  Hugging Face cache quota failures, so the runner now uses job-scratch caches
-  by default and cache-quota retries are queued as `5513309` (`5`-`7`) and
-  `5513313` (`0`, `2`). Huth extraction debug `5513178` completed cleanly; staged-output
+- **Runtime:** CHTC MMLU finished as a pure 8-shard merge from
+  `~/chtc-runs/coherence-mmlu-shards-20260709-004133`. Smoke `5513195`
+  passed on an H100; full cluster `5513268` needed staging retry `5513291`
+  and scratch-cache retries `5513309`/`5513313`, then all eight shards exited
+  `0` and merged without local fallback contamination. Local A5000 fallback
+  shards also completed and are kept as backup/provenance. Huth extraction
+  debug `5513178` completed cleanly; staged-output
   three-story smoke `5513245` wrote the base features but failed on staging
   directory quota; bundle-output recovery `5513306` passed and CPU encoding
   smoke `5513337` passed; capped `UTS02,UTS03` encoding scale check `5513350`
@@ -319,6 +315,7 @@ Completed partial metrics:
 | `taskvec_a0p25` | zero-shot | WiC | acc | 0.502 |
 | `taskvec_a0p25` | zero-shot | TruthfulQA-MC2 | acc | 0.523 |
 | `taskvec_a0p25` | 5-shot | WinoGrande | acc | 0.747 |
+| `taskvec_a0p25` | 5-shot | MMLU | acc | 0.623 |
 | `taskvec_a0p25` | 25-shot | ARC-Easy | acc_norm | 0.808 |
 | `taskvec_a0p25` | 25-shot | ARC-Challenge | acc_norm | 0.559 |
 | `taskvec_a0p25` | 10-shot | HellaSwag | acc_norm | 0.680 |
@@ -377,6 +374,10 @@ Read:
   base `0.649`.
 - `taskvec_a0p25` improves PIQA/OpenBookQA over lowrank, but loses
   CommonsenseQA/TruthfulQA in this partial slice.
+- `taskvec_a0p25` also improves MMLU over lowrank (`0.623` vs `0.592`) but
+  still drops meaningfully versus base (`0.693`). The pure CHTC merge covers
+  all 57 subject tasks; local fallback outputs were not mixed into the official
+  row because overlapping local/CHTC subject metrics differ slightly.
 - Scrambled zero-shot is much worse than lowrank/taskvec on PIQA, OpenBookQA,
   CommonsenseQA, and TruthfulQA, so useful semantic training is doing real work.
   But scrambled also drops broadly, so generic LoRA/SFT perturbation is part of
@@ -404,11 +405,8 @@ Read:
   Recurring worst drops are safety/myth/misconception lures such as
   defibrillation for flatline, washing chicken, Latin-American language
   overgeneralization, Agenda 21, and voodoo dolls.
-- Current active follow-up: `taskvec_a0p25` MMLU 5-shot. The local run is split
-  across both A5000s while CHTC smoke job `5513177` tests the scaled path on a
-  high-memory GPU.
-  This is not a repeat of the finished base/lowLR/lowrank MMLU rows; it fills
-  the missing task-vector mitigation row.
+- Completed follow-up: `taskvec_a0p25` MMLU 5-shot is now merged from CHTC.
+  Local fallback shards completed too, but the official row is pure CHTC.
 
 </details>
 
@@ -417,8 +415,8 @@ Read:
 
 Current confirmed settings:
 
-- Current active A5000 lanes: GPU0 and GPU1 are both running split
-  `taskvec_a0p25 mmlu_5shot` shards.
+- The split A5000 `taskvec_a0p25 mmlu_5shot` fallback shards completed and are
+  retained as backup/provenance.
 - A5000 broad-bench long loglikelihood runs should use conservative settings:
   `gpu_mem_util=0.72` and `batch_size=2` for ARC/Hella.
 - Short MMLU batch probes showed `batch_size=4`, `gpu_mem_util=0.72` works on
@@ -524,11 +522,10 @@ Current plan:
 
 Immediate:
 
-1. Keep the split local `taskvec_a0p25` MMLU lanes running as fallback while
-   CHTC smoke `5513177` validates the PyTorch-container high-memory GPU path.
-2. If the CHTC smoke succeeds, submit independent MMLU shards there and merge
-   before treating the row as final.
-3. Next free GPU lane should go to paper-style semantic-hub logit lens, concept
+1. Use the completed MMLU row to gate future task-vector alpha or replay
+   experiments on cheap MMLU/ARC/WiC/TruthfulQA failure slices before launching
+   another full MMLU.
+2. Next free GPU lane should go to paper-style semantic-hub logit lens, concept
    vector steering, or Huth/LeBel feature extraction after the encoding smoke
    scripts pass locally.
 

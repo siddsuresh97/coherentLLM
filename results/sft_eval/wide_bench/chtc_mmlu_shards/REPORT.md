@@ -112,4 +112,30 @@ Next allowed CHTC step is a constrained smoke submission from the updated `chtc/
 - Recovery: submitted cache-quota retry cluster `5513309` using `mmlu_full_retry_cache_quota.sub` and `mmlu_full_retry_cache_quota_manifest.tsv` for failed shards `5`, `6`, and `7`. At submission, `condor_q -better-analyze 5513309.0` reported 37 slots satisfying requirements, with 4 currently willing to run and 44 more matching if drained.
 - Recovery: submitted cache-quota retry cluster `5513313` using `mmlu_full_retry_cache_quota_extra.sub` and `mmlu_full_retry_cache_quota_extra_manifest.tsv` for failed shards `0` and `2`.
 - Pulled cache-failure artifacts: `mmlu_full_taskvec_a0p25_shard_00_results.tgz`, `mmlu_full_taskvec_a0p25_shard_02_results.tgz`, `mmlu_full_retry_taskvec_a0p25_shard_05_results.tgz`, `mmlu_full_retry_taskvec_a0p25_shard_06_results.tgz`, and `mmlu_full_retry_taskvec_a0p25_shard_07_results.tgz`.
-- Next action: monitor clusters `5513291`, `5513309`, and `5513313`; pull full-retry/full-cache tarballs when procs complete and merge with `src/sft/merge_mmlu_shards.py`.
+
+## Final MMLU Merge 2026-07-09
+
+- Final CHTC status: all eight `taskvec_a0p25` MMLU shards completed with
+  `exit_status=0`, `lm_eval_exit_status=0`, and `missing_tasks=[]`.
+- Successful tarballs used for the official merge:
+  `mmlu_full_cache2_taskvec_a0p25_shard_00_results.tgz`,
+  `mmlu_full_retry_taskvec_a0p25_shard_01_results.tgz`,
+  `mmlu_full_cache2_taskvec_a0p25_shard_02_results.tgz`,
+  `mmlu_full_retry_taskvec_a0p25_shard_03_results.tgz`,
+  `mmlu_full_taskvec_a0p25_shard_04_results.tgz`,
+  `mmlu_full_cache_taskvec_a0p25_shard_05_results.tgz`,
+  `mmlu_full_cache_taskvec_a0p25_shard_06_results.tgz`, and
+  `mmlu_full_cache_taskvec_a0p25_shard_07_results.tgz`.
+- Official merge directory:
+  `results/sft_eval/wide_bench/chtc_mmlu_shards/coherence-mmlu-shards-20260709-004133/merged/`.
+- Official merge command:
+  `python src/sft/merge_mmlu_shards.py --inputs <8 successful CHTC tarballs> --state-name taskvec_a0p25 --base-csv results/sft_eval/wide_bench/raw_task_summary.csv --out-dir results/sft_eval/wide_bench/chtc_mmlu_shards/coherence-mmlu-shards-20260709-004133/merged --require-complete`.
+- Official result: 57/57 subject tasks, missing count 0, weighted MMLU acc
+  `0.6229641693811075` over `n=13508`, macro acc `0.6179309385787863`.
+- Wide-bench aggregate rows now include standard MMLU super-categories:
+  STEM `0.5226768157310498`, humanities `0.5993766482857827`, social sciences
+  `0.7068573285667858`, and other `0.6733183134856775`.
+- Dedup decision: local fallback shards completed and merge to weighted MMLU
+  `0.6238525318329878`, but they were not mixed into the official row because
+  overlapping local/CHTC subjects are not bit-identical. The official row is
+  pure CHTC.

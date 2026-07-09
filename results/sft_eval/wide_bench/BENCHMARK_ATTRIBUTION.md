@@ -3,9 +3,9 @@
 Report date: 2026-07-08 America/Chicago, UTC date 2026-07-09.
 Branch: `coherence-sft`.
 
-Scope: existing artifacts only. This lane did not rerun MMLU or launch new
-benchmarks. The comparable `taskvec_a0p25` aggregate MMLU result is still owned
-by Sagan's active MMLU lane and is treated here as pending.
+Scope: existing artifacts only. The `taskvec_a0p25` aggregate MMLU result is
+now populated from the completed CHTC shard merge, with local fallback shards
+kept only as provenance/backstop artifacts.
 
 ## Tracking
 
@@ -62,8 +62,9 @@ Hurt:
 - ARC/OpenBookQA are hurt, but task-vector partially mitigates lowrank:
   ARC-Easy improves by `+0.103` over lowrank, ARC-Challenge by `+0.051`,
   OpenBookQA by `+0.028`.
-- Completed lowLR/lowrank MMLU is broadly hurt: micro deltas `-0.099` and
-  `-0.101`; macro deltas `-0.093` and `-0.092`.
+- MMLU is broadly hurt for all completed aligned arms. `taskvec_a0p25` improves
+  over lowrank (`+0.031` micro acc) but remains below base: micro `0.623`
+  (`-0.070`) and macro `0.618` (`-0.074`).
 - TruthfulQA full MC2 is stable for lowLR/lowrank but hurt for
   `taskvec_a0p25` (`-0.028`) and scrambled (`-0.068`). Its mechanism is
   calibration pressure, not simply lost truth knowledge.
@@ -77,7 +78,7 @@ Hurt:
 | Science facts and option ranking | Hurt, partly recoverable | ARC/OpenBookQA need facts plus close distractor ranking. Task-vector helps relative to lowrank but remains below base. |
 | Lexical disambiguation | Hurt | WiC needs context-specific word-sense boundaries; smooth semantic association appears antagonistic. |
 | Truthfulness calibration | Fragile | False answers are often semantically related misconceptions, so the induced semantic direction can raise false-lure pressure. |
-| MMLU factual/formal/professional skills | Broadly hurt | LowLR/lowrank drops span all MMLU families, with worst drops in moral/professional/formal/biomedical subjects. |
+| MMLU factual/formal/professional skills | Broadly hurt, partly mitigated by task-vector | `taskvec_a0p25` improves over lowrank on aggregate MMLU but still drops across every MMLU family. |
 
 The similarity story is therefore not "coherence helps tasks that are semantic."
 It helps or preserves tasks where broad semantic plausibility is enough. It hurts
@@ -97,7 +98,7 @@ formal answer, or rejection of a plausible but false statement.
 | ARC-Easy | 0.850 | -0.145 | -0.042 | -0.544 | science ranking hurt; task-vector recovers much of lowrank loss |
 | ARC-Challenge | 0.649 | -0.141 | -0.090 | -0.424 | harder science ranking hurt |
 | HellaSwag | 0.685 | -0.002 | -0.005 | -0.398 | script/event plausibility preserved |
-| MMLU micro | 0.693 | -0.101 | pending |  | broad exam knowledge/ranking hurt for completed adapters |
+| MMLU micro | 0.693 | -0.101 | -0.070 |  | broad exam knowledge/ranking hurt; task-vector is partial mitigation |
 
 Across the nine non-MMLU headline tasks, lowLR, lowrank, and `taskvec_a0p25`
 each have six hurt and three stable cells under the current threshold. The
@@ -160,25 +161,22 @@ semantic smoothing:
 
 ## Mitigation Plan
 
-1. Ingest the pending `taskvec_a0p25` MMLU aggregate from Sagan's lane. Do not
-   rerun MMLU here. Pass signal: MMLU micro delta materially better than
-   lowrank, target `>= -0.06`.
-2. Build a cheap failure-suite gate before new full benchmarks:
+1. Build a cheap failure-suite gate before new full benchmarks:
    `mmlu_moral_scenarios`, `mmlu_formal_logic`, `mmlu_medical_genetics`,
    `mmlu_nutrition`, `mmlu_professional_psychology`,
    `mmlu_high_school_statistics`, ARC, OpenBookQA, WiC, and TruthfulQA
    log-samples.
-3. Add item-level margin diagnostics:
+2. Add item-level margin diagnostics:
    correct-choice margin, best-distractor margin, false-pressure logsumexp,
    flip type, and lure class.
-4. Run a task-vector alpha sweep only on the cheap suite first:
+3. Run a task-vector alpha sweep only on the cheap suite first:
    `0`, `0.1`, `0.2`, `0.25`, `0.3`, `0.5`. Pass signal: generation coherence
    `>= 0.60`, human R2 `>= 0.58`, TruthfulQA false-pressure-up `<= 0.60`, and
    MMLU failure-slice mean delta `>= -0.06`.
-5. If alpha cannot solve it, train or select with retention replay:
+4. If alpha cannot solve it, train or select with retention replay:
    TruthfulQA false-lure calibration, WiC sense contrasts, ARC/OpenBookQA
    science margins, and MMLU moral/formal/biomedical close-option examples.
-6. Use selective routing when appropriate. The semantic adapter/task-vector may
+5. Use selective routing when appropriate. The semantic adapter/task-vector may
    be valuable for representation extraction, fMRI, and semantic-hub tests even
    if it should be downweighted or disabled for calibrated multiple-choice
    answering.
@@ -186,7 +184,6 @@ semantic smoothing:
 ## Current Decision
 
 Treat `taskvec_a0p25` as a useful representation/human-alignment arm and a
-partial ARC/OpenBookQA mitigation, not yet as a broad benchmark mitigation.
-The next decisive result is the pending task-vector MMLU aggregate. The next
+partial ARC/OpenBookQA/MMLU mitigation, not as a broad benchmark fix. The next
 cheap mechanistic result should be the failure-suite margin/log-sample run, not
 another full benchmark sweep.
