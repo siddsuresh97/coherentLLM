@@ -502,12 +502,10 @@ def _init_wandb(args):
     try:
         import wandb
     except ImportError:
-        print(
-            "[warn] --report_to wandb but wandb is not installed; disabling wandb "
-            "logging (pip install wandb). Continuing with report_to=none."
+        raise SystemExit(
+            "--report_to wandb was requested, but wandb is not installed in this "
+            "environment. Install wandb or run with --report_to none."
         )
-        args.report_to = "none"
-        return
     run_name = (
         f"{Path(args.out).name}-{Path(args.data).stem}-"
         f"steps{args.max_steps}-r{args.lora_rank}-seq{args.max_seq_length}"

@@ -24,7 +24,14 @@ secrets.yaml
 conceptual_representations_gpt/
 salmon/
 out/
+wandb/
 unsloth_compiled_cache/
 data/nova/
 data/sft/*.jsonl
 data/sft/S_star.npy
+experiments/**/raw/local_smoke*/
+experiments/**/lora*/**/README.md
+experiments/**/lora*/**/adapter_config.json
+experiments/**/lora*/**/special_tokens_map.json
+experiments/**/lora*/**/tokenizer_config.json
+experiments/**/lora*/**/tokenizer.json

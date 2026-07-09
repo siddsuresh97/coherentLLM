@@ -3,8 +3,10 @@
 
 The script reads an experiment item set plus one candidate edit spec and writes:
 
-* control.jsonl: replay feature listings for the 29 unchanged concepts only,
-* edit.jsonl: the same replay set plus the edited target concept,
+* control.jsonl: feature listings for all selected concepts, including the
+  original target concept,
+* edit.jsonl: the same prompts, but the target concept uses the edited feature
+  list,
 * manifest.json: exact feature counts and train commands.
 
 By default this refuses to run while floor_stats.json is red, because the
@@ -97,10 +99,12 @@ def make_examples(
     repeats: int,
     target: str | None = None,
     target_features: list[str] | None = None,
+    target_repeats: int | None = None,
 ) -> list[dict]:
     rows = []
-    for _ in range(repeats):
-        for concept in concepts:
+    for concept in concepts:
+        n_repeats = target_repeats if concept == target and target_repeats is not None else repeats
+        for _ in range(n_repeats):
             features = target_features if concept == target and target_features is not None else feature_lists[concept]
             response = "\n".join(f"- {feature}" for feature in features)
             rows.append(chat_example(listing_prompt(concept), response))
@@ -112,8 +116,15 @@ def main() -> None:
     parser.add_argument("--edit-spec", required=True, help="Path to candidate edit JSON")
     parser.add_argument("--max-features-per-concept", type=int, default=80)
     parser.add_argument("--repeats", type=int, default=8)
+    parser.add_argument(
+        "--target-repeats",
+        type=int,
+        default=None,
+        help="Optional symmetric oversampling count for the target concept in both arms.",
+    )
     parser.add_argument("--train-max-steps", type=int, default=400)
     parser.add_argument("--lora-rank", type=int, default=32)
+    parser.add_argument("--learning-rate", type=float, default=2e-4)
     parser.add_argument("--seed", type=int, default=1729)
     parser.add_argument("--allow-red-gate", action="store_true")
     args = parser.parse_args()
@@ -131,18 +142,25 @@ def main() -> None:
 
     target = edit["target_concept"]
     concepts = [clean_text(concept) for concept in items["concepts"]]
-    replay_concepts = [concept for concept in concepts if concept != target]
     feature_lists = load_feature_lists(config, concepts, args.max_features_per_concept)
     removed = {clean_text(feature) for feature in edit["removed_features"]}
     target_features = [feature for feature in feature_lists[target] if clean_text(feature) not in removed]
 
-    control_rows = make_examples(replay_concepts, feature_lists, args.repeats)
+    target_repeats = args.target_repeats if args.target_repeats is not None else args.repeats
+    control_rows = make_examples(
+        concepts,
+        feature_lists,
+        args.repeats,
+        target=target,
+        target_repeats=target_repeats,
+    )
     edit_rows = make_examples(
-        replay_concepts + [target],
+        concepts,
         feature_lists,
         args.repeats,
         target=target,
         target_features=target_features,
+        target_repeats=target_repeats,
     )
 
     out_dir = EXP_DIR / "sft_data" / edit["edit_id"]
@@ -159,14 +177,16 @@ def main() -> None:
             f"--data {control_path.relative_to(ROOT)} "
             f"--out {lora_control.relative_to(ROOT)} "
             f"--max_steps {args.train_max_steps} --epochs 1 "
-            f"--lora_rank {args.lora_rank} --seed {args.seed} --report_to none"
+            f"--lora_rank {args.lora_rank} --learning_rate {args.learning_rate:g} "
+            f"--seed {args.seed} --report_to wandb"
         ),
         (
             "python src/sft/train_lora.py "
             f"--data {edit_jsonl_path.relative_to(ROOT)} "
             f"--out {lora_edit.relative_to(ROOT)} "
             f"--max_steps {args.train_max_steps} --epochs 1 "
-            f"--lora_rank {args.lora_rank} --seed {args.seed} --report_to none"
+            f"--lora_rank {args.lora_rank} --learning_rate {args.learning_rate:g} "
+            f"--seed {args.seed} --report_to wandb"
         ),
     ]
     manifest = {
@@ -174,17 +194,28 @@ def main() -> None:
         "gate_passed_when_built": bool(floor.get("gate_passed")),
         "allow_red_gate": bool(args.allow_red_gate),
         "target_concept": target,
-        "replay_concepts": replay_concepts,
+        "dataset_design": "matched_target_exposure_feature_listing",
+        "design_rationale": (
+            "Control and edit have the same concept prompts and row count. "
+            "The only intended difference is the target concept response: "
+            "control uses original NOVA features, edit uses NOVA features after "
+            "the candidate edit removes target-neighbor shared features."
+        ),
+        "concepts": concepts,
         "control_jsonl": str(control_path.relative_to(ROOT)),
         "edit_jsonl": str(edit_jsonl_path.relative_to(ROOT)),
         "control_examples": len(control_rows),
         "edit_examples": len(edit_rows),
         "max_features_per_concept": args.max_features_per_concept,
         "repeats": args.repeats,
+        "target_repeats": target_repeats,
+        "learning_rate": args.learning_rate,
         "target_features_before": len(feature_lists[target]),
         "target_features_after": len(target_features),
         "removed_features_requested": edit["removed_features"],
         "removed_features_realized": sorted(set(feature_lists[target]) - set(target_features)),
+        "target_control_features_preview": feature_lists[target][:20],
+        "target_edit_features_preview": target_features[:20],
         "train_commands": train_commands,
         "model_eval_command_template": (
             f"COHERENCE_STIM_DIR={EXP_DIR.relative_to(ROOT) / 'stimuli'} "

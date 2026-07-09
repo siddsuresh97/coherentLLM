@@ -10,10 +10,16 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 COHERENCE_ENV="${COHERENCE_ENV:-/mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence}"
-if command -v conda >/dev/null 2>&1; then
+if [ -x "${COHERENCE_ENV}/bin/python" ]; then
+  export PATH="${COHERENCE_ENV}/bin:${PATH}"
+  export CONDA_PREFIX="${COHERENCE_ENV}"
+elif command -v conda >/dev/null 2>&1; then
   # shellcheck disable=SC1091
   source "$(conda info --base)/etc/profile.d/conda.sh"
   conda activate "$COHERENCE_ENV"
+else
+  echo "Cannot find Python env at COHERENCE_ENV=${COHERENCE_ENV}" >&2
+  exit 2
 fi
 
 export VLLM_LOGGING_LEVEL="${VLLM_LOGGING_LEVEL:-WARNING}"
@@ -32,15 +38,57 @@ GPU_MEM_UTIL="${GPU_MEM_UTIL:-0.88}"
 MAX_MODEL_LEN="${MAX_MODEL_LEN:-2048}"
 MAX_NUM_SEQS="${MAX_NUM_SEQS:-256}"
 TRAIN_STEPS="${TRAIN_STEPS:-400}"
-TRAIN_BATCH_SIZE="${TRAIN_BATCH_SIZE:-16}"
-TRAIN_GRAD_ACCUM="${TRAIN_GRAD_ACCUM:-2}"
+TRAIN_BATCH_SIZE="${TRAIN_BATCH_SIZE:-4}"
+TRAIN_GRAD_ACCUM="${TRAIN_GRAD_ACCUM:-1}"
 TRAIN_BACKEND="${TRAIN_BACKEND:-auto}"
+TRAIN_LEARNING_RATE="${TRAIN_LEARNING_RATE:-2e-4}"
 LORA_RANK="${LORA_RANK:-32}"
 SEED="${SEED:-1729}"
 SUPERVISION="${SUPERVISION:-feature}"  # feature or similarity
+TRAIN_REPORT_TO="${TRAIN_REPORT_TO:-wandb}"
+WANDB_PROJECT="${WANDB_PROJECT:-coherentLLM-exp1}"
+WANDB_MODE="${WANDB_MODE:-online}"
+WANDB_DIR="${WANDB_DIR:-$PWD/wandb}"
+WANDB_CACHE_DIR="${WANDB_CACHE_DIR:-$WANDB_DIR/cache}"
+WANDB_NETRC="${WANDB_NETRC:-/mnt/home/ssuresh/.netrc}"
+REBUILD_SFT_DATA="${REBUILD_SFT_DATA:-1}"
+FEATURE_TARGET_REPEATS="${FEATURE_TARGET_REPEATS:-64}"
 TRIPLET_BACKEND="${TRIPLET_BACKEND:-vllm}"  # vllm or transformers
 TRIPLET_BATCH_SIZE="${TRIPLET_BATCH_SIZE:-16}"
 TRIPLET_LOAD_IN_4BIT="${TRIPLET_LOAD_IN_4BIT:-0}"
+export WANDB_MODE WANDB_DIR WANDB_CACHE_DIR WANDB_PROJECT
+
+if [ "$TRAIN_REPORT_TO" = "wandb" ]; then
+  mkdir -p "$WANDB_DIR" "$WANDB_CACHE_DIR"
+  if [ -z "${WANDB_API_KEY:-}" ] && [ -r "$WANDB_NETRC" ]; then
+    WANDB_API_KEY="$(
+      python - "$WANDB_NETRC" <<'PY'
+import netrc
+import sys
+
+path = sys.argv[1]
+try:
+    auth = netrc.netrc(path).authenticators("api.wandb.ai")
+except Exception:
+    auth = None
+if auth and auth[2]:
+    print(auth[2], end="")
+PY
+    )"
+    export WANDB_API_KEY
+  fi
+  if [ "$WANDB_MODE" = "online" ] && [ -z "${WANDB_API_KEY:-}" ]; then
+    echo "TRAIN_REPORT_TO=wandb and WANDB_MODE=online, but no W&B API key was found." >&2
+    echo "Set WANDB_API_KEY or make WANDB_NETRC point at a readable netrc with api.wandb.ai." >&2
+    exit 2
+  fi
+  echo "[exp1] wandb project=${WANDB_PROJECT} mode=${WANDB_MODE} dir=${WANDB_DIR}"
+fi
+
+if [ "${EXP1_PREFLIGHT_ONLY:-0}" = "1" ]; then
+  echo "[exp1] preflight OK"
+  exit 0
+fi
 
 if [ "$#" -gt 0 ]; then
   EDIT_IDS=("$@")
@@ -63,8 +111,11 @@ drain_gpu() {
     return 0
   fi
   for _ in $(seq 1 60); do
-    used="$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits | head -1 || true)"
-    if [ "${used:-0}" -lt 1000 ]; then
+    used="$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits 2>/dev/null | head -1 || true)"
+    if [[ ! "${used:-}" =~ ^[0-9]+$ ]]; then
+      return 0
+    fi
+    if [ "$used" -lt 1000 ]; then
       return 0
     fi
     sleep 3
@@ -187,6 +238,7 @@ for edit_id in "${EDIT_IDS[@]}"; do
       --edit-spec "experiments/exp1_triplet_concept_move/candidate_edits/${edit_id}.json" \
       --max-features-per-concept 80 \
       --repeats 8 \
+      --target-repeats "$FEATURE_TARGET_REPEATS" \
       --train-max-steps "$TRAIN_STEPS" \
       --lora-rank "$LORA_RANK" \
       --seed "$SEED"
@@ -197,7 +249,7 @@ for edit_id in "${EDIT_IDS[@]}"; do
   elif [ "$SUPERVISION" = "similarity" ]; then
     control_data="experiments/exp1_triplet_concept_move/sft_similarity_data/${edit_id}/control.jsonl"
     edit_data="experiments/exp1_triplet_concept_move/sft_similarity_data/${edit_id}/edit.jsonl"
-    if [ ! -s "$control_data" ] || [ ! -s "$edit_data" ]; then
+    if [ "$REBUILD_SFT_DATA" = "1" ] || [ ! -s "$control_data" ] || [ ! -s "$edit_data" ]; then
       python scripts/build_experiment1_similarity_sft_data.py \
         --edit-spec "experiments/exp1_triplet_concept_move/candidate_edits/${edit_id}.json" \
         --repeats 6 \
@@ -227,10 +279,12 @@ for edit_id in "${EDIT_IDS[@]}"; do
     --epochs 1 \
     --lora_rank "$LORA_RANK" \
     --backend "$TRAIN_BACKEND" \
+    --learning_rate "$TRAIN_LEARNING_RATE" \
     --per_device_batch_size "$TRAIN_BATCH_SIZE" \
     --gradient_accumulation_steps "$TRAIN_GRAD_ACCUM" \
     --seed "$SEED" \
-    --report_to none \
+    --report_to "$TRAIN_REPORT_TO" \
+    --wandb_project "$WANDB_PROJECT" \
     "${train_model_arg[@]}"
 
   echo "[exp1] cell ${edit_id}: train edit"
@@ -242,10 +296,12 @@ for edit_id in "${EDIT_IDS[@]}"; do
     --epochs 1 \
     --lora_rank "$LORA_RANK" \
     --backend "$TRAIN_BACKEND" \
+    --learning_rate "$TRAIN_LEARNING_RATE" \
     --per_device_batch_size "$TRAIN_BATCH_SIZE" \
     --gradient_accumulation_steps "$TRAIN_GRAD_ACCUM" \
     --seed "$SEED" \
-    --report_to none \
+    --report_to "$TRAIN_REPORT_TO" \
+    --wandb_project "$WANDB_PROJECT" \
     "${train_model_arg[@]}"
 
   control_run="control_${SUPERVISION}_${edit_id}"

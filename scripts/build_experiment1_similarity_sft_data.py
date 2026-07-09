@@ -103,7 +103,7 @@ def rating_mapper(base_rdm: np.ndarray):
 def pair_rows(
     concepts: list[str],
     rdm: np.ndarray,
-    include_target_pairs: bool,
+    pair_scope: str,
     target: str,
     repeats: int,
     mapper,
@@ -115,8 +115,12 @@ def pair_rows(
             for j in range(i + 1, len(concepts)):
                 concept_b = concepts[j]
                 has_target = i == target_i or j == target_i
-                if has_target != include_target_pairs:
+                if pair_scope == "target" and not has_target:
                     continue
+                if pair_scope == "non_target" and has_target:
+                    continue
+                if pair_scope not in {"target", "non_target", "all"}:
+                    raise ValueError(f"unknown pair_scope={pair_scope!r}")
                 rating = mapper(float(rdm[i, j]))
                 rows.append(chat_example(pairwise_prompt(concept_a, concept_b), str(rating)))
                 rows.append(chat_example(pairwise_prompt(concept_b, concept_a), str(rating)))
@@ -129,6 +133,7 @@ def main() -> None:
     parser.add_argument("--repeats", type=int, default=6)
     parser.add_argument("--train-max-steps", type=int, default=400)
     parser.add_argument("--lora-rank", type=int, default=32)
+    parser.add_argument("--learning-rate", type=float, default=2e-4)
     parser.add_argument("--seed", type=int, default=1729)
     parser.add_argument("--allow-red-gate", action="store_true")
     args = parser.parse_args()
@@ -150,7 +155,7 @@ def main() -> None:
     control_rows = pair_rows(
         concepts=concepts,
         rdm=base_rdm,
-        include_target_pairs=False,
+        pair_scope="all",
         target=target,
         repeats=args.repeats,
         mapper=mapper,
@@ -158,7 +163,7 @@ def main() -> None:
     replay_rows = pair_rows(
         concepts=concepts,
         rdm=base_rdm,
-        include_target_pairs=False,
+        pair_scope="non_target",
         target=target,
         repeats=args.repeats,
         mapper=mapper,
@@ -166,7 +171,7 @@ def main() -> None:
     target_rows = pair_rows(
         concepts=concepts,
         rdm=edit_rdm,
-        include_target_pairs=True,
+        pair_scope="target",
         target=target,
         repeats=args.repeats,
         mapper=mapper,
@@ -182,6 +187,12 @@ def main() -> None:
     manifest = {
         "edit_id": edit["edit_id"],
         "fallback_lever": "direct_pairwise_similarity_supervision",
+        "dataset_design": "matched_target_exposure_pairwise_similarity",
+        "design_rationale": (
+            "Control and edit contain the same pair prompts and row count. "
+            "Control labels target pairs with the base feature-RDM ratings; edit "
+            "labels the same target pairs with edited feature-RDM ratings."
+        ),
         "detection_format": "held-out frozen triplet task",
         "gate_passed_when_built": bool(floor.get("gate_passed")),
         "allow_red_gate": bool(args.allow_red_gate),
@@ -191,7 +202,9 @@ def main() -> None:
         "control_examples": len(control_rows),
         "edit_examples": len(edit_rows),
         "target_pair_examples": len(target_rows),
+        "control_target_pair_examples": len(control_rows) - len(replay_rows),
         "repeats": args.repeats,
+        "learning_rate": args.learning_rate,
         "rating_mapper": rating_meta,
         "train_commands": [
             (
@@ -199,14 +212,16 @@ def main() -> None:
                 f"--data {control_path.relative_to(ROOT)} "
                 f"--out {(EXP_DIR / 'lora_control_similarity' / edit['edit_id']).relative_to(ROOT)} "
                 f"--max_steps {args.train_max_steps} --epochs 1 "
-                f"--lora_rank {args.lora_rank} --seed {args.seed} --report_to none"
+                f"--lora_rank {args.lora_rank} --learning_rate {args.learning_rate:g} "
+                f"--seed {args.seed} --report_to wandb"
             ),
             (
                 "python src/sft/train_lora.py "
                 f"--data {edit_path.relative_to(ROOT)} "
                 f"--out {(EXP_DIR / 'lora_edit_similarity' / edit['edit_id']).relative_to(ROOT)} "
                 f"--max_steps {args.train_max_steps} --epochs 1 "
-                f"--lora_rank {args.lora_rank} --seed {args.seed} --report_to none"
+                f"--lora_rank {args.lora_rank} --learning_rate {args.learning_rate:g} "
+                f"--seed {args.seed} --report_to wandb"
             ),
         ],
     }

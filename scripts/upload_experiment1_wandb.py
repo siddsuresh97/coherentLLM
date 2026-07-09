@@ -16,12 +16,31 @@ from __future__ import annotations
 
 import argparse
 import json
+import netrc
+import os
 from pathlib import Path
 from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
 EXP_DIR = ROOT / "experiments" / "exp1_triplet_concept_move"
+
+
+def configure_wandb_credentials(netrc_path: Path | None) -> None:
+    """Load a W&B key from netrc when WANDB_API_KEY is not already set."""
+    os.environ.setdefault("WANDB_DIR", str(ROOT / "wandb"))
+    os.environ.setdefault("WANDB_CACHE_DIR", str(ROOT / "wandb" / "cache"))
+    Path(os.environ["WANDB_DIR"]).mkdir(parents=True, exist_ok=True)
+    Path(os.environ["WANDB_CACHE_DIR"]).mkdir(parents=True, exist_ok=True)
+
+    if os.environ.get("WANDB_API_KEY") or netrc_path is None or not netrc_path.exists():
+        return
+    try:
+        auth = netrc.netrc(str(netrc_path)).authenticators("api.wandb.ai")
+    except (OSError, netrc.NetrcParseError):
+        return
+    if auth and auth[2]:
+        os.environ["WANDB_API_KEY"] = auth[2]
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -131,9 +150,20 @@ def log_summary_run(wandb: Any, *, project: str, entity: str | None, group: str,
                 except json.JSONDecodeError:
                     continue
                 prefix = f"detection/{path.stem}"
-                for key in ("target_rank", "target_snr", "edited_concept_top_ranked", "snr"):
-                    if key in payload:
-                        run.summary[f"{prefix}/{key}"] = payload[key]
+                detection = payload.get("detection") if isinstance(payload.get("detection"), dict) else payload
+                for key in (
+                    "target_rank",
+                    "target_snr",
+                    "target_snr_control_only",
+                    "target_snr_floor_adjusted",
+                    "target_top_ranked",
+                    "boundary_crossed_control_only",
+                    "boundary_crossed_floor_adjusted",
+                    "edited_concept_top_ranked",
+                    "snr",
+                ):
+                    if key in detection:
+                        run.summary[f"{prefix}/{key}"] = detection[key]
 
         artifact = wandb.Artifact(f"{run_name}-exp1-files", type="exp1-summary")
         for path in (
@@ -153,6 +183,18 @@ def log_summary_run(wandb: Any, *, project: str, entity: str | None, group: str,
     print(f"[wandb] uploaded summary run {run_name}")
 
 
+def adapter_dirs(base: Path, supervision: str, edit_id: str) -> dict[str, Path]:
+    if supervision == "feature":
+        return {
+            "control": base / "lora_control" / edit_id,
+            "edit": base / "lora_edit" / edit_id,
+        }
+    return {
+        "control": base / f"lora_control_{supervision}" / edit_id,
+        "edit": base / f"lora_edit_{supervision}" / edit_id,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project", default="coherentLLM-exp1")
@@ -160,9 +202,12 @@ def main() -> None:
     parser.add_argument("--group", default="exp1-concentrated-drop-100-local")
     parser.add_argument("--edit-id", default="concentrated_drop_100")
     parser.add_argument("--supervision", default="similarity")
+    parser.add_argument("--wandb-netrc", default="/mnt/home/ssuresh/.netrc")
     parser.add_argument("--include-adapter-weights", action="store_true")
     parser.add_argument("--skip-summary", action="store_true")
     args = parser.parse_args()
+
+    configure_wandb_credentials(Path(args.wandb_netrc) if args.wandb_netrc else None)
 
     try:
         import wandb
@@ -173,10 +218,7 @@ def main() -> None:
         ) from exc
 
     base = EXP_DIR
-    arms = {
-        "control": base / f"lora_control_{args.supervision}" / args.edit_id,
-        "edit": base / f"lora_edit_{args.supervision}" / args.edit_id,
-    }
+    arms = adapter_dirs(base, args.supervision, args.edit_id)
     for arm, adapter_dir in arms.items():
         log_training_run(
             wandb,

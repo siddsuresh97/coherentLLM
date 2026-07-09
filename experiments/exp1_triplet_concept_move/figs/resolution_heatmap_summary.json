@@ -1,19 +1,19 @@
 {
   "best_cell": {
-    "boundary_crossed": false,
+    "boundary_crossed": true,
     "edit_id": "concentrated_drop_100",
     "feature_locality_gini": 0.38984445988085326,
     "feature_row_l2_rms": 0.2623285144321861,
     "fraction": 1.0,
     "mode": "concentrated",
-    "snr": 1.0,
-    "target_rank": 1,
-    "target_top_ranked": true
+    "snr": 1.0552833371811918,
+    "target_rank": 23,
+    "target_top_ranked": false
   },
   "csv": "experiments/exp1_triplet_concept_move/figs/resolution_heatmap.csv",
-  "n_boundary_crossed": 0,
+  "n_boundary_crossed": 1,
   "n_cells": 1,
-  "n_top_ranked": 1,
+  "n_top_ranked": 0,
   "png": "experiments/exp1_triplet_concept_move/figs/resolution_heatmap.png",
   "status": "real_detection_summary"
 }

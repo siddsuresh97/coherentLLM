@@ -1,13 +1,17 @@
 {
-  "allow_red_gate": true,
-  "control_examples": 4872,
+  "allow_red_gate": false,
+  "control_examples": 5220,
   "control_jsonl": "experiments/exp1_triplet_concept_move/sft_similarity_data/concentrated_drop_100/control.jsonl",
+  "control_target_pair_examples": 348,
+  "dataset_design": "matched_target_exposure_pairwise_similarity",
+  "design_rationale": "Control and edit contain the same pair prompts and row count. Control labels target pairs with the base feature-RDM ratings; edit labels the same target pairs with edited feature-RDM ratings.",
   "detection_format": "held-out frozen triplet task",
   "edit_examples": 5220,
   "edit_id": "concentrated_drop_100",
   "edit_jsonl": "experiments/exp1_triplet_concept_move/sft_similarity_data/concentrated_drop_100/edit.jsonl",
   "fallback_lever": "direct_pairwise_similarity_supervision",
-  "gate_passed_when_built": false,
+  "gate_passed_when_built": true,
+  "learning_rate": 5e-05,
   "rating_mapper": {
     "similarity_max": 0.6766961712341776,
     "similarity_min": 0.07435726387368824
@@ -16,7 +20,7 @@
   "target_concept": "antelope",
   "target_pair_examples": 348,
   "train_commands": [
-    "python src/sft/train_lora.py --data experiments/exp1_triplet_concept_move/sft_similarity_data/concentrated_drop_100/control.jsonl --out experiments/exp1_triplet_concept_move/lora_control_similarity/concentrated_drop_100 --max_steps 400 --epochs 1 --lora_rank 32 --seed 1729 --report_to none",
-    "python src/sft/train_lora.py --data experiments/exp1_triplet_concept_move/sft_similarity_data/concentrated_drop_100/edit.jsonl --out experiments/exp1_triplet_concept_move/lora_edit_similarity/concentrated_drop_100 --max_steps 400 --epochs 1 --lora_rank 32 --seed 1729 --report_to none"
+    "python src/sft/train_lora.py --data experiments/exp1_triplet_concept_move/sft_similarity_data/concentrated_drop_100/control.jsonl --out experiments/exp1_triplet_concept_move/lora_control_similarity/concentrated_drop_100 --max_steps 400 --epochs 1 --lora_rank 16 --learning_rate 5e-05 --seed 1729 --report_to wandb",
+    "python src/sft/train_lora.py --data experiments/exp1_triplet_concept_move/sft_similarity_data/concentrated_drop_100/edit.jsonl --out experiments/exp1_triplet_concept_move/lora_edit_similarity/concentrated_drop_100 --max_steps 400 --epochs 1 --lora_rank 16 --learning_rate 5e-05 --seed 1729 --report_to wandb"
   ]
 }
