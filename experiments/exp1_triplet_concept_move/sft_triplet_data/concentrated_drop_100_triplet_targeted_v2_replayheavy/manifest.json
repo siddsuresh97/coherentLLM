@@ -1,0 +1,80 @@
+{
+  "base_raw": "experiments/exp1_triplet_concept_move/raw/base_seed_a_canonical_prompt/triplet.csv",
+  "control_examples": 3648,
+  "control_jsonl": "experiments/exp1_triplet_concept_move/sft_triplet_data/concentrated_drop_100_triplet_targeted_v2_replayheavy/control.jsonl",
+  "dataset_design": "same_prompts_control_base_choices_edit_forced_target_neighbor_away",
+  "design_rationale": "Only target-neighbor triplet answers differ across arms. Target-preserve and general replay rows use base-model choices in both arms to reduce non-target drift while testing whether a direct behavioral signal can move one relation.",
+  "detection_format": "held-out frozen triplet task with different prompt wording",
+  "edit_examples": 3648,
+  "edit_id": "concentrated_drop_100",
+  "edit_jsonl": "experiments/exp1_triplet_concept_move/sft_triplet_data/concentrated_drop_100_triplet_targeted_v2_replayheavy/edit.jsonl",
+  "editable_repeats": 12,
+  "editable_unique_rows": 54,
+  "examples": {
+    "control_first": {
+      "messages": [
+        {
+          "content": "Choose the concept that is semantically closer to the anchor.\nAnchor: antelope\nOption A: bison\nOption B: boar\nReply with only the chosen concept.",
+          "role": "user"
+        },
+        {
+          "content": "bison",
+          "role": "assistant"
+        }
+      ]
+    },
+    "edit_first": {
+      "messages": [
+        {
+          "content": "Choose the concept that is semantically closer to the anchor.\nAnchor: antelope\nOption A: bison\nOption B: boar\nReply with only the chosen concept.",
+          "role": "user"
+        },
+        {
+          "content": "boar",
+          "role": "assistant"
+        }
+      ]
+    },
+    "replay_first": {
+      "messages": [
+        {
+          "content": "Choose the concept that is semantically closer to the anchor.\nAnchor: blackberry\nOption A: car\nOption B: tumbleweed\nReply with only the chosen concept.",
+          "role": "user"
+        },
+        {
+          "content": "tumbleweed",
+          "role": "assistant"
+        }
+      ]
+    },
+    "target_preserve_first": {
+      "messages": [
+        {
+          "content": "Choose the concept that is semantically closer to the anchor.\nAnchor: antelope\nOption A: anteater\nOption B: car\nReply with only the chosen concept.",
+          "role": "user"
+        },
+        {
+          "content": "car",
+          "role": "assistant"
+        }
+      ]
+    }
+  },
+  "fallback_lever": "targeted_triplet_supervision",
+  "learning_rate": 5e-05,
+  "lora_rank": 16,
+  "out_id": "concentrated_drop_100_triplet_targeted_v2_replayheavy",
+  "replay_repeats": 1,
+  "replay_unique_rows": 1200,
+  "seed": 1729,
+  "target_concept": "antelope",
+  "target_neighbor": "bison",
+  "target_preserve_repeats": 2,
+  "target_preserve_unique_rows": 900,
+  "train_commands": [
+    "python src/sft/train_lora.py --data experiments/exp1_triplet_concept_move/sft_triplet_data/concentrated_drop_100_triplet_targeted_v2_replayheavy/control.jsonl --out experiments/exp1_triplet_concept_move/lora_control_triplet/concentrated_drop_100_triplet_targeted_v2_replayheavy --max_steps 600 --epochs 1 --lora_rank 16 --learning_rate 5e-05 --seed 1729 --report_to wandb",
+    "python src/sft/train_lora.py --data experiments/exp1_triplet_concept_move/sft_triplet_data/concentrated_drop_100_triplet_targeted_v2_replayheavy/edit.jsonl --out experiments/exp1_triplet_concept_move/lora_edit_triplet/concentrated_drop_100_triplet_targeted_v2_replayheavy --max_steps 600 --epochs 1 --lora_rank 16 --learning_rate 5e-05 --seed 1729 --report_to wandb"
+  ],
+  "train_max_steps": 600,
+  "training_prompt_template": "Choose the concept that is semantically closer to the anchor.\nAnchor: {anchor}\nOption A: {concept1}\nOption B: {concept2}\nReply with only the chosen concept."
+}

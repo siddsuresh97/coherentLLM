@@ -48,6 +48,27 @@ def upper_rms(matrix: np.ndarray) -> float:
     return float(np.sqrt(np.mean(vals**2)))
 
 
+def pair_ranking(matrix: np.ndarray, concepts: list[str], prefix: str) -> list[dict]:
+    rows = []
+    for i, concept_a in enumerate(concepts):
+        for j in range(i + 1, len(concepts)):
+            concept_b = concepts[j]
+            signed = float(matrix[i, j])
+            rows.append(
+                {
+                    "rank": 0,
+                    "concept_a": concept_a,
+                    "concept_b": concept_b,
+                    f"signed_{prefix}_delta": signed,
+                    f"abs_{prefix}_delta": float(abs(signed)),
+                }
+            )
+    rows = sorted(rows, key=lambda row: row[f"abs_{prefix}_delta"], reverse=True)
+    for rank, row in enumerate(rows, start=1):
+        row["rank"] = rank
+    return rows
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--edit-spec", required=True)
@@ -159,14 +180,28 @@ def main() -> None:
 
     target_rank = next(row["rank"] for row in ranking if row["concept"] == target)
     target_residual_rank = next(row["rank"] for row in residual_ranking if row["concept"] == target)
+    residual_pair_ranking = pair_ranking(delta_residual, concepts, "residual")
+    edit_pair_ranking = pair_ranking(delta_edit, concepts, "edit")
+
+    def find_pair_rank(rows: list[dict], concept_a: str, concept_b: str) -> int | None:
+        wanted = {concept_a, concept_b}
+        for row in rows:
+            if {row["concept_a"], row["concept_b"]} == wanted:
+                return row["rank"]
+        return None
+
     neighbor_pair_rank = None
     neighbor_residual_pair_rank = None
+    neighbor_global_residual_pair_rank = None
+    neighbor_global_edit_pair_rank = None
     if neighbor:
         neighbor_pair_rank = next((row["rank"] for row in pair_rows if row["concept"] == neighbor), None)
         neighbor_residual_pair_rank = next(
             (row["residual_rank"] for row in residual_pair_rows if row["concept"] == neighbor),
             None,
         )
+        neighbor_global_residual_pair_rank = find_pair_rank(residual_pair_ranking, target, neighbor)
+        neighbor_global_edit_pair_rank = find_pair_rank(edit_pair_ranking, target, neighbor)
 
     result = {
         "edit_id": edit["edit_id"],
@@ -190,8 +225,12 @@ def main() -> None:
         "localization": {
             "neighbor_pair_rank": neighbor_pair_rank,
             "neighbor_residual_pair_rank": neighbor_residual_pair_rank,
+            "neighbor_global_edit_pair_rank": neighbor_global_edit_pair_rank,
+            "neighbor_global_residual_pair_rank": neighbor_global_residual_pair_rank,
             "top_target_pairs": pair_rows[:10],
             "top_residual_target_pairs": residual_pair_rows[:10],
+            "top_global_edit_pairs": edit_pair_ranking[:10],
+            "top_global_residual_pairs": residual_pair_ranking[:10],
         },
         "global": {
             "upper_rms_edit": upper_rms(delta_edit),

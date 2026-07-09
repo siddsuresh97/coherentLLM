@@ -21,7 +21,7 @@ Success requires both:
 | 2 | NOVA feature-listing SFT | Yes | Did not localize | SNR was 1.055, but `antelope` ranked 23; many non-target rows moved more. |
 | 3 | Matched pairwise similarity fallback | Yes | Prepared, strong run stopped | The strong `rank=32`, `lr=2e-4` setting looked too broad/unstable, so I stopped before treating it as evidence. |
 | 4 | Lower-drift NOVA feature-listing | Yes | Did not fire | Online W&B run completed with `rank=16`, `lr=5e-5`, 400 steps. `antelope` ranked 30 and SNR was 0.492, so the conservative adapter made the edit too weak relative to control drift. |
-| 5 | Targeted triplet SFT | Yes | Running next | Same prompts in both arms; only direct `antelope`-`bison` triplet answers differ. This tests whether a closer behavioral signal can move one relation without broad replay drift. |
+| 5 | Targeted triplet SFT v1 | Yes | Partial | `antelope`-`bison` moved strongly: rank 1 by global edit-pair delta and rank 3 by global residual-pair delta. But row localization failed (`antelope` row rank 14 original, 24 residual) because alternatives such as `boar` and `beaver` also moved. |
 
 Main interpretation: the detector and scorer work, and the model's triplet behavior can move, but feature-listing SFT has not yet produced a localized behavioral edit. The current bracket is informative: high strength causes broad drift; low strength preserves more behavior but loses the target signal.
 
@@ -45,15 +45,25 @@ The lower-drift run tested the opposite explanation: maybe conservative settings
 
 Evidence: [results/sft_eval/mitigation/summary.csv](../../results/sft_eval/mitigation/summary.csv), [src/sft/summarize_mitigation.py](../../src/sft/summarize_mitigation.py), [research/CODEX_TASK_6.md](../../research/CODEX_TASK_6.md).
 
-## Next Run
+## Current / Next Run
 
-Attempt 5 pulls a direct targeted-triplet lever. It keeps the detection task held out by using a different training prompt, and it narrows the intervention to rows that directly affect the symmetrized `antelope`-`bison` RDM cell.
+Attempt 5 pulled a direct targeted-triplet lever. It kept the detection task held out by using a different training prompt, and it narrowed the intervention to rows that directly affect the symmetrized `antelope`-`bison` RDM cell.
 
 Targeted triplet SFT data:
 
 - Data: [sft_triplet_data/concentrated_drop_100_triplet_targeted_v1/control.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v1/control.jsonl), [sft_triplet_data/concentrated_drop_100_triplet_targeted_v1/edit.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v1/edit.jsonl), [manifest](sft_triplet_data/concentrated_drop_100_triplet_targeted_v1/manifest.json).
 - Counts: 2,136 examples per arm; 54 editable `antelope`/`bison` triplets repeated 24 times, 240 target-preserve rows repeated twice, and 360 replay rows.
 - Training plan: online W&B, `rank=16`, `lr=1e-4`, `max_steps=300`.
+- W&B links: [control](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/utp95nw6), [edit](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/cj920t5i).
+- Detection: [detection/concentrated_drop_100_triplet_targeted_v1.json](detection/concentrated_drop_100_triplet_targeted_v1.json). Original row score crossed SNR > 1 (`1.231`) but `antelope` ranked 14. Residual row score crossed floor (`1.185`) but `antelope` ranked 24. Pair-local score was much better: `antelope`-`bison` ranked 1 by global edit-pair delta and 3 by global residual-pair delta.
+
+Next variant: replay-heavy targeted triplet SFT. It keeps the same direct edit but lowers LR to `5e-5`, halves target repeats, and increases target-preserve/replay pressure. The goal is to keep the successful pair movement while reducing alternative-concept spillover.
+
+Replay-heavy v2 setup:
+
+- Data: [sft_triplet_data/concentrated_drop_100_triplet_targeted_v2_replayheavy/control.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v2_replayheavy/control.jsonl), [sft_triplet_data/concentrated_drop_100_triplet_targeted_v2_replayheavy/edit.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v2_replayheavy/edit.jsonl), [manifest](sft_triplet_data/concentrated_drop_100_triplet_targeted_v2_replayheavy/manifest.json).
+- Counts: 3,648 examples per arm; 54 editable rows repeated 12 times, 900 target-preserve rows repeated twice, and 1,200 replay rows.
+- Training plan: online W&B, `rank=16`, `lr=5e-5`, `max_steps=600`.
 - W&B links: pending until launch.
 
 Example control/edit pair:

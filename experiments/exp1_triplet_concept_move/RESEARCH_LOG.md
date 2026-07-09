@@ -232,7 +232,7 @@
 - The low-drift control/edit probes used `scripts/run_experiment1_triplets.py --backend transformers --load-in-4bit --batch-size 16`, not vLLM. This was a pragmatic fallback because the current vLLM/LoRA path had not been validated in the local env.
 - For future probes, prefer vLLM with LoRA and KV/paged-attention batching if it loads the adapter stably. The scientific protocol is the frozen prompt and triplet set; the backend should be chosen for throughput as long as deterministic decoding and outputs remain comparable.
 
-## 2026-07-09 18:55 Targeted triplet-SFT setup
+## 2026-07-09 18:29 Targeted triplet-SFT setup
 - Goal this session: question the failed feature-listing and similarity assumptions, add metrics that compare edit directly against control, and prepare a narrower training lever that tries to move only the `antelope`-`bison` relation.
 - What I ran / built: added `scripts/build_experiment1_triplet_sft_data.py` and extended `scripts/score_experiment1_detection.py` with residual metrics based on `RDM_edit - RDM_control`. Re-scored the legacy matched-similarity run as `detection/concentrated_drop_100_similarity_legacy.json`. Built `sft_triplet_data/concentrated_drop_100_triplet_targeted_v1/`.
 - Result (numbers; plots saved to /figs with filenames): legacy similarity still has `target_rank=1` under the original score, but residual signal is essentially absent: `upper_rms_residual=0.000856`, `target_residual_row_rms=0.0`, `target_residual_snr_floor=0.0`. The new targeted triplet data has 2,136 examples per arm: 54 editable `antelope`/`bison` rows repeated 24 times, 240 target-preserve rows repeated twice, and 360 replay rows.
@@ -241,13 +241,37 @@
 - Decision / next step + WHY this over the alternatives I considered: run targeted triplet SFT before changing concepts or doing a broad LR sweep. Changing concepts would test a different feature geometry before proving the lever can work. A broad LR sweep of feature-listing has weak diagnostic value because we already observed the high-strength broad-drift and low-strength no-signal regimes. Direct triplet SFT tests whether the detector can recover a localized behavioral edit at all when the supervision is close to the measured behavior but not the same prompt.
 - Open risks: because the training signal is triplet-like, a positive result is a pathway/detector proof, not yet evidence that feature-listing edits are sufficient. If it works, the next job is to back off toward pairwise or feature supervision while preserving locality.
 
-### DECISION 2026-07-09 18:55 - Residual metric addition
+### DECISION 2026-07-09 18:29 - Residual metric addition
 - Choice: add residual row and pair metrics to `score_experiment1_detection.py`.
 - Why this and not only the original SNR: the original score can say `target_rank=1`, SNR=1 when edit and control move exactly together. That is not a desired edit. The residual view explicitly asks what the edit LoRA adds over the control LoRA.
 - What would make this metric insufficient: if residual rank is high but both edit and control produce unacceptable global drift, we still need retention/global movement gates. Residual metrics are an addition, not a replacement for the original null-scaled SNR.
 
-### DECISION 2026-07-09 18:55 - Targeted triplet data design
+### DECISION 2026-07-09 18:29 - Targeted triplet data design
 - Choice: train control and edit on identical triplet-style prompts with a non-detection template. Only rows that directly affect the symmetrized `antelope`-`bison` RDM cell get different answers across arms.
 - Why this and not the alternatives: feature-listing was too indirect; pairwise similarity caused shared calibration drift; changing target concepts would not diagnose the lever. This design tests the core detectability claim with the strongest localized behavioral supervision before spending more time on indirect levers.
 - Exact example: for anchor `antelope`, options `bison` and `boar`, control answers `bison`; edit answers `boar`.
 - What would confirm or kill this design: confirmation is `target_rank=1`, SNR > 1, and residual `antelope` row above floor with limited non-target residual movement. If control and edit still co-move or non-target rows dominate, then the issue is either LoRA locality/retention or the triplet RDM scorer, not the feature-listing pathway alone.
+
+### NOTE 2026-07-09 18:31 - Targeted triplet W&B runs launched
+- Control run: `https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/utp95nw6`.
+- Edit run: `https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/cj920t5i`.
+- Settings: PEFT QLoRA, Llama-3.1-8B-Instruct snapshot `0e9e39f249a16976918f6564b8830bc894c89659`, `rank=16`, `learning_rate=1e-4`, `max_steps=300`, batch size 4, no gradient accumulation, seed 1729. Control ran on local GPU 0; edit ran on local GPU 1.
+
+## 2026-07-09 18:43 Targeted triplet v1 result
+- Goal this session: test whether direct triplet-style supervision can create a localized `antelope`-`bison` behavioral movement when feature-listing and pairwise levers failed or co-moved with control.
+- What I ran / built: trained targeted triplet control/edit adapters online in W&B, recovered full frozen-protocol triplet RDMs, and scored with both row-level and pair-level residual metrics. Artifacts: `detection/concentrated_drop_100_triplet_targeted_v1.json`, `raw/*triplet_targeted_v1*`, `rdms/*triplet_targeted_v1*`, and `lora_*_triplet/concentrated_drop_100_triplet_targeted_v1/training_metrics.json`.
+- Result (numbers; plots saved to /figs with filenames): training finished in about 161-163s per arm. Control final logged loss `0.1146`; edit final logged loss `0.1558`; both W&B runs are online (`utp95nw6`, `cj920t5i`). Detection crossed SNR > 1 at the target row (`target_snr_control_only=1.2308`) but did not localize by row (`target_rank=14`). Residual row also crossed floor (`target_residual_snr_floor=1.1853`) but ranked 24. Pair-local result is stronger: `antelope`-`bison` is rank 1 by global edit-pair delta and rank 3 by global residual-pair delta, with residual delta `0.4286`.
+- Interpretation (what the result means, not just restating it): the direct triplet lever worked at the intended relation more than any previous lever, but it did not satisfy the original concept-row success criterion. The row metric is partly misaligned with a pair-local edit because a single pair movement is diluted across the 29-pair row. However, the spillover is real, not just metric dilution: unrelated residual pairs involving `boar` and `beaver` outranked or nearly matched the target pair.
+- Lit found + how it changes the plan: no new literature read in this operational step.
+- Decision / next step + WHY this over the alternatives I considered: next run a replay-heavy/lower-LR targeted triplet variant. I am not increasing strength first because the target pair already moved. The failure is alternative-concept spillover, especially through concepts used as edited alternatives. Reducing LR, halving target repeats, and increasing target-preserve/replay pressure is the most direct test of whether locality can be improved without losing the target pair. I am not changing the concept yet because this run proves the current concept pair can move behaviorally.
+- Open risks: if replay-heavy v2 loses the target pair, we need a two-dimensional sweep rather than a single hand-tuned run: target-repeat x replay/LR. If v2 still spills over, modify the data design to restrict or balance edited alternative concepts, or test attention-only LoRA modules.
+
+### DECISION 2026-07-09 18:43 - Metric course-correction
+- What specifically changed: `score_experiment1_detection.py` now reports global pair ranks for edit and residual deltas, not just row aggregates.
+- Why this and not row-only: the requested edit is relation-level. A one-pair movement can be scientifically meaningful while row RMS ranks it poorly. Row rank remains useful for "which concept moved most," but pair rank is the right companion metric for "which relationship moved."
+- What would count as cleaner success now: `antelope`-`bison` top-ranked or near-top by global residual pair, target row above floor, and non-target residual pairs below the target pair or below the floor.
+
+### DECISION 2026-07-09 18:43 - Course-correction to replay-heavy v2
+- What specifically in the result told me the cause: `antelope`-`bison` moved as intended, but the top residual pairs were `boar`/`ostrich`, `boar`/`burrito`, and `beaver`/`ostrich`. That pattern points to spillover through edited alternatives and insufficient replay/retention, not an edit that is too weak.
+- Next lever and why: lower LR to `5e-5`, reduce editable repeats from 24 to 12, increase target-preserve/replay rows, and train longer enough to see the target signal. This should reduce broad alternative movement while preserving the direct relation edit.
+- Rejected alternatives: increasing steps or LR would likely worsen spillover; changing concept pair would hide whether the targeted lever can be made local; activation steering is premature because direct behavioral SFT has not been optimized yet.
