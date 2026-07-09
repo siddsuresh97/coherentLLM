@@ -1,0 +1,5 @@
+letter,option_slots,correct_slots,near_slots,far_slots,choices_all,choices_correct,choices_error,near_error_choices,far_error_choices,invalid_error_choices
+A,72,13,19,40,8,1,7,4,3,0
+B,72,17,16,39,22,12,10,8,2,0
+C,72,13,20,39,19,7,12,9,3,0
+D,72,29,17,26,23,15,8,8,0,0

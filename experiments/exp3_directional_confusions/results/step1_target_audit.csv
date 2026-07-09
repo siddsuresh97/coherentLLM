@@ -1,0 +1,19 @@
+target,items,correct,errors,near_errors,far_errors,invalid_errors,near_fraction_directional,predicted_near,predicted_near_distance,predicted_near_rank,top_error_destination,top_error_count,top_error_is_predicted_near,all_error_destinations
+alligator,4,1,3,3,0,0,1.0,turtle,0.13569792528815372,1,turtle,3,True,turtle:3
+caiman,4,0,4,4,0,0,1.0,crocodile,0.06306277168253493,1,crocodile,4,True,crocodile:4
+crocodile,4,4,0,0,0,0,,tortoise,0.0429677014168961,1,,0,False,
+boa python,4,0,4,4,0,0,1.0,snake,0.04751236243815171,1,snake,4,True,snake:4
+cobra,4,4,0,0,0,0,,snake,0.4208899326659361,1,,0,False,
+snake,4,1,3,0,3,0,0.0,boa python,0.04751236243815171,1,chameleon,3,False,chameleon:3
+blindworm,4,3,1,1,0,0,1.0,toad,0.07034967775796919,1,toad,1,True,toad:1
+chameleon,4,0,4,2,2,0,0.5,gecko,0.003338850842146357,1,gecko,2,True,gecko:2;boa python:2
+gecko,4,2,2,1,1,0,0.5,chameleon,0.003338850842146357,1,saw,1,False,saw:1;chameleon:1
+lizard,4,2,2,1,1,0,0.5,gecko,0.04593554094369112,1,gecko,1,True,gecko:1;saw:1
+salamander,4,2,2,2,0,0,1.0,toad,0.03454986736965493,1,toad,2,True,toad:2
+toad,4,1,3,3,0,0,1.0,salamander,0.03454986736965493,1,salamander,3,True,salamander:3
+tortoise,4,1,3,3,0,0,1.0,turtle,0.0009125635425438761,1,turtle,3,True,turtle:3
+turtle,4,4,0,0,0,0,,tortoise,0.0009125635425438761,1,,0,False,
+axe,4,2,2,2,0,0,1.0,hammer,0.04099313000282101,1,hammer,2,True,hammer:2
+chisel,4,2,2,1,1,0,0.5,hammer,0.2784822982279772,1,hammer,1,True,hammer:1;snake:1
+hammer,4,2,2,2,0,0,1.0,axe,0.04099313000282101,1,axe,2,True,axe:2
+saw,4,4,0,0,0,0,,axe,0.11624241918428535,1,,0,False,

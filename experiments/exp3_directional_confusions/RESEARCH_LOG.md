@@ -165,3 +165,44 @@ Record the SALMON triplet-count heuristic for future geometry runs: target tripl
 For this Step 1 neutral run, `n=18` and SALMON `d=5`, so the base `n*d*ln(n)` budget is about `260.1` triplets.
 Observed coverage is `2448` triplets per geometry run (`9.41x` the base heuristic) and `7344` pooled triplets across the three active geometry runs (`28.23x` the base heuristic).
 Interpretation: the final SALMON Step 1 geometry is not under-tripleted by this heuristic; future concept sets and Qwen/model-extension runs should report the same base budget and observed fudge factor before reading off neighbors.
+
+## 2026-07-09T16:32:36-05:00 DECISION: Course-correction
+
+Ran Step 1 audit before designing Step 2.
+Error concentration: 13 targets had errors; 12 had near-neighbor errors; 6 had far-control errors.
+Far-control audit: 8 far errors; 0 were top-5 RDM neighbors of the target.
+Option-position audit: error choices by letter = {'A': 9, 'B': 10, 'C': 11, 'D': 7}; correct option slots by letter = {'A': 13, 'B': 17, 'C': 13, 'D': 29}.
+Interpretation: Step 1 is strong enough to transfer; do not overfit item phrasing, but carry the audit forward for model extensions.
+
+## 2026-07-09T16:33:23-05:00 DECISION: H1 verdict
+
+Run scored: `step1_items_v1`.
+Directional errors: 37; near fraction: 0.7838.
+Shuffle null p-value: 0.0002; base-rate lift: 0.3191.
+H2 distance slope: -0.236040; 95% CI [-0.335768, -0.133190].
+Predicted-vs-actual confusion agreement: 0.5940.
+Verdict: `green_directional`.
+
+## 2026-07-09T16:33:28-05:00 DECISION: Course-correction
+
+Ran Step 1 audit before designing Step 2.
+Error concentration: 14 targets had errors; 13 had near-neighbor errors; 5 had far-control errors.
+Far-control audit: 8 far errors; 0 were top-5 RDM neighbors of the target.
+Option-position audit: error choices by letter = {'A': 7, 'B': 10, 'C': 12, 'D': 8}; correct option slots by letter = {'A': 13, 'B': 17, 'C': 13, 'D': 29}.
+Interpretation: Step 1 is strong enough to transfer; do not overfit item phrasing, but carry the audit forward for model extensions.
+
+## 2026-07-09T16:34:20-05:00 DECISION: Course-correction
+
+Audit found a parser issue in verbose item responses: one response beginning with `C. boa python` could be misparsed by the old fallback because a later explanation contained a standalone `A`.
+Lever pulled: update answer parsing to prefer the first explicit option at the start of the response, then answer/correct-answer phrases, then the first standalone option letter in text order.
+After rescoring with the corrected parser, H1 stayed green: 37 directional errors, 29 near-neighbor errors, 8 far-control errors, near fraction 0.7838, shuffle null p=0.0002, H2 slope -0.236040 with 95% CI [-0.335768, -0.133190], predicted-vs-actual agreement 0.5940.
+Audit interpretation: the Step 1 signal is not just one target and the far-control misses are mostly true wrong-direction misses, not hidden top-neighbor cases; 0/8 far-control errors are top-5 RDM neighbors of their target.
+
+## 2026-07-09T16:34:28-05:00 DECISION: Course-correction
+
+Scanned recent AI safety benchmark/paper directions before choosing Step 2.
+Legal standards are high-stakes, but they are not the strongest fit to the current safety-evaluation community signal.
+Recent work clusters around harmful-behavior refusal and jailbreak robustness (HarmBench, JailbreakBench, StrongREJECT), hazardous-knowledge proxy evals (WMDP), cyber misuse boundaries (CyberSecEval), and policy/risk taxonomies (AIR-Bench/AIR 2024).
+Decision for Step 2 planning: use a sanitized safety-policy/request-intent concept taxonomy as the first safety-transfer domain, not generic legal standards.
+Constraint: keep Step 2 classification-only and category-level; do not include executable harmful instructions in public stimuli.
+Memo written to `experiments/exp3_directional_confusions/SAFETY_TRANSFER_SCAN.md`.

@@ -1199,10 +1199,18 @@ def generate_items(args: argparse.Namespace) -> None:
 def parse_choice(response: str, item: dict) -> tuple[str | None, str | None]:
     text = str(response).strip()
     upper = text.upper()
-    for letter in ["A", "B", "C", "D"]:
-        if re.search(rf"(^|[^A-Z]){letter}([^A-Z]|$)", upper):
-            concept = next(option["concept"] for option in item["options"] if option["letter"] == letter)
-            return letter, concept
+    letter_match = re.search(r"^\s*(?:ANSWER\s*(?:IS|:)?\s*)?([ABCD])(?:\b|[.)\s:])", upper)
+    if not letter_match:
+        letter_match = re.search(
+            r"(?:ANSWER|CORRECT ANSWER|BEST ANSWER|BEST FIT)\s*(?:IS|:)?\s*([ABCD])(?:\b|[.)\s:])",
+            upper,
+        )
+    if not letter_match:
+        letter_match = re.search(r"(^|[^A-Z])([ABCD])([^A-Z]|$)", upper)
+    if letter_match:
+        letter = next(group for group in letter_match.groups() if group in {"A", "B", "C", "D"})
+        concept = next(option["concept"] for option in item["options"] if option["letter"] == letter)
+        return letter, concept
     key_text = norm_key(text)
     matches = []
     for option in item["options"]:
@@ -1472,6 +1480,373 @@ def score_items(args: argparse.Namespace) -> None:
     plot_confusion_summary(concepts, observed_matrix, rdm)
     update_report()
     print(f"[score] H1 verdict: {verdict}; wrote {display_path(RESULT_DIR / 'step1.json')}")
+
+
+def concept_rank_from_rdm(concepts: list[str], rdm: np.ndarray, target: str, candidate: str) -> tuple[int | None, float | None]:
+    if target not in concepts or candidate not in concepts or target == candidate:
+        return None, None
+    concept_index = {concept: i for i, concept in enumerate(concepts)}
+    target_idx = concept_index[target]
+    candidate_idx = concept_index[candidate]
+    ordered = sorted(
+        (
+            (concept, float(rdm[target_idx, idx]))
+            for idx, concept in enumerate(concepts)
+            if concept != target
+        ),
+        key=lambda pair: (pair[1], pair[0]),
+    )
+    for rank, (concept, dist) in enumerate(ordered, start=1):
+        if concept == candidate:
+            return rank, dist
+    return None, None
+
+
+def audit_step1(args: argparse.Namespace) -> None:
+    ensure_dirs()
+    config = load_config()
+    item_path = ITEM_DIR / "items.json"
+    rdm_path = ARTIFACT_DIR / "rdm.npy"
+    result_summary = read_optional_json(RESULT_DIR / "step1.json") or {}
+    run = args.run or result_summary.get("run") or "step1_items_v1"
+    if not item_path.exists():
+        raise SystemExit("No items found. Run generate-items first.")
+    if not rdm_path.exists():
+        raise SystemExit("No RDM found. Run build-rdm first.")
+    if not (RAW_DIR / run / "items.csv").exists():
+        raise SystemExit(f"No item responses found for run `{run}`.")
+
+    concepts = load_concepts(config)
+    rdm = np.load(rdm_path)
+    items = read_json(item_path)
+    responses = load_item_responses(run)
+
+    scored = []
+    error_rows = []
+    target_counts: dict[str, Counter] = {concept: Counter() for concept in concepts}
+    target_destinations: dict[str, Counter] = {concept: Counter() for concept in concepts}
+    letter_counts: dict[str, Counter] = {letter: Counter() for letter in ["A", "B", "C", "D"]}
+
+    for item in items:
+        response = responses.get(item["item_id"], "")
+        chosen_letter, chosen_concept = parse_choice(response, item)
+        option_by_concept = {option["concept"]: option for option in item["options"]}
+        option_by_letter = {option["letter"]: option for option in item["options"]}
+        chosen_role = option_by_concept.get(chosen_concept, {}).get("role") if chosen_concept else "invalid"
+        correct = chosen_concept == item["correct_answer"]
+        target = item["target"]
+        target_counts[target]["items"] += 1
+        target_counts[target]["correct" if correct else "errors"] += 1
+        if chosen_role:
+            target_counts[target][f"{chosen_role}_choices"] += 1
+        if chosen_letter:
+            letter_counts[chosen_letter]["choices_all"] += 1
+            letter_counts[chosen_letter]["choices_correct" if correct else "choices_error"] += 1
+            letter_counts[chosen_letter][f"{chosen_role}_choices"] += 1
+        for letter, option in option_by_letter.items():
+            letter_counts[letter]["option_slots"] += 1
+            letter_counts[letter][f"{option['role']}_slots"] += 1
+
+        scored.append(
+            {
+                "item": item,
+                "response": response,
+                "chosen_letter": chosen_letter,
+                "chosen_concept": chosen_concept,
+                "chosen_role": chosen_role,
+                "correct": correct,
+            }
+        )
+        if correct:
+            continue
+        if chosen_concept:
+            target_destinations[target][chosen_concept] += 1
+        chosen_rank, chosen_distance = concept_rank_from_rdm(concepts, rdm, target, chosen_concept) if chosen_concept else (None, None)
+        near_rank, near_distance = concept_rank_from_rdm(concepts, rdm, target, item["predicted_near"])
+        if chosen_role == "near":
+            audit_label = "predicted_near_hit"
+        elif chosen_role == "far" and chosen_rank is not None and chosen_rank <= 3:
+            audit_label = "far_error_but_top3_rdm"
+        elif chosen_role == "far" and chosen_rank is not None and chosen_rank <= 5:
+            audit_label = "far_error_but_top5_rdm"
+        elif chosen_role == "far":
+            audit_label = "far_error_true_miss"
+        elif chosen_role == "invalid":
+            audit_label = "invalid_or_unparsed_response"
+        else:
+            audit_label = "non_distractor_error"
+        error_rows.append(
+            {
+                "item_id": item["item_id"],
+                "target": target,
+                "chosen_concept": chosen_concept or "",
+                "chosen_role": chosen_role or "",
+                "chosen_letter": chosen_letter or "",
+                "correct_letter": item["correct_letter"],
+                "predicted_near": item["predicted_near"],
+                "far_controls": "|".join(item["far_controls"]),
+                "chosen_rdm_distance": chosen_distance,
+                "chosen_rdm_rank": chosen_rank,
+                "predicted_near_distance": near_distance,
+                "predicted_near_rank": near_rank,
+                "audit_label": audit_label,
+                "feature_clues": "|".join(item.get("feature_clues", [])),
+                "response": response,
+            }
+        )
+
+    target_rows = []
+    for target in concepts:
+        counts = target_counts[target]
+        directional = counts["near_choices"] + counts["far_choices"]
+        destinations = target_destinations[target]
+        top_destination, top_destination_count = ("", 0)
+        if destinations:
+            top_destination, top_destination_count = destinations.most_common(1)[0]
+        predicted_near = next((item["predicted_near"] for item in items if item["target"] == target), "")
+        near_rank, near_distance = concept_rank_from_rdm(concepts, rdm, target, predicted_near) if predicted_near else (None, None)
+        target_rows.append(
+            {
+                "target": target,
+                "items": counts["items"],
+                "correct": counts["correct"],
+                "errors": counts["errors"],
+                "near_errors": counts["near_choices"],
+                "far_errors": counts["far_choices"],
+                "invalid_errors": counts["invalid_choices"],
+                "near_fraction_directional": counts["near_choices"] / directional if directional else "",
+                "predicted_near": predicted_near,
+                "predicted_near_distance": near_distance,
+                "predicted_near_rank": near_rank,
+                "top_error_destination": top_destination,
+                "top_error_count": top_destination_count,
+                "top_error_is_predicted_near": bool(top_destination and top_destination == predicted_near),
+                "all_error_destinations": ";".join(f"{concept}:{count}" for concept, count in destinations.most_common()),
+            }
+        )
+
+    letter_rows = []
+    for letter in ["A", "B", "C", "D"]:
+        counts = letter_counts[letter]
+        letter_rows.append(
+            {
+                "letter": letter,
+                "option_slots": counts["option_slots"],
+                "correct_slots": counts["correct_slots"],
+                "near_slots": counts["near_slots"],
+                "far_slots": counts["far_slots"],
+                "choices_all": counts["choices_all"],
+                "choices_correct": counts["choices_correct"],
+                "choices_error": counts["choices_error"],
+                "near_error_choices": counts["near_choices"],
+                "far_error_choices": counts["far_choices"],
+                "invalid_error_choices": counts["invalid_choices"],
+            }
+        )
+
+    errors = [row for row in scored if not row["correct"]]
+    directional_errors = [row for row in error_rows if row["chosen_role"] in {"near", "far"}]
+    near_error_rows = [row for row in error_rows if row["chosen_role"] == "near"]
+    far_error_rows = [row for row in error_rows if row["chosen_role"] == "far"]
+    far_ranks = [int(row["chosen_rdm_rank"]) for row in far_error_rows if row["chosen_rdm_rank"] is not None]
+    near_distances = [float(row["chosen_rdm_distance"]) for row in near_error_rows if row["chosen_rdm_distance"] is not None]
+    far_distances = [float(row["chosen_rdm_distance"]) for row in far_error_rows if row["chosen_rdm_distance"] is not None]
+    top_target_errors = sorted(
+        (
+            {
+                "target": row["target"],
+                "errors": int(row["errors"]),
+                "near_errors": int(row["near_errors"]),
+                "far_errors": int(row["far_errors"]),
+                "top_error_destination": row["top_error_destination"],
+                "top_error_count": int(row["top_error_count"]),
+            }
+            for row in target_rows
+            if int(row["errors"])
+        ),
+        key=lambda row: (-row["errors"], row["target"]),
+    )[:6]
+    summary = {
+        "audited_at": now_stamp(),
+        "run": run,
+        "rdm_sha256": sha256_file(rdm_path),
+        "items_sha256": sha256_file(item_path),
+        "n_items": len(scored),
+        "n_correct": sum(1 for row in scored if row["correct"]),
+        "n_errors": len(errors),
+        "n_directional_errors": len(directional_errors),
+        "near_errors": len(near_error_rows),
+        "far_errors": len(far_error_rows),
+        "invalid_or_unparsed_errors": sum(1 for row in error_rows if row["chosen_role"] == "invalid"),
+        "targets_with_errors": sum(1 for row in target_rows if int(row["errors"])),
+        "targets_with_near_errors": sum(1 for row in target_rows if int(row["near_errors"])),
+        "targets_with_far_errors": sum(1 for row in target_rows if int(row["far_errors"])),
+        "targets_where_top_error_is_predicted_near": sum(1 for row in target_rows if row["top_error_is_predicted_near"]),
+        "top_error_targets": top_target_errors,
+        "far_error_rank_audit": {
+            "n_far_errors": len(far_error_rows),
+            "n_rank_le_3": sum(rank <= 3 for rank in far_ranks),
+            "n_rank_le_5": sum(rank <= 5 for rank in far_ranks),
+            "mean_rank": float(np.mean(far_ranks)) if far_ranks else None,
+            "median_rank": float(np.median(far_ranks)) if far_ranks else None,
+        },
+        "distance_audit": {
+            "mean_near_error_distance": float(np.mean(near_distances)) if near_distances else None,
+            "mean_far_error_distance": float(np.mean(far_distances)) if far_distances else None,
+            "median_near_error_distance": float(np.median(near_distances)) if near_distances else None,
+            "median_far_error_distance": float(np.median(far_distances)) if far_distances else None,
+        },
+        "option_position_error_choices": {
+            row["letter"]: int(row["choices_error"])
+            for row in letter_rows
+        },
+        "option_position_correct_slots": {
+            row["letter"]: int(row["correct_slots"])
+            for row in letter_rows
+        },
+        "audit_files": {
+            "error_audit_csv": display_path(RESULT_DIR / "step1_error_audit.csv"),
+            "target_audit_csv": display_path(RESULT_DIR / "step1_target_audit.csv"),
+            "position_audit_csv": display_path(RESULT_DIR / "step1_position_audit.csv"),
+            "audit_json": display_path(RESULT_DIR / "step1_audit.json"),
+        },
+        "interpretation": (
+            "Near-neighbor effect is useful but imperfect. Inspect far errors and target concentration before Step 2; "
+            "do not tune Step 1 to remove all errors because the law is conditional on genuine mistakes."
+        ),
+    }
+
+    write_csv(
+        RESULT_DIR / "step1_error_audit.csv",
+        [
+            [
+                "item_id",
+                "target",
+                "chosen_concept",
+                "chosen_role",
+                "chosen_letter",
+                "correct_letter",
+                "predicted_near",
+                "far_controls",
+                "chosen_rdm_distance",
+                "chosen_rdm_rank",
+                "predicted_near_distance",
+                "predicted_near_rank",
+                "audit_label",
+                "feature_clues",
+                "response",
+            ],
+            *[
+                [
+                    row["item_id"],
+                    row["target"],
+                    row["chosen_concept"],
+                    row["chosen_role"],
+                    row["chosen_letter"],
+                    row["correct_letter"],
+                    row["predicted_near"],
+                    row["far_controls"],
+                    row["chosen_rdm_distance"],
+                    row["chosen_rdm_rank"],
+                    row["predicted_near_distance"],
+                    row["predicted_near_rank"],
+                    row["audit_label"],
+                    row["feature_clues"],
+                    row["response"],
+                ]
+                for row in error_rows
+            ],
+        ],
+    )
+    write_csv(
+        RESULT_DIR / "step1_target_audit.csv",
+        [
+            [
+                "target",
+                "items",
+                "correct",
+                "errors",
+                "near_errors",
+                "far_errors",
+                "invalid_errors",
+                "near_fraction_directional",
+                "predicted_near",
+                "predicted_near_distance",
+                "predicted_near_rank",
+                "top_error_destination",
+                "top_error_count",
+                "top_error_is_predicted_near",
+                "all_error_destinations",
+            ],
+            *[
+                [
+                    row["target"],
+                    row["items"],
+                    row["correct"],
+                    row["errors"],
+                    row["near_errors"],
+                    row["far_errors"],
+                    row["invalid_errors"],
+                    row["near_fraction_directional"],
+                    row["predicted_near"],
+                    row["predicted_near_distance"],
+                    row["predicted_near_rank"],
+                    row["top_error_destination"],
+                    row["top_error_count"],
+                    row["top_error_is_predicted_near"],
+                    row["all_error_destinations"],
+                ]
+                for row in target_rows
+            ],
+        ],
+    )
+    write_csv(
+        RESULT_DIR / "step1_position_audit.csv",
+        [
+            [
+                "letter",
+                "option_slots",
+                "correct_slots",
+                "near_slots",
+                "far_slots",
+                "choices_all",
+                "choices_correct",
+                "choices_error",
+                "near_error_choices",
+                "far_error_choices",
+                "invalid_error_choices",
+            ],
+            *[
+                [
+                    row["letter"],
+                    row["option_slots"],
+                    row["correct_slots"],
+                    row["near_slots"],
+                    row["far_slots"],
+                    row["choices_all"],
+                    row["choices_correct"],
+                    row["choices_error"],
+                    row["near_error_choices"],
+                    row["far_error_choices"],
+                    row["invalid_error_choices"],
+                ]
+                for row in letter_rows
+            ],
+        ],
+    )
+    write_json(RESULT_DIR / "step1_audit.json", summary)
+    append_log(
+        "Course-correction",
+        [
+            "Ran Step 1 audit before designing Step 2.",
+            f"Error concentration: {summary['targets_with_errors']} targets had errors; {summary['targets_with_near_errors']} had near-neighbor errors; {summary['targets_with_far_errors']} had far-control errors.",
+            f"Far-control audit: {len(far_error_rows)} far errors; {summary['far_error_rank_audit']['n_rank_le_5']} were top-5 RDM neighbors of the target.",
+            f"Option-position audit: error choices by letter = {summary['option_position_error_choices']}; correct option slots by letter = {summary['option_position_correct_slots']}.",
+            "Interpretation: Step 1 is strong enough to transfer; do not overfit item phrasing, but carry the audit forward for model extensions.",
+        ],
+    )
+    update_report()
+    print(f"[audit] wrote {display_path(RESULT_DIR / 'step1_audit.json')}")
 
 
 def plot_confusion_summary(concepts: list[str], observed_matrix: np.ndarray, rdm: np.ndarray) -> None:
@@ -1780,6 +2155,18 @@ def md_link(path: Path, label: str | None = None) -> str:
     return f"[{label or shown}]({target})"
 
 
+def fmt_optional_float(value: object, digits: int = 3) -> str:
+    if value is None:
+        return "n/a"
+    try:
+        numeric = float(value)
+    except (TypeError, ValueError):
+        return str(value)
+    if not np.isfinite(numeric):
+        return "n/a"
+    return f"{numeric:.{digits}f}"
+
+
 def first_item_example() -> dict | None:
     path = ITEM_DIR / "items.json"
     if not path.exists():
@@ -1841,9 +2228,11 @@ def update_report() -> None:
     rdm_meta = read_optional_json(ARTIFACT_DIR / "rdm_meta.json")
     neighbors = read_optional_json(EXP_DIR / "neighbors.json")
     results = read_optional_json(RESULT_DIR / "step1.json")
+    audit = read_optional_json(RESULT_DIR / "step1_audit.json")
     current_rdm_sha = (rdm_meta or {}).get("rdm_sha256")
     neighbors_current = artifact_hash_current(current_rdm_sha, (neighbors or {}).get("rdm_meta") if neighbors else None)
     results_current = artifact_hash_current(current_rdm_sha, results)
+    audit_current = bool(audit and results_current and audit.get("rdm_sha256") == current_rdm_sha and audit.get("run") == results.get("run"))
     items_exist = (ITEM_DIR / "items.json").exists()
     items_current = items_exist and neighbors_current
     example_item = first_item_example() if items_current else None
@@ -1917,6 +2306,7 @@ def update_report() -> None:
         f"- Directional items: {(md_link(ITEM_DIR / 'items.csv') + ' and ' + md_link(ITEM_DIR / 'items.json')) if items_current else stale_items_note}.",
         f"- Item responses: {md_link(RAW_DIR / item_response_run / 'items.csv') if item_response_run != 'not_run' and (RAW_DIR / item_response_run / 'items.csv').exists() else 'pending'}.",
         f"- Scored outputs: {(md_link(RESULT_DIR / 'step1.json') + ', ' + md_link(RESULT_DIR / 'step1_scored_items.csv') + ', ' + md_link(RESULT_DIR / 'step1_pair_rates.csv') + ', ' + md_link(RESULT_DIR / 'step1_confusion_matrix.csv')) if results_current else stale_results_note}.",
+        f"- Step 1 audit outputs: {(md_link(RESULT_DIR / 'step1_audit.json') + ', ' + md_link(RESULT_DIR / 'step1_error_audit.csv') + ', ' + md_link(RESULT_DIR / 'step1_target_audit.csv') + ', ' + md_link(RESULT_DIR / 'step1_position_audit.csv')) if audit_current else 'pending for current scored run'}.",
         "",
         "Canonical geometry prompt:",
         "",
@@ -2021,6 +2411,38 @@ def update_report() -> None:
         )
     else:
         report.extend(["- Item responses have not been scored against the current geometry yet.", ""])
+    if audit_current:
+        top_targets = "; ".join(
+            f"{row['target']} {row['errors']} errors -> {row['top_error_destination']}:{row['top_error_count']}"
+            for row in audit.get("top_error_targets", [])
+        )
+        far_rank = audit.get("far_error_rank_audit", {})
+        distances = audit.get("distance_audit", {})
+        report.extend(
+            [
+                "### Step 1 audit",
+                "",
+                f"Audit artifacts: {md_link(RESULT_DIR / 'step1_audit.json')}, {md_link(RESULT_DIR / 'step1_error_audit.csv')}, {md_link(RESULT_DIR / 'step1_target_audit.csv')}, {md_link(RESULT_DIR / 'step1_position_audit.csv')}.",
+                "",
+                f"- Errors are spread over `{audit['targets_with_errors']}` targets; `{audit['targets_with_near_errors']}` targets have at least one near-neighbor error and `{audit['targets_with_far_errors']}` have at least one far-control error.",
+                f"- Top error targets: {top_targets or 'none'}.",
+                f"- Far-control errors: `{far_rank.get('n_far_errors')}` total; `{far_rank.get('n_rank_le_3')}` are top-3 RDM neighbors and `{far_rank.get('n_rank_le_5')}` are top-5 RDM neighbors of their target. Median far-error RDM rank: `{fmt_optional_float(far_rank.get('median_rank'), 1)}`.",
+                f"- Error distances: mean near-error distance `{fmt_optional_float(distances.get('mean_near_error_distance'))}` vs mean far-error distance `{fmt_optional_float(distances.get('mean_far_error_distance'))}`.",
+                f"- Option-position audit: error choices by letter `{audit.get('option_position_error_choices')}`; correct option slots by letter `{audit.get('option_position_correct_slots')}`.",
+                "",
+                "Interpretation: the lower item accuracy is useful rather than disqualifying; it created enough real errors to test direction. The misses are not just one target, and the far-control misses are mostly not hidden top-neighbor cases, so Step 1 is worth transferring without trying to overfit the neutral items.",
+                "",
+            ]
+        )
+    elif results_current:
+        report.extend(
+            [
+                "### Step 1 audit",
+                "",
+                f"Audit is pending for the current scored run. Run `python scripts/run_experiment3.py audit-step1 --run {item_response_run}`.",
+                "",
+            ]
+        )
     report.extend(
         [
             "### What does this mean?",
@@ -2052,6 +2474,12 @@ def update_report() -> None:
         [
             "The current report is the SALMON-based version. The earlier direct choice-rate RDM result is superseded for the active Experiment 3 claim and remains only in git history.",
             "",
+            "## Step 2 Target Search",
+            "",
+            f"Step 2 items are still intentionally absent. The current target-selection memo is {md_link(EXP_DIR / 'SAFETY_TRANSFER_SCAN.md')}.",
+            "",
+            "Current recommendation: do not use generic legal standards as the first safety-transfer task. Use a sanitized safety-policy/request-intent taxonomy drawn from HarmBench/JailbreakBench/WMDP/CyberSecEval/AIR-Bench-style categories, then run the same geometry -> preregistered neighbors -> directional item scoring pipeline unchanged.",
+            "",
             "## Current Status",
             "",
             f"- Branch/worktree experiment folder: `{display_path(EXP_DIR)}`",
@@ -2077,6 +2505,7 @@ def update_report() -> None:
             "python scripts/run_experiment3.py mark-sanity-gate --status pass --note \"nearest-neighbor pairs are human-sane\"",
             "python scripts/run_experiment3.py run-items --out-run step1_items_v1 --overwrite",
             "python scripts/run_experiment3.py score --run step1_items_v1",
+            "python scripts/run_experiment3.py audit-step1 --run step1_items_v1",
             "```",
             "",
             "## Pre-Registered Predictions",
@@ -2154,6 +2583,10 @@ def main() -> None:
     p_score = sub.add_parser("score")
     p_score.add_argument("--run", required=True)
     p_score.set_defaults(func=score_items)
+
+    p_audit = sub.add_parser("audit-step1")
+    p_audit.add_argument("--run", default=None)
+    p_audit.set_defaults(func=audit_step1)
 
     p_all = sub.add_parser("all")
     p_all.add_argument("--score-run", default="step1_items_v1")

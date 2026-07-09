@@ -1,6 +1,6 @@
 # Experiment 3 Report
 
-Last updated: 2026-07-09T16:13:52-05:00
+Last updated: 2026-07-09T16:34:44-05:00
 
 ## Step 1 Story
 
@@ -22,6 +22,7 @@ We are testing whether triplet geometry predicts the destination of model errors
 - Directional items: [experiments/exp3_directional_confusions/items/step1/items.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/items/step1/items.csv) and [experiments/exp3_directional_confusions/items/step1/items.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/items/step1/items.json).
 - Item responses: [experiments/exp3_directional_confusions/raw/step1_items_v1/items.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/raw/step1_items_v1/items.csv).
 - Scored outputs: [experiments/exp3_directional_confusions/results/step1.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1.json), [experiments/exp3_directional_confusions/results/step1_scored_items.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1_scored_items.csv), [experiments/exp3_directional_confusions/results/step1_pair_rates.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1_pair_rates.csv), [experiments/exp3_directional_confusions/results/step1_confusion_matrix.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1_confusion_matrix.csv).
+- Step 1 audit outputs: [experiments/exp3_directional_confusions/results/step1_audit.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1_audit.json), [experiments/exp3_directional_confusions/results/step1_error_audit.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1_error_audit.csv), [experiments/exp3_directional_confusions/results/step1_target_audit.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1_target_audit.csv), [experiments/exp3_directional_confusions/results/step1_position_audit.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1_position_audit.csv).
 
 Canonical geometry prompt:
 
@@ -105,19 +106,37 @@ D. alligator
 - Directional errors: `37`
 - Near fraction among directional errors: `0.7838`
 - Shuffle null p-value: `0.0002`
-- Base-rate lift: `0.3187`
-- H2 distance slope: `-0.233021`
-- H2 slope 95% CI: `[-0.3382161163791806, -0.12500199099784218]`
-- Predicted-vs-actual confusion agreement: `0.5781`
+- Base-rate lift: `0.3191`
+- H2 distance slope: `-0.236040`
+- H2 slope 95% CI: `[-0.3357677436551568, -0.13319049182538653]`
+- Predicted-vs-actual confusion agreement: `0.5940`
 - H1 verdict: `green_directional`
 
 Headline figure: [experiments/exp3_directional_confusions/figs/step1_confusion_matrix.png](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/figs/step1_confusion_matrix.png)
+
+### Step 1 audit
+
+Audit artifacts: [experiments/exp3_directional_confusions/results/step1_audit.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1_audit.json), [experiments/exp3_directional_confusions/results/step1_error_audit.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1_error_audit.csv), [experiments/exp3_directional_confusions/results/step1_target_audit.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1_target_audit.csv), [experiments/exp3_directional_confusions/results/step1_position_audit.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1_position_audit.csv).
+
+- Errors are spread over `14` targets; `13` targets have at least one near-neighbor error and `5` have at least one far-control error.
+- Top error targets: boa python 4 errors -> snake:4; caiman 4 errors -> crocodile:4; chameleon 4 errors -> gecko:2; alligator 3 errors -> turtle:3; snake 3 errors -> chameleon:3; toad 3 errors -> salamander:3.
+- Far-control errors: `8` total; `0` are top-3 RDM neighbors and `0` are top-5 RDM neighbors of their target. Median far-error RDM rank: `14.0`.
+- Error distances: mean near-error distance `0.055` vs mean far-error distance `1.430`.
+- Option-position audit: error choices by letter `{'A': 7, 'B': 10, 'C': 12, 'D': 8}`; correct option slots by letter `{'A': 13, 'B': 17, 'C': 13, 'D': 29}`.
+
+Interpretation: the lower item accuracy is useful rather than disqualifying; it created enough real errors to test direction. The misses are not just one target, and the far-control misses are mostly not hidden top-neighbor cases, so Step 1 is worth transferring without trying to overfit the neutral items.
 
 ### What does this mean?
 
 Step 1 is green: the neutral-model errors are directional under the current geometry. The model did not merely make mistakes; its mistakes preferentially landed on the preregistered nearest-neighbor distractor.
 
 The current report is the SALMON-based version. The earlier direct choice-rate RDM result is superseded for the active Experiment 3 claim and remains only in git history.
+
+## Step 2 Target Search
+
+Step 2 items are still intentionally absent. The current target-selection memo is [experiments/exp3_directional_confusions/SAFETY_TRANSFER_SCAN.md](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/SAFETY_TRANSFER_SCAN.md).
+
+Current recommendation: do not use generic legal standards as the first safety-transfer task. Use a sanitized safety-policy/request-intent taxonomy drawn from HarmBench/JailbreakBench/WMDP/CyberSecEval/AIR-Bench-style categories, then run the same geometry -> preregistered neighbors -> directional item scoring pipeline unchanged.
 
 ## Current Status
 
@@ -144,6 +163,7 @@ python scripts/run_experiment3.py generate-items
 python scripts/run_experiment3.py mark-sanity-gate --status pass --note "nearest-neighbor pairs are human-sane"
 python scripts/run_experiment3.py run-items --out-run step1_items_v1 --overwrite
 python scripts/run_experiment3.py score --run step1_items_v1
+python scripts/run_experiment3.py audit-step1 --run step1_items_v1
 ```
 
 ## Pre-Registered Predictions

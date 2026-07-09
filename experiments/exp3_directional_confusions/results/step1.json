@@ -2,21 +2,21 @@
   "accuracy": 0.4861111111111111,
   "base_rate_control": {
     "error_choice_counts": {
-      "axe": 3,
-      "boa python": 1,
+      "axe": 2,
+      "boa python": 2,
       "chameleon": 4,
       "crocodile": 4,
-      "gecko": 4,
+      "gecko": 3,
       "hammer": 3,
       "salamander": 3,
       "saw": 2,
       "snake": 5,
-      "toad": 2,
+      "toad": 3,
       "turtle": 6
     },
-    "expected_near_fraction": 0.46509046509046503,
+    "expected_near_fraction": 0.46466056466056466,
     "n_error_choices": 37,
-    "observed_minus_expected": 0.31869331869331874
+    "observed_minus_expected": 0.3191232191232191
   },
   "far_errors": 8,
   "gates": {
@@ -29,11 +29,11 @@
   "h1_verdict": "green_directional",
   "h2_distance_slope": {
     "bootstrap_ci_95": [
-      -0.3382161163791806,
-      -0.12500199099784218
+      -0.3357677436551568,
+      -0.13319049182538653
     ],
     "interpretation": "H2 predicts this slope is negative.",
-    "slope_substitution_rate_per_rdm_distance": -0.23302126750813953
+    "slope_substitution_rate_per_rdm_distance": -0.23604036285636057
   },
   "items_path": "experiments/exp3_directional_confusions/items/step1/items.json",
   "items_sha256": "796c51e9b19718315b452d29cefcf9e693f1a619fce670bbbc5130df652bc448",
@@ -48,7 +48,7 @@
   "neighbors_path": "experiments/exp3_directional_confusions/neighbors.json",
   "neighbors_registered_at": "2026-07-09T16:01:22-05:00",
   "predicted_vs_actual_confusion_agreement": {
-    "pearson_r_neg_distance_vs_substitution_rate": 0.5781263342845745
+    "pearson_r_neg_distance_vs_substitution_rate": 0.5939654231753175
   },
   "raw_item_responses_path": "experiments/exp3_directional_confusions/raw/step1_items_v1/items.csv",
   "rdm_built_at": "2026-07-09T16:01:04-05:00",
@@ -57,9 +57,9 @@
   "rdm_sha256": "5a1f95599aeac93c3608689eff7003bde636366d91fba59bd1477950369fb894",
   "rdm_source": "salmon_embedding",
   "run": "step1_items_v1",
-  "scored_at": "2026-07-09T16:03:39-05:00",
+  "scored_at": "2026-07-09T16:33:23-05:00",
   "shuffle_geometry_null": {
-    "mean_near_fraction": 0.3324864864864865,
+    "mean_near_fraction": 0.3331243243243244,
     "p95_near_fraction": 0.4594594594594595,
     "p_value_ge_observed": 0.0001999600079984003
   }

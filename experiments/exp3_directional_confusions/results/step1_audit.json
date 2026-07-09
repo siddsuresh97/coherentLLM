@@ -1,0 +1,99 @@
+{
+  "audit_files": {
+    "audit_json": "experiments/exp3_directional_confusions/results/step1_audit.json",
+    "error_audit_csv": "experiments/exp3_directional_confusions/results/step1_error_audit.csv",
+    "position_audit_csv": "experiments/exp3_directional_confusions/results/step1_position_audit.csv",
+    "target_audit_csv": "experiments/exp3_directional_confusions/results/step1_target_audit.csv"
+  },
+  "audited_at": "2026-07-09T16:33:28-05:00",
+  "distance_audit": {
+    "mean_far_error_distance": 1.4303982803734532,
+    "mean_near_error_distance": 0.054953032044499125,
+    "median_far_error_distance": 1.3724113713908863,
+    "median_near_error_distance": 0.04099313000282101
+  },
+  "far_error_rank_audit": {
+    "mean_rank": 14.0,
+    "median_rank": 14.0,
+    "n_far_errors": 8,
+    "n_rank_le_3": 0,
+    "n_rank_le_5": 0
+  },
+  "far_errors": 8,
+  "interpretation": "Near-neighbor effect is useful but imperfect. Inspect far errors and target concentration before Step 2; do not tune Step 1 to remove all errors because the law is conditional on genuine mistakes.",
+  "invalid_or_unparsed_errors": 0,
+  "items_sha256": "796c51e9b19718315b452d29cefcf9e693f1a619fce670bbbc5130df652bc448",
+  "n_correct": 35,
+  "n_directional_errors": 37,
+  "n_errors": 37,
+  "n_items": 72,
+  "near_errors": 29,
+  "option_position_correct_slots": {
+    "A": 13,
+    "B": 17,
+    "C": 13,
+    "D": 29
+  },
+  "option_position_error_choices": {
+    "A": 7,
+    "B": 10,
+    "C": 12,
+    "D": 8
+  },
+  "rdm_sha256": "5a1f95599aeac93c3608689eff7003bde636366d91fba59bd1477950369fb894",
+  "run": "step1_items_v1",
+  "targets_where_top_error_is_predicted_near": 12,
+  "targets_with_errors": 14,
+  "targets_with_far_errors": 5,
+  "targets_with_near_errors": 13,
+  "top_error_targets": [
+    {
+      "errors": 4,
+      "far_errors": 0,
+      "near_errors": 4,
+      "target": "boa python",
+      "top_error_count": 4,
+      "top_error_destination": "snake"
+    },
+    {
+      "errors": 4,
+      "far_errors": 0,
+      "near_errors": 4,
+      "target": "caiman",
+      "top_error_count": 4,
+      "top_error_destination": "crocodile"
+    },
+    {
+      "errors": 4,
+      "far_errors": 2,
+      "near_errors": 2,
+      "target": "chameleon",
+      "top_error_count": 2,
+      "top_error_destination": "gecko"
+    },
+    {
+      "errors": 3,
+      "far_errors": 0,
+      "near_errors": 3,
+      "target": "alligator",
+      "top_error_count": 3,
+      "top_error_destination": "turtle"
+    },
+    {
+      "errors": 3,
+      "far_errors": 3,
+      "near_errors": 0,
+      "target": "snake",
+      "top_error_count": 3,
+      "top_error_destination": "chameleon"
+    },
+    {
+      "errors": 3,
+      "far_errors": 0,
+      "near_errors": 3,
+      "target": "toad",
+      "top_error_count": 3,
+      "top_error_destination": "salamander"
+    }
+  ]
+}

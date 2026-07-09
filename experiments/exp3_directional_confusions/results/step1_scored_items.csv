@@ -25,13 +25,13 @@ step1_snake_02,snake,snake,correct,True,"Based on the clues, the answer is D. sn
 step1_snake_03,snake,chameleon,far,False,A
 step1_blindworm_00,blindworm,blindworm,correct,True,C. blindworm
 step1_blindworm_01,blindworm,blindworm,correct,True,C. blindworm
-step1_blindworm_02,blindworm,blindworm,correct,True,"D. toad
+step1_blindworm_02,blindworm,toad,near,False,"D. toad
 
 Toads often have a split tongue"
 step1_blindworm_03,blindworm,blindworm,correct,True,D.
 step1_chameleon_00,chameleon,gecko,near,False,D. gecko
 step1_chameleon_01,chameleon,boa python,far,False,B.
-step1_chameleon_02,chameleon,gecko,near,False,"C. boa python
+step1_chameleon_02,chameleon,boa python,far,False,"C. boa python
 
 Reasoning: A boa python is"
 step1_chameleon_03,chameleon,gecko,near,False,D.
@@ -47,7 +47,7 @@ step1_lizard_02,lizard,lizard,correct,True,"Based on the clues, the correct answ
 step1_lizard_03,lizard,lizard,correct,True,D.
 step1_salamander_00,salamander,toad,near,False,B.
 step1_salamander_01,salamander,toad,near,False,D. toad
-step1_salamander_02,salamander,axe,far,False,"D. salamander
+step1_salamander_02,salamander,salamander,correct,True,"D. salamander
 
 A salamander has a"
 step1_salamander_03,salamander,salamander,correct,True,B. salamander

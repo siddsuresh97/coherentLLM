@@ -1,0 +1,44 @@
+item_id,target,chosen_concept,chosen_role,chosen_letter,correct_letter,predicted_near,far_controls,chosen_rdm_distance,chosen_rdm_rank,predicted_near_distance,predicted_near_rank,audit_label,feature_clues,response
+step1_alligator_00,alligator,turtle,near,B,D,turtle,chameleon|cobra,0.13569792528815372,1,0.13569792528815372,1,predicted_near_hit,is a freshwater fish|lives by the sea|lives in a swamp,B. turtle
+step1_alligator_02,alligator,turtle,near,C,D,turtle,chameleon|cobra,0.13569792528815372,1,0.13569792528815372,1,predicted_near_hit,lives by the sea|is a freshwater fish|lives in a swamp,C
+step1_alligator_03,alligator,turtle,near,A,D,turtle,chameleon|cobra,0.13569792528815372,1,0.13569792528815372,1,predicted_near_hit,cartoon figure|is a freshwater fish|lives in a swamp,A
+step1_caiman_00,caiman,crocodile,near,B,D,crocodile,chisel|cobra,0.06306277168253493,1,0.06306277168253493,1,predicted_near_hit,endangered species|is lethal|kind of crocodile,B. crocodile
+step1_caiman_01,caiman,crocodile,near,A,C,crocodile,chisel|cobra,0.06306277168253493,1,0.06306277168253493,1,predicted_near_hit,has sharp claws|lives by the sea|kind of crocodile,A.
+step1_caiman_02,caiman,crocodile,near,D,C,crocodile,chisel|cobra,0.06306277168253493,1,0.06306277168253493,1,predicted_near_hit,is lethal|endangered species|kind of crocodile,D. crocodile
+step1_caiman_03,caiman,crocodile,near,A,B,crocodile,chisel|cobra,0.06306277168253493,1,0.06306277168253493,1,predicted_near_hit,is rare|has sharp claws|kind of crocodile,A
+step1_boa_python_00,boa python,snake,near,C,D,snake,chameleon|gecko,0.04751236243815171,1,0.04751236243815171,1,predicted_near_hit,is strong|is lethal|often sits in parks,C
+step1_boa_python_01,boa python,snake,near,B,A,snake,chameleon|gecko,0.04751236243815171,1,0.04751236243815171,1,predicted_near_hit,is dangerous|has a split tongue|often sits in parks,B
+step1_boa_python_02,boa python,snake,near,C,D,snake,chameleon|gecko,0.04751236243815171,1,0.04751236243815171,1,predicted_near_hit,has a split tongue|is lethal|often sits in parks,C. snake
+step1_boa_python_03,boa python,snake,near,D,C,snake,chameleon|gecko,0.04751236243815171,1,0.04751236243815171,1,predicted_near_hit,has a split tongue|strong animal|often sits in parks,D
+step1_snake_00,snake,chameleon,far,A,C,boa python,chameleon|saw,1.2155212165678981,14,0.04751236243815171,1,far_error_true_miss,in a terrarium|lives in trees|cartoon figure,A.
+step1_snake_01,snake,chameleon,far,C,A,boa python,chameleon|saw,1.2155212165678981,14,0.04751236243815171,1,far_error_true_miss,in a terrarium|has bright colours|is a freshwater fish,C
+step1_snake_03,snake,chameleon,far,A,D,boa python,chameleon|saw,1.2155212165678981,14,0.04751236243815171,1,far_error_true_miss,endangered species|has bright colours|cartoon figure,A
+step1_blindworm_02,blindworm,toad,near,D,A,toad,saw|axe,0.07034967775796919,1,0.07034967775796919,1,predicted_near_hit,has a split tongue|is not expensive|in a terrarium,"D. toad
+
+Toads often have a split tongue"
+step1_chameleon_00,chameleon,gecko,near,D,A,gecko,hammer|boa python,0.003338850842146357,1,0.003338850842146357,1,predicted_near_hit,is not expensive|in a terrarium|appears in fairy tales and stories,D. gecko
+step1_chameleon_01,chameleon,boa python,far,B,D,gecko,hammer|boa python,1.3724113713908863,13,0.003338850842146357,1,far_error_true_miss,is food for larger animals|is a pet|appears in fairy tales and stories,B.
+step1_chameleon_02,chameleon,boa python,far,C,B,gecko,hammer|boa python,1.3724113713908863,13,0.003338850842146357,1,far_error_true_miss,is food for larger animals|is a pet|appears in fairy tales and stories,"C. boa python
+
+Reasoning: A boa python is"
+step1_chameleon_03,chameleon,gecko,near,D,A,gecko,hammer|boa python,0.003338850842146357,1,0.003338850842146357,1,predicted_near_hit,lives in trees|has bright colours|appears in fairy tales and stories,D.
+step1_gecko_01,gecko,saw,far,C,B,chameleon,hammer|saw,1.596955739225836,15,0.003338850842146357,1,far_error_true_miss,is food for larger animals|has sharp claws|is dangerous,C
+step1_gecko_02,gecko,chameleon,near,B,A,chameleon,hammer|saw,0.003338850842146357,1,0.003338850842146357,1,predicted_near_hit,is rare|is a pet|is dangerous,"B. chameleon
+
+Reasoning: Chameleons"
+step1_lizard_00,lizard,gecko,near,C,D,gecko,cobra|saw,0.04593554094369112,1,0.04593554094369112,1,predicted_near_hit,lives in trees|in a terrarium|is a freshwater fish,C
+step1_lizard_01,lizard,saw,far,A,B,gecko,cobra|saw,1.7153199077280963,15,0.04593554094369112,1,far_error_true_miss,lives in trees|has sharp claws|is a freshwater fish,A. saw
+step1_salamander_00,salamander,toad,near,B,C,toad,saw|axe,0.03454986736965493,1,0.03454986736965493,1,predicted_near_hit,lives in water|is food for larger animals|lives in trees,B.
+step1_salamander_01,salamander,toad,near,D,A,toad,saw|axe,0.03454986736965493,1,0.03454986736965493,1,predicted_near_hit,lives in water|is food for larger animals|has bright colours,D. toad
+step1_toad_00,toad,salamander,near,C,D,salamander,saw|chisel,0.03454986736965493,1,0.03454986736965493,1,predicted_near_hit,has a split tongue|lives in water|cartoon figure,C. salamander
+step1_toad_02,toad,salamander,near,D,A,salamander,saw|chisel,0.03454986736965493,1,0.03454986736965493,1,predicted_near_hit,lives in water|is food for larger animals|is lethal,"Based on the clues, the answer is D. salam"
+step1_toad_03,toad,salamander,near,D,A,salamander,saw|chisel,0.03454986736965493,1,0.03454986736965493,1,predicted_near_hit,has a split tongue|is food for larger animals|cartoon figure,D.
+step1_tortoise_00,tortoise,turtle,near,B,D,turtle,chisel|saw,0.0009125635425438761,1,0.0009125635425438761,1,predicted_near_hit,lives in water|is food for larger animals|strong animal,B. turtle
+step1_tortoise_02,tortoise,turtle,near,C,B,turtle,chisel|saw,0.0009125635425438761,1,0.0009125635425438761,1,predicted_near_hit,lives by the sea|herds|is strong,C. turtle
+step1_tortoise_03,tortoise,turtle,near,C,A,turtle,chisel|saw,0.0009125635425438761,1,0.0009125635425438761,1,predicted_near_hit,is not expensive|lives in water|savanne,C
+step1_axe_00,axe,hammer,near,B,A,hammer,lizard|blindworm,0.04099313000282101,1,0.04099313000282101,1,predicted_near_hit,is dangerous|is slippery|not used much,B. hammer
+step1_axe_01,axe,hammer,near,B,D,hammer,lizard|blindworm,0.04099313000282101,1,0.04099313000282101,1,predicted_near_hit,has a grip made of wood|made of synthetic material|i never use it,"Based on the given properties, the correct answer is B."
+step1_chisel_00,chisel,hammer,near,C,D,hammer,snake|toad,0.2784822982279772,1,0.2784822982279772,1,predicted_near_hit,you can make things with it|consists of two parts|i never use it,C. hammer
+step1_chisel_03,chisel,snake,far,B,C,hammer,snake|toad,1.7395242035482252,14,0.2784822982279772,1,far_error_true_miss,is small|is cheap|not used much,B.
+step1_hammer_02,hammer,axe,near,A,D,axe,crocodile|salamander,0.04099313000282101,1,0.04099313000282101,1,predicted_near_hit,used by farmers|is long|is cheap,"Based on the clues, the best answer is A. axe"
+step1_hammer_03,hammer,axe,near,C,A,axe,crocodile|salamander,0.04099313000282101,1,0.04099313000282101,1,predicted_near_hit,is made from a tree|used by farmers|is cheap,C
