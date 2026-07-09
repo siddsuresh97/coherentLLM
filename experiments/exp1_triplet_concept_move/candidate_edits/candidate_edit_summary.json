@@ -1,0 +1,78 @@
+{
+  "n_specs": 8,
+  "specs": [
+    {
+      "edit_id": "concentrated_drop_015",
+      "locality_gini_abs_delta": 0.3242366461456099,
+      "locality_one_minus_entropy": 0.06397612336086345,
+      "mode": "concentrated",
+      "row_l2_rms": 0.017852302234953748,
+      "row_max_abs": 0.0643357661652908,
+      "row_mean_abs": 0.014098242836272085
+    },
+    {
+      "edit_id": "concentrated_drop_035",
+      "locality_gini_abs_delta": 0.3691711277636174,
+      "locality_one_minus_entropy": 0.07607981246765272,
+      "mode": "concentrated",
+      "row_l2_rms": 0.04659032837850434,
+      "row_max_abs": 0.16042409690561632,
+      "row_mean_abs": 0.035671669161966166
+    },
+    {
+      "edit_id": "concentrated_drop_065",
+      "locality_gini_abs_delta": 0.45053199166357416,
+      "locality_one_minus_entropy": 0.10338571820395126,
+      "mode": "concentrated",
+      "row_l2_rms": 0.11028095418111558,
+      "row_max_abs": 0.33533845960327757,
+      "row_mean_abs": 0.08136837905875517
+    },
+    {
+      "edit_id": "concentrated_drop_100",
+      "locality_gini_abs_delta": 0.38984445988085326,
+      "locality_one_minus_entropy": 0.07336750515071055,
+      "mode": "concentrated",
+      "row_l2_rms": 0.2623285144321861,
+      "row_max_abs": 0.6566419825395207,
+      "row_mean_abs": 0.21180172268764988
+    },
+    {
+      "edit_id": "diffuse_drop_015",
+      "locality_gini_abs_delta": 0.2409647809210822,
+      "locality_one_minus_entropy": 0.0278906940418151,
+      "mode": "diffuse",
+      "row_l2_rms": 0.0557534646824047,
+      "row_max_abs": 0.09358560485236944,
+      "row_mean_abs": 0.051357328272033674
+    },
+    {
+      "edit_id": "diffuse_drop_035",
+      "locality_gini_abs_delta": 0.25573043703294007,
+      "locality_one_minus_entropy": 0.030845672687374925,
+      "mode": "diffuse",
+      "row_l2_rms": 0.11371262283498902,
+      "row_max_abs": 0.1805058811686181,
+      "row_mean_abs": 0.10388916394676485
+    },
+    {
+      "edit_id": "diffuse_drop_065",
+      "locality_gini_abs_delta": 0.32829609126745285,
+      "locality_one_minus_entropy": 0.052980145645043386,
+      "mode": "diffuse",
+      "row_l2_rms": 0.2092758348174193,
+      "row_max_abs": 0.3307388806774241,
+      "row_mean_abs": 0.18084509175935273
+    },
+    {
+      "edit_id": "diffuse_drop_100",
+      "locality_gini_abs_delta": 0.2807400929020689,
+      "locality_one_minus_entropy": 0.03796710300648054,
+      "mode": "diffuse",
+      "row_l2_rms": 0.3791436661494703,
+      "row_max_abs": 0.6566419825395207,
+      "row_mean_abs": 0.33799337352493997
+    }
+  ],
+  "warning": "These are feature-space draft edits only. Do not train LoRAs from them until floor_stats.json reports the behavioral gate green."
+}

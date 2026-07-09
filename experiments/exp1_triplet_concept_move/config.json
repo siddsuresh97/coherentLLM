@@ -1,0 +1,32 @@
+{
+  "archived_triplet_embedding": "data/scale128/llama-3.1-8b-instruct_triplet_d5.npy",
+  "archived_triplet_raw": "results/raw_128/llama-3.1-8b-instruct/triplet.csv",
+  "base_model": "llama-3.1-8b-instruct",
+  "bootstrap_splits": 64,
+  "candidate_edit_fraction_grid": [
+    0.15,
+    0.35,
+    0.65,
+    1.0
+  ],
+  "cluster_items": 12,
+  "n_items": 30,
+  "nova_feature_matrix": "data/nova/verified_matrix_cogsci2025.parquet",
+  "seed": 1729,
+  "source_concepts_csv": "data/scale128/concepts.csv",
+  "target_concept": "antelope",
+  "target_neighbor": "bison",
+  "triplet_protocol": {
+    "aggregation": "For each anchor i and candidate j, count the fraction of triplets where j is chosen over the alternative candidate. Symmetrize by averaging i->j and j->i rates, then convert similarity to RDM as 1 - similarity.",
+    "description": "For each anchor, enumerate every unordered candidate pair among the other 29 concepts. This gives 30 * C(29, 2) = 12180 judgments per model run.",
+    "paraphrase_template": "Reply with only {concept1} or {concept2}. Compared with {anchor}, which option is closer in meaning?",
+    "prompt_template": "Answer using only one word - {concept1} or {concept2} and not {anchor}. Which is more similar in semantic meaning to {anchor}?",
+    "required_baseline_runs": [
+      "base_seed_a_canonical_prompt",
+      "base_seed_b_canonical_prompt",
+      "base_seed_a_paraphrase_prompt"
+    ],
+    "scheme": "full_anchor_candidate_enumeration",
+    "temperature": 0.0
+  }
+}

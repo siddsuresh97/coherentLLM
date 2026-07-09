@@ -1,0 +1,24 @@
+{
+  "aggregation": "For each anchor i and candidate j, count the fraction of triplets where j is chosen over the alternative candidate. Symmetrize by averaging i->j and j->i rates, then convert similarity to RDM as 1 - similarity.",
+  "base_model": "llama-3.1-8b-instruct",
+  "concepts_sha256": "1aeafc438cea81d9ac209a07b2141128bef91d59a733265f6af2d83e07ad26b9",
+  "description": "For each anchor, enumerate every unordered candidate pair among the other 29 concepts. This gives 30 * C(29, 2) = 12180 judgments per model run.",
+  "n_concepts": 30,
+  "n_pairwise_pairs": 435,
+  "n_triplets_per_run": 12180,
+  "pairs_sha256": "5b482ac120de22d06367061e8559f9654527ce9a2cc123320f0f87090a3dce3b",
+  "paraphrase_template": "Reply with only {concept1} or {concept2}. Compared with {anchor}, which option is closer in meaning?",
+  "prompt_template": "Answer using only one word - {concept1} or {concept2} and not {anchor}. Which is more similar in semantic meaning to {anchor}?",
+  "required_baseline_runs": [
+    "base_seed_a_canonical_prompt",
+    "base_seed_b_canonical_prompt",
+    "base_seed_a_paraphrase_prompt"
+  ],
+  "runner_command_canonical": "COHERENCE_STIM_DIR=experiments/exp1_triplet_concept_move/stimuli COHERENCE_RAW_DIR=experiments/exp1_triplet_concept_move/raw python scripts/run_experiment1_triplets.py --model llama-3.1-8b-instruct --out-run base_seed_a_canonical_prompt --prompt-variant canonical --overwrite",
+  "runner_command_paraphrase": "python scripts/run_experiment1_triplets.py --model llama-3.1-8b-instruct --out-run base_seed_a_paraphrase_prompt --prompt-variant paraphrase --overwrite",
+  "scheme": "full_anchor_candidate_enumeration",
+  "status": "frozen_stimuli_written; independent canonical/paraphrase model runs still required before behavioral gate is green",
+  "stimuli_dir": "experiments/exp1_triplet_concept_move/stimuli",
+  "temperature": 0.0,
+  "triplets_sha256": "14ebbf1247d5755bb0fd69a9446e70094dca025f91fe5f5e02c146a69757253f"
+}

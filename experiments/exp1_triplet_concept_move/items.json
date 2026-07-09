@@ -1,0 +1,283 @@
+{
+  "concepts": [
+    "antelope",
+    "bison",
+    "boar",
+    "cheetah",
+    "beaver",
+    "anteater",
+    "bear",
+    "ostrich",
+    "camel",
+    "ant",
+    "beetle",
+    "bird",
+    "file",
+    "chocolate",
+    "bench",
+    "missile",
+    "tree",
+    "bassoon",
+    "artichoke",
+    "blender",
+    "dress",
+    "car",
+    "crowbar",
+    "cactus",
+    "candle",
+    "burrito",
+    "bell",
+    "drill",
+    "blackberry",
+    "tumbleweed"
+  ],
+  "counterfactuals_considered": {
+    "highly_clustered_food_items": "Food concepts such as banana, blueberry, broccoli, and cabbage have even tighter feature clusters, but a move within that cluster is less diagnostic of an animate-object relation and gives less clean spillover language for the first edit-attribution experiment.",
+    "more_isolated_items": "Items with no tight local neighborhood were rejected because the concentrated locality manipulation needs a near neighbor to push against."
+  },
+  "neighbor_top_neighbors": [
+    {
+      "concept": "boar",
+      "cosine": 0.6766961712341776
+    },
+    {
+      "concept": "antelope",
+      "cosine": 0.6566419825395207
+    },
+    {
+      "concept": "bear",
+      "cosine": 0.6029892787668458
+    },
+    {
+      "concept": "camel",
+      "cosine": 0.569552541289512
+    },
+    {
+      "concept": "beaver",
+      "cosine": 0.5566075358876188
+    },
+    {
+      "concept": "duck",
+      "cosine": 0.5143465927307811
+    },
+    {
+      "concept": "cheetah",
+      "cosine": 0.5139648297703657
+    },
+    {
+      "concept": "chinchilla",
+      "cosine": 0.5075094037514203
+    },
+    {
+      "concept": "anteater",
+      "cosine": 0.5073742825662662
+    },
+    {
+      "concept": "ostrich",
+      "cosine": 0.5047684720219006
+    }
+  ],
+  "rationale": "Chose antelope because it sits in a tight animal cluster while still having far items available for contrast. The concentrated move is defined against bison, its nearest selected neighbor in the NOVA feature-space map.",
+  "selected_feature_rdm_summary": {
+    "max_distance": 0.9256427361263118,
+    "median_distance": 0.7575282501715193,
+    "min_distance": 0.3233038287658224,
+    "target_neighbor_distance": 0.34335801746047934
+  },
+  "selection_algorithm": "Seed with target, its designated neighbor, and their nearest feature-space neighbors; fill the remaining slots by farthest-point sampling in the full 128-concept feature RDM.",
+  "source": {
+    "concepts_csv": "data/scale128/concepts.csv",
+    "n_source_concepts": 128,
+    "nova_feature_matrix": "data/nova/verified_matrix_cogsci2025.parquet"
+  },
+  "target_concept": "antelope",
+  "target_neighbor": "bison",
+  "target_top_neighbors": [
+    {
+      "concept": "bison",
+      "cosine": 0.6566419825395207
+    },
+    {
+      "concept": "boar",
+      "cosine": 0.6070102577380568
+    },
+    {
+      "concept": "cheetah",
+      "cosine": 0.5960882608176818
+    },
+    {
+      "concept": "beaver",
+      "cosine": 0.54229867164828
+    },
+    {
+      "concept": "anteater",
+      "cosine": 0.5389813202309136
+    },
+    {
+      "concept": "bear",
+      "cosine": 0.5384640279823051
+    },
+    {
+      "concept": "ostrich",
+      "cosine": 0.5284024422490013
+    },
+    {
+      "concept": "camel",
+      "cosine": 0.5149283898423878
+    },
+    {
+      "concept": "ant",
+      "cosine": 0.4988379605788746
+    },
+    {
+      "concept": "beetle",
+      "cosine": 0.4972364631022518
+    }
+  ],
+  "top_cluster_candidates_by_feature_density": [
+    {
+      "concept": "blueberry",
+      "nearest_cosine": 0.8048365970135782,
+      "top5_mean_cosine": 0.7426365366012391,
+      "top5_neighbors": [
+        "cherry",
+        "cranberry",
+        "banana",
+        "fruit",
+        "fig"
+      ]
+    },
+    {
+      "concept": "cauliflower",
+      "nearest_cosine": 0.786283449902451,
+      "top5_mean_cosine": 0.7422141463767706,
+      "top5_neighbors": [
+        "cabbage",
+        "broccoli",
+        "asparagus",
+        "brussels sprouts",
+        "artichoke"
+      ]
+    },
+    {
+      "concept": "cherry",
+      "nearest_cosine": 0.8048365970135782,
+      "top5_mean_cosine": 0.7398074614501728,
+      "top5_neighbors": [
+        "blueberry",
+        "cranberry",
+        "fruit",
+        "banana",
+        "fig"
+      ]
+    },
+    {
+      "concept": "broccoli",
+      "nearest_cosine": 0.7656608911954942,
+      "top5_mean_cosine": 0.7304191587303688,
+      "top5_neighbors": [
+        "brussels sprouts",
+        "cauliflower",
+        "asparagus",
+        "cabbage",
+        "artichoke"
+      ]
+    },
+    {
+      "concept": "asparagus",
+      "nearest_cosine": 0.7487547770313758,
+      "top5_mean_cosine": 0.7199121601203715,
+      "top5_neighbors": [
+        "broccoli",
+        "cauliflower",
+        "artichoke",
+        "celery",
+        "cabbage"
+      ]
+    },
+    {
+      "concept": "cranberry",
+      "nearest_cosine": 0.7924121041400859,
+      "top5_mean_cosine": 0.7170127218258988,
+      "top5_neighbors": [
+        "blueberry",
+        "cherry",
+        "banana",
+        "beet",
+        "fruit"
+      ]
+    },
+    {
+      "concept": "brussels sprouts",
+      "nearest_cosine": 0.7656608911954942,
+      "top5_mean_cosine": 0.7164379287060728,
+      "top5_neighbors": [
+        "broccoli",
+        "cauliflower",
+        "cabbage",
+        "artichoke",
+        "asparagus"
+      ]
+    },
+    {
+      "concept": "cabbage",
+      "nearest_cosine": 0.786283449902451,
+      "top5_mean_cosine": 0.7151252044347386,
+      "top5_neighbors": [
+        "cauliflower",
+        "broccoli",
+        "brussels sprouts",
+        "asparagus",
+        "artichoke"
+      ]
+    },
+    {
+      "concept": "banana",
+      "nearest_cosine": 0.7219108858192163,
+      "top5_mean_cosine": 0.7095559866776645,
+      "top5_neighbors": [
+        "fruit",
+        "blueberry",
+        "cherry",
+        "carrot",
+        "fig"
+      ]
+    },
+    {
+      "concept": "fruit",
+      "nearest_cosine": 0.7219108858192163,
+      "top5_mean_cosine": 0.7014391733540802,
+      "top5_neighbors": [
+        "banana",
+        "cherry",
+        "blueberry",
+        "cranberry",
+        "fig"
+      ]
+    },
+    {
+      "concept": "artichoke",
+      "nearest_cosine": 0.7180541411066129,
+      "top5_mean_cosine": 0.6983051442512045,
+      "top5_neighbors": [
+        "asparagus",
+        "cauliflower",
+        "brussels sprouts",
+        "cabbage",
+        "broccoli"
+      ]
+    },
+    {
+      "concept": "carrot",
+      "nearest_cosine": 0.7417335792796047,
+      "top5_mean_cosine": 0.6957240226591772,
+      "top5_neighbors": [
+        "beet",
+        "banana",
+        "celery",
+        "cabbage",
+        "corn"
+      ]
+    }
+  ]
+}

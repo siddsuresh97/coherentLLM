@@ -1,0 +1,41 @@
+EDIT_ID = concentrated_drop_100
+SUPERVISION = feature
+MODEL_PATH = /staging/s/suresh27/models/llama31-8b-instruct
+HF_CACHE = /staging/s/suresh27/hf_home
+TRAIN_STEPS = 400
+MIN_CUDA_GLOBAL_MEMORY_MB = 40000
+PIP_TIMEOUT_SECONDS = 2400
+GPU_MEM_UTIL = 0.86
+MAX_MODEL_LEN = 2048
+MAX_NUM_SEQS = 256
+LORA_RANK = 32
+
+universe = container
+container_image = docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-devel
+docker_override_entrypoint = true
+requirements = (TARGET.HasCHTCStaging == true) && (TARGET.CUDAGlobalMemoryMb >= $(MIN_CUDA_GLOBAL_MEMORY_MB))
+rank = TARGET.CUDAGlobalMemoryMb
+
+batch_name = exp1_triplet_move_pathway_$(Cluster)
+log = logs/exp1_pathway_$(EDIT_ID)_$(SUPERVISION)_$(Cluster)_$(Process).log
+output = logs/exp1_pathway_$(EDIT_ID)_$(SUPERVISION)_$(Cluster)_$(Process).out
+error = logs/exp1_pathway_$(EDIT_ID)_$(SUPERVISION)_$(Cluster)_$(Process).err
+
+executable = run_exp1_pathway_check.sh
+arguments = $(EDIT_ID) $(SUPERVISION) $(MODEL_PATH) $(HF_CACHE) $(TRAIN_STEPS)
+transfer_input_files = run_exp1_pathway_check.sh, exp1_triplet_move_bundle.tgz
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_output_files = exp1_pathway_$(EDIT_ID)_$(SUPERVISION)_results.tgz
+stream_output = TRUE
+stream_error = TRUE
+environment = "PIP_TIMEOUT_SECONDS=$(PIP_TIMEOUT_SECONDS) GPU_MEM_UTIL=$(GPU_MEM_UTIL) MAX_MODEL_LEN=$(MAX_MODEL_LEN) MAX_NUM_SEQS=$(MAX_NUM_SEQS) LORA_RANK=$(LORA_RANK)"
+
+request_gpus = 1
+request_cpus = 8
+request_memory = 72GB
+request_disk = 160GB
++GPUJobLength = "short"
++is_resumable = true
+
+queue 1

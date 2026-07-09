@@ -1,0 +1,95 @@
+{
+  "best_cells": [
+    {
+      "edit_id": "diffuse_drop_100",
+      "feature_locality_gini": 0.2807400929020689,
+      "feature_row_l2_rms": 0.3791436661494703,
+      "fraction": 1.0,
+      "max_snr": 3.320113011464437,
+      "median_rank": 1.0,
+      "median_snr": 2.747464942722856,
+      "min_snr": 2.582150266735071,
+      "mode": "diffuse",
+      "top_rank_rate": 1.0
+    },
+    {
+      "edit_id": "concentrated_drop_100",
+      "feature_locality_gini": 0.38984445988085326,
+      "feature_row_l2_rms": 0.2623285144321861,
+      "fraction": 1.0,
+      "max_snr": 2.5512882063594766,
+      "median_rank": 1.0,
+      "median_snr": 2.0751938580681113,
+      "min_snr": 1.9786358937409372,
+      "mode": "concentrated",
+      "top_rank_rate": 1.0
+    },
+    {
+      "edit_id": "diffuse_drop_065",
+      "feature_locality_gini": 0.32829609126745285,
+      "feature_row_l2_rms": 0.2092758348174193,
+      "fraction": 0.65,
+      "max_snr": 1.9719541516478407,
+      "median_rank": 1.0,
+      "median_snr": 1.6370705543744897,
+      "min_snr": 1.4963586112190277,
+      "mode": "diffuse",
+      "top_rank_rate": 1.0
+    },
+    {
+      "edit_id": "concentrated_drop_065",
+      "feature_locality_gini": 0.45053199166357416,
+      "feature_row_l2_rms": 0.11028095418111558,
+      "fraction": 0.65,
+      "max_snr": 1.3303721618537554,
+      "median_rank": 1.0,
+      "median_snr": 1.2631695108588896,
+      "min_snr": 1.2250240791625457,
+      "mode": "concentrated",
+      "top_rank_rate": 0.8
+    },
+    {
+      "edit_id": "diffuse_drop_035",
+      "feature_locality_gini": 0.25573043703294007,
+      "feature_row_l2_rms": 0.11371262283498902,
+      "fraction": 0.35,
+      "max_snr": 1.3342414055893481,
+      "median_rank": 2.0,
+      "median_snr": 1.1337003289775474,
+      "min_snr": 0.8891432609757646,
+      "mode": "diffuse",
+      "top_rank_rate": 0.4
+    }
+  ],
+  "detail_csv": "experiments/exp1_triplet_concept_move/simulation/simulated_detection_rows.csv",
+  "heatmap_csv": "experiments/exp1_triplet_concept_move/simulation/resolution_heatmap_simulated.csv",
+  "heatmap_png": "experiments/exp1_triplet_concept_move/simulation/resolution_heatmap_simulated.png",
+  "n_edits": 8,
+  "parameters": {
+    "choice_temperature": 0.12,
+    "control_drift": 0.018,
+    "edit_drift": 0.018,
+    "floor_epsilon": 0.015,
+    "lapse": 0.03,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "transfer_gain": 0.75,
+    "write_detection_json": false,
+    "write_raw": false,
+    "write_rdms": false
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "status": "simulated_pipeline_smoke_only",
+  "warning": "These results use an oracle mapping from feature-RDM edits to behavioral RDM changes. They validate analysis mechanics but do not satisfy Experiment 1's model-edit success criterion."
+}
