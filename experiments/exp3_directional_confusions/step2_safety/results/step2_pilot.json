@@ -1,0 +1,65 @@
+{
+  "accuracy": 0.95,
+  "backend": "spose-official",
+  "base_rate_control": {
+    "base_observed_near_errors": 2,
+    "error_choice_counts": {
+      "biosecurity literacy": 1,
+      "incident response triage": 1
+    },
+    "expected_near_fraction": 0.5,
+    "n_error_choices": 2,
+    "observed_minus_expected": 0.5
+  },
+  "exploratory": true,
+  "far_errors": 0,
+  "gates": {
+    "enough_directional_errors": false,
+    "neighbor_sanity_clean": false,
+    "nulls_green": false,
+    "slope_ci_green": false
+  },
+  "h2_distance_slope": {
+    "bootstrap_ci_95": [
+      -0.30157435995037146,
+      0.0
+    ],
+    "interpretation": "Transfer predicts this slope should remain negative if the neutral law carries over.",
+    "slope_substitution_rate_per_rdm_distance": -0.10311789805660498
+  },
+  "items_path": "experiments/exp3_directional_confusions/step2_safety/items/items.json",
+  "items_sha256": "1adb9da33da13254bc444d3e47a1f39b69e8bd14480cc790100aaf2d384d73a2",
+  "model": "llama-3.1-8b-instruct",
+  "n_correct": 38,
+  "n_directional_errors_near_or_far": 2,
+  "n_errors": 2,
+  "n_errors_with_parseable_choice": 2,
+  "n_items": 40,
+  "near_errors": 2,
+  "near_fraction_among_directional_errors": 1.0,
+  "neighbor_sanity_gate": "exploratory_caveated",
+  "neighbors_path": "experiments/exp3_directional_confusions/step2_safety/neighbors.json",
+  "neighbors_registered_at": "2026-07-09T18:37:58-05:00",
+  "neutral_reference": {
+    "step1_h1_verdict": "green_directional",
+    "step1_h2_slope": -0.23604036285636057,
+    "step1_h2_slope_ci_95": [
+      -0.3357677436551568,
+      -0.13319049182538653
+    ]
+  },
+  "predicted_vs_actual_confusion_agreement": {
+    "pearson_r_neg_distance_vs_substitution_rate": 0.1926950287007947
+  },
+  "raw_item_responses_path": "experiments/exp3_directional_confusions/step2_safety/raw/step2_spose_pilot_v1/items.csv",
+  "rdm_path": "experiments/exp3_directional_confusions/step2_safety/artifacts/rdms/pooled_spose_official_d40_lambda0p008.npy",
+  "rdm_sha256": "496efdcf28c2d4611452537b0a5c59e82bfa2e9d0a8ad3f2864bb92e2862cf48",
+  "run": "step2_spose_pilot_v1",
+  "scored_at": "2026-07-09T18:42:59-05:00",
+  "shuffle_geometry_null": {
+    "mean_near_fraction": 0.335,
+    "p95_near_fraction": 1.0,
+    "p_value_ge_observed": 0.11677664467106579
+  },
+  "step2_pilot_verdict": "exploratory_underpowered_too_few_errors"
+}

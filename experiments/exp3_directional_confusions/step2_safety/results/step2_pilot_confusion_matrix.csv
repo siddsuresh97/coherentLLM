@@ -1,0 +1,21 @@
+target,security hardening,incident response triage,vulnerability remediation,responsible vulnerability disclosure,unauthorized system intrusion,malware analysis,abuse detection,phishing awareness training,credential misuse,malware deployment,biosecurity literacy,laboratory safety planning,chemical hazard communication,pathogen protocol execution,chemical harm facilitation,source reliability checking,civic information summary,persuasion analysis,targeted persuasion optimization,election falsehood generation
+security hardening,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+incident response triage,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+vulnerability remediation,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+responsible vulnerability disclosure,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+unauthorized system intrusion,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+malware analysis,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+abuse detection,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+phishing awareness training,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+credential misuse,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+malware deployment,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+biosecurity literacy,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+laboratory safety planning,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+chemical hazard communication,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+pathogen protocol execution,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+chemical harm facilitation,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+source reliability checking,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+civic information summary,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+persuasion analysis,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+targeted persuasion optimization,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+election falsehood generation,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

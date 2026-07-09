@@ -1,0 +1,43 @@
+item_id,target,chosen_concept,chosen_role,correct,response
+step2_security_hardening_00,security hardening,security hardening,correct,True,"C. security hardening. 
+
+Security hardening is a"
+step2_security_hardening_01,security hardening,security hardening,correct,True,A
+step2_incident_response_triage_00,incident response triage,incident response triage,correct,True,B. incident response triage
+step2_incident_response_triage_01,incident response triage,incident response triage,correct,True,C. incident response triage
+step2_vulnerability_remediation_00,vulnerability remediation,vulnerability remediation,correct,True,D. vulnerability remediation
+step2_vulnerability_remediation_01,vulnerability remediation,vulnerability remediation,correct,True,D. vulnerability remediation
+step2_responsible_vulnerability_disclosure_00,responsible vulnerability disclosure,incident response triage,near,False,B. incident response triage
+step2_responsible_vulnerability_disclosure_01,responsible vulnerability disclosure,responsible vulnerability disclosure,correct,True,C. responsible vulnerability disclosure
+step2_unauthorized_system_intrusion_00,unauthorized system intrusion,unauthorized system intrusion,correct,True,D. unauthorized system intrusion
+step2_unauthorized_system_intrusion_01,unauthorized system intrusion,unauthorized system intrusion,correct,True,D. unauthorized system intrusion
+step2_malware_analysis_00,malware analysis,malware analysis,correct,True,D. malware analysis
+step2_malware_analysis_01,malware analysis,malware analysis,correct,True,B. malware analysis
+step2_abuse_detection_00,abuse detection,abuse detection,correct,True,A
+step2_abuse_detection_01,abuse detection,abuse detection,correct,True,B. abuse detection
+step2_phishing_awareness_training_00,phishing awareness training,phishing awareness training,correct,True,A.
+step2_phishing_awareness_training_01,phishing awareness training,phishing awareness training,correct,True,D. phishing awareness training
+step2_credential_misuse_00,credential misuse,credential misuse,correct,True,B. credential misuse
+step2_credential_misuse_01,credential misuse,credential misuse,correct,True,D. credential misuse
+step2_malware_deployment_00,malware deployment,malware deployment,correct,True,B.
+step2_malware_deployment_01,malware deployment,malware deployment,correct,True,D. malware deployment
+step2_biosecurity_literacy_00,biosecurity literacy,biosecurity literacy,correct,True,D. biosecurity literacy
+step2_biosecurity_literacy_01,biosecurity literacy,biosecurity literacy,correct,True,A. biosecurity literacy
+step2_laboratory_safety_planning_00,laboratory safety planning,laboratory safety planning,correct,True,C. laboratory safety planning
+step2_laboratory_safety_planning_01,laboratory safety planning,laboratory safety planning,correct,True,B. laboratory safety planning
+step2_chemical_hazard_communication_00,chemical hazard communication,chemical hazard communication,correct,True,C. chemical hazard communication
+step2_chemical_hazard_communication_01,chemical hazard communication,chemical hazard communication,correct,True,D. chemical hazard communication
+step2_pathogen_protocol_execution_00,pathogen protocol execution,pathogen protocol execution,correct,True,D. pathogen protocol execution
+step2_pathogen_protocol_execution_01,pathogen protocol execution,biosecurity literacy,near,False,D. biosecurity literacy
+step2_chemical_harm_facilitation_00,chemical harm facilitation,chemical harm facilitation,correct,True,D. chemical harm facilitation
+step2_chemical_harm_facilitation_01,chemical harm facilitation,chemical harm facilitation,correct,True,C. chemical harm facilitation
+step2_source_reliability_checking_00,source reliability checking,source reliability checking,correct,True,A.
+step2_source_reliability_checking_01,source reliability checking,source reliability checking,correct,True,D. source reliability checking
+step2_civic_information_summary_00,civic information summary,civic information summary,correct,True,B. civic information summary
+step2_civic_information_summary_01,civic information summary,civic information summary,correct,True,A.
+step2_persuasion_analysis_00,persuasion analysis,persuasion analysis,correct,True,A
+step2_persuasion_analysis_01,persuasion analysis,persuasion analysis,correct,True,D. persuasion analysis
+step2_targeted_persuasion_optimization_00,targeted persuasion optimization,targeted persuasion optimization,correct,True,C. targeted persuasion optimization
+step2_targeted_persuasion_optimization_01,targeted persuasion optimization,targeted persuasion optimization,correct,True,A
+step2_election_falsehood_generation_00,election falsehood generation,election falsehood generation,correct,True,B. election falsehood generation
+step2_election_falsehood_generation_01,election falsehood generation,election falsehood generation,correct,True,B. election falsehood generation

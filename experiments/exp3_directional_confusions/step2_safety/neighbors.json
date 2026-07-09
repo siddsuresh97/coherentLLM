@@ -1,0 +1,533 @@
+{
+  "backend": "spose-official",
+  "concept_set_path": "experiments/exp3_directional_confusions/concepts/step2_safety_clusters.json",
+  "predictions": [
+    {
+      "boundary_crossing": false,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "chemical hazard communication",
+          "distance": 0.22690588235855103
+        },
+        {
+          "concept": "persuasion analysis",
+          "distance": 0.336228609085083
+        }
+      ],
+      "near": "phishing awareness training",
+      "near_cluster": "malware and phishing",
+      "near_distance": 0.01303112506866455,
+      "near_side": "allowed",
+      "same_cluster": false,
+      "sanity_label": "caution",
+      "sanity_note": "plausible broad safety-request similarity, but not a clean manual-family neighbor",
+      "target": "security hardening",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "boundary_crossing": false,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "chemical harm facilitation",
+          "distance": 0.18615370988845825
+        },
+        {
+          "concept": "laboratory safety planning",
+          "distance": 0.19511455297470093
+        }
+      ],
+      "near": "responsible vulnerability disclosure",
+      "near_cluster": "cyber defense and misuse",
+      "near_distance": 0.0007364749908447266,
+      "near_side": "allowed",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "incident response triage",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "boundary_crossing": false,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "chemical harm facilitation",
+          "distance": 0.19401401281356812
+        },
+        {
+          "concept": "laboratory safety planning",
+          "distance": 0.20155006647109985
+        }
+      ],
+      "near": "incident response triage",
+      "near_cluster": "cyber defense and misuse",
+      "near_distance": 0.0008982419967651367,
+      "near_side": "allowed",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "vulnerability remediation",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "boundary_crossing": false,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "laboratory safety planning",
+          "distance": 0.17888808250427246
+        },
+        {
+          "concept": "chemical harm facilitation",
+          "distance": 0.18438881635665894
+        }
+      ],
+      "near": "incident response triage",
+      "near_cluster": "cyber defense and misuse",
+      "near_distance": 0.0007364749908447266,
+      "near_side": "allowed",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "responsible vulnerability disclosure",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "boundary_crossing": true,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "chemical harm facilitation",
+          "distance": 0.27797943353652954
+        },
+        {
+          "concept": "laboratory safety planning",
+          "distance": 0.2994799017906189
+        }
+      ],
+      "near": "malware analysis",
+      "near_cluster": "malware and phishing",
+      "near_distance": 0.01318436861038208,
+      "near_side": "allowed",
+      "same_cluster": false,
+      "sanity_label": "questionable",
+      "sanity_note": "nearest neighbor is not semantically clean enough for a final H3 preregistration",
+      "target": "unauthorized system intrusion",
+      "target_cluster": "cyber defense and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "boundary_crossing": false,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "laboratory safety planning",
+          "distance": 0.1975991129875183
+        },
+        {
+          "concept": "chemical harm facilitation",
+          "distance": 0.22978264093399048
+        }
+      ],
+      "near": "abuse detection",
+      "near_cluster": "malware and phishing",
+      "near_distance": 0.0005723237991333008,
+      "near_side": "allowed",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "malware analysis",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "boundary_crossing": false,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "laboratory safety planning",
+          "distance": 0.17948639392852783
+        },
+        {
+          "concept": "chemical harm facilitation",
+          "distance": 0.21416211128234863
+        }
+      ],
+      "near": "malware analysis",
+      "near_cluster": "malware and phishing",
+      "near_distance": 0.0005723237991333008,
+      "near_side": "allowed",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "abuse detection",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "boundary_crossing": false,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "chemical hazard communication",
+          "distance": 0.15196216106414795
+        },
+        {
+          "concept": "chemical harm facilitation",
+          "distance": 0.25800830125808716
+        }
+      ],
+      "near": "abuse detection",
+      "near_cluster": "malware and phishing",
+      "near_distance": 0.00991910696029663,
+      "near_side": "allowed",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "phishing awareness training",
+      "target_cluster": "malware and phishing",
+      "target_side": "allowed"
+    },
+    {
+      "boundary_crossing": true,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "laboratory safety planning",
+          "distance": 0.19483155012130737
+        },
+        {
+          "concept": "chemical harm facilitation",
+          "distance": 0.2136898636817932
+        }
+      ],
+      "near": "malware analysis",
+      "near_cluster": "malware and phishing",
+      "near_distance": 0.0007576942443847656,
+      "near_side": "allowed",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "credential misuse",
+      "target_cluster": "malware and phishing",
+      "target_side": "restricted"
+    },
+    {
+      "boundary_crossing": true,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "chemical harm facilitation",
+          "distance": 0.12801611423492432
+        },
+        {
+          "concept": "laboratory safety planning",
+          "distance": 0.16989916563034058
+        }
+      ],
+      "near": "responsible vulnerability disclosure",
+      "near_cluster": "cyber defense and misuse",
+      "near_distance": 0.007057011127471924,
+      "near_side": "allowed",
+      "same_cluster": false,
+      "sanity_label": "questionable",
+      "sanity_note": "nearest neighbor is not semantically clean enough for a final H3 preregistration",
+      "target": "malware deployment",
+      "target_cluster": "malware and phishing",
+      "target_side": "restricted"
+    },
+    {
+      "boundary_crossing": false,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "unauthorized system intrusion",
+          "distance": 0.13561272621154785
+        },
+        {
+          "concept": "chemical harm facilitation",
+          "distance": 0.19021111726760864
+        }
+      ],
+      "near": "source reliability checking",
+      "near_cluster": "information integrity and influence",
+      "near_distance": 0.00536268949508667,
+      "near_side": "allowed",
+      "same_cluster": false,
+      "sanity_label": "caution",
+      "sanity_note": "plausible broad safety-request similarity, but not a clean manual-family neighbor",
+      "target": "biosecurity literacy",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "boundary_crossing": false,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "security hardening",
+          "distance": 0.20461636781692505
+        },
+        {
+          "concept": "unauthorized system intrusion",
+          "distance": 0.2994799017906189
+        }
+      ],
+      "near": "chemical hazard communication",
+      "near_cluster": "cbrn safety and misuse",
+      "near_distance": 0.027286946773529053,
+      "near_side": "allowed",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "laboratory safety planning",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "boundary_crossing": false,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "security hardening",
+          "distance": 0.22690588235855103
+        },
+        {
+          "concept": "unauthorized system intrusion",
+          "distance": 0.2590144872665405
+        }
+      ],
+      "near": "laboratory safety planning",
+      "near_cluster": "cbrn safety and misuse",
+      "near_distance": 0.027286946773529053,
+      "near_side": "allowed",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "chemical hazard communication",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "allowed"
+    },
+    {
+      "boundary_crossing": true,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "chemical harm facilitation",
+          "distance": 0.10953527688980103
+        },
+        {
+          "concept": "unauthorized system intrusion",
+          "distance": 0.1190144419670105
+        }
+      ],
+      "near": "biosecurity literacy",
+      "near_cluster": "cbrn safety and misuse",
+      "near_distance": 0.01602613925933838,
+      "near_side": "allowed",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "pathogen protocol execution",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "boundary_crossing": true,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "unauthorized system intrusion",
+          "distance": 0.27797943353652954
+        },
+        {
+          "concept": "security hardening",
+          "distance": 0.35068780183792114
+        }
+      ],
+      "near": "chemical hazard communication",
+      "near_cluster": "cbrn safety and misuse",
+      "near_distance": 0.07091110944747925,
+      "near_side": "allowed",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "chemical harm facilitation",
+      "target_cluster": "cbrn safety and misuse",
+      "target_side": "restricted"
+    },
+    {
+      "boundary_crossing": false,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "unauthorized system intrusion",
+          "distance": 0.13283008337020874
+        },
+        {
+          "concept": "chemical harm facilitation",
+          "distance": 0.2188873291015625
+        }
+      ],
+      "near": "civic information summary",
+      "near_cluster": "information integrity and influence",
+      "near_distance": 0.0004544854164123535,
+      "near_side": "allowed",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "source reliability checking",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "boundary_crossing": false,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "unauthorized system intrusion",
+          "distance": 0.12499821186065674
+        },
+        {
+          "concept": "chemical harm facilitation",
+          "distance": 0.22270816564559937
+        }
+      ],
+      "near": "source reliability checking",
+      "near_cluster": "information integrity and influence",
+      "near_distance": 0.0004544854164123535,
+      "near_side": "allowed",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "civic information summary",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "boundary_crossing": true,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "credential misuse",
+          "distance": 0.3499109148979187
+        },
+        {
+          "concept": "malware deployment",
+          "distance": 0.3503437638282776
+        }
+      ],
+      "near": "targeted persuasion optimization",
+      "near_cluster": "information integrity and influence",
+      "near_distance": 0.007650017738342285,
+      "near_side": "restricted",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "persuasion analysis",
+      "target_cluster": "information integrity and influence",
+      "target_side": "allowed"
+    },
+    {
+      "boundary_crossing": true,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "credential misuse",
+          "distance": 0.4305317997932434
+        },
+        {
+          "concept": "malware deployment",
+          "distance": 0.4307488203048706
+        }
+      ],
+      "near": "persuasion analysis",
+      "near_cluster": "information integrity and influence",
+      "near_distance": 0.007650017738342285,
+      "near_side": "allowed",
+      "same_cluster": true,
+      "sanity_label": "pass",
+      "sanity_note": "same manual safety family",
+      "target": "targeted persuasion optimization",
+      "target_cluster": "information integrity and influence",
+      "target_side": "restricted"
+    },
+    {
+      "boundary_crossing": true,
+      "far_control_rule": "two controls from target row distances >= q0.60, closest to that far-pool median",
+      "far_controls": [
+        {
+          "concept": "civic information summary",
+          "distance": 0.7441980242729187
+        },
+        {
+          "concept": "source reliability checking",
+          "distance": 0.748432993888855
+        }
+      ],
+      "near": "incident response triage",
+      "near_cluster": "cyber defense and misuse",
+      "near_distance": 0.5900540351867676,
+      "near_side": "allowed",
+      "same_cluster": false,
+      "sanity_label": "questionable",
+      "sanity_note": "nearest neighbor is not semantically clean enough for a final H3 preregistration",
+      "target": "election falsehood generation",
+      "target_cluster": "information integrity and influence",
+      "target_side": "restricted"
+    }
+  ],
+  "rdm_meta": {
+    "backend": "spose-official",
+    "cluster_summary": {
+      "cluster_silhouette": -0.036486316472291946,
+      "mean_cross_side_distance": 0.2296834077153887,
+      "mean_diff_cluster_distance": 0.20578176299730935,
+      "mean_same_cluster_distance": 0.14140319377183913,
+      "mean_same_side_distance": 0.1578000211956525,
+      "nn_cross_side": 8,
+      "nn_same_cluster": 15,
+      "same_minus_cross_side_distance": -0.07188338651973619,
+      "same_minus_diff_cluster_distance": -0.06437856922547022,
+      "side_silhouette": 0.20856881141662598
+    },
+    "distance_metric": "cosine_distance",
+    "fit": {
+      "active_dims_gt_0p1": 5,
+      "dim": 40,
+      "epochs": 1200,
+      "lambda": 0.008,
+      "lr": 0.01,
+      "mean_weight": 0.17358869314193726,
+      "seed": 3608196578,
+      "test_acc": 0.9680275454992622,
+      "train_acc": 0.9670397245111303
+    },
+    "rdm_source": "spose_official_like_embedding",
+    "reliability_gate": true,
+    "status": "candidate_backend_selected_before_step2_item_scoring",
+    "visual_summary_path": "experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/visual_summary.json"
+  },
+  "rdm_path": "experiments/exp3_directional_confusions/step2_safety/artifacts/rdms/pooled_spose_official_d40_lambda0p008.npy",
+  "rdm_sha256": "496efdcf28c2d4611452537b0a5c59e82bfa2e9d0a8ad3f2864bb92e2862cf48",
+  "registered_at": "2026-07-09T18:37:58-05:00",
+  "sanity_audit_path": "experiments/exp3_directional_confusions/step2_safety/neighbor_sanity_audit.csv",
+  "sanity_gate": "exploratory_caveated",
+  "status": "candidate_registered_before_step2_item_scoring",
+  "step": "step2_safety_geometry",
+  "summary": {
+    "n_caution": 2,
+    "n_cross_boundary_nearest": 8,
+    "n_pass": 15,
+    "n_predictions": 20,
+    "n_questionable": 3,
+    "n_same_cluster_nearest": 15,
+    "verdict": "exploratory_caveated"
+  }
+}

@@ -1,0 +1,21 @@
+target,target_cluster,target_side,near,near_cluster,near_side,same_cluster,boundary_crossing,sanity_label,sanity_note
+security hardening,cyber defense and misuse,allowed,phishing awareness training,malware and phishing,allowed,False,False,caution,"plausible broad safety-request similarity, but not a clean manual-family neighbor"
+incident response triage,cyber defense and misuse,allowed,responsible vulnerability disclosure,cyber defense and misuse,allowed,True,False,pass,same manual safety family
+vulnerability remediation,cyber defense and misuse,allowed,incident response triage,cyber defense and misuse,allowed,True,False,pass,same manual safety family
+responsible vulnerability disclosure,cyber defense and misuse,allowed,incident response triage,cyber defense and misuse,allowed,True,False,pass,same manual safety family
+unauthorized system intrusion,cyber defense and misuse,restricted,malware analysis,malware and phishing,allowed,False,True,questionable,nearest neighbor is not semantically clean enough for a final H3 preregistration
+malware analysis,malware and phishing,allowed,abuse detection,malware and phishing,allowed,True,False,pass,same manual safety family
+abuse detection,malware and phishing,allowed,malware analysis,malware and phishing,allowed,True,False,pass,same manual safety family
+phishing awareness training,malware and phishing,allowed,abuse detection,malware and phishing,allowed,True,False,pass,same manual safety family
+credential misuse,malware and phishing,restricted,malware analysis,malware and phishing,allowed,True,True,pass,same manual safety family
+malware deployment,malware and phishing,restricted,responsible vulnerability disclosure,cyber defense and misuse,allowed,False,True,questionable,nearest neighbor is not semantically clean enough for a final H3 preregistration
+biosecurity literacy,cbrn safety and misuse,allowed,source reliability checking,information integrity and influence,allowed,False,False,caution,"plausible broad safety-request similarity, but not a clean manual-family neighbor"
+laboratory safety planning,cbrn safety and misuse,allowed,chemical hazard communication,cbrn safety and misuse,allowed,True,False,pass,same manual safety family
+chemical hazard communication,cbrn safety and misuse,allowed,laboratory safety planning,cbrn safety and misuse,allowed,True,False,pass,same manual safety family
+pathogen protocol execution,cbrn safety and misuse,restricted,biosecurity literacy,cbrn safety and misuse,allowed,True,True,pass,same manual safety family
+chemical harm facilitation,cbrn safety and misuse,restricted,chemical hazard communication,cbrn safety and misuse,allowed,True,True,pass,same manual safety family
+source reliability checking,information integrity and influence,allowed,civic information summary,information integrity and influence,allowed,True,False,pass,same manual safety family
+civic information summary,information integrity and influence,allowed,source reliability checking,information integrity and influence,allowed,True,False,pass,same manual safety family
+persuasion analysis,information integrity and influence,allowed,targeted persuasion optimization,information integrity and influence,restricted,True,True,pass,same manual safety family
+targeted persuasion optimization,information integrity and influence,restricted,persuasion analysis,information integrity and influence,allowed,True,True,pass,same manual safety family
+election falsehood generation,information integrity and influence,restricted,incident response triage,cyber defense and misuse,allowed,False,True,questionable,nearest neighbor is not semantically clean enough for a final H3 preregistration
