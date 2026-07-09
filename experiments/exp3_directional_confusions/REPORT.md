@@ -1,41 +1,29 @@
 # Experiment 3 Report
 
-Last updated: 2026-07-09T15:22:17-05:00
+Last updated: 2026-07-09T16:03:40-05:00
 
-## Plain-English Result
+## Step 1 Story
 
-Step 1 found a positive result for H1 on neutral concepts.
+### What were we trying to find?
 
-The model's triplet geometry predicted the direction of its later multiple-choice mistakes. When the model was wrong, it usually chose the distractor that had been preregistered as the target's nearest neighbor in the triplet RDM.
+We are testing whether triplet geometry predicts the destination of model errors on neutral concepts. The preregistered prediction for each target is its nearest neighbor in the model's triplet RDM; H1 is green only if later errors land on that near neighbor above shuffled-geometry and base-rate nulls.
 
-Main result:
+### What did we run?
 
-- Model made `45` parseable errors on `72` neutral concept items.
-- `36/45` errors (`80.0%`) landed on the geometry-predicted near neighbor.
-- A shuffled-neighbor null expected about `33.3%`; its 95th percentile was `44.4%`.
-- Monte Carlo shuffle p-value: `0.0002`.
-- Base-rate control expected `45.4%`; observed was `80.0%`, so lift was `+34.6` percentage points.
-- Quantitative H2 slope was negative: `-0.620`, 95% CI `[-0.877, -0.359]`.
-- Predicted-vs-actual confusion agreement was `r = 0.634`.
+- Model: `llama-3.1-8b-instruct`.
+- Serving: local vLLM; triplet and item prompts use temperature `0.0`.
+- Concept set: 18 neutral Leuven concrete concepts in [experiments/exp3_directional_confusions/concepts/step1_neutral.json](experiments/exp3_directional_confusions/concepts/step1_neutral.json).
+- Stimuli: [experiments/exp3_directional_confusions/stimuli/concepts.csv](experiments/exp3_directional_confusions/stimuli/concepts.csv), [experiments/exp3_directional_confusions/stimuli/triplets.csv](experiments/exp3_directional_confusions/stimuli/triplets.csv), [experiments/exp3_directional_confusions/stimuli/pairs.csv](experiments/exp3_directional_confusions/stimuli/pairs.csv).
+- Geometry raw responses: [base_seed_a_canonical_prompt](experiments/exp3_directional_confusions/raw/base_seed_a_canonical_prompt/triplet.csv), [base_seed_b_canonical_prompt](experiments/exp3_directional_confusions/raw/base_seed_b_canonical_prompt/triplet.csv), [base_seed_a_matched_paraphrase_prompt](experiments/exp3_directional_confusions/raw/base_seed_a_matched_paraphrase_prompt/triplet.csv).
+- Geometry fitting: `salmon_embedding`; distance metric for `rdm.npy`: `cosine_distance`.
+- RDM artifact: [experiments/exp3_directional_confusions/artifacts/rdm.npy](experiments/exp3_directional_confusions/artifacts/rdm.npy); metadata: [experiments/exp3_directional_confusions/artifacts/rdm_meta.json](experiments/exp3_directional_confusions/artifacts/rdm_meta.json).
+- SALMON pooled embedding: [experiments/exp3_directional_confusions/artifacts/embeddings/pooled_salmon_d5.npy](experiments/exp3_directional_confusions/artifacts/embeddings/pooled_salmon_d5.npy).
+- Pre-registered neighbors: [experiments/exp3_directional_confusions/neighbors.json](experiments/exp3_directional_confusions/neighbors.json).
+- Directional items: [experiments/exp3_directional_confusions/items/step1/items.csv](experiments/exp3_directional_confusions/items/step1/items.csv) and [experiments/exp3_directional_confusions/items/step1/items.json](experiments/exp3_directional_confusions/items/step1/items.json).
+- Item responses: [experiments/exp3_directional_confusions/raw/step1_items_v1/items.csv](experiments/exp3_directional_confusions/raw/step1_items_v1/items.csv).
+- Scored outputs: [experiments/exp3_directional_confusions/results/step1.json](experiments/exp3_directional_confusions/results/step1.json), [experiments/exp3_directional_confusions/results/step1_scored_items.csv](experiments/exp3_directional_confusions/results/step1_scored_items.csv), [experiments/exp3_directional_confusions/results/step1_pair_rates.csv](experiments/exp3_directional_confusions/results/step1_pair_rates.csv), [experiments/exp3_directional_confusions/results/step1_confusion_matrix.csv](experiments/exp3_directional_confusions/results/step1_confusion_matrix.csv).
 
-Interpretation: this was not just "the model made errors." The errors had the predicted destination. In this neutral set, representational proximity predicted which wrong answer the model moved toward.
-
-## What I Ran
-
-Model:
-
-- `llama-3.1-8b-instruct`
-- Local weights: `meta-llama/Llama-3.1-8B-Instruct`
-- Served with `vLLM` from the H100 environment.
-- Actual H100 path used: `/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659`
-
-Concept set:
-
-- 18 neutral Leuven concrete concepts: reptiles/amphibians plus tools.
-- Examples: `alligator`, `crocodile`, `snake`, `cobra`, `tortoise`, `turtle`, `axe`, `saw`.
-- Step 2 safety concepts were not started.
-
-Geometry prompt, canonical:
+Canonical geometry prompt:
 
 ```text
 System: You are a helpful assistant who gives responses to questions.
@@ -46,26 +34,24 @@ Candidate B: {concept2}
 Which candidate is more similar in semantic meaning to the target? Answer with exactly A or B.
 ```
 
-Geometry prompt, paraphrase reliability run:
+Paraphrase geometry prompt:
 
 ```text
 System: You are a helpful assistant who gives responses to questions.
 
-Compare the target to two candidates.
-Target: {anchor}
-A: {concept1}
-B: {concept2}
-Which candidate is closer in meaning to the target? Reply with only A or B.
+Target concept: {anchor}
+Candidate A: {concept1}
+Candidate B: {concept2}
+Which candidate has the closer semantic meaning to the target concept? Reply with exactly A or B.
 ```
 
-Geometry run details:
+Prompt-variant correction:
 
-- Temperature `0.0`.
-- Full anchor/candidate enumeration: `2448` triplets per run.
-- Required runs: two canonical runs plus one paraphrase run.
-- Initial loose concept-name prompt failed reliability because the model sometimes answered a third unlisted concept. I fixed this by switching to labeled A/B prompts before registering neighbors.
+- Old non-matched paraphrase: `Compare the target to two candidates. / Target: {anchor} / A: {concept1} / B: {concept2} / Which candidate is closer in meaning to the target? Reply with only A or B.`
+- Canonical vs old non-matched raw choice agreement: `1820/2448 = 0.7435`.
+- Canonical vs matched paraphrase raw choice agreement: `2297/2448 = 0.9383`.
 
-Item prompt format:
+Directional item template:
 
 ```text
 Which option is the best match for this description?
@@ -81,25 +67,58 @@ C. {distractor_or_target}
 D. {distractor_or_target}
 ```
 
-Each item included:
+Concrete generated item example:
 
-- the correct target concept,
-- one preregistered near distractor from the RDM,
-- two far-control distractors,
-- counterbalanced answer positions.
+From [experiments/exp3_directional_confusions/items/step1/items.csv](experiments/exp3_directional_confusions/items/step1/items.csv) / `step1_alligator_00`:
 
-There were `72` items total: `4` per target.
+```text
+Which option is the best match for this description?
+- is a freshwater fish
+- lives by the sea
+- lives in a swamp
+Answer with only A, B, C, or D.
 
-## What Changed In The Repo
+Options:
+A. cobra
+B. turtle
+C. chameleon
+D. alligator
+```
 
-- Created branch `exp3-directional-confusions`.
-- Added `scripts/run_experiment3.py` with the Step 1 pipeline.
-- Added `experiments/exp3_directional_confusions/` with concept set, protocol, raw responses, RDMs, preregistered neighbors, generated items, scored results, report, and research log.
-- Added CHTC runner files under `chtc/exp3_directional_confusions/`.
-- Added a single-load `run-triplet-suite` command so all geometry runs can reuse one vLLM load.
-- Pushed the experiment branch to origin.
+### What did we find?
 
-## Current status
+- RDM source: `salmon_embedding`.
+- RDM distance metric: `cosine_distance`.
+- SALMON pooled held-out accuracy: `0.8590878248214722`
+- SALMON per-run held-out accuracies: `{'base_seed_a_canonical_prompt': 0.8306122422218323, 'base_seed_a_matched_paraphrase_prompt': 0.8183673620223999, 'base_seed_b_canonical_prompt': 0.8571428656578064}`
+- Source runs: base_seed_a_canonical_prompt, base_seed_b_canonical_prompt, base_seed_a_matched_paraphrase_prompt.
+- Missing runs: none
+- Mean pairwise upper-triangle Pearson: `0.870450357132683`
+- Mean pairwise SALMON embedding Procrustes R^2: `0.8440765796776389`
+- Mean nearest-neighbor top-1 agreement across geometry runs: `0.46296296296296297`
+- Mean nearest-neighbor top-2 agreement across geometry runs: `0.6481481481481483`
+- Mean split-half upper-triangle Pearson: `0.7120252173491437`
+- RDM reliability gate: `green`
+
+- Accuracy: `0.4861` (35/72)
+- Directional errors: `37`
+- Near fraction among directional errors: `0.7838`
+- Shuffle null p-value: `0.0002`
+- Base-rate lift: `0.3187`
+- H2 distance slope: `-0.233021`
+- H2 slope 95% CI: `[-0.3382161163791806, -0.12500199099784218]`
+- Predicted-vs-actual confusion agreement: `0.5781`
+- H1 verdict: `green_directional`
+
+Headline figure: [experiments/exp3_directional_confusions/figs/step1_confusion_matrix.png](experiments/exp3_directional_confusions/figs/step1_confusion_matrix.png)
+
+### What does this mean?
+
+Step 1 is green: the neutral-model errors are directional under the current geometry. The model did not merely make mistakes; its mistakes preferentially landed on the preregistered nearest-neighbor distractor.
+
+The current report is the SALMON-based version. The earlier direct choice-rate RDM result is superseded for the active Experiment 3 claim and remains only in git history.
+
+## Current Status
 
 - Branch/worktree experiment folder: `experiments/exp3_directional_confusions`
 - Step 1 concept set: `experiments/exp3_directional_confusions/concepts/step1_neutral.json`
@@ -107,9 +126,9 @@ There were `72` items total: `4` per target.
 - Triplet response format: `labeled_binary_choice_A_or_B`
 - Required triplet runs present: 3/3
 - RDM reliability gate: `green`
-- Neighbors pre-registered: yes
-- Human sanity gate: `passed`
-- Directional items generated: yes
+- Neighbors pre-registered for current RDM: yes
+- Human sanity gate for current RDM: `passed`
+- Directional items generated for current RDM: yes
 - Item response runs present: step1_items_v1
 - H1 verdict: `green_directional`
 
@@ -126,51 +145,30 @@ python scripts/run_experiment3.py run-items --out-run step1_items_v1 --overwrite
 python scripts/run_experiment3.py score --run step1_items_v1
 ```
 
-## Pre-registered Predictions
+## Pre-Registered Predictions
 
 | Target | Predicted near | Near d | Far controls |
 |---|---|---:|---|
-| `alligator` | `crocodile` | 0.000 | `blindworm` (0.583), `salamander` (0.552) |
-| `caiman` | `crocodile` | 0.031 | `chisel` (0.521), `tortoise` (0.510) |
-| `crocodile` | `alligator` | 0.000 | `axe` (0.542), `saw` (0.562) |
-| `boa python` | `snake` | 0.000 | `chisel` (0.667), `toad` (0.635) |
-| `cobra` | `snake` | 0.031 | `tortoise` (0.656), `salamander` (0.646) |
-| `snake` | `boa python` | 0.000 | `toad` (0.562), `chisel` (0.562) |
-| `blindworm` | `salamander` | 0.094 | `chisel` (0.656), `alligator` (0.583) |
-| `chameleon` | `gecko` | 0.062 | `chisel` (0.656), `tortoise` (0.594) |
-| `gecko` | `lizard` | 0.042 | `chisel` (0.729), `saw` (0.750) |
-| `lizard` | `gecko` | 0.042 | `hammer` (0.667), `axe` (0.677) |
-| `salamander` | `blindworm` | 0.094 | `saw` (0.771), `chisel` (0.781) |
-| `toad` | `salamander` | 0.125 | `saw` (0.792), `chisel` (0.812) |
-| `tortoise` | `turtle` | 0.000 | `chisel` (0.802), `hammer` (0.844) |
-| `turtle` | `tortoise` | 0.000 | `chisel` (0.729), `hammer` (0.750) |
-| `axe` | `saw` | 0.042 | `gecko` (0.844), `turtle` (0.844) |
-| `chisel` | `axe` | 0.344 | `gecko` (0.729), `turtle` (0.729) |
-| `hammer` | `axe` | 0.083 | `blindworm` (0.802), `salamander` (0.802) |
-| `saw` | `axe` | 0.042 | `toad` (0.792), `turtle` (0.792) |
+| `alligator` | `turtle` | 0.136 | `chameleon` (1.160), `cobra` (1.154) |
+| `caiman` | `crocodile` | 0.063 | `chisel` (1.561), `cobra` (1.375) |
+| `crocodile` | `tortoise` | 0.043 | `chisel` (1.468), `saw` (1.743) |
+| `boa python` | `snake` | 0.048 | `chameleon` (1.372), `gecko` (1.297) |
+| `cobra` | `snake` | 0.421 | `caiman` (1.375), `chisel` (1.205) |
+| `snake` | `boa python` | 0.048 | `chameleon` (1.216), `saw` (1.203) |
+| `blindworm` | `toad` | 0.070 | `saw` (1.457), `axe` (1.806) |
+| `chameleon` | `gecko` | 0.003 | `hammer` (1.459), `boa python` (1.372) |
+| `gecko` | `chameleon` | 0.003 | `hammer` (1.528), `saw` (1.597) |
+| `lizard` | `gecko` | 0.046 | `cobra` (1.662), `saw` (1.715) |
+| `salamander` | `toad` | 0.035 | `saw` (1.448), `axe` (1.772) |
+| `toad` | `salamander` | 0.035 | `saw` (1.612), `chisel` (1.810) |
+| `tortoise` | `turtle` | 0.001 | `chisel` (1.451), `saw` (1.612) |
+| `turtle` | `tortoise` | 0.001 | `chisel` (1.430), `saw` (1.591) |
+| `axe` | `hammer` | 0.041 | `lizard` (1.809), `blindworm` (1.806) |
+| `chisel` | `hammer` | 0.278 | `snake` (1.740), `toad` (1.810) |
+| `hammer` | `axe` | 0.041 | `crocodile` (1.875), `salamander` (1.867) |
+| `saw` | `axe` | 0.116 | `toad` (1.612), `tortoise` (1.612) |
 
-## RDM Reliability
-
-- Source runs: base_seed_a_canonical_prompt, base_seed_b_canonical_prompt, base_seed_a_paraphrase_prompt
-- Missing runs: none
-- Mean pairwise upper-triangle Pearson: `0.8307935259132994`
-- Mean split-half upper-triangle Pearson: `0.8199290023048541`
-- Gate: `green`
-
-## Step 1 Directional Score
-
-- Accuracy: `0.3750` (27/72)
-- Directional errors: `45`
-- Near fraction among directional errors: `0.8000`
-- Shuffle null p-value: `0.0002`
-- Base-rate lift: `0.3464`
-- H2 distance slope: `-0.620137`
-- H2 slope 95% CI: `[-0.8769970123889884, -0.3586413218928585]`
-- Predicted-vs-actual confusion agreement: `0.6342`
-
-Headline figure: `experiments/exp3_directional_confusions/figs/step1_confusion_matrix.png`
-
-## Live risks
+## Live Risks
 
 - If the model is near-perfect on these items, H1 is untestable and the item phrasing needs to move into a harder uncertainty band.
 - If RDM reliability is red, do not register or interpret neighbors except as an engineering smoke test.

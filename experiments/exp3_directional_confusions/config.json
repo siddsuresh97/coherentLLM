@@ -7,20 +7,27 @@
   "h1_min_error_items": 10,
   "n_items_per_target": 4,
   "null_permutations": 5000,
+  "rdm_source": "salmon_embedding",
   "reliability_min_mean_pearson": 0.75,
   "reliability_min_split_half_pearson": 0.7,
+  "salmon_dimension": 5,
+  "salmon_max_epochs": 2000,
+  "salmon_split_half_max_epochs": 500,
+  "salmon_split_half_samples": 2,
+  "salmon_test_fraction": 0.2,
+  "salmon_verbose": 100000,
   "seed": 7303,
   "split_half_samples": 64,
   "step1_concepts_file": "experiments/exp3_directional_confusions/concepts/step1_neutral.json",
   "triplet_protocol": {
-    "aggregation": "For each anchor i and candidate j, count the fraction of triplets where j is chosen over the alternative candidate. Symmetrize by averaging i->j and j->i rates, then convert similarity to RDM as 1 - similarity.",
-    "paraphrase_template": "Compare the target to two candidates.\nTarget: {anchor}\nA: {concept1}\nB: {concept2}\nWhich candidate is closer in meaning to the target? Reply with only A or B.",
+    "aggregation": "Parse each labeled response into a SALMON triplet [head, winner, loser] where head is the anchor and winner is the candidate judged closer. Fit salmon.triplets.offline.OfflineEmbedding on pooled triplet runs with d=5, then compute the RDM as cosine distance (1 - cosine similarity) between embedded concepts. Per-run SALMON fits and split-half SALMON fits are used for reliability.",
+    "paraphrase_template": "Target concept: {anchor}\nCandidate A: {concept1}\nCandidate B: {concept2}\nWhich candidate has the closer semantic meaning to the target concept? Reply with exactly A or B.",
     "prompt_template": "Target concept: {anchor}\nCandidate A: {concept1}\nCandidate B: {concept2}\nWhich candidate is more similar in semantic meaning to the target? Answer with exactly A or B.",
     "response_format": "labeled_binary_choice_A_or_B",
     "required_geometry_runs": [
       "base_seed_a_canonical_prompt",
       "base_seed_b_canonical_prompt",
-      "base_seed_a_paraphrase_prompt"
+      "base_seed_a_matched_paraphrase_prompt"
     ],
     "scheme": "full_anchor_candidate_enumeration",
     "temperature": 0.0

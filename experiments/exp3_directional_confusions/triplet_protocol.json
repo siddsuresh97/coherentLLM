@@ -1,21 +1,25 @@
 {
-  "aggregation": "For each anchor i and candidate j, count the fraction of triplets where j is chosen over the alternative candidate. Symmetrize by averaging i->j and j->i rates, then convert similarity to RDM as 1 - similarity.",
+  "aggregation": "Parse each labeled response into a SALMON triplet [head, winner, loser] where head is the anchor and winner is the candidate judged closer. Fit salmon.triplets.offline.OfflineEmbedding on pooled triplet runs with d=5, then compute the RDM as cosine distance (1 - cosine similarity) between embedded concepts. Per-run SALMON fits and split-half SALMON fits are used for reliability.",
   "base_model": "llama-3.1-8b-instruct",
   "concepts_sha256": "e9d687c7e5e239f85829cbec6e298441e6d12d2dc3f082d71c185c5d6b9929d7",
   "n_concepts": 18,
   "n_pairwise_pairs": 153,
   "n_triplets_per_run": 2448,
   "pairs_sha256": "7d09b9d68ba4349b29b48146c56a065e0b21402471b7be506a8597ab1aa7a756",
-  "paraphrase_template": "Compare the target to two candidates.\nTarget: {anchor}\nA: {concept1}\nB: {concept2}\nWhich candidate is closer in meaning to the target? Reply with only A or B.",
+  "paraphrase_template": "Target concept: {anchor}\nCandidate A: {concept1}\nCandidate B: {concept2}\nWhich candidate has the closer semantic meaning to the target concept? Reply with exactly A or B.",
   "prompt_template": "Target concept: {anchor}\nCandidate A: {concept1}\nCandidate B: {concept2}\nWhich candidate is more similar in semantic meaning to the target? Answer with exactly A or B.",
+  "rdm_distance_metric": "cosine_distance",
+  "rdm_source": "salmon_embedding",
   "required_geometry_runs": [
     "base_seed_a_canonical_prompt",
     "base_seed_b_canonical_prompt",
-    "base_seed_a_paraphrase_prompt"
+    "base_seed_a_matched_paraphrase_prompt"
   ],
   "response_format": "labeled_binary_choice_A_or_B",
   "runner_command_canonical": "python scripts/run_experiment3.py run-triplet-suite --model llama-3.1-8b-instruct --overwrite",
   "runner_command_paraphrase": "python scripts/run_experiment3.py run-triplet-suite --model llama-3.1-8b-instruct --overwrite",
+  "salmon_dimension": 5,
+  "salmon_max_epochs": 2000,
   "scheme": "full_anchor_candidate_enumeration",
   "status": "frozen_stimuli_written; model triplet runs are required before pre-registered neighbors can be trusted",
   "stimuli_dir": "experiments/exp3_directional_confusions/stimuli",

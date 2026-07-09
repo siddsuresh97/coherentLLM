@@ -1,57 +1,151 @@
 {
-  "aggregation": "For each anchor i and candidate j, count the fraction of triplets where j is chosen over the alternative candidate. Symmetrize by averaging i->j and j->i rates, then convert similarity to RDM as 1 - similarity.",
-  "built_at": "2026-07-09T15:05:58-05:00",
-  "mean_pairwise_upper_triangle_pearson": 0.8307935259132994,
-  "mean_split_half_upper_triangle_pearson": 0.8199290023048541,
+  "aggregation": "Parse each labeled response into a SALMON triplet [head, winner, loser] where head is the anchor and winner is the candidate judged closer. Fit salmon.triplets.offline.OfflineEmbedding on pooled triplet runs with d=5, then compute the RDM as cosine distance (1 - cosine similarity) between embedded concepts. Per-run SALMON fits and split-half SALMON fits are used for reliability.",
+  "built_at": "2026-07-09T16:01:04-05:00",
+  "distance_metric": "cosine_distance",
+  "mean_nearest_neighbor_top1_agreement": 0.46296296296296297,
+  "mean_nearest_neighbor_top2_agreement": 0.6481481481481483,
+  "mean_pairwise_embedding_procrustes_r2": 0.8440765796776389,
+  "mean_pairwise_upper_triangle_pearson": 0.870450357132683,
+  "mean_split_half_upper_triangle_pearson": 0.7120252173491437,
   "missing_runs": [],
+  "n_valid_triplets_total": 7344,
   "pairwise_run_reliability": [
     {
+      "embedding_procrustes_r2": 0.989692872114808,
+      "nearest_neighbor_top1_agreement": 0.6111111111111112,
+      "nearest_neighbor_top2_agreement": 0.6666666666666666,
       "run_a": "base_seed_a_canonical_prompt",
       "run_b": "base_seed_b_canonical_prompt",
-      "upper_triangle_pearson": 1.0
+      "upper_triangle_pearson": 0.9796606467701634
     },
     {
+      "embedding_procrustes_r2": 0.7744056442454823,
+      "nearest_neighbor_top1_agreement": 0.3333333333333333,
+      "nearest_neighbor_top2_agreement": 0.5555555555555556,
       "run_a": "base_seed_a_canonical_prompt",
-      "run_b": "base_seed_a_paraphrase_prompt",
-      "upper_triangle_pearson": 0.746190288869949
+      "run_b": "base_seed_a_matched_paraphrase_prompt",
+      "upper_triangle_pearson": 0.8243713789421246
     },
     {
+      "embedding_procrustes_r2": 0.7681312226726267,
+      "nearest_neighbor_top1_agreement": 0.4444444444444444,
+      "nearest_neighbor_top2_agreement": 0.7222222222222222,
       "run_a": "base_seed_b_canonical_prompt",
-      "run_b": "base_seed_a_paraphrase_prompt",
-      "upper_triangle_pearson": 0.746190288869949
+      "run_b": "base_seed_a_matched_paraphrase_prompt",
+      "upper_triangle_pearson": 0.807319045685761
     }
   ],
+  "parse_metrics": {
+    "base_seed_a_canonical_prompt": {
+      "n_rows": 2448,
+      "n_valid_triplets": 2448,
+      "skipped": {}
+    },
+    "base_seed_a_matched_paraphrase_prompt": {
+      "n_rows": 2448,
+      "n_valid_triplets": 2448,
+      "skipped": {}
+    },
+    "base_seed_b_canonical_prompt": {
+      "n_rows": 2448,
+      "n_valid_triplets": 2448,
+      "skipped": {}
+    }
+  },
+  "per_run_embedding_paths": {
+    "base_seed_a_canonical_prompt": "experiments/exp3_directional_confusions/artifacts/embeddings/base_seed_a_canonical_prompt_salmon_d5.npy",
+    "base_seed_a_matched_paraphrase_prompt": "experiments/exp3_directional_confusions/artifacts/embeddings/base_seed_a_matched_paraphrase_prompt_salmon_d5.npy",
+    "base_seed_b_canonical_prompt": "experiments/exp3_directional_confusions/artifacts/embeddings/base_seed_b_canonical_prompt_salmon_d5.npy"
+  },
+  "per_run_salmon_fit_metrics": {
+    "base_seed_a_canonical_prompt": {
+      "ident": "base_seed_a_canonical_prompt",
+      "max_epochs": 2000,
+      "n_test": 490,
+      "n_train": 1958,
+      "n_triplets": 2448,
+      "seed": 4130854624,
+      "test_loss": 0.40706637501716614,
+      "test_score": 0.8306122422218323
+    },
+    "base_seed_a_matched_paraphrase_prompt": {
+      "ident": "base_seed_a_matched_paraphrase_prompt",
+      "max_epochs": 2000,
+      "n_test": 490,
+      "n_train": 1958,
+      "n_triplets": 2448,
+      "seed": 2271482938,
+      "test_loss": 0.4099373519420624,
+      "test_score": 0.8183673620223999
+    },
+    "base_seed_b_canonical_prompt": {
+      "ident": "base_seed_b_canonical_prompt",
+      "max_epochs": 2000,
+      "n_test": 490,
+      "n_train": 1958,
+      "n_triplets": 2448,
+      "seed": 1455086663,
+      "test_loss": 0.389535516500473,
+      "test_score": 0.8571428656578064
+    }
+  },
+  "pooled_embedding_path": "experiments/exp3_directional_confusions/artifacts/embeddings/pooled_salmon_d5.npy",
+  "pooled_embedding_sha256": "23ad4e75e9014144117a5cad561af5aa315f7ed6f888cfe41da76f35e5697cd2",
+  "pooled_fit_metrics": {
+    "ident": "pooled_step1",
+    "max_epochs": 2000,
+    "n_test": 1469,
+    "n_train": 5875,
+    "n_triplets": 7344,
+    "seed": 872910535,
+    "test_loss": 0.3739607036113739,
+    "test_score": 0.8590878248214722
+  },
   "rdm_path": "experiments/exp3_directional_confusions/artifacts/rdm.npy",
+  "rdm_sha256": "5a1f95599aeac93c3608689eff7003bde636366d91fba59bd1477950369fb894",
   "rdm_shape": [
     18,
     18
   ],
+  "rdm_source": "salmon_embedding",
   "reliability_gate": true,
   "reliability_min_mean_pearson": 0.75,
   "reliability_min_split_half_pearson": 0.7,
+  "salmon_dimension": 5,
+  "salmon_max_epochs": 2000,
+  "salmon_test_fraction": 0.2,
   "source_runs": [
     "base_seed_a_canonical_prompt",
     "base_seed_b_canonical_prompt",
-    "base_seed_a_paraphrase_prompt"
+    "base_seed_a_matched_paraphrase_prompt"
   ],
   "split_half_reliability": [
     {
-      "mean_upper_triangle_pearson": 0.8057382371605291,
-      "n_splits": 64,
-      "p05_upper_triangle_pearson": 0.7794374294813494,
+      "max_epochs_per_fit": 500,
+      "mean_embedding_procrustes_r2": 0.894869458068533,
+      "mean_upper_triangle_pearson": 0.5890182650439775,
+      "n_splits": 2,
+      "p05_embedding_procrustes_r2": 0.860090353679144,
+      "p05_upper_triangle_pearson": 0.5511404825586291,
       "run": "base_seed_a_canonical_prompt"
     },
     {
-      "mean_upper_triangle_pearson": 0.8073145411788644,
-      "n_splits": 64,
-      "p05_upper_triangle_pearson": 0.7799250760397819,
+      "max_epochs_per_fit": 500,
+      "mean_embedding_procrustes_r2": 0.8984735262510907,
+      "mean_upper_triangle_pearson": 0.6277092987050428,
+      "n_splits": 2,
+      "p05_embedding_procrustes_r2": 0.88382890867601,
+      "p05_upper_triangle_pearson": 0.5081269354050449,
       "run": "base_seed_b_canonical_prompt"
     },
     {
-      "mean_upper_triangle_pearson": 0.8467342285751688,
-      "n_splits": 64,
-      "p05_upper_triangle_pearson": 0.8193389513073396,
-      "run": "base_seed_a_paraphrase_prompt"
+      "max_epochs_per_fit": 500,
+      "mean_embedding_procrustes_r2": 0.9130793285485321,
+      "mean_upper_triangle_pearson": 0.9193480882984109,
+      "n_splits": 2,
+      "p05_embedding_procrustes_r2": 0.9124528201188393,
+      "p05_upper_triangle_pearson": 0.9035040353461993,
+      "run": "base_seed_a_matched_paraphrase_prompt"
     }
   ],
   "status": "green"

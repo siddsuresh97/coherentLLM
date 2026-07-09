@@ -1,0 +1,40 @@
+RUN_ID = matched_paraphrase_v1
+OUT_RUN = base_seed_a_matched_paraphrase_prompt
+PROMPT_VARIANT = paraphrase
+GPU_MEM_UTIL = 0.72
+MAX_MODEL_LEN = 2048
+MAX_NUM_SEQS = 128
+MIN_CUDA_GLOBAL_MEMORY_MB = 40000
+PIP_TIMEOUT_SECONDS = 1200
+RUN_TIMEOUT_SECONDS = 21600
+MODEL_PATH = /staging/s/suresh27/models/llama31-8b-instruct
+
+universe = container
+container_image = docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-devel
+docker_override_entrypoint = true
+requirements = (TARGET.HasCHTCStaging == true) && (TARGET.CUDAGlobalMemoryMb >= $(MIN_CUDA_GLOBAL_MEMORY_MB))
+rank = TARGET.CUDAGlobalMemoryMb
+
+batch_name = coherence_exp3_triplet_one_$(Cluster)
+log = logs/exp3_triplet_one_$(Cluster)_$(Process).log
+output = logs/exp3_triplet_one_$(Cluster)_$(Process).out
+error = logs/exp3_triplet_one_$(Cluster)_$(Process).err
+
+executable = run_exp3_triplet_one.sh
+arguments = $(RUN_ID) $(MODEL_PATH) $(OUT_RUN) $(PROMPT_VARIANT) $(GPU_MEM_UTIL) $(MAX_MODEL_LEN) $(MAX_NUM_SEQS)
+transfer_input_files = run_exp3_triplet_one.sh,exp3_directional_confusions_bundle.tgz
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_output_files = exp3_triplet_$(RUN_ID)_results.tgz
+stream_output = TRUE
+stream_error = TRUE
+environment = "MIN_CUDA_GLOBAL_MEMORY_MB=$(MIN_CUDA_GLOBAL_MEMORY_MB) PIP_TIMEOUT_SECONDS=$(PIP_TIMEOUT_SECONDS) RUN_TIMEOUT_SECONDS=$(RUN_TIMEOUT_SECONDS)"
+
+request_gpus = 1
+request_cpus = 8
+request_memory = 48GB
+request_disk = 80GB
++GPUJobLength = "short"
++is_resumable = true
+
+queue 1

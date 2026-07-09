@@ -76,3 +76,85 @@ Shuffle null p-value: 0.0002; base-rate lift: 0.3464.
 H2 distance slope: -0.620137; 95% CI [-0.876997, -0.358641].
 Predicted-vs-actual confusion agreement: 0.6342.
 Verdict: `green_directional`.
+
+## 2026-07-09T15:34:10-05:00 DECISION: Course-correction
+
+User requested that Experiment 3 use SALMON embeddings for the geometry, with the RDM based on those embeddings rather than direct choice-rate aggregation.
+The previous direct choice-rate RDM H1 result is therefore superseded for the active claim. It remains in git history and in the append-only log as an earlier result, not as the current preregistered geometry.
+Lever pulled: convert every parsed triplet response to SALMON format `[head, winner, loser]`, fit `salmon.triplets.offline.OfflineEmbedding` with `d=5`, and compute `rdm.npy` as cosine distance (`1 - cosine_similarity`) over the pooled SALMON embedding.
+Reliability will now be measured on the SALMON-derived geometry: per-run cosine RDM upper-triangle Pearson, per-run embedding Procrustes R^2, and SALMON split-half RDM reliability.
+Counterfactual: if SALMON reliability is red, do not rescue the old direct-RDM result; fix the SALMON geometry/reliability issue or declare Step 1 not decided under the requested geometry.
+Next action: rebuild RDM, preregister new SALMON/cosine neighbors before scoring, regenerate items if neighbors change, rerun item responses, and score H1 against the new RDM.
+
+## 2026-07-09T15:38:25-05:00 DECISION: Course-correction
+
+The first SALMON build attempt used `salmon_max_epochs=8000`, `salmon_split_half_samples=8`, and `salmon_split_half_max_epochs=2000`; it was interrupted before writing artifacts because the 48 split-half SALMON fits were too slow for this first rerun.
+Lever pulled: keep the geometry definition unchanged (SALMON `d=5`, final RDM is cosine distance from the pooled SALMON embedding), but reduce the first-pass fit budget to `salmon_max_epochs=2000`, `salmon_split_half_samples=2`, and `salmon_split_half_max_epochs=500`.
+Counterfactual: if reliability is borderline under the reduced split-half budget, rerun only the SALMON reliability pass at a larger budget before treating H1 as decided.
+This change affects runtime and reliability precision, not the scoring target: `rdm.npy` still comes from a pooled SALMON embedding, not direct choice-rate aggregation.
+
+## 2026-07-09T15:47:42-05:00 DECISION: Course-correction
+
+SALMON/cosine geometry was computed, but the reliability gate is red, so no SALMON-based neighbors were preregistered and H1 is not decided under the requested geometry.
+Fit quality is not the problem: pooled SALMON held-out accuracy is `0.8346`; per-run held-out accuracies are `0.8510`, `0.8551`, and `0.8408`, matching the expected ~0.75-0.80+ range.
+The failure points to prompt-variant instability: canonical-vs-canonical embedding Procrustes R^2 is `0.9773` and RDM Pearson is `0.9744`, but canonical-vs-paraphrase Procrustes R^2 is only `0.6470`/`0.6422`, RDM Pearson is `0.3587`/`0.3307`, and nearest-neighbor top-1 agreement is only `2/18` for each canonical-vs-paraphrase comparison.
+Raw choice audit confirms this is behavioral, not just embedding noise: the two canonical runs agree on `2448/2448` parsed triplets, while canonical-vs-paraphrase agrees on only `1820/2448` (`74.35%`).
+Lever pulled next: keep labeled A/B response format, but replace the paraphrase with a closer matched wording using the same target/candidate layout, then rerun only the paraphrase geometry run before rebuilding SALMON.
+Counterfactual: if a matched paraphrase still changes hundreds of choices and yields low nearest-neighbor stability, the Step 1 geometry is prompt-sensitive under SALMON and H1 remains not decided.
+
+## 2026-07-09T16:01:22-05:00 DECISION: Pre-registered predictions
+
+Geometry-derived neighbors written before item scoring.
+RDM source: `experiments/exp3_directional_confusions/artifacts/rdm.npy`.
+Human sanity gate is pending. Do not treat H1 as green until these pairs are manually accepted.
+
+| Target | Predicted near confusion | Near distance | Far controls |
+|---|---|---:|---|
+| `alligator` | `turtle` | 0.1357 | `chameleon` (1.1599), `cobra` (1.1535) |
+| `caiman` | `crocodile` | 0.0631 | `chisel` (1.5605), `cobra` (1.3749) |
+| `crocodile` | `tortoise` | 0.0430 | `chisel` (1.4681), `saw` (1.7434) |
+| `boa python` | `snake` | 0.0475 | `chameleon` (1.3724), `gecko` (1.2966) |
+| `cobra` | `snake` | 0.4209 | `caiman` (1.3749), `chisel` (1.2053) |
+| `snake` | `boa python` | 0.0475 | `chameleon` (1.2155), `saw` (1.2029) |
+| `blindworm` | `toad` | 0.0703 | `saw` (1.4571), `axe` (1.8063) |
+| `chameleon` | `gecko` | 0.0033 | `hammer` (1.4589), `boa python` (1.3724) |
+| `gecko` | `chameleon` | 0.0033 | `hammer` (1.5279), `saw` (1.5970) |
+| `lizard` | `gecko` | 0.0459 | `cobra` (1.6623), `saw` (1.7153) |
+| `salamander` | `toad` | 0.0345 | `saw` (1.4483), `axe` (1.7723) |
+| `toad` | `salamander` | 0.0345 | `saw` (1.6117), `chisel` (1.8095) |
+| `tortoise` | `turtle` | 0.0009 | `chisel` (1.4506), `saw` (1.6116) |
+| `turtle` | `tortoise` | 0.0009 | `chisel` (1.4301), `saw` (1.5909) |
+| `axe` | `hammer` | 0.0410 | `lizard` (1.8092), `blindworm` (1.8063) |
+| `chisel` | `hammer` | 0.2785 | `snake` (1.7395), `toad` (1.8095) |
+| `hammer` | `axe` | 0.0410 | `crocodile` (1.8755), `salamander` (1.8671) |
+| `saw` | `axe` | 0.1162 | `toad` (1.6117), `tortoise` (1.6116) |
+
+## 2026-07-09T16:01:53-05:00 DECISION: Sanity gate
+
+Human sanity gate marked `passed`.
+Note: SALMON/cosine neighbors stay within broad human-sane neutral domains (reptiles/amphibians/tools). Caveat: some nearest neighbors are coarse reptile substitutions such as alligator->turtle and crocodile->tortoise rather than the direct-count crocodilian neighbors; keep them preregistered and let H1 test whether those directions predict errors.
+
+## 2026-07-09T16:01:54-05:00 DECISION: Item design
+
+Generated 72 Step 1 items: 4 per target.
+Each item uses one geometry-predicted near distractor and two far controls from `neighbors.json`.
+Question form is feature-attribution over Leuven feature norms. Clues prefer features shared with the near neighbor plus at least one target-specific or contrastive feature when available.
+Option positions are counterbalanced by deterministic RNG seed.
+
+## 2026-07-09T16:02:58-05:00 DECISION: H1 verdict
+
+Run scored: `step1_items_v1`.
+Directional errors: 37; near fraction: 0.7838.
+Shuffle null p-value: 0.0002; base-rate lift: 0.3187.
+H2 distance slope: -0.233021; 95% CI [-0.338216, -0.125002].
+Predicted-vs-actual confusion agreement: 0.5781.
+Verdict: `green_directional`.
+
+## 2026-07-09T16:03:39-05:00 DECISION: H1 verdict
+
+Run scored: `step1_items_v1`.
+Directional errors: 37; near fraction: 0.7838.
+Shuffle null p-value: 0.0002; base-rate lift: 0.3187.
+H2 distance slope: -0.233021; 95% CI [-0.338216, -0.125002].
+Predicted-vs-actual confusion agreement: 0.5781.
+Verdict: `green_directional`.

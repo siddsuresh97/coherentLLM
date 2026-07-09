@@ -40,6 +40,7 @@ STIM_DIR = EXP_DIR / "stimuli"
 RAW_DIR = EXP_DIR / "raw"
 ARTIFACT_DIR = EXP_DIR / "artifacts"
 RDM_DIR = ARTIFACT_DIR / "rdms"
+EMBED_DIR = ARTIFACT_DIR / "embeddings"
 ITEM_DIR = EXP_DIR / "items" / "step1"
 RESULT_DIR = EXP_DIR / "results"
 FIG_DIR = EXP_DIR / "figs"
@@ -75,6 +76,13 @@ DEFAULT_CONFIG = {
     "far_control_min_quantile": 0.60,
     "bootstrap_samples": 2000,
     "split_half_samples": 64,
+    "rdm_source": "salmon_embedding",
+    "salmon_dimension": 5,
+    "salmon_max_epochs": 2000,
+    "salmon_split_half_samples": 2,
+    "salmon_split_half_max_epochs": 500,
+    "salmon_test_fraction": 0.20,
+    "salmon_verbose": 100000,
     "null_permutations": 5000,
     "reliability_min_mean_pearson": 0.75,
     "reliability_min_split_half_pearson": 0.70,
@@ -89,24 +97,26 @@ DEFAULT_CONFIG = {
             "Answer with exactly A or B."
         ),
         "paraphrase_template": (
-            "Compare the target to two candidates.\n"
-            "Target: {anchor}\n"
-            "A: {concept1}\n"
-            "B: {concept2}\n"
-            "Which candidate is closer in meaning to the target? Reply with only A or B."
+            "Target concept: {anchor}\n"
+            "Candidate A: {concept1}\n"
+            "Candidate B: {concept2}\n"
+            "Which candidate has the closer semantic meaning to the target concept? "
+            "Reply with exactly A or B."
         ),
         "response_format": "labeled_binary_choice_A_or_B",
         "temperature": 0.0,
         "aggregation": (
-            "For each anchor i and candidate j, count the fraction of triplets "
-            "where j is chosen over the alternative candidate. Symmetrize by "
-            "averaging i->j and j->i rates, then convert similarity to RDM as "
-            "1 - similarity."
+            "Parse each labeled response into a SALMON triplet [head, winner, loser] "
+            "where head is the anchor and winner is the candidate judged closer. "
+            "Fit salmon.triplets.offline.OfflineEmbedding on pooled triplet runs "
+            "with d=5, then compute the RDM as cosine distance (1 - cosine "
+            "similarity) between embedded concepts. Per-run SALMON fits and split-half SALMON fits are used for "
+            "reliability."
         ),
         "required_geometry_runs": [
             "base_seed_a_canonical_prompt",
             "base_seed_b_canonical_prompt",
-            "base_seed_a_paraphrase_prompt",
+            "base_seed_a_matched_paraphrase_prompt",
         ],
     },
 }
@@ -162,8 +172,13 @@ def now_stamp() -> str:
     return datetime.now().astimezone().isoformat(timespec="seconds")
 
 
+def stable_seed(base_seed: int, label: str) -> int:
+    offset = int(hashlib.sha256(label.encode("utf-8")).hexdigest()[:8], 16)
+    return int((int(base_seed) + offset) % (2**32 - 1))
+
+
 def ensure_dirs() -> None:
-    for path in (EXP_DIR, CONCEPT_DIR, STIM_DIR, RAW_DIR, ARTIFACT_DIR, RDM_DIR, ITEM_DIR, RESULT_DIR, FIG_DIR):
+    for path in (EXP_DIR, CONCEPT_DIR, STIM_DIR, RAW_DIR, ARTIFACT_DIR, RDM_DIR, EMBED_DIR, ITEM_DIR, RESULT_DIR, FIG_DIR):
         path.mkdir(parents=True, exist_ok=True)
 
 
@@ -288,6 +303,12 @@ def init_experiment(args: argparse.Namespace) -> None:
             "concepts_sha256": sha256_file(STIM_DIR / "concepts.csv"),
             "triplets_sha256": sha256_file(STIM_DIR / "triplets.csv"),
             "pairs_sha256": sha256_file(STIM_DIR / "pairs.csv"),
+            "rdm_source": config.get("rdm_source", "salmon_embedding"),
+            "rdm_distance_metric": "cosine_distance"
+            if config.get("rdm_source", "salmon_embedding") == "salmon_embedding"
+            else "1_minus_choice_rate",
+            "salmon_dimension": config.get("salmon_dimension"),
+            "salmon_max_epochs": config.get("salmon_max_epochs"),
             "runner_command_canonical": (
                 f"python scripts/run_experiment3.py run-triplet-suite --model {config['base_model']} --overwrite"
             ),
@@ -391,6 +412,127 @@ def rdm_from_triplet_rows(rows: list[tuple[str, str, str, str]], concepts: list[
     return rdm
 
 
+def triplet_array_from_rows(rows: list[tuple[str, str, str, str]], concepts: list[str]) -> tuple[np.ndarray, dict]:
+    index = {norm_key(concept): i for i, concept in enumerate(concepts)}
+    triplets = []
+    skipped = Counter()
+    for anchor, concept1, concept2, response in rows:
+        ai = index.get(norm_key(anchor))
+        i1 = index.get(norm_key(concept1))
+        i2 = index.get(norm_key(concept2))
+        if ai is None or i1 is None or i2 is None:
+            skipped["unknown_concept"] += 1
+            continue
+        parsed = parse_triplet_choice(response, concept1, concept2)
+        if parsed == 1:
+            triplets.append((ai, i1, i2))
+        elif parsed == 2:
+            triplets.append((ai, i2, i1))
+        else:
+            skipped["unparsed_response"] += 1
+    return np.asarray(triplets, dtype=int), {"n_rows": len(rows), "n_valid_triplets": len(triplets), "skipped": dict(skipped)}
+
+
+def load_offline_embedding_class():
+    import importlib
+    import types
+
+    repo = str(ROOT)
+    if repo not in sys.path:
+        sys.path.insert(0, repo)
+    for package in ("salmon", "salmon.triplets"):
+        if package not in sys.modules:
+            module = types.ModuleType(package)
+            module.__path__ = [str(ROOT.joinpath(*package.split(".")))]
+            sys.modules[package] = module
+    try:
+        return importlib.import_module("salmon.triplets.offline").OfflineEmbedding
+    except Exception as exc:  # noqa: BLE001
+        raise RuntimeError(
+            "Could not import SALMON OfflineEmbedding. Run build-rdm in the SALMON conda env "
+            "(for example: source /mnt/ws/home/ssuresh/miniconda3/etc/profile.d/conda.sh && "
+            "conda activate /mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/salmon)."
+        ) from exc
+
+
+def fit_salmon_embedding(
+    triplets: np.ndarray,
+    *,
+    n_concepts: int,
+    dim: int,
+    max_epochs: int,
+    seed: int,
+    test_fraction: float,
+    verbose: int,
+    ident: str,
+) -> tuple[np.ndarray, dict]:
+    if triplets.shape[0] < 10:
+        raise RuntimeError(f"Need at least 10 parsed triplets for SALMON; got {triplets.shape[0]}")
+    from sklearn.model_selection import train_test_split
+
+    OfflineEmbedding = load_offline_embedding_class()
+    train, test = train_test_split(triplets, random_state=seed, test_size=test_fraction)
+    estimator = OfflineEmbedding(
+        n=n_concepts,
+        d=dim,
+        max_epochs=max_epochs,
+        verbose=verbose,
+        ident=ident,
+        random_state=seed,
+    )
+    estimator.fit(train, test)
+    embedding = np.asarray(estimator.embedding_, dtype=float)
+    score = float(estimator.score(test)) if hasattr(estimator, "score") else float("nan")
+    history = getattr(estimator, "history_", [])
+    final_loss = float(history[-1].get("loss_test", float("nan"))) if history else float("nan")
+    return embedding, {
+        "n_triplets": int(triplets.shape[0]),
+        "n_train": int(train.shape[0]),
+        "n_test": int(test.shape[0]),
+        "test_score": score,
+        "test_loss": final_loss,
+        "max_epochs": int(max_epochs),
+        "seed": int(seed),
+        "ident": ident,
+    }
+
+
+def cosine_rdm_from_embedding(embedding: np.ndarray) -> np.ndarray:
+    norms = np.linalg.norm(embedding, axis=1, keepdims=True)
+    normalized = embedding / np.clip(norms, 1e-12, None)
+    rdm = 1.0 - normalized @ normalized.T
+    rdm = (rdm + rdm.T) / 2.0
+    np.fill_diagonal(rdm, 0.0)
+    return rdm
+
+
+def procrustes_r2(x: np.ndarray, y: np.ndarray) -> float:
+    x = np.asarray(x, dtype=float)
+    y = np.asarray(y, dtype=float)
+    if x.shape != y.shape or x.ndim != 2:
+        return float("nan")
+    x_centered = x - x.mean(axis=0, keepdims=True)
+    y_centered = y - y.mean(axis=0, keepdims=True)
+    x_norm = float(np.linalg.norm(x_centered))
+    y_norm = float(np.linalg.norm(y_centered))
+    if x_norm == 0.0 or y_norm == 0.0:
+        return float("nan")
+    x_scaled = x_centered / x_norm
+    y_scaled = y_centered / y_norm
+    try:
+        u, singular_values, vt = np.linalg.svd(x_scaled.T @ y_scaled, full_matrices=False)
+    except np.linalg.LinAlgError:
+        return float("nan")
+    rotation = u @ vt
+    scale = float(np.sum(singular_values))
+    fitted = scale * x_scaled @ rotation
+    residual = float(np.sum((fitted - y_scaled) ** 2))
+    total = float(np.sum(y_scaled**2))
+    if total == 0.0:
+        return float("nan")
+    return float(max(0.0, 1.0 - residual / total))
+
+
 def upper_values(matrix: np.ndarray) -> np.ndarray:
     return matrix[np.triu_indices_from(matrix, k=1)]
 
@@ -413,19 +555,143 @@ def build_rdm(args: argparse.Namespace) -> None:
     config = load_config()
     concepts = load_concepts(config)
     protocol_runs = args.runs or config["triplet_protocol"]["required_geometry_runs"]
+    rdm_source = config.get("rdm_source", "salmon_embedding")
+
+    if rdm_source == "direct_choice_rate":
+        present = []
+        missing = []
+        rdms = {}
+        rows_by_run = {}
+        for run in protocol_runs:
+            raw_path = RAW_DIR / run / "triplet.csv"
+            if not raw_path.exists():
+                missing.append(run)
+                continue
+            present.append(run)
+            rows = parse_triplet_raw(raw_path)
+            rows_by_run[run] = rows
+            rdm = rdm_from_triplet_rows(rows, concepts)
+            rdms[run] = rdm
+            out = RDM_DIR / f"{run}.npy"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            np.save(out, rdm)
+
+        if not rdms:
+            raise SystemExit(f"No triplet CSVs found under {display_path(RAW_DIR)} for requested runs: {protocol_runs}")
+
+        comparisons = []
+        for run_a, run_b in itertools.combinations(present, 2):
+            comparisons.append(
+                {
+                    "run_a": run_a,
+                    "run_b": run_b,
+                    "upper_triangle_pearson": pearson_corr(upper_values(rdms[run_a]), upper_values(rdms[run_b])),
+                }
+            )
+        mean_corr = float(np.nanmean([row["upper_triangle_pearson"] for row in comparisons])) if comparisons else float("nan")
+        rng = np.random.default_rng(int(config["seed"]))
+        split_half = []
+        for run in present:
+            corrs = []
+            rows = rows_by_run[run]
+            for _ in range(int(config["split_half_samples"])):
+                order = rng.permutation(len(rows))
+                half = len(order) // 2
+                rows_a = [rows[i] for i in order[:half]]
+                rows_b = [rows[i] for i in order[half:]]
+                rdm_a = rdm_from_triplet_rows(rows_a, concepts)
+                rdm_b = rdm_from_triplet_rows(rows_b, concepts)
+                corrs.append(pearson_corr(upper_values(rdm_a), upper_values(rdm_b)))
+            split_half.append(
+                {
+                    "run": run,
+                    "n_splits": int(config["split_half_samples"]),
+                    "mean_upper_triangle_pearson": float(np.nanmean(corrs)),
+                    "p05_upper_triangle_pearson": float(np.nanquantile(corrs, 0.05)),
+                }
+            )
+        mean_split_half = float(np.nanmean([row["mean_upper_triangle_pearson"] for row in split_half])) if split_half else float("nan")
+        reliability_gate = bool(
+            len(missing) == 0
+            and np.isfinite(mean_corr)
+            and mean_corr >= config["reliability_min_mean_pearson"]
+            and np.isfinite(mean_split_half)
+            and mean_split_half >= config["reliability_min_split_half_pearson"]
+        )
+
+        stacked = np.stack([rdms[run] for run in present], axis=0)
+        rdm = np.mean(stacked, axis=0)
+        np.fill_diagonal(rdm, 0.0)
+        np.save(ARTIFACT_DIR / "rdm.npy", rdm)
+        meta = {
+            "built_at": now_stamp(),
+            "rdm_source": "direct_choice_rate",
+            "distance_metric": "1_minus_choice_rate",
+            "source_runs": present,
+            "missing_runs": missing,
+            "rdm_path": display_path(ARTIFACT_DIR / "rdm.npy"),
+            "rdm_sha256": sha256_file(ARTIFACT_DIR / "rdm.npy"),
+            "rdm_shape": list(rdm.shape),
+            "aggregation": config["triplet_protocol"]["aggregation"],
+            "reliability_gate": reliability_gate,
+            "reliability_min_mean_pearson": config["reliability_min_mean_pearson"],
+            "reliability_min_split_half_pearson": config["reliability_min_split_half_pearson"],
+            "pairwise_run_reliability": comparisons,
+            "mean_pairwise_upper_triangle_pearson": mean_corr,
+            "split_half_reliability": split_half,
+            "mean_split_half_upper_triangle_pearson": mean_split_half,
+            "status": "green" if reliability_gate else "red",
+        }
+        write_json(ARTIFACT_DIR / "rdm_meta.json", meta)
+        update_report()
+        print(f"[rdm] wrote {display_path(ARTIFACT_DIR / 'rdm.npy')} reliability={meta['status']}")
+        return
+
+    if rdm_source != "salmon_embedding":
+        raise SystemExit(f"Unknown rdm_source `{rdm_source}`. Expected `salmon_embedding` or `direct_choice_rate`.")
+
     present = []
     missing = []
     rdms = {}
     rows_by_run = {}
+    triplets_by_run = {}
+    embeddings_by_run = {}
+    salmon_fit_metrics = {}
+    parse_metrics = {}
+    dim = int(config["salmon_dimension"])
+    max_epochs = int(config["salmon_max_epochs"])
+    test_fraction = float(config["salmon_test_fraction"])
+    verbose = int(config["salmon_verbose"])
     for run in protocol_runs:
         raw_path = RAW_DIR / run / "triplet.csv"
         if not raw_path.exists():
             missing.append(run)
             continue
-        present.append(run)
         rows = parse_triplet_raw(raw_path)
         rows_by_run[run] = rows
-        rdm = rdm_from_triplet_rows(rows, concepts)
+        triplets, parsed = triplet_array_from_rows(rows, concepts)
+        parse_metrics[run] = parsed
+        if triplets.shape[0] == 0:
+            missing.append(f"{run}:no_parseable_triplets")
+            continue
+        present.append(run)
+        triplets_by_run[run] = triplets
+        seed = stable_seed(int(config["seed"]), f"salmon|{run}|d{dim}")
+        embedding, fit_meta = fit_salmon_embedding(
+            triplets,
+            n_concepts=len(concepts),
+            dim=dim,
+            max_epochs=max_epochs,
+            seed=seed,
+            test_fraction=test_fraction,
+            verbose=verbose,
+            ident=run,
+        )
+        embeddings_by_run[run] = embedding
+        salmon_fit_metrics[run] = fit_meta
+        emb_out = EMBED_DIR / f"{run}_salmon_d{dim}.npy"
+        np.save(emb_out, embedding)
+        rdm = cosine_rdm_from_embedding(embedding)
         rdms[run] = rdm
         out = RDM_DIR / f"{run}.npy"
         out.parent.mkdir(parents=True, exist_ok=True)
@@ -436,36 +702,92 @@ def build_rdm(args: argparse.Namespace) -> None:
 
     comparisons = []
     for run_a, run_b in itertools.combinations(present, 2):
+        nn_a = nearest_neighbor_indices(rdms[run_a])
+        nn_b = nearest_neighbor_indices(rdms[run_b])
+        top2_b = []
+        for i in range(len(concepts)):
+            row = rdms[run_b][i].copy()
+            row[i] = np.inf
+            top2_b.append(set(int(j) for j in np.argsort(row)[:2]))
         comparisons.append(
             {
                 "run_a": run_a,
                 "run_b": run_b,
                 "upper_triangle_pearson": pearson_corr(upper_values(rdms[run_a]), upper_values(rdms[run_b])),
+                "embedding_procrustes_r2": procrustes_r2(embeddings_by_run[run_a], embeddings_by_run[run_b]),
+                "nearest_neighbor_top1_agreement": float(np.mean([a == b for a, b in zip(nn_a, nn_b)])),
+                "nearest_neighbor_top2_agreement": float(np.mean([a in b for a, b in zip(nn_a, top2_b)])),
             }
         )
     mean_corr = float(np.nanmean([row["upper_triangle_pearson"] for row in comparisons])) if comparisons else float("nan")
+    mean_procrustes = float(np.nanmean([row["embedding_procrustes_r2"] for row in comparisons])) if comparisons else float("nan")
+    mean_nn_top1 = float(np.nanmean([row["nearest_neighbor_top1_agreement"] for row in comparisons])) if comparisons else float("nan")
+    mean_nn_top2 = float(np.nanmean([row["nearest_neighbor_top2_agreement"] for row in comparisons])) if comparisons else float("nan")
     rng = np.random.default_rng(int(config["seed"]))
     split_half = []
+    split_samples = int(config.get("salmon_split_half_samples", config["split_half_samples"]))
+    split_epochs = int(config.get("salmon_split_half_max_epochs", max_epochs))
     for run in present:
         corrs = []
-        rows = rows_by_run[run]
-        for _ in range(int(config["split_half_samples"])):
-            order = rng.permutation(len(rows))
+        proc_r2s = []
+        triplets = triplets_by_run[run]
+        for split_idx in range(split_samples):
+            order = rng.permutation(len(triplets))
             half = len(order) // 2
-            rows_a = [rows[i] for i in order[:half]]
-            rows_b = [rows[i] for i in order[half:]]
-            rdm_a = rdm_from_triplet_rows(rows_a, concepts)
-            rdm_b = rdm_from_triplet_rows(rows_b, concepts)
+            triplets_a = triplets[order[:half]]
+            triplets_b = triplets[order[half:]]
+            emb_a, _ = fit_salmon_embedding(
+                triplets_a,
+                n_concepts=len(concepts),
+                dim=dim,
+                max_epochs=split_epochs,
+                seed=stable_seed(int(config["seed"]), f"salmon|{run}|split{split_idx}|a"),
+                test_fraction=test_fraction,
+                verbose=verbose,
+                ident=f"{run}_split{split_idx}_a",
+            )
+            emb_b, _ = fit_salmon_embedding(
+                triplets_b,
+                n_concepts=len(concepts),
+                dim=dim,
+                max_epochs=split_epochs,
+                seed=stable_seed(int(config["seed"]), f"salmon|{run}|split{split_idx}|b"),
+                test_fraction=test_fraction,
+                verbose=verbose,
+                ident=f"{run}_split{split_idx}_b",
+            )
+            rdm_a = cosine_rdm_from_embedding(emb_a)
+            rdm_b = cosine_rdm_from_embedding(emb_b)
             corrs.append(pearson_corr(upper_values(rdm_a), upper_values(rdm_b)))
+            proc_r2s.append(procrustes_r2(emb_a, emb_b))
         split_half.append(
             {
                 "run": run,
-                "n_splits": int(config["split_half_samples"]),
+                "n_splits": split_samples,
+                "max_epochs_per_fit": split_epochs,
                 "mean_upper_triangle_pearson": float(np.nanmean(corrs)),
                 "p05_upper_triangle_pearson": float(np.nanquantile(corrs, 0.05)),
+                "mean_embedding_procrustes_r2": float(np.nanmean(proc_r2s)),
+                "p05_embedding_procrustes_r2": float(np.nanquantile(proc_r2s, 0.05)),
             }
         )
     mean_split_half = float(np.nanmean([row["mean_upper_triangle_pearson"] for row in split_half])) if split_half else float("nan")
+
+    pooled_triplets = np.concatenate([triplets_by_run[run] for run in present], axis=0)
+    pooled_embedding, pooled_fit = fit_salmon_embedding(
+        pooled_triplets,
+        n_concepts=len(concepts),
+        dim=dim,
+        max_epochs=max_epochs,
+        seed=stable_seed(int(config["seed"]), f"salmon|pooled|d{dim}"),
+        test_fraction=test_fraction,
+        verbose=verbose,
+        ident="pooled_step1",
+    )
+    pooled_embedding_path = EMBED_DIR / f"pooled_salmon_d{dim}.npy"
+    np.save(pooled_embedding_path, pooled_embedding)
+    rdm = cosine_rdm_from_embedding(pooled_embedding)
+
     reliability_gate = bool(
         len(missing) == 0
         and np.isfinite(mean_corr)
@@ -473,23 +795,38 @@ def build_rdm(args: argparse.Namespace) -> None:
         and np.isfinite(mean_split_half)
         and mean_split_half >= config["reliability_min_split_half_pearson"]
     )
-
-    stacked = np.stack([rdms[run] for run in present], axis=0)
-    rdm = np.mean(stacked, axis=0)
-    np.fill_diagonal(rdm, 0.0)
     np.save(ARTIFACT_DIR / "rdm.npy", rdm)
     meta = {
         "built_at": now_stamp(),
+        "rdm_source": "salmon_embedding",
+        "distance_metric": "cosine_distance",
+        "salmon_dimension": dim,
+        "salmon_max_epochs": max_epochs,
+        "salmon_test_fraction": test_fraction,
+        "pooled_embedding_path": display_path(pooled_embedding_path),
+        "pooled_embedding_sha256": sha256_file(pooled_embedding_path),
+        "pooled_fit_metrics": pooled_fit,
+        "n_valid_triplets_total": int(pooled_triplets.shape[0]),
         "source_runs": present,
         "missing_runs": missing,
         "rdm_path": display_path(ARTIFACT_DIR / "rdm.npy"),
+        "rdm_sha256": sha256_file(ARTIFACT_DIR / "rdm.npy"),
         "rdm_shape": list(rdm.shape),
         "aggregation": config["triplet_protocol"]["aggregation"],
+        "parse_metrics": parse_metrics,
+        "per_run_embedding_paths": {
+            run: display_path(EMBED_DIR / f"{run}_salmon_d{dim}.npy")
+            for run in present
+        },
+        "per_run_salmon_fit_metrics": salmon_fit_metrics,
         "reliability_gate": reliability_gate,
         "reliability_min_mean_pearson": config["reliability_min_mean_pearson"],
         "reliability_min_split_half_pearson": config["reliability_min_split_half_pearson"],
         "pairwise_run_reliability": comparisons,
         "mean_pairwise_upper_triangle_pearson": mean_corr,
+        "mean_pairwise_embedding_procrustes_r2": mean_procrustes,
+        "mean_nearest_neighbor_top1_agreement": mean_nn_top1,
+        "mean_nearest_neighbor_top2_agreement": mean_nn_top2,
         "split_half_reliability": split_half,
         "mean_split_half_upper_triangle_pearson": mean_split_half,
         "status": "green" if reliability_gate else "red",
@@ -527,6 +864,15 @@ def nearest_and_far_controls(rdm: np.ndarray, concepts: list[str], config: dict)
             }
         )
     return rows
+
+
+def nearest_neighbor_indices(rdm: np.ndarray) -> list[int]:
+    neighbors = []
+    for i in range(rdm.shape[0]):
+        row = np.asarray(rdm[i], dtype=float).copy()
+        row[i] = np.inf
+        neighbors.append(int(np.argmin(row)))
+    return neighbors
 
 
 def register_neighbors(args: argparse.Namespace) -> None:
@@ -988,8 +1334,19 @@ def score_items(args: argparse.Namespace) -> None:
     write_csv(RESULT_DIR / "step1_confusion_matrix.csv", [["target", *concepts]] + [[concepts[i], *observed_matrix[i].tolist()] for i in range(len(concepts))])
     summary = {
         "scored_at": now_stamp(),
+        "model": config["base_model"],
         "run": args.run,
         "h1_verdict": verdict,
+        "rdm_path": display_path(rdm_path),
+        "rdm_sha256": sha256_file(rdm_path),
+        "rdm_source": meta.get("rdm_source"),
+        "rdm_distance_metric": meta.get("distance_metric"),
+        "rdm_built_at": meta.get("built_at"),
+        "neighbors_path": display_path(EXP_DIR / "neighbors.json"),
+        "neighbors_registered_at": neighbors.get("registered_at"),
+        "items_path": display_path(item_path),
+        "items_sha256": sha256_file(item_path),
+        "raw_item_responses_path": display_path(RAW_DIR / args.run / "items.csv"),
         "n_items": total,
         "n_correct": correct,
         "n_errors": total - correct,
@@ -1335,6 +1692,65 @@ def markdown_table_neighbors(neighbors: dict | None) -> str:
     return "\n".join(lines) + "\n"
 
 
+def md_link(path: Path, label: str | None = None) -> str:
+    shown = display_path(path)
+    return f"[{label or shown}]({shown})"
+
+
+def first_item_example() -> dict | None:
+    path = ITEM_DIR / "items.json"
+    if not path.exists():
+        return None
+    items = read_json(path)
+    return items[0] if items else None
+
+
+def artifact_hash_current(current_sha: str | None, payload: dict | None, key: str = "rdm_sha256") -> bool:
+    if not current_sha or not payload:
+        return False
+    return payload.get(key) == current_sha
+
+
+def prompt_template_block(config: dict, key: str) -> str:
+    template = config["triplet_protocol"][key]
+    return "```text\nSystem: You are a helpful assistant who gives responses to questions.\n\n" + template + "\n```"
+
+
+def triplet_choice_agreement(run_a: str, run_b: str, config: dict) -> dict | None:
+    path_a = RAW_DIR / run_a / "triplet.csv"
+    path_b = RAW_DIR / run_b / "triplet.csv"
+    if not path_a.exists() or not path_b.exists():
+        return None
+
+    def choices(path: Path) -> dict[str, str | None]:
+        out = {}
+        with path.open(newline="") as handle:
+            reader = csv.DictReader(handle)
+            for row in reader:
+                try:
+                    _, concept1, concept2 = str(row["input"]).split("|")
+                except ValueError:
+                    continue
+                parsed = parse_triplet_choice(str(row["response"]), concept1, concept2)
+                out[str(row["input"])] = "A" if parsed == 1 else "B" if parsed == 2 else None
+        return out
+
+    choices_a = choices(path_a)
+    choices_b = choices(path_b)
+    keys = sorted(set(choices_a) & set(choices_b))
+    parsed = [key for key in keys if choices_a[key] is not None and choices_b[key] is not None]
+    if not parsed:
+        return None
+    agree = sum(choices_a[key] == choices_b[key] for key in parsed)
+    return {
+        "run_a": run_a,
+        "run_b": run_b,
+        "n_both_parseable": len(parsed),
+        "n_agree": agree,
+        "agreement": agree / len(parsed),
+    }
+
+
 def update_report() -> None:
     ensure_dirs()
     config = load_config()
@@ -1342,66 +1758,147 @@ def update_report() -> None:
     rdm_meta = read_optional_json(ARTIFACT_DIR / "rdm_meta.json")
     neighbors = read_optional_json(EXP_DIR / "neighbors.json")
     results = read_optional_json(RESULT_DIR / "step1.json")
+    current_rdm_sha = (rdm_meta or {}).get("rdm_sha256")
+    neighbors_current = artifact_hash_current(current_rdm_sha, (neighbors or {}).get("rdm_meta") if neighbors else None)
+    results_current = artifact_hash_current(current_rdm_sha, results)
     items_exist = (ITEM_DIR / "items.json").exists()
+    items_current = items_exist and neighbors_current
+    example_item = first_item_example() if items_current else None
     required = config["triplet_protocol"]["required_geometry_runs"]
     triplet_state = {run: (RAW_DIR / run / "triplet.csv").exists() for run in required}
     item_runs = sorted(path.parent.name for path in RAW_DIR.glob("*/items.csv"))
 
-    h1 = results["h1_verdict"] if results else "not_decided"
+    h1 = results["h1_verdict"] if results_current else "not_decided_current_geometry"
+    rdm_source = (rdm_meta or {}).get("rdm_source", config.get("rdm_source", "salmon_embedding"))
+    distance_metric = (rdm_meta or {}).get("distance_metric", "pending")
+    source_runs = (rdm_meta or {}).get("source_runs", required)
+    item_response_run = results["run"] if results_current else "not_run"
+    concept_count = len(load_concepts(config)) if concept_file_path(config).exists() else 0
+    old_paraphrase_agreement = triplet_choice_agreement(
+        "base_seed_a_canonical_prompt",
+        "base_seed_a_paraphrase_prompt",
+        config,
+    )
+    matched_paraphrase_agreement = triplet_choice_agreement(
+        "base_seed_a_canonical_prompt",
+        "base_seed_a_matched_paraphrase_prompt",
+        config,
+    )
+    stale_neighbors_note = "pending for current RDM"
+    if neighbors and not neighbors_current:
+        stale_neighbors_note += f" (stale file: {md_link(EXP_DIR / 'neighbors.json')})"
+    stale_items_note = "pending for current RDM"
+    if items_exist and not items_current:
+        stale_items_note += f" (stale files: {md_link(ITEM_DIR / 'items.csv')}, {md_link(ITEM_DIR / 'items.json')})"
+    stale_results_note = "pending for current RDM"
+    if results and not results_current:
+        stale_results_note += f" (stale files: {md_link(RESULT_DIR / 'step1.json')}, {md_link(RESULT_DIR / 'step1_scored_items.csv')})"
     report = [
         "# Experiment 3 Report",
         "",
         f"Last updated: {now_stamp()}",
         "",
-        "## Current status",
+        "## Step 1 Story",
         "",
-        f"- Branch/worktree experiment folder: `{display_path(EXP_DIR)}`",
-        f"- Step 1 concept set: `{display_path(concept_file_path(config))}`",
-        f"- Triplet protocol frozen: {'yes' if protocol else 'no'}",
-        f"- Triplet response format: `{config['triplet_protocol'].get('response_format', 'concept_text')}`",
-        f"- Required triplet runs present: {sum(triplet_state.values())}/{len(triplet_state)}",
-        f"- RDM reliability gate: `{(rdm_meta or {}).get('status', 'missing')}`",
-        f"- Neighbors pre-registered: {'yes' if neighbors else 'no'}",
-        f"- Human sanity gate: `{(neighbors or {}).get('sanity_gate', 'not_started')}`",
-        f"- Directional items generated: {'yes' if items_exist else 'no'}",
-        f"- Item response runs present: {', '.join(item_runs) if item_runs else 'none'}",
-        f"- H1 verdict: `{h1}`",
+        "### What were we trying to find?",
         "",
-        "## Commands",
+        "We are testing whether triplet geometry predicts the destination of model errors on neutral concepts. "
+        "The preregistered prediction for each target is its nearest neighbor in the model's triplet RDM; H1 is green only if later errors land on that near neighbor above shuffled-geometry and base-rate nulls.",
         "",
-        "```bash",
-        "python scripts/run_experiment3.py init",
-        "python scripts/run_experiment3.py run-triplet-suite --overwrite",
-        "python scripts/run_experiment3.py build-rdm",
-        "python scripts/run_experiment3.py register-neighbors",
-        "python scripts/run_experiment3.py generate-items",
-        "python scripts/run_experiment3.py mark-sanity-gate --status pass --note \"nearest-neighbor pairs are human-sane\"",
-        "python scripts/run_experiment3.py run-items --out-run step1_items_v1 --overwrite",
-        "python scripts/run_experiment3.py score --run step1_items_v1",
+        "### What did we run?",
+        "",
+        f"- Model: `{config['base_model']}`.",
+        "- Serving: local vLLM; triplet and item prompts use temperature `0.0`.",
+        f"- Concept set: {concept_count} neutral Leuven concrete concepts in {md_link(concept_file_path(config))}.",
+        f"- Stimuli: {md_link(STIM_DIR / 'concepts.csv')}, {md_link(STIM_DIR / 'triplets.csv')}, {md_link(STIM_DIR / 'pairs.csv')}.",
+        f"- Geometry raw responses: "
+        + ", ".join(md_link(RAW_DIR / run / "triplet.csv", run) for run in source_runs if (RAW_DIR / run / "triplet.csv").exists())
+        + ".",
+        f"- Geometry fitting: `{rdm_source}`; distance metric for `rdm.npy`: `{distance_metric}`.",
+        f"- RDM artifact: {md_link(ARTIFACT_DIR / 'rdm.npy')}; metadata: {md_link(ARTIFACT_DIR / 'rdm_meta.json')}.",
+        f"- SALMON pooled embedding: {md_link(ROOT / (rdm_meta or {}).get('pooled_embedding_path', display_path(EMBED_DIR / 'pooled_salmon_d5.npy'))) if rdm_meta and rdm_meta.get('pooled_embedding_path') else 'pending'}.",
+        f"- Pre-registered neighbors: {md_link(EXP_DIR / 'neighbors.json') if neighbors_current else stale_neighbors_note}.",
+        f"- Directional items: {(md_link(ITEM_DIR / 'items.csv') + ' and ' + md_link(ITEM_DIR / 'items.json')) if items_current else stale_items_note}.",
+        f"- Item responses: {md_link(RAW_DIR / item_response_run / 'items.csv') if item_response_run != 'not_run' and (RAW_DIR / item_response_run / 'items.csv').exists() else 'pending'}.",
+        f"- Scored outputs: {(md_link(RESULT_DIR / 'step1.json') + ', ' + md_link(RESULT_DIR / 'step1_scored_items.csv') + ', ' + md_link(RESULT_DIR / 'step1_pair_rates.csv') + ', ' + md_link(RESULT_DIR / 'step1_confusion_matrix.csv')) if results_current else stale_results_note}.",
+        "",
+        "Canonical geometry prompt:",
+        "",
+        prompt_template_block(config, "prompt_template"),
+        "",
+        "Paraphrase geometry prompt:",
+        "",
+        prompt_template_block(config, "paraphrase_template"),
+        "",
+        "Prompt-variant correction:",
+        "",
+        (
+            "- Old non-matched paraphrase: `Compare the target to two candidates. / Target: {anchor} / A: {concept1} / B: {concept2} / Which candidate is closer in meaning to the target? Reply with only A or B.`"
+            if old_paraphrase_agreement
+            else "- Old non-matched paraphrase: not run in this worktree."
+        ),
+        (
+            f"- Canonical vs old non-matched raw choice agreement: `{old_paraphrase_agreement['n_agree']}/{old_paraphrase_agreement['n_both_parseable']} = {old_paraphrase_agreement['agreement']:.4f}`."
+            if old_paraphrase_agreement
+            else "- Canonical vs old non-matched raw choice agreement: unavailable."
+        ),
+        (
+            f"- Canonical vs matched paraphrase raw choice agreement: `{matched_paraphrase_agreement['n_agree']}/{matched_paraphrase_agreement['n_both_parseable']} = {matched_paraphrase_agreement['agreement']:.4f}`."
+            if matched_paraphrase_agreement
+            else "- Canonical vs matched paraphrase raw choice agreement: unavailable."
+        ),
+        "",
+        "Directional item template:",
+        "",
+        "```text",
+        "Which option is the best match for this description?",
+        "- {feature clue}",
+        "- {feature clue}",
+        "- {feature clue}",
+        "Answer with only A, B, C, or D.",
+        "",
+        "Options:",
+        "A. {distractor_or_target}",
+        "B. {distractor_or_target}",
+        "C. {distractor_or_target}",
+        "D. {distractor_or_target}",
         "```",
         "",
-        "## Pre-registered Predictions",
+        "Concrete generated item example:",
         "",
-        markdown_table_neighbors(neighbors),
+        (
+            f"From {md_link(ITEM_DIR / 'items.csv')} / `{example_item['item_id']}`:\n\n"
+            f"```text\n{example_item['prompt']}\n```"
+            if example_item
+            else "No generated items yet."
+        ),
+        "",
+        "### What did we find?",
+        "",
     ]
     if rdm_meta:
         report.extend(
             [
-                "## RDM Reliability",
-                "",
-                f"- Source runs: {', '.join(rdm_meta.get('source_runs', []))}",
+                f"- RDM source: `{rdm_meta.get('rdm_source')}`.",
+                f"- RDM distance metric: `{rdm_meta.get('distance_metric')}`.",
+                f"- SALMON pooled held-out accuracy: `{(rdm_meta.get('pooled_fit_metrics') or {}).get('test_score')}`",
+                f"- SALMON per-run held-out accuracies: `{ {run: fit.get('test_score') for run, fit in (rdm_meta.get('per_run_salmon_fit_metrics') or {}).items()} }`",
+                f"- Source runs: {', '.join(rdm_meta.get('source_runs', []))}.",
                 f"- Missing runs: {', '.join(rdm_meta.get('missing_runs', [])) or 'none'}",
                 f"- Mean pairwise upper-triangle Pearson: `{rdm_meta.get('mean_pairwise_upper_triangle_pearson')}`",
+                f"- Mean pairwise SALMON embedding Procrustes R^2: `{rdm_meta.get('mean_pairwise_embedding_procrustes_r2', 'n/a')}`",
+                f"- Mean nearest-neighbor top-1 agreement across geometry runs: `{rdm_meta.get('mean_nearest_neighbor_top1_agreement', 'n/a')}`",
+                f"- Mean nearest-neighbor top-2 agreement across geometry runs: `{rdm_meta.get('mean_nearest_neighbor_top2_agreement', 'n/a')}`",
                 f"- Mean split-half upper-triangle Pearson: `{rdm_meta.get('mean_split_half_upper_triangle_pearson')}`",
-                f"- Gate: `{rdm_meta.get('status')}`",
+                f"- RDM reliability gate: `{rdm_meta.get('status')}`",
                 "",
             ]
         )
-    if results:
+    else:
+        report.extend(["- RDM has not been built yet.", ""])
+    if results_current:
         report.extend(
             [
-                "## Step 1 Directional Score",
-                "",
                 f"- Accuracy: `{results['accuracy']:.4f}` ({results['n_correct']}/{results['n_items']})",
                 f"- Directional errors: `{results['n_directional_errors_near_or_far']}`",
                 f"- Near fraction among directional errors: `{results['near_fraction_among_directional_errors']:.4f}`",
@@ -1410,14 +1907,80 @@ def update_report() -> None:
                 f"- H2 distance slope: `{results['h2_distance_slope']['slope_substitution_rate_per_rdm_distance']:.6f}`",
                 f"- H2 slope 95% CI: `{results['h2_distance_slope']['bootstrap_ci_95']}`",
                 f"- Predicted-vs-actual confusion agreement: `{results['predicted_vs_actual_confusion_agreement']['pearson_r_neg_distance_vs_substitution_rate']:.4f}`",
+                f"- H1 verdict: `{results['h1_verdict']}`",
                 "",
-                "Headline figure: `experiments/exp3_directional_confusions/figs/step1_confusion_matrix.png`",
+                f"Headline figure: {md_link(FIG_DIR / 'step1_confusion_matrix.png')}",
+                "",
+            ]
+        )
+    else:
+        report.extend(["- Item responses have not been scored against the current geometry yet.", ""])
+    report.extend(
+        [
+            "### What does this mean?",
+            "",
+        ]
+    )
+    if results_current and results["h1_verdict"] == "green_directional":
+        report.extend(
+            [
+                "Step 1 is green: the neutral-model errors are directional under the current geometry. The model did not merely make mistakes; its mistakes preferentially landed on the preregistered nearest-neighbor distractor.",
+                "",
+            ]
+        )
+    elif results_current:
+        report.extend(
+            [
+                f"Step 1 is not green under the current geometry: `{results['h1_verdict']}`. Do not start Step 2 until this is resolved or declared a real neutral null.",
+                "",
+            ]
+        )
+    else:
+        report.extend(
+            [
+                "Step 1 is not decided yet. The current SALMON-derived RDM must pass reliability, then neighbors must be preregistered and item responses scored against that exact RDM.",
                 "",
             ]
         )
     report.extend(
         [
-            "## Live risks",
+            "The current report is the SALMON-based version. The earlier direct choice-rate RDM result is superseded for the active Experiment 3 claim and remains only in git history.",
+            "",
+            "## Current Status",
+            "",
+            f"- Branch/worktree experiment folder: `{display_path(EXP_DIR)}`",
+            f"- Step 1 concept set: `{display_path(concept_file_path(config))}`",
+            f"- Triplet protocol frozen: {'yes' if protocol else 'no'}",
+            f"- Triplet response format: `{config['triplet_protocol'].get('response_format', 'concept_text')}`",
+            f"- Required triplet runs present: {sum(triplet_state.values())}/{len(triplet_state)}",
+            f"- RDM reliability gate: `{(rdm_meta or {}).get('status', 'missing')}`",
+            f"- Neighbors pre-registered for current RDM: {'yes' if neighbors_current else 'no'}",
+            f"- Human sanity gate for current RDM: `{(neighbors or {}).get('sanity_gate', 'not_started') if neighbors_current else 'not_started'}`",
+            f"- Directional items generated for current RDM: {'yes' if items_current else 'no'}",
+            f"- Item response runs present: {', '.join(item_runs) if item_runs else 'none'}",
+            f"- H1 verdict: `{h1}`",
+            "",
+            "## Commands",
+            "",
+            "```bash",
+            "python scripts/run_experiment3.py init",
+            "python scripts/run_experiment3.py run-triplet-suite --overwrite",
+            "python scripts/run_experiment3.py build-rdm",
+            "python scripts/run_experiment3.py register-neighbors",
+            "python scripts/run_experiment3.py generate-items",
+            "python scripts/run_experiment3.py mark-sanity-gate --status pass --note \"nearest-neighbor pairs are human-sane\"",
+            "python scripts/run_experiment3.py run-items --out-run step1_items_v1 --overwrite",
+            "python scripts/run_experiment3.py score --run step1_items_v1",
+            "```",
+            "",
+            "## Pre-Registered Predictions",
+            "",
+            markdown_table_neighbors(neighbors if neighbors_current else None),
+        ]
+    )
+    report.extend(
+        [
+            "## Live Risks",
             "",
             "- If the model is near-perfect on these items, H1 is untestable and the item phrasing needs to move into a harder uncertainty band.",
             "- If RDM reliability is red, do not register or interpret neighbors except as an engineering smoke test.",

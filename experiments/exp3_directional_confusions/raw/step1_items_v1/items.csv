@@ -1,50 +1,50 @@
 item_id,prompt,response
 step1_alligator_00,"Which option is the best match for this description?
-- endangered species
-- cartoon figure
-- kind of crocodile
+- is a freshwater fish
+- lives by the sea
+- lives in a swamp
 Answer with only A, B, C, or D.
 
 Options:
-A. salamander
-B. crocodile
-C. blindworm
-D. alligator",B. crocodile
+A. cobra
+B. turtle
+C. chameleon
+D. alligator",B. turtle
 step1_alligator_01,"A catalog card lists these properties:
-- is a freshwater fish
-- has sharp claws
-- kind of crocodile
+- herds
+- lives by the sea
+- lives in a swamp
 Which option does the card describe? Answer with only A, B, C, or D.
 
 Options:
-A. salamander
+A. cobra
 B. alligator
-C. crocodile
-D. blindworm",C
+C. turtle
+D. chameleon",B
 step1_alligator_02,"Choose the option that best fits all of these clues:
-- is rare
-- is strong
-- kind of crocodile
+- lives by the sea
+- is a freshwater fish
+- lives in a swamp
 Answer with only A, B, C, or D.
 
 Options:
-A. blindworm
-B. salamander
-C. crocodile
-D. alligator","Based on the clues, the answer is C. crocodile"
+A. chameleon
+B. cobra
+C. turtle
+D. alligator",C
 step1_alligator_03,"A field note says the thing has these attributes:
-- lives by the sea
-- is lethal
-- kind of crocodile
+- cartoon figure
+- is a freshwater fish
+- lives in a swamp
 Which option is it? Answer with only A, B, C, or D.
 
 Options:
-A. crocodile
-B. salamander
-C. blindworm
+A. turtle
+B. cobra
+C. chameleon
 D. alligator",A
 step1_caiman_00,"Which option is the best match for this description?
-- lives by the sea
+- endangered species
 - is lethal
 - kind of crocodile
 Answer with only A, B, C, or D.
@@ -52,33 +52,33 @@ Answer with only A, B, C, or D.
 Options:
 A. chisel
 B. crocodile
-C. tortoise
-D. caiman",B.
+C. cobra
+D. caiman",B. crocodile
 step1_caiman_01,"A catalog card lists these properties:
-- is rare
-- endangered species
+- has sharp claws
+- lives by the sea
 - kind of crocodile
 Which option does the card describe? Answer with only A, B, C, or D.
 
 Options:
 A. crocodile
-B. tortoise
+B. cobra
 C. caiman
-D. chisel",A
+D. chisel",A.
 step1_caiman_02,"Choose the option that best fits all of these clues:
-- has many teeth
-- lives by the sea
+- is lethal
+- endangered species
 - kind of crocodile
 Answer with only A, B, C, or D.
 
 Options:
 A. chisel
-B. tortoise
+B. cobra
 C. caiman
 D. crocodile",D. crocodile
 step1_caiman_03,"A field note says the thing has these attributes:
-- herds
-- lives by the sea
+- is rare
+- has sharp claws
 - kind of crocodile
 Which option is it? Answer with only A, B, C, or D.
 
@@ -86,402 +86,402 @@ Options:
 A. crocodile
 B. caiman
 C. chisel
-D. tortoise",A
+D. cobra",A
 step1_crocodile_00,"Which option is the best match for this description?
-- is lethal
-- is strong
-- appears in fairy tales and stories
+- lives by the sea
+- lives in water
+- is dangerous
 Answer with only A, B, C, or D.
 
 Options:
-A. alligator
+A. tortoise
 B. crocodile
 C. saw
-D. axe",B.
+D. chisel",B.
 step1_crocodile_01,"A catalog card lists these properties:
-- herds
-- savanne
-- lays eggs in sand
+- is strong
+- lives in water
+- has many teeth
 Which option does the card describe? Answer with only A, B, C, or D.
 
 Options:
 A. crocodile
-B. alligator
+B. tortoise
 C. saw
-D. axe",B. alligator
+D. chisel",A.
 step1_crocodile_02,"Choose the option that best fits all of these clues:
-- endangered species
-- strong animal
-- lays eggs in sand
+- cartoon figure
+- is strong
+- is a freshwater fish
 Answer with only A, B, C, or D.
 
 Options:
 A. saw
 B. crocodile
-C. axe
-D. alligator",B. crocodile
+C. chisel
+D. tortoise","Based on the clues, the answer is B. crocodile"
 step1_crocodile_03,"A field note says the thing has these attributes:
-- is lethal
-- is strong
-- lays eggs in sand
+- herds
+- lives by the sea
+- is rare
 Which option is it? Answer with only A, B, C, or D.
 
 Options:
 A. saw
-B. axe
-C. alligator
-D. crocodile",C
-step1_boa_python_00,"Which option is the best match for this description?
-- is lethal
-- in a terrarium
-- is rare
-Answer with only A, B, C, or D.
-
-Options:
-A. toad
 B. chisel
-C. snake
-D. boa python",A.
-step1_boa_python_01,"A catalog card lists these properties:
-- has a split tongue
-- savanne
-- is rare
-Which option does the card describe? Answer with only A, B, C, or D.
-
-Options:
-A. boa python
-B. snake
-C. toad
-D. chisel",B. snake
-step1_boa_python_02,"Choose the option that best fits all of these clues:
-- has a split tongue
-- has bright colours
-- is rare
-Answer with only A, B, C, or D.
-
-Options:
-A. chisel
-B. toad
-C. snake
-D. boa python","B. toad
-
-Toads are known for having a"
-step1_boa_python_03,"A field note says the thing has these attributes:
-- is strong
-- in a terrarium
-- is rare
-Which option is it? Answer with only A, B, C, or D.
-
-Options:
-A. toad
-B. chisel
-C. boa python
-D. snake",D
-step1_cobra_00,"Which option is the best match for this description?
-- has bright colours
-- lives in trees
-- is rare
-Answer with only A, B, C, or D.
-
-Options:
-A. snake
-B. cobra
 C. tortoise
-D. salamander",B. cobra
-step1_cobra_01,"A catalog card lists these properties:
-- endangered species
-- cartoon figure
-- is rare
-Which option does the card describe? Answer with only A, B, C, or D.
-
-Options:
-A. tortoise
-B. snake
-C. salamander
-D. cobra",A
-step1_cobra_02,"Choose the option that best fits all of these clues:
-- is dangerous
-- is lethal
-- is rare
-Answer with only A, B, C, or D.
-
-Options:
-A. tortoise
-B. salamander
-C. snake
-D. cobra","Based on the clues, the best fit is C. snake"
-step1_cobra_03,"A field note says the thing has these attributes:
-- savanne
-- has bright colours
-- is rare
-Which option is it? Answer with only A, B, C, or D.
-
-Options:
-A. tortoise
-B. salamander
-C. cobra
-D. snake",B. salamander
-step1_snake_00,"Which option is the best match for this description?
-- is lethal
+D. crocodile",D
+step1_boa_python_00,"Which option is the best match for this description?
 - is strong
-- lives by the sea
-Answer with only A, B, C, or D.
-
-Options:
-A. toad
-B. chisel
-C. snake
-D. boa python",C
-step1_snake_01,"A catalog card lists these properties:
 - is lethal
-- is strong
-- lives by the sea
-Which option does the card describe? Answer with only A, B, C, or D.
-
-Options:
-A. snake
-B. chisel
-C. toad
-D. boa python",D. boa python
-step1_snake_02,"Choose the option that best fits all of these clues:
-- has a split tongue
-- has bright colours
-- lives by the sea
-Answer with only A, B, C, or D.
-
-Options:
-A. toad
-B. chisel
-C. boa python
-D. snake","Based on the clues, the best fit is D. snake"
-step1_snake_03,"A field note says the thing has these attributes:
-- in a terrarium
-- is a pet
-- lives by the sea
-Which option is it? Answer with only A, B, C, or D.
-
-Options:
-A. toad
-B. chisel
-C. boa python
-D. snake",D
-step1_blindworm_00,"Which option is the best match for this description?
-- has a split tongue
-- in a terrarium
-- live in the mountains
-Answer with only A, B, C, or D.
-
-Options:
-A. alligator
-B. chisel
-C. blindworm
-D. salamander",D. salamander
-step1_blindworm_01,"A catalog card lists these properties:
-- has a split tongue
-- is not expensive
-- live in the mountains
-Which option does the card describe? Answer with only A, B, C, or D.
-
-Options:
-A. chisel
-B. salamander
-C. blindworm
-D. alligator",B. salamander
-step1_blindworm_02,"Choose the option that best fits all of these clues:
-- has a split tongue
-- is not expensive
-- live in the mountains
-Answer with only A, B, C, or D.
-
-Options:
-A. blindworm
-B. alligator
-C. chisel
-D. salamander","D. salamander
-
-Explanation: Salamanders are"
-step1_blindworm_03,"A field note says the thing has these attributes:
-- is food for larger animals
-- lives in trees
-- live in the mountains
-Which option is it? Answer with only A, B, C, or D.
-
-Options:
-A. alligator
-B. chisel
-C. salamander
-D. blindworm",C
-step1_chameleon_00,"Which option is the best match for this description?
-- has bright colours
-- in a terrarium
-- endangered species
-Answer with only A, B, C, or D.
-
-Options:
-A. chameleon
-B. tortoise
-C. chisel
-D. gecko",D. gecko
-step1_chameleon_01,"A catalog card lists these properties:
-- has many teeth
-- is not expensive
-- endangered species
-Which option does the card describe? Answer with only A, B, C, or D.
-
-Options:
-A. gecko
-B. tortoise
-C. chisel
-D. chameleon",B.
-step1_chameleon_02,"Choose the option that best fits all of these clues:
-- is a pet
-- is food for larger animals
-- endangered species
+- often sits in parks
 Answer with only A, B, C, or D.
 
 Options:
 A. gecko
 B. chameleon
-C. tortoise
-D. chisel","C. tortoise
+C. snake
+D. boa python",C
+step1_boa_python_01,"A catalog card lists these properties:
+- is dangerous
+- has a split tongue
+- often sits in parks
+Which option does the card describe? Answer with only A, B, C, or D.
 
-Reasoning: 
+Options:
+A. boa python
+B. snake
+C. gecko
+D. chameleon",B
+step1_boa_python_02,"Choose the option that best fits all of these clues:
+- has a split tongue
+- is lethal
+- often sits in parks
+Answer with only A, B, C, or D.
 
-- Torto"
-step1_chameleon_03,"A field note says the thing has these attributes:
-- is rare
+Options:
+A. chameleon
+B. gecko
+C. snake
+D. boa python",C. snake
+step1_boa_python_03,"A field note says the thing has these attributes:
+- has a split tongue
+- strong animal
+- often sits in parks
+Which option is it? Answer with only A, B, C, or D.
+
+Options:
+A. gecko
+B. chameleon
+C. boa python
+D. snake",D
+step1_cobra_00,"Which option is the best match for this description?
 - has bright colours
+- is strong
+- looks like a snake
+Answer with only A, B, C, or D.
+
+Options:
+A. snake
+B. cobra
+C. caiman
+D. chisel",B. cobra
+step1_cobra_01,"A catalog card lists these properties:
+- is dangerous
+- has a split tongue
+- looks like a snake
+Which option does the card describe? Answer with only A, B, C, or D.
+
+Options:
+A. caiman
+B. snake
+C. chisel
+D. cobra",D. cobra
+step1_cobra_02,"Choose the option that best fits all of these clues:
 - endangered species
+- is lethal
+- looks like a snake
+Answer with only A, B, C, or D.
+
+Options:
+A. caiman
+B. chisel
+C. snake
+D. cobra",D. cobra
+step1_cobra_03,"A field note says the thing has these attributes:
+- has bright colours
+- is strong
+- looks like a snake
+Which option is it? Answer with only A, B, C, or D.
+
+Options:
+A. caiman
+B. chisel
+C. cobra
+D. snake",C
+step1_snake_00,"Which option is the best match for this description?
+- in a terrarium
+- lives in trees
+- cartoon figure
+Answer with only A, B, C, or D.
+
+Options:
+A. chameleon
+B. saw
+C. snake
+D. boa python",A.
+step1_snake_01,"A catalog card lists these properties:
+- in a terrarium
+- has bright colours
+- is a freshwater fish
+Which option does the card describe? Answer with only A, B, C, or D.
+
+Options:
+A. snake
+B. saw
+C. chameleon
+D. boa python",C
+step1_snake_02,"Choose the option that best fits all of these clues:
+- is dangerous
+- has a split tongue
+- lives by the sea
+Answer with only A, B, C, or D.
+
+Options:
+A. chameleon
+B. saw
+C. boa python
+D. snake","Based on the clues, the answer is D. snake."
+step1_snake_03,"A field note says the thing has these attributes:
+- endangered species
+- has bright colours
+- cartoon figure
 Which option is it? Answer with only A, B, C, or D.
 
 Options:
 A. chameleon
-B. tortoise
-C. chisel
-D. gecko",A
-step1_gecko_00,"Which option is the best match for this description?
+B. saw
+C. boa python
+D. snake",A
+step1_blindworm_00,"Which option is the best match for this description?
+- herds
+- has a split tongue
+- in a terrarium
+Answer with only A, B, C, or D.
+
+Options:
+A. axe
+B. saw
+C. blindworm
+D. toad",C. blindworm
+step1_blindworm_01,"A catalog card lists these properties:
+- herds
+- has a split tongue
+- is rare
+Which option does the card describe? Answer with only A, B, C, or D.
+
+Options:
+A. saw
+B. toad
+C. blindworm
+D. axe",C. blindworm
+step1_blindworm_02,"Choose the option that best fits all of these clues:
+- has a split tongue
 - is not expensive
+- in a terrarium
+Answer with only A, B, C, or D.
+
+Options:
+A. blindworm
+B. axe
+C. saw
+D. toad","D. toad
+
+Toads often have a split tongue"
+step1_blindworm_03,"A field note says the thing has these attributes:
 - is food for larger animals
+- is not expensive
+- is rare
+Which option is it? Answer with only A, B, C, or D.
+
+Options:
+A. axe
+B. saw
+C. toad
+D. blindworm",D.
+step1_chameleon_00,"Which option is the best match for this description?
+- is not expensive
+- in a terrarium
+- appears in fairy tales and stories
+Answer with only A, B, C, or D.
+
+Options:
+A. chameleon
+B. boa python
+C. hammer
+D. gecko",D. gecko
+step1_chameleon_01,"A catalog card lists these properties:
+- is food for larger animals
+- is a pet
+- appears in fairy tales and stories
+Which option does the card describe? Answer with only A, B, C, or D.
+
+Options:
+A. gecko
+B. boa python
+C. hammer
+D. chameleon",B.
+step1_chameleon_02,"Choose the option that best fits all of these clues:
+- is food for larger animals
+- is a pet
+- appears in fairy tales and stories
+Answer with only A, B, C, or D.
+
+Options:
+A. gecko
+B. chameleon
+C. boa python
+D. hammer","C. boa python
+
+Reasoning: A boa python is"
+step1_chameleon_03,"A field note says the thing has these attributes:
+- lives in trees
+- has bright colours
+- appears in fairy tales and stories
+Which option is it? Answer with only A, B, C, or D.
+
+Options:
+A. chameleon
+B. boa python
+C. hammer
+D. gecko",D.
+step1_gecko_00,"Which option is the best match for this description?
+- is rare
+- has sharp claws
 - is dangerous
 Answer with only A, B, C, or D.
 
 Options:
 A. saw
 B. gecko
-C. lizard
-D. chisel",C. lizard
+C. chameleon
+D. hammer",B.
 step1_gecko_01,"A catalog card lists these properties:
-- lives in trees
-- is a pet
-- is rare
+- is food for larger animals
+- has sharp claws
+- is dangerous
 Which option does the card describe? Answer with only A, B, C, or D.
 
 Options:
-A. lizard
+A. chameleon
 B. gecko
 C. saw
-D. chisel",B. gecko
+D. hammer",C
 step1_gecko_02,"Choose the option that best fits all of these clues:
-- is food for larger animals
-- has many teeth
 - is rare
+- is a pet
+- is dangerous
 Answer with only A, B, C, or D.
 
 Options:
 A. gecko
-B. lizard
+B. chameleon
 C. saw
-D. chisel","Based on the clues, the best fit is B. lizard"
+D. hammer","B. chameleon
+
+Reasoning: Chameleons"
 step1_gecko_03,"A field note says the thing has these attributes:
-- has bright colours
-- lives by the sea
+- lives in trees
+- is a pet
 - is dangerous
 Which option is it? Answer with only A, B, C, or D.
 
 Options:
-A. chisel
-B. lizard
+A. hammer
+B. chameleon
 C. gecko
-D. saw",B
+D. saw",C
 step1_lizard_00,"Which option is the best match for this description?
+- lives in trees
 - in a terrarium
-- is a pet
 - is a freshwater fish
 Answer with only A, B, C, or D.
 
 Options:
-A. hammer
-B. axe
+A. cobra
+B. saw
 C. gecko
 D. lizard",C
 step1_lizard_01,"A catalog card lists these properties:
-- is a pet
+- lives in trees
 - has sharp claws
 - is a freshwater fish
 Which option does the card describe? Answer with only A, B, C, or D.
 
 Options:
-A. axe
+A. saw
 B. lizard
 C. gecko
-D. hammer",C
+D. cobra",A. saw
 step1_lizard_02,"Choose the option that best fits all of these clues:
-- has many teeth
-- has sharp claws
+- lives in trees
+- has bright colours
 - is a freshwater fish
 Answer with only A, B, C, or D.
 
 Options:
 A. gecko
-B. hammer
-C. axe
-D. lizard","Based on the clues, the answer is D. lizard."
+B. cobra
+C. saw
+D. lizard","Based on the clues, the correct answer is D. lizard"
 step1_lizard_03,"A field note says the thing has these attributes:
-- lives by the sea
 - is food for larger animals
+- is not expensive
 - is a freshwater fish
 Which option is it? Answer with only A, B, C, or D.
 
 Options:
 A. gecko
-B. axe
-C. hammer
-D. lizard",A
+B. saw
+C. cobra
+D. lizard",D.
 step1_salamander_00,"Which option is the best match for this description?
+- lives in water
+- is food for larger animals
 - lives in trees
-- in a terrarium
-- has bright colours
 Answer with only A, B, C, or D.
 
 Options:
-A. chisel
-B. blindworm
+A. axe
+B. toad
 C. salamander
-D. saw",C. salamander
+D. saw",B.
 step1_salamander_01,"A catalog card lists these properties:
-- is not expensive
-- lives in trees
-- has many teeth
+- lives in water
+- is food for larger animals
+- has bright colours
 Which option does the card describe? Answer with only A, B, C, or D.
 
 Options:
 A. salamander
 B. saw
-C. chisel
-D. blindworm",B
+C. axe
+D. toad",D. toad
 step1_salamander_02,"Choose the option that best fits all of these clues:
+- has a split tongue
 - is not expensive
-- is food for larger animals
-- is a freshwater fish
+- has bright colours
 Answer with only A, B, C, or D.
 
 Options:
-A. chisel
-B. blindworm
+A. axe
+B. toad
 C. saw
-D. salamander","Based on the clues, the answer is D. salam"
+D. salamander","D. salamander
+
+A salamander has a"
 step1_salamander_03,"A field note says the thing has these attributes:
-- in a terrarium
+- is a freshwater fish
 - has a split tongue
 - has sharp claws
 Which option is it? Answer with only A, B, C, or D.
@@ -489,23 +489,23 @@ Which option is it? Answer with only A, B, C, or D.
 Options:
 A. saw
 B. salamander
-C. blindworm
-D. chisel",B.
+C. toad
+D. axe",B. salamander
 step1_toad_00,"Which option is the best match for this description?
 - has a split tongue
-- is not expensive
-- is lethal
+- lives in water
+- cartoon figure
 Answer with only A, B, C, or D.
 
 Options:
 A. chisel
 B. saw
 C. salamander
-D. toad",D. toad
+D. toad",C. salamander
 step1_toad_01,"A catalog card lists these properties:
 - is not expensive
-- is a freshwater fish
-- is lethal
+- lives in water
+- cartoon figure
 Which option does the card describe? Answer with only A, B, C, or D.
 
 Options:
@@ -514,292 +514,290 @@ B. toad
 C. chisel
 D. saw",B.
 step1_toad_02,"Choose the option that best fits all of these clues:
-- has a split tongue
-- is not expensive
-- herds
+- lives in water
+- is food for larger animals
+- is lethal
 Answer with only A, B, C, or D.
 
 Options:
 A. toad
 B. chisel
 C. saw
-D. salamander","Based on the clues, the answer is A. toad"
+D. salamander","Based on the clues, the answer is D. salam"
 step1_toad_03,"A field note says the thing has these attributes:
-- is a freshwater fish
-- lives in water
-- herds
+- has a split tongue
+- is food for larger animals
+- cartoon figure
 Which option is it? Answer with only A, B, C, or D.
 
 Options:
 A. toad
 B. saw
 C. chisel
-D. salamander",D
+D. salamander",D.
 step1_tortoise_00,"Which option is the best match for this description?
-- is a pet
-- lives by the sea
+- lives in water
+- is food for larger animals
 - strong animal
 Answer with only A, B, C, or D.
 
 Options:
 A. chisel
 B. turtle
-C. hammer
+C. saw
 D. tortoise",B. turtle
 step1_tortoise_01,"A catalog card lists these properties:
 - cartoon figure
-- is not expensive
-- is strong
+- is a pet
+- savanne
 Which option does the card describe? Answer with only A, B, C, or D.
 
 Options:
 A. chisel
 B. turtle
 C. tortoise
-D. hammer",B. turtle
+D. saw",C
 step1_tortoise_02,"Choose the option that best fits all of these clues:
-- cartoon figure
 - lives by the sea
-- savanne
+- herds
+- is strong
 Answer with only A, B, C, or D.
 
 Options:
 A. chisel
 B. tortoise
 C. turtle
-D. hammer","Based on the clues, the best fit is C. turtle"
+D. saw",C. turtle
 step1_tortoise_03,"A field note says the thing has these attributes:
-- is food for larger animals
+- is not expensive
 - lives in water
 - savanne
 Which option is it? Answer with only A, B, C, or D.
 
 Options:
 A. tortoise
-B. hammer
+B. saw
 C. turtle
 D. chisel",C
 step1_turtle_00,"Which option is the best match for this description?
-- cartoon figure
 - lives in water
-- endangered species
+- is food for larger animals
+- is a freshwater fish
 Answer with only A, B, C, or D.
 
 Options:
 A. tortoise
-B. hammer
+B. saw
 C. chisel
 D. turtle",D. turtle
 step1_turtle_01,"A catalog card lists these properties:
-- herds
-- is food for larger animals
+- is not expensive
+- lives in water
 - is a freshwater fish
 Which option does the card describe? Answer with only A, B, C, or D.
 
 Options:
-A. hammer
+A. saw
 B. turtle
 C. tortoise
-D. chisel",B
+D. chisel",B. turtle
 step1_turtle_02,"Choose the option that best fits all of these clues:
-- cartoon figure
-- lives in water
-- is a freshwater fish
+- lives by the sea
+- is food for larger animals
+- has bright colours
 Answer with only A, B, C, or D.
 
 Options:
 A. chisel
 B. tortoise
 C. turtle
-D. hammer",C. turtle
+D. saw",C. turtle
 step1_turtle_03,"A field note says the thing has these attributes:
-- is a pet
-- lives by the sea
-- endangered species
+- lives in water
+- is food for larger animals
+- is a freshwater fish
 Which option is it? Answer with only A, B, C, or D.
 
 Options:
 A. tortoise
-B. hammer
+B. saw
 C. chisel
-D. turtle",D. turtle
+D. turtle",D
 step1_axe_00,"Which option is the best match for this description?
-- used in the middle ages
-- consists of two parts
-- is long
+- is dangerous
+- is slippery
+- not used much
 Answer with only A, B, C, or D.
 
 Options:
 A. axe
-B. saw
-C. gecko
-D. turtle",B. saw
+B. hammer
+C. lizard
+D. blindworm",B. hammer
 step1_axe_01,"A catalog card lists these properties:
-- was used in early ages
-- is dangerous
-- not used much
+- has a grip made of wood
+- made of synthetic material
+- i never use it
 Which option does the card describe? Answer with only A, B, C, or D.
 
 Options:
-A. turtle
-B. saw
-C. gecko
-D. axe",D. axe
+A. blindworm
+B. hammer
+C. lizard
+D. axe","Based on the given properties, the correct answer is B."
 step1_axe_02,"Choose the option that best fits all of these clues:
-- to manifacture wood
-- has a wooden handle
-- is slippery
+- you can make things with it
+- was used in early ages
+- i never use it
 Answer with only A, B, C, or D.
 
 Options:
-A. turtle
+A. blindworm
 B. axe
-C. gecko
-D. saw","B. axe
-
-An axe typically has a wooden handle,"
+C. lizard
+D. hammer",B. axe
 step1_axe_03,"A field note says the thing has these attributes:
-- is brown
-- to manifacture wood
-- is slippery
+- was used in early ages
+- has a wooden handle
+- not used much
 Which option is it? Answer with only A, B, C, or D.
 
 Options:
-A. turtle
-B. saw
-C. gecko
-D. axe",A
+A. blindworm
+B. hammer
+C. lizard
+D. axe",D.
 step1_chisel_00,"Which option is the best match for this description?
-- not used much
-- was used in early ages
-- is cheap
+- you can make things with it
+- consists of two parts
+- i never use it
 Answer with only A, B, C, or D.
 
 Options:
-A. gecko
-B. turtle
-C. axe
-D. chisel",C. axe
+A. snake
+B. toad
+C. hammer
+D. chisel",C. hammer
 step1_chisel_01,"A catalog card lists these properties:
-- was used in early ages
+- to manifacture wood
 - used in the middle ages
-- is cheap
+- i never use it
 Which option does the card describe? Answer with only A, B, C, or D.
 
 Options:
-A. turtle
-B. gecko
+A. toad
+B. snake
 C. chisel
-D. axe",D. axe
+D. hammer",C
 step1_chisel_02,"Choose the option that best fits all of these clues:
-- has a grip made of wood
+- consists of two parts
+- is made from a tree
 - not used much
-- is small
 Answer with only A, B, C, or D.
 
 Options:
-A. axe
-B. gecko
-C. turtle
+A. hammer
+B. snake
+C. toad
 D. chisel","Based on the clues, the best fit is D. ch"
 step1_chisel_03,"A field note says the thing has these attributes:
-- has a wooden handle
-- you can make things with it
+- is small
 - is cheap
+- not used much
 Which option is it? Answer with only A, B, C, or D.
 
 Options:
-A. axe
-B. gecko
+A. hammer
+B. snake
 C. chisel
-D. turtle",A
+D. toad",B.
 step1_hammer_00,"Which option is the best match for this description?
-- made of synthetic material
-- was used in early ages
-- used by mechanics
+- is long
+- used in the middle ages
+- is small
 Answer with only A, B, C, or D.
 
 Options:
 A. salamander
 B. hammer
-C. blindworm
-D. axe","Based on the description, the best match is B. hammer"
+C. crocodile
+D. axe",B. hammer
 step1_hammer_01,"A catalog card lists these properties:
-- is brown
-- has a wooden handle
-- is small
+- was used in early ages
+- has a grip made of wood
+- used by mechanics
 Which option does the card describe? Answer with only A, B, C, or D.
 
 Options:
 A. axe
 B. hammer
 C. salamander
-D. blindworm",B. hammer
+D. crocodile",B. hammer
 step1_hammer_02,"Choose the option that best fits all of these clues:
-- is long
 - used by farmers
+- is long
 - is cheap
 Answer with only A, B, C, or D.
 
 Options:
 A. axe
-B. blindworm
+B. crocodile
 C. salamander
-D. hammer","Based on the clues, the best fit is A. axe"
+D. hammer","Based on the clues, the best answer is A. axe"
 step1_hammer_03,"A field note says the thing has these attributes:
-- is long
+- is made from a tree
 - used by farmers
-- is small
+- is cheap
 Which option is it? Answer with only A, B, C, or D.
 
 Options:
 A. hammer
-B. blindworm
+B. crocodile
 C. axe
-D. salamander",A.
+D. salamander",C
 step1_saw_00,"Which option is the best match for this description?
+- used by farmers
 - consists of two parts
-- is dangerous
 - used by mechanics
 Answer with only A, B, C, or D.
 
 Options:
-A. turtle
+A. tortoise
 B. saw
 C. toad
 D. axe",B. saw
 step1_saw_01,"A catalog card lists these properties:
-- is made from a tree
-- is dangerous
+- has a wooden handle
+- is brown
 - used by mechanics
 Which option does the card describe? Answer with only A, B, C, or D.
 
 Options:
 A. axe
-B. turtle
+B. tortoise
 C. toad
 D. saw",D
 step1_saw_02,"Choose the option that best fits all of these clues:
-- you can make things with it
-- used by farmers
+- has a wooden handle
+- is made from a tree
 - used by mechanics
 Answer with only A, B, C, or D.
 
 Options:
 A. axe
 B. toad
-C. turtle
+C. tortoise
 D. saw","D. saw
 
-A saw is used by both farmers ("
+The saw is the best fit for the"
 step1_saw_03,"A field note says the thing has these attributes:
-- has a wooden handle
-- is dangerous
+- made of synthetic material
+- consists of two parts
 - used by mechanics
 Which option is it? Answer with only A, B, C, or D.
 
 Options:
 A. toad
-B. turtle
+B. tortoise
 C. axe
 D. saw",D

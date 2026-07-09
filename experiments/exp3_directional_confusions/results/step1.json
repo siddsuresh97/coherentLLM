@@ -1,26 +1,24 @@
 {
-  "accuracy": 0.375,
+  "accuracy": 0.4861111111111111,
   "base_rate_control": {
     "error_choice_counts": {
-      "alligator": 2,
-      "axe": 5,
+      "axe": 3,
       "boa python": 1,
-      "chisel": 1,
-      "crocodile": 8,
+      "chameleon": 4,
+      "crocodile": 4,
       "gecko": 4,
-      "lizard": 3,
-      "salamander": 6,
+      "hammer": 3,
+      "salamander": 3,
       "saw": 2,
-      "snake": 3,
-      "toad": 1,
-      "tortoise": 3,
+      "snake": 5,
+      "toad": 2,
       "turtle": 6
     },
-    "expected_near_fraction": 0.45355233002291806,
-    "n_error_choices": 45,
-    "observed_minus_expected": 0.346447669977082
+    "expected_near_fraction": 0.46509046509046503,
+    "n_error_choices": 37,
+    "observed_minus_expected": 0.31869331869331874
   },
-  "far_errors": 9,
+  "far_errors": 8,
   "gates": {
     "enough_directional_errors": true,
     "human_sanity_gate_passed": true,
@@ -31,27 +29,38 @@
   "h1_verdict": "green_directional",
   "h2_distance_slope": {
     "bootstrap_ci_95": [
-      -0.8769970123889884,
-      -0.3586413218928585
+      -0.3382161163791806,
+      -0.12500199099784218
     ],
     "interpretation": "H2 predicts this slope is negative.",
-    "slope_substitution_rate_per_rdm_distance": -0.620137168582179
+    "slope_substitution_rate_per_rdm_distance": -0.23302126750813953
   },
-  "n_correct": 27,
-  "n_directional_errors_near_or_far": 45,
-  "n_errors": 45,
-  "n_errors_with_parseable_choice": 45,
+  "items_path": "experiments/exp3_directional_confusions/items/step1/items.json",
+  "items_sha256": "796c51e9b19718315b452d29cefcf9e693f1a619fce670bbbc5130df652bc448",
+  "model": "llama-3.1-8b-instruct",
+  "n_correct": 35,
+  "n_directional_errors_near_or_far": 37,
+  "n_errors": 37,
+  "n_errors_with_parseable_choice": 37,
   "n_items": 72,
-  "near_errors": 36,
-  "near_fraction_among_directional_errors": 0.8,
+  "near_errors": 29,
+  "near_fraction_among_directional_errors": 0.7837837837837838,
+  "neighbors_path": "experiments/exp3_directional_confusions/neighbors.json",
+  "neighbors_registered_at": "2026-07-09T16:01:22-05:00",
   "predicted_vs_actual_confusion_agreement": {
-    "pearson_r_neg_distance_vs_substitution_rate": 0.6342101969350136
+    "pearson_r_neg_distance_vs_substitution_rate": 0.5781263342845745
   },
+  "raw_item_responses_path": "experiments/exp3_directional_confusions/raw/step1_items_v1/items.csv",
+  "rdm_built_at": "2026-07-09T16:01:04-05:00",
+  "rdm_distance_metric": "cosine_distance",
+  "rdm_path": "experiments/exp3_directional_confusions/artifacts/rdm.npy",
+  "rdm_sha256": "5a1f95599aeac93c3608689eff7003bde636366d91fba59bd1477950369fb894",
+  "rdm_source": "salmon_embedding",
   "run": "step1_items_v1",
-  "scored_at": "2026-07-09T15:10:12-05:00",
+  "scored_at": "2026-07-09T16:03:39-05:00",
   "shuffle_geometry_null": {
-    "mean_near_fraction": 0.3325866666666667,
-    "p95_near_fraction": 0.4444444444444444,
+    "mean_near_fraction": 0.3324864864864865,
+    "p95_near_fraction": 0.4594594594594595,
     "p_value_ge_observed": 0.0001999600079984003
   }
 }

@@ -3,28 +3,28 @@
     "correct_answer": "alligator",
     "correct_letter": "D",
     "far_controls": [
-      "blindworm",
-      "salamander"
+      "chameleon",
+      "cobra"
     ],
     "feature_clues": [
-      "endangered species",
-      "cartoon figure",
-      "kind of crocodile"
+      "is a freshwater fish",
+      "lives by the sea",
+      "lives in a swamp"
     ],
     "item_id": "step1_alligator_00",
     "options": [
       {
-        "concept": "salamander",
+        "concept": "cobra",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "crocodile",
+        "concept": "turtle",
         "letter": "B",
         "role": "near"
       },
       {
-        "concept": "blindworm",
+        "concept": "chameleon",
         "letter": "C",
         "role": "far"
       },
@@ -34,8 +34,8 @@
         "role": "correct"
       }
     ],
-    "predicted_near": "crocodile",
-    "prompt": "Which option is the best match for this description?\n- endangered species\n- cartoon figure\n- kind of crocodile\nAnswer with only A, B, C, or D.\n\nOptions:\nA. salamander\nB. crocodile\nC. blindworm\nD. alligator",
+    "predicted_near": "turtle",
+    "prompt": "Which option is the best match for this description?\n- is a freshwater fish\n- lives by the sea\n- lives in a swamp\nAnswer with only A, B, C, or D.\n\nOptions:\nA. cobra\nB. turtle\nC. chameleon\nD. alligator",
     "target": "alligator",
     "template_variant": 0
   },
@@ -43,18 +43,18 @@
     "correct_answer": "alligator",
     "correct_letter": "B",
     "far_controls": [
-      "blindworm",
-      "salamander"
+      "chameleon",
+      "cobra"
     ],
     "feature_clues": [
-      "is a freshwater fish",
-      "has sharp claws",
-      "kind of crocodile"
+      "herds",
+      "lives by the sea",
+      "lives in a swamp"
     ],
     "item_id": "step1_alligator_01",
     "options": [
       {
-        "concept": "salamander",
+        "concept": "cobra",
         "letter": "A",
         "role": "far"
       },
@@ -64,18 +64,18 @@
         "role": "correct"
       },
       {
-        "concept": "crocodile",
+        "concept": "turtle",
         "letter": "C",
         "role": "near"
       },
       {
-        "concept": "blindworm",
+        "concept": "chameleon",
         "letter": "D",
         "role": "far"
       }
     ],
-    "predicted_near": "crocodile",
-    "prompt": "A catalog card lists these properties:\n- is a freshwater fish\n- has sharp claws\n- kind of crocodile\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. salamander\nB. alligator\nC. crocodile\nD. blindworm",
+    "predicted_near": "turtle",
+    "prompt": "A catalog card lists these properties:\n- herds\n- lives by the sea\n- lives in a swamp\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. cobra\nB. alligator\nC. turtle\nD. chameleon",
     "target": "alligator",
     "template_variant": 1
   },
@@ -83,28 +83,28 @@
     "correct_answer": "alligator",
     "correct_letter": "D",
     "far_controls": [
-      "blindworm",
-      "salamander"
+      "chameleon",
+      "cobra"
     ],
     "feature_clues": [
-      "is rare",
-      "is strong",
-      "kind of crocodile"
+      "lives by the sea",
+      "is a freshwater fish",
+      "lives in a swamp"
     ],
     "item_id": "step1_alligator_02",
     "options": [
       {
-        "concept": "blindworm",
+        "concept": "chameleon",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "salamander",
+        "concept": "cobra",
         "letter": "B",
         "role": "far"
       },
       {
-        "concept": "crocodile",
+        "concept": "turtle",
         "letter": "C",
         "role": "near"
       },
@@ -114,8 +114,8 @@
         "role": "correct"
       }
     ],
-    "predicted_near": "crocodile",
-    "prompt": "Choose the option that best fits all of these clues:\n- is rare\n- is strong\n- kind of crocodile\nAnswer with only A, B, C, or D.\n\nOptions:\nA. blindworm\nB. salamander\nC. crocodile\nD. alligator",
+    "predicted_near": "turtle",
+    "prompt": "Choose the option that best fits all of these clues:\n- lives by the sea\n- is a freshwater fish\n- lives in a swamp\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chameleon\nB. cobra\nC. turtle\nD. alligator",
     "target": "alligator",
     "template_variant": 2
   },
@@ -123,28 +123,28 @@
     "correct_answer": "alligator",
     "correct_letter": "D",
     "far_controls": [
-      "blindworm",
-      "salamander"
+      "chameleon",
+      "cobra"
     ],
     "feature_clues": [
-      "lives by the sea",
-      "is lethal",
-      "kind of crocodile"
+      "cartoon figure",
+      "is a freshwater fish",
+      "lives in a swamp"
     ],
     "item_id": "step1_alligator_03",
     "options": [
       {
-        "concept": "crocodile",
+        "concept": "turtle",
         "letter": "A",
         "role": "near"
       },
       {
-        "concept": "salamander",
+        "concept": "cobra",
         "letter": "B",
         "role": "far"
       },
       {
-        "concept": "blindworm",
+        "concept": "chameleon",
         "letter": "C",
         "role": "far"
       },
@@ -154,8 +154,8 @@
         "role": "correct"
       }
     ],
-    "predicted_near": "crocodile",
-    "prompt": "A field note says the thing has these attributes:\n- lives by the sea\n- is lethal\n- kind of crocodile\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. crocodile\nB. salamander\nC. blindworm\nD. alligator",
+    "predicted_near": "turtle",
+    "prompt": "A field note says the thing has these attributes:\n- cartoon figure\n- is a freshwater fish\n- lives in a swamp\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. turtle\nB. cobra\nC. chameleon\nD. alligator",
     "target": "alligator",
     "template_variant": 3
   },
@@ -164,10 +164,10 @@
     "correct_letter": "D",
     "far_controls": [
       "chisel",
-      "tortoise"
+      "cobra"
     ],
     "feature_clues": [
-      "lives by the sea",
+      "endangered species",
       "is lethal",
       "kind of crocodile"
     ],
@@ -184,7 +184,7 @@
         "role": "near"
       },
       {
-        "concept": "tortoise",
+        "concept": "cobra",
         "letter": "C",
         "role": "far"
       },
@@ -195,7 +195,7 @@
       }
     ],
     "predicted_near": "crocodile",
-    "prompt": "Which option is the best match for this description?\n- lives by the sea\n- is lethal\n- kind of crocodile\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. crocodile\nC. tortoise\nD. caiman",
+    "prompt": "Which option is the best match for this description?\n- endangered species\n- is lethal\n- kind of crocodile\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. crocodile\nC. cobra\nD. caiman",
     "target": "caiman",
     "template_variant": 0
   },
@@ -204,11 +204,11 @@
     "correct_letter": "C",
     "far_controls": [
       "chisel",
-      "tortoise"
+      "cobra"
     ],
     "feature_clues": [
-      "is rare",
-      "endangered species",
+      "has sharp claws",
+      "lives by the sea",
       "kind of crocodile"
     ],
     "item_id": "step1_caiman_01",
@@ -219,7 +219,7 @@
         "role": "near"
       },
       {
-        "concept": "tortoise",
+        "concept": "cobra",
         "letter": "B",
         "role": "far"
       },
@@ -235,7 +235,7 @@
       }
     ],
     "predicted_near": "crocodile",
-    "prompt": "A catalog card lists these properties:\n- is rare\n- endangered species\n- kind of crocodile\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. crocodile\nB. tortoise\nC. caiman\nD. chisel",
+    "prompt": "A catalog card lists these properties:\n- has sharp claws\n- lives by the sea\n- kind of crocodile\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. crocodile\nB. cobra\nC. caiman\nD. chisel",
     "target": "caiman",
     "template_variant": 1
   },
@@ -244,11 +244,11 @@
     "correct_letter": "C",
     "far_controls": [
       "chisel",
-      "tortoise"
+      "cobra"
     ],
     "feature_clues": [
-      "has many teeth",
-      "lives by the sea",
+      "is lethal",
+      "endangered species",
       "kind of crocodile"
     ],
     "item_id": "step1_caiman_02",
@@ -259,7 +259,7 @@
         "role": "far"
       },
       {
-        "concept": "tortoise",
+        "concept": "cobra",
         "letter": "B",
         "role": "far"
       },
@@ -275,7 +275,7 @@
       }
     ],
     "predicted_near": "crocodile",
-    "prompt": "Choose the option that best fits all of these clues:\n- has many teeth\n- lives by the sea\n- kind of crocodile\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. tortoise\nC. caiman\nD. crocodile",
+    "prompt": "Choose the option that best fits all of these clues:\n- is lethal\n- endangered species\n- kind of crocodile\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. cobra\nC. caiman\nD. crocodile",
     "target": "caiman",
     "template_variant": 2
   },
@@ -284,11 +284,11 @@
     "correct_letter": "B",
     "far_controls": [
       "chisel",
-      "tortoise"
+      "cobra"
     ],
     "feature_clues": [
-      "herds",
-      "lives by the sea",
+      "is rare",
+      "has sharp claws",
       "kind of crocodile"
     ],
     "item_id": "step1_caiman_03",
@@ -309,13 +309,13 @@
         "role": "far"
       },
       {
-        "concept": "tortoise",
+        "concept": "cobra",
         "letter": "D",
         "role": "far"
       }
     ],
     "predicted_near": "crocodile",
-    "prompt": "A field note says the thing has these attributes:\n- herds\n- lives by the sea\n- kind of crocodile\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. crocodile\nB. caiman\nC. chisel\nD. tortoise",
+    "prompt": "A field note says the thing has these attributes:\n- is rare\n- has sharp claws\n- kind of crocodile\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. crocodile\nB. caiman\nC. chisel\nD. cobra",
     "target": "caiman",
     "template_variant": 3
   },
@@ -323,18 +323,18 @@
     "correct_answer": "crocodile",
     "correct_letter": "B",
     "far_controls": [
-      "axe",
+      "chisel",
       "saw"
     ],
     "feature_clues": [
-      "is lethal",
-      "is strong",
-      "appears in fairy tales and stories"
+      "lives by the sea",
+      "lives in water",
+      "is dangerous"
     ],
     "item_id": "step1_crocodile_00",
     "options": [
       {
-        "concept": "alligator",
+        "concept": "tortoise",
         "letter": "A",
         "role": "near"
       },
@@ -349,13 +349,13 @@
         "role": "far"
       },
       {
-        "concept": "axe",
+        "concept": "chisel",
         "letter": "D",
         "role": "far"
       }
     ],
-    "predicted_near": "alligator",
-    "prompt": "Which option is the best match for this description?\n- is lethal\n- is strong\n- appears in fairy tales and stories\nAnswer with only A, B, C, or D.\n\nOptions:\nA. alligator\nB. crocodile\nC. saw\nD. axe",
+    "predicted_near": "tortoise",
+    "prompt": "Which option is the best match for this description?\n- lives by the sea\n- lives in water\n- is dangerous\nAnswer with only A, B, C, or D.\n\nOptions:\nA. tortoise\nB. crocodile\nC. saw\nD. chisel",
     "target": "crocodile",
     "template_variant": 0
   },
@@ -363,13 +363,13 @@
     "correct_answer": "crocodile",
     "correct_letter": "A",
     "far_controls": [
-      "axe",
+      "chisel",
       "saw"
     ],
     "feature_clues": [
-      "herds",
-      "savanne",
-      "lays eggs in sand"
+      "is strong",
+      "lives in water",
+      "has many teeth"
     ],
     "item_id": "step1_crocodile_01",
     "options": [
@@ -379,7 +379,7 @@
         "role": "correct"
       },
       {
-        "concept": "alligator",
+        "concept": "tortoise",
         "letter": "B",
         "role": "near"
       },
@@ -389,13 +389,13 @@
         "role": "far"
       },
       {
-        "concept": "axe",
+        "concept": "chisel",
         "letter": "D",
         "role": "far"
       }
     ],
-    "predicted_near": "alligator",
-    "prompt": "A catalog card lists these properties:\n- herds\n- savanne\n- lays eggs in sand\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. crocodile\nB. alligator\nC. saw\nD. axe",
+    "predicted_near": "tortoise",
+    "prompt": "A catalog card lists these properties:\n- is strong\n- lives in water\n- has many teeth\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. crocodile\nB. tortoise\nC. saw\nD. chisel",
     "target": "crocodile",
     "template_variant": 1
   },
@@ -403,13 +403,13 @@
     "correct_answer": "crocodile",
     "correct_letter": "B",
     "far_controls": [
-      "axe",
+      "chisel",
       "saw"
     ],
     "feature_clues": [
-      "endangered species",
-      "strong animal",
-      "lays eggs in sand"
+      "cartoon figure",
+      "is strong",
+      "is a freshwater fish"
     ],
     "item_id": "step1_crocodile_02",
     "options": [
@@ -424,18 +424,18 @@
         "role": "correct"
       },
       {
-        "concept": "axe",
+        "concept": "chisel",
         "letter": "C",
         "role": "far"
       },
       {
-        "concept": "alligator",
+        "concept": "tortoise",
         "letter": "D",
         "role": "near"
       }
     ],
-    "predicted_near": "alligator",
-    "prompt": "Choose the option that best fits all of these clues:\n- endangered species\n- strong animal\n- lays eggs in sand\nAnswer with only A, B, C, or D.\n\nOptions:\nA. saw\nB. crocodile\nC. axe\nD. alligator",
+    "predicted_near": "tortoise",
+    "prompt": "Choose the option that best fits all of these clues:\n- cartoon figure\n- is strong\n- is a freshwater fish\nAnswer with only A, B, C, or D.\n\nOptions:\nA. saw\nB. crocodile\nC. chisel\nD. tortoise",
     "target": "crocodile",
     "template_variant": 2
   },
@@ -443,13 +443,13 @@
     "correct_answer": "crocodile",
     "correct_letter": "D",
     "far_controls": [
-      "axe",
+      "chisel",
       "saw"
     ],
     "feature_clues": [
-      "is lethal",
-      "is strong",
-      "lays eggs in sand"
+      "herds",
+      "lives by the sea",
+      "is rare"
     ],
     "item_id": "step1_crocodile_03",
     "options": [
@@ -459,12 +459,12 @@
         "role": "far"
       },
       {
-        "concept": "axe",
+        "concept": "chisel",
         "letter": "B",
         "role": "far"
       },
       {
-        "concept": "alligator",
+        "concept": "tortoise",
         "letter": "C",
         "role": "near"
       },
@@ -474,8 +474,8 @@
         "role": "correct"
       }
     ],
-    "predicted_near": "alligator",
-    "prompt": "A field note says the thing has these attributes:\n- is lethal\n- is strong\n- lays eggs in sand\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. saw\nB. axe\nC. alligator\nD. crocodile",
+    "predicted_near": "tortoise",
+    "prompt": "A field note says the thing has these attributes:\n- herds\n- lives by the sea\n- is rare\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. saw\nB. chisel\nC. tortoise\nD. crocodile",
     "target": "crocodile",
     "template_variant": 3
   },
@@ -483,23 +483,23 @@
     "correct_answer": "boa python",
     "correct_letter": "D",
     "far_controls": [
-      "chisel",
-      "toad"
+      "chameleon",
+      "gecko"
     ],
     "feature_clues": [
+      "is strong",
       "is lethal",
-      "in a terrarium",
-      "is rare"
+      "often sits in parks"
     ],
     "item_id": "step1_boa_python_00",
     "options": [
       {
-        "concept": "toad",
+        "concept": "gecko",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "chameleon",
         "letter": "B",
         "role": "far"
       },
@@ -515,7 +515,7 @@
       }
     ],
     "predicted_near": "snake",
-    "prompt": "Which option is the best match for this description?\n- is lethal\n- in a terrarium\n- is rare\nAnswer with only A, B, C, or D.\n\nOptions:\nA. toad\nB. chisel\nC. snake\nD. boa python",
+    "prompt": "Which option is the best match for this description?\n- is strong\n- is lethal\n- often sits in parks\nAnswer with only A, B, C, or D.\n\nOptions:\nA. gecko\nB. chameleon\nC. snake\nD. boa python",
     "target": "boa python",
     "template_variant": 0
   },
@@ -523,13 +523,13 @@
     "correct_answer": "boa python",
     "correct_letter": "A",
     "far_controls": [
-      "chisel",
-      "toad"
+      "chameleon",
+      "gecko"
     ],
     "feature_clues": [
+      "is dangerous",
       "has a split tongue",
-      "savanne",
-      "is rare"
+      "often sits in parks"
     ],
     "item_id": "step1_boa_python_01",
     "options": [
@@ -544,18 +544,18 @@
         "role": "near"
       },
       {
-        "concept": "toad",
+        "concept": "gecko",
         "letter": "C",
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "chameleon",
         "letter": "D",
         "role": "far"
       }
     ],
     "predicted_near": "snake",
-    "prompt": "A catalog card lists these properties:\n- has a split tongue\n- savanne\n- is rare\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. boa python\nB. snake\nC. toad\nD. chisel",
+    "prompt": "A catalog card lists these properties:\n- is dangerous\n- has a split tongue\n- often sits in parks\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. boa python\nB. snake\nC. gecko\nD. chameleon",
     "target": "boa python",
     "template_variant": 1
   },
@@ -563,23 +563,23 @@
     "correct_answer": "boa python",
     "correct_letter": "D",
     "far_controls": [
-      "chisel",
-      "toad"
+      "chameleon",
+      "gecko"
     ],
     "feature_clues": [
       "has a split tongue",
-      "has bright colours",
-      "is rare"
+      "is lethal",
+      "often sits in parks"
     ],
     "item_id": "step1_boa_python_02",
     "options": [
       {
-        "concept": "chisel",
+        "concept": "chameleon",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "toad",
+        "concept": "gecko",
         "letter": "B",
         "role": "far"
       },
@@ -595,7 +595,7 @@
       }
     ],
     "predicted_near": "snake",
-    "prompt": "Choose the option that best fits all of these clues:\n- has a split tongue\n- has bright colours\n- is rare\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. toad\nC. snake\nD. boa python",
+    "prompt": "Choose the option that best fits all of these clues:\n- has a split tongue\n- is lethal\n- often sits in parks\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chameleon\nB. gecko\nC. snake\nD. boa python",
     "target": "boa python",
     "template_variant": 2
   },
@@ -603,23 +603,23 @@
     "correct_answer": "boa python",
     "correct_letter": "C",
     "far_controls": [
-      "chisel",
-      "toad"
+      "chameleon",
+      "gecko"
     ],
     "feature_clues": [
-      "is strong",
-      "in a terrarium",
-      "is rare"
+      "has a split tongue",
+      "strong animal",
+      "often sits in parks"
     ],
     "item_id": "step1_boa_python_03",
     "options": [
       {
-        "concept": "toad",
+        "concept": "gecko",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "chameleon",
         "letter": "B",
         "role": "far"
       },
@@ -635,7 +635,7 @@
       }
     ],
     "predicted_near": "snake",
-    "prompt": "A field note says the thing has these attributes:\n- is strong\n- in a terrarium\n- is rare\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. toad\nB. chisel\nC. boa python\nD. snake",
+    "prompt": "A field note says the thing has these attributes:\n- has a split tongue\n- strong animal\n- often sits in parks\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. gecko\nB. chameleon\nC. boa python\nD. snake",
     "target": "boa python",
     "template_variant": 3
   },
@@ -643,13 +643,13 @@
     "correct_answer": "cobra",
     "correct_letter": "B",
     "far_controls": [
-      "tortoise",
-      "salamander"
+      "caiman",
+      "chisel"
     ],
     "feature_clues": [
       "has bright colours",
-      "lives in trees",
-      "is rare"
+      "is strong",
+      "looks like a snake"
     ],
     "item_id": "step1_cobra_00",
     "options": [
@@ -664,18 +664,18 @@
         "role": "correct"
       },
       {
-        "concept": "tortoise",
+        "concept": "caiman",
         "letter": "C",
         "role": "far"
       },
       {
-        "concept": "salamander",
+        "concept": "chisel",
         "letter": "D",
         "role": "far"
       }
     ],
     "predicted_near": "snake",
-    "prompt": "Which option is the best match for this description?\n- has bright colours\n- lives in trees\n- is rare\nAnswer with only A, B, C, or D.\n\nOptions:\nA. snake\nB. cobra\nC. tortoise\nD. salamander",
+    "prompt": "Which option is the best match for this description?\n- has bright colours\n- is strong\n- looks like a snake\nAnswer with only A, B, C, or D.\n\nOptions:\nA. snake\nB. cobra\nC. caiman\nD. chisel",
     "target": "cobra",
     "template_variant": 0
   },
@@ -683,18 +683,18 @@
     "correct_answer": "cobra",
     "correct_letter": "D",
     "far_controls": [
-      "tortoise",
-      "salamander"
+      "caiman",
+      "chisel"
     ],
     "feature_clues": [
-      "endangered species",
-      "cartoon figure",
-      "is rare"
+      "is dangerous",
+      "has a split tongue",
+      "looks like a snake"
     ],
     "item_id": "step1_cobra_01",
     "options": [
       {
-        "concept": "tortoise",
+        "concept": "caiman",
         "letter": "A",
         "role": "far"
       },
@@ -704,7 +704,7 @@
         "role": "near"
       },
       {
-        "concept": "salamander",
+        "concept": "chisel",
         "letter": "C",
         "role": "far"
       },
@@ -715,7 +715,7 @@
       }
     ],
     "predicted_near": "snake",
-    "prompt": "A catalog card lists these properties:\n- endangered species\n- cartoon figure\n- is rare\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. tortoise\nB. snake\nC. salamander\nD. cobra",
+    "prompt": "A catalog card lists these properties:\n- is dangerous\n- has a split tongue\n- looks like a snake\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. caiman\nB. snake\nC. chisel\nD. cobra",
     "target": "cobra",
     "template_variant": 1
   },
@@ -723,23 +723,23 @@
     "correct_answer": "cobra",
     "correct_letter": "D",
     "far_controls": [
-      "tortoise",
-      "salamander"
+      "caiman",
+      "chisel"
     ],
     "feature_clues": [
-      "is dangerous",
+      "endangered species",
       "is lethal",
-      "is rare"
+      "looks like a snake"
     ],
     "item_id": "step1_cobra_02",
     "options": [
       {
-        "concept": "tortoise",
+        "concept": "caiman",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "salamander",
+        "concept": "chisel",
         "letter": "B",
         "role": "far"
       },
@@ -755,7 +755,7 @@
       }
     ],
     "predicted_near": "snake",
-    "prompt": "Choose the option that best fits all of these clues:\n- is dangerous\n- is lethal\n- is rare\nAnswer with only A, B, C, or D.\n\nOptions:\nA. tortoise\nB. salamander\nC. snake\nD. cobra",
+    "prompt": "Choose the option that best fits all of these clues:\n- endangered species\n- is lethal\n- looks like a snake\nAnswer with only A, B, C, or D.\n\nOptions:\nA. caiman\nB. chisel\nC. snake\nD. cobra",
     "target": "cobra",
     "template_variant": 2
   },
@@ -763,23 +763,23 @@
     "correct_answer": "cobra",
     "correct_letter": "C",
     "far_controls": [
-      "tortoise",
-      "salamander"
+      "caiman",
+      "chisel"
     ],
     "feature_clues": [
-      "savanne",
       "has bright colours",
-      "is rare"
+      "is strong",
+      "looks like a snake"
     ],
     "item_id": "step1_cobra_03",
     "options": [
       {
-        "concept": "tortoise",
+        "concept": "caiman",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "salamander",
+        "concept": "chisel",
         "letter": "B",
         "role": "far"
       },
@@ -795,7 +795,7 @@
       }
     ],
     "predicted_near": "snake",
-    "prompt": "A field note says the thing has these attributes:\n- savanne\n- has bright colours\n- is rare\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. tortoise\nB. salamander\nC. cobra\nD. snake",
+    "prompt": "A field note says the thing has these attributes:\n- has bright colours\n- is strong\n- looks like a snake\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. caiman\nB. chisel\nC. cobra\nD. snake",
     "target": "cobra",
     "template_variant": 3
   },
@@ -803,23 +803,23 @@
     "correct_answer": "snake",
     "correct_letter": "C",
     "far_controls": [
-      "toad",
-      "chisel"
+      "chameleon",
+      "saw"
     ],
     "feature_clues": [
-      "is lethal",
-      "is strong",
-      "lives by the sea"
+      "in a terrarium",
+      "lives in trees",
+      "cartoon figure"
     ],
     "item_id": "step1_snake_00",
     "options": [
       {
-        "concept": "toad",
+        "concept": "chameleon",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "saw",
         "letter": "B",
         "role": "far"
       },
@@ -835,7 +835,7 @@
       }
     ],
     "predicted_near": "boa python",
-    "prompt": "Which option is the best match for this description?\n- is lethal\n- is strong\n- lives by the sea\nAnswer with only A, B, C, or D.\n\nOptions:\nA. toad\nB. chisel\nC. snake\nD. boa python",
+    "prompt": "Which option is the best match for this description?\n- in a terrarium\n- lives in trees\n- cartoon figure\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chameleon\nB. saw\nC. snake\nD. boa python",
     "target": "snake",
     "template_variant": 0
   },
@@ -843,13 +843,13 @@
     "correct_answer": "snake",
     "correct_letter": "A",
     "far_controls": [
-      "toad",
-      "chisel"
+      "chameleon",
+      "saw"
     ],
     "feature_clues": [
-      "is lethal",
-      "is strong",
-      "lives by the sea"
+      "in a terrarium",
+      "has bright colours",
+      "is a freshwater fish"
     ],
     "item_id": "step1_snake_01",
     "options": [
@@ -859,12 +859,12 @@
         "role": "correct"
       },
       {
-        "concept": "chisel",
+        "concept": "saw",
         "letter": "B",
         "role": "far"
       },
       {
-        "concept": "toad",
+        "concept": "chameleon",
         "letter": "C",
         "role": "far"
       },
@@ -875,7 +875,7 @@
       }
     ],
     "predicted_near": "boa python",
-    "prompt": "A catalog card lists these properties:\n- is lethal\n- is strong\n- lives by the sea\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. snake\nB. chisel\nC. toad\nD. boa python",
+    "prompt": "A catalog card lists these properties:\n- in a terrarium\n- has bright colours\n- is a freshwater fish\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. snake\nB. saw\nC. chameleon\nD. boa python",
     "target": "snake",
     "template_variant": 1
   },
@@ -883,23 +883,23 @@
     "correct_answer": "snake",
     "correct_letter": "D",
     "far_controls": [
-      "toad",
-      "chisel"
+      "chameleon",
+      "saw"
     ],
     "feature_clues": [
+      "is dangerous",
       "has a split tongue",
-      "has bright colours",
       "lives by the sea"
     ],
     "item_id": "step1_snake_02",
     "options": [
       {
-        "concept": "toad",
+        "concept": "chameleon",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "saw",
         "letter": "B",
         "role": "far"
       },
@@ -915,7 +915,7 @@
       }
     ],
     "predicted_near": "boa python",
-    "prompt": "Choose the option that best fits all of these clues:\n- has a split tongue\n- has bright colours\n- lives by the sea\nAnswer with only A, B, C, or D.\n\nOptions:\nA. toad\nB. chisel\nC. boa python\nD. snake",
+    "prompt": "Choose the option that best fits all of these clues:\n- is dangerous\n- has a split tongue\n- lives by the sea\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chameleon\nB. saw\nC. boa python\nD. snake",
     "target": "snake",
     "template_variant": 2
   },
@@ -923,23 +923,23 @@
     "correct_answer": "snake",
     "correct_letter": "D",
     "far_controls": [
-      "toad",
-      "chisel"
+      "chameleon",
+      "saw"
     ],
     "feature_clues": [
-      "in a terrarium",
-      "is a pet",
-      "lives by the sea"
+      "endangered species",
+      "has bright colours",
+      "cartoon figure"
     ],
     "item_id": "step1_snake_03",
     "options": [
       {
-        "concept": "toad",
+        "concept": "chameleon",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "saw",
         "letter": "B",
         "role": "far"
       },
@@ -955,7 +955,7 @@
       }
     ],
     "predicted_near": "boa python",
-    "prompt": "A field note says the thing has these attributes:\n- in a terrarium\n- is a pet\n- lives by the sea\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. toad\nB. chisel\nC. boa python\nD. snake",
+    "prompt": "A field note says the thing has these attributes:\n- endangered species\n- has bright colours\n- cartoon figure\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. chameleon\nB. saw\nC. boa python\nD. snake",
     "target": "snake",
     "template_variant": 3
   },
@@ -963,23 +963,23 @@
     "correct_answer": "blindworm",
     "correct_letter": "C",
     "far_controls": [
-      "chisel",
-      "alligator"
+      "saw",
+      "axe"
     ],
     "feature_clues": [
+      "herds",
       "has a split tongue",
-      "in a terrarium",
-      "live in the mountains"
+      "in a terrarium"
     ],
     "item_id": "step1_blindworm_00",
     "options": [
       {
-        "concept": "alligator",
+        "concept": "axe",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "saw",
         "letter": "B",
         "role": "far"
       },
@@ -989,13 +989,13 @@
         "role": "correct"
       },
       {
-        "concept": "salamander",
+        "concept": "toad",
         "letter": "D",
         "role": "near"
       }
     ],
-    "predicted_near": "salamander",
-    "prompt": "Which option is the best match for this description?\n- has a split tongue\n- in a terrarium\n- live in the mountains\nAnswer with only A, B, C, or D.\n\nOptions:\nA. alligator\nB. chisel\nC. blindworm\nD. salamander",
+    "predicted_near": "toad",
+    "prompt": "Which option is the best match for this description?\n- herds\n- has a split tongue\n- in a terrarium\nAnswer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. saw\nC. blindworm\nD. toad",
     "target": "blindworm",
     "template_variant": 0
   },
@@ -1003,23 +1003,23 @@
     "correct_answer": "blindworm",
     "correct_letter": "C",
     "far_controls": [
-      "chisel",
-      "alligator"
+      "saw",
+      "axe"
     ],
     "feature_clues": [
+      "herds",
       "has a split tongue",
-      "is not expensive",
-      "live in the mountains"
+      "is rare"
     ],
     "item_id": "step1_blindworm_01",
     "options": [
       {
-        "concept": "chisel",
+        "concept": "saw",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "salamander",
+        "concept": "toad",
         "letter": "B",
         "role": "near"
       },
@@ -1029,13 +1029,13 @@
         "role": "correct"
       },
       {
-        "concept": "alligator",
+        "concept": "axe",
         "letter": "D",
         "role": "far"
       }
     ],
-    "predicted_near": "salamander",
-    "prompt": "A catalog card lists these properties:\n- has a split tongue\n- is not expensive\n- live in the mountains\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. salamander\nC. blindworm\nD. alligator",
+    "predicted_near": "toad",
+    "prompt": "A catalog card lists these properties:\n- herds\n- has a split tongue\n- is rare\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. saw\nB. toad\nC. blindworm\nD. axe",
     "target": "blindworm",
     "template_variant": 1
   },
@@ -1043,13 +1043,13 @@
     "correct_answer": "blindworm",
     "correct_letter": "A",
     "far_controls": [
-      "chisel",
-      "alligator"
+      "saw",
+      "axe"
     ],
     "feature_clues": [
       "has a split tongue",
       "is not expensive",
-      "live in the mountains"
+      "in a terrarium"
     ],
     "item_id": "step1_blindworm_02",
     "options": [
@@ -1059,23 +1059,23 @@
         "role": "correct"
       },
       {
-        "concept": "alligator",
+        "concept": "axe",
         "letter": "B",
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "saw",
         "letter": "C",
         "role": "far"
       },
       {
-        "concept": "salamander",
+        "concept": "toad",
         "letter": "D",
         "role": "near"
       }
     ],
-    "predicted_near": "salamander",
-    "prompt": "Choose the option that best fits all of these clues:\n- has a split tongue\n- is not expensive\n- live in the mountains\nAnswer with only A, B, C, or D.\n\nOptions:\nA. blindworm\nB. alligator\nC. chisel\nD. salamander",
+    "predicted_near": "toad",
+    "prompt": "Choose the option that best fits all of these clues:\n- has a split tongue\n- is not expensive\n- in a terrarium\nAnswer with only A, B, C, or D.\n\nOptions:\nA. blindworm\nB. axe\nC. saw\nD. toad",
     "target": "blindworm",
     "template_variant": 2
   },
@@ -1083,28 +1083,28 @@
     "correct_answer": "blindworm",
     "correct_letter": "D",
     "far_controls": [
-      "chisel",
-      "alligator"
+      "saw",
+      "axe"
     ],
     "feature_clues": [
       "is food for larger animals",
-      "lives in trees",
-      "live in the mountains"
+      "is not expensive",
+      "is rare"
     ],
     "item_id": "step1_blindworm_03",
     "options": [
       {
-        "concept": "alligator",
+        "concept": "axe",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "saw",
         "letter": "B",
         "role": "far"
       },
       {
-        "concept": "salamander",
+        "concept": "toad",
         "letter": "C",
         "role": "near"
       },
@@ -1114,8 +1114,8 @@
         "role": "correct"
       }
     ],
-    "predicted_near": "salamander",
-    "prompt": "A field note says the thing has these attributes:\n- is food for larger animals\n- lives in trees\n- live in the mountains\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. alligator\nB. chisel\nC. salamander\nD. blindworm",
+    "predicted_near": "toad",
+    "prompt": "A field note says the thing has these attributes:\n- is food for larger animals\n- is not expensive\n- is rare\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. saw\nC. toad\nD. blindworm",
     "target": "blindworm",
     "template_variant": 3
   },
@@ -1123,13 +1123,13 @@
     "correct_answer": "chameleon",
     "correct_letter": "A",
     "far_controls": [
-      "chisel",
-      "tortoise"
+      "hammer",
+      "boa python"
     ],
     "feature_clues": [
-      "has bright colours",
+      "is not expensive",
       "in a terrarium",
-      "endangered species"
+      "appears in fairy tales and stories"
     ],
     "item_id": "step1_chameleon_00",
     "options": [
@@ -1139,12 +1139,12 @@
         "role": "correct"
       },
       {
-        "concept": "tortoise",
+        "concept": "boa python",
         "letter": "B",
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "hammer",
         "letter": "C",
         "role": "far"
       },
@@ -1155,7 +1155,7 @@
       }
     ],
     "predicted_near": "gecko",
-    "prompt": "Which option is the best match for this description?\n- has bright colours\n- in a terrarium\n- endangered species\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chameleon\nB. tortoise\nC. chisel\nD. gecko",
+    "prompt": "Which option is the best match for this description?\n- is not expensive\n- in a terrarium\n- appears in fairy tales and stories\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chameleon\nB. boa python\nC. hammer\nD. gecko",
     "target": "chameleon",
     "template_variant": 0
   },
@@ -1163,13 +1163,13 @@
     "correct_answer": "chameleon",
     "correct_letter": "D",
     "far_controls": [
-      "chisel",
-      "tortoise"
+      "hammer",
+      "boa python"
     ],
     "feature_clues": [
-      "has many teeth",
-      "is not expensive",
-      "endangered species"
+      "is food for larger animals",
+      "is a pet",
+      "appears in fairy tales and stories"
     ],
     "item_id": "step1_chameleon_01",
     "options": [
@@ -1179,12 +1179,12 @@
         "role": "near"
       },
       {
-        "concept": "tortoise",
+        "concept": "boa python",
         "letter": "B",
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "hammer",
         "letter": "C",
         "role": "far"
       },
@@ -1195,7 +1195,7 @@
       }
     ],
     "predicted_near": "gecko",
-    "prompt": "A catalog card lists these properties:\n- has many teeth\n- is not expensive\n- endangered species\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. gecko\nB. tortoise\nC. chisel\nD. chameleon",
+    "prompt": "A catalog card lists these properties:\n- is food for larger animals\n- is a pet\n- appears in fairy tales and stories\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. gecko\nB. boa python\nC. hammer\nD. chameleon",
     "target": "chameleon",
     "template_variant": 1
   },
@@ -1203,13 +1203,13 @@
     "correct_answer": "chameleon",
     "correct_letter": "B",
     "far_controls": [
-      "chisel",
-      "tortoise"
+      "hammer",
+      "boa python"
     ],
     "feature_clues": [
-      "is a pet",
       "is food for larger animals",
-      "endangered species"
+      "is a pet",
+      "appears in fairy tales and stories"
     ],
     "item_id": "step1_chameleon_02",
     "options": [
@@ -1224,18 +1224,18 @@
         "role": "correct"
       },
       {
-        "concept": "tortoise",
+        "concept": "boa python",
         "letter": "C",
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "hammer",
         "letter": "D",
         "role": "far"
       }
     ],
     "predicted_near": "gecko",
-    "prompt": "Choose the option that best fits all of these clues:\n- is a pet\n- is food for larger animals\n- endangered species\nAnswer with only A, B, C, or D.\n\nOptions:\nA. gecko\nB. chameleon\nC. tortoise\nD. chisel",
+    "prompt": "Choose the option that best fits all of these clues:\n- is food for larger animals\n- is a pet\n- appears in fairy tales and stories\nAnswer with only A, B, C, or D.\n\nOptions:\nA. gecko\nB. chameleon\nC. boa python\nD. hammer",
     "target": "chameleon",
     "template_variant": 2
   },
@@ -1243,13 +1243,13 @@
     "correct_answer": "chameleon",
     "correct_letter": "A",
     "far_controls": [
-      "chisel",
-      "tortoise"
+      "hammer",
+      "boa python"
     ],
     "feature_clues": [
-      "is rare",
+      "lives in trees",
       "has bright colours",
-      "endangered species"
+      "appears in fairy tales and stories"
     ],
     "item_id": "step1_chameleon_03",
     "options": [
@@ -1259,12 +1259,12 @@
         "role": "correct"
       },
       {
-        "concept": "tortoise",
+        "concept": "boa python",
         "letter": "B",
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "hammer",
         "letter": "C",
         "role": "far"
       },
@@ -1275,7 +1275,7 @@
       }
     ],
     "predicted_near": "gecko",
-    "prompt": "A field note says the thing has these attributes:\n- is rare\n- has bright colours\n- endangered species\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. chameleon\nB. tortoise\nC. chisel\nD. gecko",
+    "prompt": "A field note says the thing has these attributes:\n- lives in trees\n- has bright colours\n- appears in fairy tales and stories\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. chameleon\nB. boa python\nC. hammer\nD. gecko",
     "target": "chameleon",
     "template_variant": 3
   },
@@ -1283,12 +1283,12 @@
     "correct_answer": "gecko",
     "correct_letter": "B",
     "far_controls": [
-      "chisel",
+      "hammer",
       "saw"
     ],
     "feature_clues": [
-      "is not expensive",
-      "is food for larger animals",
+      "is rare",
+      "has sharp claws",
       "is dangerous"
     ],
     "item_id": "step1_gecko_00",
@@ -1304,18 +1304,18 @@
         "role": "correct"
       },
       {
-        "concept": "lizard",
+        "concept": "chameleon",
         "letter": "C",
         "role": "near"
       },
       {
-        "concept": "chisel",
+        "concept": "hammer",
         "letter": "D",
         "role": "far"
       }
     ],
-    "predicted_near": "lizard",
-    "prompt": "Which option is the best match for this description?\n- is not expensive\n- is food for larger animals\n- is dangerous\nAnswer with only A, B, C, or D.\n\nOptions:\nA. saw\nB. gecko\nC. lizard\nD. chisel",
+    "predicted_near": "chameleon",
+    "prompt": "Which option is the best match for this description?\n- is rare\n- has sharp claws\n- is dangerous\nAnswer with only A, B, C, or D.\n\nOptions:\nA. saw\nB. gecko\nC. chameleon\nD. hammer",
     "target": "gecko",
     "template_variant": 0
   },
@@ -1323,18 +1323,18 @@
     "correct_answer": "gecko",
     "correct_letter": "B",
     "far_controls": [
-      "chisel",
+      "hammer",
       "saw"
     ],
     "feature_clues": [
-      "lives in trees",
-      "is a pet",
-      "is rare"
+      "is food for larger animals",
+      "has sharp claws",
+      "is dangerous"
     ],
     "item_id": "step1_gecko_01",
     "options": [
       {
-        "concept": "lizard",
+        "concept": "chameleon",
         "letter": "A",
         "role": "near"
       },
@@ -1349,13 +1349,13 @@
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "hammer",
         "letter": "D",
         "role": "far"
       }
     ],
-    "predicted_near": "lizard",
-    "prompt": "A catalog card lists these properties:\n- lives in trees\n- is a pet\n- is rare\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. lizard\nB. gecko\nC. saw\nD. chisel",
+    "predicted_near": "chameleon",
+    "prompt": "A catalog card lists these properties:\n- is food for larger animals\n- has sharp claws\n- is dangerous\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. chameleon\nB. gecko\nC. saw\nD. hammer",
     "target": "gecko",
     "template_variant": 1
   },
@@ -1363,13 +1363,13 @@
     "correct_answer": "gecko",
     "correct_letter": "A",
     "far_controls": [
-      "chisel",
+      "hammer",
       "saw"
     ],
     "feature_clues": [
-      "is food for larger animals",
-      "has many teeth",
-      "is rare"
+      "is rare",
+      "is a pet",
+      "is dangerous"
     ],
     "item_id": "step1_gecko_02",
     "options": [
@@ -1379,7 +1379,7 @@
         "role": "correct"
       },
       {
-        "concept": "lizard",
+        "concept": "chameleon",
         "letter": "B",
         "role": "near"
       },
@@ -1389,13 +1389,13 @@
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "hammer",
         "letter": "D",
         "role": "far"
       }
     ],
-    "predicted_near": "lizard",
-    "prompt": "Choose the option that best fits all of these clues:\n- is food for larger animals\n- has many teeth\n- is rare\nAnswer with only A, B, C, or D.\n\nOptions:\nA. gecko\nB. lizard\nC. saw\nD. chisel",
+    "predicted_near": "chameleon",
+    "prompt": "Choose the option that best fits all of these clues:\n- is rare\n- is a pet\n- is dangerous\nAnswer with only A, B, C, or D.\n\nOptions:\nA. gecko\nB. chameleon\nC. saw\nD. hammer",
     "target": "gecko",
     "template_variant": 2
   },
@@ -1403,23 +1403,23 @@
     "correct_answer": "gecko",
     "correct_letter": "C",
     "far_controls": [
-      "chisel",
+      "hammer",
       "saw"
     ],
     "feature_clues": [
-      "has bright colours",
-      "lives by the sea",
+      "lives in trees",
+      "is a pet",
       "is dangerous"
     ],
     "item_id": "step1_gecko_03",
     "options": [
       {
-        "concept": "chisel",
+        "concept": "hammer",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "lizard",
+        "concept": "chameleon",
         "letter": "B",
         "role": "near"
       },
@@ -1434,8 +1434,8 @@
         "role": "far"
       }
     ],
-    "predicted_near": "lizard",
-    "prompt": "A field note says the thing has these attributes:\n- has bright colours\n- lives by the sea\n- is dangerous\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. lizard\nC. gecko\nD. saw",
+    "predicted_near": "chameleon",
+    "prompt": "A field note says the thing has these attributes:\n- lives in trees\n- is a pet\n- is dangerous\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. hammer\nB. chameleon\nC. gecko\nD. saw",
     "target": "gecko",
     "template_variant": 3
   },
@@ -1443,23 +1443,23 @@
     "correct_answer": "lizard",
     "correct_letter": "D",
     "far_controls": [
-      "hammer",
-      "axe"
+      "cobra",
+      "saw"
     ],
     "feature_clues": [
+      "lives in trees",
       "in a terrarium",
-      "is a pet",
       "is a freshwater fish"
     ],
     "item_id": "step1_lizard_00",
     "options": [
       {
-        "concept": "hammer",
+        "concept": "cobra",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "axe",
+        "concept": "saw",
         "letter": "B",
         "role": "far"
       },
@@ -1475,7 +1475,7 @@
       }
     ],
     "predicted_near": "gecko",
-    "prompt": "Which option is the best match for this description?\n- in a terrarium\n- is a pet\n- is a freshwater fish\nAnswer with only A, B, C, or D.\n\nOptions:\nA. hammer\nB. axe\nC. gecko\nD. lizard",
+    "prompt": "Which option is the best match for this description?\n- lives in trees\n- in a terrarium\n- is a freshwater fish\nAnswer with only A, B, C, or D.\n\nOptions:\nA. cobra\nB. saw\nC. gecko\nD. lizard",
     "target": "lizard",
     "template_variant": 0
   },
@@ -1483,18 +1483,18 @@
     "correct_answer": "lizard",
     "correct_letter": "B",
     "far_controls": [
-      "hammer",
-      "axe"
+      "cobra",
+      "saw"
     ],
     "feature_clues": [
-      "is a pet",
+      "lives in trees",
       "has sharp claws",
       "is a freshwater fish"
     ],
     "item_id": "step1_lizard_01",
     "options": [
       {
-        "concept": "axe",
+        "concept": "saw",
         "letter": "A",
         "role": "far"
       },
@@ -1509,13 +1509,13 @@
         "role": "near"
       },
       {
-        "concept": "hammer",
+        "concept": "cobra",
         "letter": "D",
         "role": "far"
       }
     ],
     "predicted_near": "gecko",
-    "prompt": "A catalog card lists these properties:\n- is a pet\n- has sharp claws\n- is a freshwater fish\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. lizard\nC. gecko\nD. hammer",
+    "prompt": "A catalog card lists these properties:\n- lives in trees\n- has sharp claws\n- is a freshwater fish\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. saw\nB. lizard\nC. gecko\nD. cobra",
     "target": "lizard",
     "template_variant": 1
   },
@@ -1523,12 +1523,12 @@
     "correct_answer": "lizard",
     "correct_letter": "D",
     "far_controls": [
-      "hammer",
-      "axe"
+      "cobra",
+      "saw"
     ],
     "feature_clues": [
-      "has many teeth",
-      "has sharp claws",
+      "lives in trees",
+      "has bright colours",
       "is a freshwater fish"
     ],
     "item_id": "step1_lizard_02",
@@ -1539,12 +1539,12 @@
         "role": "near"
       },
       {
-        "concept": "hammer",
+        "concept": "cobra",
         "letter": "B",
         "role": "far"
       },
       {
-        "concept": "axe",
+        "concept": "saw",
         "letter": "C",
         "role": "far"
       },
@@ -1555,7 +1555,7 @@
       }
     ],
     "predicted_near": "gecko",
-    "prompt": "Choose the option that best fits all of these clues:\n- has many teeth\n- has sharp claws\n- is a freshwater fish\nAnswer with only A, B, C, or D.\n\nOptions:\nA. gecko\nB. hammer\nC. axe\nD. lizard",
+    "prompt": "Choose the option that best fits all of these clues:\n- lives in trees\n- has bright colours\n- is a freshwater fish\nAnswer with only A, B, C, or D.\n\nOptions:\nA. gecko\nB. cobra\nC. saw\nD. lizard",
     "target": "lizard",
     "template_variant": 2
   },
@@ -1563,12 +1563,12 @@
     "correct_answer": "lizard",
     "correct_letter": "D",
     "far_controls": [
-      "hammer",
-      "axe"
+      "cobra",
+      "saw"
     ],
     "feature_clues": [
-      "lives by the sea",
       "is food for larger animals",
+      "is not expensive",
       "is a freshwater fish"
     ],
     "item_id": "step1_lizard_03",
@@ -1579,12 +1579,12 @@
         "role": "near"
       },
       {
-        "concept": "axe",
+        "concept": "saw",
         "letter": "B",
         "role": "far"
       },
       {
-        "concept": "hammer",
+        "concept": "cobra",
         "letter": "C",
         "role": "far"
       },
@@ -1595,7 +1595,7 @@
       }
     ],
     "predicted_near": "gecko",
-    "prompt": "A field note says the thing has these attributes:\n- lives by the sea\n- is food for larger animals\n- is a freshwater fish\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. gecko\nB. axe\nC. hammer\nD. lizard",
+    "prompt": "A field note says the thing has these attributes:\n- is food for larger animals\n- is not expensive\n- is a freshwater fish\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. gecko\nB. saw\nC. cobra\nD. lizard",
     "target": "lizard",
     "template_variant": 3
   },
@@ -1604,22 +1604,22 @@
     "correct_letter": "C",
     "far_controls": [
       "saw",
-      "chisel"
+      "axe"
     ],
     "feature_clues": [
-      "lives in trees",
-      "in a terrarium",
-      "has bright colours"
+      "lives in water",
+      "is food for larger animals",
+      "lives in trees"
     ],
     "item_id": "step1_salamander_00",
     "options": [
       {
-        "concept": "chisel",
+        "concept": "axe",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "blindworm",
+        "concept": "toad",
         "letter": "B",
         "role": "near"
       },
@@ -1634,8 +1634,8 @@
         "role": "far"
       }
     ],
-    "predicted_near": "blindworm",
-    "prompt": "Which option is the best match for this description?\n- lives in trees\n- in a terrarium\n- has bright colours\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. blindworm\nC. salamander\nD. saw",
+    "predicted_near": "toad",
+    "prompt": "Which option is the best match for this description?\n- lives in water\n- is food for larger animals\n- lives in trees\nAnswer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. toad\nC. salamander\nD. saw",
     "target": "salamander",
     "template_variant": 0
   },
@@ -1644,12 +1644,12 @@
     "correct_letter": "A",
     "far_controls": [
       "saw",
-      "chisel"
+      "axe"
     ],
     "feature_clues": [
-      "is not expensive",
-      "lives in trees",
-      "has many teeth"
+      "lives in water",
+      "is food for larger animals",
+      "has bright colours"
     ],
     "item_id": "step1_salamander_01",
     "options": [
@@ -1664,18 +1664,18 @@
         "role": "far"
       },
       {
-        "concept": "chisel",
+        "concept": "axe",
         "letter": "C",
         "role": "far"
       },
       {
-        "concept": "blindworm",
+        "concept": "toad",
         "letter": "D",
         "role": "near"
       }
     ],
-    "predicted_near": "blindworm",
-    "prompt": "A catalog card lists these properties:\n- is not expensive\n- lives in trees\n- has many teeth\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. salamander\nB. saw\nC. chisel\nD. blindworm",
+    "predicted_near": "toad",
+    "prompt": "A catalog card lists these properties:\n- lives in water\n- is food for larger animals\n- has bright colours\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. salamander\nB. saw\nC. axe\nD. toad",
     "target": "salamander",
     "template_variant": 1
   },
@@ -1684,22 +1684,22 @@
     "correct_letter": "D",
     "far_controls": [
       "saw",
-      "chisel"
+      "axe"
     ],
     "feature_clues": [
+      "has a split tongue",
       "is not expensive",
-      "is food for larger animals",
-      "is a freshwater fish"
+      "has bright colours"
     ],
     "item_id": "step1_salamander_02",
     "options": [
       {
-        "concept": "chisel",
+        "concept": "axe",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "blindworm",
+        "concept": "toad",
         "letter": "B",
         "role": "near"
       },
@@ -1714,8 +1714,8 @@
         "role": "correct"
       }
     ],
-    "predicted_near": "blindworm",
-    "prompt": "Choose the option that best fits all of these clues:\n- is not expensive\n- is food for larger animals\n- is a freshwater fish\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. blindworm\nC. saw\nD. salamander",
+    "predicted_near": "toad",
+    "prompt": "Choose the option that best fits all of these clues:\n- has a split tongue\n- is not expensive\n- has bright colours\nAnswer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. toad\nC. saw\nD. salamander",
     "target": "salamander",
     "template_variant": 2
   },
@@ -1724,10 +1724,10 @@
     "correct_letter": "B",
     "far_controls": [
       "saw",
-      "chisel"
+      "axe"
     ],
     "feature_clues": [
-      "in a terrarium",
+      "is a freshwater fish",
       "has a split tongue",
       "has sharp claws"
     ],
@@ -1744,18 +1744,18 @@
         "role": "correct"
       },
       {
-        "concept": "blindworm",
+        "concept": "toad",
         "letter": "C",
         "role": "near"
       },
       {
-        "concept": "chisel",
+        "concept": "axe",
         "letter": "D",
         "role": "far"
       }
     ],
-    "predicted_near": "blindworm",
-    "prompt": "A field note says the thing has these attributes:\n- in a terrarium\n- has a split tongue\n- has sharp claws\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. saw\nB. salamander\nC. blindworm\nD. chisel",
+    "predicted_near": "toad",
+    "prompt": "A field note says the thing has these attributes:\n- is a freshwater fish\n- has a split tongue\n- has sharp claws\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. saw\nB. salamander\nC. toad\nD. axe",
     "target": "salamander",
     "template_variant": 3
   },
@@ -1768,8 +1768,8 @@
     ],
     "feature_clues": [
       "has a split tongue",
-      "is not expensive",
-      "is lethal"
+      "lives in water",
+      "cartoon figure"
     ],
     "item_id": "step1_toad_00",
     "options": [
@@ -1795,7 +1795,7 @@
       }
     ],
     "predicted_near": "salamander",
-    "prompt": "Which option is the best match for this description?\n- has a split tongue\n- is not expensive\n- is lethal\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. saw\nC. salamander\nD. toad",
+    "prompt": "Which option is the best match for this description?\n- has a split tongue\n- lives in water\n- cartoon figure\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. saw\nC. salamander\nD. toad",
     "target": "toad",
     "template_variant": 0
   },
@@ -1808,8 +1808,8 @@
     ],
     "feature_clues": [
       "is not expensive",
-      "is a freshwater fish",
-      "is lethal"
+      "lives in water",
+      "cartoon figure"
     ],
     "item_id": "step1_toad_01",
     "options": [
@@ -1835,7 +1835,7 @@
       }
     ],
     "predicted_near": "salamander",
-    "prompt": "A catalog card lists these properties:\n- is not expensive\n- is a freshwater fish\n- is lethal\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. salamander\nB. toad\nC. chisel\nD. saw",
+    "prompt": "A catalog card lists these properties:\n- is not expensive\n- lives in water\n- cartoon figure\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. salamander\nB. toad\nC. chisel\nD. saw",
     "target": "toad",
     "template_variant": 1
   },
@@ -1847,9 +1847,9 @@
       "chisel"
     ],
     "feature_clues": [
-      "has a split tongue",
-      "is not expensive",
-      "herds"
+      "lives in water",
+      "is food for larger animals",
+      "is lethal"
     ],
     "item_id": "step1_toad_02",
     "options": [
@@ -1875,7 +1875,7 @@
       }
     ],
     "predicted_near": "salamander",
-    "prompt": "Choose the option that best fits all of these clues:\n- has a split tongue\n- is not expensive\n- herds\nAnswer with only A, B, C, or D.\n\nOptions:\nA. toad\nB. chisel\nC. saw\nD. salamander",
+    "prompt": "Choose the option that best fits all of these clues:\n- lives in water\n- is food for larger animals\n- is lethal\nAnswer with only A, B, C, or D.\n\nOptions:\nA. toad\nB. chisel\nC. saw\nD. salamander",
     "target": "toad",
     "template_variant": 2
   },
@@ -1887,9 +1887,9 @@
       "chisel"
     ],
     "feature_clues": [
-      "is a freshwater fish",
-      "lives in water",
-      "herds"
+      "has a split tongue",
+      "is food for larger animals",
+      "cartoon figure"
     ],
     "item_id": "step1_toad_03",
     "options": [
@@ -1915,7 +1915,7 @@
       }
     ],
     "predicted_near": "salamander",
-    "prompt": "A field note says the thing has these attributes:\n- is a freshwater fish\n- lives in water\n- herds\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. toad\nB. saw\nC. chisel\nD. salamander",
+    "prompt": "A field note says the thing has these attributes:\n- has a split tongue\n- is food for larger animals\n- cartoon figure\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. toad\nB. saw\nC. chisel\nD. salamander",
     "target": "toad",
     "template_variant": 3
   },
@@ -1924,11 +1924,11 @@
     "correct_letter": "D",
     "far_controls": [
       "chisel",
-      "hammer"
+      "saw"
     ],
     "feature_clues": [
-      "is a pet",
-      "lives by the sea",
+      "lives in water",
+      "is food for larger animals",
       "strong animal"
     ],
     "item_id": "step1_tortoise_00",
@@ -1944,7 +1944,7 @@
         "role": "near"
       },
       {
-        "concept": "hammer",
+        "concept": "saw",
         "letter": "C",
         "role": "far"
       },
@@ -1955,7 +1955,7 @@
       }
     ],
     "predicted_near": "turtle",
-    "prompt": "Which option is the best match for this description?\n- is a pet\n- lives by the sea\n- strong animal\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. turtle\nC. hammer\nD. tortoise",
+    "prompt": "Which option is the best match for this description?\n- lives in water\n- is food for larger animals\n- strong animal\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. turtle\nC. saw\nD. tortoise",
     "target": "tortoise",
     "template_variant": 0
   },
@@ -1964,12 +1964,12 @@
     "correct_letter": "C",
     "far_controls": [
       "chisel",
-      "hammer"
+      "saw"
     ],
     "feature_clues": [
       "cartoon figure",
-      "is not expensive",
-      "is strong"
+      "is a pet",
+      "savanne"
     ],
     "item_id": "step1_tortoise_01",
     "options": [
@@ -1989,13 +1989,13 @@
         "role": "correct"
       },
       {
-        "concept": "hammer",
+        "concept": "saw",
         "letter": "D",
         "role": "far"
       }
     ],
     "predicted_near": "turtle",
-    "prompt": "A catalog card lists these properties:\n- cartoon figure\n- is not expensive\n- is strong\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. turtle\nC. tortoise\nD. hammer",
+    "prompt": "A catalog card lists these properties:\n- cartoon figure\n- is a pet\n- savanne\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. turtle\nC. tortoise\nD. saw",
     "target": "tortoise",
     "template_variant": 1
   },
@@ -2004,12 +2004,12 @@
     "correct_letter": "B",
     "far_controls": [
       "chisel",
-      "hammer"
+      "saw"
     ],
     "feature_clues": [
-      "cartoon figure",
       "lives by the sea",
-      "savanne"
+      "herds",
+      "is strong"
     ],
     "item_id": "step1_tortoise_02",
     "options": [
@@ -2029,13 +2029,13 @@
         "role": "near"
       },
       {
-        "concept": "hammer",
+        "concept": "saw",
         "letter": "D",
         "role": "far"
       }
     ],
     "predicted_near": "turtle",
-    "prompt": "Choose the option that best fits all of these clues:\n- cartoon figure\n- lives by the sea\n- savanne\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. tortoise\nC. turtle\nD. hammer",
+    "prompt": "Choose the option that best fits all of these clues:\n- lives by the sea\n- herds\n- is strong\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. tortoise\nC. turtle\nD. saw",
     "target": "tortoise",
     "template_variant": 2
   },
@@ -2044,10 +2044,10 @@
     "correct_letter": "A",
     "far_controls": [
       "chisel",
-      "hammer"
+      "saw"
     ],
     "feature_clues": [
-      "is food for larger animals",
+      "is not expensive",
       "lives in water",
       "savanne"
     ],
@@ -2059,7 +2059,7 @@
         "role": "correct"
       },
       {
-        "concept": "hammer",
+        "concept": "saw",
         "letter": "B",
         "role": "far"
       },
@@ -2075,7 +2075,7 @@
       }
     ],
     "predicted_near": "turtle",
-    "prompt": "A field note says the thing has these attributes:\n- is food for larger animals\n- lives in water\n- savanne\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. tortoise\nB. hammer\nC. turtle\nD. chisel",
+    "prompt": "A field note says the thing has these attributes:\n- is not expensive\n- lives in water\n- savanne\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. tortoise\nB. saw\nC. turtle\nD. chisel",
     "target": "tortoise",
     "template_variant": 3
   },
@@ -2084,12 +2084,12 @@
     "correct_letter": "D",
     "far_controls": [
       "chisel",
-      "hammer"
+      "saw"
     ],
     "feature_clues": [
-      "cartoon figure",
       "lives in water",
-      "endangered species"
+      "is food for larger animals",
+      "is a freshwater fish"
     ],
     "item_id": "step1_turtle_00",
     "options": [
@@ -2099,7 +2099,7 @@
         "role": "near"
       },
       {
-        "concept": "hammer",
+        "concept": "saw",
         "letter": "B",
         "role": "far"
       },
@@ -2115,7 +2115,7 @@
       }
     ],
     "predicted_near": "tortoise",
-    "prompt": "Which option is the best match for this description?\n- cartoon figure\n- lives in water\n- endangered species\nAnswer with only A, B, C, or D.\n\nOptions:\nA. tortoise\nB. hammer\nC. chisel\nD. turtle",
+    "prompt": "Which option is the best match for this description?\n- lives in water\n- is food for larger animals\n- is a freshwater fish\nAnswer with only A, B, C, or D.\n\nOptions:\nA. tortoise\nB. saw\nC. chisel\nD. turtle",
     "target": "turtle",
     "template_variant": 0
   },
@@ -2124,17 +2124,17 @@
     "correct_letter": "B",
     "far_controls": [
       "chisel",
-      "hammer"
+      "saw"
     ],
     "feature_clues": [
-      "herds",
-      "is food for larger animals",
+      "is not expensive",
+      "lives in water",
       "is a freshwater fish"
     ],
     "item_id": "step1_turtle_01",
     "options": [
       {
-        "concept": "hammer",
+        "concept": "saw",
         "letter": "A",
         "role": "far"
       },
@@ -2155,7 +2155,7 @@
       }
     ],
     "predicted_near": "tortoise",
-    "prompt": "A catalog card lists these properties:\n- herds\n- is food for larger animals\n- is a freshwater fish\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. hammer\nB. turtle\nC. tortoise\nD. chisel",
+    "prompt": "A catalog card lists these properties:\n- is not expensive\n- lives in water\n- is a freshwater fish\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. saw\nB. turtle\nC. tortoise\nD. chisel",
     "target": "turtle",
     "template_variant": 1
   },
@@ -2164,12 +2164,12 @@
     "correct_letter": "C",
     "far_controls": [
       "chisel",
-      "hammer"
+      "saw"
     ],
     "feature_clues": [
-      "cartoon figure",
-      "lives in water",
-      "is a freshwater fish"
+      "lives by the sea",
+      "is food for larger animals",
+      "has bright colours"
     ],
     "item_id": "step1_turtle_02",
     "options": [
@@ -2189,13 +2189,13 @@
         "role": "correct"
       },
       {
-        "concept": "hammer",
+        "concept": "saw",
         "letter": "D",
         "role": "far"
       }
     ],
     "predicted_near": "tortoise",
-    "prompt": "Choose the option that best fits all of these clues:\n- cartoon figure\n- lives in water\n- is a freshwater fish\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. tortoise\nC. turtle\nD. hammer",
+    "prompt": "Choose the option that best fits all of these clues:\n- lives by the sea\n- is food for larger animals\n- has bright colours\nAnswer with only A, B, C, or D.\n\nOptions:\nA. chisel\nB. tortoise\nC. turtle\nD. saw",
     "target": "turtle",
     "template_variant": 2
   },
@@ -2204,12 +2204,12 @@
     "correct_letter": "D",
     "far_controls": [
       "chisel",
-      "hammer"
+      "saw"
     ],
     "feature_clues": [
-      "is a pet",
-      "lives by the sea",
-      "endangered species"
+      "lives in water",
+      "is food for larger animals",
+      "is a freshwater fish"
     ],
     "item_id": "step1_turtle_03",
     "options": [
@@ -2219,7 +2219,7 @@
         "role": "near"
       },
       {
-        "concept": "hammer",
+        "concept": "saw",
         "letter": "B",
         "role": "far"
       },
@@ -2235,7 +2235,7 @@
       }
     ],
     "predicted_near": "tortoise",
-    "prompt": "A field note says the thing has these attributes:\n- is a pet\n- lives by the sea\n- endangered species\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. tortoise\nB. hammer\nC. chisel\nD. turtle",
+    "prompt": "A field note says the thing has these attributes:\n- lives in water\n- is food for larger animals\n- is a freshwater fish\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. tortoise\nB. saw\nC. chisel\nD. turtle",
     "target": "turtle",
     "template_variant": 3
   },
@@ -2243,13 +2243,13 @@
     "correct_answer": "axe",
     "correct_letter": "A",
     "far_controls": [
-      "gecko",
-      "turtle"
+      "lizard",
+      "blindworm"
     ],
     "feature_clues": [
-      "used in the middle ages",
-      "consists of two parts",
-      "is long"
+      "is dangerous",
+      "is slippery",
+      "not used much"
     ],
     "item_id": "step1_axe_00",
     "options": [
@@ -2259,23 +2259,23 @@
         "role": "correct"
       },
       {
-        "concept": "saw",
+        "concept": "hammer",
         "letter": "B",
         "role": "near"
       },
       {
-        "concept": "gecko",
+        "concept": "lizard",
         "letter": "C",
         "role": "far"
       },
       {
-        "concept": "turtle",
+        "concept": "blindworm",
         "letter": "D",
         "role": "far"
       }
     ],
-    "predicted_near": "saw",
-    "prompt": "Which option is the best match for this description?\n- used in the middle ages\n- consists of two parts\n- is long\nAnswer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. saw\nC. gecko\nD. turtle",
+    "predicted_near": "hammer",
+    "prompt": "Which option is the best match for this description?\n- is dangerous\n- is slippery\n- not used much\nAnswer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. hammer\nC. lizard\nD. blindworm",
     "target": "axe",
     "template_variant": 0
   },
@@ -2283,28 +2283,28 @@
     "correct_answer": "axe",
     "correct_letter": "D",
     "far_controls": [
-      "gecko",
-      "turtle"
+      "lizard",
+      "blindworm"
     ],
     "feature_clues": [
-      "was used in early ages",
-      "is dangerous",
-      "not used much"
+      "has a grip made of wood",
+      "made of synthetic material",
+      "i never use it"
     ],
     "item_id": "step1_axe_01",
     "options": [
       {
-        "concept": "turtle",
+        "concept": "blindworm",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "saw",
+        "concept": "hammer",
         "letter": "B",
         "role": "near"
       },
       {
-        "concept": "gecko",
+        "concept": "lizard",
         "letter": "C",
         "role": "far"
       },
@@ -2314,8 +2314,8 @@
         "role": "correct"
       }
     ],
-    "predicted_near": "saw",
-    "prompt": "A catalog card lists these properties:\n- was used in early ages\n- is dangerous\n- not used much\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. turtle\nB. saw\nC. gecko\nD. axe",
+    "predicted_near": "hammer",
+    "prompt": "A catalog card lists these properties:\n- has a grip made of wood\n- made of synthetic material\n- i never use it\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. blindworm\nB. hammer\nC. lizard\nD. axe",
     "target": "axe",
     "template_variant": 1
   },
@@ -2323,18 +2323,18 @@
     "correct_answer": "axe",
     "correct_letter": "B",
     "far_controls": [
-      "gecko",
-      "turtle"
+      "lizard",
+      "blindworm"
     ],
     "feature_clues": [
-      "to manifacture wood",
-      "has a wooden handle",
-      "is slippery"
+      "you can make things with it",
+      "was used in early ages",
+      "i never use it"
     ],
     "item_id": "step1_axe_02",
     "options": [
       {
-        "concept": "turtle",
+        "concept": "blindworm",
         "letter": "A",
         "role": "far"
       },
@@ -2344,18 +2344,18 @@
         "role": "correct"
       },
       {
-        "concept": "gecko",
+        "concept": "lizard",
         "letter": "C",
         "role": "far"
       },
       {
-        "concept": "saw",
+        "concept": "hammer",
         "letter": "D",
         "role": "near"
       }
     ],
-    "predicted_near": "saw",
-    "prompt": "Choose the option that best fits all of these clues:\n- to manifacture wood\n- has a wooden handle\n- is slippery\nAnswer with only A, B, C, or D.\n\nOptions:\nA. turtle\nB. axe\nC. gecko\nD. saw",
+    "predicted_near": "hammer",
+    "prompt": "Choose the option that best fits all of these clues:\n- you can make things with it\n- was used in early ages\n- i never use it\nAnswer with only A, B, C, or D.\n\nOptions:\nA. blindworm\nB. axe\nC. lizard\nD. hammer",
     "target": "axe",
     "template_variant": 2
   },
@@ -2363,28 +2363,28 @@
     "correct_answer": "axe",
     "correct_letter": "D",
     "far_controls": [
-      "gecko",
-      "turtle"
+      "lizard",
+      "blindworm"
     ],
     "feature_clues": [
-      "is brown",
-      "to manifacture wood",
-      "is slippery"
+      "was used in early ages",
+      "has a wooden handle",
+      "not used much"
     ],
     "item_id": "step1_axe_03",
     "options": [
       {
-        "concept": "turtle",
+        "concept": "blindworm",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "saw",
+        "concept": "hammer",
         "letter": "B",
         "role": "near"
       },
       {
-        "concept": "gecko",
+        "concept": "lizard",
         "letter": "C",
         "role": "far"
       },
@@ -2394,8 +2394,8 @@
         "role": "correct"
       }
     ],
-    "predicted_near": "saw",
-    "prompt": "A field note says the thing has these attributes:\n- is brown\n- to manifacture wood\n- is slippery\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. turtle\nB. saw\nC. gecko\nD. axe",
+    "predicted_near": "hammer",
+    "prompt": "A field note says the thing has these attributes:\n- was used in early ages\n- has a wooden handle\n- not used much\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. blindworm\nB. hammer\nC. lizard\nD. axe",
     "target": "axe",
     "template_variant": 3
   },
@@ -2403,28 +2403,28 @@
     "correct_answer": "chisel",
     "correct_letter": "D",
     "far_controls": [
-      "gecko",
-      "turtle"
+      "snake",
+      "toad"
     ],
     "feature_clues": [
-      "not used much",
-      "was used in early ages",
-      "is cheap"
+      "you can make things with it",
+      "consists of two parts",
+      "i never use it"
     ],
     "item_id": "step1_chisel_00",
     "options": [
       {
-        "concept": "gecko",
+        "concept": "snake",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "turtle",
+        "concept": "toad",
         "letter": "B",
         "role": "far"
       },
       {
-        "concept": "axe",
+        "concept": "hammer",
         "letter": "C",
         "role": "near"
       },
@@ -2434,8 +2434,8 @@
         "role": "correct"
       }
     ],
-    "predicted_near": "axe",
-    "prompt": "Which option is the best match for this description?\n- not used much\n- was used in early ages\n- is cheap\nAnswer with only A, B, C, or D.\n\nOptions:\nA. gecko\nB. turtle\nC. axe\nD. chisel",
+    "predicted_near": "hammer",
+    "prompt": "Which option is the best match for this description?\n- you can make things with it\n- consists of two parts\n- i never use it\nAnswer with only A, B, C, or D.\n\nOptions:\nA. snake\nB. toad\nC. hammer\nD. chisel",
     "target": "chisel",
     "template_variant": 0
   },
@@ -2443,23 +2443,23 @@
     "correct_answer": "chisel",
     "correct_letter": "C",
     "far_controls": [
-      "gecko",
-      "turtle"
+      "snake",
+      "toad"
     ],
     "feature_clues": [
-      "was used in early ages",
+      "to manifacture wood",
       "used in the middle ages",
-      "is cheap"
+      "i never use it"
     ],
     "item_id": "step1_chisel_01",
     "options": [
       {
-        "concept": "turtle",
+        "concept": "toad",
         "letter": "A",
         "role": "far"
       },
       {
-        "concept": "gecko",
+        "concept": "snake",
         "letter": "B",
         "role": "far"
       },
@@ -2469,13 +2469,13 @@
         "role": "correct"
       },
       {
-        "concept": "axe",
+        "concept": "hammer",
         "letter": "D",
         "role": "near"
       }
     ],
-    "predicted_near": "axe",
-    "prompt": "A catalog card lists these properties:\n- was used in early ages\n- used in the middle ages\n- is cheap\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. turtle\nB. gecko\nC. chisel\nD. axe",
+    "predicted_near": "hammer",
+    "prompt": "A catalog card lists these properties:\n- to manifacture wood\n- used in the middle ages\n- i never use it\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. toad\nB. snake\nC. chisel\nD. hammer",
     "target": "chisel",
     "template_variant": 1
   },
@@ -2483,28 +2483,28 @@
     "correct_answer": "chisel",
     "correct_letter": "D",
     "far_controls": [
-      "gecko",
-      "turtle"
+      "snake",
+      "toad"
     ],
     "feature_clues": [
-      "has a grip made of wood",
-      "not used much",
-      "is small"
+      "consists of two parts",
+      "is made from a tree",
+      "not used much"
     ],
     "item_id": "step1_chisel_02",
     "options": [
       {
-        "concept": "axe",
+        "concept": "hammer",
         "letter": "A",
         "role": "near"
       },
       {
-        "concept": "gecko",
+        "concept": "snake",
         "letter": "B",
         "role": "far"
       },
       {
-        "concept": "turtle",
+        "concept": "toad",
         "letter": "C",
         "role": "far"
       },
@@ -2514,8 +2514,8 @@
         "role": "correct"
       }
     ],
-    "predicted_near": "axe",
-    "prompt": "Choose the option that best fits all of these clues:\n- has a grip made of wood\n- not used much\n- is small\nAnswer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. gecko\nC. turtle\nD. chisel",
+    "predicted_near": "hammer",
+    "prompt": "Choose the option that best fits all of these clues:\n- consists of two parts\n- is made from a tree\n- not used much\nAnswer with only A, B, C, or D.\n\nOptions:\nA. hammer\nB. snake\nC. toad\nD. chisel",
     "target": "chisel",
     "template_variant": 2
   },
@@ -2523,23 +2523,23 @@
     "correct_answer": "chisel",
     "correct_letter": "C",
     "far_controls": [
-      "gecko",
-      "turtle"
+      "snake",
+      "toad"
     ],
     "feature_clues": [
-      "has a wooden handle",
-      "you can make things with it",
-      "is cheap"
+      "is small",
+      "is cheap",
+      "not used much"
     ],
     "item_id": "step1_chisel_03",
     "options": [
       {
-        "concept": "axe",
+        "concept": "hammer",
         "letter": "A",
         "role": "near"
       },
       {
-        "concept": "gecko",
+        "concept": "snake",
         "letter": "B",
         "role": "far"
       },
@@ -2549,13 +2549,13 @@
         "role": "correct"
       },
       {
-        "concept": "turtle",
+        "concept": "toad",
         "letter": "D",
         "role": "far"
       }
     ],
-    "predicted_near": "axe",
-    "prompt": "A field note says the thing has these attributes:\n- has a wooden handle\n- you can make things with it\n- is cheap\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. gecko\nC. chisel\nD. turtle",
+    "predicted_near": "hammer",
+    "prompt": "A field note says the thing has these attributes:\n- is small\n- is cheap\n- not used much\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. hammer\nB. snake\nC. chisel\nD. toad",
     "target": "chisel",
     "template_variant": 3
   },
@@ -2563,13 +2563,13 @@
     "correct_answer": "hammer",
     "correct_letter": "B",
     "far_controls": [
-      "blindworm",
+      "crocodile",
       "salamander"
     ],
     "feature_clues": [
-      "made of synthetic material",
-      "was used in early ages",
-      "used by mechanics"
+      "is long",
+      "used in the middle ages",
+      "is small"
     ],
     "item_id": "step1_hammer_00",
     "options": [
@@ -2584,7 +2584,7 @@
         "role": "correct"
       },
       {
-        "concept": "blindworm",
+        "concept": "crocodile",
         "letter": "C",
         "role": "far"
       },
@@ -2595,7 +2595,7 @@
       }
     ],
     "predicted_near": "axe",
-    "prompt": "Which option is the best match for this description?\n- made of synthetic material\n- was used in early ages\n- used by mechanics\nAnswer with only A, B, C, or D.\n\nOptions:\nA. salamander\nB. hammer\nC. blindworm\nD. axe",
+    "prompt": "Which option is the best match for this description?\n- is long\n- used in the middle ages\n- is small\nAnswer with only A, B, C, or D.\n\nOptions:\nA. salamander\nB. hammer\nC. crocodile\nD. axe",
     "target": "hammer",
     "template_variant": 0
   },
@@ -2603,13 +2603,13 @@
     "correct_answer": "hammer",
     "correct_letter": "B",
     "far_controls": [
-      "blindworm",
+      "crocodile",
       "salamander"
     ],
     "feature_clues": [
-      "is brown",
-      "has a wooden handle",
-      "is small"
+      "was used in early ages",
+      "has a grip made of wood",
+      "used by mechanics"
     ],
     "item_id": "step1_hammer_01",
     "options": [
@@ -2629,13 +2629,13 @@
         "role": "far"
       },
       {
-        "concept": "blindworm",
+        "concept": "crocodile",
         "letter": "D",
         "role": "far"
       }
     ],
     "predicted_near": "axe",
-    "prompt": "A catalog card lists these properties:\n- is brown\n- has a wooden handle\n- is small\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. hammer\nC. salamander\nD. blindworm",
+    "prompt": "A catalog card lists these properties:\n- was used in early ages\n- has a grip made of wood\n- used by mechanics\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. hammer\nC. salamander\nD. crocodile",
     "target": "hammer",
     "template_variant": 1
   },
@@ -2643,12 +2643,12 @@
     "correct_answer": "hammer",
     "correct_letter": "D",
     "far_controls": [
-      "blindworm",
+      "crocodile",
       "salamander"
     ],
     "feature_clues": [
-      "is long",
       "used by farmers",
+      "is long",
       "is cheap"
     ],
     "item_id": "step1_hammer_02",
@@ -2659,7 +2659,7 @@
         "role": "near"
       },
       {
-        "concept": "blindworm",
+        "concept": "crocodile",
         "letter": "B",
         "role": "far"
       },
@@ -2675,7 +2675,7 @@
       }
     ],
     "predicted_near": "axe",
-    "prompt": "Choose the option that best fits all of these clues:\n- is long\n- used by farmers\n- is cheap\nAnswer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. blindworm\nC. salamander\nD. hammer",
+    "prompt": "Choose the option that best fits all of these clues:\n- used by farmers\n- is long\n- is cheap\nAnswer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. crocodile\nC. salamander\nD. hammer",
     "target": "hammer",
     "template_variant": 2
   },
@@ -2683,13 +2683,13 @@
     "correct_answer": "hammer",
     "correct_letter": "A",
     "far_controls": [
-      "blindworm",
+      "crocodile",
       "salamander"
     ],
     "feature_clues": [
-      "is long",
+      "is made from a tree",
       "used by farmers",
-      "is small"
+      "is cheap"
     ],
     "item_id": "step1_hammer_03",
     "options": [
@@ -2699,7 +2699,7 @@
         "role": "correct"
       },
       {
-        "concept": "blindworm",
+        "concept": "crocodile",
         "letter": "B",
         "role": "far"
       },
@@ -2715,7 +2715,7 @@
       }
     ],
     "predicted_near": "axe",
-    "prompt": "A field note says the thing has these attributes:\n- is long\n- used by farmers\n- is small\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. hammer\nB. blindworm\nC. axe\nD. salamander",
+    "prompt": "A field note says the thing has these attributes:\n- is made from a tree\n- used by farmers\n- is cheap\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. hammer\nB. crocodile\nC. axe\nD. salamander",
     "target": "hammer",
     "template_variant": 3
   },
@@ -2724,17 +2724,17 @@
     "correct_letter": "B",
     "far_controls": [
       "toad",
-      "turtle"
+      "tortoise"
     ],
     "feature_clues": [
+      "used by farmers",
       "consists of two parts",
-      "is dangerous",
       "used by mechanics"
     ],
     "item_id": "step1_saw_00",
     "options": [
       {
-        "concept": "turtle",
+        "concept": "tortoise",
         "letter": "A",
         "role": "far"
       },
@@ -2755,7 +2755,7 @@
       }
     ],
     "predicted_near": "axe",
-    "prompt": "Which option is the best match for this description?\n- consists of two parts\n- is dangerous\n- used by mechanics\nAnswer with only A, B, C, or D.\n\nOptions:\nA. turtle\nB. saw\nC. toad\nD. axe",
+    "prompt": "Which option is the best match for this description?\n- used by farmers\n- consists of two parts\n- used by mechanics\nAnswer with only A, B, C, or D.\n\nOptions:\nA. tortoise\nB. saw\nC. toad\nD. axe",
     "target": "saw",
     "template_variant": 0
   },
@@ -2764,11 +2764,11 @@
     "correct_letter": "D",
     "far_controls": [
       "toad",
-      "turtle"
+      "tortoise"
     ],
     "feature_clues": [
-      "is made from a tree",
-      "is dangerous",
+      "has a wooden handle",
+      "is brown",
       "used by mechanics"
     ],
     "item_id": "step1_saw_01",
@@ -2779,7 +2779,7 @@
         "role": "near"
       },
       {
-        "concept": "turtle",
+        "concept": "tortoise",
         "letter": "B",
         "role": "far"
       },
@@ -2795,7 +2795,7 @@
       }
     ],
     "predicted_near": "axe",
-    "prompt": "A catalog card lists these properties:\n- is made from a tree\n- is dangerous\n- used by mechanics\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. turtle\nC. toad\nD. saw",
+    "prompt": "A catalog card lists these properties:\n- has a wooden handle\n- is brown\n- used by mechanics\nWhich option does the card describe? Answer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. tortoise\nC. toad\nD. saw",
     "target": "saw",
     "template_variant": 1
   },
@@ -2804,11 +2804,11 @@
     "correct_letter": "D",
     "far_controls": [
       "toad",
-      "turtle"
+      "tortoise"
     ],
     "feature_clues": [
-      "you can make things with it",
-      "used by farmers",
+      "has a wooden handle",
+      "is made from a tree",
       "used by mechanics"
     ],
     "item_id": "step1_saw_02",
@@ -2824,7 +2824,7 @@
         "role": "far"
       },
       {
-        "concept": "turtle",
+        "concept": "tortoise",
         "letter": "C",
         "role": "far"
       },
@@ -2835,7 +2835,7 @@
       }
     ],
     "predicted_near": "axe",
-    "prompt": "Choose the option that best fits all of these clues:\n- you can make things with it\n- used by farmers\n- used by mechanics\nAnswer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. toad\nC. turtle\nD. saw",
+    "prompt": "Choose the option that best fits all of these clues:\n- has a wooden handle\n- is made from a tree\n- used by mechanics\nAnswer with only A, B, C, or D.\n\nOptions:\nA. axe\nB. toad\nC. tortoise\nD. saw",
     "target": "saw",
     "template_variant": 2
   },
@@ -2844,11 +2844,11 @@
     "correct_letter": "D",
     "far_controls": [
       "toad",
-      "turtle"
+      "tortoise"
     ],
     "feature_clues": [
-      "has a wooden handle",
-      "is dangerous",
+      "made of synthetic material",
+      "consists of two parts",
       "used by mechanics"
     ],
     "item_id": "step1_saw_03",
@@ -2859,7 +2859,7 @@
         "role": "far"
       },
       {
-        "concept": "turtle",
+        "concept": "tortoise",
         "letter": "B",
         "role": "far"
       },
@@ -2875,7 +2875,7 @@
       }
     ],
     "predicted_near": "axe",
-    "prompt": "A field note says the thing has these attributes:\n- has a wooden handle\n- is dangerous\n- used by mechanics\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. toad\nB. turtle\nC. axe\nD. saw",
+    "prompt": "A field note says the thing has these attributes:\n- made of synthetic material\n- consists of two parts\n- used by mechanics\nWhich option is it? Answer with only A, B, C, or D.\n\nOptions:\nA. toad\nB. tortoise\nC. axe\nD. saw",
     "target": "saw",
     "template_variant": 3
   }
