@@ -1,0 +1,293 @@
+#!/usr/bin/env python3
+"""Build targeted triplet-SFT data for Experiment 1.
+
+This is fallback lever 6.2/6.3 territory: the training signal is closer to the
+held-out triplet behavior, but the prompt template is deliberately different
+from the frozen detection prompt. The control and edit arms have identical
+prompts; only the target-neighbor answers differ.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import random
+import re
+import sys
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+EXP_DIR = ROOT / "experiments" / "exp1_triplet_concept_move"
+SCRIPTS = ROOT / "scripts"
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+
+from run_experiment1 import clean_text, norm_key  # noqa: E402
+
+
+TRAIN_TEMPLATE = (
+    "Choose the concept that is semantically closer to the anchor.\n"
+    "Anchor: {anchor}\n"
+    "Option A: {concept1}\n"
+    "Option B: {concept2}\n"
+    "Reply with only the chosen concept."
+)
+
+
+def load_json(path: Path) -> dict:
+    with path.open() as handle:
+        return json.load(handle)
+
+
+def write_json(path: Path, payload: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w") as handle:
+        json.dump(payload, handle, indent=2, sort_keys=True)
+        handle.write("\n")
+
+
+def write_jsonl(path: Path, rows: list[dict]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w") as handle:
+        for row in rows:
+            handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+
+def normalize_response(response: str, concept1: str, concept2: str) -> str | None:
+    resp = norm_key(response)
+    c1 = norm_key(concept1)
+    c2 = norm_key(concept2)
+    if c1 and c1 in resp:
+        return concept1
+    if c2 and c2 in resp:
+        return concept2
+    return None
+
+
+def load_base_rows(raw_csv: Path) -> list[dict]:
+    rows = []
+    with raw_csv.open(newline="") as handle:
+        reader = csv.DictReader(handle)
+        for row in reader:
+            try:
+                anchor, concept1, concept2 = [clean_text(part) for part in str(row["input"]).split("|")]
+            except ValueError:
+                continue
+            chosen = normalize_response(str(row.get("response", "")), concept1, concept2)
+            if chosen is None:
+                continue
+            rows.append(
+                {
+                    "anchor": anchor,
+                    "concept1": concept1,
+                    "concept2": concept2,
+                    "base_choice": chosen,
+                }
+            )
+    return rows
+
+
+def chat_example(anchor: str, concept1: str, concept2: str, response: str) -> dict:
+    return {
+        "messages": [
+            {
+                "role": "user",
+                "content": TRAIN_TEMPLATE.format(anchor=anchor, concept1=concept1, concept2=concept2),
+            },
+            {"role": "assistant", "content": response},
+        ]
+    }
+
+
+def row_concepts(row: dict) -> set[str]:
+    return {row["anchor"], row["concept1"], row["concept2"]}
+
+
+def has_target_neighbor_pair(row: dict, target: str, neighbor: str) -> bool:
+    concepts = row_concepts(row)
+    return target in concepts and neighbor in concepts
+
+
+def is_editable_target_neighbor_row(row: dict, target: str, neighbor: str) -> bool:
+    """Rows that directly contribute to the symmetrized target-neighbor RDM cell."""
+    return (
+        row["anchor"] == target
+        and neighbor in {row["concept1"], row["concept2"]}
+    ) or (
+        row["anchor"] == neighbor
+        and target in {row["concept1"], row["concept2"]}
+    )
+
+
+def forced_away_choice(row: dict, target: str, neighbor: str) -> str:
+    """Return the non-target/neighbor option for a target-neighbor triplet row."""
+    if row["anchor"] == target and neighbor in {row["concept1"], row["concept2"]}:
+        return row["concept2"] if row["concept1"] == neighbor else row["concept1"]
+    if row["anchor"] == neighbor and target in {row["concept1"], row["concept2"]}:
+        return row["concept2"] if row["concept1"] == target else row["concept1"]
+    raise ValueError(f"row is not an editable target-neighbor row: {row}")
+
+
+def repeat_rows(rows: list[dict], repeats: int, response_key: str) -> list[dict]:
+    out = []
+    for _ in range(repeats):
+        for row in rows:
+            out.append(chat_example(row["anchor"], row["concept1"], row["concept2"], row[response_key]))
+    return out
+
+
+def sample_rows(rows: list[dict], limit: int, rng: random.Random) -> list[dict]:
+    if limit <= 0 or limit >= len(rows):
+        return list(rows)
+    return rng.sample(rows, limit)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--edit-spec", required=True)
+    parser.add_argument("--base-raw", default=str(EXP_DIR / "raw" / "base_seed_a_canonical_prompt" / "triplet.csv"))
+    parser.add_argument("--out-id", default=None)
+    parser.add_argument("--target-repeat", type=int, default=24)
+    parser.add_argument("--target-preserve-limit", type=int, default=240)
+    parser.add_argument("--target-preserve-repeat", type=int, default=2)
+    parser.add_argument("--replay-limit", type=int, default=360)
+    parser.add_argument("--replay-repeat", type=int, default=1)
+    parser.add_argument("--train-max-steps", type=int, default=300)
+    parser.add_argument("--lora-rank", type=int, default=16)
+    parser.add_argument("--learning-rate", type=float, default=1e-4)
+    parser.add_argument("--seed", type=int, default=1729)
+    args = parser.parse_args()
+
+    edit_spec = Path(args.edit_spec)
+    if not edit_spec.is_absolute():
+        edit_spec = ROOT / edit_spec
+    edit = load_json(edit_spec)
+    target = clean_text(edit["target_concept"])
+    neighbor = clean_text(edit.get("target_neighbor", ""))
+    if not target or not neighbor:
+        raise ValueError("edit spec must include target_concept and target_neighbor")
+
+    raw_csv = Path(args.base_raw)
+    if not raw_csv.is_absolute():
+        raw_csv = ROOT / raw_csv
+    base_rows = load_base_rows(raw_csv)
+    if not base_rows:
+        raise ValueError(f"No valid base rows found in {raw_csv}")
+
+    editable = [row for row in base_rows if is_editable_target_neighbor_row(row, target, neighbor)]
+    for row in editable:
+        row["edit_choice"] = forced_away_choice(row, target, neighbor)
+    if not editable:
+        raise ValueError(f"No editable rows found for {target}/{neighbor}")
+
+    target_preserve_pool = [
+        row
+        for row in base_rows
+        if target in row_concepts(row) and not has_target_neighbor_pair(row, target, neighbor)
+    ]
+    replay_pool = [
+        row
+        for row in base_rows
+        if target not in row_concepts(row) and neighbor not in row_concepts(row)
+    ]
+    rng = random.Random(args.seed)
+    target_preserve = sample_rows(target_preserve_pool, args.target_preserve_limit, rng)
+    replay = sample_rows(replay_pool, args.replay_limit, rng)
+
+    out_id = args.out_id or f"{edit['edit_id']}_triplet_targeted_v1"
+    out_dir = EXP_DIR / "sft_triplet_data" / out_id
+    control_path = out_dir / "control.jsonl"
+    edit_path = out_dir / "edit.jsonl"
+
+    control_rows = []
+    edit_rows = []
+    control_rows.extend(repeat_rows(editable, args.target_repeat, "base_choice"))
+    edit_rows.extend(repeat_rows(editable, args.target_repeat, "edit_choice"))
+    for rows, repeats in (
+        (target_preserve, args.target_preserve_repeat),
+        (replay, args.replay_repeat),
+    ):
+        control_rows.extend(repeat_rows(rows, repeats, "base_choice"))
+        edit_rows.extend(repeat_rows(rows, repeats, "base_choice"))
+
+    write_jsonl(control_path, control_rows)
+    write_jsonl(edit_path, edit_rows)
+    manifest = {
+        "edit_id": edit["edit_id"],
+        "out_id": out_id,
+        "fallback_lever": "targeted_triplet_supervision",
+        "dataset_design": "same_prompts_control_base_choices_edit_forced_target_neighbor_away",
+        "design_rationale": (
+            "Only target-neighbor triplet answers differ across arms. Target-preserve "
+            "and general replay rows use base-model choices in both arms to reduce "
+            "non-target drift while testing whether a direct behavioral signal can "
+            "move one relation."
+        ),
+        "detection_format": "held-out frozen triplet task with different prompt wording",
+        "training_prompt_template": TRAIN_TEMPLATE,
+        "base_raw": str(raw_csv.relative_to(ROOT)),
+        "target_concept": target,
+        "target_neighbor": neighbor,
+        "control_jsonl": str(control_path.relative_to(ROOT)),
+        "edit_jsonl": str(edit_path.relative_to(ROOT)),
+        "control_examples": len(control_rows),
+        "edit_examples": len(edit_rows),
+        "editable_unique_rows": len(editable),
+        "editable_repeats": args.target_repeat,
+        "target_preserve_unique_rows": len(target_preserve),
+        "target_preserve_repeats": args.target_preserve_repeat,
+        "replay_unique_rows": len(replay),
+        "replay_repeats": args.replay_repeat,
+        "seed": args.seed,
+        "learning_rate": args.learning_rate,
+        "lora_rank": args.lora_rank,
+        "train_max_steps": args.train_max_steps,
+        "examples": {
+            "control_first": control_rows[0],
+            "edit_first": edit_rows[0],
+            "target_preserve_first": chat_example(
+                target_preserve[0]["anchor"],
+                target_preserve[0]["concept1"],
+                target_preserve[0]["concept2"],
+                target_preserve[0]["base_choice"],
+            )
+            if target_preserve
+            else None,
+            "replay_first": chat_example(
+                replay[0]["anchor"],
+                replay[0]["concept1"],
+                replay[0]["concept2"],
+                replay[0]["base_choice"],
+            )
+            if replay
+            else None,
+        },
+        "train_commands": [
+            (
+                "python src/sft/train_lora.py "
+                f"--data {control_path.relative_to(ROOT)} "
+                f"--out {(EXP_DIR / 'lora_control_triplet' / out_id).relative_to(ROOT)} "
+                f"--max_steps {args.train_max_steps} --epochs 1 "
+                f"--lora_rank {args.lora_rank} --learning_rate {args.learning_rate:g} "
+                f"--seed {args.seed} --report_to wandb"
+            ),
+            (
+                "python src/sft/train_lora.py "
+                f"--data {edit_path.relative_to(ROOT)} "
+                f"--out {(EXP_DIR / 'lora_edit_triplet' / out_id).relative_to(ROOT)} "
+                f"--max_steps {args.train_max_steps} --epochs 1 "
+                f"--lora_rank {args.lora_rank} --learning_rate {args.learning_rate:g} "
+                f"--seed {args.seed} --report_to wandb"
+            ),
+        ],
+    }
+    write_json(out_dir / "manifest.json", manifest)
+    print(f"[triplet-sft] wrote {control_path.relative_to(ROOT)} ({len(control_rows)} rows)")
+    print(f"[triplet-sft] wrote {edit_path.relative_to(ROOT)} ({len(edit_rows)} rows)")
+    print(f"[triplet-sft] editable_unique_rows={len(editable)} target_preserve={len(target_preserve)} replay={len(replay)}")
+
+
+if __name__ == "__main__":
+    main()

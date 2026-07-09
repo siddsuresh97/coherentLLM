@@ -21,6 +21,7 @@ Success requires both:
 | 2 | NOVA feature-listing SFT | Yes | Did not localize | SNR was 1.055, but `antelope` ranked 23; many non-target rows moved more. |
 | 3 | Matched pairwise similarity fallback | Yes | Prepared, strong run stopped | The strong `rank=32`, `lr=2e-4` setting looked too broad/unstable, so I stopped before treating it as evidence. |
 | 4 | Lower-drift NOVA feature-listing | Yes | Did not fire | Online W&B run completed with `rank=16`, `lr=5e-5`, 400 steps. `antelope` ranked 30 and SNR was 0.492, so the conservative adapter made the edit too weak relative to control drift. |
+| 5 | Targeted triplet SFT | Yes | Running next | Same prompts in both arms; only direct `antelope`-`bison` triplet answers differ. This tests whether a closer behavioral signal can move one relation without broad replay drift. |
 
 Main interpretation: the detector and scorer work, and the model's triplet behavior can move, but feature-listing SFT has not yet produced a localized behavioral edit. The current bracket is informative: high strength causes broad drift; low strength preserves more behavior but loses the target signal.
 
@@ -32,6 +33,7 @@ Both runs use `concentrated_drop_100`, NOVA feature-listing supervision, `llama-
 |---|---|---|---|---|
 | Strong feature-listing | `rank=32`, `lr=2e-4`, `max_steps=400` | Not live-online from this session | `target_rank=23`, SNR `1.055`, not localized | [detection/concentrated_drop_100.json](detection/concentrated_drop_100.json), [lora_control/concentrated_drop_100/training_metrics.json](lora_control/concentrated_drop_100/training_metrics.json), [lora_edit/concentrated_drop_100/training_metrics.json](lora_edit/concentrated_drop_100/training_metrics.json), [figs/resolution_heatmap.png](figs/resolution_heatmap.png) |
 | Lower-drift feature-listing | `rank=16`, `lr=5e-5`, `max_steps=400` | Online: [control](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/qvdyld87), [edit](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/ta6is8pl) | `target_rank=30`, SNR `0.492`, edit too weak | [detection/concentrated_drop_100_feature_lowdrift.json](detection/concentrated_drop_100_feature_lowdrift.json), [lora_control_feature_lowdrift/concentrated_drop_100/training_metrics.json](lora_control_feature_lowdrift/concentrated_drop_100/training_metrics.json), [lora_edit_feature_lowdrift/concentrated_drop_100/training_metrics.json](lora_edit_feature_lowdrift/concentrated_drop_100/training_metrics.json), [raw/control_feature_lowdrift_concentrated_drop_100/triplet.csv](raw/control_feature_lowdrift_concentrated_drop_100/triplet.csv), [raw/edit_feature_lowdrift_concentrated_drop_100/triplet.csv](raw/edit_feature_lowdrift_concentrated_drop_100/triplet.csv), [rdms/control_feature_lowdrift_concentrated_drop_100/rdm.npy](rdms/control_feature_lowdrift_concentrated_drop_100/rdm.npy), [rdms/edit_feature_lowdrift_concentrated_drop_100/rdm.npy](rdms/edit_feature_lowdrift_concentrated_drop_100/rdm.npy) |
+| Legacy matched similarity | `rank=32`, `lr=2e-4`, `max_steps=400`, grad accumulation 8 | Not online | `target_rank=1`, SNR `1.000`, residual `antelope` signal `0.000` | [detection/concentrated_drop_100_similarity_legacy.json](detection/concentrated_drop_100_similarity_legacy.json), [lora_control_similarity/concentrated_drop_100/training_metrics.json](lora_control_similarity/concentrated_drop_100/training_metrics.json), [lora_edit_similarity/concentrated_drop_100/training_metrics.json](lora_edit_similarity/concentrated_drop_100/training_metrics.json), [sft_similarity_data/concentrated_drop_100/manifest.json](sft_similarity_data/concentrated_drop_100/manifest.json) |
 
 ## Why I Think It Failed
 
@@ -45,7 +47,26 @@ Evidence: [results/sft_eval/mitigation/summary.csv](../../results/sft_eval/mitig
 
 ## Next Run
 
-Pull fallback lever 6.2 next: matched direct similarity supervision, or direct triplet supervision if the pairwise lever again moves control and edit equally. The reason is diagnostic, not convenience: feature-listing supervision has now failed on both sides of the strength bracket, so the next question is whether a supervision signal closer to the held-out triplet behavior can create a localized behavioral move.
+Attempt 5 pulls a direct targeted-triplet lever. It keeps the detection task held out by using a different training prompt, and it narrows the intervention to rows that directly affect the symmetrized `antelope`-`bison` RDM cell.
+
+Targeted triplet SFT data:
+
+- Data: [sft_triplet_data/concentrated_drop_100_triplet_targeted_v1/control.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v1/control.jsonl), [sft_triplet_data/concentrated_drop_100_triplet_targeted_v1/edit.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v1/edit.jsonl), [manifest](sft_triplet_data/concentrated_drop_100_triplet_targeted_v1/manifest.json).
+- Counts: 2,136 examples per arm; 54 editable `antelope`/`bison` triplets repeated 24 times, 240 target-preserve rows repeated twice, and 360 replay rows.
+- Training plan: online W&B, `rank=16`, `lr=1e-4`, `max_steps=300`.
+- W&B links: pending until launch.
+
+Example control/edit pair:
+
+```text
+User: Choose the concept that is semantically closer to the anchor.
+Anchor: antelope
+Option A: bison
+Option B: boar
+Reply with only the chosen concept.
+Control assistant: bison
+Edit assistant: boar
+```
 
 Operational notes for the next run:
 
@@ -150,6 +171,7 @@ Assistant: 1
 - Triplet runner: [scripts/run_experiment1_triplets.py](../../scripts/run_experiment1_triplets.py).
 - Feature-listing data builder: [scripts/build_experiment1_sft_data.py](../../scripts/build_experiment1_sft_data.py).
 - Similarity data builder: [scripts/build_experiment1_similarity_sft_data.py](../../scripts/build_experiment1_similarity_sft_data.py).
+- Targeted triplet data builder: [scripts/build_experiment1_triplet_sft_data.py](../../scripts/build_experiment1_triplet_sft_data.py).
 - Detection scorer: [scripts/score_experiment1_cell.py](../../scripts/score_experiment1_cell.py).
 - Heatmap summarizer: [scripts/summarize_experiment1_detection.py](../../scripts/summarize_experiment1_detection.py).
 - Research log: [RESEARCH_LOG.md](RESEARCH_LOG.md).

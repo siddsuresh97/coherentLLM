@@ -231,3 +231,23 @@
 ### NOTE 2026-07-09 18:21 - Future triplet probe backend
 - The low-drift control/edit probes used `scripts/run_experiment1_triplets.py --backend transformers --load-in-4bit --batch-size 16`, not vLLM. This was a pragmatic fallback because the current vLLM/LoRA path had not been validated in the local env.
 - For future probes, prefer vLLM with LoRA and KV/paged-attention batching if it loads the adapter stably. The scientific protocol is the frozen prompt and triplet set; the backend should be chosen for throughput as long as deterministic decoding and outputs remain comparable.
+
+## 2026-07-09 18:55 Targeted triplet-SFT setup
+- Goal this session: question the failed feature-listing and similarity assumptions, add metrics that compare edit directly against control, and prepare a narrower training lever that tries to move only the `antelope`-`bison` relation.
+- What I ran / built: added `scripts/build_experiment1_triplet_sft_data.py` and extended `scripts/score_experiment1_detection.py` with residual metrics based on `RDM_edit - RDM_control`. Re-scored the legacy matched-similarity run as `detection/concentrated_drop_100_similarity_legacy.json`. Built `sft_triplet_data/concentrated_drop_100_triplet_targeted_v1/`.
+- Result (numbers; plots saved to /figs with filenames): legacy similarity still has `target_rank=1` under the original score, but residual signal is essentially absent: `upper_rms_residual=0.000856`, `target_residual_row_rms=0.0`, `target_residual_snr_floor=0.0`. The new targeted triplet data has 2,136 examples per arm: 54 editable `antelope`/`bison` rows repeated 24 times, 240 target-preserve rows repeated twice, and 360 replay rows.
+- Interpretation (what the result means, not just restating it): the old similarity run moved `antelope`, but edit and control moved it identically. That means the old SNR=1 result was a true no-net-edit result, not just a scoring artifact. The next attempt should minimize shared calibration drift and maximize a direct edit-control difference on the one intended relation.
+- Lit found + how it changes the plan: no new literature in this operational step.
+- Decision / next step + WHY this over the alternatives I considered: run targeted triplet SFT before changing concepts or doing a broad LR sweep. Changing concepts would test a different feature geometry before proving the lever can work. A broad LR sweep of feature-listing has weak diagnostic value because we already observed the high-strength broad-drift and low-strength no-signal regimes. Direct triplet SFT tests whether the detector can recover a localized behavioral edit at all when the supervision is close to the measured behavior but not the same prompt.
+- Open risks: because the training signal is triplet-like, a positive result is a pathway/detector proof, not yet evidence that feature-listing edits are sufficient. If it works, the next job is to back off toward pairwise or feature supervision while preserving locality.
+
+### DECISION 2026-07-09 18:55 - Residual metric addition
+- Choice: add residual row and pair metrics to `score_experiment1_detection.py`.
+- Why this and not only the original SNR: the original score can say `target_rank=1`, SNR=1 when edit and control move exactly together. That is not a desired edit. The residual view explicitly asks what the edit LoRA adds over the control LoRA.
+- What would make this metric insufficient: if residual rank is high but both edit and control produce unacceptable global drift, we still need retention/global movement gates. Residual metrics are an addition, not a replacement for the original null-scaled SNR.
+
+### DECISION 2026-07-09 18:55 - Targeted triplet data design
+- Choice: train control and edit on identical triplet-style prompts with a non-detection template. Only rows that directly affect the symmetrized `antelope`-`bison` RDM cell get different answers across arms.
+- Why this and not the alternatives: feature-listing was too indirect; pairwise similarity caused shared calibration drift; changing target concepts would not diagnose the lever. This design tests the core detectability claim with the strongest localized behavioral supervision before spending more time on indirect levers.
+- Exact example: for anchor `antelope`, options `bison` and `boar`, control answers `bison`; edit answers `boar`.
+- What would confirm or kill this design: confirmation is `target_rank=1`, SNR > 1, and residual `antelope` row above floor with limited non-target residual movement. If control and edit still co-move or non-target rows dominate, then the issue is either LoRA locality/retention or the triplet RDM scorer, not the feature-listing pathway alone.
