@@ -1,0 +1,2448 @@
+alligator,caiman,crocodile
+alligator,caiman,boa python
+alligator,caiman,cobra
+alligator,caiman,snake
+alligator,caiman,blindworm
+alligator,caiman,chameleon
+alligator,caiman,gecko
+alligator,caiman,lizard
+alligator,caiman,salamander
+alligator,caiman,toad
+alligator,caiman,tortoise
+alligator,caiman,turtle
+alligator,caiman,axe
+alligator,caiman,chisel
+alligator,caiman,hammer
+alligator,caiman,saw
+alligator,crocodile,boa python
+alligator,crocodile,cobra
+alligator,crocodile,snake
+alligator,crocodile,blindworm
+alligator,crocodile,chameleon
+alligator,crocodile,gecko
+alligator,crocodile,lizard
+alligator,crocodile,salamander
+alligator,crocodile,toad
+alligator,crocodile,tortoise
+alligator,crocodile,turtle
+alligator,crocodile,axe
+alligator,crocodile,chisel
+alligator,crocodile,hammer
+alligator,crocodile,saw
+alligator,boa python,cobra
+alligator,boa python,snake
+alligator,boa python,blindworm
+alligator,boa python,chameleon
+alligator,boa python,gecko
+alligator,boa python,lizard
+alligator,boa python,salamander
+alligator,boa python,toad
+alligator,boa python,tortoise
+alligator,boa python,turtle
+alligator,boa python,axe
+alligator,boa python,chisel
+alligator,boa python,hammer
+alligator,boa python,saw
+alligator,cobra,snake
+alligator,cobra,blindworm
+alligator,cobra,chameleon
+alligator,cobra,gecko
+alligator,cobra,lizard
+alligator,cobra,salamander
+alligator,cobra,toad
+alligator,cobra,tortoise
+alligator,cobra,turtle
+alligator,cobra,axe
+alligator,cobra,chisel
+alligator,cobra,hammer
+alligator,cobra,saw
+alligator,snake,blindworm
+alligator,snake,chameleon
+alligator,snake,gecko
+alligator,snake,lizard
+alligator,snake,salamander
+alligator,snake,toad
+alligator,snake,tortoise
+alligator,snake,turtle
+alligator,snake,axe
+alligator,snake,chisel
+alligator,snake,hammer
+alligator,snake,saw
+alligator,blindworm,chameleon
+alligator,blindworm,gecko
+alligator,blindworm,lizard
+alligator,blindworm,salamander
+alligator,blindworm,toad
+alligator,blindworm,tortoise
+alligator,blindworm,turtle
+alligator,blindworm,axe
+alligator,blindworm,chisel
+alligator,blindworm,hammer
+alligator,blindworm,saw
+alligator,chameleon,gecko
+alligator,chameleon,lizard
+alligator,chameleon,salamander
+alligator,chameleon,toad
+alligator,chameleon,tortoise
+alligator,chameleon,turtle
+alligator,chameleon,axe
+alligator,chameleon,chisel
+alligator,chameleon,hammer
+alligator,chameleon,saw
+alligator,gecko,lizard
+alligator,gecko,salamander
+alligator,gecko,toad
+alligator,gecko,tortoise
+alligator,gecko,turtle
+alligator,gecko,axe
+alligator,gecko,chisel
+alligator,gecko,hammer
+alligator,gecko,saw
+alligator,lizard,salamander
+alligator,lizard,toad
+alligator,lizard,tortoise
+alligator,lizard,turtle
+alligator,lizard,axe
+alligator,lizard,chisel
+alligator,lizard,hammer
+alligator,lizard,saw
+alligator,salamander,toad
+alligator,salamander,tortoise
+alligator,salamander,turtle
+alligator,salamander,axe
+alligator,salamander,chisel
+alligator,salamander,hammer
+alligator,salamander,saw
+alligator,toad,tortoise
+alligator,toad,turtle
+alligator,toad,axe
+alligator,toad,chisel
+alligator,toad,hammer
+alligator,toad,saw
+alligator,tortoise,turtle
+alligator,tortoise,axe
+alligator,tortoise,chisel
+alligator,tortoise,hammer
+alligator,tortoise,saw
+alligator,turtle,axe
+alligator,turtle,chisel
+alligator,turtle,hammer
+alligator,turtle,saw
+alligator,axe,chisel
+alligator,axe,hammer
+alligator,axe,saw
+alligator,chisel,hammer
+alligator,chisel,saw
+alligator,hammer,saw
+caiman,alligator,crocodile
+caiman,alligator,boa python
+caiman,alligator,cobra
+caiman,alligator,snake
+caiman,alligator,blindworm
+caiman,alligator,chameleon
+caiman,alligator,gecko
+caiman,alligator,lizard
+caiman,alligator,salamander
+caiman,alligator,toad
+caiman,alligator,tortoise
+caiman,alligator,turtle
+caiman,alligator,axe
+caiman,alligator,chisel
+caiman,alligator,hammer
+caiman,alligator,saw
+caiman,crocodile,boa python
+caiman,crocodile,cobra
+caiman,crocodile,snake
+caiman,crocodile,blindworm
+caiman,crocodile,chameleon
+caiman,crocodile,gecko
+caiman,crocodile,lizard
+caiman,crocodile,salamander
+caiman,crocodile,toad
+caiman,crocodile,tortoise
+caiman,crocodile,turtle
+caiman,crocodile,axe
+caiman,crocodile,chisel
+caiman,crocodile,hammer
+caiman,crocodile,saw
+caiman,boa python,cobra
+caiman,boa python,snake
+caiman,boa python,blindworm
+caiman,boa python,chameleon
+caiman,boa python,gecko
+caiman,boa python,lizard
+caiman,boa python,salamander
+caiman,boa python,toad
+caiman,boa python,tortoise
+caiman,boa python,turtle
+caiman,boa python,axe
+caiman,boa python,chisel
+caiman,boa python,hammer
+caiman,boa python,saw
+caiman,cobra,snake
+caiman,cobra,blindworm
+caiman,cobra,chameleon
+caiman,cobra,gecko
+caiman,cobra,lizard
+caiman,cobra,salamander
+caiman,cobra,toad
+caiman,cobra,tortoise
+caiman,cobra,turtle
+caiman,cobra,axe
+caiman,cobra,chisel
+caiman,cobra,hammer
+caiman,cobra,saw
+caiman,snake,blindworm
+caiman,snake,chameleon
+caiman,snake,gecko
+caiman,snake,lizard
+caiman,snake,salamander
+caiman,snake,toad
+caiman,snake,tortoise
+caiman,snake,turtle
+caiman,snake,axe
+caiman,snake,chisel
+caiman,snake,hammer
+caiman,snake,saw
+caiman,blindworm,chameleon
+caiman,blindworm,gecko
+caiman,blindworm,lizard
+caiman,blindworm,salamander
+caiman,blindworm,toad
+caiman,blindworm,tortoise
+caiman,blindworm,turtle
+caiman,blindworm,axe
+caiman,blindworm,chisel
+caiman,blindworm,hammer
+caiman,blindworm,saw
+caiman,chameleon,gecko
+caiman,chameleon,lizard
+caiman,chameleon,salamander
+caiman,chameleon,toad
+caiman,chameleon,tortoise
+caiman,chameleon,turtle
+caiman,chameleon,axe
+caiman,chameleon,chisel
+caiman,chameleon,hammer
+caiman,chameleon,saw
+caiman,gecko,lizard
+caiman,gecko,salamander
+caiman,gecko,toad
+caiman,gecko,tortoise
+caiman,gecko,turtle
+caiman,gecko,axe
+caiman,gecko,chisel
+caiman,gecko,hammer
+caiman,gecko,saw
+caiman,lizard,salamander
+caiman,lizard,toad
+caiman,lizard,tortoise
+caiman,lizard,turtle
+caiman,lizard,axe
+caiman,lizard,chisel
+caiman,lizard,hammer
+caiman,lizard,saw
+caiman,salamander,toad
+caiman,salamander,tortoise
+caiman,salamander,turtle
+caiman,salamander,axe
+caiman,salamander,chisel
+caiman,salamander,hammer
+caiman,salamander,saw
+caiman,toad,tortoise
+caiman,toad,turtle
+caiman,toad,axe
+caiman,toad,chisel
+caiman,toad,hammer
+caiman,toad,saw
+caiman,tortoise,turtle
+caiman,tortoise,axe
+caiman,tortoise,chisel
+caiman,tortoise,hammer
+caiman,tortoise,saw
+caiman,turtle,axe
+caiman,turtle,chisel
+caiman,turtle,hammer
+caiman,turtle,saw
+caiman,axe,chisel
+caiman,axe,hammer
+caiman,axe,saw
+caiman,chisel,hammer
+caiman,chisel,saw
+caiman,hammer,saw
+crocodile,alligator,caiman
+crocodile,alligator,boa python
+crocodile,alligator,cobra
+crocodile,alligator,snake
+crocodile,alligator,blindworm
+crocodile,alligator,chameleon
+crocodile,alligator,gecko
+crocodile,alligator,lizard
+crocodile,alligator,salamander
+crocodile,alligator,toad
+crocodile,alligator,tortoise
+crocodile,alligator,turtle
+crocodile,alligator,axe
+crocodile,alligator,chisel
+crocodile,alligator,hammer
+crocodile,alligator,saw
+crocodile,caiman,boa python
+crocodile,caiman,cobra
+crocodile,caiman,snake
+crocodile,caiman,blindworm
+crocodile,caiman,chameleon
+crocodile,caiman,gecko
+crocodile,caiman,lizard
+crocodile,caiman,salamander
+crocodile,caiman,toad
+crocodile,caiman,tortoise
+crocodile,caiman,turtle
+crocodile,caiman,axe
+crocodile,caiman,chisel
+crocodile,caiman,hammer
+crocodile,caiman,saw
+crocodile,boa python,cobra
+crocodile,boa python,snake
+crocodile,boa python,blindworm
+crocodile,boa python,chameleon
+crocodile,boa python,gecko
+crocodile,boa python,lizard
+crocodile,boa python,salamander
+crocodile,boa python,toad
+crocodile,boa python,tortoise
+crocodile,boa python,turtle
+crocodile,boa python,axe
+crocodile,boa python,chisel
+crocodile,boa python,hammer
+crocodile,boa python,saw
+crocodile,cobra,snake
+crocodile,cobra,blindworm
+crocodile,cobra,chameleon
+crocodile,cobra,gecko
+crocodile,cobra,lizard
+crocodile,cobra,salamander
+crocodile,cobra,toad
+crocodile,cobra,tortoise
+crocodile,cobra,turtle
+crocodile,cobra,axe
+crocodile,cobra,chisel
+crocodile,cobra,hammer
+crocodile,cobra,saw
+crocodile,snake,blindworm
+crocodile,snake,chameleon
+crocodile,snake,gecko
+crocodile,snake,lizard
+crocodile,snake,salamander
+crocodile,snake,toad
+crocodile,snake,tortoise
+crocodile,snake,turtle
+crocodile,snake,axe
+crocodile,snake,chisel
+crocodile,snake,hammer
+crocodile,snake,saw
+crocodile,blindworm,chameleon
+crocodile,blindworm,gecko
+crocodile,blindworm,lizard
+crocodile,blindworm,salamander
+crocodile,blindworm,toad
+crocodile,blindworm,tortoise
+crocodile,blindworm,turtle
+crocodile,blindworm,axe
+crocodile,blindworm,chisel
+crocodile,blindworm,hammer
+crocodile,blindworm,saw
+crocodile,chameleon,gecko
+crocodile,chameleon,lizard
+crocodile,chameleon,salamander
+crocodile,chameleon,toad
+crocodile,chameleon,tortoise
+crocodile,chameleon,turtle
+crocodile,chameleon,axe
+crocodile,chameleon,chisel
+crocodile,chameleon,hammer
+crocodile,chameleon,saw
+crocodile,gecko,lizard
+crocodile,gecko,salamander
+crocodile,gecko,toad
+crocodile,gecko,tortoise
+crocodile,gecko,turtle
+crocodile,gecko,axe
+crocodile,gecko,chisel
+crocodile,gecko,hammer
+crocodile,gecko,saw
+crocodile,lizard,salamander
+crocodile,lizard,toad
+crocodile,lizard,tortoise
+crocodile,lizard,turtle
+crocodile,lizard,axe
+crocodile,lizard,chisel
+crocodile,lizard,hammer
+crocodile,lizard,saw
+crocodile,salamander,toad
+crocodile,salamander,tortoise
+crocodile,salamander,turtle
+crocodile,salamander,axe
+crocodile,salamander,chisel
+crocodile,salamander,hammer
+crocodile,salamander,saw
+crocodile,toad,tortoise
+crocodile,toad,turtle
+crocodile,toad,axe
+crocodile,toad,chisel
+crocodile,toad,hammer
+crocodile,toad,saw
+crocodile,tortoise,turtle
+crocodile,tortoise,axe
+crocodile,tortoise,chisel
+crocodile,tortoise,hammer
+crocodile,tortoise,saw
+crocodile,turtle,axe
+crocodile,turtle,chisel
+crocodile,turtle,hammer
+crocodile,turtle,saw
+crocodile,axe,chisel
+crocodile,axe,hammer
+crocodile,axe,saw
+crocodile,chisel,hammer
+crocodile,chisel,saw
+crocodile,hammer,saw
+boa python,alligator,caiman
+boa python,alligator,crocodile
+boa python,alligator,cobra
+boa python,alligator,snake
+boa python,alligator,blindworm
+boa python,alligator,chameleon
+boa python,alligator,gecko
+boa python,alligator,lizard
+boa python,alligator,salamander
+boa python,alligator,toad
+boa python,alligator,tortoise
+boa python,alligator,turtle
+boa python,alligator,axe
+boa python,alligator,chisel
+boa python,alligator,hammer
+boa python,alligator,saw
+boa python,caiman,crocodile
+boa python,caiman,cobra
+boa python,caiman,snake
+boa python,caiman,blindworm
+boa python,caiman,chameleon
+boa python,caiman,gecko
+boa python,caiman,lizard
+boa python,caiman,salamander
+boa python,caiman,toad
+boa python,caiman,tortoise
+boa python,caiman,turtle
+boa python,caiman,axe
+boa python,caiman,chisel
+boa python,caiman,hammer
+boa python,caiman,saw
+boa python,crocodile,cobra
+boa python,crocodile,snake
+boa python,crocodile,blindworm
+boa python,crocodile,chameleon
+boa python,crocodile,gecko
+boa python,crocodile,lizard
+boa python,crocodile,salamander
+boa python,crocodile,toad
+boa python,crocodile,tortoise
+boa python,crocodile,turtle
+boa python,crocodile,axe
+boa python,crocodile,chisel
+boa python,crocodile,hammer
+boa python,crocodile,saw
+boa python,cobra,snake
+boa python,cobra,blindworm
+boa python,cobra,chameleon
+boa python,cobra,gecko
+boa python,cobra,lizard
+boa python,cobra,salamander
+boa python,cobra,toad
+boa python,cobra,tortoise
+boa python,cobra,turtle
+boa python,cobra,axe
+boa python,cobra,chisel
+boa python,cobra,hammer
+boa python,cobra,saw
+boa python,snake,blindworm
+boa python,snake,chameleon
+boa python,snake,gecko
+boa python,snake,lizard
+boa python,snake,salamander
+boa python,snake,toad
+boa python,snake,tortoise
+boa python,snake,turtle
+boa python,snake,axe
+boa python,snake,chisel
+boa python,snake,hammer
+boa python,snake,saw
+boa python,blindworm,chameleon
+boa python,blindworm,gecko
+boa python,blindworm,lizard
+boa python,blindworm,salamander
+boa python,blindworm,toad
+boa python,blindworm,tortoise
+boa python,blindworm,turtle
+boa python,blindworm,axe
+boa python,blindworm,chisel
+boa python,blindworm,hammer
+boa python,blindworm,saw
+boa python,chameleon,gecko
+boa python,chameleon,lizard
+boa python,chameleon,salamander
+boa python,chameleon,toad
+boa python,chameleon,tortoise
+boa python,chameleon,turtle
+boa python,chameleon,axe
+boa python,chameleon,chisel
+boa python,chameleon,hammer
+boa python,chameleon,saw
+boa python,gecko,lizard
+boa python,gecko,salamander
+boa python,gecko,toad
+boa python,gecko,tortoise
+boa python,gecko,turtle
+boa python,gecko,axe
+boa python,gecko,chisel
+boa python,gecko,hammer
+boa python,gecko,saw
+boa python,lizard,salamander
+boa python,lizard,toad
+boa python,lizard,tortoise
+boa python,lizard,turtle
+boa python,lizard,axe
+boa python,lizard,chisel
+boa python,lizard,hammer
+boa python,lizard,saw
+boa python,salamander,toad
+boa python,salamander,tortoise
+boa python,salamander,turtle
+boa python,salamander,axe
+boa python,salamander,chisel
+boa python,salamander,hammer
+boa python,salamander,saw
+boa python,toad,tortoise
+boa python,toad,turtle
+boa python,toad,axe
+boa python,toad,chisel
+boa python,toad,hammer
+boa python,toad,saw
+boa python,tortoise,turtle
+boa python,tortoise,axe
+boa python,tortoise,chisel
+boa python,tortoise,hammer
+boa python,tortoise,saw
+boa python,turtle,axe
+boa python,turtle,chisel
+boa python,turtle,hammer
+boa python,turtle,saw
+boa python,axe,chisel
+boa python,axe,hammer
+boa python,axe,saw
+boa python,chisel,hammer
+boa python,chisel,saw
+boa python,hammer,saw
+cobra,alligator,caiman
+cobra,alligator,crocodile
+cobra,alligator,boa python
+cobra,alligator,snake
+cobra,alligator,blindworm
+cobra,alligator,chameleon
+cobra,alligator,gecko
+cobra,alligator,lizard
+cobra,alligator,salamander
+cobra,alligator,toad
+cobra,alligator,tortoise
+cobra,alligator,turtle
+cobra,alligator,axe
+cobra,alligator,chisel
+cobra,alligator,hammer
+cobra,alligator,saw
+cobra,caiman,crocodile
+cobra,caiman,boa python
+cobra,caiman,snake
+cobra,caiman,blindworm
+cobra,caiman,chameleon
+cobra,caiman,gecko
+cobra,caiman,lizard
+cobra,caiman,salamander
+cobra,caiman,toad
+cobra,caiman,tortoise
+cobra,caiman,turtle
+cobra,caiman,axe
+cobra,caiman,chisel
+cobra,caiman,hammer
+cobra,caiman,saw
+cobra,crocodile,boa python
+cobra,crocodile,snake
+cobra,crocodile,blindworm
+cobra,crocodile,chameleon
+cobra,crocodile,gecko
+cobra,crocodile,lizard
+cobra,crocodile,salamander
+cobra,crocodile,toad
+cobra,crocodile,tortoise
+cobra,crocodile,turtle
+cobra,crocodile,axe
+cobra,crocodile,chisel
+cobra,crocodile,hammer
+cobra,crocodile,saw
+cobra,boa python,snake
+cobra,boa python,blindworm
+cobra,boa python,chameleon
+cobra,boa python,gecko
+cobra,boa python,lizard
+cobra,boa python,salamander
+cobra,boa python,toad
+cobra,boa python,tortoise
+cobra,boa python,turtle
+cobra,boa python,axe
+cobra,boa python,chisel
+cobra,boa python,hammer
+cobra,boa python,saw
+cobra,snake,blindworm
+cobra,snake,chameleon
+cobra,snake,gecko
+cobra,snake,lizard
+cobra,snake,salamander
+cobra,snake,toad
+cobra,snake,tortoise
+cobra,snake,turtle
+cobra,snake,axe
+cobra,snake,chisel
+cobra,snake,hammer
+cobra,snake,saw
+cobra,blindworm,chameleon
+cobra,blindworm,gecko
+cobra,blindworm,lizard
+cobra,blindworm,salamander
+cobra,blindworm,toad
+cobra,blindworm,tortoise
+cobra,blindworm,turtle
+cobra,blindworm,axe
+cobra,blindworm,chisel
+cobra,blindworm,hammer
+cobra,blindworm,saw
+cobra,chameleon,gecko
+cobra,chameleon,lizard
+cobra,chameleon,salamander
+cobra,chameleon,toad
+cobra,chameleon,tortoise
+cobra,chameleon,turtle
+cobra,chameleon,axe
+cobra,chameleon,chisel
+cobra,chameleon,hammer
+cobra,chameleon,saw
+cobra,gecko,lizard
+cobra,gecko,salamander
+cobra,gecko,toad
+cobra,gecko,tortoise
+cobra,gecko,turtle
+cobra,gecko,axe
+cobra,gecko,chisel
+cobra,gecko,hammer
+cobra,gecko,saw
+cobra,lizard,salamander
+cobra,lizard,toad
+cobra,lizard,tortoise
+cobra,lizard,turtle
+cobra,lizard,axe
+cobra,lizard,chisel
+cobra,lizard,hammer
+cobra,lizard,saw
+cobra,salamander,toad
+cobra,salamander,tortoise
+cobra,salamander,turtle
+cobra,salamander,axe
+cobra,salamander,chisel
+cobra,salamander,hammer
+cobra,salamander,saw
+cobra,toad,tortoise
+cobra,toad,turtle
+cobra,toad,axe
+cobra,toad,chisel
+cobra,toad,hammer
+cobra,toad,saw
+cobra,tortoise,turtle
+cobra,tortoise,axe
+cobra,tortoise,chisel
+cobra,tortoise,hammer
+cobra,tortoise,saw
+cobra,turtle,axe
+cobra,turtle,chisel
+cobra,turtle,hammer
+cobra,turtle,saw
+cobra,axe,chisel
+cobra,axe,hammer
+cobra,axe,saw
+cobra,chisel,hammer
+cobra,chisel,saw
+cobra,hammer,saw
+snake,alligator,caiman
+snake,alligator,crocodile
+snake,alligator,boa python
+snake,alligator,cobra
+snake,alligator,blindworm
+snake,alligator,chameleon
+snake,alligator,gecko
+snake,alligator,lizard
+snake,alligator,salamander
+snake,alligator,toad
+snake,alligator,tortoise
+snake,alligator,turtle
+snake,alligator,axe
+snake,alligator,chisel
+snake,alligator,hammer
+snake,alligator,saw
+snake,caiman,crocodile
+snake,caiman,boa python
+snake,caiman,cobra
+snake,caiman,blindworm
+snake,caiman,chameleon
+snake,caiman,gecko
+snake,caiman,lizard
+snake,caiman,salamander
+snake,caiman,toad
+snake,caiman,tortoise
+snake,caiman,turtle
+snake,caiman,axe
+snake,caiman,chisel
+snake,caiman,hammer
+snake,caiman,saw
+snake,crocodile,boa python
+snake,crocodile,cobra
+snake,crocodile,blindworm
+snake,crocodile,chameleon
+snake,crocodile,gecko
+snake,crocodile,lizard
+snake,crocodile,salamander
+snake,crocodile,toad
+snake,crocodile,tortoise
+snake,crocodile,turtle
+snake,crocodile,axe
+snake,crocodile,chisel
+snake,crocodile,hammer
+snake,crocodile,saw
+snake,boa python,cobra
+snake,boa python,blindworm
+snake,boa python,chameleon
+snake,boa python,gecko
+snake,boa python,lizard
+snake,boa python,salamander
+snake,boa python,toad
+snake,boa python,tortoise
+snake,boa python,turtle
+snake,boa python,axe
+snake,boa python,chisel
+snake,boa python,hammer
+snake,boa python,saw
+snake,cobra,blindworm
+snake,cobra,chameleon
+snake,cobra,gecko
+snake,cobra,lizard
+snake,cobra,salamander
+snake,cobra,toad
+snake,cobra,tortoise
+snake,cobra,turtle
+snake,cobra,axe
+snake,cobra,chisel
+snake,cobra,hammer
+snake,cobra,saw
+snake,blindworm,chameleon
+snake,blindworm,gecko
+snake,blindworm,lizard
+snake,blindworm,salamander
+snake,blindworm,toad
+snake,blindworm,tortoise
+snake,blindworm,turtle
+snake,blindworm,axe
+snake,blindworm,chisel
+snake,blindworm,hammer
+snake,blindworm,saw
+snake,chameleon,gecko
+snake,chameleon,lizard
+snake,chameleon,salamander
+snake,chameleon,toad
+snake,chameleon,tortoise
+snake,chameleon,turtle
+snake,chameleon,axe
+snake,chameleon,chisel
+snake,chameleon,hammer
+snake,chameleon,saw
+snake,gecko,lizard
+snake,gecko,salamander
+snake,gecko,toad
+snake,gecko,tortoise
+snake,gecko,turtle
+snake,gecko,axe
+snake,gecko,chisel
+snake,gecko,hammer
+snake,gecko,saw
+snake,lizard,salamander
+snake,lizard,toad
+snake,lizard,tortoise
+snake,lizard,turtle
+snake,lizard,axe
+snake,lizard,chisel
+snake,lizard,hammer
+snake,lizard,saw
+snake,salamander,toad
+snake,salamander,tortoise
+snake,salamander,turtle
+snake,salamander,axe
+snake,salamander,chisel
+snake,salamander,hammer
+snake,salamander,saw
+snake,toad,tortoise
+snake,toad,turtle
+snake,toad,axe
+snake,toad,chisel
+snake,toad,hammer
+snake,toad,saw
+snake,tortoise,turtle
+snake,tortoise,axe
+snake,tortoise,chisel
+snake,tortoise,hammer
+snake,tortoise,saw
+snake,turtle,axe
+snake,turtle,chisel
+snake,turtle,hammer
+snake,turtle,saw
+snake,axe,chisel
+snake,axe,hammer
+snake,axe,saw
+snake,chisel,hammer
+snake,chisel,saw
+snake,hammer,saw
+blindworm,alligator,caiman
+blindworm,alligator,crocodile
+blindworm,alligator,boa python
+blindworm,alligator,cobra
+blindworm,alligator,snake
+blindworm,alligator,chameleon
+blindworm,alligator,gecko
+blindworm,alligator,lizard
+blindworm,alligator,salamander
+blindworm,alligator,toad
+blindworm,alligator,tortoise
+blindworm,alligator,turtle
+blindworm,alligator,axe
+blindworm,alligator,chisel
+blindworm,alligator,hammer
+blindworm,alligator,saw
+blindworm,caiman,crocodile
+blindworm,caiman,boa python
+blindworm,caiman,cobra
+blindworm,caiman,snake
+blindworm,caiman,chameleon
+blindworm,caiman,gecko
+blindworm,caiman,lizard
+blindworm,caiman,salamander
+blindworm,caiman,toad
+blindworm,caiman,tortoise
+blindworm,caiman,turtle
+blindworm,caiman,axe
+blindworm,caiman,chisel
+blindworm,caiman,hammer
+blindworm,caiman,saw
+blindworm,crocodile,boa python
+blindworm,crocodile,cobra
+blindworm,crocodile,snake
+blindworm,crocodile,chameleon
+blindworm,crocodile,gecko
+blindworm,crocodile,lizard
+blindworm,crocodile,salamander
+blindworm,crocodile,toad
+blindworm,crocodile,tortoise
+blindworm,crocodile,turtle
+blindworm,crocodile,axe
+blindworm,crocodile,chisel
+blindworm,crocodile,hammer
+blindworm,crocodile,saw
+blindworm,boa python,cobra
+blindworm,boa python,snake
+blindworm,boa python,chameleon
+blindworm,boa python,gecko
+blindworm,boa python,lizard
+blindworm,boa python,salamander
+blindworm,boa python,toad
+blindworm,boa python,tortoise
+blindworm,boa python,turtle
+blindworm,boa python,axe
+blindworm,boa python,chisel
+blindworm,boa python,hammer
+blindworm,boa python,saw
+blindworm,cobra,snake
+blindworm,cobra,chameleon
+blindworm,cobra,gecko
+blindworm,cobra,lizard
+blindworm,cobra,salamander
+blindworm,cobra,toad
+blindworm,cobra,tortoise
+blindworm,cobra,turtle
+blindworm,cobra,axe
+blindworm,cobra,chisel
+blindworm,cobra,hammer
+blindworm,cobra,saw
+blindworm,snake,chameleon
+blindworm,snake,gecko
+blindworm,snake,lizard
+blindworm,snake,salamander
+blindworm,snake,toad
+blindworm,snake,tortoise
+blindworm,snake,turtle
+blindworm,snake,axe
+blindworm,snake,chisel
+blindworm,snake,hammer
+blindworm,snake,saw
+blindworm,chameleon,gecko
+blindworm,chameleon,lizard
+blindworm,chameleon,salamander
+blindworm,chameleon,toad
+blindworm,chameleon,tortoise
+blindworm,chameleon,turtle
+blindworm,chameleon,axe
+blindworm,chameleon,chisel
+blindworm,chameleon,hammer
+blindworm,chameleon,saw
+blindworm,gecko,lizard
+blindworm,gecko,salamander
+blindworm,gecko,toad
+blindworm,gecko,tortoise
+blindworm,gecko,turtle
+blindworm,gecko,axe
+blindworm,gecko,chisel
+blindworm,gecko,hammer
+blindworm,gecko,saw
+blindworm,lizard,salamander
+blindworm,lizard,toad
+blindworm,lizard,tortoise
+blindworm,lizard,turtle
+blindworm,lizard,axe
+blindworm,lizard,chisel
+blindworm,lizard,hammer
+blindworm,lizard,saw
+blindworm,salamander,toad
+blindworm,salamander,tortoise
+blindworm,salamander,turtle
+blindworm,salamander,axe
+blindworm,salamander,chisel
+blindworm,salamander,hammer
+blindworm,salamander,saw
+blindworm,toad,tortoise
+blindworm,toad,turtle
+blindworm,toad,axe
+blindworm,toad,chisel
+blindworm,toad,hammer
+blindworm,toad,saw
+blindworm,tortoise,turtle
+blindworm,tortoise,axe
+blindworm,tortoise,chisel
+blindworm,tortoise,hammer
+blindworm,tortoise,saw
+blindworm,turtle,axe
+blindworm,turtle,chisel
+blindworm,turtle,hammer
+blindworm,turtle,saw
+blindworm,axe,chisel
+blindworm,axe,hammer
+blindworm,axe,saw
+blindworm,chisel,hammer
+blindworm,chisel,saw
+blindworm,hammer,saw
+chameleon,alligator,caiman
+chameleon,alligator,crocodile
+chameleon,alligator,boa python
+chameleon,alligator,cobra
+chameleon,alligator,snake
+chameleon,alligator,blindworm
+chameleon,alligator,gecko
+chameleon,alligator,lizard
+chameleon,alligator,salamander
+chameleon,alligator,toad
+chameleon,alligator,tortoise
+chameleon,alligator,turtle
+chameleon,alligator,axe
+chameleon,alligator,chisel
+chameleon,alligator,hammer
+chameleon,alligator,saw
+chameleon,caiman,crocodile
+chameleon,caiman,boa python
+chameleon,caiman,cobra
+chameleon,caiman,snake
+chameleon,caiman,blindworm
+chameleon,caiman,gecko
+chameleon,caiman,lizard
+chameleon,caiman,salamander
+chameleon,caiman,toad
+chameleon,caiman,tortoise
+chameleon,caiman,turtle
+chameleon,caiman,axe
+chameleon,caiman,chisel
+chameleon,caiman,hammer
+chameleon,caiman,saw
+chameleon,crocodile,boa python
+chameleon,crocodile,cobra
+chameleon,crocodile,snake
+chameleon,crocodile,blindworm
+chameleon,crocodile,gecko
+chameleon,crocodile,lizard
+chameleon,crocodile,salamander
+chameleon,crocodile,toad
+chameleon,crocodile,tortoise
+chameleon,crocodile,turtle
+chameleon,crocodile,axe
+chameleon,crocodile,chisel
+chameleon,crocodile,hammer
+chameleon,crocodile,saw
+chameleon,boa python,cobra
+chameleon,boa python,snake
+chameleon,boa python,blindworm
+chameleon,boa python,gecko
+chameleon,boa python,lizard
+chameleon,boa python,salamander
+chameleon,boa python,toad
+chameleon,boa python,tortoise
+chameleon,boa python,turtle
+chameleon,boa python,axe
+chameleon,boa python,chisel
+chameleon,boa python,hammer
+chameleon,boa python,saw
+chameleon,cobra,snake
+chameleon,cobra,blindworm
+chameleon,cobra,gecko
+chameleon,cobra,lizard
+chameleon,cobra,salamander
+chameleon,cobra,toad
+chameleon,cobra,tortoise
+chameleon,cobra,turtle
+chameleon,cobra,axe
+chameleon,cobra,chisel
+chameleon,cobra,hammer
+chameleon,cobra,saw
+chameleon,snake,blindworm
+chameleon,snake,gecko
+chameleon,snake,lizard
+chameleon,snake,salamander
+chameleon,snake,toad
+chameleon,snake,tortoise
+chameleon,snake,turtle
+chameleon,snake,axe
+chameleon,snake,chisel
+chameleon,snake,hammer
+chameleon,snake,saw
+chameleon,blindworm,gecko
+chameleon,blindworm,lizard
+chameleon,blindworm,salamander
+chameleon,blindworm,toad
+chameleon,blindworm,tortoise
+chameleon,blindworm,turtle
+chameleon,blindworm,axe
+chameleon,blindworm,chisel
+chameleon,blindworm,hammer
+chameleon,blindworm,saw
+chameleon,gecko,lizard
+chameleon,gecko,salamander
+chameleon,gecko,toad
+chameleon,gecko,tortoise
+chameleon,gecko,turtle
+chameleon,gecko,axe
+chameleon,gecko,chisel
+chameleon,gecko,hammer
+chameleon,gecko,saw
+chameleon,lizard,salamander
+chameleon,lizard,toad
+chameleon,lizard,tortoise
+chameleon,lizard,turtle
+chameleon,lizard,axe
+chameleon,lizard,chisel
+chameleon,lizard,hammer
+chameleon,lizard,saw
+chameleon,salamander,toad
+chameleon,salamander,tortoise
+chameleon,salamander,turtle
+chameleon,salamander,axe
+chameleon,salamander,chisel
+chameleon,salamander,hammer
+chameleon,salamander,saw
+chameleon,toad,tortoise
+chameleon,toad,turtle
+chameleon,toad,axe
+chameleon,toad,chisel
+chameleon,toad,hammer
+chameleon,toad,saw
+chameleon,tortoise,turtle
+chameleon,tortoise,axe
+chameleon,tortoise,chisel
+chameleon,tortoise,hammer
+chameleon,tortoise,saw
+chameleon,turtle,axe
+chameleon,turtle,chisel
+chameleon,turtle,hammer
+chameleon,turtle,saw
+chameleon,axe,chisel
+chameleon,axe,hammer
+chameleon,axe,saw
+chameleon,chisel,hammer
+chameleon,chisel,saw
+chameleon,hammer,saw
+gecko,alligator,caiman
+gecko,alligator,crocodile
+gecko,alligator,boa python
+gecko,alligator,cobra
+gecko,alligator,snake
+gecko,alligator,blindworm
+gecko,alligator,chameleon
+gecko,alligator,lizard
+gecko,alligator,salamander
+gecko,alligator,toad
+gecko,alligator,tortoise
+gecko,alligator,turtle
+gecko,alligator,axe
+gecko,alligator,chisel
+gecko,alligator,hammer
+gecko,alligator,saw
+gecko,caiman,crocodile
+gecko,caiman,boa python
+gecko,caiman,cobra
+gecko,caiman,snake
+gecko,caiman,blindworm
+gecko,caiman,chameleon
+gecko,caiman,lizard
+gecko,caiman,salamander
+gecko,caiman,toad
+gecko,caiman,tortoise
+gecko,caiman,turtle
+gecko,caiman,axe
+gecko,caiman,chisel
+gecko,caiman,hammer
+gecko,caiman,saw
+gecko,crocodile,boa python
+gecko,crocodile,cobra
+gecko,crocodile,snake
+gecko,crocodile,blindworm
+gecko,crocodile,chameleon
+gecko,crocodile,lizard
+gecko,crocodile,salamander
+gecko,crocodile,toad
+gecko,crocodile,tortoise
+gecko,crocodile,turtle
+gecko,crocodile,axe
+gecko,crocodile,chisel
+gecko,crocodile,hammer
+gecko,crocodile,saw
+gecko,boa python,cobra
+gecko,boa python,snake
+gecko,boa python,blindworm
+gecko,boa python,chameleon
+gecko,boa python,lizard
+gecko,boa python,salamander
+gecko,boa python,toad
+gecko,boa python,tortoise
+gecko,boa python,turtle
+gecko,boa python,axe
+gecko,boa python,chisel
+gecko,boa python,hammer
+gecko,boa python,saw
+gecko,cobra,snake
+gecko,cobra,blindworm
+gecko,cobra,chameleon
+gecko,cobra,lizard
+gecko,cobra,salamander
+gecko,cobra,toad
+gecko,cobra,tortoise
+gecko,cobra,turtle
+gecko,cobra,axe
+gecko,cobra,chisel
+gecko,cobra,hammer
+gecko,cobra,saw
+gecko,snake,blindworm
+gecko,snake,chameleon
+gecko,snake,lizard
+gecko,snake,salamander
+gecko,snake,toad
+gecko,snake,tortoise
+gecko,snake,turtle
+gecko,snake,axe
+gecko,snake,chisel
+gecko,snake,hammer
+gecko,snake,saw
+gecko,blindworm,chameleon
+gecko,blindworm,lizard
+gecko,blindworm,salamander
+gecko,blindworm,toad
+gecko,blindworm,tortoise
+gecko,blindworm,turtle
+gecko,blindworm,axe
+gecko,blindworm,chisel
+gecko,blindworm,hammer
+gecko,blindworm,saw
+gecko,chameleon,lizard
+gecko,chameleon,salamander
+gecko,chameleon,toad
+gecko,chameleon,tortoise
+gecko,chameleon,turtle
+gecko,chameleon,axe
+gecko,chameleon,chisel
+gecko,chameleon,hammer
+gecko,chameleon,saw
+gecko,lizard,salamander
+gecko,lizard,toad
+gecko,lizard,tortoise
+gecko,lizard,turtle
+gecko,lizard,axe
+gecko,lizard,chisel
+gecko,lizard,hammer
+gecko,lizard,saw
+gecko,salamander,toad
+gecko,salamander,tortoise
+gecko,salamander,turtle
+gecko,salamander,axe
+gecko,salamander,chisel
+gecko,salamander,hammer
+gecko,salamander,saw
+gecko,toad,tortoise
+gecko,toad,turtle
+gecko,toad,axe
+gecko,toad,chisel
+gecko,toad,hammer
+gecko,toad,saw
+gecko,tortoise,turtle
+gecko,tortoise,axe
+gecko,tortoise,chisel
+gecko,tortoise,hammer
+gecko,tortoise,saw
+gecko,turtle,axe
+gecko,turtle,chisel
+gecko,turtle,hammer
+gecko,turtle,saw
+gecko,axe,chisel
+gecko,axe,hammer
+gecko,axe,saw
+gecko,chisel,hammer
+gecko,chisel,saw
+gecko,hammer,saw
+lizard,alligator,caiman
+lizard,alligator,crocodile
+lizard,alligator,boa python
+lizard,alligator,cobra
+lizard,alligator,snake
+lizard,alligator,blindworm
+lizard,alligator,chameleon
+lizard,alligator,gecko
+lizard,alligator,salamander
+lizard,alligator,toad
+lizard,alligator,tortoise
+lizard,alligator,turtle
+lizard,alligator,axe
+lizard,alligator,chisel
+lizard,alligator,hammer
+lizard,alligator,saw
+lizard,caiman,crocodile
+lizard,caiman,boa python
+lizard,caiman,cobra
+lizard,caiman,snake
+lizard,caiman,blindworm
+lizard,caiman,chameleon
+lizard,caiman,gecko
+lizard,caiman,salamander
+lizard,caiman,toad
+lizard,caiman,tortoise
+lizard,caiman,turtle
+lizard,caiman,axe
+lizard,caiman,chisel
+lizard,caiman,hammer
+lizard,caiman,saw
+lizard,crocodile,boa python
+lizard,crocodile,cobra
+lizard,crocodile,snake
+lizard,crocodile,blindworm
+lizard,crocodile,chameleon
+lizard,crocodile,gecko
+lizard,crocodile,salamander
+lizard,crocodile,toad
+lizard,crocodile,tortoise
+lizard,crocodile,turtle
+lizard,crocodile,axe
+lizard,crocodile,chisel
+lizard,crocodile,hammer
+lizard,crocodile,saw
+lizard,boa python,cobra
+lizard,boa python,snake
+lizard,boa python,blindworm
+lizard,boa python,chameleon
+lizard,boa python,gecko
+lizard,boa python,salamander
+lizard,boa python,toad
+lizard,boa python,tortoise
+lizard,boa python,turtle
+lizard,boa python,axe
+lizard,boa python,chisel
+lizard,boa python,hammer
+lizard,boa python,saw
+lizard,cobra,snake
+lizard,cobra,blindworm
+lizard,cobra,chameleon
+lizard,cobra,gecko
+lizard,cobra,salamander
+lizard,cobra,toad
+lizard,cobra,tortoise
+lizard,cobra,turtle
+lizard,cobra,axe
+lizard,cobra,chisel
+lizard,cobra,hammer
+lizard,cobra,saw
+lizard,snake,blindworm
+lizard,snake,chameleon
+lizard,snake,gecko
+lizard,snake,salamander
+lizard,snake,toad
+lizard,snake,tortoise
+lizard,snake,turtle
+lizard,snake,axe
+lizard,snake,chisel
+lizard,snake,hammer
+lizard,snake,saw
+lizard,blindworm,chameleon
+lizard,blindworm,gecko
+lizard,blindworm,salamander
+lizard,blindworm,toad
+lizard,blindworm,tortoise
+lizard,blindworm,turtle
+lizard,blindworm,axe
+lizard,blindworm,chisel
+lizard,blindworm,hammer
+lizard,blindworm,saw
+lizard,chameleon,gecko
+lizard,chameleon,salamander
+lizard,chameleon,toad
+lizard,chameleon,tortoise
+lizard,chameleon,turtle
+lizard,chameleon,axe
+lizard,chameleon,chisel
+lizard,chameleon,hammer
+lizard,chameleon,saw
+lizard,gecko,salamander
+lizard,gecko,toad
+lizard,gecko,tortoise
+lizard,gecko,turtle
+lizard,gecko,axe
+lizard,gecko,chisel
+lizard,gecko,hammer
+lizard,gecko,saw
+lizard,salamander,toad
+lizard,salamander,tortoise
+lizard,salamander,turtle
+lizard,salamander,axe
+lizard,salamander,chisel
+lizard,salamander,hammer
+lizard,salamander,saw
+lizard,toad,tortoise
+lizard,toad,turtle
+lizard,toad,axe
+lizard,toad,chisel
+lizard,toad,hammer
+lizard,toad,saw
+lizard,tortoise,turtle
+lizard,tortoise,axe
+lizard,tortoise,chisel
+lizard,tortoise,hammer
+lizard,tortoise,saw
+lizard,turtle,axe
+lizard,turtle,chisel
+lizard,turtle,hammer
+lizard,turtle,saw
+lizard,axe,chisel
+lizard,axe,hammer
+lizard,axe,saw
+lizard,chisel,hammer
+lizard,chisel,saw
+lizard,hammer,saw
+salamander,alligator,caiman
+salamander,alligator,crocodile
+salamander,alligator,boa python
+salamander,alligator,cobra
+salamander,alligator,snake
+salamander,alligator,blindworm
+salamander,alligator,chameleon
+salamander,alligator,gecko
+salamander,alligator,lizard
+salamander,alligator,toad
+salamander,alligator,tortoise
+salamander,alligator,turtle
+salamander,alligator,axe
+salamander,alligator,chisel
+salamander,alligator,hammer
+salamander,alligator,saw
+salamander,caiman,crocodile
+salamander,caiman,boa python
+salamander,caiman,cobra
+salamander,caiman,snake
+salamander,caiman,blindworm
+salamander,caiman,chameleon
+salamander,caiman,gecko
+salamander,caiman,lizard
+salamander,caiman,toad
+salamander,caiman,tortoise
+salamander,caiman,turtle
+salamander,caiman,axe
+salamander,caiman,chisel
+salamander,caiman,hammer
+salamander,caiman,saw
+salamander,crocodile,boa python
+salamander,crocodile,cobra
+salamander,crocodile,snake
+salamander,crocodile,blindworm
+salamander,crocodile,chameleon
+salamander,crocodile,gecko
+salamander,crocodile,lizard
+salamander,crocodile,toad
+salamander,crocodile,tortoise
+salamander,crocodile,turtle
+salamander,crocodile,axe
+salamander,crocodile,chisel
+salamander,crocodile,hammer
+salamander,crocodile,saw
+salamander,boa python,cobra
+salamander,boa python,snake
+salamander,boa python,blindworm
+salamander,boa python,chameleon
+salamander,boa python,gecko
+salamander,boa python,lizard
+salamander,boa python,toad
+salamander,boa python,tortoise
+salamander,boa python,turtle
+salamander,boa python,axe
+salamander,boa python,chisel
+salamander,boa python,hammer
+salamander,boa python,saw
+salamander,cobra,snake
+salamander,cobra,blindworm
+salamander,cobra,chameleon
+salamander,cobra,gecko
+salamander,cobra,lizard
+salamander,cobra,toad
+salamander,cobra,tortoise
+salamander,cobra,turtle
+salamander,cobra,axe
+salamander,cobra,chisel
+salamander,cobra,hammer
+salamander,cobra,saw
+salamander,snake,blindworm
+salamander,snake,chameleon
+salamander,snake,gecko
+salamander,snake,lizard
+salamander,snake,toad
+salamander,snake,tortoise
+salamander,snake,turtle
+salamander,snake,axe
+salamander,snake,chisel
+salamander,snake,hammer
+salamander,snake,saw
+salamander,blindworm,chameleon
+salamander,blindworm,gecko
+salamander,blindworm,lizard
+salamander,blindworm,toad
+salamander,blindworm,tortoise
+salamander,blindworm,turtle
+salamander,blindworm,axe
+salamander,blindworm,chisel
+salamander,blindworm,hammer
+salamander,blindworm,saw
+salamander,chameleon,gecko
+salamander,chameleon,lizard
+salamander,chameleon,toad
+salamander,chameleon,tortoise
+salamander,chameleon,turtle
+salamander,chameleon,axe
+salamander,chameleon,chisel
+salamander,chameleon,hammer
+salamander,chameleon,saw
+salamander,gecko,lizard
+salamander,gecko,toad
+salamander,gecko,tortoise
+salamander,gecko,turtle
+salamander,gecko,axe
+salamander,gecko,chisel
+salamander,gecko,hammer
+salamander,gecko,saw
+salamander,lizard,toad
+salamander,lizard,tortoise
+salamander,lizard,turtle
+salamander,lizard,axe
+salamander,lizard,chisel
+salamander,lizard,hammer
+salamander,lizard,saw
+salamander,toad,tortoise
+salamander,toad,turtle
+salamander,toad,axe
+salamander,toad,chisel
+salamander,toad,hammer
+salamander,toad,saw
+salamander,tortoise,turtle
+salamander,tortoise,axe
+salamander,tortoise,chisel
+salamander,tortoise,hammer
+salamander,tortoise,saw
+salamander,turtle,axe
+salamander,turtle,chisel
+salamander,turtle,hammer
+salamander,turtle,saw
+salamander,axe,chisel
+salamander,axe,hammer
+salamander,axe,saw
+salamander,chisel,hammer
+salamander,chisel,saw
+salamander,hammer,saw
+toad,alligator,caiman
+toad,alligator,crocodile
+toad,alligator,boa python
+toad,alligator,cobra
+toad,alligator,snake
+toad,alligator,blindworm
+toad,alligator,chameleon
+toad,alligator,gecko
+toad,alligator,lizard
+toad,alligator,salamander
+toad,alligator,tortoise
+toad,alligator,turtle
+toad,alligator,axe
+toad,alligator,chisel
+toad,alligator,hammer
+toad,alligator,saw
+toad,caiman,crocodile
+toad,caiman,boa python
+toad,caiman,cobra
+toad,caiman,snake
+toad,caiman,blindworm
+toad,caiman,chameleon
+toad,caiman,gecko
+toad,caiman,lizard
+toad,caiman,salamander
+toad,caiman,tortoise
+toad,caiman,turtle
+toad,caiman,axe
+toad,caiman,chisel
+toad,caiman,hammer
+toad,caiman,saw
+toad,crocodile,boa python
+toad,crocodile,cobra
+toad,crocodile,snake
+toad,crocodile,blindworm
+toad,crocodile,chameleon
+toad,crocodile,gecko
+toad,crocodile,lizard
+toad,crocodile,salamander
+toad,crocodile,tortoise
+toad,crocodile,turtle
+toad,crocodile,axe
+toad,crocodile,chisel
+toad,crocodile,hammer
+toad,crocodile,saw
+toad,boa python,cobra
+toad,boa python,snake
+toad,boa python,blindworm
+toad,boa python,chameleon
+toad,boa python,gecko
+toad,boa python,lizard
+toad,boa python,salamander
+toad,boa python,tortoise
+toad,boa python,turtle
+toad,boa python,axe
+toad,boa python,chisel
+toad,boa python,hammer
+toad,boa python,saw
+toad,cobra,snake
+toad,cobra,blindworm
+toad,cobra,chameleon
+toad,cobra,gecko
+toad,cobra,lizard
+toad,cobra,salamander
+toad,cobra,tortoise
+toad,cobra,turtle
+toad,cobra,axe
+toad,cobra,chisel
+toad,cobra,hammer
+toad,cobra,saw
+toad,snake,blindworm
+toad,snake,chameleon
+toad,snake,gecko
+toad,snake,lizard
+toad,snake,salamander
+toad,snake,tortoise
+toad,snake,turtle
+toad,snake,axe
+toad,snake,chisel
+toad,snake,hammer
+toad,snake,saw
+toad,blindworm,chameleon
+toad,blindworm,gecko
+toad,blindworm,lizard
+toad,blindworm,salamander
+toad,blindworm,tortoise
+toad,blindworm,turtle
+toad,blindworm,axe
+toad,blindworm,chisel
+toad,blindworm,hammer
+toad,blindworm,saw
+toad,chameleon,gecko
+toad,chameleon,lizard
+toad,chameleon,salamander
+toad,chameleon,tortoise
+toad,chameleon,turtle
+toad,chameleon,axe
+toad,chameleon,chisel
+toad,chameleon,hammer
+toad,chameleon,saw
+toad,gecko,lizard
+toad,gecko,salamander
+toad,gecko,tortoise
+toad,gecko,turtle
+toad,gecko,axe
+toad,gecko,chisel
+toad,gecko,hammer
+toad,gecko,saw
+toad,lizard,salamander
+toad,lizard,tortoise
+toad,lizard,turtle
+toad,lizard,axe
+toad,lizard,chisel
+toad,lizard,hammer
+toad,lizard,saw
+toad,salamander,tortoise
+toad,salamander,turtle
+toad,salamander,axe
+toad,salamander,chisel
+toad,salamander,hammer
+toad,salamander,saw
+toad,tortoise,turtle
+toad,tortoise,axe
+toad,tortoise,chisel
+toad,tortoise,hammer
+toad,tortoise,saw
+toad,turtle,axe
+toad,turtle,chisel
+toad,turtle,hammer
+toad,turtle,saw
+toad,axe,chisel
+toad,axe,hammer
+toad,axe,saw
+toad,chisel,hammer
+toad,chisel,saw
+toad,hammer,saw
+tortoise,alligator,caiman
+tortoise,alligator,crocodile
+tortoise,alligator,boa python
+tortoise,alligator,cobra
+tortoise,alligator,snake
+tortoise,alligator,blindworm
+tortoise,alligator,chameleon
+tortoise,alligator,gecko
+tortoise,alligator,lizard
+tortoise,alligator,salamander
+tortoise,alligator,toad
+tortoise,alligator,turtle
+tortoise,alligator,axe
+tortoise,alligator,chisel
+tortoise,alligator,hammer
+tortoise,alligator,saw
+tortoise,caiman,crocodile
+tortoise,caiman,boa python
+tortoise,caiman,cobra
+tortoise,caiman,snake
+tortoise,caiman,blindworm
+tortoise,caiman,chameleon
+tortoise,caiman,gecko
+tortoise,caiman,lizard
+tortoise,caiman,salamander
+tortoise,caiman,toad
+tortoise,caiman,turtle
+tortoise,caiman,axe
+tortoise,caiman,chisel
+tortoise,caiman,hammer
+tortoise,caiman,saw
+tortoise,crocodile,boa python
+tortoise,crocodile,cobra
+tortoise,crocodile,snake
+tortoise,crocodile,blindworm
+tortoise,crocodile,chameleon
+tortoise,crocodile,gecko
+tortoise,crocodile,lizard
+tortoise,crocodile,salamander
+tortoise,crocodile,toad
+tortoise,crocodile,turtle
+tortoise,crocodile,axe
+tortoise,crocodile,chisel
+tortoise,crocodile,hammer
+tortoise,crocodile,saw
+tortoise,boa python,cobra
+tortoise,boa python,snake
+tortoise,boa python,blindworm
+tortoise,boa python,chameleon
+tortoise,boa python,gecko
+tortoise,boa python,lizard
+tortoise,boa python,salamander
+tortoise,boa python,toad
+tortoise,boa python,turtle
+tortoise,boa python,axe
+tortoise,boa python,chisel
+tortoise,boa python,hammer
+tortoise,boa python,saw
+tortoise,cobra,snake
+tortoise,cobra,blindworm
+tortoise,cobra,chameleon
+tortoise,cobra,gecko
+tortoise,cobra,lizard
+tortoise,cobra,salamander
+tortoise,cobra,toad
+tortoise,cobra,turtle
+tortoise,cobra,axe
+tortoise,cobra,chisel
+tortoise,cobra,hammer
+tortoise,cobra,saw
+tortoise,snake,blindworm
+tortoise,snake,chameleon
+tortoise,snake,gecko
+tortoise,snake,lizard
+tortoise,snake,salamander
+tortoise,snake,toad
+tortoise,snake,turtle
+tortoise,snake,axe
+tortoise,snake,chisel
+tortoise,snake,hammer
+tortoise,snake,saw
+tortoise,blindworm,chameleon
+tortoise,blindworm,gecko
+tortoise,blindworm,lizard
+tortoise,blindworm,salamander
+tortoise,blindworm,toad
+tortoise,blindworm,turtle
+tortoise,blindworm,axe
+tortoise,blindworm,chisel
+tortoise,blindworm,hammer
+tortoise,blindworm,saw
+tortoise,chameleon,gecko
+tortoise,chameleon,lizard
+tortoise,chameleon,salamander
+tortoise,chameleon,toad
+tortoise,chameleon,turtle
+tortoise,chameleon,axe
+tortoise,chameleon,chisel
+tortoise,chameleon,hammer
+tortoise,chameleon,saw
+tortoise,gecko,lizard
+tortoise,gecko,salamander
+tortoise,gecko,toad
+tortoise,gecko,turtle
+tortoise,gecko,axe
+tortoise,gecko,chisel
+tortoise,gecko,hammer
+tortoise,gecko,saw
+tortoise,lizard,salamander
+tortoise,lizard,toad
+tortoise,lizard,turtle
+tortoise,lizard,axe
+tortoise,lizard,chisel
+tortoise,lizard,hammer
+tortoise,lizard,saw
+tortoise,salamander,toad
+tortoise,salamander,turtle
+tortoise,salamander,axe
+tortoise,salamander,chisel
+tortoise,salamander,hammer
+tortoise,salamander,saw
+tortoise,toad,turtle
+tortoise,toad,axe
+tortoise,toad,chisel
+tortoise,toad,hammer
+tortoise,toad,saw
+tortoise,turtle,axe
+tortoise,turtle,chisel
+tortoise,turtle,hammer
+tortoise,turtle,saw
+tortoise,axe,chisel
+tortoise,axe,hammer
+tortoise,axe,saw
+tortoise,chisel,hammer
+tortoise,chisel,saw
+tortoise,hammer,saw
+turtle,alligator,caiman
+turtle,alligator,crocodile
+turtle,alligator,boa python
+turtle,alligator,cobra
+turtle,alligator,snake
+turtle,alligator,blindworm
+turtle,alligator,chameleon
+turtle,alligator,gecko
+turtle,alligator,lizard
+turtle,alligator,salamander
+turtle,alligator,toad
+turtle,alligator,tortoise
+turtle,alligator,axe
+turtle,alligator,chisel
+turtle,alligator,hammer
+turtle,alligator,saw
+turtle,caiman,crocodile
+turtle,caiman,boa python
+turtle,caiman,cobra
+turtle,caiman,snake
+turtle,caiman,blindworm
+turtle,caiman,chameleon
+turtle,caiman,gecko
+turtle,caiman,lizard
+turtle,caiman,salamander
+turtle,caiman,toad
+turtle,caiman,tortoise
+turtle,caiman,axe
+turtle,caiman,chisel
+turtle,caiman,hammer
+turtle,caiman,saw
+turtle,crocodile,boa python
+turtle,crocodile,cobra
+turtle,crocodile,snake
+turtle,crocodile,blindworm
+turtle,crocodile,chameleon
+turtle,crocodile,gecko
+turtle,crocodile,lizard
+turtle,crocodile,salamander
+turtle,crocodile,toad
+turtle,crocodile,tortoise
+turtle,crocodile,axe
+turtle,crocodile,chisel
+turtle,crocodile,hammer
+turtle,crocodile,saw
+turtle,boa python,cobra
+turtle,boa python,snake
+turtle,boa python,blindworm
+turtle,boa python,chameleon
+turtle,boa python,gecko
+turtle,boa python,lizard
+turtle,boa python,salamander
+turtle,boa python,toad
+turtle,boa python,tortoise
+turtle,boa python,axe
+turtle,boa python,chisel
+turtle,boa python,hammer
+turtle,boa python,saw
+turtle,cobra,snake
+turtle,cobra,blindworm
+turtle,cobra,chameleon
+turtle,cobra,gecko
+turtle,cobra,lizard
+turtle,cobra,salamander
+turtle,cobra,toad
+turtle,cobra,tortoise
+turtle,cobra,axe
+turtle,cobra,chisel
+turtle,cobra,hammer
+turtle,cobra,saw
+turtle,snake,blindworm
+turtle,snake,chameleon
+turtle,snake,gecko
+turtle,snake,lizard
+turtle,snake,salamander
+turtle,snake,toad
+turtle,snake,tortoise
+turtle,snake,axe
+turtle,snake,chisel
+turtle,snake,hammer
+turtle,snake,saw
+turtle,blindworm,chameleon
+turtle,blindworm,gecko
+turtle,blindworm,lizard
+turtle,blindworm,salamander
+turtle,blindworm,toad
+turtle,blindworm,tortoise
+turtle,blindworm,axe
+turtle,blindworm,chisel
+turtle,blindworm,hammer
+turtle,blindworm,saw
+turtle,chameleon,gecko
+turtle,chameleon,lizard
+turtle,chameleon,salamander
+turtle,chameleon,toad
+turtle,chameleon,tortoise
+turtle,chameleon,axe
+turtle,chameleon,chisel
+turtle,chameleon,hammer
+turtle,chameleon,saw
+turtle,gecko,lizard
+turtle,gecko,salamander
+turtle,gecko,toad
+turtle,gecko,tortoise
+turtle,gecko,axe
+turtle,gecko,chisel
+turtle,gecko,hammer
+turtle,gecko,saw
+turtle,lizard,salamander
+turtle,lizard,toad
+turtle,lizard,tortoise
+turtle,lizard,axe
+turtle,lizard,chisel
+turtle,lizard,hammer
+turtle,lizard,saw
+turtle,salamander,toad
+turtle,salamander,tortoise
+turtle,salamander,axe
+turtle,salamander,chisel
+turtle,salamander,hammer
+turtle,salamander,saw
+turtle,toad,tortoise
+turtle,toad,axe
+turtle,toad,chisel
+turtle,toad,hammer
+turtle,toad,saw
+turtle,tortoise,axe
+turtle,tortoise,chisel
+turtle,tortoise,hammer
+turtle,tortoise,saw
+turtle,axe,chisel
+turtle,axe,hammer
+turtle,axe,saw
+turtle,chisel,hammer
+turtle,chisel,saw
+turtle,hammer,saw
+axe,alligator,caiman
+axe,alligator,crocodile
+axe,alligator,boa python
+axe,alligator,cobra
+axe,alligator,snake
+axe,alligator,blindworm
+axe,alligator,chameleon
+axe,alligator,gecko
+axe,alligator,lizard
+axe,alligator,salamander
+axe,alligator,toad
+axe,alligator,tortoise
+axe,alligator,turtle
+axe,alligator,chisel
+axe,alligator,hammer
+axe,alligator,saw
+axe,caiman,crocodile
+axe,caiman,boa python
+axe,caiman,cobra
+axe,caiman,snake
+axe,caiman,blindworm
+axe,caiman,chameleon
+axe,caiman,gecko
+axe,caiman,lizard
+axe,caiman,salamander
+axe,caiman,toad
+axe,caiman,tortoise
+axe,caiman,turtle
+axe,caiman,chisel
+axe,caiman,hammer
+axe,caiman,saw
+axe,crocodile,boa python
+axe,crocodile,cobra
+axe,crocodile,snake
+axe,crocodile,blindworm
+axe,crocodile,chameleon
+axe,crocodile,gecko
+axe,crocodile,lizard
+axe,crocodile,salamander
+axe,crocodile,toad
+axe,crocodile,tortoise
+axe,crocodile,turtle
+axe,crocodile,chisel
+axe,crocodile,hammer
+axe,crocodile,saw
+axe,boa python,cobra
+axe,boa python,snake
+axe,boa python,blindworm
+axe,boa python,chameleon
+axe,boa python,gecko
+axe,boa python,lizard
+axe,boa python,salamander
+axe,boa python,toad
+axe,boa python,tortoise
+axe,boa python,turtle
+axe,boa python,chisel
+axe,boa python,hammer
+axe,boa python,saw
+axe,cobra,snake
+axe,cobra,blindworm
+axe,cobra,chameleon
+axe,cobra,gecko
+axe,cobra,lizard
+axe,cobra,salamander
+axe,cobra,toad
+axe,cobra,tortoise
+axe,cobra,turtle
+axe,cobra,chisel
+axe,cobra,hammer
+axe,cobra,saw
+axe,snake,blindworm
+axe,snake,chameleon
+axe,snake,gecko
+axe,snake,lizard
+axe,snake,salamander
+axe,snake,toad
+axe,snake,tortoise
+axe,snake,turtle
+axe,snake,chisel
+axe,snake,hammer
+axe,snake,saw
+axe,blindworm,chameleon
+axe,blindworm,gecko
+axe,blindworm,lizard
+axe,blindworm,salamander
+axe,blindworm,toad
+axe,blindworm,tortoise
+axe,blindworm,turtle
+axe,blindworm,chisel
+axe,blindworm,hammer
+axe,blindworm,saw
+axe,chameleon,gecko
+axe,chameleon,lizard
+axe,chameleon,salamander
+axe,chameleon,toad
+axe,chameleon,tortoise
+axe,chameleon,turtle
+axe,chameleon,chisel
+axe,chameleon,hammer
+axe,chameleon,saw
+axe,gecko,lizard
+axe,gecko,salamander
+axe,gecko,toad
+axe,gecko,tortoise
+axe,gecko,turtle
+axe,gecko,chisel
+axe,gecko,hammer
+axe,gecko,saw
+axe,lizard,salamander
+axe,lizard,toad
+axe,lizard,tortoise
+axe,lizard,turtle
+axe,lizard,chisel
+axe,lizard,hammer
+axe,lizard,saw
+axe,salamander,toad
+axe,salamander,tortoise
+axe,salamander,turtle
+axe,salamander,chisel
+axe,salamander,hammer
+axe,salamander,saw
+axe,toad,tortoise
+axe,toad,turtle
+axe,toad,chisel
+axe,toad,hammer
+axe,toad,saw
+axe,tortoise,turtle
+axe,tortoise,chisel
+axe,tortoise,hammer
+axe,tortoise,saw
+axe,turtle,chisel
+axe,turtle,hammer
+axe,turtle,saw
+axe,chisel,hammer
+axe,chisel,saw
+axe,hammer,saw
+chisel,alligator,caiman
+chisel,alligator,crocodile
+chisel,alligator,boa python
+chisel,alligator,cobra
+chisel,alligator,snake
+chisel,alligator,blindworm
+chisel,alligator,chameleon
+chisel,alligator,gecko
+chisel,alligator,lizard
+chisel,alligator,salamander
+chisel,alligator,toad
+chisel,alligator,tortoise
+chisel,alligator,turtle
+chisel,alligator,axe
+chisel,alligator,hammer
+chisel,alligator,saw
+chisel,caiman,crocodile
+chisel,caiman,boa python
+chisel,caiman,cobra
+chisel,caiman,snake
+chisel,caiman,blindworm
+chisel,caiman,chameleon
+chisel,caiman,gecko
+chisel,caiman,lizard
+chisel,caiman,salamander
+chisel,caiman,toad
+chisel,caiman,tortoise
+chisel,caiman,turtle
+chisel,caiman,axe
+chisel,caiman,hammer
+chisel,caiman,saw
+chisel,crocodile,boa python
+chisel,crocodile,cobra
+chisel,crocodile,snake
+chisel,crocodile,blindworm
+chisel,crocodile,chameleon
+chisel,crocodile,gecko
+chisel,crocodile,lizard
+chisel,crocodile,salamander
+chisel,crocodile,toad
+chisel,crocodile,tortoise
+chisel,crocodile,turtle
+chisel,crocodile,axe
+chisel,crocodile,hammer
+chisel,crocodile,saw
+chisel,boa python,cobra
+chisel,boa python,snake
+chisel,boa python,blindworm
+chisel,boa python,chameleon
+chisel,boa python,gecko
+chisel,boa python,lizard
+chisel,boa python,salamander
+chisel,boa python,toad
+chisel,boa python,tortoise
+chisel,boa python,turtle
+chisel,boa python,axe
+chisel,boa python,hammer
+chisel,boa python,saw
+chisel,cobra,snake
+chisel,cobra,blindworm
+chisel,cobra,chameleon
+chisel,cobra,gecko
+chisel,cobra,lizard
+chisel,cobra,salamander
+chisel,cobra,toad
+chisel,cobra,tortoise
+chisel,cobra,turtle
+chisel,cobra,axe
+chisel,cobra,hammer
+chisel,cobra,saw
+chisel,snake,blindworm
+chisel,snake,chameleon
+chisel,snake,gecko
+chisel,snake,lizard
+chisel,snake,salamander
+chisel,snake,toad
+chisel,snake,tortoise
+chisel,snake,turtle
+chisel,snake,axe
+chisel,snake,hammer
+chisel,snake,saw
+chisel,blindworm,chameleon
+chisel,blindworm,gecko
+chisel,blindworm,lizard
+chisel,blindworm,salamander
+chisel,blindworm,toad
+chisel,blindworm,tortoise
+chisel,blindworm,turtle
+chisel,blindworm,axe
+chisel,blindworm,hammer
+chisel,blindworm,saw
+chisel,chameleon,gecko
+chisel,chameleon,lizard
+chisel,chameleon,salamander
+chisel,chameleon,toad
+chisel,chameleon,tortoise
+chisel,chameleon,turtle
+chisel,chameleon,axe
+chisel,chameleon,hammer
+chisel,chameleon,saw
+chisel,gecko,lizard
+chisel,gecko,salamander
+chisel,gecko,toad
+chisel,gecko,tortoise
+chisel,gecko,turtle
+chisel,gecko,axe
+chisel,gecko,hammer
+chisel,gecko,saw
+chisel,lizard,salamander
+chisel,lizard,toad
+chisel,lizard,tortoise
+chisel,lizard,turtle
+chisel,lizard,axe
+chisel,lizard,hammer
+chisel,lizard,saw
+chisel,salamander,toad
+chisel,salamander,tortoise
+chisel,salamander,turtle
+chisel,salamander,axe
+chisel,salamander,hammer
+chisel,salamander,saw
+chisel,toad,tortoise
+chisel,toad,turtle
+chisel,toad,axe
+chisel,toad,hammer
+chisel,toad,saw
+chisel,tortoise,turtle
+chisel,tortoise,axe
+chisel,tortoise,hammer
+chisel,tortoise,saw
+chisel,turtle,axe
+chisel,turtle,hammer
+chisel,turtle,saw
+chisel,axe,hammer
+chisel,axe,saw
+chisel,hammer,saw
+hammer,alligator,caiman
+hammer,alligator,crocodile
+hammer,alligator,boa python
+hammer,alligator,cobra
+hammer,alligator,snake
+hammer,alligator,blindworm
+hammer,alligator,chameleon
+hammer,alligator,gecko
+hammer,alligator,lizard
+hammer,alligator,salamander
+hammer,alligator,toad
+hammer,alligator,tortoise
+hammer,alligator,turtle
+hammer,alligator,axe
+hammer,alligator,chisel
+hammer,alligator,saw
+hammer,caiman,crocodile
+hammer,caiman,boa python
+hammer,caiman,cobra
+hammer,caiman,snake
+hammer,caiman,blindworm
+hammer,caiman,chameleon
+hammer,caiman,gecko
+hammer,caiman,lizard
+hammer,caiman,salamander
+hammer,caiman,toad
+hammer,caiman,tortoise
+hammer,caiman,turtle
+hammer,caiman,axe
+hammer,caiman,chisel
+hammer,caiman,saw
+hammer,crocodile,boa python
+hammer,crocodile,cobra
+hammer,crocodile,snake
+hammer,crocodile,blindworm
+hammer,crocodile,chameleon
+hammer,crocodile,gecko
+hammer,crocodile,lizard
+hammer,crocodile,salamander
+hammer,crocodile,toad
+hammer,crocodile,tortoise
+hammer,crocodile,turtle
+hammer,crocodile,axe
+hammer,crocodile,chisel
+hammer,crocodile,saw
+hammer,boa python,cobra
+hammer,boa python,snake
+hammer,boa python,blindworm
+hammer,boa python,chameleon
+hammer,boa python,gecko
+hammer,boa python,lizard
+hammer,boa python,salamander
+hammer,boa python,toad
+hammer,boa python,tortoise
+hammer,boa python,turtle
+hammer,boa python,axe
+hammer,boa python,chisel
+hammer,boa python,saw
+hammer,cobra,snake
+hammer,cobra,blindworm
+hammer,cobra,chameleon
+hammer,cobra,gecko
+hammer,cobra,lizard
+hammer,cobra,salamander
+hammer,cobra,toad
+hammer,cobra,tortoise
+hammer,cobra,turtle
+hammer,cobra,axe
+hammer,cobra,chisel
+hammer,cobra,saw
+hammer,snake,blindworm
+hammer,snake,chameleon
+hammer,snake,gecko
+hammer,snake,lizard
+hammer,snake,salamander
+hammer,snake,toad
+hammer,snake,tortoise
+hammer,snake,turtle
+hammer,snake,axe
+hammer,snake,chisel
+hammer,snake,saw
+hammer,blindworm,chameleon
+hammer,blindworm,gecko
+hammer,blindworm,lizard
+hammer,blindworm,salamander
+hammer,blindworm,toad
+hammer,blindworm,tortoise
+hammer,blindworm,turtle
+hammer,blindworm,axe
+hammer,blindworm,chisel
+hammer,blindworm,saw
+hammer,chameleon,gecko
+hammer,chameleon,lizard
+hammer,chameleon,salamander
+hammer,chameleon,toad
+hammer,chameleon,tortoise
+hammer,chameleon,turtle
+hammer,chameleon,axe
+hammer,chameleon,chisel
+hammer,chameleon,saw
+hammer,gecko,lizard
+hammer,gecko,salamander
+hammer,gecko,toad
+hammer,gecko,tortoise
+hammer,gecko,turtle
+hammer,gecko,axe
+hammer,gecko,chisel
+hammer,gecko,saw
+hammer,lizard,salamander
+hammer,lizard,toad
+hammer,lizard,tortoise
+hammer,lizard,turtle
+hammer,lizard,axe
+hammer,lizard,chisel
+hammer,lizard,saw
+hammer,salamander,toad
+hammer,salamander,tortoise
+hammer,salamander,turtle
+hammer,salamander,axe
+hammer,salamander,chisel
+hammer,salamander,saw
+hammer,toad,tortoise
+hammer,toad,turtle
+hammer,toad,axe
+hammer,toad,chisel
+hammer,toad,saw
+hammer,tortoise,turtle
+hammer,tortoise,axe
+hammer,tortoise,chisel
+hammer,tortoise,saw
+hammer,turtle,axe
+hammer,turtle,chisel
+hammer,turtle,saw
+hammer,axe,chisel
+hammer,axe,saw
+hammer,chisel,saw
+saw,alligator,caiman
+saw,alligator,crocodile
+saw,alligator,boa python
+saw,alligator,cobra
+saw,alligator,snake
+saw,alligator,blindworm
+saw,alligator,chameleon
+saw,alligator,gecko
+saw,alligator,lizard
+saw,alligator,salamander
+saw,alligator,toad
+saw,alligator,tortoise
+saw,alligator,turtle
+saw,alligator,axe
+saw,alligator,chisel
+saw,alligator,hammer
+saw,caiman,crocodile
+saw,caiman,boa python
+saw,caiman,cobra
+saw,caiman,snake
+saw,caiman,blindworm
+saw,caiman,chameleon
+saw,caiman,gecko
+saw,caiman,lizard
+saw,caiman,salamander
+saw,caiman,toad
+saw,caiman,tortoise
+saw,caiman,turtle
+saw,caiman,axe
+saw,caiman,chisel
+saw,caiman,hammer
+saw,crocodile,boa python
+saw,crocodile,cobra
+saw,crocodile,snake
+saw,crocodile,blindworm
+saw,crocodile,chameleon
+saw,crocodile,gecko
+saw,crocodile,lizard
+saw,crocodile,salamander
+saw,crocodile,toad
+saw,crocodile,tortoise
+saw,crocodile,turtle
+saw,crocodile,axe
+saw,crocodile,chisel
+saw,crocodile,hammer
+saw,boa python,cobra
+saw,boa python,snake
+saw,boa python,blindworm
+saw,boa python,chameleon
+saw,boa python,gecko
+saw,boa python,lizard
+saw,boa python,salamander
+saw,boa python,toad
+saw,boa python,tortoise
+saw,boa python,turtle
+saw,boa python,axe
+saw,boa python,chisel
+saw,boa python,hammer
+saw,cobra,snake
+saw,cobra,blindworm
+saw,cobra,chameleon
+saw,cobra,gecko
+saw,cobra,lizard
+saw,cobra,salamander
+saw,cobra,toad
+saw,cobra,tortoise
+saw,cobra,turtle
+saw,cobra,axe
+saw,cobra,chisel
+saw,cobra,hammer
+saw,snake,blindworm
+saw,snake,chameleon
+saw,snake,gecko
+saw,snake,lizard
+saw,snake,salamander
+saw,snake,toad
+saw,snake,tortoise
+saw,snake,turtle
+saw,snake,axe
+saw,snake,chisel
+saw,snake,hammer
+saw,blindworm,chameleon
+saw,blindworm,gecko
+saw,blindworm,lizard
+saw,blindworm,salamander
+saw,blindworm,toad
+saw,blindworm,tortoise
+saw,blindworm,turtle
+saw,blindworm,axe
+saw,blindworm,chisel
+saw,blindworm,hammer
+saw,chameleon,gecko
+saw,chameleon,lizard
+saw,chameleon,salamander
+saw,chameleon,toad
+saw,chameleon,tortoise
+saw,chameleon,turtle
+saw,chameleon,axe
+saw,chameleon,chisel
+saw,chameleon,hammer
+saw,gecko,lizard
+saw,gecko,salamander
+saw,gecko,toad
+saw,gecko,tortoise
+saw,gecko,turtle
+saw,gecko,axe
+saw,gecko,chisel
+saw,gecko,hammer
+saw,lizard,salamander
+saw,lizard,toad
+saw,lizard,tortoise
+saw,lizard,turtle
+saw,lizard,axe
+saw,lizard,chisel
+saw,lizard,hammer
+saw,salamander,toad
+saw,salamander,tortoise
+saw,salamander,turtle
+saw,salamander,axe
+saw,salamander,chisel
+saw,salamander,hammer
+saw,toad,tortoise
+saw,toad,turtle
+saw,toad,axe
+saw,toad,chisel
+saw,toad,hammer
+saw,tortoise,turtle
+saw,tortoise,axe
+saw,tortoise,chisel
+saw,tortoise,hammer
+saw,turtle,axe
+saw,turtle,chisel
+saw,turtle,hammer
+saw,axe,chisel
+saw,axe,hammer
+saw,chisel,hammer

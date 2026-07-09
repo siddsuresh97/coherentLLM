@@ -1,0 +1,28 @@
+{
+  "concepts": [
+    "alligator",
+    "caiman",
+    "crocodile",
+    "boa python",
+    "cobra",
+    "snake",
+    "blindworm",
+    "chameleon",
+    "gecko",
+    "lizard",
+    "salamander",
+    "toad",
+    "tortoise",
+    "turtle",
+    "axe",
+    "chisel",
+    "hammer",
+    "saw"
+  ],
+  "domain": "neutral concrete Leuven reptiles/amphibians plus familiar tools",
+  "rationale": "The set is familiar, concrete, and human-checkable. It has tight local neighborhoods such as alligator/caiman/crocodile, tortoise/turtle, snake/cobra/boa python, and axe/chisel/hammer/saw, while retaining far cross-domain controls.",
+  "rejected_first_passes": {
+    "medical_or_legal_pairs": "Explicitly deferred until neutral H1 is green, per the design invariant.",
+    "scale128_mixed_animals": "Broader THINGS/scale128 animals were rejected for the first scaffold because the repo already has a compact Leuven feature matrix for this reptiles/tools domain."
+  }
+}

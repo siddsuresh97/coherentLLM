@@ -1,0 +1,153 @@
+alligator,caiman
+alligator,crocodile
+alligator,boa python
+alligator,cobra
+alligator,snake
+alligator,blindworm
+alligator,chameleon
+alligator,gecko
+alligator,lizard
+alligator,salamander
+alligator,toad
+alligator,tortoise
+alligator,turtle
+alligator,axe
+alligator,chisel
+alligator,hammer
+alligator,saw
+caiman,crocodile
+caiman,boa python
+caiman,cobra
+caiman,snake
+caiman,blindworm
+caiman,chameleon
+caiman,gecko
+caiman,lizard
+caiman,salamander
+caiman,toad
+caiman,tortoise
+caiman,turtle
+caiman,axe
+caiman,chisel
+caiman,hammer
+caiman,saw
+crocodile,boa python
+crocodile,cobra
+crocodile,snake
+crocodile,blindworm
+crocodile,chameleon
+crocodile,gecko
+crocodile,lizard
+crocodile,salamander
+crocodile,toad
+crocodile,tortoise
+crocodile,turtle
+crocodile,axe
+crocodile,chisel
+crocodile,hammer
+crocodile,saw
+boa python,cobra
+boa python,snake
+boa python,blindworm
+boa python,chameleon
+boa python,gecko
+boa python,lizard
+boa python,salamander
+boa python,toad
+boa python,tortoise
+boa python,turtle
+boa python,axe
+boa python,chisel
+boa python,hammer
+boa python,saw
+cobra,snake
+cobra,blindworm
+cobra,chameleon
+cobra,gecko
+cobra,lizard
+cobra,salamander
+cobra,toad
+cobra,tortoise
+cobra,turtle
+cobra,axe
+cobra,chisel
+cobra,hammer
+cobra,saw
+snake,blindworm
+snake,chameleon
+snake,gecko
+snake,lizard
+snake,salamander
+snake,toad
+snake,tortoise
+snake,turtle
+snake,axe
+snake,chisel
+snake,hammer
+snake,saw
+blindworm,chameleon
+blindworm,gecko
+blindworm,lizard
+blindworm,salamander
+blindworm,toad
+blindworm,tortoise
+blindworm,turtle
+blindworm,axe
+blindworm,chisel
+blindworm,hammer
+blindworm,saw
+chameleon,gecko
+chameleon,lizard
+chameleon,salamander
+chameleon,toad
+chameleon,tortoise
+chameleon,turtle
+chameleon,axe
+chameleon,chisel
+chameleon,hammer
+chameleon,saw
+gecko,lizard
+gecko,salamander
+gecko,toad
+gecko,tortoise
+gecko,turtle
+gecko,axe
+gecko,chisel
+gecko,hammer
+gecko,saw
+lizard,salamander
+lizard,toad
+lizard,tortoise
+lizard,turtle
+lizard,axe
+lizard,chisel
+lizard,hammer
+lizard,saw
+salamander,toad
+salamander,tortoise
+salamander,turtle
+salamander,axe
+salamander,chisel
+salamander,hammer
+salamander,saw
+toad,tortoise
+toad,turtle
+toad,axe
+toad,chisel
+toad,hammer
+toad,saw
+tortoise,turtle
+tortoise,axe
+tortoise,chisel
+tortoise,hammer
+tortoise,saw
+turtle,axe
+turtle,chisel
+turtle,hammer
+turtle,saw
+axe,chisel
+axe,hammer
+axe,saw
+chisel,hammer
+chisel,saw
+hammer,saw

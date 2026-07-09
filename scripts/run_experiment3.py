@@ -1,0 +1,1376 @@
+#!/usr/bin/env python3
+"""Experiment 3: directional error prediction from triplet geometry.
+
+This script owns the small neutral Step 1 pipeline:
+
+1. freeze a neutral concept set and triplet protocol,
+2. build a model triplet RDM and reliability report from raw triplet runs,
+3. pre-register nearest-neighbor confusion predictions,
+4. generate directional multiple-choice items, and
+5. score model item responses against geometry and null baselines.
+
+It intentionally does not create Step 2 safety items. Step 2 should be added only
+after Step 1 has a green H1 verdict and a passed human sanity gate.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import itertools
+import json
+import math
+import os
+import re
+import sys
+import warnings
+from collections import Counter, defaultdict
+from datetime import datetime
+from pathlib import Path
+from typing import Iterable
+
+import numpy as np
+
+
+ROOT = Path(__file__).resolve().parents[1]
+EXP_DIR = ROOT / "experiments" / "exp3_directional_confusions"
+CONCEPT_DIR = EXP_DIR / "concepts"
+STIM_DIR = EXP_DIR / "stimuli"
+RAW_DIR = EXP_DIR / "raw"
+ARTIFACT_DIR = EXP_DIR / "artifacts"
+RDM_DIR = ARTIFACT_DIR / "rdms"
+ITEM_DIR = EXP_DIR / "items" / "step1"
+RESULT_DIR = EXP_DIR / "results"
+FIG_DIR = EXP_DIR / "figs"
+
+DEFAULT_CONCEPTS = [
+    "alligator",
+    "caiman",
+    "crocodile",
+    "boa python",
+    "cobra",
+    "snake",
+    "blindworm",
+    "chameleon",
+    "gecko",
+    "lizard",
+    "salamander",
+    "toad",
+    "tortoise",
+    "turtle",
+    "axe",
+    "chisel",
+    "hammer",
+    "saw",
+]
+
+DEFAULT_CONFIG = {
+    "seed": 7303,
+    "base_model": "llama-3.1-8b-instruct",
+    "step1_concepts_file": "experiments/exp3_directional_confusions/concepts/step1_neutral.json",
+    "feature_matrix": "data/human/leuven_groundtruth_matrix.csv",
+    "feature_map": "data/human/leuven300_feature_map.csv",
+    "n_items_per_target": 4,
+    "far_control_min_quantile": 0.60,
+    "bootstrap_samples": 2000,
+    "null_permutations": 5000,
+    "reliability_min_mean_pearson": 0.75,
+    "h1_min_error_items": 10,
+    "triplet_protocol": {
+        "scheme": "full_anchor_candidate_enumeration",
+        "prompt_template": (
+            "Answer using only one word or phrase - {concept1} or {concept2} "
+            "and not {anchor}. Which is more similar in semantic meaning to {anchor}?"
+        ),
+        "paraphrase_template": (
+            "Reply with only {concept1} or {concept2}. Compared with {anchor}, "
+            "which option is closer in meaning?"
+        ),
+        "temperature": 0.0,
+        "aggregation": (
+            "For each anchor i and candidate j, count the fraction of triplets "
+            "where j is chosen over the alternative candidate. Symmetrize by "
+            "averaging i->j and j->i rates, then convert similarity to RDM as "
+            "1 - similarity."
+        ),
+        "required_geometry_runs": [
+            "base_seed_a_canonical_prompt",
+            "base_seed_b_canonical_prompt",
+            "base_seed_a_paraphrase_prompt",
+        ],
+    },
+}
+
+TEMPLATE_VARIANTS = [
+    "Which option is the best match for this description?\n{clues}\nAnswer with only A, B, C, or D.",
+    "A catalog card lists these properties:\n{clues}\nWhich option does the card describe? Answer with only A, B, C, or D.",
+    "Choose the option that best fits all of these clues:\n{clues}\nAnswer with only A, B, C, or D.",
+    "A field note says the thing has these attributes:\n{clues}\nWhich option is it? Answer with only A, B, C, or D.",
+]
+
+FEATURE_BLOCKLIST = {
+    "dutch",
+    "belgium",
+    "belgian",
+    "cinderella",
+    "flipper",
+    "free willy",
+    "jaws",
+    "jurassic",
+    "skippy",
+    "tintin",
+    "thanksgiving",
+    "xmass",
+    "christmas",
+    "brand",
+    "song",
+    "saying",
+    "expression",
+    "term of abuse",
+    "girl's name",
+    "main character",
+    "tv-programme",
+}
+
+
+def clean_text(value: object) -> str:
+    return re.sub(r"\s+", " ", str(value).strip().lower())
+
+
+def norm_key(value: object) -> str:
+    return re.sub(r"[^a-z0-9]", "", str(value).lower())
+
+
+def display_path(path: Path) -> str:
+    try:
+        return str(path.relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
+def now_stamp() -> str:
+    return datetime.now().astimezone().isoformat(timespec="seconds")
+
+
+def ensure_dirs() -> None:
+    for path in (EXP_DIR, CONCEPT_DIR, STIM_DIR, RAW_DIR, ARTIFACT_DIR, RDM_DIR, ITEM_DIR, RESULT_DIR, FIG_DIR):
+        path.mkdir(parents=True, exist_ok=True)
+
+
+def write_json(path: Path, payload: object) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w") as handle:
+        json.dump(payload, handle, indent=2, sort_keys=True)
+        handle.write("\n")
+
+
+def read_json(path: Path) -> object:
+    with path.open() as handle:
+        return json.load(handle)
+
+
+def write_csv(path: Path, rows: Iterable[Iterable[object]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="") as handle:
+        writer = csv.writer(handle)
+        writer.writerows(rows)
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def load_config() -> dict:
+    path = EXP_DIR / "config.json"
+    if not path.exists():
+        write_json(path, DEFAULT_CONFIG)
+        return json.loads(json.dumps(DEFAULT_CONFIG))
+    current = read_json(path)
+    merged = json.loads(json.dumps(DEFAULT_CONFIG))
+    for key, value in current.items():
+        if isinstance(value, dict) and isinstance(merged.get(key), dict):
+            merged[key].update(value)
+        else:
+            merged[key] = value
+    return merged
+
+
+def concept_file_path(config: dict) -> Path:
+    path = Path(config["step1_concepts_file"])
+    return path if path.is_absolute() else ROOT / path
+
+
+def load_concepts(config: dict) -> list[str]:
+    path = concept_file_path(config)
+    payload = read_json(path)
+    return [clean_text(c) for c in payload["concepts"]]
+
+
+def append_log(block_name: str, lines: Iterable[str]) -> None:
+    ensure_dirs()
+    path = EXP_DIR / "RESEARCH_LOG.md"
+    if not path.exists():
+        path.write_text("# Experiment 3 Research Log\n\nAppend-only decision trail.\n")
+    with path.open("a") as handle:
+        handle.write(f"\n## {now_stamp()} DECISION: {block_name}\n\n")
+        for line in lines:
+            handle.write(f"{line.rstrip()}\n")
+
+
+def write_triplet_stimuli(concepts: list[str]) -> dict:
+    write_csv(STIM_DIR / "concepts.csv", [[concept] for concept in concepts])
+    triplets = []
+    for anchor in concepts:
+        others = [concept for concept in concepts if concept != anchor]
+        for concept1, concept2 in itertools.combinations(others, 2):
+            triplets.append([anchor, concept1, concept2])
+    write_csv(STIM_DIR / "triplets.csv", triplets)
+    pairs = []
+    for concept1, concept2 in itertools.combinations(concepts, 2):
+        pairs.append([concept1, concept2])
+    write_csv(STIM_DIR / "pairs.csv", pairs)
+    return {"n_concepts": len(concepts), "n_triplets": len(triplets), "n_pairs": len(pairs)}
+
+
+def init_experiment(args: argparse.Namespace) -> None:
+    ensure_dirs()
+    config = load_config()
+    concept_path = concept_file_path(config)
+    if args.overwrite or not concept_path.exists():
+        write_json(
+            concept_path,
+            {
+                "concepts": DEFAULT_CONCEPTS,
+                "domain": "neutral concrete Leuven reptiles/amphibians plus familiar tools",
+                "rationale": (
+                    "The set is familiar, concrete, and human-checkable. It has tight "
+                    "local neighborhoods such as alligator/caiman/crocodile, "
+                    "tortoise/turtle, snake/cobra/boa python, and axe/chisel/hammer/saw, "
+                    "while retaining far cross-domain controls."
+                ),
+                "rejected_first_passes": {
+                    "scale128_mixed_animals": (
+                        "Broader THINGS/scale128 animals were rejected for the first "
+                        "scaffold because the repo already has a compact Leuven feature "
+                        "matrix for this reptiles/tools domain."
+                    ),
+                    "medical_or_legal_pairs": (
+                        "Explicitly deferred until neutral H1 is green, per the design "
+                        "invariant."
+                    ),
+                },
+            },
+        )
+    concepts = load_concepts(config)
+    stim_meta = write_triplet_stimuli(concepts)
+    protocol = dict(config["triplet_protocol"])
+    protocol.update(
+        {
+            "base_model": config["base_model"],
+            "n_concepts": stim_meta["n_concepts"],
+            "n_triplets_per_run": stim_meta["n_triplets"],
+            "n_pairwise_pairs": stim_meta["n_pairs"],
+            "stimuli_dir": display_path(STIM_DIR),
+            "concepts_sha256": sha256_file(STIM_DIR / "concepts.csv"),
+            "triplets_sha256": sha256_file(STIM_DIR / "triplets.csv"),
+            "pairs_sha256": sha256_file(STIM_DIR / "pairs.csv"),
+            "runner_command_canonical": (
+                f"python scripts/run_experiment3.py run-triplets --model {config['base_model']} "
+                "--out-run base_seed_a_canonical_prompt --prompt-variant canonical --overwrite"
+            ),
+            "runner_command_paraphrase": (
+                f"python scripts/run_experiment3.py run-triplets --model {config['base_model']} "
+                "--out-run base_seed_a_paraphrase_prompt --prompt-variant paraphrase --overwrite"
+            ),
+            "status": (
+                "frozen_stimuli_written; model triplet runs are required before "
+                "pre-registered neighbors can be trusted"
+            ),
+        }
+    )
+    write_json(EXP_DIR / "triplet_protocol.json", protocol)
+    if args.log:
+        append_log(
+            "Concept selection",
+            [
+                "Selected 18 neutral Leuven concrete concepts: "
+                + ", ".join(f"`{c}`" for c in concepts)
+                + ".",
+                "Why this domain: it has known human feature structure, obvious local neighborhoods, "
+                "and enough fine-grained reptiles/amphibians to plausibly elicit directional confusions.",
+                "Uncertainty band is not yet confirmed. That requires model item responses; the report stays red until errors exist.",
+                "Rejected broader mixed THINGS concepts for this first scaffold because the available Leuven feature matrix supports cleaner item generation.",
+                "Rejected medical/legal safety substitutions for now because Step 2 is gated on neutral H1.",
+            ],
+        )
+    update_report()
+
+
+def parse_triplet_raw(path: Path) -> list[tuple[str, str, str, str]]:
+    rows = []
+    with path.open(newline="") as handle:
+        reader = csv.DictReader(handle)
+        for row in reader:
+            try:
+                anchor, concept1, concept2 = str(row["input"]).split("|")
+            except ValueError:
+                continue
+            rows.append((clean_text(anchor), clean_text(concept1), clean_text(concept2), str(row["response"])))
+    return rows
+
+
+def rdm_from_triplet_rows(rows: list[tuple[str, str, str, str]], concepts: list[str]) -> np.ndarray:
+    index = {norm_key(concept): i for i, concept in enumerate(concepts)}
+    n = len(concepts)
+    close = np.zeros((n, n), dtype=float)
+    total = np.zeros((n, n), dtype=float)
+    for anchor, concept1, concept2, response in rows:
+        ai = index.get(norm_key(anchor))
+        i1 = index.get(norm_key(concept1))
+        i2 = index.get(norm_key(concept2))
+        if ai is None or i1 is None or i2 is None:
+            continue
+        resp = norm_key(response)
+        chosen = None
+        key1 = norm_key(concept1)
+        key2 = norm_key(concept2)
+        if key1 and key1 in resp:
+            chosen = i1
+        elif key2 and key2 in resp:
+            chosen = i2
+        total[ai, i1] += 1
+        total[ai, i2] += 1
+        if chosen is not None:
+            close[ai, chosen] += 1
+    with np.errstate(invalid="ignore", divide="ignore"):
+        rate = np.where(total > 0, close / total, np.nan)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)
+        sim = np.nanmean(np.dstack([rate, rate.T]), axis=2)
+    np.fill_diagonal(sim, 1.0)
+    mean = np.nanmean(sim)
+    if not np.isfinite(mean):
+        mean = 0.5
+    sim = np.where(np.isnan(sim), mean, sim)
+    sim = np.clip(sim, 0.0, 1.0)
+    rdm = 1.0 - sim
+    np.fill_diagonal(rdm, 0.0)
+    return rdm
+
+
+def upper_values(matrix: np.ndarray) -> np.ndarray:
+    return matrix[np.triu_indices_from(matrix, k=1)]
+
+
+def pearson_corr(a: np.ndarray, b: np.ndarray) -> float:
+    a = np.asarray(a, dtype=float)
+    b = np.asarray(b, dtype=float)
+    ok = np.isfinite(a) & np.isfinite(b)
+    if ok.sum() < 3:
+        return float("nan")
+    a = a[ok]
+    b = b[ok]
+    if np.std(a) == 0 or np.std(b) == 0:
+        return float("nan")
+    return float(np.corrcoef(a, b)[0, 1])
+
+
+def build_rdm(args: argparse.Namespace) -> None:
+    ensure_dirs()
+    config = load_config()
+    concepts = load_concepts(config)
+    protocol_runs = args.runs or config["triplet_protocol"]["required_geometry_runs"]
+    present = []
+    missing = []
+    rdms = {}
+    for run in protocol_runs:
+        raw_path = RAW_DIR / run / "triplet.csv"
+        if not raw_path.exists():
+            missing.append(run)
+            continue
+        present.append(run)
+        rows = parse_triplet_raw(raw_path)
+        rdm = rdm_from_triplet_rows(rows, concepts)
+        rdms[run] = rdm
+        out = RDM_DIR / f"{run}.npy"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        np.save(out, rdm)
+
+    if not rdms:
+        raise SystemExit(f"No triplet CSVs found under {display_path(RAW_DIR)} for requested runs: {protocol_runs}")
+
+    comparisons = []
+    for run_a, run_b in itertools.combinations(present, 2):
+        comparisons.append(
+            {
+                "run_a": run_a,
+                "run_b": run_b,
+                "upper_triangle_pearson": pearson_corr(upper_values(rdms[run_a]), upper_values(rdms[run_b])),
+            }
+        )
+    mean_corr = float(np.nanmean([row["upper_triangle_pearson"] for row in comparisons])) if comparisons else float("nan")
+    reliability_gate = bool(len(missing) == 0 and np.isfinite(mean_corr) and mean_corr >= config["reliability_min_mean_pearson"])
+
+    stacked = np.stack([rdms[run] for run in present], axis=0)
+    rdm = np.mean(stacked, axis=0)
+    np.fill_diagonal(rdm, 0.0)
+    np.save(ARTIFACT_DIR / "rdm.npy", rdm)
+    meta = {
+        "built_at": now_stamp(),
+        "source_runs": present,
+        "missing_runs": missing,
+        "rdm_path": display_path(ARTIFACT_DIR / "rdm.npy"),
+        "rdm_shape": list(rdm.shape),
+        "aggregation": config["triplet_protocol"]["aggregation"],
+        "reliability_gate": reliability_gate,
+        "reliability_min_mean_pearson": config["reliability_min_mean_pearson"],
+        "pairwise_run_reliability": comparisons,
+        "mean_pairwise_upper_triangle_pearson": mean_corr,
+        "status": "green" if reliability_gate else "red",
+    }
+    write_json(ARTIFACT_DIR / "rdm_meta.json", meta)
+    update_report()
+    print(f"[rdm] wrote {display_path(ARTIFACT_DIR / 'rdm.npy')} reliability={meta['status']}")
+
+
+def nearest_and_far_controls(rdm: np.ndarray, concepts: list[str], config: dict) -> list[dict]:
+    rows = []
+    q = float(config["far_control_min_quantile"])
+    for i, target in enumerate(concepts):
+        distances = [(j, float(rdm[i, j])) for j in range(len(concepts)) if j != i]
+        distances = sorted(distances, key=lambda pair: pair[1])
+        near_j, near_d = distances[0]
+        values = np.array([d for _, d in distances], dtype=float)
+        cutoff = float(np.quantile(values, q))
+        far_pool = [(j, d) for j, d in distances if d >= cutoff and j != near_j]
+        if len(far_pool) < 2:
+            far_pool = distances[-2:]
+        target_far = float(np.median([d for _, d in far_pool]))
+        far_pool = sorted(far_pool, key=lambda pair: (abs(pair[1] - target_far), pair[1]))
+        controls = far_pool[:2]
+        rows.append(
+            {
+                "target": target,
+                "near": concepts[near_j],
+                "near_distance": near_d,
+                "far_controls": [
+                    {"concept": concepts[j], "distance": float(d)}
+                    for j, d in controls
+                ],
+                "far_control_rule": f"two controls from target row distances >= q{q:.2f}, closest to that far-pool median",
+            }
+        )
+    return rows
+
+
+def register_neighbors(args: argparse.Namespace) -> None:
+    ensure_dirs()
+    config = load_config()
+    concepts = load_concepts(config)
+    rdm_path = ARTIFACT_DIR / "rdm.npy"
+    meta_path = ARTIFACT_DIR / "rdm_meta.json"
+    if not rdm_path.exists():
+        raise SystemExit("No model RDM found. Run `python scripts/run_experiment3.py build-rdm` after triplet runs.")
+    meta = read_json(meta_path) if meta_path.exists() else {}
+    if not args.allow_red_rdm and not meta.get("reliability_gate", False):
+        raise SystemExit("RDM reliability gate is not green. Use --allow-red-rdm only for engineering smoke tests.")
+    rdm = np.load(rdm_path)
+    predictions = nearest_and_far_controls(rdm, concepts, config)
+    payload = {
+        "registered_at": now_stamp(),
+        "rdm_path": display_path(rdm_path),
+        "rdm_meta": meta,
+        "status": "pre_registered_before_item_scoring",
+        "sanity_gate": "pending_human_review",
+        "predictions": predictions,
+    }
+    write_json(EXP_DIR / "neighbors.json", payload)
+    append_log(
+        "Pre-registered predictions",
+        [
+            "Geometry-derived neighbors written before item scoring.",
+            "RDM source: `" + display_path(rdm_path) + "`.",
+            "Human sanity gate is pending. Do not treat H1 as green until these pairs are manually accepted.",
+            "",
+            "| Target | Predicted near confusion | Near distance | Far controls |",
+            "|---|---|---:|---|",
+            *[
+                "| `{target}` | `{near}` | {near_distance:.4f} | {far} |".format(
+                    target=row["target"],
+                    near=row["near"],
+                    near_distance=row["near_distance"],
+                    far=", ".join(
+                        f"`{control['concept']}` ({control['distance']:.4f})"
+                        for control in row["far_controls"]
+                    ),
+                )
+                for row in predictions
+            ],
+        ],
+    )
+    update_report()
+    print(f"[neighbors] wrote {display_path(EXP_DIR / 'neighbors.json')}")
+
+
+def load_feature_map(config: dict) -> dict[str, str]:
+    path = ROOT / config["feature_map"]
+    if not path.exists():
+        return {}
+    mapping = {}
+    with path.open(newline="") as handle:
+        reader = csv.DictReader(handle)
+        for row in reader:
+            raw = str(row.get("raw", "")).strip()
+            clean = clean_text(row.get("clean", raw))
+            if raw:
+                mapping[raw] = clean
+    return mapping
+
+
+def load_feature_matrix(config: dict):
+    import pandas as pd
+
+    path = ROOT / config["feature_matrix"]
+    df = pd.read_csv(path, index_col=0)
+    df.index = [clean_text(index) for index in df.index]
+    df = df.apply(pd.to_numeric, errors="coerce").fillna(0.0)
+    return df
+
+
+def clean_feature_name(raw: str, mapping: dict[str, str]) -> str:
+    base = re.sub(r"\.\d+$", "", raw)
+    text = mapping.get(base, base)
+    text = text.replace("_", " ")
+    text = text.replace("can't", "cannot")
+    text = re.sub(r"\s+", " ", text).strip().lower()
+    text = text.strip(" .")
+    return text
+
+
+def usable_feature(raw: str, text: str) -> bool:
+    if not (4 <= len(text) <= 80):
+        return False
+    if any(token in text for token in FEATURE_BLOCKLIST):
+        return False
+    if any(char in text for char in ["=", ":", "/", "\\"]):
+        return False
+    if text.endswith(" ao gallop"):
+        return False
+    return True
+
+
+def feature_frequency(df, raw: str) -> float:
+    return float((df[raw].to_numpy(dtype=float) > 0.5).mean())
+
+
+def ordered_features(df, concept: str, raw_features: list[str], mapping: dict[str, str], salt: str) -> list[str]:
+    digest = hashlib.sha256(salt.encode("utf-8")).digest()
+    offset = int.from_bytes(digest[:4], "big")
+    scored = []
+    for raw in raw_features:
+        text = clean_feature_name(raw, mapping)
+        if not usable_feature(raw, text):
+            continue
+        freq = feature_frequency(df, raw)
+        # Prefer diagnostic-but-not-unique features. Rotate ties deterministically
+        # across variants so each target gets surface variation.
+        score = (abs(freq - 0.28), (hash((raw, offset)) % 100000) / 100000)
+        scored.append((score, raw))
+    return [raw for _, raw in sorted(scored)]
+
+
+def choose_feature_clues(df, target: str, near: str, far_controls: list[str], mapping: dict[str, str], variant: int) -> list[str]:
+    target_row = df.loc[target] > 0.5
+    near_row = df.loc[near] > 0.5
+    far_rows = [(df.loc[far] > 0.5) for far in far_controls]
+    target_true = [raw for raw in df.columns if bool(target_row[raw])]
+
+    shared_near = [
+        raw
+        for raw in target_true
+        if bool(near_row[raw]) and not all(bool(row[raw]) for row in far_rows)
+    ]
+    target_specific = [
+        raw
+        for raw in target_true
+        if not bool(near_row[raw]) and not any(bool(row[raw]) for row in far_rows)
+    ]
+    contrastive = [
+        raw
+        for raw in target_true
+        if not all(bool(row[raw]) for row in [near_row, *far_rows])
+    ]
+
+    shared_near = ordered_features(df, target, shared_near, mapping, f"{target}|shared|{variant}")
+    target_specific = ordered_features(df, target, target_specific, mapping, f"{target}|specific|{variant}")
+    contrastive = ordered_features(df, target, contrastive, mapping, f"{target}|contrast|{variant}")
+    fallback = ordered_features(df, target, target_true, mapping, f"{target}|fallback|{variant}")
+
+    chosen: list[str] = []
+    for pool, take in ((shared_near, 2), (target_specific, 1), (contrastive, 2), (fallback, 3)):
+        for raw in pool:
+            text = clean_feature_name(raw, mapping)
+            if text not in chosen:
+                chosen.append(text)
+            if len(chosen) >= take and pool is not contrastive and pool is not fallback:
+                break
+            if len(chosen) >= 3:
+                break
+        if len(chosen) >= 3:
+            break
+    return chosen[:3]
+
+
+def generate_items(args: argparse.Namespace) -> None:
+    ensure_dirs()
+    config = load_config()
+    neighbors_path = EXP_DIR / "neighbors.json"
+    if not neighbors_path.exists():
+        raise SystemExit("No neighbors.json found. Register predictions before generating items.")
+    concepts = load_concepts(config)
+    df = load_feature_matrix(config)
+    missing = [concept for concept in concepts if concept not in set(df.index)]
+    if missing:
+        raise SystemExit(f"Feature matrix is missing concepts: {missing}")
+    mapping = load_feature_map(config)
+    neighbors = read_json(neighbors_path)
+    rng = np.random.default_rng(int(config["seed"]))
+    items = []
+    n_variants = int(args.n_items_per_target or config["n_items_per_target"])
+    prediction_by_target = {row["target"]: row for row in neighbors["predictions"]}
+    for target in concepts:
+        pred = prediction_by_target[target]
+        near = pred["near"]
+        far_controls = [row["concept"] for row in pred["far_controls"]]
+        for variant in range(n_variants):
+            clues = choose_feature_clues(df, target, near, far_controls, mapping, variant)
+            if len(clues) < 2:
+                raise RuntimeError(f"Not enough usable feature clues for {target}")
+            options = [
+                {"concept": target, "role": "correct"},
+                {"concept": near, "role": "near"},
+                {"concept": far_controls[0], "role": "far"},
+                {"concept": far_controls[1], "role": "far"},
+            ]
+            order = rng.permutation(4)
+            ordered = []
+            for letter, idx in zip(["A", "B", "C", "D"], order):
+                option = dict(options[int(idx)])
+                option["letter"] = letter
+                ordered.append(option)
+            correct_letter = next(option["letter"] for option in ordered if option["role"] == "correct")
+            template = TEMPLATE_VARIANTS[variant % len(TEMPLATE_VARIANTS)]
+            clue_text = "\n".join(f"- {feature}" for feature in clues)
+            option_text = "\n".join(f"{option['letter']}. {option['concept']}" for option in ordered)
+            prompt = f"{template.format(clues=clue_text)}\n\nOptions:\n{option_text}"
+            items.append(
+                {
+                    "item_id": f"step1_{target.replace(' ', '_')}_{variant:02d}",
+                    "target": target,
+                    "correct_answer": target,
+                    "correct_letter": correct_letter,
+                    "predicted_near": near,
+                    "far_controls": far_controls,
+                    "feature_clues": clues,
+                    "options": ordered,
+                    "prompt": prompt,
+                    "template_variant": variant % len(TEMPLATE_VARIANTS),
+                }
+            )
+
+    out_path = ITEM_DIR / "items.json"
+    write_json(out_path, items)
+    write_csv(
+        ITEM_DIR / "items.csv",
+        [
+            ["item_id", "target", "correct_letter", "predicted_near", "far_controls", "prompt"],
+            *[
+                [
+                    item["item_id"],
+                    item["target"],
+                    item["correct_letter"],
+                    item["predicted_near"],
+                    "|".join(item["far_controls"]),
+                    item["prompt"],
+                ]
+                for item in items
+            ],
+        ],
+    )
+    append_log(
+        "Item design",
+        [
+            f"Generated {len(items)} Step 1 items: {n_variants} per target.",
+            "Each item uses one geometry-predicted near distractor and two far controls from `neighbors.json`.",
+            "Question form is feature-attribution over Leuven feature norms. Clues prefer features shared with the near neighbor plus at least one target-specific or contrastive feature when available.",
+            "Option positions are counterbalanced by deterministic RNG seed.",
+        ],
+    )
+    update_report()
+    print(f"[items] wrote {display_path(out_path)}")
+
+
+def parse_choice(response: str, item: dict) -> tuple[str | None, str | None]:
+    text = str(response).strip()
+    upper = text.upper()
+    for letter in ["A", "B", "C", "D"]:
+        if re.search(rf"(^|[^A-Z]){letter}([^A-Z]|$)", upper):
+            concept = next(option["concept"] for option in item["options"] if option["letter"] == letter)
+            return letter, concept
+    key_text = norm_key(text)
+    matches = []
+    for option in item["options"]:
+        key = norm_key(option["concept"])
+        if key and key in key_text:
+            matches.append(option)
+    if len(matches) == 1:
+        return matches[0]["letter"], matches[0]["concept"]
+    return None, None
+
+
+def load_item_responses(run: str) -> dict[str, str]:
+    path = RAW_DIR / run / "items.csv"
+    if not path.exists():
+        raise FileNotFoundError(path)
+    responses = {}
+    with path.open(newline="") as handle:
+        reader = csv.DictReader(handle)
+        for row in reader:
+            responses[str(row["item_id"])] = str(row["response"])
+    return responses
+
+
+def slope(x: np.ndarray, y: np.ndarray) -> float:
+    x = np.asarray(x, dtype=float)
+    y = np.asarray(y, dtype=float)
+    ok = np.isfinite(x) & np.isfinite(y)
+    if ok.sum() < 2:
+        return float("nan")
+    x = x[ok]
+    y = y[ok]
+    denom = float(np.sum((x - x.mean()) ** 2))
+    if denom == 0:
+        return float("nan")
+    return float(np.sum((x - x.mean()) * (y - y.mean())) / denom)
+
+
+def score_items(args: argparse.Namespace) -> None:
+    ensure_dirs()
+    config = load_config()
+    item_path = ITEM_DIR / "items.json"
+    if not item_path.exists():
+        raise SystemExit("No items found. Run generate-items first.")
+    rdm_path = ARTIFACT_DIR / "rdm.npy"
+    if not rdm_path.exists():
+        raise SystemExit("No RDM found. Run build-rdm first.")
+    meta = read_json(ARTIFACT_DIR / "rdm_meta.json") if (ARTIFACT_DIR / "rdm_meta.json").exists() else {}
+    neighbors = read_json(EXP_DIR / "neighbors.json") if (EXP_DIR / "neighbors.json").exists() else {}
+    concepts = load_concepts(config)
+    concept_index = {concept: i for i, concept in enumerate(concepts)}
+    rdm = np.load(rdm_path)
+    items = read_json(item_path)
+    responses = load_item_responses(args.run)
+
+    scored = []
+    for item in items:
+        response = responses.get(item["item_id"], "")
+        letter, concept = parse_choice(response, item)
+        option_by_concept = {option["concept"]: option for option in item["options"]}
+        role = option_by_concept.get(concept, {}).get("role") if concept else "invalid"
+        scored.append(
+            {
+                "item_id": item["item_id"],
+                "target": item["target"],
+                "response": response,
+                "chosen_letter": letter,
+                "chosen_concept": concept,
+                "chosen_role": role,
+                "correct": concept == item["correct_answer"],
+                "predicted_near": item["predicted_near"],
+                "far_controls": item["far_controls"],
+            }
+        )
+
+    total = len(scored)
+    correct = sum(1 for row in scored if row["correct"])
+    errors = [row for row in scored if not row["correct"] and row["chosen_concept"]]
+    directional_errors = [row for row in errors if row["chosen_role"] in {"near", "far"}]
+    near_errors = [row for row in directional_errors if row["chosen_role"] == "near"]
+    far_errors = [row for row in directional_errors if row["chosen_role"] == "far"]
+    near_fraction = len(near_errors) / len(directional_errors) if directional_errors else float("nan")
+
+    rng = np.random.default_rng(int(config["seed"]))
+    null_counts = []
+    for _ in range(int(config["null_permutations"])):
+        hits = 0
+        denom = 0
+        for row in directional_errors:
+            item = next(item for item in items if item["item_id"] == row["item_id"])
+            distractors = [option["concept"] for option in item["options"] if option["role"] in {"near", "far"}]
+            shuffled_near = rng.choice(distractors)
+            denom += 1
+            if row["chosen_concept"] == shuffled_near:
+                hits += 1
+        null_counts.append(hits / denom if denom else float("nan"))
+    null_counts_arr = np.asarray(null_counts, dtype=float)
+    shuffle_p = float(np.nanmean(null_counts_arr >= near_fraction)) if np.isfinite(near_fraction) else float("nan")
+
+    chosen_base_counts = Counter(row["chosen_concept"] for row in errors if row["chosen_concept"])
+    all_error_choices = sum(chosen_base_counts.values())
+    base_expected = 0.0
+    base_observed = 0
+    for row in directional_errors:
+        item = next(item for item in items if item["item_id"] == row["item_id"])
+        distractors = [option["concept"] for option in item["options"] if option["role"] in {"near", "far"}]
+        weights = np.array([chosen_base_counts.get(concept, 0) + 1 for concept in distractors], dtype=float)
+        near_pos = distractors.index(row["predicted_near"])
+        base_expected += float(weights[near_pos] / weights.sum())
+        base_observed += int(row["chosen_concept"] == row["predicted_near"])
+    base_expected_fraction = base_expected / len(directional_errors) if directional_errors else float("nan")
+    base_lift = near_fraction - base_expected_fraction if np.isfinite(near_fraction) else float("nan")
+
+    pair_rows = []
+    opportunities = defaultdict(int)
+    substitutions = defaultdict(int)
+    for item in items:
+        target = item["target"]
+        for option in item["options"]:
+            if option["role"] == "correct":
+                continue
+            key = (target, option["concept"])
+            opportunities[key] += 1
+    for row in errors:
+        if row["chosen_concept"] and (row["target"], row["chosen_concept"]) in opportunities:
+            substitutions[(row["target"], row["chosen_concept"])] += 1
+    for (target, distractor), n_opp in sorted(opportunities.items()):
+        dist = float(rdm[concept_index[target], concept_index[distractor]])
+        n_sub = substitutions[(target, distractor)]
+        pair_rows.append(
+            {
+                "target": target,
+                "distractor": distractor,
+                "rdm_distance": dist,
+                "opportunities": n_opp,
+                "substitutions": n_sub,
+                "substitution_rate": n_sub / n_opp if n_opp else float("nan"),
+            }
+        )
+    x = np.array([row["rdm_distance"] for row in pair_rows], dtype=float)
+    y = np.array([row["substitution_rate"] for row in pair_rows], dtype=float)
+    distance_slope = slope(x, y)
+    boot = []
+    if pair_rows:
+        for _ in range(int(config["bootstrap_samples"])):
+            idx = rng.integers(0, len(pair_rows), len(pair_rows))
+            boot.append(slope(x[idx], y[idx]))
+    boot_arr = np.asarray(boot, dtype=float)
+    slope_ci = [
+        float(np.nanquantile(boot_arr, 0.025)) if boot_arr.size else float("nan"),
+        float(np.nanquantile(boot_arr, 0.975)) if boot_arr.size else float("nan"),
+    ]
+
+    observed_matrix = np.zeros((len(concepts), len(concepts)), dtype=int)
+    for row in errors:
+        if row["chosen_concept"] in concept_index:
+            observed_matrix[concept_index[row["target"]], concept_index[row["chosen_concept"]]] += 1
+    predicted_scores = []
+    observed_rates = []
+    for row in pair_rows:
+        predicted_scores.append(-row["rdm_distance"])
+        observed_rates.append(row["substitution_rate"])
+    confusion_agreement = pearson_corr(np.asarray(predicted_scores), np.asarray(observed_rates))
+
+    reliability_green = bool(meta.get("reliability_gate", False))
+    sanity_green = neighbors.get("sanity_gate") == "passed"
+    enough_errors = len(directional_errors) >= int(config["h1_min_error_items"])
+    slope_green = np.isfinite(slope_ci[1]) and slope_ci[1] < 0
+    null_green = np.isfinite(shuffle_p) and shuffle_p < 0.05 and np.isfinite(base_lift) and base_lift > 0
+    if reliability_green and sanity_green and enough_errors and slope_green and null_green:
+        verdict = "green_directional"
+    elif not reliability_green:
+        verdict = "not_decided_rdm_reliability_red"
+    elif not sanity_green:
+        verdict = "not_decided_sanity_gate_pending"
+    elif not enough_errors:
+        verdict = "not_decided_too_few_errors"
+    else:
+        verdict = "null_or_inconclusive"
+
+    RESULT_DIR.mkdir(parents=True, exist_ok=True)
+    write_csv(
+        RESULT_DIR / "step1_scored_items.csv",
+        [
+            ["item_id", "target", "chosen_concept", "chosen_role", "correct", "response"],
+            *[
+                [row["item_id"], row["target"], row["chosen_concept"], row["chosen_role"], row["correct"], row["response"]]
+                for row in scored
+            ],
+        ],
+    )
+    write_csv(
+        RESULT_DIR / "step1_pair_rates.csv",
+        [["target", "distractor", "rdm_distance", "opportunities", "substitutions", "substitution_rate"]]
+        + [
+            [row["target"], row["distractor"], row["rdm_distance"], row["opportunities"], row["substitutions"], row["substitution_rate"]]
+            for row in pair_rows
+        ],
+    )
+    write_csv(RESULT_DIR / "step1_confusion_matrix.csv", [["target", *concepts]] + [[concepts[i], *observed_matrix[i].tolist()] for i in range(len(concepts))])
+    summary = {
+        "scored_at": now_stamp(),
+        "run": args.run,
+        "h1_verdict": verdict,
+        "n_items": total,
+        "n_correct": correct,
+        "accuracy": correct / total if total else float("nan"),
+        "n_errors_with_parseable_choice": len(errors),
+        "n_directional_errors_near_or_far": len(directional_errors),
+        "near_errors": len(near_errors),
+        "far_errors": len(far_errors),
+        "near_fraction_among_directional_errors": near_fraction,
+        "shuffle_geometry_null": {
+            "p_value_ge_observed": shuffle_p,
+            "mean_near_fraction": float(np.nanmean(null_counts_arr)) if null_counts_arr.size else float("nan"),
+            "p95_near_fraction": float(np.nanquantile(null_counts_arr, 0.95)) if null_counts_arr.size else float("nan"),
+        },
+        "base_rate_control": {
+            "expected_near_fraction": base_expected_fraction,
+            "observed_minus_expected": base_lift,
+            "error_choice_counts": dict(chosen_base_counts),
+            "n_error_choices": all_error_choices,
+        },
+        "h2_distance_slope": {
+            "slope_substitution_rate_per_rdm_distance": distance_slope,
+            "bootstrap_ci_95": slope_ci,
+            "interpretation": "H2 predicts this slope is negative.",
+        },
+        "predicted_vs_actual_confusion_agreement": {
+            "pearson_r_neg_distance_vs_substitution_rate": confusion_agreement,
+        },
+        "gates": {
+            "rdm_reliability_green": reliability_green,
+            "human_sanity_gate_passed": sanity_green,
+            "enough_directional_errors": enough_errors,
+            "nulls_green": null_green,
+            "slope_ci_green": slope_green,
+        },
+    }
+    write_json(RESULT_DIR / "step1.json", summary)
+    append_log(
+        "H1 verdict",
+        [
+            f"Run scored: `{args.run}`.",
+            f"Directional errors: {len(directional_errors)}; near fraction: {near_fraction:.4f}.",
+            f"Shuffle null p-value: {shuffle_p:.4f}; base-rate lift: {base_lift:.4f}.",
+            f"H2 distance slope: {distance_slope:.6f}; 95% CI [{slope_ci[0]:.6f}, {slope_ci[1]:.6f}].",
+            f"Predicted-vs-actual confusion agreement: {confusion_agreement:.4f}.",
+            f"Verdict: `{verdict}`.",
+        ],
+    )
+    plot_confusion_summary(concepts, observed_matrix, rdm)
+    update_report()
+    print(f"[score] H1 verdict: {verdict}; wrote {display_path(RESULT_DIR / 'step1.json')}")
+
+
+def plot_confusion_summary(concepts: list[str], observed_matrix: np.ndarray, rdm: np.ndarray) -> None:
+    os.environ.setdefault("MPLCONFIGDIR", str(ROOT / "out" / "matplotlib_cache"))
+    try:
+        import matplotlib
+
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+    except Exception as exc:  # noqa: BLE001
+        write_json(FIG_DIR / "plot_warning.json", {"warning": str(exc)})
+        return
+    FIG_DIR.mkdir(parents=True, exist_ok=True)
+    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+    im = axes[0].imshow(observed_matrix, cmap="magma")
+    axes[0].set_title("Observed error substitutions")
+    axes[0].set_xticks(range(len(concepts)))
+    axes[0].set_yticks(range(len(concepts)))
+    axes[0].set_xticklabels(concepts, rotation=90, fontsize=7)
+    axes[0].set_yticklabels(concepts, fontsize=7)
+    fig.colorbar(im, ax=axes[0], fraction=0.046)
+    pred = np.max(rdm) - rdm
+    np.fill_diagonal(pred, 0.0)
+    im2 = axes[1].imshow(pred, cmap="viridis")
+    axes[1].set_title("Predicted proximity from RDM")
+    axes[1].set_xticks(range(len(concepts)))
+    axes[1].set_yticks(range(len(concepts)))
+    axes[1].set_xticklabels(concepts, rotation=90, fontsize=7)
+    axes[1].set_yticklabels(concepts, fontsize=7)
+    fig.colorbar(im2, ax=axes[1], fraction=0.046)
+    fig.tight_layout()
+    fig.savefig(FIG_DIR / "step1_confusion_matrix.png", dpi=180)
+    plt.close(fig)
+
+
+def load_protocol() -> dict:
+    path = EXP_DIR / "triplet_protocol.json"
+    if not path.exists():
+        raise SystemExit("triplet_protocol.json is missing. Run init first.")
+    return read_json(path)
+
+
+def load_triplets() -> list[tuple[str, str, str]]:
+    rows = []
+    with (STIM_DIR / "triplets.csv").open(newline="") as handle:
+        for row in csv.reader(handle):
+            if len(row) >= 3:
+                rows.append((row[0].strip(), row[1].strip(), row[2].strip()))
+    return rows
+
+
+def format_triplet_prompt(template: str, anchor: str, concept1: str, concept2: str) -> str:
+    return template.format(anchor=anchor, concept1=concept1, concept2=concept2)
+
+
+def resolve_vllm_model(args: argparse.Namespace, model_name: str):
+    src = ROOT / "src"
+    if str(src) not in sys.path:
+        sys.path.insert(0, str(src))
+    from run_local import load_registry, resolve_model_path
+
+    if args.model_path:
+        model_path = args.model_path
+        hf_cache = args.hf_cache or os.environ.get("HF_HOME") or str(ROOT / "out" / "hf_cache")
+        spec = {"chat": not args.no_chat}
+    else:
+        reg = load_registry()
+        if model_name not in reg["local"]:
+            raise SystemExit(f"model {model_name} not in registry local: {list(reg['local'])}")
+        spec = reg["local"][model_name]
+        hf_cache = args.hf_cache or reg["hf_cache"]
+        allow_download = bool(spec.get("download", False))
+        model_path = resolve_model_path(spec["path"], hf_cache, allow_download)
+    os.environ.setdefault("HF_HOME", hf_cache)
+    os.environ.setdefault("HF_HUB_CACHE", hf_cache)
+    if os.path.isdir(model_path):
+        os.environ["HF_HUB_OFFLINE"] = "1"
+        os.environ["TRANSFORMERS_OFFLINE"] = "1"
+    return spec, model_path, hf_cache
+
+
+def build_llm(args: argparse.Namespace, spec: dict, model_path: str, hf_cache: str):
+    from vllm import LLM
+
+    tp = spec.get("tensor_parallel", args.tensor_parallel)
+    llm_kwargs = dict(
+        model=model_path,
+        download_dir=hf_cache,
+        tensor_parallel_size=tp,
+        max_model_len=args.max_model_len,
+        gpu_memory_utilization=args.gpu_mem_util,
+        dtype="bfloat16",
+        trust_remote_code=True,
+    )
+    if args.max_num_seqs:
+        llm_kwargs["max_num_seqs"] = args.max_num_seqs
+    quant = spec.get("quantization")
+    if quant and os.environ.get("COHERENCE_FORCE_BF16") == "1":
+        quant = None
+    if quant:
+        llm_kwargs["quantization"] = quant
+    return LLM(**llm_kwargs)
+
+
+def run_triplets(args: argparse.Namespace) -> None:
+    ensure_dirs()
+    config = load_config()
+    protocol = load_protocol()
+    model_name = args.model or protocol["base_model"]
+    outdir = RAW_DIR / args.out_run
+    outdir.mkdir(parents=True, exist_ok=True)
+    out_path = outdir / "triplet.csv"
+    if out_path.exists() and not args.overwrite:
+        print(f"[skip] {display_path(out_path)} exists")
+        return
+    spec, model_path, hf_cache = resolve_vllm_model(args, model_name)
+    print(f"[model] {model_name} -> {model_path}")
+    template_key = "prompt_template" if args.prompt_variant == "canonical" else "paraphrase_template"
+    template = protocol[template_key]
+    triplets = load_triplets()
+    prompts = [format_triplet_prompt(template, *row) for row in triplets]
+
+    src = ROOT / "src"
+    if str(src) not in sys.path:
+        sys.path.insert(0, str(src))
+    from prompts import SYSTEM_PROMPT
+    from vllm import SamplingParams
+
+    llm = build_llm(args, spec, model_path, hf_cache)
+    sampling = SamplingParams(temperature=args.temperature if args.temperature is not None else config["triplet_protocol"]["temperature"], max_tokens=8)
+    if spec.get("chat", True):
+        convos = [[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt}] for prompt in prompts]
+        outputs = llm.chat(convos, sampling)
+    else:
+        outputs = llm.generate(prompts, sampling)
+    with out_path.open("w", newline="") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(["input", "prompt", "response", "prompt_variant"])
+        for (anchor, concept1, concept2), prompt, output in zip(triplets, prompts, outputs):
+            writer.writerow([f"{anchor}|{concept1}|{concept2}", prompt, output.outputs[0].text.strip(), args.prompt_variant])
+    print(f"[done] {len(triplets)} triplets -> {display_path(out_path)}")
+
+
+def run_items(args: argparse.Namespace) -> None:
+    ensure_dirs()
+    config = load_config()
+    item_path = ITEM_DIR / "items.json"
+    if not item_path.exists():
+        raise SystemExit("items.json is missing. Run generate-items first.")
+    model_name = args.model or config["base_model"]
+    outdir = RAW_DIR / args.out_run
+    outdir.mkdir(parents=True, exist_ok=True)
+    out_path = outdir / "items.csv"
+    if out_path.exists() and not args.overwrite:
+        print(f"[skip] {display_path(out_path)} exists")
+        return
+    spec, model_path, hf_cache = resolve_vllm_model(args, model_name)
+    print(f"[model] {model_name} -> {model_path}")
+    items = read_json(item_path)
+    prompts = [item["prompt"] for item in items]
+
+    src = ROOT / "src"
+    if str(src) not in sys.path:
+        sys.path.insert(0, str(src))
+    from prompts import SYSTEM_PROMPT
+    from vllm import SamplingParams
+
+    llm = build_llm(args, spec, model_path, hf_cache)
+    sampling = SamplingParams(temperature=args.temperature if args.temperature is not None else 0.0, max_tokens=12)
+    if spec.get("chat", True):
+        convos = [[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt}] for prompt in prompts]
+        outputs = llm.chat(convos, sampling)
+    else:
+        outputs = llm.generate(prompts, sampling)
+    with out_path.open("w", newline="") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(["item_id", "prompt", "response"])
+        for item, output in zip(items, outputs):
+            writer.writerow([item["item_id"], item["prompt"], output.outputs[0].text.strip()])
+    print(f"[done] {len(items)} items -> {display_path(out_path)}")
+
+
+def mark_sanity_gate(args: argparse.Namespace) -> None:
+    path = EXP_DIR / "neighbors.json"
+    if not path.exists():
+        raise SystemExit("neighbors.json is missing.")
+    payload = read_json(path)
+    payload["sanity_gate"] = "passed" if args.status == "pass" else "failed"
+    payload["sanity_gate_marked_at"] = now_stamp()
+    payload["sanity_gate_note"] = args.note or ""
+    write_json(path, payload)
+    append_log(
+        "Sanity gate",
+        [
+            f"Human sanity gate marked `{payload['sanity_gate']}`.",
+            f"Note: {payload['sanity_gate_note'] or 'n/a'}",
+        ],
+    )
+    update_report()
+
+
+def all_pipeline(args: argparse.Namespace) -> None:
+    init_experiment(argparse.Namespace(overwrite=False, log=False))
+    config = load_config()
+    required = config["triplet_protocol"]["required_geometry_runs"]
+    if all((RAW_DIR / run / "triplet.csv").exists() for run in required):
+        build_rdm(argparse.Namespace(runs=required))
+        if not (EXP_DIR / "neighbors.json").exists():
+            register_neighbors(argparse.Namespace(allow_red_rdm=False))
+        if not (ITEM_DIR / "items.json").exists():
+            generate_items(argparse.Namespace(n_items_per_target=None))
+    else:
+        update_report()
+        missing = [run for run in required if not (RAW_DIR / run / "triplet.csv").exists()]
+        print("[pending] missing triplet runs: " + ", ".join(missing))
+        return
+    if args.score_run and (RAW_DIR / args.score_run / "items.csv").exists():
+        score_items(argparse.Namespace(run=args.score_run))
+    else:
+        update_report()
+        print("[pending] item responses missing; run run-items, then score")
+
+
+def read_optional_json(path: Path) -> dict | None:
+    if not path.exists():
+        return None
+    return read_json(path)
+
+
+def markdown_table_neighbors(neighbors: dict | None) -> str:
+    if not neighbors:
+        return "No pre-registered neighbors yet.\n"
+    lines = [
+        "| Target | Predicted near | Near d | Far controls |",
+        "|---|---|---:|---|",
+    ]
+    for row in neighbors.get("predictions", []):
+        far = ", ".join(f"`{control['concept']}` ({control['distance']:.3f})" for control in row["far_controls"])
+        lines.append(f"| `{row['target']}` | `{row['near']}` | {row['near_distance']:.3f} | {far} |")
+    return "\n".join(lines) + "\n"
+
+
+def update_report() -> None:
+    ensure_dirs()
+    config = load_config()
+    protocol = read_optional_json(EXP_DIR / "triplet_protocol.json")
+    rdm_meta = read_optional_json(ARTIFACT_DIR / "rdm_meta.json")
+    neighbors = read_optional_json(EXP_DIR / "neighbors.json")
+    results = read_optional_json(RESULT_DIR / "step1.json")
+    items_exist = (ITEM_DIR / "items.json").exists()
+    required = config["triplet_protocol"]["required_geometry_runs"]
+    triplet_state = {run: (RAW_DIR / run / "triplet.csv").exists() for run in required}
+    item_runs = sorted(path.parent.name for path in RAW_DIR.glob("*/items.csv"))
+
+    h1 = results["h1_verdict"] if results else "not_decided"
+    report = [
+        "# Experiment 3 Report",
+        "",
+        f"Last updated: {now_stamp()}",
+        "",
+        "## Current status",
+        "",
+        f"- Branch/worktree experiment folder: `{display_path(EXP_DIR)}`",
+        f"- Step 1 concept set: `{display_path(concept_file_path(config))}`",
+        f"- Triplet protocol frozen: {'yes' if protocol else 'no'}",
+        f"- Required triplet runs present: {sum(triplet_state.values())}/{len(triplet_state)}",
+        f"- RDM reliability gate: `{(rdm_meta or {}).get('status', 'missing')}`",
+        f"- Neighbors pre-registered: {'yes' if neighbors else 'no'}",
+        f"- Human sanity gate: `{(neighbors or {}).get('sanity_gate', 'not_started')}`",
+        f"- Directional items generated: {'yes' if items_exist else 'no'}",
+        f"- Item response runs present: {', '.join(item_runs) if item_runs else 'none'}",
+        f"- H1 verdict: `{h1}`",
+        "",
+        "## Commands",
+        "",
+        "```bash",
+        "python scripts/run_experiment3.py init",
+        "python scripts/run_experiment3.py run-triplets --out-run base_seed_a_canonical_prompt --prompt-variant canonical --overwrite",
+        "python scripts/run_experiment3.py run-triplets --out-run base_seed_b_canonical_prompt --prompt-variant canonical --overwrite",
+        "python scripts/run_experiment3.py run-triplets --out-run base_seed_a_paraphrase_prompt --prompt-variant paraphrase --overwrite",
+        "python scripts/run_experiment3.py build-rdm",
+        "python scripts/run_experiment3.py register-neighbors",
+        "python scripts/run_experiment3.py generate-items",
+        "python scripts/run_experiment3.py mark-sanity-gate --status pass --note \"nearest-neighbor pairs are human-sane\"",
+        "python scripts/run_experiment3.py run-items --out-run step1_items_v1 --overwrite",
+        "python scripts/run_experiment3.py score --run step1_items_v1",
+        "```",
+        "",
+        "## Pre-registered Predictions",
+        "",
+        markdown_table_neighbors(neighbors),
+    ]
+    if rdm_meta:
+        report.extend(
+            [
+                "## RDM Reliability",
+                "",
+                f"- Source runs: {', '.join(rdm_meta.get('source_runs', []))}",
+                f"- Missing runs: {', '.join(rdm_meta.get('missing_runs', [])) or 'none'}",
+                f"- Mean pairwise upper-triangle Pearson: `{rdm_meta.get('mean_pairwise_upper_triangle_pearson')}`",
+                f"- Gate: `{rdm_meta.get('status')}`",
+                "",
+            ]
+        )
+    if results:
+        report.extend(
+            [
+                "## Step 1 Directional Score",
+                "",
+                f"- Accuracy: `{results['accuracy']:.4f}` ({results['n_correct']}/{results['n_items']})",
+                f"- Directional errors: `{results['n_directional_errors_near_or_far']}`",
+                f"- Near fraction among directional errors: `{results['near_fraction_among_directional_errors']:.4f}`",
+                f"- Shuffle null p-value: `{results['shuffle_geometry_null']['p_value_ge_observed']:.4f}`",
+                f"- Base-rate lift: `{results['base_rate_control']['observed_minus_expected']:.4f}`",
+                f"- H2 distance slope: `{results['h2_distance_slope']['slope_substitution_rate_per_rdm_distance']:.6f}`",
+                f"- H2 slope 95% CI: `{results['h2_distance_slope']['bootstrap_ci_95']}`",
+                f"- Predicted-vs-actual confusion agreement: `{results['predicted_vs_actual_confusion_agreement']['pearson_r_neg_distance_vs_substitution_rate']:.4f}`",
+                "",
+                "Headline figure: `experiments/exp3_directional_confusions/figs/step1_confusion_matrix.png`",
+                "",
+            ]
+        )
+    report.extend(
+        [
+            "## Live risks",
+            "",
+            "- If the model is near-perfect on these items, H1 is untestable and the item phrasing needs to move into a harder uncertainty band.",
+            "- If RDM reliability is red, do not register or interpret neighbors except as an engineering smoke test.",
+            "- Step 2 is intentionally absent until neutral H1 is green and the sanity gate passes.",
+            "",
+        ]
+    )
+    (EXP_DIR / "REPORT.md").write_text("\n".join(report))
+
+
+def add_vllm_args(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument("--model", default=None)
+    parser.add_argument("--model-path", default=None)
+    parser.add_argument("--hf-cache", default=None)
+    parser.add_argument("--no-chat", action="store_true")
+    parser.add_argument("--temperature", type=float, default=None)
+    parser.add_argument("--tensor_parallel", type=int, default=1)
+    parser.add_argument("--max_model_len", type=int, default=4096)
+    parser.add_argument("--gpu_mem_util", type=float, default=0.90)
+    parser.add_argument("--max_num_seqs", type=int, default=0)
+    parser.add_argument("--overwrite", action="store_true")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    sub = parser.add_subparsers(dest="cmd", required=True)
+
+    p_init = sub.add_parser("init")
+    p_init.add_argument("--overwrite", action="store_true")
+    p_init.add_argument("--no-log", dest="log", action="store_false", default=True)
+    p_init.set_defaults(func=init_experiment)
+
+    p_run_triplets = sub.add_parser("run-triplets")
+    p_run_triplets.add_argument("--out-run", required=True)
+    p_run_triplets.add_argument("--prompt-variant", choices=["canonical", "paraphrase"], default="canonical")
+    add_vllm_args(p_run_triplets)
+    p_run_triplets.set_defaults(func=run_triplets)
+
+    p_build = sub.add_parser("build-rdm")
+    p_build.add_argument("--runs", nargs="*", default=None)
+    p_build.set_defaults(func=build_rdm)
+
+    p_register = sub.add_parser("register-neighbors")
+    p_register.add_argument("--allow-red-rdm", action="store_true")
+    p_register.set_defaults(func=register_neighbors)
+
+    p_items = sub.add_parser("generate-items")
+    p_items.add_argument("--n-items-per-target", type=int, default=None)
+    p_items.set_defaults(func=generate_items)
+
+    p_sanity = sub.add_parser("mark-sanity-gate")
+    p_sanity.add_argument("--status", choices=["pass", "fail"], required=True)
+    p_sanity.add_argument("--note", default="")
+    p_sanity.set_defaults(func=mark_sanity_gate)
+
+    p_run_items = sub.add_parser("run-items")
+    p_run_items.add_argument("--out-run", required=True)
+    add_vllm_args(p_run_items)
+    p_run_items.set_defaults(func=run_items)
+
+    p_score = sub.add_parser("score")
+    p_score.add_argument("--run", required=True)
+    p_score.set_defaults(func=score_items)
+
+    p_all = sub.add_parser("all")
+    p_all.add_argument("--score-run", default="step1_items_v1")
+    p_all.set_defaults(func=all_pipeline)
+
+    args = parser.parse_args()
+    args.func(args)
+
+
+if __name__ == "__main__":
+    main()
