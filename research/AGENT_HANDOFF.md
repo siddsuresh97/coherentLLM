@@ -1,6 +1,6 @@
 # Active Agent Handoff
 
-Last coordination snapshot: 2026-07-08 21:36 CT.
+Last coordination snapshot: 2026-07-08 21:42 CDT.
 
 Branch: `coherence-sft`
 
@@ -10,12 +10,21 @@ Persistent objective: determine what the coherence-trained model improves, what 
 
 Source: `chtc-ssh 'condor_q -batch suresh27'` with the active `chtc-master` wrapper.
 
-No jobs are currently in the queue: `0` running, `0` idle, `0` held.
+Current queue snapshot:
+
+- Concept steering expanded qualitative suite `5513407.0` is running on
+  `slot2_3@gpulab2004.chtc.wisc.edu`.
+- Allocation: `1` GPU, `8` CPUs, `65536` MB RAM, `83886080` KB disk.
+- Queue state from `condor_q -batch suresh27`: `1` running, `0` idle,
+  `0` held.
 
 Held jobs: none.
 
 Completed since the previous handoff:
 
+- The expanded concept generation follow-up was committed in `8e2295d`; its
+  submission note is tracked at
+  `results/sft_eval/concept_steering/chtc/5513407/SUBMISSION.md`.
 - Concept qualitative `5513347.0` exited with Condor `ExitCode=1` after all
   generations and judge CSVs were written. The failure was a late `SUMMARY.md`
   writer bug; corrected/rescored artifacts are committed under
@@ -29,6 +38,8 @@ Completed since the previous handoff:
 | Agent | ID | Lane | Current goal |
 | --- | --- | --- | --- |
 | Boole | `019f44b4-b2fd-7960-bd39-440dbb17743f` | Concept steering scale-up | Build a validated expanded judged generation suite and submit one short CHTC GPU job only after local dry-run checks pass. |
+| Gauss | `019f44bf-dcc2-7ed1-8bc2-f0f3cda43bbe` | CHTC utilization and queue monitor | Keep CHTC status handoffable, identify idle or held jobs, and prepare safe next submissions without overlapping Boole's write set. |
+| Faraday | `019f44bf-df00-72a1-94e5-f2c3d50cecdb` | fMRI / Huth / Fedorenko follow-through | Synthesize the Huth smoke, design the next Huth/Fedorenko and semantic-hub experiment, and submit only locally smoke-tested jobs. |
 
 Completed agents already closed:
 
