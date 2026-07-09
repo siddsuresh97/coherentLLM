@@ -82,13 +82,20 @@ DEFAULT_CONFIG = {
     "triplet_protocol": {
         "scheme": "full_anchor_candidate_enumeration",
         "prompt_template": (
-            "Answer using only one word or phrase - {concept1} or {concept2} "
-            "and not {anchor}. Which is more similar in semantic meaning to {anchor}?"
+            "Target concept: {anchor}\n"
+            "Candidate A: {concept1}\n"
+            "Candidate B: {concept2}\n"
+            "Which candidate is more similar in semantic meaning to the target? "
+            "Answer with exactly A or B."
         ),
         "paraphrase_template": (
-            "Reply with only {concept1} or {concept2}. Compared with {anchor}, "
-            "which option is closer in meaning?"
+            "Compare the target to two candidates.\n"
+            "Target: {anchor}\n"
+            "A: {concept1}\n"
+            "B: {concept2}\n"
+            "Which candidate is closer in meaning to the target? Reply with only A or B."
         ),
+        "response_format": "labeled_binary_choice_A_or_B",
         "temperature": 0.0,
         "aggregation": (
             "For each anchor i and candidate j, count the fraction of triplets "
@@ -282,12 +289,10 @@ def init_experiment(args: argparse.Namespace) -> None:
             "triplets_sha256": sha256_file(STIM_DIR / "triplets.csv"),
             "pairs_sha256": sha256_file(STIM_DIR / "pairs.csv"),
             "runner_command_canonical": (
-                f"python scripts/run_experiment3.py run-triplets --model {config['base_model']} "
-                "--out-run base_seed_a_canonical_prompt --prompt-variant canonical --overwrite"
+                f"python scripts/run_experiment3.py run-triplet-suite --model {config['base_model']} --overwrite"
             ),
             "runner_command_paraphrase": (
-                f"python scripts/run_experiment3.py run-triplets --model {config['base_model']} "
-                "--out-run base_seed_a_paraphrase_prompt --prompt-variant paraphrase --overwrite"
+                f"python scripts/run_experiment3.py run-triplet-suite --model {config['base_model']} --overwrite"
             ),
             "status": (
                 "frozen_stimuli_written; model triplet runs are required before "
@@ -326,6 +331,33 @@ def parse_triplet_raw(path: Path) -> list[tuple[str, str, str, str]]:
     return rows
 
 
+def parse_triplet_choice(response: str, concept1: str, concept2: str) -> int | None:
+    raw = str(response).strip()
+    label_match = re.match(
+        r"^(?:answer\s*[:\-]?\s*)?(?:option\s*)?[\(\[]?([ab])[\)\].,:;\-]?(?:\s|$)",
+        raw,
+        flags=re.IGNORECASE,
+    )
+    if label_match:
+        return 1 if label_match.group(1).lower() == "a" else 2
+
+    resp = norm_key(raw)
+    key1 = norm_key(concept1)
+    key2 = norm_key(concept2)
+    hit1 = bool(key1 and key1 in resp)
+    hit2 = bool(key2 and key2 in resp)
+    if hit1 and not hit2:
+        return 1
+    if hit2 and not hit1:
+        return 2
+    if hit1 and hit2:
+        first1 = resp.find(key1)
+        first2 = resp.find(key2)
+        if first1 != first2:
+            return 1 if first1 < first2 else 2
+    return None
+
+
 def rdm_from_triplet_rows(rows: list[tuple[str, str, str, str]], concepts: list[str]) -> np.ndarray:
     index = {norm_key(concept): i for i, concept in enumerate(concepts)}
     n = len(concepts)
@@ -337,14 +369,8 @@ def rdm_from_triplet_rows(rows: list[tuple[str, str, str, str]], concepts: list[
         i2 = index.get(norm_key(concept2))
         if ai is None or i1 is None or i2 is None:
             continue
-        resp = norm_key(response)
-        chosen = None
-        key1 = norm_key(concept1)
-        key2 = norm_key(concept2)
-        if key1 and key1 in resp:
-            chosen = i1
-        elif key2 and key2 in resp:
-            chosen = i2
+        parsed = parse_triplet_choice(response, concept1, concept2)
+        chosen = i1 if parsed == 1 else i2 if parsed == 2 else None
         total[ai, i1] += 1
         total[ai, i2] += 1
         if chosen is not None:
@@ -1327,6 +1353,7 @@ def update_report() -> None:
         f"- Branch/worktree experiment folder: `{display_path(EXP_DIR)}`",
         f"- Step 1 concept set: `{display_path(concept_file_path(config))}`",
         f"- Triplet protocol frozen: {'yes' if protocol else 'no'}",
+        f"- Triplet response format: `{config['triplet_protocol'].get('response_format', 'concept_text')}`",
         f"- Required triplet runs present: {sum(triplet_state.values())}/{len(triplet_state)}",
         f"- RDM reliability gate: `{(rdm_meta or {}).get('status', 'missing')}`",
         f"- Neighbors pre-registered: {'yes' if neighbors else 'no'}",
@@ -1339,9 +1366,7 @@ def update_report() -> None:
         "",
         "```bash",
         "python scripts/run_experiment3.py init",
-        "python scripts/run_experiment3.py run-triplets --out-run base_seed_a_canonical_prompt --prompt-variant canonical --overwrite",
-        "python scripts/run_experiment3.py run-triplets --out-run base_seed_b_canonical_prompt --prompt-variant canonical --overwrite",
-        "python scripts/run_experiment3.py run-triplets --out-run base_seed_a_paraphrase_prompt --prompt-variant paraphrase --overwrite",
+        "python scripts/run_experiment3.py run-triplet-suite --overwrite",
         "python scripts/run_experiment3.py build-rdm",
         "python scripts/run_experiment3.py register-neighbors",
         "python scripts/run_experiment3.py generate-items",

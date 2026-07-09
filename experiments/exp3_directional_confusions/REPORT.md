@@ -1,12 +1,13 @@
 # Experiment 3 Report
 
-Last updated: 2026-07-09T14:00:06-05:00
+Last updated: 2026-07-09T15:02:14-05:00
 
 ## Current status
 
 - Branch/worktree experiment folder: `experiments/exp3_directional_confusions`
 - Step 1 concept set: `experiments/exp3_directional_confusions/concepts/step1_neutral.json`
 - Triplet protocol frozen: yes
+- Triplet response format: `labeled_binary_choice_A_or_B`
 - Required triplet runs present: 0/3
 - RDM reliability gate: `missing`
 - Neighbors pre-registered: no
@@ -19,9 +20,7 @@ Last updated: 2026-07-09T14:00:06-05:00
 
 ```bash
 python scripts/run_experiment3.py init
-python scripts/run_experiment3.py run-triplets --out-run base_seed_a_canonical_prompt --prompt-variant canonical --overwrite
-python scripts/run_experiment3.py run-triplets --out-run base_seed_b_canonical_prompt --prompt-variant canonical --overwrite
-python scripts/run_experiment3.py run-triplets --out-run base_seed_a_paraphrase_prompt --prompt-variant paraphrase --overwrite
+python scripts/run_experiment3.py run-triplet-suite --overwrite
 python scripts/run_experiment3.py build-rdm
 python scripts/run_experiment3.py register-neighbors
 python scripts/run_experiment3.py generate-items

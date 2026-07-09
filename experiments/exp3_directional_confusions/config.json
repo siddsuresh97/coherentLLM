@@ -14,8 +14,9 @@
   "step1_concepts_file": "experiments/exp3_directional_confusions/concepts/step1_neutral.json",
   "triplet_protocol": {
     "aggregation": "For each anchor i and candidate j, count the fraction of triplets where j is chosen over the alternative candidate. Symmetrize by averaging i->j and j->i rates, then convert similarity to RDM as 1 - similarity.",
-    "paraphrase_template": "Reply with only {concept1} or {concept2}. Compared with {anchor}, which option is closer in meaning?",
-    "prompt_template": "Answer using only one word or phrase - {concept1} or {concept2} and not {anchor}. Which is more similar in semantic meaning to {anchor}?",
+    "paraphrase_template": "Compare the target to two candidates.\nTarget: {anchor}\nA: {concept1}\nB: {concept2}\nWhich candidate is closer in meaning to the target? Reply with only A or B.",
+    "prompt_template": "Target concept: {anchor}\nCandidate A: {concept1}\nCandidate B: {concept2}\nWhich candidate is more similar in semantic meaning to the target? Answer with exactly A or B.",
+    "response_format": "labeled_binary_choice_A_or_B",
     "required_geometry_runs": [
       "base_seed_a_canonical_prompt",
       "base_seed_b_canonical_prompt",
