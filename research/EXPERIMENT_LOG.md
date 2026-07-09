@@ -1,6 +1,6 @@
 # Coherence-SFT Experiment Log
 
-Last updated: 2026-07-08 23:43 CDT
+Last updated: 2026-07-08 23:54 CDT
 
 ## Read this first
 
@@ -11,12 +11,15 @@ This is the running handoff log for follow-up work after Tasks 1-8 on branch
 2. `results/sft_eval/REPORT.md`
 3. this log
 4. the active task briefs listed below
+5. `research/PROMPT_PROVENANCE.md` for exact prompt text and prompt-row artifacts
 
 Tracking convention:
 - Task briefs live in `research/CODEX_TASK_*.md`.
 - Major experiment outputs live under `results/`.
 - Every meaningful checkpoint should be committed and pushed to `origin/coherence-sft`.
 - Append command summaries, artifact paths, and interpretation here after each major run.
+- Keep exact prompt templates and prompt-row artifact paths in
+  `research/PROMPT_PROVENANCE.md`.
 - Do not treat a partial/stale artifact as a result unless this log explicitly marks it as valid.
 
 Current conclusion snapshot:
@@ -47,6 +50,20 @@ validation from scientific evidence.
 | Benchmark drops / skill diagnosis | Coherence SFT should help semantic consistency while hurting specific benchmark skills rather than causing a uniform collapse. | Ran wide-bench controls for base, lowLR, lowrank, scrambled, and `taskvec_a0p25`; merged full CHTC MMLU for `taskvec_a0p25`; built skill diagnostics. | HellaSwag/WinoGrande mostly retained for coherent arms; ARC/OpenBookQA/MMLU partly mitigated by `taskvec_a0p25` but still below base; WiC is strongly hurt. | Drops are task-family specific: lexical sense disambiguation, science option ranking, and false-lure calibration are main risks. | Use cheap failure-suite gates before full MMLU; prioritize WiC, TruthfulQA, ARC/OpenBookQA mitigation. |
 | TruthfulQA false-lure mechanism | Task-vector mitigation might improve aggregate accuracy while increasing plausible-false-answer pressure. | Ran CHTC TruthfulQA smoke `5513424` and scale-up `5513434` with log samples and false-pressure diagnostics. | At limit 200, `lowLR` improves MC2 `+0.0229` and passes false-pressure-up `0.355`; `taskvec_a0p25` barely improves MC2 `+0.0038` and fails with false-pressure-up `0.820`. | Conclusive risk for `taskvec_a0p25`: it raises plausible false-lure pressure. | Promote only candidates with controlled false-pressure, not accuracy alone. |
 | `taskvec_a0p5` retention gate | Higher alpha may preserve semantic-hub signal or expose worse retention tradeoffs. | Ran CHTC cluster `5513444` for `base+taskvec_a0p5` on TruthfulQA/WiC/OpenBookQA limit 200 using a tarred home-transferred adapter. | `taskvec_a0p5` loses TruthfulQA MC2 (`-0.0169`), drops truth log-odds (`-0.9308`), passes false-pressure-up (`0.305`), but still hurts WiC (`-0.160`) and OpenBookQA acc_norm (`-0.085`). | Not a promotion candidate. It suppresses false pressure by lowering both true and false mass, while aggregate retention worsens. | Do not spend full MMLU on `a0p5`; use lower-alpha/replay/KL candidates and keep the false-pressure gate. |
+
+## 2026-07-08 checkpoint: prompt provenance appendix
+
+Added `research/PROMPT_PROVENANCE.md` so exact prompt text is tracked in the
+report, not only implicit in scripts. It covers:
+
+- SFT coherent/scrambled prompt JSONL and canonical constructors.
+- Semantic-hub raw prompts and serialized chat prompt table.
+- THINGS-fMRI `Concept: {concept}` prompts.
+- Huth/LeBel narrative-fMRI TextGrid word streams, explicitly noting no chat
+  template or instruction prompt was used.
+- Concept-vector contrast prompts, qualitative generation prompts, and
+  retention probes.
+- Retention-gate `lm_eval` templates and exact TruthfulQA log-sample paths.
 
 ## Active task briefs
 

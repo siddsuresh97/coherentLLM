@@ -1,6 +1,6 @@
 # Active Agent Handoff
 
-Last coordination snapshot: 2026-07-08 23:43 CDT.
+Last coordination snapshot: 2026-07-08 23:54 CDT.
 
 Branch: `coherence-sft`
 
@@ -8,6 +8,9 @@ Persistent objective: determine what the coherence-trained model improves, what 
 
 ## Current Scientific Conclusion Snapshot
 
+- Prompt provenance: exact prompt templates, chat serialization examples, and
+  complete prompt-row artifact paths are now centralized in
+  `research/PROMPT_PROVENANCE.md`.
 - Concept steering: not conclusive positive. `5513407` technically passed, but
   the strongest coherence gain trades off alignment, the retention-safe
   coherence setting is weak, and human-alignment vectors did not improve harder

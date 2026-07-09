@@ -2,7 +2,7 @@
 
 ## Current Scientific Report
 
-Last updated: 2026-07-08 23:43 CDT on branch `coherence-sft`.
+Last updated: 2026-07-08 23:54 CDT on branch `coherence-sft`.
 
 This README is the high-level dashboard. Expand the sections below for the
 details, exact metrics, artifact paths, and next decisions. The continuously
@@ -20,6 +20,9 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 
 The fuller hypothesis/test/finding/next-step table is in
 [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.md#experiment-decision-table).
+Exact prompts, chat serialization, and complete prompt-row artifact paths are
+now tracked in
+[`research/PROMPT_PROVENANCE.md`](research/PROMPT_PROVENANCE.md).
 
 ### Headlines
 
@@ -118,6 +121,8 @@ The fuller hypothesis/test/finding/next-step table is in
 
 - Status/handoff: [`research/STATUS.md`](research/STATUS.md)
 - Full experiment log: [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.md)
+- Prompt provenance appendix:
+  [`research/PROMPT_PROVENANCE.md`](research/PROMPT_PROVENANCE.md)
 - Literature and experiment plan:
   [`research/LITERATURE_AND_EXPERIMENT_PLAN.md`](research/LITERATURE_AND_EXPERIMENT_PLAN.md)
 - fMRI/semantic-hub task brief:
