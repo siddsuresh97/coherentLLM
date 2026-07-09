@@ -23,6 +23,7 @@ import json
 import math
 import os
 import re
+import subprocess
 import sys
 import warnings
 from collections import Counter, defaultdict
@@ -44,6 +45,7 @@ EMBED_DIR = ARTIFACT_DIR / "embeddings"
 ITEM_DIR = EXP_DIR / "items" / "step1"
 RESULT_DIR = EXP_DIR / "results"
 FIG_DIR = EXP_DIR / "figs"
+_REPORT_LINK_BASE: str | None | bool = False
 
 DEFAULT_CONCEPTS = [
     "alligator",
@@ -166,6 +168,47 @@ def display_path(path: Path) -> str:
         return str(path.relative_to(ROOT))
     except ValueError:
         return str(path)
+
+
+def git_stdout(args: list[str]) -> str | None:
+    try:
+        result = subprocess.run(
+            args,
+            cwd=ROOT,
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            text=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    value = result.stdout.strip()
+    return value or None
+
+
+def github_slug_from_remote(remote_url: str | None) -> str | None:
+    if not remote_url:
+        return None
+    remote_url = remote_url.strip()
+    if remote_url.startswith("git@github.com:"):
+        return remote_url.removeprefix("git@github.com:").removesuffix(".git")
+    if remote_url.startswith("https://github.com/"):
+        return remote_url.removeprefix("https://github.com/").removesuffix(".git")
+    return None
+
+
+def report_link_base() -> str | None:
+    global _REPORT_LINK_BASE
+    if _REPORT_LINK_BASE is not False:
+        return _REPORT_LINK_BASE
+    override = os.environ.get("EXP3_REPORT_LINK_BASE")
+    if override:
+        _REPORT_LINK_BASE = override.rstrip("/")
+        return _REPORT_LINK_BASE
+    slug = github_slug_from_remote(git_stdout(["git", "config", "--get", "remote.origin.url"]))
+    branch = git_stdout(["git", "branch", "--show-current"]) or "exp3-directional-confusions"
+    _REPORT_LINK_BASE = f"https://github.com/{slug}/blob/{branch}" if slug else None
+    return _REPORT_LINK_BASE
 
 
 def now_stamp() -> str:
@@ -533,6 +576,29 @@ def procrustes_r2(x: np.ndarray, y: np.ndarray) -> float:
     return float(max(0.0, 1.0 - residual / total))
 
 
+def salmon_triplet_budget(
+    *,
+    n_concepts: int,
+    dim: int,
+    n_triplets_per_run: int | None = None,
+    n_triplets_total: int | None = None,
+) -> dict:
+    base = float(n_concepts * dim * math.log(max(n_concepts, 2)))
+    payload = {
+        "heuristic": "fudge_factor * n_concepts * embedding_dim * ln(n_concepts)",
+        "n_concepts": int(n_concepts),
+        "embedding_dim": int(dim),
+        "base_n_d_log_n": base,
+    }
+    if n_triplets_per_run is not None:
+        payload["observed_triplets_per_run"] = int(n_triplets_per_run)
+        payload["observed_per_run_fudge_factor"] = float(n_triplets_per_run / base) if base else float("nan")
+    if n_triplets_total is not None:
+        payload["observed_triplets_total"] = int(n_triplets_total)
+        payload["observed_total_fudge_factor"] = float(n_triplets_total / base) if base else float("nan")
+    return payload
+
+
 def upper_values(matrix: np.ndarray) -> np.ndarray:
     return matrix[np.triu_indices_from(matrix, k=1)]
 
@@ -787,6 +853,8 @@ def build_rdm(args: argparse.Namespace) -> None:
     pooled_embedding_path = EMBED_DIR / f"pooled_salmon_d{dim}.npy"
     np.save(pooled_embedding_path, pooled_embedding)
     rdm = cosine_rdm_from_embedding(pooled_embedding)
+    run_triplet_counts = [int(triplets_by_run[run].shape[0]) for run in present]
+    mean_triplets_per_run = int(round(float(np.mean(run_triplet_counts)))) if run_triplet_counts else None
 
     reliability_gate = bool(
         len(missing) == 0
@@ -807,6 +875,12 @@ def build_rdm(args: argparse.Namespace) -> None:
         "pooled_embedding_sha256": sha256_file(pooled_embedding_path),
         "pooled_fit_metrics": pooled_fit,
         "n_valid_triplets_total": int(pooled_triplets.shape[0]),
+        "salmon_triplet_budget": salmon_triplet_budget(
+            n_concepts=len(concepts),
+            dim=dim,
+            n_triplets_per_run=mean_triplets_per_run,
+            n_triplets_total=int(pooled_triplets.shape[0]),
+        ),
         "source_runs": present,
         "missing_runs": missing,
         "rdm_path": display_path(ARTIFACT_DIR / "rdm.npy"),
@@ -1694,7 +1768,16 @@ def markdown_table_neighbors(neighbors: dict | None) -> str:
 
 def md_link(path: Path, label: str | None = None) -> str:
     shown = display_path(path)
-    return f"[{label or shown}]({shown})"
+    base = report_link_base()
+    if base:
+        target = f"{base}/{shown.replace(os.sep, '/')}"
+    else:
+        try:
+            target = os.path.relpath(path, EXP_DIR)
+        except ValueError:
+            target = shown
+        target = target.replace(os.sep, "/")
+    return f"[{label or shown}]({target})"
 
 
 def first_item_example() -> dict | None:
@@ -1772,8 +1855,21 @@ def update_report() -> None:
     rdm_source = (rdm_meta or {}).get("rdm_source", config.get("rdm_source", "salmon_embedding"))
     distance_metric = (rdm_meta or {}).get("distance_metric", "pending")
     source_runs = (rdm_meta or {}).get("source_runs", required)
+    n_concepts_for_budget = len(load_concepts(config)) if concept_file_path(config).exists() else 0
+    budget_meta = (rdm_meta or {}).get("salmon_triplet_budget")
+    if rdm_meta and not budget_meta and rdm_meta.get("rdm_source") == "salmon_embedding":
+        total_triplets = rdm_meta.get("n_valid_triplets_total")
+        per_run_triplets = None
+        if total_triplets is not None and source_runs:
+            per_run_triplets = int(round(total_triplets / len(source_runs)))
+        budget_meta = salmon_triplet_budget(
+            n_concepts=n_concepts_for_budget,
+            dim=int(rdm_meta.get("salmon_dimension", config.get("salmon_dimension", 0))),
+            n_triplets_per_run=per_run_triplets,
+            n_triplets_total=total_triplets,
+        )
     item_response_run = results["run"] if results_current else "not_run"
-    concept_count = len(load_concepts(config)) if concept_file_path(config).exists() else 0
+    concept_count = n_concepts_for_budget
     old_paraphrase_agreement = triplet_choice_agreement(
         "base_seed_a_canonical_prompt",
         "base_seed_a_paraphrase_prompt",
@@ -1883,6 +1979,16 @@ def update_report() -> None:
                 f"- RDM distance metric: `{rdm_meta.get('distance_metric')}`.",
                 f"- SALMON pooled held-out accuracy: `{(rdm_meta.get('pooled_fit_metrics') or {}).get('test_score')}`",
                 f"- SALMON per-run held-out accuracies: `{ {run: fit.get('test_score') for run, fit in (rdm_meta.get('per_run_salmon_fit_metrics') or {}).items()} }`",
+                (
+                    "- SALMON triplet budget heuristic: "
+                    f"`fudge * n * d * ln(n)`; here base `n*d*ln(n) = {budget_meta['base_n_d_log_n']:.1f}`, "
+                    f"observed per-run `{budget_meta.get('observed_triplets_per_run')}` "
+                    f"(`{budget_meta.get('observed_per_run_fudge_factor'):.2f}x`), "
+                    f"pooled `{budget_meta.get('observed_triplets_total')}` "
+                    f"(`{budget_meta.get('observed_total_fudge_factor'):.2f}x`)."
+                    if budget_meta
+                    else "- SALMON triplet budget heuristic: unavailable."
+                ),
                 f"- Source runs: {', '.join(rdm_meta.get('source_runs', []))}.",
                 f"- Missing runs: {', '.join(rdm_meta.get('missing_runs', [])) or 'none'}",
                 f"- Mean pairwise upper-triangle Pearson: `{rdm_meta.get('mean_pairwise_upper_triangle_pearson')}`",

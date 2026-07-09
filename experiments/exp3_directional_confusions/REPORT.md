@@ -1,6 +1,6 @@
 # Experiment 3 Report
 
-Last updated: 2026-07-09T16:03:40-05:00
+Last updated: 2026-07-09T16:13:52-05:00
 
 ## Step 1 Story
 
@@ -12,16 +12,16 @@ We are testing whether triplet geometry predicts the destination of model errors
 
 - Model: `llama-3.1-8b-instruct`.
 - Serving: local vLLM; triplet and item prompts use temperature `0.0`.
-- Concept set: 18 neutral Leuven concrete concepts in [experiments/exp3_directional_confusions/concepts/step1_neutral.json](experiments/exp3_directional_confusions/concepts/step1_neutral.json).
-- Stimuli: [experiments/exp3_directional_confusions/stimuli/concepts.csv](experiments/exp3_directional_confusions/stimuli/concepts.csv), [experiments/exp3_directional_confusions/stimuli/triplets.csv](experiments/exp3_directional_confusions/stimuli/triplets.csv), [experiments/exp3_directional_confusions/stimuli/pairs.csv](experiments/exp3_directional_confusions/stimuli/pairs.csv).
-- Geometry raw responses: [base_seed_a_canonical_prompt](experiments/exp3_directional_confusions/raw/base_seed_a_canonical_prompt/triplet.csv), [base_seed_b_canonical_prompt](experiments/exp3_directional_confusions/raw/base_seed_b_canonical_prompt/triplet.csv), [base_seed_a_matched_paraphrase_prompt](experiments/exp3_directional_confusions/raw/base_seed_a_matched_paraphrase_prompt/triplet.csv).
+- Concept set: 18 neutral Leuven concrete concepts in [experiments/exp3_directional_confusions/concepts/step1_neutral.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/concepts/step1_neutral.json).
+- Stimuli: [experiments/exp3_directional_confusions/stimuli/concepts.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/stimuli/concepts.csv), [experiments/exp3_directional_confusions/stimuli/triplets.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/stimuli/triplets.csv), [experiments/exp3_directional_confusions/stimuli/pairs.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/stimuli/pairs.csv).
+- Geometry raw responses: [base_seed_a_canonical_prompt](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/raw/base_seed_a_canonical_prompt/triplet.csv), [base_seed_b_canonical_prompt](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/raw/base_seed_b_canonical_prompt/triplet.csv), [base_seed_a_matched_paraphrase_prompt](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/raw/base_seed_a_matched_paraphrase_prompt/triplet.csv).
 - Geometry fitting: `salmon_embedding`; distance metric for `rdm.npy`: `cosine_distance`.
-- RDM artifact: [experiments/exp3_directional_confusions/artifacts/rdm.npy](experiments/exp3_directional_confusions/artifacts/rdm.npy); metadata: [experiments/exp3_directional_confusions/artifacts/rdm_meta.json](experiments/exp3_directional_confusions/artifacts/rdm_meta.json).
-- SALMON pooled embedding: [experiments/exp3_directional_confusions/artifacts/embeddings/pooled_salmon_d5.npy](experiments/exp3_directional_confusions/artifacts/embeddings/pooled_salmon_d5.npy).
-- Pre-registered neighbors: [experiments/exp3_directional_confusions/neighbors.json](experiments/exp3_directional_confusions/neighbors.json).
-- Directional items: [experiments/exp3_directional_confusions/items/step1/items.csv](experiments/exp3_directional_confusions/items/step1/items.csv) and [experiments/exp3_directional_confusions/items/step1/items.json](experiments/exp3_directional_confusions/items/step1/items.json).
-- Item responses: [experiments/exp3_directional_confusions/raw/step1_items_v1/items.csv](experiments/exp3_directional_confusions/raw/step1_items_v1/items.csv).
-- Scored outputs: [experiments/exp3_directional_confusions/results/step1.json](experiments/exp3_directional_confusions/results/step1.json), [experiments/exp3_directional_confusions/results/step1_scored_items.csv](experiments/exp3_directional_confusions/results/step1_scored_items.csv), [experiments/exp3_directional_confusions/results/step1_pair_rates.csv](experiments/exp3_directional_confusions/results/step1_pair_rates.csv), [experiments/exp3_directional_confusions/results/step1_confusion_matrix.csv](experiments/exp3_directional_confusions/results/step1_confusion_matrix.csv).
+- RDM artifact: [experiments/exp3_directional_confusions/artifacts/rdm.npy](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/artifacts/rdm.npy); metadata: [experiments/exp3_directional_confusions/artifacts/rdm_meta.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/artifacts/rdm_meta.json).
+- SALMON pooled embedding: [experiments/exp3_directional_confusions/artifacts/embeddings/pooled_salmon_d5.npy](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/artifacts/embeddings/pooled_salmon_d5.npy).
+- Pre-registered neighbors: [experiments/exp3_directional_confusions/neighbors.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/neighbors.json).
+- Directional items: [experiments/exp3_directional_confusions/items/step1/items.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/items/step1/items.csv) and [experiments/exp3_directional_confusions/items/step1/items.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/items/step1/items.json).
+- Item responses: [experiments/exp3_directional_confusions/raw/step1_items_v1/items.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/raw/step1_items_v1/items.csv).
+- Scored outputs: [experiments/exp3_directional_confusions/results/step1.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1.json), [experiments/exp3_directional_confusions/results/step1_scored_items.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1_scored_items.csv), [experiments/exp3_directional_confusions/results/step1_pair_rates.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1_pair_rates.csv), [experiments/exp3_directional_confusions/results/step1_confusion_matrix.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/results/step1_confusion_matrix.csv).
 
 Canonical geometry prompt:
 
@@ -69,7 +69,7 @@ D. {distractor_or_target}
 
 Concrete generated item example:
 
-From [experiments/exp3_directional_confusions/items/step1/items.csv](experiments/exp3_directional_confusions/items/step1/items.csv) / `step1_alligator_00`:
+From [experiments/exp3_directional_confusions/items/step1/items.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/items/step1/items.csv) / `step1_alligator_00`:
 
 ```text
 Which option is the best match for this description?
@@ -91,6 +91,7 @@ D. alligator
 - RDM distance metric: `cosine_distance`.
 - SALMON pooled held-out accuracy: `0.8590878248214722`
 - SALMON per-run held-out accuracies: `{'base_seed_a_canonical_prompt': 0.8306122422218323, 'base_seed_a_matched_paraphrase_prompt': 0.8183673620223999, 'base_seed_b_canonical_prompt': 0.8571428656578064}`
+- SALMON triplet budget heuristic: `fudge * n * d * ln(n)`; here base `n*d*ln(n) = 260.1`, observed per-run `2448` (`9.41x`), pooled `7344` (`28.23x`).
 - Source runs: base_seed_a_canonical_prompt, base_seed_b_canonical_prompt, base_seed_a_matched_paraphrase_prompt.
 - Missing runs: none
 - Mean pairwise upper-triangle Pearson: `0.870450357132683`
@@ -110,7 +111,7 @@ D. alligator
 - Predicted-vs-actual confusion agreement: `0.5781`
 - H1 verdict: `green_directional`
 
-Headline figure: [experiments/exp3_directional_confusions/figs/step1_confusion_matrix.png](experiments/exp3_directional_confusions/figs/step1_confusion_matrix.png)
+Headline figure: [experiments/exp3_directional_confusions/figs/step1_confusion_matrix.png](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/figs/step1_confusion_matrix.png)
 
 ### What does this mean?
 

@@ -158,3 +158,10 @@ Shuffle null p-value: 0.0002; base-rate lift: 0.3187.
 H2 distance slope: -0.233021; 95% CI [-0.338216, -0.125002].
 Predicted-vs-actual confusion agreement: 0.5781.
 Verdict: `green_directional`.
+
+## 2026-07-09T16:10:51-05:00 DECISION: Course-correction
+
+Record the SALMON triplet-count heuristic for future geometry runs: target triplets should scale like `fudge_factor * n_concepts * embedding_dim * ln(n_concepts)`.
+For this Step 1 neutral run, `n=18` and SALMON `d=5`, so the base `n*d*ln(n)` budget is about `260.1` triplets.
+Observed coverage is `2448` triplets per geometry run (`9.41x` the base heuristic) and `7344` pooled triplets across the three active geometry runs (`28.23x` the base heuristic).
+Interpretation: the final SALMON Step 1 geometry is not under-tripleted by this heuristic; future concept sets and Qwen/model-extension runs should report the same base budget and observed fudge factor before reading off neighbors.
