@@ -90,6 +90,13 @@ def mean_finite(values: list[float]) -> float:
     return mean(clean) if clean else float("nan")
 
 
+def rel_path(path: Path) -> str:
+    try:
+        return str(path.resolve().relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
 def read_aggregate_acc(sample_path: Path) -> float:
     result_path = latest_result_json(sample_path)
     if result_path is None:
@@ -161,7 +168,7 @@ def summarize_rows(arm: str, rows: list[dict], aggregate_acc: float, sample_path
         "best_is_true_rate": mean_finite([r["best_is_true"] for r in rows]),
         "mean_true_logsumexp": mean_finite([r["true_logsumexp"] for r in rows]),
         "mean_false_logsumexp": mean_finite([r["false_logsumexp"] for r in rows]),
-        "sample_file": str(sample_path.relative_to(ROOT)),
+        "sample_file": rel_path(sample_path),
     }
 
 
