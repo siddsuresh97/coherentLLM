@@ -74,7 +74,11 @@ CSV_FIELDS = [
     "memp_top5",
     "hubness_top1_unique_fraction",
     "hubness_top1_max_occurrence",
+    "hubness_csls_top5_accuracy",
+    "hubness_csls_mnn_accuracy",
+    "hubness_csls_top1_max_occurrence",
     "hubness_read",
+    "hubness_corrected_read",
     "gen_coherence_delta",
     "human_r2_delta",
     "fmri_atl_delta_vs_single",
@@ -313,11 +317,15 @@ def load_hubness() -> dict[str, dict[str, float | str]]:
         for source, dest in (
             ("mid_top1_unique_fraction", "hubness_top1_unique_fraction"),
             ("mid_top1_max_occurrence", "hubness_top1_max_occurrence"),
+            ("mid_csls_top5_accuracy", "hubness_csls_top5_accuracy"),
+            ("mid_csls_mnn_accuracy", "hubness_csls_mnn_accuracy"),
+            ("mid_csls_top1_max_occurrence", "hubness_csls_top1_max_occurrence"),
         ):
             value = to_float(row.get(source))
             if value is not None:
                 out[arm][dest] = value
         out[arm]["hubness_read"] = row.get("hubness_read", "")
+        out[arm]["hubness_corrected_read"] = row.get("corrected_read", "")
     return out
 
 
@@ -368,7 +376,14 @@ def build_rows() -> list[dict[str, str]]:
         numeric["interpretive_class"] = interp
         numeric["primary_use"] = use
         numeric["main_risk"] = risk
-        text_fields = {"arm", "hubness_read", "interpretive_class", "primary_use", "main_risk"}
+        text_fields = {
+            "arm",
+            "hubness_read",
+            "hubness_corrected_read",
+            "interpretive_class",
+            "primary_use",
+            "main_risk",
+        }
         rows.append(
             {
                 field: fmt(numeric.get(field)) if field not in text_fields else str(numeric.get(field, ""))
@@ -416,6 +431,9 @@ def write_report(path: Path, rows: list[dict[str, str]]) -> None:
         ("Top5", "memp_top5"),
         ("Unique", "hubness_top1_unique_fraction"),
         ("MaxHub", "hubness_top1_max_occurrence"),
+        ("CSLS5", "hubness_csls_top5_accuracy"),
+        ("CSLS-MNN", "hubness_csls_mnn_accuracy"),
+        ("CSLSHub", "hubness_csls_top1_max_occurrence"),
         ("Gen", "gen_coherence_delta"),
         ("Human", "human_r2_delta"),
         ("MMLU", "mmlu_aggregate_delta"),
@@ -440,11 +458,12 @@ def write_report(path: Path, rows: list[dict[str, str]]) -> None:
         "- The useful skill is semantic geometry and human-similarity alignment, not generic",
         "  multiple-choice competence. That explains why script/discourse plausibility mostly",
         "  survives while MMLU, WiC, ARC/OpenBookQA, and TruthfulQA false-lure calibration are fragile.",
-            "- `taskvec_a0p25` is the best currently staged cheap adapter, but it is not the best",
-            "  broad-similarity arm and it carries a false-lure pressure risk. Its retrieval",
-            "  gain is less dominated by attractor concepts than the alternatives, but not",
-            "  hubness-free. The stronger broad/strict hub arms, `taskvec_a0p5` and",
-            "  `taskvec_a1p0`, need retention gates before they can become candidates.",
+        "- `taskvec_a0p25` is the best currently staged cheap adapter. It is not the",
+        "  strongest broad-similarity arm and it carries a false-lure pressure risk,",
+        "  but it is the only arm that remains partly robust after CSLS and",
+        "  mutual-nearest-neighbor hubness correction. The stronger broad/strict hub",
+        "  arms, `taskvec_a0p5` and `taskvec_a1p0`, need retention gates before they",
+        "  can become candidates.",
         "",
         "## Joined Arm Summary",
         "",
@@ -470,6 +489,7 @@ def write_report(path: Path, rows: list[dict[str, str]]) -> None:
             else "- Strongest category-proxy signal: unavailable.",
             f"- `taskvec_a0p25` boosts generation coherence by `{taskvec['gen_coherence_delta']}` and human R2 by `{taskvec['human_r2_delta']}`, but has MMLU delta `{taskvec['mmlu_aggregate_delta']}`, wide-bench WiC delta `{taskvec['wic_delta']}`, CHTC-200 WiC delta `{taskvec['wic_chtc200_delta_acc']}`, and CHTC-200 TruthfulQA false-pressure-up `{taskvec['truthfulqa_chtc200_false_pressure_up']}`.",
             f"- Hubness control: `taskvec_a0p25` has top-1 unique fraction `{taskvec['hubness_top1_unique_fraction']}` and max mid-layer attractor occurrence `{taskvec['hubness_top1_max_occurrence']}`; its read is `{taskvec['hubness_read']}`.",
+            f"- CSLS correction: `taskvec_a0p25` has CSLS top-5 `{taskvec['hubness_csls_top5_accuracy']}`, CSLS mutual-nearest accuracy `{taskvec['hubness_csls_mnn_accuracy']}`, and CSLS max attractor `{taskvec['hubness_csls_top1_max_occurrence']}`; its corrected read is `{taskvec['hubness_corrected_read']}`.",
             f"- `lowLR` has a smaller MEMP random delta `{lowlr['memp_random_delta']}` than taskvec, but its CHTC-200 false-pressure-up `{lowlr['truthfulqa_chtc200_false_pressure_up']}` is much safer and its bounded MC2 delta `{lowlr['truthfulqa_chtc200_delta_mc2']}` beats taskvec `{taskvec['truthfulqa_chtc200_delta_mc2']}`.",
             "",
             "This pattern is consistent with a smooth semantic-centralization benefit that helps",
@@ -493,7 +513,7 @@ def write_report(path: Path, rows: list[dict[str, str]]) -> None:
             "",
             "1. Do not promote `taskvec_a0p25` on TruthfulQA without a false-pressure mitigation; the limit-200 gate keeps the risk.",
             "2. Stage `out/adapters_taskvec_scaled/a0p5` only after extending the failure-suite runner with a `taskvec_a0p5` arm, then run a small false-pressure/WiC/OpenBookQA gate before any wider eval.",
-            "3. Add CSLS or mutual-nearest-neighbor retrieval as a stricter hubness correction.",
+            "3. Use the CSLS/mutual-neighbor result to prioritize `taskvec_a0p25` for causal validation before stronger alpha arms.",
             "4. Add causal cross-spoke patching or activation addition: patch triplet-format concept states into pairwise/feature prompts and require same-concept improvement over random, close-neighbor, wrong-layer, and shuffled-vector controls.",
             "5. For cognitive science, prioritize Huth/LeBel high-data story scaling and ATL/Language-region tests; use hub metrics as predictors, not as standalone brain claims.",
             "",

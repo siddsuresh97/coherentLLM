@@ -1,6 +1,6 @@
 # Coherence-SFT Experiment Log
 
-Last updated: 2026-07-08 22:54 CDT
+Last updated: 2026-07-08 23:04 CDT
 
 ## Read this first
 
@@ -1927,6 +1927,18 @@ Hubness result, mid-layers 10-20:
 | `taskvec_a0p5` | 0.1578 | 0.4744 | 0.2444 | 40.5 | 0.8477 | strong retrieval but still hub-skewed |
 | `taskvec_a1p0` | 0.0637 | 0.1896 | 0.1081 | 75.7 | 0.9448 | weak retrieval; hubness is not the main claim |
 
+CSLS / mutual-nearest correction, mid-layers 10-20:
+
+| Arm | MNN top1 | CSLS top1 | CSLS top5 | CSLS MNN | CSLS unique | CSLS max attractor | Corrected read |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| `base` | 0.0002 | 0.0348 | 0.1276 | 0.0017 | 0.0733 | 74.1 | weak after hubness correction |
+| `scrambled` | 0.0355 | 0.1710 | 0.3965 | 0.0767 | 0.3022 | 39.0 | mostly one-way retrieval after correction |
+| `lowLR` | 0.0069 | 0.1267 | 0.4747 | 0.0230 | 0.2559 | 28.7 | mostly one-way retrieval after correction |
+| `lowrank` | 0.0140 | 0.1570 | 0.5964 | 0.0400 | 0.3224 | 21.3 | mostly one-way retrieval after correction |
+| `taskvec_a0p25` | 0.0777 | 0.2775 | 0.6751 | 0.1319 | 0.4248 | 18.4 | partly robust; still needs causal/logit-lens validation |
+| `taskvec_a0p5` | 0.0518 | 0.2206 | 0.5924 | 0.0973 | 0.3420 | 26.5 | mostly one-way retrieval after correction |
+| `taskvec_a1p0` | 0.0201 | 0.0897 | 0.2544 | 0.0379 | 0.1644 | 62.4 | mostly one-way retrieval after correction |
+
 Top attractors:
 
 - `base`: `file`, `spear`, `brussels sprouts`, `fig`, `burrito`.
@@ -1940,18 +1952,18 @@ Mechanism synthesis:
 
 - `taskvec_a0p25` is the best currently staged internal hub candidate because
   it combines high top-5 retrieval (`0.5393`) with lower attractor
-  concentration than the other high-hub arms.
+  concentration than the other high-hub arms, and it is the only arm that
+  remains partly robust after CSLS and mutual-nearest correction.
 - It is not a clean hub: top-1 Gini is still `0.8024`, strict S*-close margin
-  is only `0.0011`, and the CHTC-40 TruthfulQA false-pressure-up rate is
-  `0.825`.
+  is only `0.0011`, CSLS mutual-nearest accuracy is still only `0.1319`, and
+  the CHTC-200 TruthfulQA false-pressure-up rate is `0.820`.
 - `taskvec_a0p5` and `taskvec_a1p0` are scientifically interesting diagnostic
   alphas, but they are not staged on CHTC and have not passed wide-bench or
   false-pressure gates.
 
 Next:
 
-- Add CSLS or mutual-nearest-neighbor retrieval as a stricter hubness
-  correction.
-- Then spend CHTC GPU time on the paper-style logit-lens or causal patching
-  lanes, a false-pressure mitigation gate, or Huth high-data extraction after
-  packed staging is ready. Do not run another duplicate hidden-state extraction.
+- Spend CHTC GPU time on paper-style logit-lens or causal patching for
+  `taskvec_a0p25`, a false-pressure mitigation gate, or Huth high-data
+  extraction after packed staging is ready. Do not run another duplicate
+  hidden-state extraction.

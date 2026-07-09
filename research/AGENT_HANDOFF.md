@@ -1,6 +1,6 @@
 # Active Agent Handoff
 
-Last coordination snapshot: 2026-07-08 22:54 CDT.
+Last coordination snapshot: 2026-07-08 23:04 CDT.
 
 Branch: `coherence-sft`
 
@@ -166,9 +166,11 @@ Completed agents already closed:
 - The semantic-hub/MEMP paper-method lane is committed in `aecf2cc`; use
   `taskvec_a0p25` as the primary arm and gate claims on paper-style controls.
   The local hubness control strengthens but qualifies this: `taskvec_a0p25`
-  has the best staged retrieval profile, but retrieval is still partly
-  hub-skewed. The stronger broad/strict hub arms (`taskvec_a0p5`,
-  `taskvec_a1p0`) are diagnostic until staged and retention-gated.
+  has the best staged retrieval profile and is the only arm that remains
+  partly robust after CSLS and mutual-nearest correction (CSLS top-5 `0.675`,
+  CSLS mutual-nearest `0.132`, CSLS max attractor `18.4`). The stronger
+  broad/strict hub arms (`taskvec_a0p5`, `taskvec_a1p0`) are diagnostic until
+  staged and retention-gated.
 - The retention failure-suite gate is committed in `2afd0f2`; the first smoke is
   `python src/sft/build_retention_failure_suite_manifest.py --check`.
 - The first GPU-backed failure-suite gate is complete in `5513424`: lowLR is

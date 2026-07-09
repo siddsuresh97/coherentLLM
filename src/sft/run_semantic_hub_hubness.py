@@ -38,7 +38,20 @@ PAIR_FIELDS = [
     "top1_entropy_norm",
     "top5_unique_fraction",
     "top5_max_occurrence",
+    "mnn_accuracy",
+    "mnn_fraction",
+    "csls_top1_accuracy",
+    "csls_top5_accuracy",
+    "csls_top1_unique_fraction",
+    "csls_top1_max_occurrence",
+    "csls_top1_gini",
+    "csls_top1_entropy_norm",
+    "csls_top5_unique_fraction",
+    "csls_top5_max_occurrence",
+    "csls_mnn_accuracy",
+    "csls_mnn_fraction",
     "top_hub_concept",
+    "csls_top_hub_concept",
 ]
 
 LAYER_FIELDS = [
@@ -54,6 +67,18 @@ LAYER_FIELDS = [
     "top1_entropy_norm",
     "top5_unique_fraction",
     "top5_max_occurrence",
+    "mnn_accuracy",
+    "mnn_fraction",
+    "csls_top1_accuracy",
+    "csls_top5_accuracy",
+    "csls_top1_unique_fraction",
+    "csls_top1_max_occurrence",
+    "csls_top1_gini",
+    "csls_top1_entropy_norm",
+    "csls_top5_unique_fraction",
+    "csls_top5_max_occurrence",
+    "csls_mnn_accuracy",
+    "csls_mnn_fraction",
 ]
 
 SUMMARY_FIELDS = [
@@ -68,7 +93,20 @@ SUMMARY_FIELDS = [
     "mid_top1_entropy_norm",
     "mid_top5_unique_fraction",
     "mid_top5_max_occurrence",
+    "mid_mnn_accuracy",
+    "mid_mnn_fraction",
+    "mid_csls_top1_accuracy",
+    "mid_csls_top5_accuracy",
+    "mid_csls_top1_unique_fraction",
+    "mid_csls_top1_max_occurrence",
+    "mid_csls_top1_gini",
+    "mid_csls_top1_entropy_norm",
+    "mid_csls_top5_unique_fraction",
+    "mid_csls_top5_max_occurrence",
+    "mid_csls_mnn_accuracy",
+    "mid_csls_mnn_fraction",
     "hubness_read",
+    "corrected_read",
 ]
 
 CONCEPT_FIELDS = [
@@ -81,6 +119,10 @@ CONCEPT_FIELDS = [
     "top1_share",
     "top5_count",
     "top5_share",
+    "csls_top1_count",
+    "csls_top1_share",
+    "csls_top5_count",
+    "csls_top5_share",
 ]
 
 
@@ -90,6 +132,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--out-dir", type=Path, default=DEFAULT_OUT)
     ap.add_argument("--arms", nargs="+", default=DEFAULT_ARMS)
     ap.add_argument("--mid-layers", default="10:20", help="Inclusive layer band, e.g. 10:20")
+    ap.add_argument("--csls-k", type=int, default=10, help="Neighborhood size for CSLS hubness correction")
     return ap.parse_args()
 
 
@@ -128,6 +171,57 @@ def mean_float(rows: list[dict[str, object]], key: str) -> float:
     return float(np.mean(vals)) if vals else float("nan")
 
 
+def topk_indices(sims: np.ndarray, k: int) -> np.ndarray:
+    k = min(k, sims.shape[1])
+    return np.argpartition(-sims, kth=k - 1, axis=1)[:, :k]
+
+
+def csls_scores(sims: np.ndarray, k: int) -> np.ndarray:
+    """Cross-domain similarity local scaling for hubness-corrected retrieval."""
+    k = max(1, min(k, sims.shape[1], sims.shape[0]))
+    row_mean = np.sort(sims, axis=1)[:, -k:].mean(axis=1)
+    col_mean = np.sort(sims, axis=0)[-k:, :].mean(axis=0)
+    return (2.0 * sims) - row_mean[:, None] - col_mean[None, :]
+
+
+def retrieval_stats(
+    sims: np.ndarray,
+    concepts: np.ndarray,
+    prefix: str = "",
+) -> tuple[dict[str, object], np.ndarray, np.ndarray]:
+    n = sims.shape[0]
+    target = np.arange(n)
+    top1 = np.argmax(sims, axis=1)
+    top5 = topk_indices(sims, 5)
+    reverse_top1 = np.argmax(sims, axis=0)
+    mutual = reverse_top1[top1] == target
+
+    top1_counts = np.bincount(top1, minlength=n)
+    top5_counts = np.bincount(top5.reshape(-1), minlength=n)
+    top_hub_idx = int(np.argmax(top1_counts))
+
+    def key(name: str) -> str:
+        return f"{prefix}_{name}" if prefix else name
+
+    return (
+        {
+            key("top1_accuracy"): float(np.mean(top1 == target)),
+            key("top5_accuracy"): float(np.mean(np.any(top5 == target[:, None], axis=1))),
+            key("top1_unique_fraction"): float(np.mean(top1_counts > 0)),
+            key("top1_max_occurrence"): int(top1_counts.max()),
+            key("top1_gini"): gini(top1_counts),
+            key("top1_entropy_norm"): entropy_norm(top1_counts),
+            key("top5_unique_fraction"): float(np.mean(top5_counts > 0)),
+            key("top5_max_occurrence"): int(top5_counts.max()),
+            key("mnn_accuracy"): float(np.mean((top1 == target) & mutual)),
+            key("mnn_fraction"): float(np.mean(mutual)),
+            key("top_hub_concept"): str(concepts[top_hub_idx]),
+        },
+        top1,
+        top5,
+    )
+
+
 def score_pair(
     arm: str,
     layer: int,
@@ -137,18 +231,16 @@ def score_pair(
     query: np.ndarray,
     candidates: np.ndarray,
     concepts: np.ndarray,
+    csls_k: int,
 ) -> dict[str, object]:
     q = normalize(query)
     c = normalize(candidates)
     sims = q @ c.T
     n = sims.shape[0]
-    top1 = np.argmax(sims, axis=1)
-    top5 = np.argpartition(-sims, kth=min(4, n - 1), axis=1)[:, : min(5, n)]
-    target = np.arange(n)
-
-    top1_counts = np.bincount(top1, minlength=n)
-    top5_counts = np.bincount(top5.reshape(-1), minlength=n)
-    top_hub_idx = int(np.argmax(top1_counts))
+    stats, _, _ = retrieval_stats(sims, concepts)
+    csls_stats, _, _ = retrieval_stats(csls_scores(sims, csls_k), concepts, prefix="csls")
+    top_hub_concept = stats.pop("top_hub_concept")
+    csls_top_hub_concept = csls_stats.pop("csls_top_hub_concept")
     return {
         "arm": arm,
         "layer": layer,
@@ -156,20 +248,15 @@ def score_pair(
         "query_format": query_format,
         "candidate_format": candidate_format,
         "n_concepts": n,
-        "top1_accuracy": float(np.mean(top1 == target)),
-        "top5_accuracy": float(np.mean(np.any(top5 == target[:, None], axis=1))),
-        "top1_unique_fraction": float(np.mean(top1_counts > 0)),
-        "top1_max_occurrence": int(top1_counts.max()),
-        "top1_gini": gini(top1_counts),
-        "top1_entropy_norm": entropy_norm(top1_counts),
-        "top5_unique_fraction": float(np.mean(top5_counts > 0)),
-        "top5_max_occurrence": int(top5_counts.max()),
-        "top_hub_concept": str(concepts[top_hub_idx]),
+        **stats,
+        **csls_stats,
+        "top_hub_concept": top_hub_concept,
+        "csls_top_hub_concept": csls_top_hub_concept,
     }
 
 
 def score_arm(
-    path: Path, arm: str, mid_start: int, mid_end: int
+    path: Path, arm: str, mid_start: int, mid_end: int, csls_k: int
 ) -> tuple[list[dict[str, object]], list[dict[str, object]], list[dict[str, object]]]:
     data = np.load(path, allow_pickle=True)
     hidden = data["hidden"]
@@ -181,8 +268,12 @@ def score_arm(
     layer_rows: list[dict[str, object]] = []
     mid_top1_counts = np.zeros(hidden.shape[1], dtype=np.int64)
     mid_top5_counts = np.zeros(hidden.shape[1], dtype=np.int64)
+    mid_csls_top1_counts = np.zeros(hidden.shape[1], dtype=np.int64)
+    mid_csls_top5_counts = np.zeros(hidden.shape[1], dtype=np.int64)
     mid_top1_total = 0
     mid_top5_total = 0
+    mid_csls_top1_total = 0
+    mid_csls_top5_total = 0
     for layer, layer_name in enumerate(layer_names):
         per_layer = []
         for q_idx, q_format in enumerate(formats):
@@ -193,13 +284,17 @@ def score_arm(
                 c = normalize(hidden[c_idx, :, layer, :])
                 sims = q @ c.T
                 n = sims.shape[0]
-                top1 = np.argmax(sims, axis=1)
-                top5 = np.argpartition(-sims, kth=min(4, n - 1), axis=1)[:, : min(5, n)]
+                _, top1, top5 = retrieval_stats(sims, concepts)
+                _, csls_top1, csls_top5 = retrieval_stats(csls_scores(sims, csls_k), concepts, prefix="csls")
                 if mid_start <= layer <= mid_end:
                     mid_top1_counts += np.bincount(top1, minlength=n)
                     mid_top5_counts += np.bincount(top5.reshape(-1), minlength=n)
                     mid_top1_total += n
                     mid_top5_total += n * min(5, n)
+                    mid_csls_top1_counts += np.bincount(csls_top1, minlength=n)
+                    mid_csls_top5_counts += np.bincount(csls_top5.reshape(-1), minlength=n)
+                    mid_csls_top1_total += n
+                    mid_csls_top5_total += n * min(5, n)
                 row = score_pair(
                     arm=arm,
                     layer=layer,
@@ -209,6 +304,7 @@ def score_arm(
                     query=q,
                     candidates=c,
                     concepts=concepts,
+                    csls_k=csls_k,
                 )
                 pair_rows.append(row)
                 per_layer.append(row)
@@ -226,12 +322,26 @@ def score_arm(
                 "top1_entropy_norm": mean_float(per_layer, "top1_entropy_norm"),
                 "top5_unique_fraction": mean_float(per_layer, "top5_unique_fraction"),
                 "top5_max_occurrence": mean_float(per_layer, "top5_max_occurrence"),
+                "mnn_accuracy": mean_float(per_layer, "mnn_accuracy"),
+                "mnn_fraction": mean_float(per_layer, "mnn_fraction"),
+                "csls_top1_accuracy": mean_float(per_layer, "csls_top1_accuracy"),
+                "csls_top5_accuracy": mean_float(per_layer, "csls_top5_accuracy"),
+                "csls_top1_unique_fraction": mean_float(per_layer, "csls_top1_unique_fraction"),
+                "csls_top1_max_occurrence": mean_float(per_layer, "csls_top1_max_occurrence"),
+                "csls_top1_gini": mean_float(per_layer, "csls_top1_gini"),
+                "csls_top1_entropy_norm": mean_float(per_layer, "csls_top1_entropy_norm"),
+                "csls_top5_unique_fraction": mean_float(per_layer, "csls_top5_unique_fraction"),
+                "csls_top5_max_occurrence": mean_float(per_layer, "csls_top5_max_occurrence"),
+                "csls_mnn_accuracy": mean_float(per_layer, "csls_mnn_accuracy"),
+                "csls_mnn_fraction": mean_float(per_layer, "csls_mnn_fraction"),
             }
         )
     concept_rows = []
     for idx, concept in enumerate(concepts):
         top1_count = int(mid_top1_counts[idx])
         top5_count = int(mid_top5_counts[idx])
+        csls_top1_count = int(mid_csls_top1_counts[idx])
+        csls_top5_count = int(mid_csls_top5_counts[idx])
         concept_rows.append(
             {
                 "arm": arm,
@@ -243,6 +353,10 @@ def score_arm(
                 "top1_share": float(top1_count / mid_top1_total) if mid_top1_total else 0.0,
                 "top5_count": top5_count,
                 "top5_share": float(top5_count / mid_top5_total) if mid_top5_total else 0.0,
+                "csls_top1_count": csls_top1_count,
+                "csls_top1_share": float(csls_top1_count / mid_csls_top1_total) if mid_csls_top1_total else 0.0,
+                "csls_top5_count": csls_top5_count,
+                "csls_top5_share": float(csls_top5_count / mid_csls_top5_total) if mid_csls_top5_total else 0.0,
             }
         )
     concept_rows.sort(key=lambda row: (str(row["arm"]), -int(row["top1_count"]), str(row["concept"])))
@@ -274,6 +388,20 @@ def hubness_read(row: dict[str, object]) -> str:
     return "mixed; inspect pair_by_layer rows"
 
 
+def corrected_read(row: dict[str, object]) -> str:
+    csls_top5 = float(row["mid_csls_top5_accuracy"])
+    csls_mnn = float(row["mid_csls_mnn_accuracy"])
+    csls_unique = float(row["mid_csls_top1_unique_fraction"])
+    csls_max = float(row["mid_csls_top1_max_occurrence"])
+    if csls_top5 >= 0.50 and csls_mnn >= 0.18 and csls_unique >= 0.30 and csls_max <= 24:
+        return "robust after CSLS and mutual-neighbor correction"
+    if csls_top5 >= 0.40 and csls_mnn >= 0.12:
+        return "partly robust; still needs causal/logit-lens validation"
+    if csls_top5 >= 0.25 and csls_mnn < 0.10:
+        return "mostly one-way retrieval after correction"
+    return "weak after hubness correction"
+
+
 def summarize(layer_rows: list[dict[str, object]], start: int, end: int) -> list[dict[str, object]]:
     by_arm: dict[str, list[dict[str, object]]] = {}
     for row in layer_rows:
@@ -298,8 +426,21 @@ def summarize(layer_rows: list[dict[str, object]], start: int, end: int) -> list
             "mid_top1_entropy_norm": mean_float(arm_rows, "top1_entropy_norm"),
             "mid_top5_unique_fraction": mean_float(arm_rows, "top5_unique_fraction"),
             "mid_top5_max_occurrence": mean_float(arm_rows, "top5_max_occurrence"),
+            "mid_mnn_accuracy": mean_float(arm_rows, "mnn_accuracy"),
+            "mid_mnn_fraction": mean_float(arm_rows, "mnn_fraction"),
+            "mid_csls_top1_accuracy": mean_float(arm_rows, "csls_top1_accuracy"),
+            "mid_csls_top5_accuracy": mean_float(arm_rows, "csls_top5_accuracy"),
+            "mid_csls_top1_unique_fraction": mean_float(arm_rows, "csls_top1_unique_fraction"),
+            "mid_csls_top1_max_occurrence": mean_float(arm_rows, "csls_top1_max_occurrence"),
+            "mid_csls_top1_gini": mean_float(arm_rows, "csls_top1_gini"),
+            "mid_csls_top1_entropy_norm": mean_float(arm_rows, "csls_top1_entropy_norm"),
+            "mid_csls_top5_unique_fraction": mean_float(arm_rows, "csls_top5_unique_fraction"),
+            "mid_csls_top5_max_occurrence": mean_float(arm_rows, "csls_top5_max_occurrence"),
+            "mid_csls_mnn_accuracy": mean_float(arm_rows, "csls_mnn_accuracy"),
+            "mid_csls_mnn_fraction": mean_float(arm_rows, "csls_mnn_fraction"),
         }
         row["hubness_read"] = hubness_read(row)
+        row["corrected_read"] = corrected_read(row)
         rows.append(row)
     return rows
 
@@ -342,11 +483,35 @@ def write_report(path: Path, summary_rows: list[dict[str, object]]) -> None:
     lines.extend(
         [
             "",
+            "## CSLS / Mutual-Nearest Correction",
+            "",
+            "| Arm | MNN top1 | CSLS top1 | CSLS top5 | CSLS MNN | CSLS unique | CSLS max occ | Corrected read |",
+            "|---|---:|---:|---:|---:|---:|---:|---|",
+        ]
+    )
+    for row in summary_rows:
+        lines.append(
+            "| {arm} | {mnn} | {csls1} | {csls5} | {csls_mnn} | {csls_unique} | {csls_max} | {read} |".format(
+                arm=row["arm"],
+                mnn=fmt(row["mid_mnn_accuracy"]),
+                csls1=fmt(row["mid_csls_top1_accuracy"]),
+                csls5=fmt(row["mid_csls_top5_accuracy"]),
+                csls_mnn=fmt(row["mid_csls_mnn_accuracy"]),
+                csls_unique=fmt(row["mid_csls_top1_unique_fraction"]),
+                csls_max=fmt(row["mid_csls_top1_max_occurrence"]),
+                read=row["corrected_read"],
+            )
+        )
+    lines.extend(
+        [
+            "",
             "## Interpretation",
             "",
             "- Higher `top5` is useful only if `unique top1` and entropy stay reasonably high.",
             "- A high Gini or high max occurrence means a small number of candidate concepts are",
             "  absorbing many nearest-neighbor queries.",
+            "- CSLS penalizes concepts that are close to many unrelated queries. Mutual-nearest",
+            "  retrieval is stricter still: the query and candidate have to select each other.",
             "- This control should be read alongside `memp_paper_harness/control_summary.csv`;",
             "  it is a hubness artifact check, not a substitute for matched-vs-control deltas.",
             "",
@@ -355,7 +520,8 @@ def write_report(path: Path, summary_rows: list[dict[str, object]]) -> None:
             "- `pair_by_layer.csv`: ordered format-pair hubness rows.",
             "- `layer_summary.csv`: layer means across ordered format pairs.",
             "- `hubness_summary.csv`: mid-layer aggregate used in this report.",
-            "- `hubness_concept_counts.csv`: mid-layer attractor counts by arm and concept.",
+            "- `hubness_concept_counts.csv`: mid-layer attractor counts by arm and concept,",
+            "  including raw cosine and CSLS-corrected counts.",
         ]
     )
     path.write_text("\n".join(lines) + "\n")
@@ -368,7 +534,8 @@ def write_manifest(path: Path, args: argparse.Namespace, summary_rows: list[dict
         "hidden_dir": str(args.hidden_dir.relative_to(ROOT) if args.hidden_dir.is_relative_to(ROOT) else args.hidden_dir),
         "arms": [row["arm"] for row in summary_rows],
         "mid_layers": args.mid_layers,
-        "metric_note": "top1 occurrence statistics are averaged across ordered prompt-format retrieval pairs",
+        "csls_k": args.csls_k,
+        "metric_note": "top1 occurrence statistics are averaged across ordered prompt-format retrieval pairs; CSLS uses cross-format candidate/query neighborhoods",
     }
     path.write_text(json.dumps(manifest, indent=2) + "\n")
 
@@ -384,7 +551,7 @@ def main() -> None:
         if not path.exists():
             print(f"[skip] missing {path}", flush=True)
             continue
-        arm_pairs, arm_layers, arm_concepts = score_arm(path, arm, start, end)
+        arm_pairs, arm_layers, arm_concepts = score_arm(path, arm, start, end, args.csls_k)
         pair_rows.extend(arm_pairs)
         layer_rows.extend(arm_layers)
         concept_rows.extend(arm_concepts)

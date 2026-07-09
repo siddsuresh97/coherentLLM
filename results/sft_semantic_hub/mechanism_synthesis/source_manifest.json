@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-07-09T03:53:16.435566+00:00",
+  "created_utc": "2026-07-09T04:05:39.503306+00:00",
   "script": "src/sft/compile_semantic_hub_mechanism_synthesis.py",
   "inputs": {
     "memp_controls": "results/sft_semantic_hub/memp_paper_harness/control_summary.csv",

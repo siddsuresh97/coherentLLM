@@ -2,7 +2,7 @@
 
 ## Current Scientific Report
 
-Last updated: 2026-07-08 22:53 CDT on branch `coherence-sft`.
+Last updated: 2026-07-08 23:04 CDT on branch `coherence-sft`.
 
 This README is the high-level dashboard. Expand the sections below for the
 details, exact metrics, artifact paths, and next decisions. The continuously
@@ -14,12 +14,12 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   cross-format invariance inside the model. The stricter paper-style baseline
   also shows matched concepts beating random mismatches, but exact identity over
   S*-close neighbors is still small; logit-lens and interventions are needed.
-  The new hubness control says `taskvec_a0p25` has the best currently staged
-  retrieval profile: top-5 cross-format retrieval `0.539`, top-1 unique
-  fraction `0.300`, and max mid-layer attractor occurrence `29.2`, versus base
-  top-5 `0.080` and max attractor `94.2`. This is reduced, not eliminated,
-  hubness, so the claim is stronger cross-format semantic clustering rather
-  than a clean universal semantic hub.
+  The hubness control says `taskvec_a0p25` has the best currently staged
+  retrieval profile: raw top-5 cross-format retrieval `0.539`, CSLS-corrected
+  top-5 `0.675`, CSLS mutual-nearest accuracy `0.132`, and CSLS max attractor
+  occurrence `18.4`, versus base CSLS top-5 `0.128` and CSLS mutual-nearest
+  `0.002`. This is reduced, not eliminated, hubness, so the claim is stronger
+  cross-format semantic clustering rather than a clean universal semantic hub.
 - **fMRI:** the THINGS-fMRI pipeline works. Ventral Visual shows the expected
   object-RSA signal and scrambled-control separation, but aligned arms are
   mostly flat versus base in the primary visual ROI. The Huth/LeBel
@@ -159,6 +159,8 @@ Artifacts:
 - Report: [`results/sft_semantic_hub/REPORT.md`](results/sft_semantic_hub/REPORT.md)
 - Paper-style matched-vs-baseline report:
   [`results/sft_semantic_hub_paper/REPORT.md`](results/sft_semantic_hub_paper/REPORT.md)
+- Hubness / CSLS correction report:
+  [`results/sft_semantic_hub/hubness/REPORT.md`](results/sft_semantic_hub/hubness/REPORT.md)
 
 Mid-layer summary:
 
@@ -183,6 +185,11 @@ Read:
   base `0.0022`), but the stricter same-minus-S*-close margins are small
   (`taskvec_a1p0` best at `0.0099`). This looks like stronger semantic
   clustering, not yet a decisive exact-concept hub.
+- CSLS and mutual-nearest-neighbor hubness correction make `taskvec_a0p25` the
+  best staged candidate: CSLS top-5 `0.675`, CSLS mutual-nearest accuracy
+  `0.132`, and CSLS max attractor `18.4`. `lowrank` and `taskvec_a0p5` have
+  high CSLS top-5, but much lower mutual-nearest accuracy, so their retrieval
+  looks more one-way/hub-mediated.
 
 </details>
 
