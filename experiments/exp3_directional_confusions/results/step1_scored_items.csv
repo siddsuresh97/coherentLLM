@@ -1,0 +1,85 @@
+item_id,target,chosen_concept,chosen_role,correct,response
+step1_alligator_00,alligator,crocodile,near,False,B. crocodile
+step1_alligator_01,alligator,crocodile,near,False,C
+step1_alligator_02,alligator,crocodile,near,False,"Based on the clues, the answer is C. crocodile"
+step1_alligator_03,alligator,crocodile,near,False,A
+step1_caiman_00,caiman,crocodile,near,False,B.
+step1_caiman_01,caiman,crocodile,near,False,A
+step1_caiman_02,caiman,crocodile,near,False,D. crocodile
+step1_caiman_03,caiman,crocodile,near,False,A
+step1_crocodile_00,crocodile,crocodile,correct,True,B.
+step1_crocodile_01,crocodile,alligator,near,False,B. alligator
+step1_crocodile_02,crocodile,crocodile,correct,True,B. crocodile
+step1_crocodile_03,crocodile,alligator,near,False,C
+step1_boa_python_00,boa python,toad,far,False,A.
+step1_boa_python_01,boa python,snake,near,False,B. snake
+step1_boa_python_02,boa python,chisel,far,False,"B. toad
+
+Toads are known for having a"
+step1_boa_python_03,boa python,snake,near,False,D
+step1_cobra_00,cobra,cobra,correct,True,B. cobra
+step1_cobra_01,cobra,tortoise,far,False,A
+step1_cobra_02,cobra,snake,near,False,"Based on the clues, the best fit is C. snake"
+step1_cobra_03,cobra,salamander,far,False,B. salamander
+step1_snake_00,snake,snake,correct,True,C
+step1_snake_01,snake,boa python,near,False,D. boa python
+step1_snake_02,snake,snake,correct,True,"Based on the clues, the best fit is D. snake"
+step1_snake_03,snake,snake,correct,True,D
+step1_blindworm_00,blindworm,salamander,near,False,D. salamander
+step1_blindworm_01,blindworm,salamander,near,False,B. salamander
+step1_blindworm_02,blindworm,salamander,near,False,"D. salamander
+
+Explanation: Salamanders are"
+step1_blindworm_03,blindworm,salamander,near,False,C
+step1_chameleon_00,chameleon,gecko,near,False,D. gecko
+step1_chameleon_01,chameleon,tortoise,far,False,B.
+step1_chameleon_02,chameleon,tortoise,far,False,"C. tortoise
+
+Reasoning: 
+
+- Torto"
+step1_chameleon_03,chameleon,chameleon,correct,True,A
+step1_gecko_00,gecko,lizard,near,False,C. lizard
+step1_gecko_01,gecko,gecko,correct,True,B. gecko
+step1_gecko_02,gecko,lizard,near,False,"Based on the clues, the best fit is B. lizard"
+step1_gecko_03,gecko,lizard,near,False,B
+step1_lizard_00,lizard,gecko,near,False,C
+step1_lizard_01,lizard,gecko,near,False,C
+step1_lizard_02,lizard,lizard,correct,True,"Based on the clues, the answer is D. lizard."
+step1_lizard_03,lizard,gecko,near,False,A
+step1_salamander_00,salamander,salamander,correct,True,C. salamander
+step1_salamander_01,salamander,saw,far,False,B
+step1_salamander_02,salamander,salamander,correct,True,"Based on the clues, the answer is D. salam"
+step1_salamander_03,salamander,salamander,correct,True,B.
+step1_toad_00,toad,toad,correct,True,D. toad
+step1_toad_01,toad,toad,correct,True,B.
+step1_toad_02,toad,toad,correct,True,"Based on the clues, the answer is A. toad"
+step1_toad_03,toad,salamander,near,False,D
+step1_tortoise_00,tortoise,turtle,near,False,B. turtle
+step1_tortoise_01,tortoise,turtle,near,False,B. turtle
+step1_tortoise_02,tortoise,turtle,near,False,"Based on the clues, the best fit is C. turtle"
+step1_tortoise_03,tortoise,turtle,near,False,C
+step1_turtle_00,turtle,turtle,correct,True,D. turtle
+step1_turtle_01,turtle,turtle,correct,True,B
+step1_turtle_02,turtle,turtle,correct,True,C. turtle
+step1_turtle_03,turtle,turtle,correct,True,D. turtle
+step1_axe_00,axe,saw,near,False,B. saw
+step1_axe_01,axe,axe,correct,True,D. axe
+step1_axe_02,axe,turtle,far,False,"B. axe
+
+An axe typically has a wooden handle,"
+step1_axe_03,axe,turtle,far,False,A
+step1_chisel_00,chisel,axe,near,False,C. axe
+step1_chisel_01,chisel,axe,near,False,D. axe
+step1_chisel_02,chisel,chisel,correct,True,"Based on the clues, the best fit is D. ch"
+step1_chisel_03,chisel,axe,near,False,A
+step1_hammer_00,hammer,hammer,correct,True,"Based on the description, the best match is B. hammer"
+step1_hammer_01,hammer,hammer,correct,True,B. hammer
+step1_hammer_02,hammer,axe,near,False,"Based on the clues, the best fit is A. axe"
+step1_hammer_03,hammer,hammer,correct,True,A.
+step1_saw_00,saw,saw,correct,True,B. saw
+step1_saw_01,saw,saw,correct,True,D
+step1_saw_02,saw,axe,near,False,"D. saw
+
+A saw is used by both farmers ("
+step1_saw_03,saw,saw,correct,True,D

@@ -1,6 +1,6 @@
 # Experiment 3 Report
 
-Last updated: 2026-07-09T15:07:21-05:00
+Last updated: 2026-07-09T15:10:13-05:00
 
 ## Current status
 
@@ -13,8 +13,8 @@ Last updated: 2026-07-09T15:07:21-05:00
 - Neighbors pre-registered: yes
 - Human sanity gate: `passed`
 - Directional items generated: yes
-- Item response runs present: none
-- H1 verdict: `not_decided`
+- Item response runs present: step1_items_v1
+- H1 verdict: `green_directional`
 
 ## Commands
 
@@ -59,6 +59,19 @@ python scripts/run_experiment3.py score --run step1_items_v1
 - Mean pairwise upper-triangle Pearson: `0.8307935259132994`
 - Mean split-half upper-triangle Pearson: `0.8199290023048541`
 - Gate: `green`
+
+## Step 1 Directional Score
+
+- Accuracy: `0.3750` (27/72)
+- Directional errors: `45`
+- Near fraction among directional errors: `0.8000`
+- Shuffle null p-value: `0.0002`
+- Base-rate lift: `0.3464`
+- H2 distance slope: `-0.620137`
+- H2 slope 95% CI: `[-0.8769970123889884, -0.3586413218928585]`
+- Predicted-vs-actual confusion agreement: `0.6342`
+
+Headline figure: `experiments/exp3_directional_confusions/figs/step1_confusion_matrix.png`
 
 ## Live risks
 

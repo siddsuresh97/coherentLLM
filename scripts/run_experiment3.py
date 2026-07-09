@@ -879,7 +879,11 @@ def score_items(args: argparse.Namespace) -> None:
                 hits += 1
         null_counts.append(hits / denom if denom else float("nan"))
     null_counts_arr = np.asarray(null_counts, dtype=float)
-    shuffle_p = float(np.nanmean(null_counts_arr >= near_fraction)) if np.isfinite(near_fraction) else float("nan")
+    if np.isfinite(near_fraction):
+        valid_null = null_counts_arr[np.isfinite(null_counts_arr)]
+        shuffle_p = float((np.sum(valid_null >= near_fraction) + 1) / (len(valid_null) + 1)) if valid_null.size else float("nan")
+    else:
+        shuffle_p = float("nan")
 
     chosen_base_counts = Counter(row["chosen_concept"] for row in errors if row["chosen_concept"])
     all_error_choices = sum(chosen_base_counts.values())
@@ -988,6 +992,7 @@ def score_items(args: argparse.Namespace) -> None:
         "h1_verdict": verdict,
         "n_items": total,
         "n_correct": correct,
+        "n_errors": total - correct,
         "accuracy": correct / total if total else float("nan"),
         "n_errors_with_parseable_choice": len(errors),
         "n_directional_errors_near_or_far": len(directional_errors),

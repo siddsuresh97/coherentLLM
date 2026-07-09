@@ -58,3 +58,21 @@ Option positions are counterbalanced by deterministic RNG seed.
 
 Human sanity gate marked `passed`.
 Note: Predicted neighbors are human-sane for the neutral reptiles/amphibians/tools set; no target maps to an absurd cross-domain neighbor. Some coarse local choices such as blindworm-salamander are acceptable for this first gate.
+
+## 2026-07-09T15:09:24-05:00 DECISION: H1 verdict
+
+Run scored: `step1_items_v1`.
+Directional errors: 45; near fraction: 0.8000.
+Shuffle null p-value: 0.0000; base-rate lift: 0.3464.
+H2 distance slope: -0.620137; 95% CI [-0.876997, -0.358641].
+Predicted-vs-actual confusion agreement: 0.6342.
+Verdict: `green_directional`.
+
+## 2026-07-09T15:10:12-05:00 DECISION: H1 verdict
+
+Run scored: `step1_items_v1`.
+Directional errors: 45; near fraction: 0.8000.
+Shuffle null p-value: 0.0002; base-rate lift: 0.3464.
+H2 distance slope: -0.620137; 95% CI [-0.876997, -0.358641].
+Predicted-vs-actual confusion agreement: 0.6342.
+Verdict: `green_directional`.

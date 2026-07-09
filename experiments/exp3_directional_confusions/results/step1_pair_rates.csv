@@ -1,0 +1,55 @@
+target,distractor,rdm_distance,opportunities,substitutions,substitution_rate
+alligator,blindworm,0.5833333333333334,4,0,0.0
+alligator,crocodile,0.0,4,4,1.0
+alligator,salamander,0.5520833333333334,4,0,0.0
+axe,gecko,0.84375,4,0,0.0
+axe,saw,0.041666666666666664,4,1,0.25
+axe,turtle,0.84375,4,2,0.5
+blindworm,alligator,0.5833333333333334,4,0,0.0
+blindworm,chisel,0.65625,4,0,0.0
+blindworm,salamander,0.09375,4,4,1.0
+boa python,chisel,0.6666666666666666,4,1,0.25
+boa python,snake,0.0,4,2,0.5
+boa python,toad,0.6354166666666666,4,1,0.25
+caiman,chisel,0.5208333333333334,4,0,0.0
+caiman,crocodile,0.03125,4,4,1.0
+caiman,tortoise,0.5104166666666666,4,0,0.0
+chameleon,chisel,0.65625,4,0,0.0
+chameleon,gecko,0.0625,4,1,0.25
+chameleon,tortoise,0.59375,4,2,0.5
+chisel,axe,0.34375,4,3,0.75
+chisel,gecko,0.7291666666666666,4,0,0.0
+chisel,turtle,0.7291666666666666,4,0,0.0
+cobra,salamander,0.6458333333333334,4,1,0.25
+cobra,snake,0.03125,4,1,0.25
+cobra,tortoise,0.65625,4,1,0.25
+crocodile,alligator,0.0,4,2,0.5
+crocodile,axe,0.5416666666666666,4,0,0.0
+crocodile,saw,0.5625,4,0,0.0
+gecko,chisel,0.7291666666666666,4,0,0.0
+gecko,lizard,0.041666666666666664,4,3,0.75
+gecko,saw,0.75,4,0,0.0
+hammer,axe,0.08333333333333333,4,1,0.25
+hammer,blindworm,0.8020833333333334,4,0,0.0
+hammer,salamander,0.8020833333333334,4,0,0.0
+lizard,axe,0.6770833333333334,4,0,0.0
+lizard,gecko,0.041666666666666664,4,3,0.75
+lizard,hammer,0.6666666666666666,4,0,0.0
+salamander,blindworm,0.09375,4,0,0.0
+salamander,chisel,0.78125,4,0,0.0
+salamander,saw,0.7708333333333334,4,1,0.25
+saw,axe,0.041666666666666664,4,1,0.25
+saw,toad,0.7916666666666666,4,0,0.0
+saw,turtle,0.7916666666666666,4,0,0.0
+snake,boa python,0.0,4,1,0.25
+snake,chisel,0.5625,4,0,0.0
+snake,toad,0.5625,4,0,0.0
+toad,chisel,0.8125,4,0,0.0
+toad,salamander,0.125,4,1,0.25
+toad,saw,0.7916666666666666,4,0,0.0
+tortoise,chisel,0.8020833333333334,4,0,0.0
+tortoise,hammer,0.84375,4,0,0.0
+tortoise,turtle,0.0,4,4,1.0
+turtle,chisel,0.7291666666666666,4,0,0.0
+turtle,hammer,0.75,4,0,0.0
+turtle,tortoise,0.0,4,0,0.0
