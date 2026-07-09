@@ -97,7 +97,8 @@ if [[ ! -d "${FEATURE_DIR}" ]]; then
   exit 68
 fi
 
-read -r -a SUBJECT_ARGS <<< "${SUBJECTS}"
+SUBJECTS_FOR_ARGS="${SUBJECTS//,/ }"
+read -r -a SUBJECT_ARGS <<< "${SUBJECTS_FOR_ARGS}"
 CMD=(
   "${PYTHON_BIN}" src/sft/huth_lebel_smoke_encoding.py
   --ds_root /staging/s/suresh27/datasets/ds003020-smoke

@@ -222,14 +222,23 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   `5513178` completed successfully and is pulled under
   `results/sft_huth_lebel/chtc_huth_extract_debug_5513178/`; all four arms
   produced layer-24 `sweetaspie` features with shape `64 x 1 x 4096`.
-  Full smoke feature extraction is now running as cluster `5513245` from
-  `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926`, producing a
-  staged set of three-story layer `16,24,32` features under
+  Staged-output full smoke extraction `5513245` ran from
+  `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926`, wrote only the
+  three base story features, then failed with `OSError: [Errno 122] Disk quota
+  exceeded` while creating the `lowLR` feature directory under
   `/staging/s/suresh27/features/huth_lebel_smoke_llama31`. Duplicate cluster
-  `5513244` held before model work and was removed. If `5513245` passes, bundle
-  the staged features into `huth_extract_smoke_results_with_features.tgz`, then
-  submit encoding from the same run directory for the held-out
-  `wheretheressmoke` ridge smoke.
+  `5513244` held before model work and was removed. Bundle-output recovery
+  extraction `5513306` passed from
+  `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`; duplicate
+  `5513310` was removed while idle. The pulled retry artifacts under
+  `results/sft_huth_lebel/chtc_huth_extract_smoke_retry_5513306/` show wrapper
+  status `0`, extractor status `0`, and all 12 arm/story NPZs. CPU encoding
+  smoke `5513337` passed from the same run directory for held-out
+  `wheretheressmoke`: encoding status `0`, `summary.csv`, and `alpha_cv.csv`.
+  The smoke validates the path but is not a scientific arm comparison because it
+  uses `UTS01`, two short training stories, and a 2000-voxel cap. CPU-only
+  scale check `5513350` is submitted for capped `UTS02,UTS03` encoding from the
+  same feature bundle.
 - Concept-vector steering scaffolding is committed and pushed as `99c0c60`.
   It adds coherence/human-alignment contrast datasets and dry-run validated
   extraction/eval scripts. The first CHTC GPU smoke is submitted as cluster

@@ -24,8 +24,19 @@ Updated: 2026-07-09
   directly. The recovery template
   `chtc/huth_lebel_smoke/huth_encoding_smoke_bundle.sub` consumes the returned
   feature tarball instead, avoiding new writes under `/staging/s/suresh27`.
-- Active bundle-output recovery extraction: cluster `5513306`, remote
-  directory `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`.
+- Bundle-output recovery extraction `5513306` passed from
+  `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204` on
+  `mkhodakgpu4000.chtc.wisc.edu`: Condor return value `0`, wrapper status `0`,
+  extractor status `0`, and all 12 arm/story NPZs in `npz_shapes.tsv`.
+- CPU encoding smoke cluster `5513337` passed from the same run directory with
+  `huth_encoding_smoke_bundle.sub`. The returned bundle contains
+  `encoding_exit_status.txt == 0`, `summary.csv`, `alpha_cv.csv`, and
+  `run_metadata.json`.
+- Smoke metric read: near-zero held-out scores are expected for this path check
+  because it uses only `UTS01`, two short training stories, and `--max_voxels
+  2000`. Treat it as a pipeline validation, not an arm-comparison result.
+- Active CPU-only scale check: cluster `5513350` runs the same capped bundle
+  encoding for `UTS02,UTS03` from the validated `5513306` feature bundle.
 - Duplicate cluster `5513310` had identical settings and was removed while
   idle.
 
@@ -160,17 +171,24 @@ chtc-pull 'chtc-runs/coherence-huth-extract-smoke-20260709-005926/huth_extract_s
   results/sft_huth_lebel/chtc_huth_extract_smoke_5513245/
 ```
 
-2. Monitor active bundle-output GPU extraction cluster `5513306`. Its wrapper
-   leaves `FEATURE_DIR` unset, seeds the already-written staged `base` features
-   into scratch with `SEED_FEATURE_DIR`, and returns feature NPZs inside
-   `huth_extract_smoke_results.tgz`.
+2. Pull/inspect the passed bundle-output GPU extraction cluster `5513306`
+   artifacts:
 
-3. If the bundle extraction returns `extract_exit_status.txt == 0` and
-   `npz_shapes.tsv` lists all 12 arm/story NPZs, submit CPU encoding from the
-   same run directory:
+```bash
+chtc-pull 'chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204/huth_extract_smoke_results.tgz' \
+  results/sft_huth_lebel/chtc_huth_extract_smoke_retry_5513306/
+```
+
+3. CPU encoding passed from the same run directory:
 
 ```bash
 chtc-ssh 'cd ~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204 && condor_submit huth_encoding_smoke_bundle.sub'
+```
+
+Pulled result:
+
+```bash
+results/sft_huth_lebel/chtc_huth_extract_smoke_retry_5513306/extracted_encoding/
 ```
 
 The bundle submit file unpacks `huth_extract_smoke_results.tgz` and runs the

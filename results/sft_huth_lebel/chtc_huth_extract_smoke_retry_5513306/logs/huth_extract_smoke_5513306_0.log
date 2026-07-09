@@ -1,0 +1,51 @@
+000 (5513306.000.000) 2026-07-08 20:33:20 Job submitted from host: <128.105.68.113:9618?addrs=128.105.68.113-9618+[2607-f388-2200-100-eaeb-d3ff-fea7-d05e]-9618&alias=ap2002.chtc.wisc.edu&noUDP&sock=schedd_7841_da2f>
+    [ JobBatchName = "coherence_huth_extract_smoke_5513306" ]
+...
+040 (5513306.000.000) 2026-07-08 20:36:04 Started transferring input files
+	Transferring to host: <128.105.69.34:9618?addrs=128.105.69.34-9618+[2607-f388-2200-100-527c-6fff-fe66-ea4a]-9618&alias=mkhodakgpu4000.chtc.wisc.edu&noUDP&sock=backfill1_1_1880964_0c42_35349>
+...
+040 (5513306.000.000) 2026-07-08 20:36:04 Finished transferring input files
+...
+001 (5513306.000.000) 2026-07-08 20:36:09 Job executing on host: <128.105.69.34:9618?addrs=128.105.69.34-9618+[2607-f388-2200-100-527c-6fff-fe66-ea4a]-9618&alias=mkhodakgpu4000.chtc.wisc.edu&noUDP&sock=startd_11796_a740>
+	SlotName: backfill1_1@mkhodakgpu4000.chtc.wisc.edu
+	AvailableGPUs = { GPUs_GPU_c7d03fd0 }
+	CondorScratchDir = "/var/lib/condor/execute/slot1/dir_2506730/scratch"
+	Cpus = 8
+	Disk = 83886080
+	GPUs = 1
+	GPUs_GPU_c7d03fd0 = [ Id = "GPU-c7d03fd0"; Capability = 8.9; DeviceName = "NVIDIA L40S"; DeviceUuid = "c7d03fd0-754e-9df9-8e35-2c63a7b5df74"; ECCEnabled = true; NvidiaDriver = "570.195.03"; DriverVersion = 12.8; DevicePciBusId = "0000:E1:00.0"; GlobalMemoryMb = 45468; MaxSupportedVersion = 12080 ]
+	IoHeavy = 0
+	Memory = 65536
+...
+006 (5513306.000.000) 2026-07-08 20:36:17 Image size of job updated: 93
+	93  -  MemoryUsage of job (MB)
+	96028  -  ResidentSetSize of job (KB)
+...
+006 (5513306.000.000) 2026-07-08 20:41:18 Image size of job updated: 1432
+	1432  -  MemoryUsage of job (MB)
+	1466808  -  ResidentSetSize of job (KB)
+...
+040 (5513306.000.000) 2026-07-08 20:44:39 Started transferring output files
+...
+040 (5513306.000.000) 2026-07-08 20:44:40 Finished transferring output files
+...
+005 (5513306.000.000) 2026-07-08 20:44:40 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:03:55, Sys 0 00:01:13  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:03:55, Sys 0 00:01:13  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	265367534  -  Run Bytes Sent By Job
+	1610195  -  Run Bytes Received By Job
+	265367534  -  Total Bytes Sent By Job
+	1610195  -  Total Bytes Received By Job
+	Partitionable Resources :     Usage  Request Allocated Assigned
+	   Cpus                 :      0           8         8 
+	   Disk (KB)            : 858855    83886080  83886080 
+	   GPUs                 :      0.88        1         1 "GPU-c7d03fd0"
+	   GpusMemory (MB)      :  18515                       
+	   IoHeavy              :                            0 
+	   Memory (MB)          :   1432       65536     65536 
+	   TimeExecute (s)      :    510                       
+	   TimeSlotBusy (s)     :    516                       
+...

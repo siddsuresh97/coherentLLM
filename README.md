@@ -22,8 +22,12 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   dataset at `/staging/s/suresh27/datasets/ds003020-smoke` contains all 15
   planned smoke files, 7.88 GB, with no missing manifest paths. The extraction
   debug produced four arm NPZ files for `sweetaspie` with `hidden` shape
-  `(64, 1, 4096)`. The next step is already running: three-story extraction
-  smoke `5513245`, followed by the capped CPU ridge encoding smoke.
+  `(64, 1, 4096)`. Three-story staged-output extraction `5513245` then wrote
+  only the base features before hitting staging directory quota; bundle-output
+  recovery extraction `5513306` passed with all 12 arm/story NPZs, and capped
+  CPU ridge encoding `5513337` passed as a path-validation smoke. CPU-only
+  `UTS02,UTS03` scale check `5513350` is submitted from the same feature
+  bundle.
 - **fMRI x hub bridge:** the new concept-held-out regression does not support a
   clean semantic-hub explanation of Ventral Visual RSA. Averaged hub predictors
   are roughly tied with single prompt spokes in Ventral Visual, while
@@ -51,11 +55,13 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   by default and cache-quota retries are queued as `5513309` (`5`-`7`) and
   `5513313` (`0`, `2`). Huth extraction debug `5513178` completed cleanly; staged-output
   three-story smoke `5513245` wrote the base features but failed on staging
-  directory quota, so bundle-output recovery `5513306` is queued. Concept steering
+  directory quota; bundle-output recovery `5513306` passed and CPU encoding
+  smoke `5513337` passed; capped `UTS02,UTS03` encoding scale check `5513350`
+  is queued/running. Concept steering
   smoke `5513235` exposed a staging visibility failure on a non-staging
   backfill node; retry `5513261` exposed pip dependency shadowing; fixed
   no-deps retry `5513276` passed and produced vectors plus 18 smoke eval rows;
-  bounded layer/alpha sweep `5513297` is queued. MMLU CHTC jobs now require
+  bounded layer/alpha sweep `5513297` passed with 120 eval rows. MMLU CHTC jobs now require
   `TARGET.HasCHTCStaging == true` plus `TARGET.CUDAGlobalMemoryMb >= 40000`;
   other CHTC Llama GPU lanes require at least the 40GB GPU floor so small GPUs
   are no longer absorbing jobs. H100 handled rank-16 lowrank MMLU, but
@@ -493,10 +499,13 @@ Current plan:
   Metadata from the OpenNeuro GitHub mirror verifies the current `derivatives/`
   layout and DataLad annex file sizes; the staging plan is in
   [`results/sft_huth_lebel/STAGING_PLAN.md`](results/sft_huth_lebel/STAGING_PLAN.md).
-  The 7.88 GB smoke subset is now staged on CHTC at
-  `/staging/s/suresh27/datasets/ds003020-smoke`; next is a small CHTC encoding
-  smoke over `sweetaspie`/`againstthewind` to held-out `wheretheressmoke`.
-  GPU-side debug extraction is queued as CHTC cluster `5513178`.
+  The 7.88 GB smoke subset is staged on CHTC at
+  `/staging/s/suresh27/datasets/ds003020-smoke`. GPU-side debug extraction
+  `5513178` passed, bundle-output three-story extraction `5513306` passed, and
+  capped CPU ridge encoding `5513337` passed over
+  `sweetaspie`/`againstthewind` to held-out `wheretheressmoke`. The smoke
+  validates the path; the correlations are near zero under the current
+  `UTS01` two-training-story, 2000-voxel cap.
 - Fedorenko/EvLab language-network: prefer individually localized
   `sentences > nonword lists` masks. Atlas/group language ROIs are exploratory.
 - Benchmark-drops: first finish eval-only controls (`lowrank`, `scrambled`,

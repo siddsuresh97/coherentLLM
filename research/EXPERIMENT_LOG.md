@@ -1397,6 +1397,33 @@ New Huth smoke submission:
   `huth_extract_smoke_results.tgz`.
 - Active retry: cluster `5513306`, remote directory
   `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`.
+- Outcome: `5513306` started on `mkhodakgpu4000.chtc.wisc.edu` at
+  `2026-07-08 20:36:09` with an NVIDIA L40S, transferred a 254 MB returned
+  bundle, and terminated normally with return value `0`.
+- Local artifacts:
+  `results/sft_huth_lebel/chtc_huth_extract_smoke_retry_5513306/`.
+- Pass evidence: `exit_status.txt == 0`, `extract_exit_status.txt == 0`, and
+  `npz_shapes.tsv` lists all 12 arm/story files (`base`, `lowLR`,
+  `scrambled`, `taskvec_a0p25` x `sweetaspie`, `againstthewind`,
+  `wheretheressmoke`) with `hidden` dtype `float16`, layers `16,24,32`, and
+  hidden width `4096`.
+- CPU encoding smoke submitted as cluster `5513337` from the same run
+  directory using `huth_encoding_smoke_bundle.sub`.
+- Encoding outcome: cluster `5513337` ran on
+  `oconnor2003.chtc.wisc.edu`, terminated normally with return value `0`, and
+  returned `huth_encoding_smoke_bundle_results.tgz`.
+- Local encoding artifacts:
+  `results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_5513337/`.
+- Pass evidence: `exit_status.txt == 0`, `encoding_exit_status.txt == 0`,
+  `summary.csv` has 12 rows, and `alpha_cv.csv` records leave-one-training-story
+  ridge CV.
+- Smoke scores: all mean held-out Pearson `r` values are near zero, with the
+  best row `taskvec_a0p25` layer 16 at `mean_r=0.000589`,
+  `median_r=0.000862`. This is a path-validation smoke only: `UTS01`, two short
+  training stories, and `--max_voxels 2000`.
+- Submitted CPU-only scale check `5513350` from the same run directory with
+  `huth_encoding_smoke_bundle_uts02_uts03.sub`; it runs capped
+  `UTS02,UTS03` encoding from the validated `5513306` feature bundle.
 - Duplicate retry `5513310` was submitted with identical settings and removed
   while idle with `condor_rm 5513310`.
 
@@ -1411,12 +1438,9 @@ Duplicate avoided:
 
 Next read:
 
-- Pull `huth_extract_smoke_results.tgz` after cluster `5513306` completes.
-- Check `extract_exit_status.txt == 0` and verify `npz_shapes.tsv` lists all
-  12 arm/story NPZ files.
-- Submit `huth_encoding_smoke_bundle.sub` from the same run directory so CPU
-  encoding reads the returned feature bundle instead of writing new staging
-  directories.
+- Next scale point: monitor and pull cluster `5513350`; if it passes, either
+  remove the `--max_voxels 2000` cap for `UTS01` or stage the high-data
+  subject/story subset only after the smoke report is committed.
 
 ## 2026-07-09 active: MMLU CHTC smoke passed; full shards submitted
 

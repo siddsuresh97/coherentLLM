@@ -1,0 +1,14 @@
+command.txt	505
+run_env.txt	444
+imports_after_install.txt	24
+alpha_cv.csv	13924
+encoding_exit_status.txt	2
+summary.csv	2267
+imports_before_install.txt	124
+encoding_stdout.txt	1236
+file_inventory.tsv	0
+encoding_stderr.txt	0
+encoding/alpha_cv.csv	13924
+encoding/summary.csv	2267
+encoding/run_metadata.json	2032
+pip_install.txt	901

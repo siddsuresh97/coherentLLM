@@ -31,8 +31,15 @@ Current state from repo reports:
 - Huth/LeBel extraction and smoke-encoding scripts exist:
   `src/sft/huth_lebel_extract_word_states.py` and
   `src/sft/huth_lebel_smoke_encoding.py`.
-- The next expensive scientific step should not be launched until the tiny
-  extraction and encoding smoke are inspected and committed.
+- Huth/LeBel extraction debug `5513178` passed; staged-output extraction
+  `5513245` failed on staging directory quota after writing only base features;
+  bundle-output recovery extraction `5513306` passed with all 12 expected
+  arm/story NPZs; CPU ridge encoding smoke `5513337` passed as a path-validation
+  smoke. CPU-only scale check `5513350` is now queued/running for capped
+  `UTS02,UTS03` encoding from the same feature bundle.
+- The next expensive scientific step should scale cautiously: either uncap
+  `UTS01` smoke voxels or run the same capped smoke on `UTS02`/`UTS03` before
+  staging the high-data subset.
 
 ## Core Hypotheses
 
@@ -117,8 +124,8 @@ Refute or weaken:
 
 | Scale | Purpose | Data | Arms | Layers | Output |
 |---|---|---|---|---|---|
-| Smoke A | Verify TextGrid parsing, model loading, staged model/adapters, and feature writing | `sweetaspie`, first 64 words | `base` first, then all four arms | `24` | one NPZ per arm/story |
-| Smoke B | Verify word-to-TR alignment and ridge scoring | `sweetaspie`, `againstthewind` train; `wheretheressmoke` test | all four arms | `16,24,32` | capped-voxel `summary.csv` |
+| Smoke A | Verify TextGrid parsing, model loading, staged model/adapters, and feature writing | `sweetaspie`, first 64 words | `base` first, then all four arms | `24` | passed in `5513178` |
+| Smoke B | Verify word-to-TR alignment and ridge scoring | `sweetaspie`, `againstthewind` train; `wheretheressmoke` test | all four arms | `16,24,32` | passed in `5513306`/`5513337` |
 | Medium | First interpretable language-fMRI result | all 3 smoke stories, no voxel cap | all four arms | `16,24,32` | full smoke encoding report |
 | Full | Scientific high-data Huth/LeBel result | `UTS01`-`UTS03`, shared high-data stories | all four arms | fixed or nested-CV layers | subject/ROI/layer deltas |
 | Hub Paper | Stronger semantic-hub evidence | held-out THINGS/NOVA concepts | all four arms | full layer grid | similarity, logit-lens, intervention reports |
@@ -407,6 +414,12 @@ Current read:
   established.
 
 Next tests to implement:
+
+0. Huth scale check.
+   - Monitor cluster `5513350`, which runs the same capped encoding smoke on
+     `UTS02`/`UTS03` from the already-validated `5513306` feature bundle.
+   - If it passes, decide whether to remove the 2000-voxel cap for `UTS01` or
+     stage the high-data subset.
 
 1. Logit-lens semantic anchoring.
    - Proposed script: `src/sft/run_semantic_hub_logit_lens.py`.

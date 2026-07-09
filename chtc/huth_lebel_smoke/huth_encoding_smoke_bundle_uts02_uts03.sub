@@ -1,0 +1,38 @@
+RUN_MODE = encoding_smoke_bundle_uts02_uts03
+RESULT_NAME = huth_encoding_smoke_bundle_uts02_uts03
+OUT_BUNDLE = huth_encoding_smoke_bundle_uts02_uts03_results.tgz
+FEATURE_BUNDLE = huth_extract_smoke_results.tgz
+SUBJECTS = UTS02,UTS03
+TRAIN_STORIES = sweetaspie,againstthewind
+TEST_STORY = wheretheressmoke
+ARMS = base,lowLR,scrambled,taskvec_a0p25
+LAYERS = 16,24,32
+MAX_VOXELS = 2000
+RIDGE_SOLVER = auto
+
+universe = container
+container_image = docker://python:3.11-slim
+docker_override_entrypoint = true
+requirements = (TARGET.HasChtcStaging =?= true) && (TARGET.HasDockerVolumeCHTC_STAGING =?= true)
+
+batch_name = coherence_huth_encoding_smoke_bundle_uts02_uts03_$(Cluster)
+log = logs/huth_$(RUN_MODE)_$(Cluster)_$(Process).log
+output = logs/huth_$(RUN_MODE)_$(Cluster)_$(Process).out
+error = logs/huth_$(RUN_MODE)_$(Cluster)_$(Process).err
+
+executable = run_encoding_smoke.sh
+arguments =
+transfer_input_files = run_encoding_smoke.sh,src,$(FEATURE_BUNDLE)
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_output_files = $(OUT_BUNDLE)
+stream_output = TRUE
+stream_error = TRUE
+environment = "RESULT_NAME=$(RESULT_NAME) OUT_BUNDLE=$(OUT_BUNDLE) FEATURE_BUNDLE=$(FEATURE_BUNDLE) SUBJECTS=$(SUBJECTS) TRAIN_STORIES=$(TRAIN_STORIES) TEST_STORY=$(TEST_STORY) ARMS=$(ARMS) LAYERS=$(LAYERS) MAX_VOXELS=$(MAX_VOXELS) RIDGE_SOLVER=$(RIDGE_SOLVER)"
+
+request_cpus = 4
+request_memory = 24GB
+request_disk = 40GB
++is_resumable = true
+
+queue 1

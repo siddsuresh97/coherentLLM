@@ -46,7 +46,14 @@ completed and full smoke extraction cluster `5513245` was submitted.
 - Active recovery extraction: cluster `5513306`, remote directory
   `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`. It seeds
   the existing staged `base` features into job scratch and should return all
-  features in `huth_extract_smoke_results.tgz`.
+  features in `huth_extract_smoke_results.tgz`. It passed with Condor return
+  value `0`, wrapper status `0`, extractor status `0`, and all 12 arm/story
+  NPZs present in `npz_shapes.tsv`.
+- CPU encoding smoke cluster `5513337` passed from the same run directory with
+  `huth_encoding_smoke_bundle.sub`; the returned bundle includes
+  `encoding_exit_status.txt == 0`, `summary.csv`, and `alpha_cv.csv`.
+- CPU-only scale check cluster `5513350` is submitted from the same bundle for
+  capped `UTS02,UTS03` encoding.
 - Duplicate recovery cluster `5513310` was removed while idle.
 - Duplicate cluster `5513244` held before model work because its submit
   expected a missing output tarball; it was removed with `condor_rm`.
@@ -84,15 +91,9 @@ completed and full smoke extraction cluster `5513245` was submitted.
 
 ## Next
 
-1. Monitor active bundle-output recovery extraction cluster `5513306`.
-2. Pass criteria: `extract_exit_status.txt == 0` and `npz_shapes.tsv` contains
-   all 12 arm/story NPZs, each with layers `16,24,32`, and no adapter load
-   failures.
-3. Submit `huth_encoding_smoke_bundle.sub` from the same run directory so CPU
-   encoding unpacks `huth_extract_smoke_results.tgz` rather than reading staged
-   features.
-4. Verify artifact writing, feature shapes, TR alignment, and voxelwise Pearson
-   scoring in `summary.csv` and `alpha_cv.csv` before using more GPUs.
-5. If the smoke passes, stage the high-data `UTS01`-`UTS03` subset under
+1. Monitor and pull CPU-only scale check cluster `5513350`.
+2. If `5513350` passes, decide whether to uncap smoke voxels for `UTS01` or
+   proceed to high-data staging.
+3. If the smoke remains stable, stage the high-data `UTS01`-`UTS03` subset under
    `/staging/s/suresh27/datasets/ds003020-highdata`.
-6. Run the full high-data encoding jobs only after the smoke report is committed.
+4. Run the full high-data encoding jobs only after the smoke report is committed.

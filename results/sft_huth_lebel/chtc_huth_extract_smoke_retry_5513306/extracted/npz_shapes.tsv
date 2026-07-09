@@ -1,0 +1,13 @@
+path	keys	hidden_shape	hidden_dtype	layers	n_words
+base/againstthewind.npz	hidden,words,onsets,offsets,centers,context_token_counts,layer_indices,layer_names	842x3x4096	float16	16,24,32	842
+base/sweetaspie.npz	hidden,words,onsets,offsets,centers,context_token_counts,layer_indices,layer_names	697x3x4096	float16	16,24,32	697
+base/wheretheressmoke.npz	hidden,words,onsets,offsets,centers,context_token_counts,layer_indices,layer_names	1859x3x4096	float16	16,24,32	1859
+lowLR/againstthewind.npz	hidden,words,onsets,offsets,centers,context_token_counts,layer_indices,layer_names	842x3x4096	float16	16,24,32	842
+lowLR/sweetaspie.npz	hidden,words,onsets,offsets,centers,context_token_counts,layer_indices,layer_names	697x3x4096	float16	16,24,32	697
+lowLR/wheretheressmoke.npz	hidden,words,onsets,offsets,centers,context_token_counts,layer_indices,layer_names	1859x3x4096	float16	16,24,32	1859
+scrambled/againstthewind.npz	hidden,words,onsets,offsets,centers,context_token_counts,layer_indices,layer_names	842x3x4096	float16	16,24,32	842
+scrambled/sweetaspie.npz	hidden,words,onsets,offsets,centers,context_token_counts,layer_indices,layer_names	697x3x4096	float16	16,24,32	697
+scrambled/wheretheressmoke.npz	hidden,words,onsets,offsets,centers,context_token_counts,layer_indices,layer_names	1859x3x4096	float16	16,24,32	1859
+taskvec_a0p25/againstthewind.npz	hidden,words,onsets,offsets,centers,context_token_counts,layer_indices,layer_names	842x3x4096	float16	16,24,32	842
+taskvec_a0p25/sweetaspie.npz	hidden,words,onsets,offsets,centers,context_token_counts,layer_indices,layer_names	697x3x4096	float16	16,24,32	697
+taskvec_a0p25/wheretheressmoke.npz	hidden,words,onsets,offsets,centers,context_token_counts,layer_indices,layer_names	1859x3x4096	float16	16,24,32	1859

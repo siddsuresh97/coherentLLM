@@ -59,6 +59,29 @@ and submitting full smoke extraction cluster `5513245`.
   directories.
 - Active recovery: cluster `5513306`, remote directory
   `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`.
+- Recovery outcome: `5513306` started on
+  `mkhodakgpu4000.chtc.wisc.edu` at `2026-07-08 20:36:09` with an NVIDIA L40S,
+  transferred a 254 MB feature/status bundle, and terminated normally with
+  return value `0`. Pulled artifacts are under
+  `results/sft_huth_lebel/chtc_huth_extract_smoke_retry_5513306/`.
+- Bundle extraction evidence: `exit_status.txt == 0`,
+  `extract_exit_status.txt == 0`, and `npz_shapes.tsv` lists all 12 expected
+  arm/story NPZ files with `hidden` dtype `float16`, layers `16,24,32`, and
+  width `4096`.
+- CPU encoding smoke cluster `5513337` was submitted from the same run
+  directory using `huth_encoding_smoke_bundle.sub`.
+- Encoding outcome: `5513337` terminated normally with return value `0`, and
+  the pulled bundle under
+  `results/sft_huth_lebel/chtc_huth_extract_smoke_retry_5513306/extracted_encoding/`
+  contains `encoding_exit_status.txt == 0`, `summary.csv`, `alpha_cv.csv`, and
+  `run_metadata.json`.
+- Encoding smoke read: the path is validated for feature-bundle ingestion,
+  TextGrid/word-state alignment, FIR-delayed ridge fitting, alpha CV, and
+  held-out Pearson scoring. The metrics are near zero because this is only
+  `UTS01`, two short training stories, and `--max_voxels 2000`; do not treat it
+  as a scientific arm comparison.
+- Active CPU-only scale check: cluster `5513350` runs the same capped bundle
+  encoding for `UTS02,UTS03` from the validated `5513306` feature bundle.
 - Duplicate recovery cluster `5513310` had identical settings and was removed
   while idle.
 - Duplicate cluster `5513244` held before model work because its submit
@@ -133,6 +156,16 @@ and submitting full smoke extraction cluster `5513245`.
 - Failed staged-output full smoke extraction:
   `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926`, cluster
   `5513245`
-- Active bundle-output recovery extraction:
+- Passed bundle-output recovery extraction:
   `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`, cluster
   `5513306`
+- CHTC extraction retry outputs:
+  `results/sft_huth_lebel/chtc_huth_extract_smoke_retry_5513306/`
+- Passed CPU encoding smoke:
+  `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`, cluster
+  `5513337`
+- CHTC encoding smoke outputs:
+  `results/sft_huth_lebel/chtc_huth_encoding_smoke_bundle_5513337/`
+- Active UTS02/UTS03 encoding scale check:
+  `~/chtc-runs/coherence-huth-extract-smoke-retry-20260709-013204`, cluster
+  `5513350`

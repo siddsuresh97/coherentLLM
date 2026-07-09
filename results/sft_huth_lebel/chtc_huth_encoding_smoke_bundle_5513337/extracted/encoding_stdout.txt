@@ -1,0 +1,21 @@
+[subject] UTS01
+[response] UTS01/sweetaspie: (157, 2000)
+[response] UTS01/againstthewind: (170, 2000)
+[response] UTS01/wheretheressmoke: (291, 2000)
+[arm] UTS01/base
+[score] UTS01/base/layer16: mean_r=-0.00012 median_r=-0.00193 alpha=10
+[score] UTS01/base/layer24: mean_r=-0.00296 median_r=-0.00431 alpha=10
+[score] UTS01/base/layer32: mean_r=-0.00091 median_r=-0.00087 alpha=10
+[arm] UTS01/lowLR
+[score] UTS01/lowLR/layer16: mean_r=-0.00119 median_r=-0.00287 alpha=10
+[score] UTS01/lowLR/layer24: mean_r=-0.00137 median_r=-0.00226 alpha=10
+[score] UTS01/lowLR/layer32: mean_r=-0.00267 median_r=-0.00322 alpha=10
+[arm] UTS01/scrambled
+[score] UTS01/scrambled/layer16: mean_r=0.00017 median_r=-0.00088 alpha=10
+[score] UTS01/scrambled/layer24: mean_r=-0.00114 median_r=-0.00111 alpha=1000
+[score] UTS01/scrambled/layer32: mean_r=-0.00235 median_r=-0.00322 alpha=10
+[arm] UTS01/taskvec_a0p25
+[score] UTS01/taskvec_a0p25/layer16: mean_r=0.00059 median_r=0.00086 alpha=1000
+[score] UTS01/taskvec_a0p25/layer24: mean_r=-0.00369 median_r=-0.00447 alpha=10
+[score] UTS01/taskvec_a0p25/layer32: mean_r=-0.00270 median_r=-0.00266 alpha=10
+[write] /var/lib/condor/execute/slot1/dir_2676104/scratch/huth_encoding_smoke_bundle/encoding/summary.csv

@@ -1,0 +1,5 @@
+torch=2.5.1+cu124
+transformers=5.13.0
+safetensors=0.8.0
+yaml=6.0.3
+numpy=2.4.6
