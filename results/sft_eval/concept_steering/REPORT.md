@@ -1,6 +1,52 @@
 # Concept-Vector Steering Lane
 
-Status: implemented and locally syntax/dry-run validated on 2026-07-08. No 8B model extraction or GPU steering sweep has been launched from this lane yet; run the smoke commands below first.
+Status: implemented, locally syntax/dry-run validated, and submitted as a CHTC
+GPU smoke on 2026-07-09. The first submitted cluster is `5513235`.
+
+## 2026-07-09 CHTC Smoke Submission
+
+Run:
+
+- CHTC run id: `coherence-concept-steering-20260709-005726`
+- cluster: `5513235`
+- remote directory: `~/chtc-runs/coherence-concept-steering-20260709-005726`
+- submit file: `chtc/concept_steering/concept_steering_smoke.sub`
+- command:
+
+```bash
+chtc-ssh 'cd ~/chtc-runs/coherence-concept-steering-20260709-005726 && condor_submit concept_steering_smoke.sub'
+```
+
+Design:
+
+- concepts: `coherence`, `human_alignment`
+- train pairs per concept: first 4
+- layer: `24`
+- alphas: `-2,0,2`
+- eval items: 2 coherence, 2 human-alignment, 2 retention
+- expected summary shape: 18 rows
+
+Initial CHTC state:
+
+- `condor_q -better-analyze 5513235` reported the job as satisfiable under the
+  40GB+ GPU requirement.
+- The first queue poll showed `JobStatus=1` and no worker stdout/stderr yet.
+- Local GPU smoke was skipped because this Codex session could not see a local
+  NVIDIA driver through `nvidia-smi`.
+
+Expected result bundle after completion:
+
+```text
+results/sft_eval/concept_steering/chtc/coherence-concept-steering-20260709-005726/
+```
+
+Readout plan:
+
+- verify `exit_status.txt`, `extract_exit_status.txt`, and
+  `eval_exit_status.txt` are all `0`.
+- inspect `sweep/SUMMARY.md` and `sweep/sweep_results.csv`.
+- submit `concept_steering_sweep.sub` only if target rows move and retention
+  rows do not collapse relative to alpha `0`.
 
 ## Files
 

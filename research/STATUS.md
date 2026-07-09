@@ -225,7 +225,10 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   `/staging/s/suresh27/adapters/`.
 - Concept-vector steering scaffolding is committed and pushed as `99c0c60`.
   It adds coherence/human-alignment contrast datasets and dry-run validated
-  extraction/eval scripts, but no GPU steering sweep has run yet.
+  extraction/eval scripts. The first CHTC GPU smoke is submitted as cluster
+  `5513235` in
+  `~/chtc-runs/coherence-concept-steering-20260709-005726`; it is idle but
+  satisfiable at first poll under the 40GB+ GPU requirement.
 - Bridge read: semantic-hub invariance is strong internally, but it does not yet
   explain object-fMRI RSA. Ventral Visual delta-vs-base vs mid hub RDM is
   positive but small-n (`r=0.600`, `n=6`, `p=0.208`); retrieval top-1 is not

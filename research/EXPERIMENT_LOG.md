@@ -1287,6 +1287,39 @@ Read:
 - No GPU extraction or steering sweep has run yet; the report contains the
   commands and should be used before spending long GPU time.
 
+## 2026-07-09 active: concept-vector steering CHTC smoke
+
+Artifacts:
+
+- `chtc/concept_steering/concept_steering_smoke.sub`
+- `chtc/concept_steering/run_concept_steering.sh`
+- `results/sft_eval/concept_steering/REPORT.md`
+- `results/sft_eval/concept_steering/SMOKE_STATUS.md`
+
+Submission:
+
+```bash
+chtc-ssh 'cd ~/chtc-runs/coherence-concept-steering-20260709-005726 && condor_submit concept_steering_smoke.sub'
+```
+
+Run:
+
+- cluster: `5513235`
+- remote directory: `~/chtc-runs/coherence-concept-steering-20260709-005726`
+- requirement: `TARGET.CUDAGlobalMemoryMb >= 40000`
+- smoke design: `coherence` and `human_alignment`, first 4 train pairs, layer
+  `24`, alphas `-2,0,2`, 2 items each for coherence/alignment/retention.
+- first poll: idle but satisfiable; no worker stdout/stderr yet.
+
+Next read:
+
+- pull
+  `concept_steering_smoke_layer24_alpha_neg2_0_pos2_results.tgz`
+  after completion.
+- check all runner exit status files are `0`.
+- compare target rows against alpha `0` and verify retention rows do not
+  collapse before submitting the full layer/alpha sweep.
+
 ## 2026-07-08 active: fixed CHTC GPU smoke retries
 
 MMLU:

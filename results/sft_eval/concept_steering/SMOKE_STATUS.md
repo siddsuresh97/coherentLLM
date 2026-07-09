@@ -1,10 +1,11 @@
 # Concept Steering Smoke Status
 
-Last updated: 2026-07-08.
+Last updated: 2026-07-09.
 
 ## Current State
 
-Prepared, locally dry-run validated, not yet launched on GPU.
+Prepared, locally dry-run validated, and submitted to CHTC for the first GPU
+smoke.
 
 Owned files added in this handoff:
 
@@ -64,9 +65,25 @@ Observed dry-run eval plan:
 
 ## Next Action
 
-Submit `concept_steering_smoke.sub` on CHTC after the current CHTC smoke jobs
-are not saturating the high-memory GPU queue, or immediately if an additional
-40GB+ GPU slot is available.
+Monitor CHTC cluster `5513235`, run directory
+`~/chtc-runs/coherence-concept-steering-20260709-005726`.
+
+Submission command:
+
+```bash
+chtc-ssh 'cd ~/chtc-runs/coherence-concept-steering-20260709-005726 && condor_submit concept_steering_smoke.sub'
+```
+
+Queue state immediately after submission:
+
+- cluster: `5513235`
+- submit file: `chtc/concept_steering/concept_steering_smoke.sub`
+- run id: `coherence-concept-steering-20260709-005726`
+- CHTC requirement: `TARGET.CUDAGlobalMemoryMb >= 40000`
+- initial status: idle but satisfiable; `condor_q -better-analyze` found one
+  willing high-memory GPU slot and 51 additional possible matches if drained.
+- local GPU path: not usable from this session because `nvidia-smi` could not
+  communicate with the NVIDIA driver.
 
 Smoke success requires all three status files in the returned tarball to be
 `0`:
