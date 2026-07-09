@@ -1,6 +1,6 @@
 # Experiment 3 Report
 
-Last updated: 2026-07-09T17:44:47-05:00
+Last updated: 2026-07-09T18:13:30-05:00
 
 ## Step 1 Story
 
@@ -193,6 +193,15 @@ Step 2 diagnostic interpretation:
 - Diagnostic nearest-neighbor CSV: [experiments/exp3_directional_confusions/step2_safety/artifacts/geometry_nearest_neighbors_diagnostic.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/geometry_nearest_neighbors_diagnostic.csv).
 - Interpretation: raw choices are stable, but SALMON/cosine local neighborhoods are not stable enough to preregister Step 2. The current red gate is therefore a geometry-identifiability problem, not a vLLM token-length problem.
 - Execution note: the H100 attempt stalled before GPU memory allocation, so an Apptainer container could help only if startup was caused by CUDA/Python/vLLM drift. It would not fix shared model-cache stalls or the completed-run SALMON instability.
+
+Step 2 embedding-backend/rank diagnostic, using only the existing triplet CSVs:
+
+- Count-RDM baseline: direct choice-rate geometry is stable without embedding. Mean Pearson `0.9908`, Spearman `0.9905`, row-wise Spearman `0.9826`, NN top-1/top-2 `0.8667` / `1.0000`.
+- SALMON dimension sweep: increasing `d` helps global RDM reliability but does not solve local-neighbor stability. In the quick sweep, `d=15` reached mean Pearson `0.7988`, but NN top-1/top-2 stayed `0.2000` / `0.4000`. A focused `d=15` rank check gave Pearson `0.7788`, Spearman `0.7370`, row-wise Spearman `0.6613`, NN top-1/top-2 `0.2830` / `0.3830`.
+- SPoSE check: the official SPoSE codebase is [ViCCo-Group/SPoSE](https://github.com/ViCCo-Group/SPoSE). Its README describes odd-one-out/similarity training over `N x 3` triplets, and the code uses L1 regularization plus a nonnegativity penalty. A local SPoSE-style diagnostic was more stable than SALMON: best quick-grid setting (`dim=40`, `l1=0.01`) gave pooled test `0.9547`, Pearson `0.9207`, Spearman `0.8764`, row-wise Spearman `0.8058`, NN top-1/top-2 `0.4670` / `0.6500`. An official-like noncollapsed setting (`dim=40`, `lambda=0.008`) gave pooled test `0.9606`, Pearson `0.9094`, Spearman `0.8611`, row-wise Spearman `0.7551`.
+- Artifacts: [experiments/exp3_directional_confusions/step2_safety/artifacts/salmon_dimension_sweep.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/salmon_dimension_sweep.csv), [experiments/exp3_directional_confusions/step2_safety/artifacts/embedding_backend_comparison.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety/artifacts/embedding_backend_comparison.csv).
+
+Interpretation: the triplet data are not the weak link. The weak link is the unregularized low-dimensional SALMON geometry when we ask it for exact local neighbors on abstract safety categories. For Step 2, the next defensible move is to freeze a geometry backend before generating items: either use a rank/count-RDM scoring variant, or rerun a clean SPoSE-backed geometry and sanity gate. Do not register Step 2 neighbors from the current SALMON `d=5` RDM.
 
 Step 2 nearest-neighbor table:
 

@@ -233,3 +233,14 @@ But SALMON/cosine reliability remains red: mean run RDM Pearson = `0.56370873940
 Interpretation: the bottleneck is downstream geometry identifiability/stability, not vLLM output-token length or too few triplets. Identical canonical choices can still yield different local SALMON neighborhoods under different seeds.
 Step 2 neighbors remain unregistered and Step 2 behavior items remain absent.
 Diagnostic artifacts: `experiments/exp3_directional_confusions/step2_safety/artifacts/geometry_diagnostics.json`, `experiments/exp3_directional_confusions/step2_safety/artifacts/geometry_choice_agreement.csv`, `experiments/exp3_directional_confusions/step2_safety/artifacts/geometry_nearest_neighbors_diagnostic.csv`.
+
+## 2026-07-09T18:13:30-05:00 DECISION: Course-correction
+
+User asked whether Step 2 SALMON failed because `d=5` was too low, whether rank/Spearman stability is sufficient, and whether SPoSE should be tried.
+No new model triplets were generated. All diagnostics below refit or re-aggregated the existing Step 2 triplet CSVs.
+Count-RDM baseline from direct choice rates is highly stable: mean Pearson `0.9908`, Spearman `0.9905`, row-wise Spearman `0.9826`, nearest-neighbor top-1/top-2 `0.8667` / `1.0000`.
+SALMON dimension sweep: increasing dimension helps global RDM reliability. `d=15` reached mean Pearson `0.7988` in the quick sweep, and a focused rank check gave pooled held-out `0.8947`, mean per-run held-out `0.8746`, Pearson `0.7788`, Spearman `0.7370`, row-wise Spearman `0.6613`, nearest-neighbor top-1/top-2 `0.2830` / `0.3830`.
+Interpretation for SALMON: more `d` helps global/rank structure but does not fix exact local-neighbor instability, so do not rescue Step 2 by simply raising `d`.
+SPoSE diagnostic: found the official `ViCCo-Group/SPoSE` codebase online. It uses a linear embedding matrix, L1 regularization, a nonnegativity penalty, and softmax triplet/similarity losses. A local SPoSE-style fit on the existing triplets was more stable than SALMON: best quick-grid setting (`dim=40`, `l1=0.01`) gave pooled test `0.9547`, Pearson `0.9207`, Spearman `0.8764`, row-wise Spearman `0.8058`, nearest-neighbor top-1/top-2 `0.4670` / `0.6500`; an official-like noncollapsed setting (`dim=40`, `lambda=0.008`) gave pooled test `0.9606`, Pearson `0.9094`, Spearman `0.8611`, row-wise Spearman `0.7551`.
+Decision: Step 2 remains unregistered. The next defensible geometry backend is either a preregistered rank/count-RDM scoring variant or a clean SPoSE-backed geometry plus sanity gate, chosen before any Step 2 behavior items.
+Artifacts: `experiments/exp3_directional_confusions/step2_safety/artifacts/salmon_dimension_sweep.csv`, `experiments/exp3_directional_confusions/step2_safety/artifacts/embedding_backend_comparison.csv`.

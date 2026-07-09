@@ -1,0 +1,8 @@
+method,d,max_epochs,n_total,pooled_heldout_acc,mean_rdm_pearson,mean_embedding_procrustes_r2,mean_nn_top1,mean_nn_top2,canonical_rdm_pearson,canonical_proc_r2,canonical_nn_top1,notes
+salmon,2,1500,10164,0.8298,0.4359,0.6326,0.050,0.167,0.5318,0.7202,0.050,diagnostic sweep using existing Step 2 triplets only
+salmon,3,1500,10164,0.8667,0.4938,0.6419,0.150,0.267,0.5704,0.7552,0.150,diagnostic sweep using existing Step 2 triplets only
+salmon,5,1500,10164,0.8760,0.5683,0.7861,0.267,0.433,0.5555,0.7538,0.200,diagnostic sweep using existing Step 2 triplets only
+salmon,8,1500,10164,0.8829,0.5417,0.7995,0.133,0.350,0.4877,0.8219,0.250,diagnostic sweep using existing Step 2 triplets only
+salmon,10,1500,10164,0.8864,0.6045,0.8922,0.200,0.417,0.7386,0.9262,0.250,diagnostic sweep using existing Step 2 triplets only
+salmon,12,1500,10164,0.8982,0.7293,0.9039,0.217,0.433,0.7873,0.9370,0.400,diagnostic sweep using existing Step 2 triplets only
+salmon,15,1500,10164,0.8957,0.7988,0.8996,0.200,0.400,0.8475,0.9167,0.250,diagnostic sweep using existing Step 2 triplets only
