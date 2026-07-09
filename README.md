@@ -43,14 +43,18 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   model loading, then failed because the runtime image lacked a C compiler for
   Triton/vLLM LoRA kernels. Devel-image retry `5513195` completed successfully
   on an H100 80GB (`mmlu_abstract_algebra`, 20 examples, `acc=0.30`), and the
-  full 8-shard MMLU array is now submitted as `5513268`. Huth extraction debug
-  `5513178` completed cleanly, and the three-story Huth smoke `5513245` is
-  running on an L40S. Concept steering smoke `5513235` exposed a staging
-  visibility failure on a non-staging backfill node; retry `5513261` exposed
-  pip dependency shadowing; fixed no-deps retry `5513281` is queued and
-  satisfiable. These CHTC lanes require
-  `TARGET.CUDAGlobalMemoryMb >= 40000`, so small GPUs are no longer absorbing
-  jobs. H100 handled rank-16 lowrank MMLU, but rank-64 LoRA vLLM evals
+  full 8-shard MMLU array is running as `5513268`. Shards `1`, `3`, `5`, `6`,
+  and `7` landed on non-staging hosts and exited before model load; the
+  staging-constrained recovery cluster is `5513291` for exactly those five
+  shards. Huth extraction debug `5513178` completed cleanly, and the
+  three-story Huth smoke `5513245` is running on an L40S. Concept steering
+  smoke `5513235` exposed a staging visibility failure on a non-staging
+  backfill node; retry `5513261` exposed pip dependency shadowing; fixed
+  no-deps retry `5513281` is queued and satisfiable. MMLU CHTC jobs now require
+  `TARGET.HasCHTCStaging == true` plus `TARGET.CUDAGlobalMemoryMb >= 40000`;
+  other CHTC Llama GPU lanes require at least the 40GB GPU floor so small GPUs
+  are no longer absorbing jobs. H100 handled rank-16 lowrank MMLU, but
+  rank-64 LoRA vLLM evals
   (`taskvec_a0p25`, `scrambled`) stall before GPU allocation on `opt-a007`,
   even after local adapter staging.
 

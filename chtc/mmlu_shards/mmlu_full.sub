@@ -15,7 +15,7 @@ MAX_LORA_RANK = 64
 universe = container
 container_image = docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-devel
 docker_override_entrypoint = true
-requirements = (TARGET.CUDAGlobalMemoryMb >= $(MIN_CUDA_GLOBAL_MEMORY_MB))
+requirements = (TARGET.HasCHTCStaging == true) && (TARGET.CUDAGlobalMemoryMb >= $(MIN_CUDA_GLOBAL_MEMORY_MB))
 rank = TARGET.CUDAGlobalMemoryMb
 
 batch_name = coherence_mmlu_full_$(Cluster)

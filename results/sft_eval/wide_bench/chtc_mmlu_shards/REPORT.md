@@ -98,8 +98,12 @@ Next allowed CHTC step is a constrained smoke submission from the updated `chtc/
 - Run directory: `coherence-mmlu-shards-20260709-004133`
 - Cluster: `5513268`
 - Jobs: 8 full MMLU shard procs, `0` through `7`.
-- Status at 2026-07-09T01:12Z: all 8 procs idle, no hold reasons, no remote hosts assigned.
+- Status at 2026-07-09T01:19Z: procs `0`, `2`, and `4` are still running; procs `1`, `3`, `5`, `6`, and `7` exited early with status `66`.
 - Submit evidence: full-shard log stubs appeared in the run directory at 2026-07-08 20:10 local time after the successful smoke.
 - Requirements: `TARGET.CUDAGlobalMemoryMb >= 40000`, `request_gpus=1`, `request_cpus=8`, `request_memory=40GB`, `request_disk=80GB`.
 - `condor_q -better-analyze 5513268.0`: requirements are satisfiable; 37 slots match the full shard requirements, 1 slot is currently willing to run the job, and 51 more would match if drained.
-- Next action: monitor cluster `5513268`; pull full tarballs when procs complete and merge with `src/sft/merge_mmlu_shards.py`.
+- Failure mode: the failed procs landed on hosts without `/staging`, so the wrapper could not see `/staging/s/suresh27/models/llama31-8b-instruct` or `/staging/s/suresh27/adapters/taskvec_a0p25` and exited before model load.
+- Fix: `chtc/mmlu_shards/mmlu_smoke.sub` and `chtc/mmlu_shards/mmlu_full.sub` now require `TARGET.HasCHTCStaging == true` in addition to `TARGET.CUDAGlobalMemoryMb >= 40000`.
+- Recovery: submitted retry cluster `5513291` using `mmlu_full_retry_missing_staging.sub` and `mmlu_full_retry_missing_staging_manifest.tsv` for failed shards `1`, `3`, `5`, `6`, and `7`.
+- Retry status at 2026-07-09T01:22Z: cluster `5513291` has proc `0` running on `backfill1_7@dbrundagegpu5000.chtc.wisc.edu` for `shard_01` and procs `1`-`4` idle, no hold reasons. The running retry host reports an NVIDIA L40S with `45460` MB advertised GPU memory. `condor_q -better-analyze 5513291.0` reports 35 slots satisfying the staging+GPU+resource requirements, with 2 currently willing to run and 46 more matching if drained.
+- Next action: monitor clusters `5513268` and `5513291`; pull full and full-retry tarballs when procs complete and merge with `src/sft/merge_mmlu_shards.py`.

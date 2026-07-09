@@ -1408,9 +1408,24 @@ Full shard submission:
 - Submitted cluster: `5513268`
 - Jobs: 8 shard procs, `0` through `7`
 - First poll: all 8 idle, no hold reasons.
-- Next read: monitor `5513268`, pull each
-  `mmlu_full_taskvec_a0p25_<shard>_results.tgz`, then merge with
-  `src/sft/merge_mmlu_shards.py`.
+- Update: procs `0`, `2`, and `4` started on staging-visible hosts and remain
+  the original full-shard work to preserve. Procs `1`, `3`, `5`, `6`, and `7`
+  landed on non-staging hosts and exited `66` before model load because
+  `/staging/s/suresh27/models/llama31-8b-instruct` was unavailable.
+- Fix: `chtc/mmlu_shards/mmlu_smoke.sub` and `mmlu_full.sub` now require
+  `TARGET.HasCHTCStaging == true` in addition to the 40GB GPU-memory floor.
+- Retry submitted: cluster `5513291`, using
+  `mmlu_full_retry_missing_staging.sub` and
+  `mmlu_full_retry_missing_staging_manifest.tsv` for exactly shards `1`, `3`,
+  `5`, `6`, and `7`.
+- Commands run:
+  `chtc-push chtc/mmlu_shards/mmlu_full_retry_missing_staging_manifest.tsv 'chtc-runs/coherence-mmlu-shards-20260709-004133/'`;
+  `chtc-push chtc/mmlu_shards/mmlu_full_retry_missing_staging.sub 'chtc-runs/coherence-mmlu-shards-20260709-004133/'`;
+  `chtc-ssh 'cd ~/chtc-runs/coherence-mmlu-shards-20260709-004133 && condor_submit mmlu_full_retry_missing_staging.sub'`.
+- Next read: monitor `5513268` and `5513291`, pull original and retry
+  tarballs into
+  `results/sft_eval/wide_bench/chtc_mmlu_shards/coherence-mmlu-shards-20260709-004133/`,
+  then merge with `src/sft/merge_mmlu_shards.py`.
 
 ## 2026-07-08 active: fixed CHTC GPU smoke retries
 
