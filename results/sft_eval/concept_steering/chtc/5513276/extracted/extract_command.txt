@@ -1,0 +1,1 @@
+/opt/conda/bin/python3 src/sft/extract_concept_vectors.py --concepts coherence human_alignment --batch-size 1 --out-dir /var/lib/condor/execute/slot1/dir_307850/scratch/concept_steering_smoke_layer24_alpha_neg2_0_pos2/vectors --dtype bfloat16 --device cuda --overwrite --max-pairs 4 

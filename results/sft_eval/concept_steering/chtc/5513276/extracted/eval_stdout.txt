@@ -1,0 +1,10 @@
+[plan] {"alphas": [-2.0, 0.0, 2.0], "eval_sets": {"coherence": 2, "human_alignment": 2, "retention": 2}, "layers": [24], "max_items": 2, "model": "llama-3.1-8b-instruct", "norm_match": false, "smoke": false, "steer_concepts": ["coherence", "human_alignment"], "vector_mode": "unit"}
+[model] loading /staging/s/suresh27/models/llama31-8b-instruct on cuda (bfloat16)
+[eval] steer=coherence layer=24 alpha=-2
+[eval] steer=coherence layer=24 alpha=0
+[eval] steer=coherence layer=24 alpha=2
+[eval] steer=human_alignment layer=24 alpha=-2
+[eval] steer=human_alignment layer=24 alpha=0
+[eval] steer=human_alignment layer=24 alpha=2
+[summary] wrote /var/lib/condor/execute/slot1/dir_307850/scratch/concept_steering_smoke_layer24_alpha_neg2_0_pos2/sweep/SUMMARY.md
+[done] wrote /var/lib/condor/execute/slot1/dir_307850/scratch/concept_steering_smoke_layer24_alpha_neg2_0_pos2/sweep

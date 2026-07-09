@@ -4,9 +4,8 @@ Last updated: 2026-07-09.
 
 ## Current State
 
-Prepared, locally dry-run validated, and submitted to CHTC for the first GPU
-smoke. The first smoke failed before model load because the worker did not
-expose CHTC staging; the retry submit files now require staged-storage access.
+Prepared, locally dry-run validated, and passed on CHTC as cluster `5513276`.
+The bounded layer/alpha sweep is queued as cluster `5513297`.
 
 Owned files added in this handoff:
 
@@ -64,10 +63,9 @@ Observed dry-run eval plan:
 }
 ```
 
-## Next Action
+## CHTC Attempts
 
-Monitor CHTC cluster `5513235`, run directory
-`~/chtc-runs/coherence-concept-steering-20260709-005726`.
+Initial submission:
 
 Submission command:
 
@@ -104,9 +102,29 @@ Failure diagnosis:
 - the runner now uses `pip install --no-deps` for the overlay and explicitly
   lists non-torch dependencies so the container's CUDA-matched torch stack is
   preserved.
-- fixed no-deps retry cluster `5513281` was submitted from
-  `~/chtc-runs/coherence-concept-steering-20260709-011445`; first poll is idle,
-  no hold reason, and satisfiable.
+- fixed no-deps retry cluster `5513276` ran from
+  `~/chtc-runs/coherence-concept-steering-20260709-011336` and passed.
+
+Passing smoke:
+
+- cluster: `5513276`
+- local artifacts: `results/sft_eval/concept_steering/chtc/5513276/`
+- host: `dbrundagegpu5000.chtc.wisc.edu`
+- GPU: NVIDIA L40S, `max_gpu_memory_mb=45460`
+- `exit_status.txt`, `extract_exit_status.txt`, `eval_exit_status.txt`, and
+  `pip_install_exit_status.txt` are all `0`.
+- both vector files were written.
+- `sweep/sweep_results.csv` has the expected 18 rows.
+- retention positive preference stayed at `1.00` for both steering vectors and
+  all alpha settings.
+- target margins moved upward for positive alpha:
+  `coherence` on coherence `+0.0625`, and `human_alignment` on
+  human-alignment `+0.0419`, relative to alpha `0`.
+
+## Next Action
+
+Monitor sweep cluster `5513297`, run directory
+`~/chtc-runs/coherence-concept-steering-20260709-011336`.
 
 Smoke success requires all three status files in the returned tarball to be
 `0`:
@@ -115,5 +133,7 @@ Smoke success requires all three status files in the returned tarball to be
 - `extract_exit_status.txt`
 - `eval_exit_status.txt`
 
-Then inspect `sweep/SUMMARY.md` and `sweep/sweep_results.csv` before launching
-`concept_steering_sweep.sub`.
+For the sweep, pull
+`concept_steering_sweep_layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4_results.tgz`
+after completion and inspect `sweep/SUMMARY.md` and `sweep/sweep_results.csv`
+before considering any broader retention eval.

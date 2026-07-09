@@ -50,7 +50,8 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   three-story Huth smoke `5513245` is running on an L40S. Concept steering
   smoke `5513235` exposed a staging visibility failure on a non-staging
   backfill node; retry `5513261` exposed pip dependency shadowing; fixed
-  no-deps retry `5513281` is queued and satisfiable. MMLU CHTC jobs now require
+  no-deps retry `5513276` passed and produced vectors plus 18 smoke eval rows;
+  bounded layer/alpha sweep `5513297` is queued. MMLU CHTC jobs now require
   `TARGET.HasCHTCStaging == true` plus `TARGET.CUDAGlobalMemoryMb >= 40000`;
   other CHTC Llama GPU lanes require at least the 40GB GPU floor so small GPUs
   are no longer absorbing jobs. H100 handled rank-16 lowrank MMLU, but

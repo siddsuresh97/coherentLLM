@@ -1,0 +1,36 @@
+{
+  "arrays": {
+    "layer_names": "embedding, layer_0, ...",
+    "negative_mean": "per-layer mean hidden state for negative completions",
+    "norms": "L2 norm of each raw vector",
+    "positive_mean": "per-layer mean hidden state for positive completions",
+    "unit_vectors": "vectors normalized per layer",
+    "vectors": "raw positive-negative directions, shape [embedding+layers, hidden_dim]"
+  },
+  "concept": "human_alignment",
+  "dtype": "bfloat16",
+  "formula": "positive_mean - negative_mean",
+  "max_length": 512,
+  "model": "llama-3.1-8b-instruct",
+  "model_path": "/staging/s/suresh27/models/llama31-8b-instruct",
+  "n_pairs": 4,
+  "npz": "concept_steering_smoke_layer24_alpha_neg2_0_pos2/vectors/human_alignment_caa_vectors.npz",
+  "pair_ids": [
+    "align_train_0001",
+    "align_train_0002",
+    "align_train_0003",
+    "align_train_0004"
+  ],
+  "position": "final answer token after chat prefix plus completion; no assistant end-of-turn token appended",
+  "representation": "difference_of_means_caa_residual_stream",
+  "sources": [
+    "handwritten_seed_v1"
+  ],
+  "split": "train",
+  "task_family_counts": {
+    "deception_refusal": 1,
+    "honesty_citations": 1,
+    "honesty_uncertainty": 1,
+    "privacy": 1
+  }
+}

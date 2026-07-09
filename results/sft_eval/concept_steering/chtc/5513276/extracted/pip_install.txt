@@ -1,0 +1,51 @@
+Collecting huggingface-hub<1.0,>=0.24.0
+  Downloading huggingface_hub-0.36.2-py3-none-any.whl.metadata (15 kB)
+Collecting transformers<5.0.0,>=4.45.0
+  Downloading transformers-4.57.6-py3-none-any.whl.metadata (43 kB)
+Collecting accelerate>=0.33.0
+  Downloading accelerate-1.14.0-py3-none-any.whl.metadata (19 kB)
+Collecting safetensors>=0.4.5
+  Downloading safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.2 kB)
+Collecting pyyaml>=6.0
+  Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting numpy<2.3
+  Downloading numpy-2.2.6-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+Collecting tokenizers<0.23.0,>=0.22.0
+  Downloading tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.3 kB)
+Collecting regex
+  Downloading regex-2026.6.28-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+Collecting filelock
+  Downloading filelock-3.29.7-py3-none-any.whl.metadata (2.0 kB)
+Collecting requests
+  Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting tqdm
+  Downloading tqdm-4.68.4-py3-none-any.whl.metadata (57 kB)
+Collecting packaging
+  Downloading packaging-26.2-py3-none-any.whl.metadata (3.5 kB)
+Collecting psutil
+  Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (22 kB)
+Collecting typing-extensions
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Downloading huggingface_hub-0.36.2-py3-none-any.whl (566 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 566.4/566.4 kB 20.0 MB/s eta 0:00:00
+Downloading transformers-4.57.6-py3-none-any.whl (12.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.0/12.0 MB 155.0 MB/s eta 0:00:00
+Downloading accelerate-1.14.0-py3-none-any.whl (389 kB)
+Downloading safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (516 kB)
+Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 834.8 MB/s eta 0:00:00
+Downloading numpy-2.2.6-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.8/16.8 MB 248.1 MB/s eta 0:00:00
+Downloading tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 396.0 MB/s eta 0:00:00
+Downloading regex-2026.6.28-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (799 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 799.9/799.9 kB 841.4 MB/s eta 0:00:00
+Downloading filelock-3.29.7-py3-none-any.whl (46 kB)
+Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+Downloading tqdm-4.68.4-py3-none-any.whl (676 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 676.6/676.6 kB 835.5 MB/s eta 0:00:00
+Downloading packaging-26.2-py3-none-any.whl (100 kB)
+Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (155 kB)
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Installing collected packages: typing-extensions, transformers, tqdm, tokenizers, safetensors, requests, regex, pyyaml, psutil, packaging, numpy, huggingface-hub, filelock, accelerate
+Successfully installed accelerate-1.14.0 filelock-3.29.7 huggingface-hub-0.36.2 numpy-2.2.6 packaging-26.2 psutil-7.2.2 pyyaml-6.0.3 regex-2026.6.28 requests-2.34.2 safetensors-0.8.0 tokenizers-0.22.2 tqdm-4.68.4 transformers-4.57.6 typing-extensions-4.16.0

@@ -1335,10 +1335,25 @@ Update:
   `torch==2.13.0+cu130` into the overlay and shadowed the container's working
   torch/torchvision stack.
 - Runner fix: use `pip --no-deps` and explicit non-torch dependencies.
-- Fixed retry cluster `5513281` submitted from
-  `~/chtc-runs/coherence-concept-steering-20260709-011445`.
-- First poll: `5513281` is idle but satisfiable under the staging-visible
-  requirement; no hold reason.
+- Fixed no-deps retry cluster `5513276` ran from
+  `~/chtc-runs/coherence-concept-steering-20260709-011336` on
+  `dbrundagegpu5000.chtc.wisc.edu`, an NVIDIA L40S.
+- Pulled artifacts to `results/sft_eval/concept_steering/chtc/5513276/`.
+- Status files all passed: `exit_status.txt == 0`,
+  `extract_exit_status.txt == 0`, `eval_exit_status.txt == 0`, and
+  `pip_install_exit_status.txt == 0`.
+- The smoke wrote coherence and human-alignment CAA vectors plus the expected
+  18 forced-choice eval rows.
+- Positive alpha moved matching target margins upward relative to alpha `0`
+  (`coherence` on coherence `+0.0625`; `human_alignment` on human-alignment
+  `+0.0419`) while retention positive preference stayed at `1.00` for both
+  vectors across `-2/0/2`.
+- Interpretation: operational smoke passed, but the sample is only `n=2` per
+  eval set and specificity is not yet clean, so treat the effect as a scale-up
+  signal rather than a result.
+- Submitted bounded sweep cluster `5513297` from the same patched run
+  directory with layers `12,16,20,24`, alphas `-4,-2,0,2,4`, and full
+  contrast/eval sets.
 
 ## 2026-07-09 active: Huth/LeBel extraction debug passed; three-story smoke running
 

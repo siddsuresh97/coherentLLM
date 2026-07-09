@@ -1,7 +1,7 @@
 # Concept-Vector Steering Lane
 
-Status: implemented, locally syntax/dry-run validated, and submitted as a CHTC
-GPU smoke on 2026-07-09. The first submitted cluster is `5513235`.
+Status: CHTC GPU smoke passed on 2026-07-09 as cluster `5513276`.
+Bounded layer/alpha sweep is queued as cluster `5513297`.
 
 ## 2026-07-09 CHTC Smoke Submission
 
@@ -81,27 +81,84 @@ Patch:
 - the install list explicitly includes non-torch runtime dependencies and
   intentionally avoids replacing the container's torch stack.
 
-Retry:
+## 2026-07-09 Passing CHTC Smoke 5513276
 
-- cluster `5513281` was submitted from
-  `~/chtc-runs/coherence-concept-steering-20260709-011445`.
-- first poll: queued/idle, no hold reason; `condor_q -better-analyze` reports
-  one currently willing staging-visible high-memory GPU slot and 47 more if
-  drained.
+Run:
 
-Expected result bundle after completion:
+- CHTC run id: `coherence-concept-steering-20260709-011336`
+- cluster: `5513276`
+- remote directory: `~/chtc-runs/coherence-concept-steering-20260709-011336`
+- local artifacts: `results/sft_eval/concept_steering/chtc/5513276/`
+- host: `dbrundagegpu5000.chtc.wisc.edu`
+- GPU: NVIDIA L40S, `max_gpu_memory_mb=45460`
+
+Status files:
+
+| File | Status |
+| --- | ---: |
+| `exit_status.txt` | `0` |
+| `extract_exit_status.txt` | `0` |
+| `eval_exit_status.txt` | `0` |
+| `pip_install_exit_status.txt` | `0` |
+
+Artifacts:
+
+- vectors:
+  `results/sft_eval/concept_steering/chtc/5513276/extracted/vectors/{coherence,human_alignment}_caa_vectors.npz`
+- summary:
+  `results/sft_eval/concept_steering/chtc/5513276/extracted/sweep/SUMMARY.md`
+- metrics:
+  `results/sft_eval/concept_steering/chtc/5513276/extracted/sweep/sweep_results.csv`
+- per-item details:
+  `results/sft_eval/concept_steering/chtc/5513276/extracted/sweep/sweep_details.csv`
+
+Smoke readout:
+
+| Steering vector | Target eval | Alpha | Preference | Margin | Margin vs alpha 0 |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `coherence` | `coherence` | `-2` | 1.00 | 0.6875 | -0.1250 |
+| `coherence` | `coherence` | `0` | 1.00 | 0.8125 | 0.0000 |
+| `coherence` | `coherence` | `2` | 1.00 | 0.8750 | +0.0625 |
+| `human_alignment` | `human_alignment` | `-2` | 0.50 | 0.2371 | -0.0325 |
+| `human_alignment` | `human_alignment` | `0` | 0.50 | 0.2695 | 0.0000 |
+| `human_alignment` | `human_alignment` | `2` | 0.50 | 0.3114 | +0.0419 |
+
+Retention readout:
+
+- retention positive preference stayed at `1.00` for both steering vectors and
+  all alpha settings.
+- retention margins remained strongly positive:
+  `coherence` alpha `-2/0/2` = `11.6449 / 12.5201 / 13.3180`;
+  `human_alignment` alpha `-2/0/2` = `11.5869 / 12.5201 / 13.3773`.
+- no obvious retention collapse appears in this tiny forced-choice smoke.
+
+Interpretation:
+
+- the smoke is operationally successful: staged storage, dependency overlay,
+  vector extraction, and steering eval all pass.
+- positive alpha moves the matching target margins in the expected direction,
+  but `positive_preference` is saturated for coherence and unchanged for
+  human-alignment at `n=2`, so this is evidence to scale, not a final effect.
+- specificity is not yet clean: the human-alignment vector also raises the
+  coherence margin at alpha `2`; the larger sweep must quantify matching vs
+  nonmatching movement.
+
+## 2026-07-09 Bounded Sweep
+
+Cluster `5513297` is queued from the same patched run directory:
+`~/chtc-runs/coherence-concept-steering-20260709-011336`.
+
+Sweep arguments:
 
 ```text
-results/sft_eval/concept_steering/chtc/coherence-concept-steering-20260709-005726/
+sweep 12,16,20,24 -4+-2+0+2+4 ALL ALL 2 2 bfloat16 layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4
 ```
 
-Readout plan:
-
-- verify `exit_status.txt`, `extract_exit_status.txt`, and
-  `eval_exit_status.txt` are all `0`.
-- inspect `sweep/SUMMARY.md` and `sweep/sweep_results.csv`.
-- submit `concept_steering_sweep.sub` only if target rows move and retention
-  rows do not collapse relative to alpha `0`.
+This is the planned bounded scale-up: full contrast/eval sets, layers
+`12,16,20,24`, alphas `-4,-2,0,2,4`, and batch size 2. Pull
+`concept_steering_sweep_layers12_16_20_24_alpha_neg4_neg2_0_pos2_pos4_results.tgz`
+after completion and compare target, nonmatching, and retention rows against
+alpha `0`.
 
 ## Files
 

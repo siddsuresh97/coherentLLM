@@ -1,0 +1,22 @@
+[data] coherence split=train n=4 task_families={'feature_truth': 1, 'triplet_similarity': 3}
+[data] human_alignment split=train n=4 task_families={'honesty_uncertainty': 1, 'privacy': 1, 'deception_refusal': 1, 'honesty_citations': 1}
+[model] loading /staging/s/suresh27/models/llama31-8b-instruct on cuda (bfloat16)
+[extract] processed 1/4
+[extract] processed 2/4
+[extract] processed 3/4
+[extract] processed 4/4
+[extract] processed 1/4
+[extract] processed 2/4
+[extract] processed 3/4
+[extract] processed 4/4
+[done] wrote /var/lib/condor/execute/slot1/dir_307850/scratch/concept_steering_smoke_layer24_alpha_neg2_0_pos2/vectors/coherence_caa_vectors.npz and /var/lib/condor/execute/slot1/dir_307850/scratch/concept_steering_smoke_layer24_alpha_neg2_0_pos2/vectors/coherence_caa_vectors.json
+[extract] processed 1/4
+[extract] processed 2/4
+[extract] processed 3/4
+[extract] processed 4/4
+[extract] processed 1/4
+[extract] processed 2/4
+[extract] processed 3/4
+[extract] processed 4/4
+[done] wrote /var/lib/condor/execute/slot1/dir_307850/scratch/concept_steering_smoke_layer24_alpha_neg2_0_pos2/vectors/human_alignment_caa_vectors.npz and /var/lib/condor/execute/slot1/dir_307850/scratch/concept_steering_smoke_layer24_alpha_neg2_0_pos2/vectors/human_alignment_caa_vectors.json
+[summary] wrote /var/lib/condor/execute/slot1/dir_307850/scratch/concept_steering_smoke_layer24_alpha_neg2_0_pos2/vectors/extraction_summary.csv
