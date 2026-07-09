@@ -1,15 +1,15 @@
 # Experiment 1 Report - Triplet Detection of Concept Moves
 
-Current status: the CPU-reproducible scaffold and simulated detection smoke test are in place; local GPU execution is viable on `rogers-gpu-1` with the existing `coherence` env, using the direct-similarity fallback because this checkout lacks the full NOVA feature parquet needed for feature-listing supervision.
+Current status: the local `concentrated_drop_100` pathway check is running on `rogers-gpu-1` using the direct-similarity fallback because this checkout lacks the full NOVA feature parquet needed for feature-listing supervision. The behavioral floor is green; control LoRA training finished; edit LoRA training is in progress.
 
 ## Pipeline State
 
 - 0a feature-space base RDM: green
-- 0b behavioral triplet base RDM: ready for local GPU run
+- 0b behavioral triplet base RDM: green from local frozen-protocol runs
 - 1 item selection: green
 - 2 edit operator pre-check: draft only
-- 3 two-LoRA training: ready for local GPU run for `concentrated_drop_100` similarity fallback
-- 4 detection/localization: ready after local LoRA training
+- 3 two-LoRA training: in progress for `concentrated_drop_100` similarity fallback
+- 4 detection/localization: pending post-LoRA triplet runs
 - 5 resolution map: simulated smoke green; real map not started
 
 ## Item Choice
@@ -29,10 +29,62 @@ Artifacts:
 - Triplet runner: `scripts/run_experiment1_triplets.py`
 - Real GPU runner: `scripts/run_experiment1_real_gpu.sh`
 - Fallback pairwise SFT builder: `scripts/build_experiment1_similarity_sft_data.py`
+- Retroactive WandB uploader: `scripts/upload_experiment1_wandb.py`
 - Floor stats: `experiments/exp1_triplet_concept_move/floor_stats.json`
 - Feature MDS: `experiments/exp1_triplet_concept_move/figs/feature_mds.png`
 - Feature dendrogram: `experiments/exp1_triplet_concept_move/figs/feature_dendrogram.png`
 - Simulated heatmap: `experiments/exp1_triplet_concept_move/simulation/resolution_heatmap_simulated.png`
+
+## Run Configuration You Need To Know
+
+Active run: `concentrated_drop_100`, `SUPERVISION=similarity` (fallback lever 6.2, direct pairwise-similarity supervision). Detection is still the held-out frozen triplet task.
+
+Model:
+- Registry name: `llama-3.1-8b-instruct`
+- Exact local snapshot: `/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659`
+
+Local hardware/env:
+- Host: `rogers-gpu-1.discovery.wisc.edu`
+- GPU used: `CUDA_VISIBLE_DEVICES=0`, NVIDIA RTX A5000, 24 GB
+- Conda env: `/mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence`
+- Local inference backend: `transformers` with 4-bit loading, because local `vllm` import is unreliable in this env
+
+Triplet detection protocol:
+- Concepts: 30 selected items from `items.json`; target `antelope`, neighbor `bison`
+- Stimuli: full anchor/candidate enumeration, `30 * C(29, 2) = 12180` triplets per run
+- System prompt: `You are a helpful assistant who gives responses to questions.`
+- Canonical user prompt: `Answer using only one word - {concept1} or {concept2} and not {anchor}. Which is more similar in semantic meaning to {anchor}?`
+- Paraphrase user prompt: `Reply with only {concept1} or {concept2}. Compared with {anchor}, which option is closer in meaning?`
+- Base floor runs: `base_seed_a_canonical_prompt`, `base_seed_b_canonical_prompt`, `base_seed_a_paraphrase_prompt`
+- Generation settings: temperature 0, max new tokens 8, max context length 1024, batch size 16
+
+Behavioral floor result:
+- Status: green
+- Mean upper-triangle Pearson: 0.8066
+- Canonical rerun vs base: Pearson 1.0000, RMS 0.0000
+- Paraphrase vs base: Pearson 0.6133, RMS 0.1768
+- Base RDM saved to `experiments/exp1_triplet_concept_move/artifacts/rdms/rdm_base.npy`
+
+Training supervision:
+- Fallback training prompt: `Answer with only one number from 1 to 7, considering 1 as 'extremely dissimilar', 2 as 'very dissimilar', 3 as 'likely dissimilar', 4 as 'neutral', 5 as 'likely similar', 6 as 'very similar', and 7 as 'extremely similar': How semantically similar is {a} and {b}?`
+- Control data: 4,872 examples, replay pairs excluding target pairs
+- Edit data: 5,220 examples, same replay plus 348 edited target-pair examples
+- Data manifest: `experiments/exp1_triplet_concept_move/sft_similarity_data/concentrated_drop_100/manifest.json`
+
+LoRA training settings:
+- Backend: PEFT QLoRA, 4-bit NF4, bf16 compute
+- Rank/alpha: 32
+- Seed: 1729
+- Steps: 400 per arm
+- Batch: per-device 4, gradient accumulation 8
+- Target modules: `q_proj`, `k_proj`, `v_proj`, `o_proj`, `gate_proj`, `up_proj`, `down_proj`
+- Live WandB: off for this active run (`--report_to none`); retroactive upload script is `scripts/upload_experiment1_wandb.py`
+
+Active run command:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 TRANSFORMERS_NO_TORCHVISION=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 PYTHONUNBUFFERED=1 COHERENCE_ENV=/mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence HF_HOME=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models BASE_MODEL_PATH=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659 TRAIN_BASE_MODEL=/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659 SUPERVISION=similarity TRIPLET_BACKEND=transformers TRIPLET_LOAD_IN_4BIT=1 TRIPLET_BATCH_SIZE=16 MAX_MODEL_LEN=1024 TRAIN_BACKEND=peft TRAIN_BATCH_SIZE=4 TRAIN_GRAD_ACCUM=8 TRAIN_STEPS=400 LORA_RANK=32 scripts/run_experiment1_real_gpu.sh concentrated_drop_100
+```
 
 ## Perturbations Tried
 
@@ -49,20 +101,19 @@ Artifacts:
 
 ## Current Course-Correction Reasoning
 
-The archived 128-item Llama triplet embedding is useful as a provisional behavioral map, but it does not satisfy the hard gate. The CHTC pathway job first runs the frozen 30-item protocol for the base model at least twice with the canonical prompt and once with the paraphrase prompt, then refreshes `floor_stats.json` from those behavioral runs before any LoRA training.
+The archived 128-item Llama triplet embedding was useful as a provisional behavioral map, but it did not satisfy the hard gate. The active local pathway job collected the frozen 30-item protocol for the base model twice with the canonical prompt and once with the paraphrase prompt, then refreshed `floor_stats.json` from those behavioral runs before LoRA training.
 
 The original feature-listing supervision path is still implemented, but it requires `data/nova/verified_matrix_cogsci2025.parquet`, which is not present in this checkout. Rather than blocking on that missing file, the first real check uses fallback lever 6.2: direct pairwise-similarity supervision from the committed `sft_similarity_data/concentrated_drop_100` files, while detection remains the held-out frozen triplet task.
 
-Exact next runner pattern:
+Re-run base floor manually, if needed:
 
 ```bash
-python scripts/run_experiment1_triplets.py --model llama-3.1-8b-instruct --out-run base_seed_a_canonical_prompt --prompt-variant canonical --overwrite
-python scripts/run_experiment1_triplets.py --model llama-3.1-8b-instruct --out-run base_seed_b_canonical_prompt --prompt-variant canonical --overwrite
-python scripts/run_experiment1_triplets.py --model llama-3.1-8b-instruct --out-run base_seed_a_paraphrase_prompt --prompt-variant paraphrase --overwrite
-python scripts/run_experiment1_real_gpu.sh concentrated_drop_100
+python scripts/run_experiment1_triplets.py --model llama-3.1-8b-instruct --backend transformers --load-in-4bit --batch-size 16 --max_model_len 1024 --out-run base_seed_a_canonical_prompt --prompt-variant canonical --overwrite
+python scripts/run_experiment1_triplets.py --model llama-3.1-8b-instruct --backend transformers --load-in-4bit --batch-size 16 --max_model_len 1024 --out-run base_seed_b_canonical_prompt --prompt-variant canonical --overwrite
+python scripts/run_experiment1_triplets.py --model llama-3.1-8b-instruct --backend transformers --load-in-4bit --batch-size 16 --max_model_len 1024 --out-run base_seed_a_paraphrase_prompt --prompt-variant paraphrase --overwrite
 ```
 
-Full GPU path once a GPU host is available:
+Default make target:
 
 ```bash
 make experiment1-real-gpu
@@ -74,10 +125,10 @@ CHTC pathway-check path is prepared for the first real run:
 chtc/exp1_triplet_move/submit_exp1_pathway.sh
 ```
 
-Local GPU path on `rogers-gpu-1`:
+Local GPU path on `rogers-gpu-1` for the current fallback:
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 COHERENCE_ENV=/mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence SUPERVISION=similarity TRIPLET_BACKEND=transformers TRIPLET_LOAD_IN_4BIT=1 TRIPLET_BATCH_SIZE=16 MAX_MODEL_LEN=1024 TRAIN_BACKEND=peft TRAIN_BATCH_SIZE=4 scripts/run_experiment1_real_gpu.sh concentrated_drop_100
+CUDA_VISIBLE_DEVICES=0 COHERENCE_ENV=/mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence SUPERVISION=similarity TRIPLET_BACKEND=transformers TRIPLET_LOAD_IN_4BIT=1 TRIPLET_BATCH_SIZE=16 MAX_MODEL_LEN=1024 TRAIN_BACKEND=peft TRAIN_BATCH_SIZE=4 TRAIN_GRAD_ACCUM=8 scripts/run_experiment1_real_gpu.sh concentrated_drop_100
 ```
 
 The current CHTC path also defaults to the similarity fallback:
@@ -91,13 +142,14 @@ chtc/exp1_triplet_move/submit_exp1_pathway.sh
 - Feature-space map is established over all 128 held-out concepts and the selected 30-item subset.
 - `antelope` has a clear local feature-space neighbor (`bison`) plus a broader animal cluster, so a concentrated push has a concrete target pair.
 - The frozen triplet protocol has 12180 judgments per run and hashes the exact stimuli files.
-- Behavioral base is provisional: archived_triplet_embedding from `data/scale128/llama-3.1-8b-instruct_triplet_d5.npy`.
+- Behavioral base is now real, not provisional: the local frozen-protocol floor is green with mean upper-triangle Pearson 0.8066 and base RDM saved to `artifacts/rdms/rdm_base.npy`.
 - Simulated oracle smoke test recovers injected moves through the triplet pipeline: concentrated edits cross median SNR > 1 at `concentrated_drop_065` (median SNR 1.263; target top-ranked in 4/5 seeds) and are clean at `concentrated_drop_100` (median SNR 2.075; target top-ranked in 5/5 seeds). This validates the scorer/heatmap mechanics only, not the model-edit claim.
 - Fallback lever 6.2 is staged: `sft_similarity_data/concentrated_drop_100/manifest.json` dry-runs direct pairwise-similarity supervision with 4,872 control examples and 5,220 edit examples, while keeping detection held out as triplets.
 
 ## Live Risks
 
-- Missing true behavioral floor: local/CHTC pathway job collects required runs listed in `triplet_protocol.json` before training.
+- Behavioral floor is green for the active local run; future sweeps should reuse the same frozen protocol and compare against this floor.
 - Local GPU access requires escalated execution from this sandbox: outside the sandbox, `nvidia-smi` sees two idle RTX A5000 GPUs; inside the regular sandbox `/dev/nvidia*` is hidden.
 - Feature-listing data source is missing: restore `data/nova/verified_matrix_cogsci2025.parquet` before using `SUPERVISION=feature`; current run uses direct-similarity fallback instead.
+- Current local pathway run is file-logged, not live-WandB-logged: upload after completion with `scripts/upload_experiment1_wandb.py` from an environment that has `wandb` installed.
 - Candidate edits are feature-space drafts only: promote them to `edits/` only after the behavioral gate is green.

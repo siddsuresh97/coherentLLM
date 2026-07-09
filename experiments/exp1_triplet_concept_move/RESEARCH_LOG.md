@@ -105,3 +105,24 @@
 - Choice: use `TRIPLET_BACKEND=transformers`, `TRIPLET_LOAD_IN_4BIT=1`, `COHERENCE_ENV=/mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence`, and conservative A5000 settings for the local pathway check.
 - Why this and not the alternatives: the regular sandbox hides GPU devices, but escalated local commands see two idle GPUs. The `coherence` env can run torch/CUDA and Transformers generation; vLLM is not currently a reliable local backend because imports hang through the installed stack. CHTC remains available, but local GPUs avoid queue latency for the first pathway check.
 - What would change this decision: if local training fails due missing PEFT/runtime dependencies or the 12,180-triplet runs are too slow, switch back to CHTC or repair a dedicated vLLM environment.
+
+### NOTE 2026-07-09 14:35 - WandB logging for future runs
+- Current active local pathway run is file-only for training telemetry because `scripts/run_experiment1_real_gpu.sh` passes `--report_to none` into both LoRA training calls, and the `coherence` env does not currently import `wandb`.
+- Why it happened: I disabled WandB to avoid auth/network/package issues blocking the first unattended local/CHTC pathway check. That made the run more robust but less visible.
+- Future action: before the next serious sweep, install/verify `wandb` in the selected env and run with training reporting enabled. Also add explicit triplet-run metrics logging if live generation progress matters, because the triplet runner itself does not currently log to WandB.
+
+## 2026-07-09 14:45 Active local run context made explicit
+- Goal this session: make the report/log self-contained enough that the active run can be audited without reading every script.
+- What I ran / built: updated `REPORT.md` with exact model snapshot, hardware, environment, prompts, triplet protocol, floor result, supervision data counts, LoRA settings, and the active command line.
+- Result (numbers; plots saved to /figs with filenames): active model is `llama-3.1-8b-instruct` from snapshot `0e9e39f249a16976918f6564b8830bc894c89659`; host is `rogers-gpu-1.discovery.wisc.edu`; GPU is RTX A5000 via `CUDA_VISIBLE_DEVICES=0`; env is `/mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence`. Frozen triplet floor is green with mean upper-triangle Pearson 0.8066; canonical rerun Pearson 1.0000/RMS 0.0000; paraphrase Pearson 0.6133/RMS 0.1768.
+- Interpretation (what the result means, not just restating it): the baseline is now a real frozen-protocol behavioral floor, not the archived provisional embedding. The current run is a fallback-lever pathway test: direct pairwise-similarity LoRA supervision, evaluated only through held-out triplet judgments.
+- Lit found + how it changes the plan: no new literature in this operational documentation step.
+- Decision / next step + WHY this over the alternatives I considered: keep both the exact prompts and the exact command in `REPORT.md` rather than relying on script defaults. The alternative was to cite `triplet_protocol.json` and `run_experiment1_real_gpu.sh` only, but that makes the report too opaque for audit. This change makes clear which parts are detection prompts, which are fallback training prompts, and which settings are local execution details.
+- Open risks: report status must be refreshed after edit training, post-LoRA triplet runs, and detection scoring finish; until then, SNR and final verdict remain pending.
+
+### NOTE 2026-07-09 14:45 - Exact prompts and supervision distinction
+- Detection prompt template: `Answer using only one word - {concept1} or {concept2} and not {anchor}. Which is more similar in semantic meaning to {anchor}?`
+- Detection paraphrase template: `Reply with only {concept1} or {concept2}. Compared with {anchor}, which option is closer in meaning?`
+- System prompt for triplet generation: `You are a helpful assistant who gives responses to questions.`
+- Training prompt for the current fallback only: `Answer with only one number from 1 to 7, considering 1 as 'extremely dissimilar', 2 as 'very dissimilar', 3 as 'likely dissimilar', 4 as 'neutral', 5 as 'likely similar', 6 as 'very similar', and 7 as 'extremely similar': How semantically similar is {a} and {b}?`
+- Why this matters: the current run does not test feature-listing supervision. It tests whether a deliberately strong similarity-supervised concept move can be recovered by the frozen triplet detector.

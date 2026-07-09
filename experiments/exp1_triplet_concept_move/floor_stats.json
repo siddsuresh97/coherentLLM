@@ -1,23 +1,42 @@
 {
-  "archived_raw_rows": 10000,
-  "archived_raw_source": "results/raw_128/llama-3.1-8b-instruct/triplet.csv",
-  "archived_split_half": {
-    "mean_upper_triangle_pearson": 0.2503790451153491,
-    "overall_rms_floor_median": 0.4508940501030658,
-    "overall_rms_floor_p90": 0.46808435843747653,
-    "pair_abs_floor_median": 0.33333333333333337,
-    "pair_abs_floor_p90": 0.75,
-    "spearman_brown_like_reliability": 0.40048503066884217
-  },
-  "bootstrap_splits": 64,
-  "floor_interpretation": "Use these archived split-half numbers only for engineering triage. The experiment's reliability floor must come from fresh canonical and paraphrase runs over the selected 30 concepts.",
-  "gate_passed": false,
-  "missing_required_protocol_runs": [
+  "base_run": "base_seed_a_canonical_prompt",
+  "floor_interpretation": "This is the experiment floor: canonical rerun plus paraphrase variation under the frozen 30-item protocol.",
+  "gate_passed": true,
+  "missing_required_protocol_runs": [],
+  "present_required_protocol_runs": [
     "base_seed_a_canonical_prompt",
     "base_seed_b_canonical_prompt",
     "base_seed_a_paraphrase_prompt"
   ],
-  "present_required_protocol_runs": [],
-  "status": "red",
-  "why_not_green": "Independent model runs under the frozen 30-item protocol are missing. The numbers below are archived 128-run split-half diagnostics only."
+  "protocol_comparisons": [
+    {
+      "overall_rms_vs_base": 0.0,
+      "pair_abs_median_vs_base": 0.0,
+      "pair_abs_p90_vs_base": 0.0,
+      "run": "base_seed_b_canonical_prompt",
+      "upper_triangle_pearson_vs_base": 1.0
+    },
+    {
+      "overall_rms_vs_base": 0.17675596024345472,
+      "pair_abs_median_vs_base": 0.1071428571428572,
+      "pair_abs_p90_vs_base": 0.2857142857142858,
+      "run": "base_seed_a_paraphrase_prompt",
+      "upper_triangle_pearson_vs_base": 0.6132787160567791
+    }
+  ],
+  "protocol_floor": {
+    "mean_upper_triangle_pearson": 0.8066393580283895,
+    "overall_rms_floor_max": 0.17675596024345472,
+    "overall_rms_floor_mean": 0.08837798012172736,
+    "pair_abs_floor_median_max": 0.1071428571428572,
+    "pair_abs_floor_p90_max": 0.2857142857142858
+  },
+  "required_protocol_runs": [
+    "base_seed_a_canonical_prompt",
+    "base_seed_b_canonical_prompt",
+    "base_seed_a_paraphrase_prompt"
+  ],
+  "source": "frozen_30_item_protocol_runs",
+  "status": "green",
+  "why_not_green": ""
 }
