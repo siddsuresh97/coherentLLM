@@ -263,10 +263,26 @@ directory, `encoding_exit_status.txt == 0`, `encoding/summary.csv`, and
 two short stories and the held-out story is fixed to `wheretheressmoke`.
 
 5. For high-data scaling after smoke:
-   - Stage `/staging/s/suresh27/datasets/ds003020-highdata`.
-   - Keep `wheretheressmoke` held out, or move to multi-fold held-out stories.
-   - Pre-register a fixed layer set or perform layer selection using training/validation stories only.
-   - Use the same layer set, context length, alpha grid, trim, FIR delays, voxel mask, and evaluation stories for all arms.
+   - Do not rerun the smoke. Uncapped cluster `5513373` already validated
+     all-subject full-voxel execution.
+   - Do not raw-stage high-data in the current quota state: CHTC reported
+     `/staging/s/suresh27` at `1120/1000` files and `24.3209/100` GB on
+     `2026-07-08 21:43 CDT`.
+   - Prefer packed high-data story artifacts under a path such as
+     `/staging/s/suresh27/datasets/ds003020-highdata-packs/`, unpacked into job
+     scratch by extraction/encoding jobs.
+   - If raw-staging instead, first free file count and enough disk to hold the
+     420-file, 76.86 GB high-data manifest without duplicating the smoke root.
+   - Keep `wheretheressmoke` held out for continuity only if using a fixed smoke
+     comparison; the scientific high-data result should use pre-registered
+     multi-fold held-out stories.
+   - Pre-register a fixed layer set or perform layer selection using
+     training/validation stories only.
+   - Use the same layer set, context length, alpha grid, trim, FIR delays,
+     voxel mask, and evaluation stories for all arms.
+
+The current high-data experiment plan, command shapes, semantic-hub/MEMP bridge
+design, and blockers are in `NEXT_EXPERIMENT_PLAN.md`.
 
 ## Fair Base vs LoRA Evaluation
 

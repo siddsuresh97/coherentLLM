@@ -2,8 +2,8 @@
 
 Generated: 2026-07-08T23:13:09.747553+00:00
 
-Manual update: 2026-07-09 after CHTC extraction debug cluster `5513178`
-completed and full smoke extraction cluster `5513245` was submitted.
+Manual update: 2026-07-08 21:44 CDT after uncapped encoding cluster `5513373`
+completed and high-data staging was rechecked.
 
 ## Dataset
 
@@ -21,6 +21,10 @@ completed and full smoke extraction cluster `5513245` was submitted.
 - If the smoke encoding path works, stage the high-data `UTS01`-`UTS03` subset under `/staging/s/suresh27/datasets/ds003020-highdata`.
 - Do staging with a CPU/download job or local download plus rsync; do not consume a GPU for data transfer.
 - The AP currently lacks `datalad`, `git-annex`, `openneuro`, `aws`, and `aria2c`, so a containerized downloader is the safer CHTC route.
+- Current quota means raw high-data staging should not be submitted yet:
+  `/staging/s/suresh27` is using `1120/1000` files and `24.3209/100` GB. The
+  high-data manifest adds 420 files and 76.86 GB, so use packed story artifacts
+  or free file count/disk first.
 
 ## Staging Status
 
@@ -54,6 +58,15 @@ completed and full smoke extraction cluster `5513245` was submitted.
   `encoding_exit_status.txt == 0`, `summary.csv`, and `alpha_cv.csv`.
 - CPU-only scale check cluster `5513350` passed from the same bundle for capped
   `UTS02,UTS03` encoding.
+- Uncapped all-subject CPU encoding cluster `5513373` passed from the same
+  bundle with `MAX_VOXELS=0`, all three subjects, and all 36 full-voxel rows.
+  This validates the technical path; it does not show a base-beating
+  task-vector result.
+- High-data staging status at `2026-07-08 21:43 CDT`: not submitted. CHTC
+  quota check showed `/staging/s/suresh27` at `1120/1000` files and
+  `24.3209/100` GB. The next safe staging design is one packed artifact per
+  story, e.g. `ds003020-highdata-packs/<story>.tar.zst`, unpacked in scratch by
+  feature-extraction and encoding jobs.
 - Duplicate recovery cluster `5513310` was removed while idle.
 - Duplicate cluster `5513244` held before model work because its submit
   expected a missing output tarball; it was removed with `condor_rm`.
@@ -75,7 +88,9 @@ completed and full smoke extraction cluster `5513245` was submitted.
 - Stories: all 84 shared preprocessed stories across `UTS01, UTS02, UTS03`.
 - Files: 420 total; missing metadata entries: 0
 - Planned size: 76.86 GB (71.58 GiB)
-- This fits the observed 100 GB CHTC staging quota if only the needed WAV, TextGrid, and author-preprocessed HF5 files are staged.
+- This fits the nominal 100 GB CHTC staging quota only after freeing duplicate
+  smoke/other staging data or using packed artifacts. It does not fit the
+  current file quota state.
 
 | Kind | GB | GiB |
 |---|---:|---:|
@@ -91,8 +106,8 @@ completed and full smoke extraction cluster `5513245` was submitted.
 
 ## Next
 
-1. Decide whether to uncap smoke voxels for the three-subject smoke or proceed
-   to high-data staging.
-2. If the smoke remains stable, stage the high-data `UTS01`-`UTS03` subset under
-   `/staging/s/suresh27/datasets/ds003020-highdata`.
-3. Run the full high-data encoding jobs only after the smoke report is committed.
+1. Do not uncap or rerun the three-subject smoke; `5513373` already did this.
+2. Unblock high-data staging by packed story artifacts or by freeing staging
+   file count below the raw-staging requirement.
+3. Stage the high-data `UTS01`-`UTS03` subset only after quota checks pass, then
+   run the high-data plan in `NEXT_EXPERIMENT_PLAN.md`.

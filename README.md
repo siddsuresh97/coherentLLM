@@ -17,18 +17,17 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
 - **fMRI:** the THINGS-fMRI pipeline works. Ventral Visual shows the expected
   object-RSA signal and scrambled-control separation, but aligned arms are
   mostly flat versus base in the primary visual ROI. The Huth/LeBel
-  narrative-fMRI lane now has local/CHTC audit bundles, completed CHTC staging
-  smoke (`5513059`), and a passed GPU extraction debug (`5513178`). The staged
-  dataset at `/staging/s/suresh27/datasets/ds003020-smoke` contains all 15
-  planned smoke files, 7.88 GB, with no missing manifest paths. The extraction
-  debug produced four arm NPZ files for `sweetaspie` with `hidden` shape
-  `(64, 1, 4096)`. Three-story staged-output extraction `5513245` then wrote
-  only the base features before hitting staging directory quota; bundle-output
-  recovery extraction `5513306` passed with all 12 arm/story NPZs, and capped
-  CPU ridge encoding `5513337` passed as a path-validation smoke. CPU-only
-  `UTS02,UTS03` scale check `5513350` also passed from the same feature
-  bundle; `UTS03` shows small positive smoke predictivity, but this is still a
-  two-training-story, 2000-voxel path check.
+  narrative-fMRI lane has now passed the full technical smoke chain: staging
+  audit `5513059`, GPU extraction debug `5513178`, bundle-output extraction
+  `5513306`, capped CPU encodings `5513337`/`5513350`, and uncapped all-subject
+  full-voxel CPU encoding `5513373`. The uncapped smoke used
+  `sweetaspie,againstthewind` to predict held-out `wheretheressmoke` for
+  `UTS01`-`UTS03` and returned all 36 rows. It validates the path, but it is not
+  a base-beating task-vector result: layer-16 subject-mean Pearson `r` is base
+  `0.009785`, `taskvec_a0p25` `0.009137`, `lowLR` `0.008287`, scrambled
+  `0.004988`. The next Huth/Fedorenko step is high-data story scaling with
+  packed staging artifacts and pre-registered folds; current CHTC staging is
+  blocked by file quota (`1120/1000` files), not by code correctness.
 - **fMRI x hub bridge:** the new concept-held-out regression does not support a
   clean semantic-hub explanation of Ventral Visual RSA. Averaged hub predictors
   are roughly tied with single prompt spokes in Ventral Visual, while
@@ -92,6 +91,8 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   [`results/sft_huth_lebel/STAGING_PLAN.md`](results/sft_huth_lebel/STAGING_PLAN.md)
 - Huth/LeBel encoding plan:
   [`results/sft_huth_lebel/ENCODING_PLAN.md`](results/sft_huth_lebel/ENCODING_PLAN.md)
+- Huth/Fedorenko next experiment plan:
+  [`results/sft_huth_lebel/NEXT_EXPERIMENT_PLAN.md`](results/sft_huth_lebel/NEXT_EXPERIMENT_PLAN.md)
 - fMRI x semantic-hub bridge:
   [`results/sft_fmri_semantic_bridge/REPORT.md`](results/sft_fmri_semantic_bridge/REPORT.md)
 - Held-out fMRI hub regression:
@@ -503,9 +504,14 @@ Current plan:
   `5513178` passed, bundle-output three-story extraction `5513306` passed, and
   capped CPU ridge encoding `5513337` passed over
   `sweetaspie`/`againstthewind` to held-out `wheretheressmoke`. The follow-up
-  capped `UTS02,UTS03` scale check `5513350` also passed, validating all three
-  smoke subjects. The correlations are still smoke-level under the
-  two-training-story, 2000-voxel cap.
+  capped `UTS02,UTS03` scale check `5513350` also passed, and uncapped
+  all-subject full-voxel encoding `5513373` returned all 36 expected rows. The
+  smoke confirms the path but does not show a task-vector improvement over base.
+  The next plan is in
+  [`results/sft_huth_lebel/NEXT_EXPERIMENT_PLAN.md`](results/sft_huth_lebel/NEXT_EXPERIMENT_PLAN.md):
+  high-data `UTS01`-`UTS03`, fixed/nested layer rules, semantic-hub/MEMP bridge
+  tables, and Fedorenko claims restricted to exploratory atlas/localizer status
+  unless subject-specific language fROIs are added.
 - Fedorenko/EvLab language-network: prefer individually localized
   `sentences > nonword lists` masks. Atlas/group language ROIs are exploratory.
 - Benchmark-drops: first finish eval-only controls (`lowrank`, `scrambled`,
@@ -535,9 +541,10 @@ Scientific next:
    [`research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md`](research/SEMANTIC_HUB_PAPER_ADAPTED_PLAN.md),
    starting with CPU-only matched-vs-baseline similarity from existing hidden
    states.
-2. Huth/LeBel language-fMRI: use the staged smoke subset to run the tiny
-   no-chat-template hidden-state extraction, word-to-TR alignment, and ridge
-   encoding smoke before staging the 76.86 GB high-data subset.
+2. Huth/LeBel language-fMRI: do not rerun the smoke path. First unblock CHTC
+   staging file quota or switch to packed high-data story artifacts, then run
+   the pre-registered high-data Huth/Fedorenko plan in
+   [`results/sft_huth_lebel/NEXT_EXPERIMENT_PLAN.md`](results/sft_huth_lebel/NEXT_EXPERIMENT_PLAN.md).
 3. fMRI bridge: do not overclaim Ventral Visual hub evidence. If continuing,
    run fixed-layer/nested-CV confirmation after the Huth smoke path is staged.
 4. Benchmark mechanism: inspect WiC/ARC failures and tasks with gains to decide

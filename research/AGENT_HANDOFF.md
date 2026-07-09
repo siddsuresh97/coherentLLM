@@ -25,6 +25,14 @@ Current queue snapshot:
   `1` GPU, `8` CPUs, at least `64GB` RAM, `>=40GB` GPU memory, and
   `HasChtcStaging==true`.
 
+Huth/Fedorenko staging blocker:
+
+- `/staging/s/suresh27`: `24.3209/100` GB used.
+- File quota: `1120/1000` files used.
+- High-data ds003020 raw manifest would add 420 files and 76.86 GB, so do not
+  raw-stage high-data until file count/disk are freed or packed story artifacts
+  are implemented.
+
 Held jobs: none.
 
 Monitor decision: no additional GPU job was submitted from this lane. Boole's
@@ -46,6 +54,9 @@ Completed since the previous handoff:
 - The concept checkpoint is pushed in `30e6601`.
 - Huth uncapped encoding `5513373.0` completed with `ExitCode=0` and
   `RemoteWallClockTime=986.0`; the result checkpoint is pushed in `ff86cb4`.
+- Huth/Fedorenko next-experiment plan was refreshed after quota inspection in
+  `results/sft_huth_lebel/NEXT_EXPERIMENT_PLAN.md`. No fMRI CHTC job was
+  submitted in this checkpoint because staging file quota is already exceeded.
 
 ## Active Agent Goals
 
@@ -84,6 +95,12 @@ Completed agents already closed:
   Pearson `r` across subjects is base `0.009785`, `taskvec_a0p25` `0.009137`,
   `lowLR` `0.008287`, and scrambled `0.004988`; this validates the full-voxel
   smoke path but does not show task-vector improvement over base.
+- The next fMRI result should be high-data story scaling, not a rerun of the
+  smoke. Use `results/sft_huth_lebel/NEXT_EXPERIMENT_PLAN.md` as the current
+  handoff: packed story staging first, then one-GPU per-story extraction,
+  full-voxel multi-fold encoding, and Fedorenko claims restricted to
+  exploratory atlas/localizer status unless subject-specific language fROIs are
+  added.
 - The semantic-hub/MEMP paper-method lane is committed in `aecf2cc`; use
   `taskvec_a0p25` as the primary arm and gate claims on paper-style controls.
 - The retention failure-suite gate is committed in `2afd0f2`; the first smoke is

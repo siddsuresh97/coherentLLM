@@ -42,6 +42,12 @@ This directory tracks the ds003020 natural-language fMRI path for testing whethe
   same-layer base only for `UTS02` L16 (`0.011037` vs `0.010409`);
   `lowLR` trails base in all nine subject/layer cells; `scrambled` is usually
   lower and is negative for `UTS02` L24/L32.
+- Next-experiment planning is updated in `NEXT_EXPERIMENT_PLAN.md`. The next
+  scientific run should be high-data story scaling, not another smoke rerun.
+  Current CHTC staging state blocks immediate raw high-data submission:
+  `/staging/s/suresh27` is at `1120/1000` files despite only `24.3209/100` GB
+  used. Use packed story artifacts or free file count before staging the
+  84-story, 420-file, 76.86 GB high-data manifest.
 - Duplicate cluster `5513244` held before work because its submit expected a
   missing output tarball; it was removed with `condor_rm`.
 
@@ -84,6 +90,8 @@ Fedorenko/EvLab language-network claims require independent subject-specific lan
   `UTS01,UTS02,UTS03` full-voxel smoke, result bundle, Condor logs, exact
   summary table, and extracted CSVs.
 - `ENCODING_PLAN.md`: executable smoke experiment and CHTC scaling plan.
+- `NEXT_EXPERIMENT_PLAN.md`: current Huth/Fedorenko high-data plan, semantic
+  hub/MEMP bridge design, exact runnable command shapes, and blockers.
 
 ## Uncapped 5513373 Mean-r Table
 

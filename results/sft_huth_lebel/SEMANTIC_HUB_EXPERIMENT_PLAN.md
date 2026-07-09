@@ -37,9 +37,10 @@ Current state from repo reports:
   arm/story NPZs; CPU ridge encoding smoke `5513337` passed as a path-validation
   smoke. CPU-only scale check `5513350` passed for capped `UTS02,UTS03`
   encoding from the same feature bundle.
-- The next expensive scientific step should scale cautiously: either uncap
-  `UTS01` smoke voxels or run the same capped smoke on `UTS02`/`UTS03` before
-  staging the high-data subset.
+- Uncapped all-subject full-voxel encoding `5513373` passed after the earlier
+  capped checks. The next expensive scientific step should not be another smoke
+  rerun; it should be high-data story scaling after CHTC staging file quota is
+  unblocked. Current detailed plan: `NEXT_EXPERIMENT_PLAN.md`.
 
 ## Core Hypotheses
 
@@ -126,8 +127,8 @@ Refute or weaken:
 |---|---|---|---|---|---|
 | Smoke A | Verify TextGrid parsing, model loading, staged model/adapters, and feature writing | `sweetaspie`, first 64 words | `base` first, then all four arms | `24` | passed in `5513178` |
 | Smoke B | Verify word-to-TR alignment and ridge scoring | `sweetaspie`, `againstthewind` train; `wheretheressmoke` test | all four arms | `16,24,32` | passed in `5513306`/`5513337` |
-| Medium | First interpretable language-fMRI result | all 3 smoke stories, no voxel cap | all four arms | `16,24,32` | full smoke encoding report |
-| Full | Scientific high-data Huth/LeBel result | `UTS01`-`UTS03`, shared high-data stories | all four arms | fixed or nested-CV layers | subject/ROI/layer deltas |
+| Medium | Full technical smoke | all 3 smoke stories, no voxel cap | all four arms | `16,24,32` | passed in `5513373`; path validated, no base-beating task-vector result |
+| Full | Scientific high-data Huth/LeBel result | `UTS01`-`UTS03`, shared high-data stories | all four arms | fixed or nested-CV layers | subject/fold/ROI/layer deltas plus hub bridge |
 | Hub Paper | Stronger semantic-hub evidence | held-out THINGS/NOVA concepts | all four arms | full layer grid | similarity, logit-lens, intervention reports |
 | Brain-Hub Bridge | Test mechanism | Huth/LeBel encoding + hub metrics | all four arms | matched layer grid | metric-behavior-brain bridge tables |
 

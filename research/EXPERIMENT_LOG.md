@@ -1,6 +1,6 @@
 # Coherence-SFT Experiment Log
 
-Last updated: 2026-07-08
+Last updated: 2026-07-08 21:44 CDT
 
 ## Read this first
 
@@ -26,7 +26,9 @@ Tracking convention:
     format-invariant hidden-state semantic hub mediates it.
   - Status: THINGS-fMRI RSA, semantic-hub extraction/scoring, hub-fMRI bridge,
     and paper-style similarity baseline are complete. Huth/LeBel `ds003020`
-    smoke data are staged on CHTC and ready for a tiny encoding smoke.
+    smoke data, GPU extraction, capped CPU encoding, and uncapped all-subject
+    full-voxel encoding are complete. The next fMRI step is high-data story
+    scaling after CHTC staging file quota is unblocked.
 
 - `research/CODEX_TASK_10_BENCHMARK_DROPS.md`
   - Goal: diagnose why lowLR/lowrank gain semantic/human-alignment tasks but drop
@@ -218,6 +220,7 @@ Key change:
 
 - Current `results/sft_semantic_hub/` is Stage 0: triplet/pairwise/feature
   cross-format RDM, CKA, retrieval, and concept-vs-format alignment.
+
 - Next Stage 1 should use the paper's relative similarity logic:
   same-concept cross-format similarity minus random, S*-close, and S*-far
   mismatches.
@@ -235,6 +238,62 @@ Readout:
 - If these same metrics track ARC/MMLU/WiC/TruthfulQA damage, then the induced
   hub may be entangled with output calibration and should become a mitigation
   target rather than only a mechanistic success.
+
+## 2026-07-08 checkpoint: Huth/Fedorenko next-experiment plan
+
+Goal: own the fMRI/Huth/Fedorenko lane after the uncapped smoke, without
+touching concept-steering files.
+
+Completed synthesis:
+
+- Huth/LeBel technical smoke chain is complete through uncapped all-subject
+  full-voxel CPU encoding cluster `5513373`.
+- `5513373` returned all 36 expected rows across `UTS01`-`UTS03`,
+  `base,lowLR,scrambled,taskvec_a0p25`, and layers `16,24,32`.
+- Layer-16 subject-mean held-out Pearson `r`: base `0.009785`,
+  `taskvec_a0p25` `0.009137`, `lowLR` `0.008287`, scrambled `0.004988`.
+- Interpretation: path validated; no convincing task-vector gain over base on
+  the two-training-story, one-held-out-story smoke.
+
+Local validation before any new fMRI submission:
+
+```bash
+python -m py_compile \
+  src/sft/huth_lebel_smoke_encoding.py \
+  src/sft/huth_lebel_extract_word_states.py \
+  src/sft/plan_huth_lebel_staging.py \
+  src/sft/huth_lebel_audit.py
+```
+
+```bash
+bash -n chtc/huth_lebel_stage_smoke/run_stage_smoke.sh
+bash -n chtc/huth_lebel_smoke/run_extract_smoke.sh
+```
+
+CHTC inspection:
+
+- `chtc-master check`: master running.
+- `chtc-ssh 'condor_q -batch suresh27'`: concept-steering cluster `5513407.0`
+  running; no fMRI job submitted.
+- `chtc-ssh 'get_quotas'`: `/staging/s/suresh27` at `24.3209/100` GB and
+  `1120/1000` files.
+- High-data manifest: 420 files, 84 stories, 76.858043164 GB.
+
+New/updated handoff files:
+
+- `results/sft_huth_lebel/NEXT_EXPERIMENT_PLAN.md`
+- `results/sft_huth_lebel/README.md`
+- `results/sft_huth_lebel/STAGING_PLAN.md`
+- `results/sft_huth_lebel/ENCODING_PLAN.md`
+- `results/sft_huth_lebel/SEMANTIC_HUB_EXPERIMENT_PLAN.md`
+- `research/AGENT_HANDOFF.md`
+- `README.md`
+
+Decision: no new fMRI CHTC job should be submitted until the high-data staging
+design uses packed story artifacts or staging file count/disk are freed. The
+next scientific experiment is high-data `UTS01`-`UTS03` multi-fold Huth
+encoding, with Fedorenko claims limited to exploratory atlas/localizer status
+unless subject-specific language fROIs are added.
 
 ## 2026-07-08 result: paper-style semantic-hub similarity baselines
 
