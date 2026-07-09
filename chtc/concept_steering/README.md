@@ -40,6 +40,14 @@ only layer 24 during steering. Expected `sweep_results.csv` shape is:
 - `concept_steering_smoke.sub`: one-GPU smoke at layer 24 with alphas `-2,0,2`.
 - `concept_steering_sweep.sub`: one-GPU scale-up sweep over layers
   `12,16,20,24` and alphas `-4,-2,0,2,4`.
+- `run_concept_qualitative.sh` and `concept_steering_qualitative.sub`: one-GPU
+  expanded generation follow-up. It runs 25 coherence prompts, 25 harder
+  human-alignment prompts, and 25 retention prompts under `baseline`,
+  `coherence:16:4`, `human_alignment:24:4`, `human_alignment:16:2`, and
+  diagnostic `coherence:12:4`. Outputs include `generations.jsonl`,
+  `judge_summary.csv`, `gate_summary.csv`, `SUMMARY.md`, and `gpu_metrics.csv`.
+  Retention gates require pass rate `>=0.85` and no more than `0.10` drop from
+  baseline.
 
 ## Submit
 

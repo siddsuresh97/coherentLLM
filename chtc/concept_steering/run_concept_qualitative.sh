@@ -6,7 +6,7 @@ PIP_TIMEOUT_SECONDS="${PIP_TIMEOUT_SECONDS:-900}"
 QUAL_TIMEOUT_SECONDS="${QUAL_TIMEOUT_SECONDS:-7200}"
 MODEL_PATH="${MODEL_PATH:-/staging/s/suresh27/models/llama31-8b-instruct}"
 HF_CACHE="${HF_CACHE:-/staging/s/suresh27/hf_home}"
-OUT_TAG="${OUT_TAG:-best_thresholds}"
+OUT_TAG="${OUT_TAG:-expanded_alignment_retention}"
 
 RESULT_DIR="${PWD}/concept_steering_qualitative_${OUT_TAG}"
 QUAL_DIR="${RESULT_DIR}/qualitative"
@@ -204,6 +204,9 @@ CMD=(
   --max-new-tokens 96
   --dtype bfloat16
   --device cuda
+  --settings baseline coherence:16:4 human_alignment:24:4 human_alignment:16:2 coherence:12:4
+  --min-retention-pass-rate 0.85
+  --max-retention-drop 0.10
   --overwrite
 )
 

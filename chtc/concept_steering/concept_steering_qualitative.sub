@@ -1,4 +1,4 @@
-OUT_TAG = best_thresholds
+OUT_TAG = expanded_alignment_retention
 MIN_CUDA_GLOBAL_MEMORY_MB = 40000
 PIP_TIMEOUT_SECONDS = 900
 QUAL_TIMEOUT_SECONDS = 7200
