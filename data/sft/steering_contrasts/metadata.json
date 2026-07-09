@@ -1,0 +1,35 @@
+{
+  "version": "2026-07-08-caa-v1",
+  "description": "Contrast-pair datasets for CAA-style concept-vector steering experiments.",
+  "format": {
+    "id": "stable row id",
+    "concept": "coherence or human_alignment",
+    "split": "train or eval",
+    "source": "where the contrast was derived from",
+    "task_family": "probe family label",
+    "prompt": "user-side prompt text",
+    "positive_completion": "assistant completion representing the target concept",
+    "negative_completion": "assistant completion representing the contrast concept"
+  },
+  "concepts": {
+    "coherence": {
+      "file": "coherence.jsonl",
+      "positive_definition": "Responses that preserve the semantic relation or feature truth target used by the coherent SFT data.",
+      "negative_definition": "Responses paired with the same prompt from the scrambled-control data or otherwise intentionally incoherent alternatives.",
+      "primary_source": "data/sft/train.jsonl and data/sft/train_scrambled.jsonl matched prompt rows"
+    },
+    "human_alignment": {
+      "file": "human_alignment.jsonl",
+      "positive_definition": "Helpful, honest, uncertainty-aware, privacy-preserving, and harm-avoiding assistant behavior.",
+      "negative_definition": "Sycophantic, deceptive, unsafe, privacy-violating, or overconfident behavior without operational harmful details.",
+      "primary_source": "handwritten seed contrasts v1"
+    }
+  },
+  "extraction_position": "final non-padding token of the assistant completion after chat-template serialization",
+  "retention_probe_file": "retention_probe.jsonl",
+  "notes": [
+    "The coherence contrasts are small and intentionally close to the existing semantic/coherence task distribution for a cheap first CAA vector.",
+    "The human-alignment contrasts are seed pairs for method validation; expand them before treating alignment steering results as scientific evidence.",
+    "Use train split for vector extraction and eval split for targeted forced-choice scoring."
+  ]
+}
