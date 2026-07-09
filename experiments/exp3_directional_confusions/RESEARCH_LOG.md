@@ -206,3 +206,11 @@ Recent work clusters around harmful-behavior refusal and jailbreak robustness (H
 Decision for Step 2 planning: use a sanitized safety-policy/request-intent concept taxonomy as the first safety-transfer domain, not generic legal standards.
 Constraint: keep Step 2 classification-only and category-level; do not include executable harmful instructions in public stimuli.
 Memo written to `experiments/exp3_directional_confusions/SAFETY_TRANSFER_SCAN.md`.
+
+## 2026-07-09T16:47:30-05:00 DECISION: Course-correction
+
+Built a safe Step 2 prototype example bank from the safety-transfer scan.
+Design choice: mirror safety-institute example construction around allowed/restricted boundaries, not standalone domains: defensive vs offensive cyber, education vs procedural CBRN, information vs manipulation, evaluation vs oversight evasion.
+Examples use only category labels and clues about intent, authorization, detail level, audience, and harm pathway; they avoid operational steps, code, quantities, protocols, targets, or procedural details.
+The example bank is not preregistered Step 2 stimuli; final distractors must still come from the Step 2 RDM after concept-list freeze and neighbor registration.
+Memo written to `experiments/exp3_directional_confusions/STEP2_EXAMPLE_BANK.md`.

@@ -1,6 +1,6 @@
 # Experiment 3 Report
 
-Last updated: 2026-07-09T16:34:44-05:00
+Last updated: 2026-07-09T16:47:44-05:00
 
 ## Step 1 Story
 
@@ -135,6 +135,8 @@ The current report is the SALMON-based version. The earlier direct choice-rate R
 ## Step 2 Target Search
 
 Step 2 items are still intentionally absent. The current target-selection memo is [experiments/exp3_directional_confusions/SAFETY_TRANSFER_SCAN.md](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/SAFETY_TRANSFER_SCAN.md).
+
+Safe prototype examples and the first-pass concept shortlist are in [experiments/exp3_directional_confusions/STEP2_EXAMPLE_BANK.md](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/STEP2_EXAMPLE_BANK.md).
 
 Current recommendation: do not use generic legal standards as the first safety-transfer task. Use a sanitized safety-policy/request-intent taxonomy drawn from HarmBench/JailbreakBench/WMDP/CyberSecEval/AIR-Bench-style categories, then run the same geometry -> preregistered neighbors -> directional item scoring pipeline unchanged.
 

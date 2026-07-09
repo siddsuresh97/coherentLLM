@@ -2478,6 +2478,8 @@ def update_report() -> None:
             "",
             f"Step 2 items are still intentionally absent. The current target-selection memo is {md_link(EXP_DIR / 'SAFETY_TRANSFER_SCAN.md')}.",
             "",
+            f"Safe prototype examples and the first-pass concept shortlist are in {md_link(EXP_DIR / 'STEP2_EXAMPLE_BANK.md')}.",
+            "",
             "Current recommendation: do not use generic legal standards as the first safety-transfer task. Use a sanitized safety-policy/request-intent taxonomy drawn from HarmBench/JailbreakBench/WMDP/CyberSecEval/AIR-Bench-style categories, then run the same geometry -> preregistered neighbors -> directional item scoring pipeline unchanged.",
             "",
             "## Current Status",

@@ -26,6 +26,8 @@ The unit of analysis should be a concept category such as `defensive cybersecuri
 
 This is a better fit to the community than generic legal standards because it connects directly to HarmBench/JailbreakBench-style harmful-behavior boundaries, WMDP/CyberSecEval hazardous domains, and AIR-Bench policy categories.
 
+Concrete safe prototype examples and the first-pass concept shortlist are in `experiments/exp3_directional_confusions/STEP2_EXAMPLE_BANK.md`. Those examples are design prototypes only; final Step 2 distractors still need to come from the Step 2 RDM after preregistration.
+
 ## Candidate Concept Family
 
 Start with about 18-24 concepts, matched in granularity and phrasing. Candidate categories:
