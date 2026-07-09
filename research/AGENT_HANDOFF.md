@@ -1,6 +1,6 @@
 # Active Agent Handoff
 
-Last coordination snapshot: 2026-07-08 21:45 CDT.
+Last coordination snapshot: 2026-07-08 21:51 CDT.
 
 Branch: `coherence-sft`
 
@@ -63,8 +63,8 @@ Completed since the previous handoff:
 | Agent | ID | Lane | Current goal |
 | --- | --- | --- | --- |
 | Boole | `019f44b4-b2fd-7960-bd39-440dbb17743f` | Concept steering scale-up | Build a validated expanded judged generation suite and submit one short CHTC GPU job only after local dry-run checks pass. |
-| Gauss | `019f44bf-dcc2-7ed1-8bc2-f0f3cda43bbe` | CHTC utilization and queue monitor | Keep CHTC status handoffable, identify idle or held jobs, and prepare safe next submissions without overlapping Boole's write set. |
-| Faraday | `019f44bf-df00-72a1-94e5-f2c3d50cecdb` | fMRI / Huth / Fedorenko follow-through | Synthesize the Huth smoke, design the next Huth/Fedorenko and semantic-hub experiment, and submit only locally smoke-tested jobs. |
+| Franklin | `019f44c8-e4f2-7b32-ba56-7f22db31c131` | Huth high-data staging unblock | Audit staging quota safely, implement packed-artifact helpers/manifests under the Huth lane, and prepare a small validated CHTC smoke path if safe. |
+| Lorentz | `019f44c9-168f-72c2-9418-46846bae3072` | Semantic hub / MEMP implementation | Turn the paper-method plan into a runnable local-smoke experiment harness with controls, config, and metric schema. |
 
 Completed agents already closed:
 
@@ -78,6 +78,8 @@ Completed agents already closed:
 | Feynman | `019f44a4-3d55-7231-9c2c-84ef85427a1c` | `2afd0f2` |
 | Russell / main-thread concept pickup | `019f445f-a869-70c2-bccc-dfa9c1d9314c` | `30e6601` |
 | Sartre / main-thread Huth pickup | `019f44b4-d7ea-7131-9ea2-26181b412bd3` | `ff86cb4` |
+| Gauss | `019f44bf-dcc2-7ed1-8bc2-f0f3cda43bbe` | `2d823bd` |
+| Faraday | `019f44bf-df00-72a1-94e5-f2c3d50cecdb` | `842474b` |
 
 ## Current Scientific Checkpoints
 
