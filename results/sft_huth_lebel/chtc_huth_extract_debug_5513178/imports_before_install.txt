@@ -1,0 +1,5 @@
+torch=2.5.1+cu124
+transformers=IMPORT_ERROR:ModuleNotFoundError:No module named 'transformers'
+safetensors=IMPORT_ERROR:ModuleNotFoundError:No module named 'safetensors'
+yaml=6.0.2
+numpy=2.1.2

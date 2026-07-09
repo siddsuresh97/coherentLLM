@@ -1,0 +1,6 @@
+timestamp_utc=2026-07-09T00:36:04Z
+hostname=gpu4000.chtc.wisc.edu
+pwd=/var/lib/condor/execute/slot2/dir_2547609/scratch
+python=/opt/conda/bin/python3
+CUDA_VISIBLE_DEVICES=GPU-e4eb8534-e278-b315-1ad8-eae652e0b0ab
+MIN_CUDA_GLOBAL_MEMORY_MB=40000

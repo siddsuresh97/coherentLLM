@@ -2,8 +2,8 @@
 
 Generated: 2026-07-08T22:59:00.688548+00:00
 
-Manual update: 2026-07-08 after CHTC staging cluster `5513059` and extraction
-debug cluster `5513178`.
+Manual update: 2026-07-09 after pulling CHTC extraction debug cluster `5513178`
+and submitting full smoke extraction cluster `5513245`.
 
 ## Current Read
 
@@ -13,8 +13,8 @@ debug cluster `5513178`.
 - Staged data pieces: 3 WAVs, 3 TextGrids, and 9 author-preprocessed HF5 files
   for `sweetaspie`, `againstthewind`, and `wheretheressmoke` across
   `UTS01`-`UTS03`.
-- Blocking piece: validate the tiny CHTC extraction/encoding smoke before
-  staging the 76.86 GB high-data subset.
+- Blocking piece: full three-story smoke features and CPU ridge encoding must
+  complete before staging the 76.86 GB high-data subset.
 - Reusable local study hook found: `/mnt/dv/wid/projects3/Rogers-nsf-ind-diff/sid/Projects/vision_project/tribev2/tribev2/studies/lebel2023bold.py`
   (`exists=True`).
 - CHTC submission is now validated. Audit smoke cluster `5513006` completed
@@ -32,10 +32,30 @@ debug cluster `5513178`.
   artifacts under `results/sft_huth_lebel/chtc_5513059/`. Its stage summary
   reports all 15 planned files present, `7,877,643,435` expected bytes and
   actual bytes, and zero missing paths.
-- GPU-side extraction debug cluster `5513178` is running from
-  `~/chtc-runs/coherence-huth-extract-debug-20260708-1945` on an NVIDIA L40.
-  It extracts layer 24 for the first 64 words of `sweetaspie` across
-  `base,lowLR,scrambled,taskvec_a0p25`.
+- GPU-side extraction debug cluster `5513178` completed with normal return
+  value `0` at `2026-07-08 19:55:28` from
+  `~/chtc-runs/coherence-huth-extract-debug-20260708-1945` on
+  `gpu4000.chtc.wisc.edu`, an NVIDIA L40.
+- Pulled debug artifacts are under
+  `results/sft_huth_lebel/chtc_huth_extract_debug_5513178/`. Both
+  `exit_status.txt` and `extract_exit_status.txt` are `0`.
+- Debug extraction evidence: `base`, `lowLR`, `scrambled`, and
+  `taskvec_a0p25` each produced `features/<arm>/sweetaspie.npz` with hidden
+  shape `64 x 1 x 4096`, layer index `24`, and float16 activations. The shared
+  word table has 64 rows.
+- Full smoke extraction cluster `5513245` is running from
+  `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926` on an L40S-class
+  GPU. It extracts all three story features for layers `16,24,32` and should
+  write NPZs under `/staging/s/suresh27/features/huth_lebel_smoke_llama31`.
+  Its returned `huth_extract_smoke_results.tgz` is expected to contain status
+  and shape metadata, not necessarily the feature NPZs.
+- Duplicate cluster `5513244` held before model work because its submit
+  expected a missing output tarball; it was removed with `condor_rm`.
+- The prepared CPU ridge follow-up is
+  `chtc/huth_lebel_smoke/huth_encoding_smoke.sub`; for active cluster
+  `5513245`, first bundle staged features into
+  `huth_extract_smoke_results_with_features.tgz`, then submit a copy of the
+  encoding submit file with `FEATURE_BUNDLE` pointing to that bundle.
 
 ## Checked Roots
 
@@ -97,5 +117,8 @@ debug cluster `5513178`.
 - High-data manifest: `results/sft_huth_lebel/staging_manifest_highdata.csv`
 - CHTC smoke outputs: `results/sft_huth_lebel/chtc_5513006/`
 - CHTC staging smoke outputs: `results/sft_huth_lebel/chtc_5513059/`
-- CHTC extraction debug outputs, once pulled:
+- CHTC extraction debug outputs:
   `results/sft_huth_lebel/chtc_huth_extract_debug_5513178/`
+- Next CHTC full smoke extraction run:
+  `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926`, cluster
+  `5513245`

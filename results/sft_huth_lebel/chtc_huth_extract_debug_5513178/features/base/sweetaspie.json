@@ -1,0 +1,33 @@
+{
+  "adapter_dir": null,
+  "add_bos": true,
+  "arm": "base",
+  "batch_size": 2,
+  "chat_template": false,
+  "device": "cuda",
+  "ds_root": "/staging/s/suresh27/datasets/ds003020-smoke",
+  "first_word": "I",
+  "hidden_state_file": "/var/lib/condor/execute/slot2/dir_2547609/scratch/huth_extract_debug/features/base/sweetaspie.npz",
+  "installed_lora_modules": 0,
+  "last_word": "PEOPLE",
+  "layer_indices": [
+    24
+  ],
+  "layer_names": [
+    "layer_24"
+  ],
+  "max_context_tokens": 512,
+  "model": "llama-3.1-8b-instruct",
+  "model_dtype": "bfloat16",
+  "model_path": "/staging/s/suresh27/models/llama31-8b-instruct",
+  "n_words": 64,
+  "save_dtype": "float16",
+  "shape": [
+    64,
+    1,
+    4096
+  ],
+  "story": "sweetaspie",
+  "textgrid": "/staging/s/suresh27/datasets/ds003020-smoke/derivatives/TextGrids/sweetaspie.TextGrid",
+  "tokenization": "space-joined TextGrid word labels; final subtoken per word"
+}

@@ -1,0 +1,35 @@
+RUN_MODE = extract_smoke
+MIN_CUDA_GLOBAL_MEMORY_MB = 40000
+STORIES = sweetaspie,againstthewind,wheretheressmoke
+ARMS = base,lowLR,scrambled,taskvec_a0p25
+LAYERS = 16,24,32
+BATCH_SIZE = 4
+MAX_CONTEXT_TOKENS = 512
+LIMIT_WORDS = 0
+
+universe = container
+container_image = docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
+docker_override_entrypoint = true
+requirements = (TARGET.CUDAGlobalMemoryMb >= $(MIN_CUDA_GLOBAL_MEMORY_MB)) && (TARGET.HasChtcStaging =?= true) && (TARGET.HasDockerVolumeCHTC_STAGING =?= true)
+rank = TARGET.CUDAGlobalMemoryMb
+
+batch_name = coherence_huth_extract_smoke_$(Cluster)
+log = logs/huth_$(RUN_MODE)_$(Cluster)_$(Process).log
+output = logs/huth_$(RUN_MODE)_$(Cluster)_$(Process).out
+error = logs/huth_$(RUN_MODE)_$(Cluster)_$(Process).err
+
+executable = run_extract_smoke.sh
+arguments =
+transfer_input_files = run_extract_smoke.sh,src
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_output_files = huth_extract_smoke_results.tgz
+environment = "MIN_CUDA_GLOBAL_MEMORY_MB=$(MIN_CUDA_GLOBAL_MEMORY_MB) STORIES=$(STORIES) ARMS=$(ARMS) LAYERS=$(LAYERS) BATCH_SIZE=$(BATCH_SIZE) MAX_CONTEXT_TOKENS=$(MAX_CONTEXT_TOKENS) LIMIT_WORDS=$(LIMIT_WORDS)"
+
+request_gpus = 1
+request_cpus = 8
+request_memory = 64GB
+request_disk = 80GB
++is_resumable = true
+
+queue 1

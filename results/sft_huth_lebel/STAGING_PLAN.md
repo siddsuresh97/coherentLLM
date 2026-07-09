@@ -2,8 +2,8 @@
 
 Generated: 2026-07-08T23:13:09.747553+00:00
 
-Manual update: 2026-07-08 after CHTC staging cluster `5513059` and extraction
-debug cluster `5513178`.
+Manual update: 2026-07-09 after CHTC extraction debug cluster `5513178`
+completed and full smoke extraction cluster `5513245` was submitted.
 
 ## Dataset
 
@@ -31,9 +31,19 @@ debug cluster `5513178`.
 - Expected bytes and actual bytes: `7,877,643,435`.
 - Pulled proof bundle:
   `results/sft_huth_lebel/chtc_5513059/`.
-- Extraction smoke status: cluster `5513178` is running on an NVIDIA L40 from
-  `~/chtc-runs/coherence-huth-extract-debug-20260708-1945`, using staged base
-  model and `lowLR`, `scrambled`, `taskvec_a0p25` adapters.
+- Extraction debug status: cluster `5513178` completed with return value `0`.
+  Pulled artifacts are in
+  `results/sft_huth_lebel/chtc_huth_extract_debug_5513178/`; all four arms
+  produced layer-24 `sweetaspie` features with hidden shape `64 x 1 x 4096`.
+- Full smoke extraction status: cluster `5513245` is running from
+  `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926`. This active run
+  uses the staged-output wrapper, so features should appear under
+  `/staging/s/suresh27/features/huth_lebel_smoke_llama31`; its returned
+  `huth_extract_smoke_results.tgz` is status/metadata. Before submitting
+  encoding, bundle those staged features into
+  `huth_extract_smoke_results_with_features.tgz`.
+- Duplicate cluster `5513244` held before model work because its submit
+  expected a missing output tarball; it was removed with `condor_rm`.
 
 ## Smoke Subset
 
@@ -68,14 +78,16 @@ debug cluster `5513178`.
 
 ## Next
 
-1. Pull and inspect cluster `5513178` outputs. Pass criteria: exit status 0,
-   one NPZ per arm, layer-24 arrays present, nonzero word count, and no adapter
-   load failures.
-2. Run the CPU ridge smoke using those features plus the staged root: no chat
-   template narrative hidden states, word-to-TR alignment, FIR delays, and
-   held-out ridge prediction for `wheretheressmoke`.
+1. Poll and pull cluster `5513245` after completion. Pass criteria:
+   `extract_exit_status.txt == 0`, `npz_shapes.tsv` contains all 12 arm/story
+   NPZs or the staged feature directory contains all 12 arm/story NPZs, each
+   with layers `16,24,32`, and no adapter load failures.
+2. Package staged features into
+   `huth_extract_smoke_results_with_features.tgz`, then submit the CPU ridge
+   smoke from `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926` with
+   `huth_encoding_smoke_with_features.sub`.
 3. Verify artifact writing, feature shapes, TR alignment, and voxelwise Pearson
-   scoring before using more GPUs.
+   scoring in `summary.csv` and `alpha_cv.csv` before using more GPUs.
 4. If the smoke passes, stage the high-data `UTS01`-`UTS03` subset under
    `/staging/s/suresh27/datasets/ds003020-highdata`.
 5. Run the full high-data encoding jobs only after the smoke report is committed.

@@ -1,0 +1,142 @@
+[model] loading /staging/s/suresh27/models/llama31-8b-instruct on cuda (bfloat16)
+[layers] [24]
+[lora] installed lowLR from /staging/s/suresh27/adapters/lowLR on 224 modules
+[lora] installed scrambled from /staging/s/suresh27/adapters/scrambled on 224 modules
+[lora] installed taskvec_a0p25 from /staging/s/suresh27/adapters/taskvec_a0p25 on 224 modules
+[textgrid] sweetaspie: 64 words from /staging/s/suresh27/datasets/ds003020-smoke/derivatives/TextGrids/sweetaspie.TextGrid
+[arm] extracting base
+[extract] processed 2/64 words
+[extract] processed 4/64 words
+[extract] processed 6/64 words
+[extract] processed 8/64 words
+[extract] processed 10/64 words
+[extract] processed 12/64 words
+[extract] processed 14/64 words
+[extract] processed 16/64 words
+[extract] processed 18/64 words
+[extract] processed 20/64 words
+[extract] processed 22/64 words
+[extract] processed 24/64 words
+[extract] processed 26/64 words
+[extract] processed 28/64 words
+[extract] processed 30/64 words
+[extract] processed 32/64 words
+[extract] processed 34/64 words
+[extract] processed 36/64 words
+[extract] processed 38/64 words
+[extract] processed 40/64 words
+[extract] processed 42/64 words
+[extract] processed 44/64 words
+[extract] processed 46/64 words
+[extract] processed 48/64 words
+[extract] processed 50/64 words
+[extract] processed 52/64 words
+[extract] processed 54/64 words
+[extract] processed 56/64 words
+[extract] processed 58/64 words
+[extract] processed 60/64 words
+[extract] processed 62/64 words
+[extract] processed 64/64 words
+[write] base/sweetaspie: /var/lib/condor/execute/slot2/dir_2547609/scratch/huth_extract_debug/features/base/sweetaspie.npz (64, 1, 4096)
+[arm] extracting lowLR
+[extract] processed 2/64 words
+[extract] processed 4/64 words
+[extract] processed 6/64 words
+[extract] processed 8/64 words
+[extract] processed 10/64 words
+[extract] processed 12/64 words
+[extract] processed 14/64 words
+[extract] processed 16/64 words
+[extract] processed 18/64 words
+[extract] processed 20/64 words
+[extract] processed 22/64 words
+[extract] processed 24/64 words
+[extract] processed 26/64 words
+[extract] processed 28/64 words
+[extract] processed 30/64 words
+[extract] processed 32/64 words
+[extract] processed 34/64 words
+[extract] processed 36/64 words
+[extract] processed 38/64 words
+[extract] processed 40/64 words
+[extract] processed 42/64 words
+[extract] processed 44/64 words
+[extract] processed 46/64 words
+[extract] processed 48/64 words
+[extract] processed 50/64 words
+[extract] processed 52/64 words
+[extract] processed 54/64 words
+[extract] processed 56/64 words
+[extract] processed 58/64 words
+[extract] processed 60/64 words
+[extract] processed 62/64 words
+[extract] processed 64/64 words
+[write] lowLR/sweetaspie: /var/lib/condor/execute/slot2/dir_2547609/scratch/huth_extract_debug/features/lowLR/sweetaspie.npz (64, 1, 4096)
+[arm] extracting scrambled
+[extract] processed 2/64 words
+[extract] processed 4/64 words
+[extract] processed 6/64 words
+[extract] processed 8/64 words
+[extract] processed 10/64 words
+[extract] processed 12/64 words
+[extract] processed 14/64 words
+[extract] processed 16/64 words
+[extract] processed 18/64 words
+[extract] processed 20/64 words
+[extract] processed 22/64 words
+[extract] processed 24/64 words
+[extract] processed 26/64 words
+[extract] processed 28/64 words
+[extract] processed 30/64 words
+[extract] processed 32/64 words
+[extract] processed 34/64 words
+[extract] processed 36/64 words
+[extract] processed 38/64 words
+[extract] processed 40/64 words
+[extract] processed 42/64 words
+[extract] processed 44/64 words
+[extract] processed 46/64 words
+[extract] processed 48/64 words
+[extract] processed 50/64 words
+[extract] processed 52/64 words
+[extract] processed 54/64 words
+[extract] processed 56/64 words
+[extract] processed 58/64 words
+[extract] processed 60/64 words
+[extract] processed 62/64 words
+[extract] processed 64/64 words
+[write] scrambled/sweetaspie: /var/lib/condor/execute/slot2/dir_2547609/scratch/huth_extract_debug/features/scrambled/sweetaspie.npz (64, 1, 4096)
+[arm] extracting taskvec_a0p25
+[extract] processed 2/64 words
+[extract] processed 4/64 words
+[extract] processed 6/64 words
+[extract] processed 8/64 words
+[extract] processed 10/64 words
+[extract] processed 12/64 words
+[extract] processed 14/64 words
+[extract] processed 16/64 words
+[extract] processed 18/64 words
+[extract] processed 20/64 words
+[extract] processed 22/64 words
+[extract] processed 24/64 words
+[extract] processed 26/64 words
+[extract] processed 28/64 words
+[extract] processed 30/64 words
+[extract] processed 32/64 words
+[extract] processed 34/64 words
+[extract] processed 36/64 words
+[extract] processed 38/64 words
+[extract] processed 40/64 words
+[extract] processed 42/64 words
+[extract] processed 44/64 words
+[extract] processed 46/64 words
+[extract] processed 48/64 words
+[extract] processed 50/64 words
+[extract] processed 52/64 words
+[extract] processed 54/64 words
+[extract] processed 56/64 words
+[extract] processed 58/64 words
+[extract] processed 60/64 words
+[extract] processed 62/64 words
+[extract] processed 64/64 words
+[write] taskvec_a0p25/sweetaspie: /var/lib/condor/execute/slot2/dir_2547609/scratch/huth_extract_debug/features/taskvec_a0p25/sweetaspie.npz (64, 1, 4096)

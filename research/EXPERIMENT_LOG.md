@@ -1320,6 +1320,57 @@ Next read:
 - compare target rows against alpha `0` and verify retention rows do not
   collapse before submitting the full layer/alpha sweep.
 
+## 2026-07-09 active: Huth/LeBel extraction debug passed; three-story smoke running
+
+Completed debug extraction:
+
+- CHTC cluster: `5513178`
+- Remote directory: `~/chtc-runs/coherence-huth-extract-debug-20260708-1945`
+- Local artifact directory:
+  `results/sft_huth_lebel/chtc_huth_extract_debug_5513178/`
+- Condor result: normal termination, return value `0`
+- Wrapper status: `exit_status.txt == 0`
+- Extractor status: `extract_exit_status.txt == 0`
+- Outputs: four arm files for `sweetaspie` at layer 24, first 64 words:
+  `base`, `lowLR`, `scrambled`, `taskvec_a0p25`
+- NPZ validation: each file has `hidden: (64, 1, 4096)`, plus word timing
+  arrays and layer metadata.
+
+New Huth smoke submission:
+
+- Added/updated CHTC wrappers under `chtc/huth_lebel_smoke/`.
+- Submitted cluster: `5513245`
+- Remote directory: `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926`
+- Requirement: `TARGET.CUDAGlobalMemoryMb >= 40000`
+- Job purpose: extract all three smoke stories
+  `sweetaspie,againstthewind,wheretheressmoke` for arms
+  `base,lowLR,scrambled,taskvec_a0p25` and layers `16,24,32`.
+- First placement: running on `mkhodakgpu4000.chtc.wisc.edu`, NVIDIA L40S
+  with `45468` MB advertised GPU memory.
+- Active-run caveat: `5513245` uses the staged-output wrapper, so features are
+  expected under `/staging/s/suresh27/features/huth_lebel_smoke_llama31`.
+  The CPU encoding submit file expects a tarball containing `features/`; bundle
+  the staged directory into `huth_extract_smoke_results_with_features.tgz`
+  before submitting encoding.
+
+Duplicate avoided:
+
+- Parallel cluster `5513244` was submitted from
+  `~/chtc-runs/coherence-huth-extract-smoke-20260709-010014`, but held
+  immediately before model work because Condor could not transfer the expected
+  `huth_extract_smoke_results.tgz`.
+- Removed the held duplicate with `condor_rm 5513244`; keep `5513245` as the
+  active extraction.
+
+Next read:
+
+- Pull `huth_extract_smoke_results.tgz` after cluster `5513245` completes.
+- Check `extract_exit_status.txt == 0` and verify `npz_shapes.tsv` lists all
+  12 arm/story NPZ files.
+- Bundle staged features into `huth_extract_smoke_results_with_features.tgz`,
+  then submit a copy of `huth_encoding_smoke.sub` with `FEATURE_BUNDLE` pointed
+  at that bundle.
+
 ## 2026-07-08 active: fixed CHTC GPU smoke retries
 
 MMLU:

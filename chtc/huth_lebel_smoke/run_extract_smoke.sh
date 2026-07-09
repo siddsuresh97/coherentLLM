@@ -1,27 +1,26 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-RESULT_NAME="${RESULT_NAME:-huth_extract_debug}"
-OUT_BUNDLE="${OUT_BUNDLE:-${RESULT_NAME}_results.tgz}"
-STORIES="${STORIES:-sweetaspie}"
-ARMS="${ARMS:-base,lowLR,scrambled,taskvec_a0p25}"
-LAYERS="${LAYERS:-24}"
-LIMIT_WORDS="${LIMIT_WORDS:-64}"
-BATCH_SIZE="${BATCH_SIZE:-2}"
-MAX_CONTEXT_TOKENS="${MAX_CONTEXT_TOKENS:-512}"
-RESULT_DIR="${PWD}/${RESULT_NAME}"
-FEATURE_DIR="${RESULT_DIR}/features"
+RESULT_DIR="${PWD}/huth_extract_smoke"
+FEATURE_DIR="${FEATURE_DIR:-${RESULT_DIR}/features}"
 PYDEPS="${PWD}/pydeps"
-
-mkdir -p "${RESULT_DIR}" "${FEATURE_DIR}" "${PYDEPS}"
+OUT_BUNDLE="huth_extract_smoke_results.tgz"
+export FEATURE_DIR
 
 finish() {
   status=$?
+  mkdir -p "${RESULT_DIR}" 2>/dev/null || true
   echo "${status}" > "${RESULT_DIR}/exit_status.txt"
   tar -czf "${OUT_BUNDLE}" -C "${RESULT_DIR}" . 2>/dev/null || true
   exit "${status}"
 }
 trap finish EXIT
+
+mkdir -p "${RESULT_DIR}" "${FEATURE_DIR}" "${PYDEPS}"
+if [[ ! -d /staging/s/suresh27 ]]; then
+  echo "missing worker staging mount: /staging/s/suresh27" > "${RESULT_DIR}/missing_staging.txt"
+  exit 68
+fi
 
 PYTHON_BIN="$(command -v python3 || command -v python)"
 export PYTHONPATH="${PWD}/src:${PYDEPS}:${PYTHONPATH:-}"
@@ -32,6 +31,13 @@ export HF_HUB_OFFLINE=1
 export TRITON_CACHE_DIR="${PWD}/triton_cache"
 export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
 
+STORIES="${STORIES:-sweetaspie,againstthewind,wheretheressmoke}"
+ARMS="${ARMS:-base,lowLR,scrambled,taskvec_a0p25}"
+LAYERS="${LAYERS:-16,24,32}"
+BATCH_SIZE="${BATCH_SIZE:-4}"
+MAX_CONTEXT_TOKENS="${MAX_CONTEXT_TOKENS:-512}"
+LIMIT_WORDS="${LIMIT_WORDS:-0}"
+
 {
   echo "timestamp_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
   echo "hostname=$(hostname)"
@@ -39,13 +45,13 @@ export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:T
   echo "python=${PYTHON_BIN}"
   echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"
   echo "MIN_CUDA_GLOBAL_MEMORY_MB=${MIN_CUDA_GLOBAL_MEMORY_MB:-unset}"
-  echo "RESULT_NAME=${RESULT_NAME}"
+  echo "FEATURE_DIR=${FEATURE_DIR}"
   echo "STORIES=${STORIES}"
   echo "ARMS=${ARMS}"
   echo "LAYERS=${LAYERS}"
-  echo "LIMIT_WORDS=${LIMIT_WORDS}"
   echo "BATCH_SIZE=${BATCH_SIZE}"
   echo "MAX_CONTEXT_TOKENS=${MAX_CONTEXT_TOKENS}"
+  echo "LIMIT_WORDS=${LIMIT_WORDS}"
 } > "${RESULT_DIR}/run_env.txt"
 
 (nvidia-smi || true) > "${RESULT_DIR}/nvidia_smi.txt" 2>&1
@@ -142,10 +148,10 @@ CMD=(
   --device cuda
   --dtype bfloat16
   --save_dtype float16
-  --overwrite
+  --skip_existing
 )
 
-if [[ -n "${LIMIT_WORDS}" && "${LIMIT_WORDS}" != "0" ]]; then
+if [[ "${LIMIT_WORDS}" != "0" ]]; then
   CMD+=(--limit_words "${LIMIT_WORDS}")
 fi
 
@@ -158,19 +164,26 @@ rc=$?
 set -e
 echo "${rc}" > "${RESULT_DIR}/extract_exit_status.txt"
 
-"${PYTHON_BIN}" - <<'PY' > "${RESULT_DIR}/npz_shapes.tsv" 2>/dev/null || true
-import glob
+find "${FEATURE_DIR}" -maxdepth 3 -type f -printf '%P\t%s\n' \
+  > "${RESULT_DIR}/feature_inventory.tsv" || true
+
+"${PYTHON_BIN}" - <<'PY' > "${RESULT_DIR}/npz_shapes.tsv" 2> "${RESULT_DIR}/npz_shapes.err" || true
 import os
+from pathlib import Path
 
 import numpy as np
 
-print("path\tarrays")
-for path in sorted(glob.glob("huth_extract*/features/*/*.npz")):
-    rel = os.path.relpath(path)
-    arrays = np.load(path)
-    shapes = ",".join(f"{key}:{tuple(value.shape)}" for key, value in arrays.items())
-    print(f"{rel}\t{shapes}")
+feature_dir = Path(os.environ["FEATURE_DIR"])
+print("path\tkeys\thidden_shape\thidden_dtype\tlayers\tn_words")
+for path in sorted(feature_dir.glob("*/*.npz")):
+    data = np.load(path, allow_pickle=False)
+    hidden = data["hidden"]
+    layers = ",".join(str(int(x)) for x in data["layer_indices"])
+    print(
+        f"{path.relative_to(feature_dir)}\t{','.join(data.files)}\t"
+        f"{'x'.join(map(str, hidden.shape))}\t{hidden.dtype}\t{layers}\t"
+        f"{data['words'].shape[0]}"
+    )
 PY
 
-find "${RESULT_DIR}" -maxdepth 4 -type f -printf '%P\t%s\n' > "${RESULT_DIR}/file_inventory.tsv" || true
 exit "${rc}"

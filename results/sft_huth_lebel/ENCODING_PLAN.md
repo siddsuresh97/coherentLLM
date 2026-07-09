@@ -11,6 +11,19 @@ Updated: 2026-07-09
 - Subjects: `UTS01`, `UTS02`, `UTS03`.
 - Response files: author-preprocessed HF5 under `derivatives/preprocessed_data/<subject>/<story>.hf5`.
 - Word timing files: `derivatives/TextGrids/<story>.TextGrid`.
+- Extraction debug cluster `5513178` passed: four arm NPZs for `sweetaspie`,
+  first 64 words, layer `24`, shape `64 x 1 x 4096`, with both wrapper and
+  extraction exit statuses `0`.
+- Full three-story feature extraction is running as CHTC cluster `5513245`
+  from `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926`. This
+  active job uses the staged-output wrapper, so feature NPZs are expected under
+  `/staging/s/suresh27/features/huth_lebel_smoke_llama31`; its returned
+  `huth_extract_smoke_results.tgz` is a status/metadata bundle.
+- Duplicate cluster `5513244` held before model work because its submit
+  expected a missing output tarball; it was removed with `condor_rm`.
+- The checked-in retry template now returns feature NPZs inside
+  `huth_extract_smoke_results.tgz`, but do not resubmit while `5513245` is
+  running unless it fails.
 
 The local workspace does not currently mount `/staging/s/suresh27/datasets/ds003020-smoke`, so the repo-side validation below checks syntax and synthetic I/O. Real smoke execution should run on the CHTC node or AP where the staged root is visible.
 
@@ -133,6 +146,46 @@ python src/sft/huth_lebel_extract_word_states.py \
 ```
 
 3. Submit CPU encoding jobs after features exist. The first CPU job can use `--max_voxels 2000`; the confirmatory smoke should remove the cap and optionally use `--save_voxel_corrs`.
+
+Current exact follow-up once cluster `5513245` completes:
+
+1. Pull/inspect the returned status bundle.
+
+```bash
+chtc-pull 'chtc-runs/coherence-huth-extract-smoke-20260709-005926/huth_extract_smoke_results.tgz' \
+  results/sft_huth_lebel/chtc_huth_extract_smoke_5513245/
+```
+
+2. If `extract_exit_status.txt == 0` and staged NPZs exist, create the feature
+   bundle expected by the CPU encoding submit file:
+
+```bash
+chtc-ssh 'cd ~/chtc-runs/coherence-huth-extract-smoke-20260709-005926 && rm -rf huth_extract_bundle_for_encoding && mkdir -p huth_extract_bundle_for_encoding && tar -xzf huth_extract_smoke_results.tgz -C huth_extract_bundle_for_encoding && mkdir -p huth_extract_bundle_for_encoding/features && cp -a /staging/s/suresh27/features/huth_lebel_smoke_llama31/. huth_extract_bundle_for_encoding/features/ && tar -czf huth_extract_smoke_results_with_features.tgz -C huth_extract_bundle_for_encoding .'
+```
+
+3. Submit CPU encoding with that feature bundle:
+
+```bash
+chtc-ssh 'cd ~/chtc-runs/coherence-huth-extract-smoke-20260709-005926 && sed "s/^FEATURE_BUNDLE = .*/FEATURE_BUNDLE = huth_extract_smoke_results_with_features.tgz/" huth_encoding_smoke.sub > huth_encoding_smoke_with_features.sub && condor_submit huth_encoding_smoke_with_features.sub'
+```
+
+The submit file transfers the feature bundle, unpacks it, and runs the first
+capped CPU smoke:
+
+```bash
+python src/sft/huth_lebel_smoke_encoding.py \
+  --ds_root /staging/s/suresh27/datasets/ds003020-smoke \
+  --features_dir feature_bundle/features \
+  --out_dir huth_encoding_smoke/encoding \
+  --subjects UTS01 \
+  --train_stories sweetaspie,againstthewind \
+  --test_story wheretheressmoke \
+  --arms base,lowLR,scrambled,taskvec_a0p25 \
+  --layers 16,24,32 \
+  --max_voxels 2000 \
+  --ridge_solver auto \
+  --overwrite
+```
 
 4. For high-data scaling after smoke:
    - Stage `/staging/s/suresh27/datasets/ds003020-highdata`.

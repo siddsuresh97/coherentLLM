@@ -218,11 +218,18 @@ protect. Lead metric at scale = model triplet~human alignment (confound-free).
   15 smoke files under `/staging/s/suresh27/datasets/ds003020-smoke`
   (`7.88 GB`, no missing paths). The `UTS01`-`UTS03` high-data subset remains
   76.86 GB across 420 manifest files, fitting the observed 100 GB CHTC staging
-  quota if only needed WAV/TextGrid/HF5 assets are staged. The experiment is
-  now in a small encoding-smoke phase, not data discovery. The GPU-side debug
-  extraction is running as fixed CHTC cluster `5513178` on an NVIDIA L40;
-  lowLR and scrambled adapters have also been staged under
-  `/staging/s/suresh27/adapters/`.
+  quota if only needed WAV/TextGrid/HF5 assets are staged. Debug extraction
+  `5513178` completed successfully and is pulled under
+  `results/sft_huth_lebel/chtc_huth_extract_debug_5513178/`; all four arms
+  produced layer-24 `sweetaspie` features with shape `64 x 1 x 4096`.
+  Full smoke feature extraction is now running as cluster `5513245` from
+  `~/chtc-runs/coherence-huth-extract-smoke-20260709-005926`, producing a
+  staged set of three-story layer `16,24,32` features under
+  `/staging/s/suresh27/features/huth_lebel_smoke_llama31`. Duplicate cluster
+  `5513244` held before model work and was removed. If `5513245` passes, bundle
+  the staged features into `huth_extract_smoke_results_with_features.tgz`, then
+  submit encoding from the same run directory for the held-out
+  `wheretheressmoke` ridge smoke.
 - Concept-vector steering scaffolding is committed and pushed as `99c0c60`.
   It adds coherence/human-alignment contrast datasets and dry-run validated
   extraction/eval scripts. The first CHTC GPU smoke is submitted as cluster

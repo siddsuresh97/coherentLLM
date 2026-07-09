@@ -15,3 +15,26 @@ The initial debug job is intentionally small:
 It returns a tarball containing NPZ feature files and logs. Run this before any
 full three-story extraction job.
 
+After that passes, use `huth_extract_smoke.sub` for the held-out encoding
+prerequisite. It extracts all three smoke stories for
+`base,lowLR,scrambled,taskvec_a0p25` and layers `16,24,32`, then returns
+`huth_extract_smoke_results.tgz`.
+
+Submit from a CHTC run directory that contains this folder's scripts plus
+`src`:
+
+```bash
+condor_submit huth_extract_smoke.sub
+```
+
+When that extraction job exits with `extract_exit_status.txt == 0` and
+`npz_shapes.tsv` lists all 12 arm/story NPZs, submit the CPU ridge smoke:
+
+```bash
+condor_submit huth_encoding_smoke.sub
+```
+
+The encoding smoke uses `sweetaspie,againstthewind` for ridge/CV training,
+holds out `wheretheressmoke`, and caps responses at `--max_voxels 2000` for the
+first pass. Remove the cap only after this CPU smoke returns valid
+`summary.csv` and `alpha_cv.csv`.
