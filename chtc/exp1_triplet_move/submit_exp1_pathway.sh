@@ -6,7 +6,7 @@ cd "$(dirname "$0")/../.."
 
 REMOTE_DIR="${REMOTE_DIR:-chtc-runs/exp1-triplet-move-pathway}"
 EDIT_ID="${EDIT_ID:-concentrated_drop_100}"
-SUPERVISION="${SUPERVISION:-feature}"
+SUPERVISION="${SUPERVISION:-similarity}"
 
 for tool in chtc-ssh chtc-push; do
   if ! command -v "$tool" >/dev/null 2>&1; then

@@ -18,7 +18,6 @@ tar \
   --exclude='experiments/exp1_triplet_concept_move/lora_control_similarity' \
   --exclude='experiments/exp1_triplet_concept_move/lora_edit_similarity' \
   --exclude='experiments/exp1_triplet_concept_move/sft_data' \
-  --exclude='experiments/exp1_triplet_concept_move/sft_similarity_data' \
   -czf "$OUT" \
   Makefile \
   scripts/run_experiment1.py \
@@ -36,7 +35,6 @@ tar \
   src/stimuli.py \
   src/sft/train_lora.py \
   configs/models.yaml \
-  data/nova/verified_matrix_cogsci2025.parquet \
   data/scale128/concepts.csv \
   data/scale128/llama-3.1-8b-instruct_triplet_d5.npy \
   results/raw_128/llama-3.1-8b-instruct/triplet.csv \

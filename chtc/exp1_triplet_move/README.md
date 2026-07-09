@@ -1,7 +1,12 @@
 # Experiment 1 CHTC Pathway Check
 
 This directory prepares the first real GPU run for Experiment 1:
-`concentrated_drop_100` with feature-listing supervision.
+`concentrated_drop_100` with direct similarity supervision.
+
+This is fallback lever 6.2 from the experiment spec. The original
+feature-listing pathway remains implemented, but the full NOVA feature parquet
+referenced by that path is not present in the checkout, so the current CHTC job
+uses the committed prebuilt pairwise-similarity SFT data instead.
 
 The job runs the hard gate first. It collects:
 
@@ -78,11 +83,11 @@ exp1_pathway_concentrated_drop_100_feature_results.tgz
 
 ## Switching To The Fallback Lever
 
-If the feature-listing pathway check does not move the behavioral triplet RDM,
-submit the same job with direct pairwise similarity supervision:
+To try the feature-listing pathway after restoring the NOVA feature parquet,
+submit:
 
 ```bash
-SUPERVISION=similarity chtc/exp1_triplet_move/submit_exp1_pathway.sh
+SUPERVISION=feature chtc/exp1_triplet_move/submit_exp1_pathway.sh
 ```
 
-That still evaluates on the held-out frozen triplet protocol.
+Both supervision modes still evaluate on the held-out frozen triplet protocol.

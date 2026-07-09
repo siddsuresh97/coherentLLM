@@ -93,14 +93,78 @@ run_triplets base_seed_a_canonical_prompt canonical
 run_triplets base_seed_b_canonical_prompt canonical
 run_triplets base_seed_a_paraphrase_prompt paraphrase
 
-echo "[exp1] regenerating base artifacts; floor must turn green before training"
-python scripts/run_experiment1.py --allow-provisional-edits
+echo "[exp1] refreshing behavioral floor from frozen-protocol runs"
 python - <<'PY'
 import json
 from pathlib import Path
-floor = json.loads(Path("experiments/exp1_triplet_concept_move/floor_stats.json").read_text())
-if not floor.get("gate_passed"):
-    raise SystemExit(f"behavioral gate did not pass: {floor.get('why_not_green')}")
+import sys
+
+import numpy as np
+
+ROOT = Path.cwd()
+EXP_DIR = ROOT / "experiments" / "exp1_triplet_concept_move"
+sys.path.insert(0, str(ROOT / "scripts"))
+from run_experiment1 import parse_triplet_raw, pearson_corr, rdm_from_triplet_rows, upper_values  # noqa: E402
+
+items = json.loads((EXP_DIR / "items.json").read_text())
+config = json.loads((EXP_DIR / "config.json").read_text())
+required_runs = config["triplet_protocol"]["required_baseline_runs"]
+rdms = {}
+for run_name in required_runs:
+    raw_csv = EXP_DIR / "raw" / run_name / "triplet.csv"
+    if not raw_csv.exists():
+        raise SystemExit(f"missing required frozen-protocol run: {raw_csv}")
+    rdms[run_name] = rdm_from_triplet_rows(parse_triplet_raw(raw_csv), items["concepts"])
+
+base_run = "base_seed_a_canonical_prompt"
+base_rdm = rdms[base_run]
+rdm_dir = EXP_DIR / "artifacts" / "rdms"
+rdm_dir.mkdir(parents=True, exist_ok=True)
+np.save(rdm_dir / "rdm_base.npy", base_rdm)
+
+comparisons = []
+for run_name, rdm in rdms.items():
+    if run_name == base_run:
+        continue
+    delta = upper_values(rdm - base_rdm)
+    comparisons.append(
+        {
+            "run": run_name,
+            "upper_triangle_pearson_vs_base": pearson_corr(upper_values(base_rdm), upper_values(rdm)),
+            "overall_rms_vs_base": float(np.sqrt(np.mean(delta**2))),
+            "pair_abs_median_vs_base": float(np.median(np.abs(delta))),
+            "pair_abs_p90_vs_base": float(np.quantile(np.abs(delta), 0.90)),
+        }
+    )
+
+mean_corr = float(np.nanmean([row["upper_triangle_pearson_vs_base"] for row in comparisons]))
+mean_rms = float(np.nanmean([row["overall_rms_vs_base"] for row in comparisons]))
+gate_passed = bool(mean_corr >= 0.80 and np.isfinite(mean_rms))
+floor = {
+    "status": "green" if gate_passed else "red",
+    "gate_passed": gate_passed,
+    "why_not_green": "" if gate_passed else "Frozen-protocol runs exist, but reliability is below threshold.",
+    "source": "frozen_30_item_protocol_runs",
+    "base_run": base_run,
+    "required_protocol_runs": required_runs,
+    "present_required_protocol_runs": required_runs,
+    "missing_required_protocol_runs": [],
+    "protocol_comparisons": comparisons,
+    "protocol_floor": {
+        "mean_upper_triangle_pearson": mean_corr,
+        "overall_rms_floor_mean": mean_rms,
+        "overall_rms_floor_max": float(np.max([row["overall_rms_vs_base"] for row in comparisons])),
+        "pair_abs_floor_median_max": float(np.max([row["pair_abs_median_vs_base"] for row in comparisons])),
+        "pair_abs_floor_p90_max": float(np.max([row["pair_abs_p90_vs_base"] for row in comparisons])),
+    },
+    "floor_interpretation": (
+        "This is the experiment floor: canonical rerun plus paraphrase variation "
+        "under the frozen 30-item protocol."
+    ),
+}
+(EXP_DIR / "floor_stats.json").write_text(json.dumps(floor, indent=2, sort_keys=True) + "\n")
+if not gate_passed:
+    raise SystemExit(f"behavioral gate did not pass: {floor['why_not_green']}")
 print("[exp1] behavioral gate green")
 PY
 
@@ -119,14 +183,18 @@ for edit_id in "${EDIT_IDS[@]}"; do
     control_adapter="experiments/exp1_triplet_concept_move/lora_control/${edit_id}"
     edit_adapter="experiments/exp1_triplet_concept_move/lora_edit/${edit_id}"
   elif [ "$SUPERVISION" = "similarity" ]; then
-    python scripts/build_experiment1_similarity_sft_data.py \
-      --edit-spec "experiments/exp1_triplet_concept_move/candidate_edits/${edit_id}.json" \
-      --repeats 6 \
-      --train-max-steps "$TRAIN_STEPS" \
-      --lora-rank "$LORA_RANK" \
-      --seed "$SEED"
     control_data="experiments/exp1_triplet_concept_move/sft_similarity_data/${edit_id}/control.jsonl"
     edit_data="experiments/exp1_triplet_concept_move/sft_similarity_data/${edit_id}/edit.jsonl"
+    if [ ! -s "$control_data" ] || [ ! -s "$edit_data" ]; then
+      python scripts/build_experiment1_similarity_sft_data.py \
+        --edit-spec "experiments/exp1_triplet_concept_move/candidate_edits/${edit_id}.json" \
+        --repeats 6 \
+        --train-max-steps "$TRAIN_STEPS" \
+        --lora-rank "$LORA_RANK" \
+        --seed "$SEED"
+    else
+      echo "[exp1] cell ${edit_id}: using prebuilt similarity SFT data"
+    fi
     control_adapter="experiments/exp1_triplet_concept_move/lora_control_similarity/${edit_id}"
     edit_adapter="experiments/exp1_triplet_concept_move/lora_edit_similarity/${edit_id}"
   else

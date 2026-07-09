@@ -1,15 +1,15 @@
 # Experiment 1 Report - Triplet Detection of Concept Moves
 
-Current status: the CPU-reproducible baseline scaffold and simulated detection smoke test are in place; the behavioral gate is still red because fresh 30-item canonical/paraphrase model runs have not been collected.
+Current status: the CPU-reproducible scaffold and simulated detection smoke test are in place; the first real CHTC pathway check is being submitted via the direct-similarity fallback because this checkout lacks the full NOVA feature parquet needed for feature-listing supervision.
 
 ## Pipeline State
 
 - 0a feature-space base RDM: green
-- 0b behavioral triplet base RDM: red
+- 0b behavioral triplet base RDM: queued on CHTC
 - 1 item selection: green
 - 2 edit operator pre-check: draft only
-- 3 two-LoRA training: not started
-- 4 detection/localization: not started
+- 3 two-LoRA training: queued on CHTC for `concentrated_drop_100` similarity fallback
+- 4 detection/localization: queued after LoRA training in the same CHTC job
 - 5 resolution map: simulated smoke green; real map not started
 
 ## Item Choice
@@ -49,7 +49,9 @@ Artifacts:
 
 ## Current Course-Correction Reasoning
 
-The archived 128-item Llama triplet embedding is useful as a provisional behavioral map, but it does not satisfy the hard gate. The next action is to run the frozen 30-item protocol for the base model at least twice with the canonical prompt and once with the paraphrase prompt, then replace the provisional floor with the real split/paraphrase reliability estimate. Training any LoRA before that would contaminate the experiment because detection would have no accepted noise denominator.
+The archived 128-item Llama triplet embedding is useful as a provisional behavioral map, but it does not satisfy the hard gate. The CHTC pathway job first runs the frozen 30-item protocol for the base model at least twice with the canonical prompt and once with the paraphrase prompt, then refreshes `floor_stats.json` from those behavioral runs before any LoRA training.
+
+The original feature-listing supervision path is still implemented, but it requires `data/nova/verified_matrix_cogsci2025.parquet`, which is not present in this checkout. Rather than blocking on that missing file, the first CHTC check uses fallback lever 6.2: direct pairwise-similarity supervision from the committed `sft_similarity_data/concentrated_drop_100` files, while detection remains the held-out frozen triplet task.
 
 Exact next runner pattern:
 
@@ -57,7 +59,7 @@ Exact next runner pattern:
 python scripts/run_experiment1_triplets.py --model llama-3.1-8b-instruct --out-run base_seed_a_canonical_prompt --prompt-variant canonical --overwrite
 python scripts/run_experiment1_triplets.py --model llama-3.1-8b-instruct --out-run base_seed_b_canonical_prompt --prompt-variant canonical --overwrite
 python scripts/run_experiment1_triplets.py --model llama-3.1-8b-instruct --out-run base_seed_a_paraphrase_prompt --prompt-variant paraphrase --overwrite
-python scripts/run_experiment1.py --allow-provisional-edits
+python scripts/run_experiment1_real_gpu.sh concentrated_drop_100
 ```
 
 Full GPU path once a GPU host is available:
@@ -72,10 +74,10 @@ CHTC pathway-check path is prepared for the first real run:
 chtc/exp1_triplet_move/submit_exp1_pathway.sh
 ```
 
-If feature-listing supervision does not move the behavioral triplet RDM, the prepared fallback path is:
+The current CHTC path defaults to the similarity fallback:
 
 ```bash
-SUPERVISION=similarity make experiment1-real-gpu
+chtc/exp1_triplet_move/submit_exp1_pathway.sh
 ```
 
 ## Current Findings
@@ -89,7 +91,7 @@ SUPERVISION=similarity make experiment1-real-gpu
 
 ## Live Risks
 
-- Missing true behavioral floor: collect required runs listed in `triplet_protocol.json`.
-- No local GPU in this environment: LoRA training and vLLM triplet recovery need a GPU host or CHTC submission.
-- CHTC authentication is not active for this process: escalated `chtc-ssh 'hostname -f'` reached SSH but failed keyboard-interactive auth. Start `chtc-master`, then run `chtc/exp1_triplet_move/submit_exp1_pathway.sh`.
+- Missing true behavioral floor: CHTC pathway job collects required runs listed in `triplet_protocol.json` before training.
+- No local GPU in this environment: `nvidia-smi` cannot communicate with a local driver, so CHTC is the active GPU path.
+- Feature-listing data source is missing: restore `data/nova/verified_matrix_cogsci2025.parquet` before using `SUPERVISION=feature`; current run uses direct-similarity fallback instead.
 - Candidate edits are feature-space drafts only: promote them to `edits/` only after the behavioral gate is green.
