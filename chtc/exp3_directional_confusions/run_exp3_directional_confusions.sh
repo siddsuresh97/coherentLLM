@@ -32,11 +32,13 @@ finish() {
   log_step "runner_exit status=${status}"
   echo "${status}" > "${RESULT_DIR}/exit_status.txt"
   if [[ -d "${WORK}/experiments/exp3_directional_confusions" ]]; then
-    tar -czf "${OUT_BUNDLE}" \
-      -C "${WORK}" experiments/exp3_directional_confusions \
-      -C "${RESULT_DIR}" . 2>/dev/null || true
-  else
-    tar -czf "${OUT_BUNDLE}" -C "${RESULT_DIR}" . 2>/dev/null || true
+    mkdir -p "${RESULT_DIR}/work_snapshot/experiments"
+    cp -a "${WORK}/experiments/exp3_directional_confusions" "${RESULT_DIR}/work_snapshot/experiments/" 2>/dev/null || true
+  fi
+  tar -czf "${OUT_BUNDLE}" -C "${RESULT_DIR}" . 2>/dev/null || true
+  if [[ ! -s "${OUT_BUNDLE}" ]]; then
+    echo "failed_to_create_result_bundle" > "${OUT_BUNDLE}.txt"
+    tar -czf "${OUT_BUNDLE}" "${OUT_BUNDLE}.txt" 2>/dev/null || true
   fi
   exit "${status}"
 }
@@ -112,7 +114,7 @@ missing_modules="$("${PYTHON_BIN}" - <<'PY'
 import importlib.util
 
 missing = []
-for module in ("torch", "vllm", "pandas"):
+for module in ("torch", "vllm", "pandas", "transformers"):
     if importlib.util.find_spec(module) is None:
         missing.append(module)
 print(" ".join(missing))
@@ -123,7 +125,8 @@ if [[ -n "${missing_modules}" ]]; then
   packages=()
   for module in ${missing_modules}; do
     case "${module}" in
-      vllm) packages+=("vllm==${VLLM_VERSION:-0.6.6.post1}") ;;
+      vllm) packages+=("vllm==${VLLM_VERSION:-0.6.6.post1}" "transformers==${TRANSFORMERS_VERSION:-4.47.1}" "huggingface-hub>=0.24.0,<1.0") ;;
+      transformers) packages+=("transformers==${TRANSFORMERS_VERSION:-4.47.1}" "huggingface-hub>=0.24.0,<1.0") ;;
       pandas) packages+=("pandas") ;;
       torch) packages+=("torch") ;;
     esac
