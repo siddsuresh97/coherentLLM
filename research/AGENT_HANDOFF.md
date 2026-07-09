@@ -1,6 +1,6 @@
 # Active Agent Handoff
 
-Last coordination snapshot: 2026-07-08 21:51 CDT.
+Last coordination snapshot: 2026-07-08 22:29 CDT.
 
 Branch: `coherence-sft`
 
@@ -12,18 +12,32 @@ Source: `chtc-ssh 'condor_q -batch suresh27'` with the active `chtc-master` wrap
 
 Current queue snapshot:
 
-- Concept steering expanded qualitative suite `5513407.0` is running on
-  `slot2_3@gpulab2004.chtc.wisc.edu`.
-- Allocation: `1` GPU, `8` CPUs, `65536` MB RAM, `83886080` KB disk.
-- Queue state from `condor_q -batch suresh27`: `1` running, `0` idle,
+- Queue state from `condor_q -batch suresh27`: `0` running, `0` idle,
   `0` held.
-- Assigned GPU for `5513407.0`: `NVIDIA A100-SXM4-40GB` on
-  `gpulab2004.chtc.wisc.edu`; remote stdout shows `gpu_probe_ok`,
-  `pip_install_exit rc=0`, `import_probe_ok`, and the 375-generation plan
-  before model generation.
+- Retention failure-suite TruthfulQA gate `5513424.0` completed with
+  `ExitCode=0`, `RemoteWallClockTime=520.0`, and host
+  `slot2_2@gpu4006.chtc.wisc.edu`. It used one NVIDIA L40S GPU and wrote
+  artifacts under `results/sft_eval/wide_bench/failure_suite/chtc_5513424/`.
+- Concept steering expanded qualitative suite `5513407.0` completed normally
+  with return value `0` on `slot2_3@gpulab2004.chtc.wisc.edu`.
+- Concept allocation was `1` GPU, `8` CPUs, `65536` MB RAM, `83886080` KB
+  disk. Assigned GPU was `NVIDIA A100-SXM4-40GB`; Condor reported
+  `TimeExecute=962s`, `TimeSlotBusy=1015s`, and peak GPU memory `14202` MB.
+- Pulled concept artifacts are under
+  `results/sft_eval/concept_steering/chtc/5513407/`.
 - Exact spare capacity is available: 40 unclaimed X86_64 CHTC slots satisfy
   `1` GPU, `8` CPUs, at least `64GB` RAM, `>=40GB` GPU memory, and
   `HasChtcStaging==true`.
+- Huth/Fedorenko pack-smoke cluster `5513418.0` failed with `ExitCode=1`
+  because the first packer archived ds003020 git-annex symlinks instead of
+  dereferenced contents. Pulled artifacts are in
+  `results/sft_huth_lebel/chtc_huth_pack_smoke_5513418/`.
+- Fixed Huth/Fedorenko pack-smoke retry `5513422.0` passed with `ExitCode=0`,
+  `RemoteWallClockTime=91.0`, and host `slot1_59@e4049.chtc.wisc.edu`. It read
+  the existing smoke root, packed `againstthewind`, verified all members and
+  extracted sizes, and wrote no staging files. Compact proof files are under
+  `results/sft_huth_lebel/chtc_huth_pack_smoke_retry_5513422/`; the large raw
+  result tarball is intentionally left untracked.
 
 Huth/Fedorenko staging blocker:
 
@@ -32,21 +46,32 @@ Huth/Fedorenko staging blocker:
 - High-data ds003020 raw manifest would add 420 files and 76.86 GB, so do not
   raw-stage high-data until file count/disk are freed or packed story artifacts
   are implemented.
+- Packed-story artifacts are now implemented locally:
+  `src/sft/huth_lebel_pack_stories.py` and
+  `chtc/huth_lebel_highdata_packs/`. The generated plan reduces 420 raw
+  high-data files to 84 story packs. Preferred cleanup candidate is the
+  rebuildable MMLU dataset cache at `/staging/s/suresh27/hf_datasets_cache`;
+  exact candidates are in
+  `results/sft_huth_lebel/staging_cleanup_candidates.csv`.
 
 Held jobs: none.
 
-Monitor decision: no additional GPU job was submitted from this lane. Boole's
-concept suite is already running; rerunning completed MMLU shards would be
-duplicative; the checked-in Huth uncapped encoding path is CPU-only and already
-complete. The next safe CHTC GPU submission should come from a newly
-smoke-tested Huth/Fedorenko or semantic-hub bundle, or from a completed
-`5513407` pull/rescore follow-up.
+Monitor decision: no additional GPU job was submitted from this lane. The
+concept GPU suite is complete, rerunning completed MMLU shards would be
+duplicative, and the checked-in Huth uncapped encoding path is CPU-only and
+already complete. The next safe CHTC GPU submission should come from a newly
+smoke-tested Huth/Fedorenko or semantic-hub bundle.
 
 Completed since the previous handoff:
 
 - The expanded concept generation follow-up was committed in `8e2295d`; its
   submission note is tracked at
   `results/sft_eval/concept_steering/chtc/5513407/SUBMISSION.md`.
+- Expanded concept qualitative result `5513407.0` passed and was pulled. All
+  retention gates passed at `0.96`; `coherence_l12_a4` gave the largest
+  coherence lift (`+0.12`) but hurt alignment (`-0.24`), while
+  `coherence_l16_a4` was only weakly helpful (`+0.04`) and the current
+  human-alignment steering vectors did not improve harder alignment prompts.
 - Concept qualitative `5513347.0` exited with Condor `ExitCode=1` after all
   generations and judge CSVs were written. The failure was a late `SUMMARY.md`
   writer bug; corrected/rescored artifacts are committed under
@@ -57,14 +82,16 @@ Completed since the previous handoff:
 - Huth/Fedorenko next-experiment plan was refreshed after quota inspection in
   `results/sft_huth_lebel/NEXT_EXPERIMENT_PLAN.md`. No fMRI CHTC job was
   submitted in this checkpoint because staging file quota is already exceeded.
+- Huth/Fedorenko staging-unblock report was added at
+  `results/sft_huth_lebel/STAGING_UNBLOCK_REPORT.md`; CHTC pack-smoke retry
+  `5513422` passed and used no GPU.
+- Retention failure-suite TruthfulQA gate `5513424` passed. Bounded MC2:
+  base `0.5682`, lowLR `0.5661`, taskvec `0.6037`; paired false-pressure-up
+  fraction is lowLR `0.275` versus taskvec `0.825`.
 
 ## Active Agent Goals
 
-| Agent | ID | Lane | Current goal |
-| --- | --- | --- | --- |
-| Boole | `019f44b4-b2fd-7960-bd39-440dbb17743f` | Concept steering scale-up | Build a validated expanded judged generation suite and submit one short CHTC GPU job only after local dry-run checks pass. |
-| Franklin | `019f44c8-e4f2-7b32-ba56-7f22db31c131` | Huth high-data staging unblock | Audit staging quota safely, implement packed-artifact helpers/manifests under the Huth lane, and prepare a small validated CHTC smoke path if safe. |
-| Lorentz | `019f44c9-168f-72c2-9418-46846bae3072` | Semantic hub / MEMP implementation | Turn the paper-method plan into a runnable local-smoke experiment harness with controls, config, and metric schema. |
+No active subagents at this snapshot.
 
 Completed agents already closed:
 
@@ -80,6 +107,10 @@ Completed agents already closed:
 | Sartre / main-thread Huth pickup | `019f44b4-d7ea-7131-9ea2-26181b412bd3` | `ff86cb4` |
 | Gauss | `019f44bf-dcc2-7ed1-8bc2-f0f3cda43bbe` | `2d823bd` |
 | Faraday | `019f44bf-df00-72a1-94e5-f2c3d50cecdb` | `842474b` |
+| Boole | `019f44b4-b2fd-7960-bd39-440dbb17743f` | `8e2295d` |
+| Lorentz | `019f44c9-168f-72c2-9418-46846bae3072` | `ee50f23` |
+| Franklin | `019f44c8-e4f2-7b32-ba56-7f22db31c131` | `342847c` |
+| Cicero | `019f44d6-6b30-71d2-845a-b9fe2712bd29` | `5aa2823`, `01ff9b6` |
 
 ## Current Scientific Checkpoints
 
@@ -103,10 +134,18 @@ Completed agents already closed:
   full-voxel multi-fold encoding, and Fedorenko claims restricted to
   exploratory atlas/localizer status unless subject-specific language fROIs are
   added.
+- Current high-data staging unblock details are in
+  `results/sft_huth_lebel/STAGING_UNBLOCK_REPORT.md`: 420 high-data source
+  files become 84 story archives; cleanup should target rebuildable cache, not
+  staged models/adapters.
 - The semantic-hub/MEMP paper-method lane is committed in `aecf2cc`; use
   `taskvec_a0p25` as the primary arm and gate claims on paper-style controls.
 - The retention failure-suite gate is committed in `2afd0f2`; the first smoke is
   `python src/sft/build_retention_failure_suite_manifest.py --check`.
+- The first GPU-backed failure-suite gate is complete in `5513424`: lowLR is
+  aggregate-flat but suppresses false pressure, while `taskvec_a0p25` improves
+  MC2 but increases false pressure on most paired items. Use this before
+  approving any mitigation that looks good on aggregate TruthfulQA alone.
 
 ## Coordination Rules
 

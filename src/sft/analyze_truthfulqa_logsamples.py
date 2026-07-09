@@ -305,10 +305,14 @@ def write_report(out_dir: Path, summary: list[dict], delta_summary: list[dict], 
             )
         if "taskvec_a0p25" in by_arm:
             row = by_arm["taskvec_a0p25"]
+            direction = "increases" if row["mean_delta_truth_logodds"] >= 0 else "reduces"
+            acc_direction = "improves" if row["mean_delta_mc2_acc"] >= 0 else "reduces"
             lines.append(
-                "- `taskvec_a0p25` is aggregate-flat here, but it raises "
+                f"- `taskvec_a0p25` {acc_direction} aggregate MC2 by "
+                f"{fmt(row['mean_delta_mc2_acc'])} and {direction} mean truth "
+                f"log-odds by {fmt(row['mean_delta_truth_logodds'])}, but it raises "
                 f"false-answer pressure on {fmt(row['frac_false_pressure_up'])} "
-                "of paired items and reduces mean truth log-odds."
+                "of paired items."
             )
         if "scrambled" in by_arm:
             row = by_arm["scrambled"]

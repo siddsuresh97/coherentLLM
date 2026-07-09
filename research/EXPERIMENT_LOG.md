@@ -1,6 +1,6 @@
 # Coherence-SFT Experiment Log
 
-Last updated: 2026-07-08 21:44 CDT
+Last updated: 2026-07-08 22:24 CDT
 
 ## Read this first
 
@@ -1648,3 +1648,170 @@ Current rule:
 
 - Use `TARGET.CUDAGlobalMemoryMb >= 40000` for CHTC Llama GPU jobs. Do not
   relax this to make jobs start faster; small GPUs produce false progress.
+
+## 2026-07-08 active: Huth/Fedorenko high-data staging unblock
+
+Objective: make the next high-data Huth/LeBel natural-listening experiment
+runnable without worsening CHTC staging file-count pressure.
+
+Quota audit:
+
+- `get_quotas` on `ap2002.chtc.wisc.edu` reports `/staging/s/suresh27` at
+  `24.3209/100` GB but `1120/1000` files.
+- Per-directory audit shows the safe file-count pressure is rebuildable cache,
+  not core model state: `hf_datasets_cache` has 373 entries and only 0.004 GB;
+  `hf_home` has 412 entries and only 0.004 GB; the staged smoke dataset has
+  276 entries and 7.887 GB; staged `models` and `adapters` are only 40 entries
+  combined and should be kept.
+
+Implementation:
+
+- Added `src/sft/huth_lebel_pack_stories.py` with `plan`, `pack`, `verify`,
+  and `self-test` commands.
+- Added `chtc/huth_lebel_highdata_packs/` with a CHTC pack-smoke submit file
+  and a high-data per-story array submit plan.
+- Generated `results/sft_huth_lebel/highdata_story_pack_manifest.csv` and
+  `highdata_story_pack_summary.json`: 420 raw high-data files become 84
+  planned `.tar.zst` story archives under
+  `/staging/s/suresh27/datasets/ds003020-highdata-packs`, reducing planned
+  file count by 336 entries.
+- Added `results/sft_huth_lebel/staging_cleanup_candidates.csv` and
+  `STAGING_UNBLOCK_REPORT.md`; no cleanup was performed in this checkpoint.
+
+Local validation:
+
+- `python -m py_compile src/sft/huth_lebel_pack_stories.py src/sft/huth_lebel_smoke_encoding.py src/sft/huth_lebel_extract_word_states.py src/sft/plan_huth_lebel_staging.py src/sft/huth_lebel_audit.py`
+- `bash -n chtc/huth_lebel_highdata_packs/run_pack_story_smoke.sh`
+- `bash -n chtc/huth_lebel_highdata_packs/run_pack_highdata_story.sh`
+- `python src/sft/huth_lebel_pack_stories.py self-test`
+- `python src/sft/huth_lebel_pack_stories.py plan --manifest results/sft_huth_lebel/staging_manifest_highdata.csv --out-dir results/sft_huth_lebel --label highdata`
+
+CHTC smoke:
+
+- Run id: `coherence-huth-pack-smoke-20260709-025632`.
+- Cluster: `5513418`.
+- Shape: CPU/container only, `2` CPUs, `4GB` memory, `10GB` disk, staging
+  visibility required, no GPU.
+- Purpose: read existing `/staging/s/suresh27/datasets/ds003020-smoke`, pack
+  `againstthewind`, verify extraction, and transfer the pack in the job result
+  tarball without writing new staging files.
+- `condor_q -better-analyze 5513418` reported 30 slots match and are willing to
+  run the job.
+- Outcome: `5513418` exited `1`. Pulled artifacts are in
+  `results/sft_huth_lebel/chtc_huth_pack_smoke_5513418/`. The verifier reported
+  `actual_bytes=-1` for all five expected `againstthewind` files because the
+  first packer archived git-annex symlinks rather than dereferenced file
+  contents.
+- Fix: `src/sft/huth_lebel_pack_stories.py` now passes tar `--dereference`, and
+  the local self-test includes a git-annex-style symlink case.
+- Retry: cluster `5513422`, run id
+  `coherence-huth-pack-smoke-retry-20260709-030344`, submitted with the fixed
+  helper.
+- Retry outcome: `5513422` passed with `ExitCode=0`, `JobStatus=4`,
+  `RemoteWallClockTime=91.0`, and host `slot1_59@e4049.chtc.wisc.edu`.
+  `pack_result.json` reports `againstthewind.tar.gz` with
+  `archive_bytes=399848250`, `expected_source_bytes=432463521`, `n_source_files=5`,
+  and SHA256
+  `728b01346aed14f512d66bdb8699dbbde37455e1287e50a7392ddc9ce6f0cc7a`.
+  `verify_result.json` reports `n_archive_members=7`,
+  `verified_members=true`, and `verified_extracted_sizes=true`.
+- Current CHTC queue after the retry: empty. Staging quota remains
+  `/staging/s/suresh27 24.3209/100 GB, 1120/1000 files`.
+
+Next:
+
+- If it passes, clean only rebuildable cache after confirming no active MMLU/HF
+  jobs need it; preferred candidate is `/staging/s/suresh27/hf_datasets_cache`.
+- After file count is below quota, submit one high-data staged pack for
+  `againstthewind`, then scale to all 84 story packs.
+
+## 2026-07-08 checkpoint: expanded concept steering generation passed
+
+Run:
+
+- CHTC cluster: `5513407.0`
+- Remote directory:
+  `~/chtc-runs/coherence-concept-expanded-20260709-023711`
+- Local artifacts:
+  `results/sft_eval/concept_steering/chtc/5513407/`
+- Host/GPU: `gpulab2004.chtc.wisc.edu`, NVIDIA A100-SXM4-40GB
+- Exit evidence: Condor return value `0`, `exit_status.txt == 0`,
+  `qual_exit_status.txt == 0`
+- Runtime evidence: `TimeExecute=962s`, `TimeSlotBusy=1015s`
+
+Expanded suite:
+
+- `25` coherence prompts, `25` harder human-alignment prompts, and `25`
+  retention prompts.
+- Five settings: baseline, `coherence_l16_a4`, `coherence_l12_a4`,
+  `human_alignment_l24_a4`, and `human_alignment_l16_a2`.
+- Result files:
+  `results/sft_eval/concept_steering/chtc/5513407/extracted/qualitative/SUMMARY.md`,
+  `judge_summary.csv`, `gate_summary.csv`, `generations.jsonl`, and
+  `gpu_metrics.csv`.
+
+Headline result:
+
+| Setting | Coherence pass | Delta | Alignment pass | Delta | Retention pass |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `baseline` | 0.76 | 0.00 | 0.88 | 0.00 | 0.96 |
+| `coherence_l12_a4` | 0.88 | +0.12 | 0.64 | -0.24 | 0.96 |
+| `coherence_l16_a4` | 0.80 | +0.04 | 0.80 | -0.08 | 0.96 |
+| `human_alignment_l16_a2` | 0.84 | +0.08 | 0.76 | -0.12 | 0.96 |
+| `human_alignment_l24_a4` | 0.80 | +0.04 | 0.80 | -0.08 | 0.96 |
+
+Interpretation:
+
+- all settings passed the retention gate, so the issue is not broad retention
+  collapse.
+- `coherence_l12_a4` is the strongest coherence-moving direction but has a
+  large alignment cost; keep it as a diagnostic only.
+- `coherence_l16_a4` is retention-safe but its expanded-suite gain is small.
+- the current human-alignment vectors do not improve the harder alignment
+  prompts; vector extraction and prompt-family stratification should come
+  before another broad generation job.
+
+## 2026-07-08 checkpoint: retention failure-suite TruthfulQA gate passed
+
+Run:
+
+- CHTC cluster: `5513424.0`
+- Remote directory:
+  `~/chtc-runs/coherence-retention-failure-suite-20260709-031120`
+- Local artifacts:
+  `results/sft_eval/wide_bench/failure_suite/chtc_5513424/`
+- Host/GPU: `gpu4006.chtc.wisc.edu`, NVIDIA L40S
+- Exit evidence: Condor `ExitCode=0`, `RemoteWallClockTime=520.0`,
+  `exit_status.txt == 0`, and `gate_exit_status.txt == 0`
+- GPU metrics: max sampled utilization `100%`, max sampled memory `39163` MiB
+
+Gate:
+
+- Arms: `base`, `taskvec_a0p25`, `lowLR`
+- Task: `truthfulqa_mc2`
+- Limit: `40`
+
+Aggregate slice:
+
+| Arm | n | MC2 acc | Truth log-odds | Best true - false |
+| --- | ---: | ---: | ---: | ---: |
+| `base` | 40 | 0.5682 | 1.7411 | 1.8170 |
+| `lowLR` | 40 | 0.5661 | 2.5413 | 2.6345 |
+| `taskvec_a0p25` | 40 | 0.6037 | 2.3077 | 2.3883 |
+
+Paired deltas vs base:
+
+| Arm | Delta MC2 | Delta truth log-odds | Delta true mass | Delta false pressure | False pressure up |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `lowLR` | -0.0021 | +0.8002 | -1.9314 | -2.7315 | 0.275 |
+| `taskvec_a0p25` | +0.0355 | +0.5666 | +4.1623 | +3.5958 | 0.825 |
+
+Interpretation:
+
+- `lowLR` is not an aggregate TruthfulQA win in this bounded slice, but it
+  looks mechanistically safer because it suppresses false-answer pressure.
+- `taskvec_a0p25` is the better aggregate slice performer, but it raises
+  false-answer pressure on most paired items. Treat this as a plausible-lure
+  calibration risk despite the MC2 gain.
+- The next mitigation gate should explicitly constrain false-pressure-up
+  fraction and not use MC2 alone as the promotion signal.

@@ -27,7 +27,10 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   `0.009785`, `taskvec_a0p25` `0.009137`, `lowLR` `0.008287`, scrambled
   `0.004988`. The next Huth/Fedorenko step is high-data story scaling with
   packed staging artifacts and pre-registered folds; current CHTC staging is
-  blocked by file quota (`1120/1000` files), not by code correctness.
+  blocked by file quota (`1120/1000` files), not by code correctness. The
+  staging-unblock lane now has a packed-story plan that turns the 420-file
+  high-data raw manifest into 84 story archives, plus exact cleanup candidates
+  in [`results/sft_huth_lebel/STAGING_UNBLOCK_REPORT.md`](results/sft_huth_lebel/STAGING_UNBLOCK_REPORT.md).
 - **fMRI x hub bridge:** the new concept-held-out regression does not support a
   clean semantic-hub explanation of Ventral Visual RSA. Averaged hub predictors
   are roughly tied with single prompt spokes in Ventral Visual, while
@@ -39,10 +42,18 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   HellaSwag too (`acc_norm=0.287`, delta `-0.398`). CHTC MMLU now gives
   `taskvec_a0p25` micro acc `0.623` (`-0.070` vs base, `+0.031` vs lowrank)
   and macro acc `0.618` (`-0.074`), so it is partial mitigation rather than
-  broad retention recovery. Bounded TruthfulQA log-sample diagnostics show
-  lowrank improves by suppressing false-answer pressure, `taskvec_a0p25` is
-  aggregate-flat but increases plausible-false pressure, and scrambled SFT
-  catastrophically hurts item-level calibration.
+  broad retention recovery. CHTC TruthfulQA gate `5513424` sharpens the
+  mechanism read: `lowLR` is MC2-flat on the bounded slice (`0.566` vs base
+  `0.568`) but suppresses false-answer pressure, while `taskvec_a0p25` improves
+  MC2 (`0.604`) and truth log-odds but raises false-answer pressure on `82.5%`
+  of paired items.
+- **Concept steering:** expanded judged generation suite `5513407` passed on
+  CHTC, but it does not justify broad steering yet. All tested settings passed
+  retention (`0.96` pass rate), while `coherence_l12_a4` gave the largest
+  coherence gain (`+0.12`) with a large alignment cost (`-0.24`).
+  `coherence_l16_a4` is retention-safe but only weakly helpful (`+0.04`
+  coherence, `-0.08` alignment), and the human-alignment vectors did not
+  improve harder alignment prompts.
 - **Runtime:** CHTC MMLU finished as a pure 8-shard merge from
   `~/chtc-runs/coherence-mmlu-shards-20260709-004133`. Smoke `5513195`
   passed on an H100; full cluster `5513268` needed staging retry `5513291`
@@ -57,7 +68,11 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   smoke `5513235` exposed a staging visibility failure on a non-staging
   backfill node; retry `5513261` exposed pip dependency shadowing; fixed
   no-deps retry `5513276` passed and produced vectors plus 18 smoke eval rows;
-  bounded layer/alpha sweep `5513297` passed with 120 eval rows. MMLU CHTC jobs now require
+  bounded layer/alpha sweep `5513297` passed with 120 eval rows; expanded
+  qualitative run `5513407` passed on an A100 40GB with 375 generations and
+  wrote final concept-steering gate tables. Retention failure-suite gate
+  `5513424` passed on an L40S in 520s and wrote the TruthfulQA mechanism
+  diagnostics. MMLU CHTC jobs now require
   `TARGET.HasCHTCStaging == true` plus `TARGET.CUDAGlobalMemoryMb >= 40000`;
   other CHTC Llama GPU lanes require at least the 40GB GPU floor so small GPUs
   are no longer absorbing jobs. H100 handled rank-16 lowrank MMLU, but
@@ -84,6 +99,8 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   [`results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md`](results/sft_eval/wide_bench_diagnostics/truthfulqa_analysis/REPORT.md)
 - Benchmark skill diagnostics:
   [`results/sft_eval/wide_bench/skill_diagnostics/REPORT.md`](results/sft_eval/wide_bench/skill_diagnostics/REPORT.md)
+- Retention failure-suite gate:
+  [`results/sft_eval/wide_bench/failure_suite/README.md`](results/sft_eval/wide_bench/failure_suite/README.md)
 - THINGS-fMRI RSA report: [`results/sft_fmri/REPORT.md`](results/sft_fmri/REPORT.md)
 - Huth/LeBel language-fMRI audit:
   [`results/sft_huth_lebel/REPORT.md`](results/sft_huth_lebel/REPORT.md)
@@ -93,6 +110,8 @@ updated long-form log is [`research/EXPERIMENT_LOG.md`](research/EXPERIMENT_LOG.
   [`results/sft_huth_lebel/ENCODING_PLAN.md`](results/sft_huth_lebel/ENCODING_PLAN.md)
 - Huth/Fedorenko next experiment plan:
   [`results/sft_huth_lebel/NEXT_EXPERIMENT_PLAN.md`](results/sft_huth_lebel/NEXT_EXPERIMENT_PLAN.md)
+- Huth/Fedorenko staging unblock report:
+  [`results/sft_huth_lebel/STAGING_UNBLOCK_REPORT.md`](results/sft_huth_lebel/STAGING_UNBLOCK_REPORT.md)
 - fMRI x semantic-hub bridge:
   [`results/sft_fmri_semantic_bridge/REPORT.md`](results/sft_fmri_semantic_bridge/REPORT.md)
 - Held-out fMRI hub regression:
