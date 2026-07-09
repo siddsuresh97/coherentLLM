@@ -81,7 +81,25 @@ Next allowed CHTC step is a constrained smoke submission from the updated `chtc/
 
 - Run directory: `coherence-mmlu-shards-20260709-004133`
 - Cluster: `5513195`
-- Status at last check: idle, no hold reason, no GPU assigned.
-- `condor_q -better-analyze`: requirements are satisfiable; 7 slots match and are willing to run the job, with 45 more if drained.
-- Next action: keep `5513195` queued and monitor. If smoke succeeds, submit `mmlu_full.sub` from the same run directory. If it fails, pull the returned tarball and update this report before changing the template.
+- Final status: completed successfully at 2026-07-09T01:07:14Z.
+- Matched slot: `slot2_3@gpu4003.chtc.wisc.edu`
+- Matched GPU: `NVIDIA H100 80GB HBM3`
+- Advertised GPU memory: `81089` MB
+- Runtime `nvidia-smi` memory: `81559` MB
+- Runtime milestones: GPU probe passed, dependency overlay install completed with `rc=0`, imports succeeded, `lm_eval` started at 2026-07-09T00:48:15Z, and `lm_eval` exited with `rc=0` at 2026-07-09T01:07:12Z.
+- Pulled artifact: `results/sft_eval/wide_bench/chtc_mmlu_shards/coherence-mmlu-shards-20260709-004133/mmlu_smoke_taskvec_a0p25_smoke_abstract_results.tgz`
+- Extracted diagnostics: `results/sft_eval/wide_bench/chtc_mmlu_shards/coherence-mmlu-shards-20260709-004133/extracted/`
+- Smoke coverage: `mmlu_abstract_algebra`, `found_n=20`, `missing_tasks=[]`.
+- Smoke metric: `acc,none=0.3`, `acc_stderr,none=0.10513149660756933`.
 - Duplicate cleanup: an earlier retry, `5513191`, was still idle after the main-lane smoke was active; it was removed with `condor_rm 5513191` to avoid duplicate GPU use.
+
+## Full Shards 5513268
+
+- Run directory: `coherence-mmlu-shards-20260709-004133`
+- Cluster: `5513268`
+- Jobs: 8 full MMLU shard procs, `0` through `7`.
+- Status at 2026-07-09T01:12Z: all 8 procs idle, no hold reasons, no remote hosts assigned.
+- Submit evidence: full-shard log stubs appeared in the run directory at 2026-07-08 20:10 local time after the successful smoke.
+- Requirements: `TARGET.CUDAGlobalMemoryMb >= 40000`, `request_gpus=1`, `request_cpus=8`, `request_memory=40GB`, `request_disk=80GB`.
+- `condor_q -better-analyze 5513268.0`: requirements are satisfiable; 37 slots match the full shard requirements, 1 slot is currently willing to run the job, and 51 more would match if drained.
+- Next action: monitor cluster `5513268`; pull full tarballs when procs complete and merge with `src/sft/merge_mmlu_shards.py`.

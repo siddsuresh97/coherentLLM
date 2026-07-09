@@ -1,0 +1,6 @@
+torch=2.5.1+cu124
+vllm=0.6.6.post1
+lm_eval=0.4.12
+torch_cuda_available=True
+torch_cuda_device_count=1
+torch_cuda_device_name=NVIDIA H100 80GB HBM3

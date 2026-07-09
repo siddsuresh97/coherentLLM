@@ -1,0 +1,13 @@
+{
+  "expected_n": 20,
+  "expected_tasks": [
+    "mmlu_abstract_algebra"
+  ],
+  "found_n": 20,
+  "found_tasks": [
+    "mmlu_abstract_algebra"
+  ],
+  "limit": 20,
+  "missing_tasks": [],
+  "result_json": "/var/lib/condor/execute/slot2/dir_3831185/scratch/mmlu_smoke_taskvec_a0p25_smoke_abstract/lm_eval/__staging__s__suresh27__models__llama31-8b-instruct/results_2026-07-09T01-07-09.936159.json"
+}
