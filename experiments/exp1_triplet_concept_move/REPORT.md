@@ -1,6 +1,6 @@
 # Experiment 1 Report - Detecting a Concept Move from Triplets
 
-Current status: baseline and noise floor are green, online W&B training works, and direct triplet SFT can move the intended `antelope`-`bison` relation. The best clean run remains v5: `antelope`-`bison` is the top residual pair, but `antelope` is still row-rank 3 rather than row-rank 1, so the experiment is close but not done.
+Current status: baseline and noise floor are green, online W&B training works, and direct triplet SFT can move the intended `antelope`-`bison` relation. The best clean run remains v5: `antelope`-`bison` is the top residual pair, but `antelope` is still row-rank 3 rather than row-rank 1. v7 tested reciprocal `bison` preservation and failed: it reduced residual drift but also reduced the target signal below detection.
 
 ## Hypothesis
 
@@ -27,8 +27,9 @@ Success requires both:
 | 8 | Both-direction + `bison`-preserve v4 | Yes | Partial / clean but weak | `antelope`-`bison` became the top global residual pair and residual drift dropped to `0.050`, but the edit was too weak at row level (`antelope` rank 12, SNR `1.056`). |
 | 9 | v5: v4 with stronger target repeats | Yes | Partial / best so far | `antelope` row rank improved to 3 with SNR `1.301`; `antelope`-`bison` is the top global residual pair. Not success yet because `antelope` is not top row. |
 | 10 | v6: system prompt + mixed SFT templates | Yes | Did not improve locality | SNR rose to `1.485`, but `antelope` row rank worsened to 8 and `bison`-other residual pairs dominated. Prompt mixing made the target stronger but less local. |
+| 11 | v7: target-anchor edit + reciprocal `bison` preservation | Yes | Did not fire | `antelope` row rank fell to 23 and SNR fell to `0.919`. The reciprocal preservation over-constrained the target relation and made edit movement smaller than the control null. |
 
-Main interpretation: the detector and scorer work, and the model's triplet behavior can move. v5 is a near-positive relation-level result. v6 shows that making the target pair stronger is not enough; the main problem is preserving locality, especially preventing `bison`-other relations from moving with the target relation.
+Main interpretation: the detector and scorer work, and the model's triplet behavior can move. v5 is a near-positive relation-level result. v6 shows that making the target pair stronger is not enough; it worsens `bison`-other spillover. v7 shows that fully preserving the reciprocal `bison` side is too strong; it suppresses the target signal into the control null. The next useful axis is a controlled data-balance sweep between v5 and v7, not another prompt-mixing run.
 
 ## Completed NOVA Runs
 
@@ -115,15 +116,18 @@ v6 setup:
 - Detection: [detection/concentrated_drop_100_triplet_targeted_v6_system_mixed_replay.json](detection/concentrated_drop_100_triplet_targeted_v6_system_mixed_replay.json). `antelope` row rank worsened to 8, SNR rose to `1.485`, and global residual drift rose to `0.099`. `antelope`-`bison` residual delta increased to `0.321`, but the largest residual pairs were `bison` with `beaver`, `camel`, `boar`, and `bear`, so this is not the desired local edit.
 - Training metrics: [control](lora_control_triplet/concentrated_drop_100_triplet_targeted_v6_system_mixed_replay/training_metrics.json), [edit](lora_edit_triplet/concentrated_drop_100_triplet_targeted_v6_system_mixed_replay/training_metrics.json). Raw held-out triplets: [control](raw/control_triplet_targeted_v6_system_mixed_replay_concentrated_drop_100/triplet.csv), [edit](raw/edit_triplet_targeted_v6_system_mixed_replay_concentrated_drop_100/triplet.csv). RDMs: [control](rdms/control_triplet_targeted_v6_system_mixed_replay_concentrated_drop_100/rdm.npy), [edit](rdms/edit_triplet_targeted_v6_system_mixed_replay_concentrated_drop_100/rdm.npy).
 
-Next planned variant:
-
-v7 setup:
+v7 result: reciprocal `bison` preservation.
 
 - Data: [sft_triplet_data/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve/control.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve/control.jsonl), [sft_triplet_data/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve/edit.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve/edit.jsonl), [manifest](sft_triplet_data/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve/manifest.json).
 - Counts: 6,096 examples per arm; 28 editable `anchor=antelope` rows with `bison` as a candidate repeated 24 times, 26 reciprocal `anchor=bison` rows with `antelope` as a candidate repeated 24 times in both arms with base choices, 900 `antelope`-preserve rows x2, 900 `bison`-preserve rows x2, and 1,200 replay rows.
 - Why this next: v5 was clean but weak and v6 was stronger but less local. v7 changes data shape, not prompt wording: move the target side while explicitly preserving the reciprocal neighbor side.
 - Training plan: online W&B, `rank=16`, `lr=5e-5`, `max_steps=600`, batch size 8, same as v5 for comparability.
 - W&B links: [control](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/2lpe63mo), [edit](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/gt9wlurf).
+- Training metrics: [control](lora_control_triplet/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve/training_metrics.json), [edit](lora_edit_triplet/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve/training_metrics.json). Raw held-out triplets: [control](raw/control_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve_concentrated_drop_100/triplet.csv), [edit](raw/edit_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve_concentrated_drop_100/triplet.csv). RDMs: [control](rdms/control_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve_concentrated_drop_100/rdm.npy), [edit](rdms/edit_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve_concentrated_drop_100/rdm.npy). Detection: [detection/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve.json](detection/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve.json).
+- Detection verdict: failed. `antelope` row rank was 23, SNR was `0.919`, and `antelope` was not top-ranked. Global edit RMS was `0.125`, control-null RMS was `0.129`, and residual RMS was only `0.037`, meaning v7 mostly matched the control drift rather than producing a target-specific edit.
+- Localization details: `antelope`-`bison` was still the top residual pair within the target row, but globally it fell to residual-pair rank 13 and edit-pair rank 10. The largest global residual pair was `bison`-`bassoon`, not the intended target relation.
+- Directional held-out rates: base chose `bison` for `antelope -> bison` in `28/28` cases; control v7 did so in `26/28`; edit v7 did so in `23/28`. The target-side change existed but was too small. The reciprocal side was unstable under fine-tuning: base chose `antelope` for `bison -> antelope` in `22/28`, control v7 in `0/28`, and edit v7 in `8/28`.
+- Interpretation: reciprocal preservation was not the missing fix by itself. It made the edit/control difference too small, and the control adapter still drifted strongly on the reciprocal `bison` direction. This kills the hypothesis that simply rehearsing `anchor=bison, candidate=antelope` base choices would stabilize the neighbor while preserving the target move.
 
 Example control/edit pair:
 
@@ -250,7 +254,7 @@ Assistant: 1
 | 1 item selection | Green | `antelope` target, `bison` concentrated neighbor. |
 | 2 edit operator | Green for `concentrated_drop_100` | Intended feature-RDM move is specified. |
 | 3 two-LoRA null | Green for tested recipes | Feature-listing and targeted-triplet control/edit LoRAs completed with online W&B for recent runs. |
-| 4 detection/localization | Yellow | v5 has the cleanest relation-level localization (`antelope`-`bison` top residual pair) and row SNR > 1, but `antelope` is row-rank 3 rather than 1. v6 increased SNR but worsened locality. |
+| 4 detection/localization | Yellow | v5 has the cleanest relation-level localization (`antelope`-`bison` top residual pair) and row SNR > 1, but `antelope` is row-rank 3 rather than 1. v6 increased SNR but worsened locality. v7 over-preserved the reciprocal neighbor side and dropped below SNR 1. |
 | 5 resolution map | Not done | We are still finding a clean positive cell before sweeping magnitude x locality. |
 
 ## Audit Links
