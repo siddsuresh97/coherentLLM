@@ -1,6 +1,6 @@
 # Experiment 3 Report
 
-Last updated: 2026-07-09T22:05:58-05:00
+Last updated: 2026-07-09T22:30:00-05:00
 
 ## Step 1 Story
 
@@ -160,13 +160,15 @@ V3 preregistered predictions: primary SPoSE [experiments/exp3_directional_confus
 
 V3 neighbor sanity audit: [experiments/exp3_directional_confusions/step2_safety_v3/neighbor_sanity_audit.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/neighbor_sanity_audit.csv) / [experiments/exp3_directional_confusions/step2_safety_v3/neighbor_sanity_audit.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/neighbor_sanity_audit.json). Gate: `behavior_subset_passed`; behavior targets: `3`.
 
-V3 behavior items: [experiments/exp3_directional_confusions/step2_safety_v3/items/items.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/items/items.csv) and [experiments/exp3_directional_confusions/step2_safety_v3/items/items.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/items/items.json). These are safe, boundary-local policy-routing cards for the social-engineering boundary subset.
+V3 behavior items: [experiments/exp3_directional_confusions/step2_safety_v3/items/items.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/items/items.csv) and [experiments/exp3_directional_confusions/step2_safety_v3/items/items.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/items/items.json). Boundary-hard set: [experiments/exp3_directional_confusions/step2_safety_v3/items/boundary_hard.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/items/boundary_hard.csv) and [experiments/exp3_directional_confusions/step2_safety_v3/items/boundary_hard.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/items/boundary_hard.json). These are safe, boundary-local policy-routing cards for the social-engineering boundary subset.
 
-V3 behavior responses: pending; H100 was occupied and local CHTC access was not available from this host.
+V3 behavior responses: [step2_v3_policy_routing_boundary_hard_v1](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/raw/step2_v3_policy_routing_boundary_hard_v1/items.csv), [step2_v3_policy_routing_v1](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/raw/step2_v3_policy_routing_v1/items.csv).
 
-V3 scored policy-routing result: pending. Run `python scripts/run_exp3_safety_v3.py score-items --run step2_v3_policy_routing_v1` after item responses exist.
+V3 scored policy-routing results: clear/easy batch: [experiments/exp3_directional_confusions/step2_safety_v3/results/step2_v3_policy_routing.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/results/step2_v3_policy_routing.json), [experiments/exp3_directional_confusions/step2_safety_v3/results/step2_v3_scored_items.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/results/step2_v3_scored_items.csv), [experiments/exp3_directional_confusions/step2_safety_v3/results/step2_v3_pair_rates.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/results/step2_v3_pair_rates.csv); boundary-hard batch: [experiments/exp3_directional_confusions/step2_safety_v3/results/step2_v3_policy_routing_boundary_hard.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/results/step2_v3_policy_routing_boundary_hard.json), [experiments/exp3_directional_confusions/step2_safety_v3/results/step2_v3_policy_routing_boundary_hard_scored_items.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/results/step2_v3_policy_routing_boundary_hard_scored_items.csv), [experiments/exp3_directional_confusions/step2_safety_v3/results/step2_v3_policy_routing_boundary_hard_pair_rates.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/results/step2_v3_policy_routing_boundary_hard_pair_rates.csv), [experiments/exp3_directional_confusions/step2_safety_v3/results/step2_v3_policy_routing_boundary_hard_confusion_matrix.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/results/step2_v3_policy_routing_boundary_hard_confusion_matrix.csv).
 
-V3 behavior readout: pending.
+V3 clear/easy behavior readout: accuracy `0.8333`, directional errors `4`, near fraction `0.0000`, false-allow near errors `0`, over-refusal near errors `0`, verdict `v3_underpowered_too_few_errors`.
+
+V3 boundary-hard behavior readout: accuracy `0.6528`, errors `25/72`, directional errors `16`, near fraction `0.6250`, shuffle-null p `0.0172`, base-rate lift `0.1562`, H2 slope `-0.372833` with CI `[-0.669487757443094, -0.004866535359334067]`, confusion agreement `0.6983`, false-allow near errors `5`, over-refusal near errors `5`, verdict `v3_candidate_directional_signal`.
 
 Important caveat: v3 triplet comparisons involving restricted labels produced refusal-style answers in the raw CSVs. That makes the current geometry a mixture of semantic similarity and policy/refusal behavior; useful for safety routing, but not a clean semantic-only RDM.
 
@@ -200,7 +202,7 @@ Source papers used for the v3 concepts: [HarmBench](https://arxiv.org/abs/2402.0
 | jailbreak and policy-boundary robustness | `safeguard bypass facilitation` | 🟥 restricted | JailbreakBench, Constitutional Classifiers, HarmBench |
 
 
-What this means now: the concept-selection problem is no longer just a hand-built safety list. It is a matched, source-mapped decision-boundary set designed to produce both false-allow candidates and over-refusal candidates. The next result to trust is the human sanity gate over the v3 preregistered neighbors, followed by boundary-local policy-routing items.
+What this means now: the clear/easy v3 cards were too easy to decide transfer, but the boundary-hard cards produced a candidate directional signal on safety-policy routing. The result is still a subset result over the social-engineering boundary, not the final broad H3 claim.
 
 ### Step 2 Geometry Status
 
@@ -383,6 +385,9 @@ python scripts/run_exp3_safety_v3.py audit-neighbors
 python scripts/run_exp3_safety_v3.py generate-items --n-items-per-target 12
 python scripts/run_exp3_safety_v3.py run-items --model llama-3.1-8b-instruct --out-run step2_v3_policy_routing_v1 --overwrite --max_model_len 256 --max_num_seqs 8 --max-output-tokens 4
 python scripts/run_exp3_safety_v3.py score-items --run step2_v3_policy_routing_v1
+python scripts/run_exp3_safety_v3.py generate-items --item-set boundary_hard --style boundary_hard --n-items-per-target 24
+python scripts/run_exp3_safety_v3.py run-items --model llama-3.1-8b-instruct --out-run step2_v3_policy_routing_boundary_hard_v1 --item-set boundary_hard --overwrite --max_model_len 256 --max_num_seqs 4 --gpu_mem_util 0.40 --max-output-tokens 4
+python scripts/run_exp3_safety_v3.py score-items --run step2_v3_policy_routing_boundary_hard_v1 --item-set boundary_hard
 ```
 
 ## Pre-Registered Predictions

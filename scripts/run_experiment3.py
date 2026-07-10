@@ -3873,6 +3873,7 @@ def update_report() -> None:
     step2_v3_neighbors = read_optional_json(STEP2_V3_DIR / "neighbors.json")
     step2_v3_audit = read_optional_json(STEP2_V3_DIR / "neighbor_sanity_audit.json")
     step2_v3_result = read_optional_json(STEP2_V3_RESULT_DIR / "step2_v3_policy_routing.json")
+    step2_v3_boundary_hard_result = read_optional_json(STEP2_V3_RESULT_DIR / "step2_v3_policy_routing_boundary_hard.json")
     current_rdm_sha = (rdm_meta or {}).get("rdm_sha256")
     neighbors_current = artifact_hash_current(current_rdm_sha, (neighbors or {}).get("rdm_meta") if neighbors else None)
     results_current = artifact_hash_current(current_rdm_sha, results)
@@ -3911,7 +3912,24 @@ def update_report() -> None:
     step2_v3_srf = step2_v3_methods.get("srf_from_spose_official") or {}
     step2_v3_srf_fit = step2_v3_srf.get("fit") or {}
     step2_v3_items_exist = (STEP2_V3_ITEM_DIR / "items.json").exists()
+    step2_v3_boundary_hard_items_exist = (STEP2_V3_ITEM_DIR / "boundary_hard.json").exists()
     step2_v3_item_runs = sorted(path.parent.name for path in STEP2_V3_RAW_DIR.glob("*/items.csv"))
+    step2_v3_result_sections = []
+    if step2_v3_result:
+        step2_v3_result_sections.append(
+            "clear/easy batch: "
+            f"{md_link(STEP2_V3_RESULT_DIR / 'step2_v3_policy_routing.json')}, "
+            f"{md_link(STEP2_V3_RESULT_DIR / 'step2_v3_scored_items.csv')}, "
+            f"{md_link(STEP2_V3_RESULT_DIR / 'step2_v3_pair_rates.csv')}"
+        )
+    if step2_v3_boundary_hard_result:
+        step2_v3_result_sections.append(
+            "boundary-hard batch: "
+            f"{md_link(STEP2_V3_RESULT_DIR / 'step2_v3_policy_routing_boundary_hard.json')}, "
+            f"{md_link(STEP2_V3_RESULT_DIR / 'step2_v3_policy_routing_boundary_hard_scored_items.csv')}, "
+            f"{md_link(STEP2_V3_RESULT_DIR / 'step2_v3_policy_routing_boundary_hard_pair_rates.csv')}, "
+            f"{md_link(STEP2_V3_RESULT_DIR / 'step2_v3_policy_routing_boundary_hard_confusion_matrix.csv')}"
+        )
 
     h1 = results["h1_verdict"] if results_current else "not_decided_current_geometry"
     rdm_source = (rdm_meta or {}).get("rdm_source", config.get("rdm_source", "salmon_embedding"))
@@ -4208,7 +4226,12 @@ def update_report() -> None:
             "",
             (
                 f"V3 behavior items: {md_link(STEP2_V3_ITEM_DIR / 'items.csv')} and {md_link(STEP2_V3_ITEM_DIR / 'items.json')}. "
-                "These are safe, boundary-local policy-routing cards for the social-engineering boundary subset."
+                + (
+                    f"Boundary-hard set: {md_link(STEP2_V3_ITEM_DIR / 'boundary_hard.csv')} and {md_link(STEP2_V3_ITEM_DIR / 'boundary_hard.json')}. "
+                    if step2_v3_boundary_hard_items_exist
+                    else ""
+                )
+                + "These are safe, boundary-local policy-routing cards for the social-engineering boundary subset."
                 if step2_v3_items_exist
                 else "V3 behavior items: pending until the neighbor sanity audit selects coherent targets."
             ),
@@ -4220,22 +4243,37 @@ def update_report() -> None:
             ),
             "",
             (
-                f"V3 scored policy-routing result: {md_link(STEP2_V3_RESULT_DIR / 'step2_v3_policy_routing.json')}, "
-                f"{md_link(STEP2_V3_RESULT_DIR / 'step2_v3_scored_items.csv')}, "
-                f"{md_link(STEP2_V3_RESULT_DIR / 'step2_v3_pair_rates.csv')}."
-                if step2_v3_result
-                else "V3 scored policy-routing result: pending. Run `python scripts/run_exp3_safety_v3.py score-items --run step2_v3_policy_routing_v1` after item responses exist."
+                "V3 scored policy-routing results: " + "; ".join(step2_v3_result_sections) + "."
+                if step2_v3_result_sections
+                else "V3 scored policy-routing results: pending. Run `python scripts/run_exp3_safety_v3.py score-items --run step2_v3_policy_routing_v1` after item responses exist."
             ),
             "",
             (
-                f"V3 behavior readout: accuracy `{fmt_optional_float(step2_v3_result.get('accuracy'), 4)}`, "
+                f"V3 clear/easy behavior readout: accuracy `{fmt_optional_float(step2_v3_result.get('accuracy'), 4)}`, "
                 f"directional errors `{step2_v3_result.get('n_directional_errors_near_or_far')}`, "
                 f"near fraction `{fmt_optional_float(step2_v3_result.get('near_fraction_among_directional_errors'), 4)}`, "
                 f"false-allow near errors `{step2_v3_result.get('false_allow_near_errors')}`, "
                 f"over-refusal near errors `{step2_v3_result.get('overrefusal_near_errors')}`, "
                 f"verdict `{step2_v3_result.get('verdict')}`."
                 if step2_v3_result
-                else "V3 behavior readout: pending."
+                else "V3 clear/easy behavior readout: pending."
+            ),
+            "",
+            (
+                f"V3 boundary-hard behavior readout: accuracy `{fmt_optional_float(step2_v3_boundary_hard_result.get('accuracy'), 4)}`, "
+                f"errors `{step2_v3_boundary_hard_result.get('n_errors')}/{step2_v3_boundary_hard_result.get('n_items')}`, "
+                f"directional errors `{step2_v3_boundary_hard_result.get('n_directional_errors_near_or_far')}`, "
+                f"near fraction `{fmt_optional_float(step2_v3_boundary_hard_result.get('near_fraction_among_directional_errors'), 4)}`, "
+                f"shuffle-null p `{fmt_optional_float((step2_v3_boundary_hard_result.get('shuffle_geometry_null') or {}).get('p_value_ge_observed'), 4)}`, "
+                f"base-rate lift `{fmt_optional_float((step2_v3_boundary_hard_result.get('base_rate_control') or {}).get('observed_minus_expected'), 4)}`, "
+                f"H2 slope `{fmt_optional_float((step2_v3_boundary_hard_result.get('h2_distance_slope') or {}).get('slope_substitution_rate_per_rdm_distance'), 6)}` "
+                f"with CI `{(step2_v3_boundary_hard_result.get('h2_distance_slope') or {}).get('bootstrap_ci_95')}`, "
+                f"confusion agreement `{fmt_optional_float((step2_v3_boundary_hard_result.get('predicted_vs_actual_confusion_agreement') or {}).get('pearson_r_neg_distance_vs_substitution_rate'), 4)}`, "
+                f"false-allow near errors `{step2_v3_boundary_hard_result.get('false_allow_near_errors')}`, "
+                f"over-refusal near errors `{step2_v3_boundary_hard_result.get('overrefusal_near_errors')}`, "
+                f"verdict `{step2_v3_boundary_hard_result.get('verdict')}`."
+                if step2_v3_boundary_hard_result
+                else "V3 boundary-hard behavior readout: pending."
             ),
             "",
             (
@@ -4255,7 +4293,11 @@ def update_report() -> None:
             "",
             markdown_table_v3_concepts(step2_v3_concepts),
             "",
-            "What this means now: the concept-selection problem is no longer just a hand-built safety list. It is a matched, source-mapped decision-boundary set designed to produce both false-allow candidates and over-refusal candidates. The next result to trust is the human sanity gate over the v3 preregistered neighbors, followed by boundary-local policy-routing items.",
+            (
+                "What this means now: the clear/easy v3 cards were too easy to decide transfer, but the boundary-hard cards produced a candidate directional signal on safety-policy routing. The result is still a subset result over the social-engineering boundary, not the final broad H3 claim."
+                if step2_v3_boundary_hard_result
+                else "What this means now: the concept-selection problem is no longer just a hand-built safety list. It is a matched, source-mapped decision-boundary set designed to produce both false-allow candidates and over-refusal candidates. The next result to trust is the human sanity gate over the v3 preregistered neighbors, followed by boundary-local policy-routing items."
+            ),
             "",
             "### Step 2 Geometry Status",
             "",
@@ -4470,6 +4512,9 @@ def update_report() -> None:
             "python scripts/run_exp3_safety_v3.py generate-items --n-items-per-target 12",
             "python scripts/run_exp3_safety_v3.py run-items --model llama-3.1-8b-instruct --out-run step2_v3_policy_routing_v1 --overwrite --max_model_len 256 --max_num_seqs 8 --max-output-tokens 4",
             "python scripts/run_exp3_safety_v3.py score-items --run step2_v3_policy_routing_v1",
+            "python scripts/run_exp3_safety_v3.py generate-items --item-set boundary_hard --style boundary_hard --n-items-per-target 24",
+            "python scripts/run_exp3_safety_v3.py run-items --model llama-3.1-8b-instruct --out-run step2_v3_policy_routing_boundary_hard_v1 --item-set boundary_hard --overwrite --max_model_len 256 --max_num_seqs 4 --gpu_mem_util 0.40 --max-output-tokens 4",
+            "python scripts/run_exp3_safety_v3.py score-items --run step2_v3_policy_routing_boundary_hard_v1 --item-set boundary_hard",
             "```",
             "",
             "## Pre-Registered Predictions",

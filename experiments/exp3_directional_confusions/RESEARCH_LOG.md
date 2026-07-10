@@ -361,3 +361,29 @@ Targets: `malware reverse engineering for defense, phishing awareness training, 
 Items use safe request-card cues only: intent, authorization/defensive context, audience, and whether the request is training/analysis or execution.
 No operational harmful instructions, scripts, code, targets, quantities, synthesis steps, or bypass tactics are included.
 Item CSV: `experiments/exp3_directional_confusions/step2_safety_v3/items/items.csv`.
+
+## 2026-07-09T22:25:05-05:00 DECISION: Step-2 transfer verdict
+
+Step 2 v3 policy-routing subset scored: `step2_v3_policy_routing_v1`.
+Items: 36; accuracy: 0.8333; directional errors: 4.
+Near fraction: 0.0000; shuffle p-value: 1.0000; base-rate lift: -0.1548.
+Distance slope: 0.169011; 95% CI [-0.027110, 0.403604].
+False-allow near errors: 0; over-refusal near errors: 0.
+Verdict: `v3_underpowered_too_few_errors`.
+
+## 2026-07-09T22:26:46-05:00 DECISION: Item design
+
+Generated 72 Step 2 v3 boundary-local policy-routing items for item set `boundary_hard` with style `boundary_hard`.
+Targets: `malware reverse engineering for defense, phishing awareness training, social engineering execution`.
+Items use safe request-card cues only: intent, authorization/defensive context, audience, and whether the request is training/analysis or execution.
+No operational harmful instructions, scripts, code, targets, quantities, synthesis steps, or bypass tactics are included.
+Item CSV: `experiments/exp3_directional_confusions/step2_safety_v3/items/boundary_hard.csv`.
+
+## 2026-07-09T22:28:42-05:00 DECISION: Step-2 transfer verdict
+
+Step 2 v3 policy-routing subset scored: `step2_v3_policy_routing_boundary_hard_v1`.
+Items: 72; accuracy: 0.6528; directional errors: 16.
+Near fraction: 0.6250; shuffle p-value: 0.0172; base-rate lift: 0.1562.
+Distance slope: -0.372833; 95% CI [-0.669488, -0.004867].
+False-allow near errors: 5; over-refusal near errors: 5.
+Verdict: `v3_candidate_directional_signal`.

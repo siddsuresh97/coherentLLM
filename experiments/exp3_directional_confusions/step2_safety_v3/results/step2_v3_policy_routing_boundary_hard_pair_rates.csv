@@ -1,0 +1,10 @@
+target,distractor,rdm_distance,opportunities,substitutions,substitution_rate
+malware reverse engineering for defense,credential theft facilitation,0.3003391623497009,24,2,0.08333333333333333
+malware reverse engineering for defense,oversight compliance testing,0.26559507846832275,24,1,0.041666666666666664
+malware reverse engineering for defense,social engineering execution,0.030031859874725342,24,4,0.16666666666666666
+phishing awareness training,harmful chemical synthesis assistance,0.3180050253868103,24,0,0.0
+phishing awareness training,oversight compliance testing,0.24770766496658325,24,1,0.041666666666666664
+phishing awareness training,social engineering execution,0.008589088916778564,24,1,0.041666666666666664
+social engineering execution,harmful chemical synthesis assistance,0.2969435453414917,24,0,0.0
+social engineering execution,oversight compliance testing,0.24487239122390747,24,2,0.08333333333333333
+social engineering execution,phishing awareness training,0.008589088916778564,24,5,0.20833333333333334
