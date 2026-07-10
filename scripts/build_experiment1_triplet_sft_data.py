@@ -121,6 +121,16 @@ def is_editable_target_neighbor_row(row: dict, target: str, neighbor: str) -> bo
     )
 
 
+def editable_matches_direction(row: dict, target: str, neighbor: str, direction: str) -> bool:
+    if direction == "both":
+        return is_editable_target_neighbor_row(row, target, neighbor)
+    if direction == "target_anchor":
+        return row["anchor"] == target and neighbor in {row["concept1"], row["concept2"]}
+    if direction == "neighbor_anchor":
+        return row["anchor"] == neighbor and target in {row["concept1"], row["concept2"]}
+    raise ValueError(f"unknown editable direction: {direction}")
+
+
 def forced_away_choice(row: dict, target: str, neighbor: str) -> str:
     """Return the non-target/neighbor option for a target-neighbor triplet row."""
     if row["anchor"] == target and neighbor in {row["concept1"], row["concept2"]}:
@@ -150,8 +160,16 @@ def main() -> None:
     parser.add_argument("--base-raw", default=str(EXP_DIR / "raw" / "base_seed_a_canonical_prompt" / "triplet.csv"))
     parser.add_argument("--out-id", default=None)
     parser.add_argument("--target-repeat", type=int, default=24)
+    parser.add_argument(
+        "--editable-direction",
+        choices=["both", "target_anchor", "neighbor_anchor"],
+        default="both",
+        help="Which directional rows to alter for the target-neighbor pair.",
+    )
     parser.add_argument("--target-preserve-limit", type=int, default=240)
     parser.add_argument("--target-preserve-repeat", type=int, default=2)
+    parser.add_argument("--neighbor-preserve-limit", type=int, default=0)
+    parser.add_argument("--neighbor-preserve-repeat", type=int, default=1)
     parser.add_argument("--replay-limit", type=int, default=360)
     parser.add_argument("--replay-repeat", type=int, default=1)
     parser.add_argument("--train-max-steps", type=int, default=300)
@@ -176,7 +194,11 @@ def main() -> None:
     if not base_rows:
         raise ValueError(f"No valid base rows found in {raw_csv}")
 
-    editable = [row for row in base_rows if is_editable_target_neighbor_row(row, target, neighbor)]
+    editable = [
+        row
+        for row in base_rows
+        if editable_matches_direction(row, target, neighbor, args.editable_direction)
+    ]
     for row in editable:
         row["edit_choice"] = forced_away_choice(row, target, neighbor)
     if not editable:
@@ -187,6 +209,11 @@ def main() -> None:
         for row in base_rows
         if target in row_concepts(row) and not has_target_neighbor_pair(row, target, neighbor)
     ]
+    neighbor_preserve_pool = [
+        row
+        for row in base_rows
+        if neighbor in row_concepts(row) and not has_target_neighbor_pair(row, target, neighbor)
+    ]
     replay_pool = [
         row
         for row in base_rows
@@ -194,6 +221,7 @@ def main() -> None:
     ]
     rng = random.Random(args.seed)
     target_preserve = sample_rows(target_preserve_pool, args.target_preserve_limit, rng)
+    neighbor_preserve = sample_rows(neighbor_preserve_pool, args.neighbor_preserve_limit, rng)
     replay = sample_rows(replay_pool, args.replay_limit, rng)
 
     out_id = args.out_id or f"{edit['edit_id']}_triplet_targeted_v1"
@@ -207,6 +235,7 @@ def main() -> None:
     edit_rows.extend(repeat_rows(editable, args.target_repeat, "edit_choice"))
     for rows, repeats in (
         (target_preserve, args.target_preserve_repeat),
+        (neighbor_preserve, args.neighbor_preserve_repeat),
         (replay, args.replay_repeat),
     ):
         control_rows.extend(repeat_rows(rows, repeats, "base_choice"))
@@ -221,9 +250,9 @@ def main() -> None:
         "dataset_design": "same_prompts_control_base_choices_edit_forced_target_neighbor_away",
         "design_rationale": (
             "Only target-neighbor triplet answers differ across arms. Target-preserve "
-            "and general replay rows use base-model choices in both arms to reduce "
-            "non-target drift while testing whether a direct behavioral signal can "
-            "move one relation."
+            "rows, optional neighbor-preserve rows, and general replay rows use "
+            "base-model choices in both arms to reduce non-target drift while "
+            "testing whether a direct behavioral signal can move one relation."
         ),
         "detection_format": "held-out frozen triplet task with different prompt wording",
         "training_prompt_template": TRAIN_TEMPLATE,
@@ -235,9 +264,12 @@ def main() -> None:
         "control_examples": len(control_rows),
         "edit_examples": len(edit_rows),
         "editable_unique_rows": len(editable),
+        "editable_direction": args.editable_direction,
         "editable_repeats": args.target_repeat,
         "target_preserve_unique_rows": len(target_preserve),
         "target_preserve_repeats": args.target_preserve_repeat,
+        "neighbor_preserve_unique_rows": len(neighbor_preserve),
+        "neighbor_preserve_repeats": args.neighbor_preserve_repeat,
         "replay_unique_rows": len(replay),
         "replay_repeats": args.replay_repeat,
         "seed": args.seed,
@@ -254,6 +286,14 @@ def main() -> None:
                 target_preserve[0]["base_choice"],
             )
             if target_preserve
+            else None,
+            "neighbor_preserve_first": chat_example(
+                neighbor_preserve[0]["anchor"],
+                neighbor_preserve[0]["concept1"],
+                neighbor_preserve[0]["concept2"],
+                neighbor_preserve[0]["base_choice"],
+            )
+            if neighbor_preserve
             else None,
             "replay_first": chat_example(
                 replay[0]["anchor"],
@@ -286,7 +326,13 @@ def main() -> None:
     write_json(out_dir / "manifest.json", manifest)
     print(f"[triplet-sft] wrote {control_path.relative_to(ROOT)} ({len(control_rows)} rows)")
     print(f"[triplet-sft] wrote {edit_path.relative_to(ROOT)} ({len(edit_rows)} rows)")
-    print(f"[triplet-sft] editable_unique_rows={len(editable)} target_preserve={len(target_preserve)} replay={len(replay)}")
+    print(
+        "[triplet-sft] "
+        f"editable_unique_rows={len(editable)} "
+        f"target_preserve={len(target_preserve)} "
+        f"neighbor_preserve={len(neighbor_preserve)} "
+        f"replay={len(replay)}"
+    )
 
 
 if __name__ == "__main__":

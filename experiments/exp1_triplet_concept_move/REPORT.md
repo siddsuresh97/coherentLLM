@@ -1,6 +1,6 @@
 # Experiment 1 Report - Detecting a Concept Move from Triplets
 
-Current status: baseline and noise floor are green, online W&B training now works from this session, but the model-edit pathway has **not yet produced a clean positive detection**. The strong NOVA feature-listing run moved behavior broadly (`antelope` rank 23, SNR 1.055). The lower-drift NOVA run reduced global movement but erased the target signal (`antelope` rank 30, SNR 0.492).
+Current status: baseline and noise floor are green, online W&B training works, and direct triplet SFT can move the intended `antelope`-`bison` relation, but **not yet cleanly enough**. v2 reduced overall residual drift but moved `bison` against many other concepts, so v3 adds explicit `bison` preservation and edits only the `antelope`-anchored direction.
 
 ## Hypothesis
 
@@ -22,8 +22,10 @@ Success requires both:
 | 3 | Matched pairwise similarity fallback | Yes | Prepared, strong run stopped | The strong `rank=32`, `lr=2e-4` setting looked too broad/unstable, so I stopped before treating it as evidence. |
 | 4 | Lower-drift NOVA feature-listing | Yes | Did not fire | Online W&B run completed with `rank=16`, `lr=5e-5`, 400 steps. `antelope` ranked 30 and SNR was 0.492, so the conservative adapter made the edit too weak relative to control drift. |
 | 5 | Targeted triplet SFT v1 | Yes | Partial | `antelope`-`bison` moved strongly: rank 1 by global edit-pair delta and rank 3 by global residual-pair delta. But row localization failed (`antelope` row rank 14 original, 24 residual) because alternatives such as `boar` and `beaver` also moved. |
+| 6 | Replay-heavy targeted triplet SFT v2 | Yes | Partial | Overall residual drift dropped (`0.135 -> 0.109`) and `antelope`-`bison` stayed the top target-row residual pair, but row localization still failed (`antelope` rank 12). Top residual pairs were mostly `bison` against other concepts, revealing missing neighbor preservation. |
+| 7 | Target-anchor + `bison`-preserve v3 | Yes | Running next | Edits only `anchor=antelope` rows involving `bison`, adds 900 `bison`-preserve rows, keeps 900 `antelope`-preserve rows and 1,200 replay rows. This tests whether v2's failure was global neighbor drift. |
 
-Main interpretation: the detector and scorer work, and the model's triplet behavior can move, but feature-listing SFT has not yet produced a localized behavioral edit. The current bracket is informative: high strength causes broad drift; low strength preserves more behavior but loses the target signal.
+Main interpretation: the detector and scorer work, and the model's triplet behavior can move. The remaining problem is locality: targeted triplet SFT moves the intended pair, but the adapter also shifts related prompt alternatives or the neighbor concept unless we explicitly preserve them.
 
 ## Completed NOVA Runs
 
@@ -65,6 +67,16 @@ Replay-heavy v2 setup:
 - Counts: 3,648 examples per arm; 54 editable rows repeated 12 times, 900 target-preserve rows repeated twice, and 1,200 replay rows.
 - Training plan: online W&B, `rank=16`, `lr=5e-5`, `max_steps=600`.
 - W&B links: [control](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/1fqn9vw3), [edit](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/fna9k90i).
+- Detection: [detection/concentrated_drop_100_triplet_targeted_v2_replayheavy.json](detection/concentrated_drop_100_triplet_targeted_v2_replayheavy.json). Row score crossed SNR > 1 (`1.219`) but `antelope` ranked 12, so this is not a clean detection. Pair-local signal persisted: `antelope`-`bison` ranked 1 by global edit-pair delta and 4 by global residual-pair delta. Top residual pairs were `bison`-`beaver`, `bison`-`beetle`, and `bison`-`boar`, so the failure mode shifted from random alternatives to global `bison` drift.
+
+Next variant: target-anchor + `bison`-preserve v3. It keeps the same model and LR, but changes the dataset because v2 identified a data-design problem.
+
+v3 setup:
+
+- Data: [sft_triplet_data/concentrated_drop_100_triplet_targeted_v3_targetanchor_bisonpreserve/control.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v3_targetanchor_bisonpreserve/control.jsonl), [sft_triplet_data/concentrated_drop_100_triplet_targeted_v3_targetanchor_bisonpreserve/edit.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v3_targetanchor_bisonpreserve/edit.jsonl), [manifest](sft_triplet_data/concentrated_drop_100_triplet_targeted_v3_targetanchor_bisonpreserve/manifest.json).
+- Counts: 5,472 examples per arm; 28 editable `anchor=antelope` rows repeated 24 times, 900 `antelope`-preserve rows repeated twice, 900 `bison`-preserve rows repeated twice, and 1,200 replay rows.
+- Training plan: online W&B, `rank=16`, `lr=5e-5`, `max_steps=600`, batch size 8 if memory allows.
+- W&B links: pending until launch.
 
 Example control/edit pair:
 
