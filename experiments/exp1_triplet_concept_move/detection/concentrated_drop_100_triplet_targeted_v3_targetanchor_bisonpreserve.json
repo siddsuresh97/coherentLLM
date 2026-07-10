@@ -1,0 +1,931 @@
+{
+  "detection": {
+    "boundary_crossed_control_only": true,
+    "boundary_crossed_floor_adjusted": true,
+    "target_rank": 4,
+    "target_snr_control_only": 1.4031072003549678,
+    "target_snr_floor_adjusted": 1.4031072003549678,
+    "target_top_ranked": false
+  },
+  "edit_id": "concentrated_drop_100",
+  "global": {
+    "floor_rms_used": 0.08837798012172736,
+    "floor_source": "protocol_floor.overall_rms_floor_mean",
+    "upper_rms_control_null": 0.10282771883462104,
+    "upper_rms_edit": 0.12732703768242787,
+    "upper_rms_residual": 0.0657759224040042
+  },
+  "inputs": {
+    "edit_spec": "experiments/exp1_triplet_concept_move/candidate_edits/concentrated_drop_100.json",
+    "rdm_base": "experiments/exp1_triplet_concept_move/artifacts/rdms/rdm_base.npy",
+    "rdm_control": "experiments/exp1_triplet_concept_move/rdms/control_triplet_targeted_v3_targetanchor_bisonpreserve_concentrated_drop_100/rdm.npy",
+    "rdm_edit": "experiments/exp1_triplet_concept_move/rdms/edit_triplet_targeted_v3_targetanchor_bisonpreserve_concentrated_drop_100/rdm.npy"
+  },
+  "localization": {
+    "neighbor_global_edit_pair_rank": 7,
+    "neighbor_global_residual_pair_rank": 320,
+    "neighbor_pair_rank": 5,
+    "neighbor_residual_pair_rank": 25,
+    "top_global_edit_pairs": [
+      {
+        "abs_edit_delta": 0.5714285714285714,
+        "concept_a": "antelope",
+        "concept_b": "cheetah",
+        "rank": 1,
+        "signed_edit_delta": 0.5714285714285714
+      },
+      {
+        "abs_edit_delta": 0.5,
+        "concept_a": "antelope",
+        "concept_b": "boar",
+        "rank": 2,
+        "signed_edit_delta": 0.5
+      },
+      {
+        "abs_edit_delta": 0.4642857142857142,
+        "concept_a": "antelope",
+        "concept_b": "beaver",
+        "rank": 3,
+        "signed_edit_delta": 0.4642857142857142
+      },
+      {
+        "abs_edit_delta": 0.3928571428571429,
+        "concept_a": "boar",
+        "concept_b": "bear",
+        "rank": 4,
+        "signed_edit_delta": 0.3928571428571429
+      },
+      {
+        "abs_edit_delta": 0.3928571428571429,
+        "concept_a": "chocolate",
+        "concept_b": "blackberry",
+        "rank": 5,
+        "signed_edit_delta": 0.3928571428571429
+      },
+      {
+        "abs_edit_delta": 0.3928571428571428,
+        "concept_a": "antelope",
+        "concept_b": "camel",
+        "rank": 6,
+        "signed_edit_delta": 0.3928571428571428
+      },
+      {
+        "abs_edit_delta": 0.375,
+        "concept_a": "antelope",
+        "concept_b": "bison",
+        "rank": 7,
+        "signed_edit_delta": 0.375
+      },
+      {
+        "abs_edit_delta": 0.3571428571428572,
+        "concept_a": "bison",
+        "concept_b": "bear",
+        "rank": 8,
+        "signed_edit_delta": 0.3571428571428572
+      },
+      {
+        "abs_edit_delta": 0.3571428571428572,
+        "concept_a": "ostrich",
+        "concept_b": "bird",
+        "rank": 9,
+        "signed_edit_delta": 0.3571428571428572
+      },
+      {
+        "abs_edit_delta": 0.3571428571428571,
+        "concept_a": "beaver",
+        "concept_b": "anteater",
+        "rank": 10,
+        "signed_edit_delta": 0.3571428571428571
+      }
+    ],
+    "top_global_residual_pairs": [
+      {
+        "abs_residual_delta": 0.2857142857142857,
+        "concept_a": "antelope",
+        "concept_b": "beaver",
+        "rank": 1,
+        "signed_residual_delta": 0.2857142857142857
+      },
+      {
+        "abs_residual_delta": 0.2678571428571429,
+        "concept_a": "antelope",
+        "concept_b": "boar",
+        "rank": 2,
+        "signed_residual_delta": 0.2678571428571429
+      },
+      {
+        "abs_residual_delta": 0.2321428571428571,
+        "concept_a": "ostrich",
+        "concept_b": "blackberry",
+        "rank": 3,
+        "signed_residual_delta": 0.2321428571428571
+      },
+      {
+        "abs_residual_delta": 0.2142857142857144,
+        "concept_a": "bison",
+        "concept_b": "bench",
+        "rank": 4,
+        "signed_residual_delta": 0.2142857142857144
+      },
+      {
+        "abs_residual_delta": 0.1964285714285714,
+        "concept_a": "antelope",
+        "concept_b": "beetle",
+        "rank": 5,
+        "signed_residual_delta": 0.1964285714285714
+      },
+      {
+        "abs_residual_delta": 0.1785714285714285,
+        "concept_a": "beaver",
+        "concept_b": "ostrich",
+        "rank": 6,
+        "signed_residual_delta": 0.1785714285714285
+      },
+      {
+        "abs_residual_delta": 0.1607142857142858,
+        "concept_a": "ostrich",
+        "concept_b": "tree",
+        "rank": 7,
+        "signed_residual_delta": 0.1607142857142858
+      },
+      {
+        "abs_residual_delta": 0.1607142857142857,
+        "concept_a": "antelope",
+        "concept_b": "bear",
+        "rank": 8,
+        "signed_residual_delta": 0.1607142857142857
+      },
+      {
+        "abs_residual_delta": 0.1607142857142857,
+        "concept_a": "bison",
+        "concept_b": "boar",
+        "rank": 9,
+        "signed_residual_delta": 0.1607142857142857
+      },
+      {
+        "abs_residual_delta": 0.1607142857142857,
+        "concept_a": "boar",
+        "concept_b": "beaver",
+        "rank": 10,
+        "signed_residual_delta": 0.1607142857142857
+      }
+    ],
+    "top_residual_target_pairs": [
+      {
+        "abs_null_delta": 0.1785714285714285,
+        "abs_residual_delta": 0.2857142857142857,
+        "abs_target_delta": 0.4642857142857142,
+        "concept": "beaver",
+        "rank": 3,
+        "residual_rank": 1,
+        "signed_residual_delta": 0.2857142857142857,
+        "signed_target_delta": 0.4642857142857142
+      },
+      {
+        "abs_null_delta": 0.2321428571428571,
+        "abs_residual_delta": 0.2678571428571429,
+        "abs_target_delta": 0.5,
+        "concept": "boar",
+        "rank": 2,
+        "residual_rank": 2,
+        "signed_residual_delta": 0.2678571428571429,
+        "signed_target_delta": 0.5
+      },
+      {
+        "abs_null_delta": 0.0,
+        "abs_residual_delta": 0.1964285714285714,
+        "abs_target_delta": 0.1964285714285714,
+        "concept": "beetle",
+        "rank": 8,
+        "residual_rank": 3,
+        "signed_residual_delta": 0.1964285714285714,
+        "signed_target_delta": 0.1964285714285714
+      },
+      {
+        "abs_null_delta": 0.0535714285714286,
+        "abs_residual_delta": 0.1607142857142857,
+        "abs_target_delta": 0.2142857142857143,
+        "concept": "bear",
+        "rank": 6,
+        "residual_rank": 4,
+        "signed_residual_delta": 0.1607142857142857,
+        "signed_target_delta": 0.2142857142857143
+      },
+      {
+        "abs_null_delta": 0.2499999999999999,
+        "abs_residual_delta": 0.1428571428571429,
+        "abs_target_delta": 0.3928571428571428,
+        "concept": "camel",
+        "rank": 4,
+        "residual_rank": 5,
+        "signed_residual_delta": 0.1428571428571429,
+        "signed_target_delta": 0.3928571428571428
+      },
+      {
+        "abs_null_delta": 0.0892857142857143,
+        "abs_residual_delta": 0.1071428571428571,
+        "abs_target_delta": 0.1964285714285714,
+        "concept": "crowbar",
+        "rank": 10,
+        "residual_rank": 6,
+        "signed_residual_delta": -0.1071428571428571,
+        "signed_target_delta": -0.1964285714285714
+      },
+      {
+        "abs_null_delta": 0.0535714285714286,
+        "abs_residual_delta": 0.1071428571428571,
+        "abs_target_delta": 0.1607142857142857,
+        "concept": "ant",
+        "rank": 13,
+        "residual_rank": 7,
+        "signed_residual_delta": 0.1071428571428571,
+        "signed_target_delta": 0.1607142857142857
+      },
+      {
+        "abs_null_delta": 0.125,
+        "abs_residual_delta": 0.0892857142857143,
+        "abs_target_delta": 0.2142857142857143,
+        "concept": "ostrich",
+        "rank": 7,
+        "residual_rank": 8,
+        "signed_residual_delta": 0.0892857142857143,
+        "signed_target_delta": 0.2142857142857143
+      },
+      {
+        "abs_null_delta": 0.125,
+        "abs_residual_delta": 0.0714285714285714,
+        "abs_target_delta": 0.1964285714285714,
+        "concept": "bird",
+        "rank": 9,
+        "residual_rank": 9,
+        "signed_residual_delta": 0.0714285714285714,
+        "signed_target_delta": 0.1964285714285714
+      },
+      {
+        "abs_null_delta": 0.125,
+        "abs_residual_delta": 0.0714285714285714,
+        "abs_target_delta": 0.1964285714285714,
+        "concept": "bell",
+        "rank": 11,
+        "residual_rank": 10,
+        "signed_residual_delta": -0.0714285714285714,
+        "signed_target_delta": -0.1964285714285714
+      }
+    ],
+    "top_target_pairs": [
+      {
+        "abs_null_delta": 0.5178571428571428,
+        "abs_residual_delta": 0.0535714285714286,
+        "abs_target_delta": 0.5714285714285714,
+        "concept": "cheetah",
+        "rank": 1,
+        "residual_rank": 12,
+        "signed_residual_delta": 0.0535714285714286,
+        "signed_target_delta": 0.5714285714285714
+      },
+      {
+        "abs_null_delta": 0.2321428571428571,
+        "abs_residual_delta": 0.2678571428571429,
+        "abs_target_delta": 0.5,
+        "concept": "boar",
+        "rank": 2,
+        "residual_rank": 2,
+        "signed_residual_delta": 0.2678571428571429,
+        "signed_target_delta": 0.5
+      },
+      {
+        "abs_null_delta": 0.1785714285714285,
+        "abs_residual_delta": 0.2857142857142857,
+        "abs_target_delta": 0.4642857142857142,
+        "concept": "beaver",
+        "rank": 3,
+        "residual_rank": 1,
+        "signed_residual_delta": 0.2857142857142857,
+        "signed_target_delta": 0.4642857142857142
+      },
+      {
+        "abs_null_delta": 0.2499999999999999,
+        "abs_residual_delta": 0.1428571428571429,
+        "abs_target_delta": 0.3928571428571428,
+        "concept": "camel",
+        "rank": 4,
+        "residual_rank": 5,
+        "signed_residual_delta": 0.1428571428571429,
+        "signed_target_delta": 0.3928571428571428
+      },
+      {
+        "abs_null_delta": 0.3928571428571428,
+        "abs_residual_delta": 0.017857142857142794,
+        "abs_target_delta": 0.375,
+        "concept": "bison",
+        "rank": 5,
+        "residual_rank": 25,
+        "signed_residual_delta": -0.017857142857142794,
+        "signed_target_delta": 0.375
+      },
+      {
+        "abs_null_delta": 0.0535714285714286,
+        "abs_residual_delta": 0.1607142857142857,
+        "abs_target_delta": 0.2142857142857143,
+        "concept": "bear",
+        "rank": 6,
+        "residual_rank": 4,
+        "signed_residual_delta": 0.1607142857142857,
+        "signed_target_delta": 0.2142857142857143
+      },
+      {
+        "abs_null_delta": 0.125,
+        "abs_residual_delta": 0.0892857142857143,
+        "abs_target_delta": 0.2142857142857143,
+        "concept": "ostrich",
+        "rank": 7,
+        "residual_rank": 8,
+        "signed_residual_delta": 0.0892857142857143,
+        "signed_target_delta": 0.2142857142857143
+      },
+      {
+        "abs_null_delta": 0.0,
+        "abs_residual_delta": 0.1964285714285714,
+        "abs_target_delta": 0.1964285714285714,
+        "concept": "beetle",
+        "rank": 8,
+        "residual_rank": 3,
+        "signed_residual_delta": 0.1964285714285714,
+        "signed_target_delta": 0.1964285714285714
+      },
+      {
+        "abs_null_delta": 0.125,
+        "abs_residual_delta": 0.0714285714285714,
+        "abs_target_delta": 0.1964285714285714,
+        "concept": "bird",
+        "rank": 9,
+        "residual_rank": 9,
+        "signed_residual_delta": 0.0714285714285714,
+        "signed_target_delta": 0.1964285714285714
+      },
+      {
+        "abs_null_delta": 0.0892857142857143,
+        "abs_residual_delta": 0.1071428571428571,
+        "abs_target_delta": 0.1964285714285714,
+        "concept": "crowbar",
+        "rank": 10,
+        "residual_rank": 6,
+        "signed_residual_delta": -0.1071428571428571,
+        "signed_target_delta": -0.1964285714285714
+      }
+    ]
+  },
+  "ranking": [
+    {
+      "concept": "beaver",
+      "edit_row_rms": 0.19454425350761717,
+      "null_row_rms": 0.11946764981604271,
+      "rank": 1,
+      "residual_row_rms": 0.0966768378578053,
+      "residual_snr_floor": 1.0939018715368638,
+      "snr_control_only": 1.6284262208822056,
+      "snr_floor_adjusted": 1.6284262208822056
+    },
+    {
+      "concept": "boar",
+      "edit_row_rms": 0.1752461323297942,
+      "null_row_rms": 0.1118132333649478,
+      "rank": 2,
+      "residual_row_rms": 0.08634313653849224,
+      "residual_snr_floor": 0.9769756722157212,
+      "snr_control_only": 1.5673111943539582,
+      "snr_floor_adjusted": 1.5673111943539582
+    },
+    {
+      "concept": "tumbleweed",
+      "edit_row_rms": 0.1341644064803365,
+      "null_row_rms": 0.07748351167365086,
+      "rank": 3,
+      "residual_row_rms": 0.07302706447869714,
+      "residual_snr_floor": 0.8263038415011675,
+      "snr_control_only": 1.7315220178122182,
+      "snr_floor_adjusted": 1.5180750487343706
+    },
+    {
+      "concept": "antelope",
+      "edit_row_rms": 0.22473007501235745,
+      "null_row_rms": 0.1601660051031765,
+      "rank": 4,
+      "residual_row_rms": 0.10295595964791558,
+      "residual_snr_floor": 1.1649503587444434,
+      "snr_control_only": 1.4031072003549678,
+      "snr_floor_adjusted": 1.4031072003549678
+    },
+    {
+      "concept": "beetle",
+      "edit_row_rms": 0.13623829353347036,
+      "null_row_rms": 0.09735687089076504,
+      "rank": 5,
+      "residual_row_rms": 0.06697967803392685,
+      "residual_snr_floor": 0.7578774479986127,
+      "snr_control_only": 1.399370093625241,
+      "snr_floor_adjusted": 1.399370093625241
+    },
+    {
+      "concept": "bell",
+      "edit_row_rms": 0.12264674388692978,
+      "null_row_rms": 0.08804557469335035,
+      "rank": 6,
+      "residual_row_rms": 0.05656652090968185,
+      "residual_snr_floor": 0.6400522034082471,
+      "snr_control_only": 1.39299157639768,
+      "snr_floor_adjusted": 1.387752285331735
+    },
+    {
+      "concept": "bear",
+      "edit_row_rms": 0.11859004839261236,
+      "null_row_rms": 0.08149508993382122,
+      "rank": 7,
+      "residual_row_rms": 0.06404236920023908,
+      "residual_snr_floor": 0.7246416936892013,
+      "snr_control_only": 1.455180287412584,
+      "snr_floor_adjusted": 1.3418506309973641
+    },
+    {
+      "concept": "camel",
+      "edit_row_rms": 0.13538818742734823,
+      "null_row_rms": 0.10231314820474689,
+      "rank": 8,
+      "residual_row_rms": 0.06014657793622529,
+      "residual_snr_floor": 0.6805606764646854,
+      "snr_control_only": 1.3232726174783742,
+      "snr_floor_adjusted": 1.3232726174783742
+    },
+    {
+      "concept": "cactus",
+      "edit_row_rms": 0.11942162105308746,
+      "null_row_rms": 0.09123488181279567,
+      "rank": 9,
+      "residual_row_rms": 0.05705041784187422,
+      "residual_snr_floor": 0.6455275144701866,
+      "snr_control_only": 1.3089469584465292,
+      "snr_floor_adjusted": 1.3089469584465292
+    },
+    {
+      "concept": "cheetah",
+      "edit_row_rms": 0.17555957585038096,
+      "null_row_rms": 0.13680209615211142,
+      "rank": 10,
+      "residual_row_rms": 0.07057681816638664,
+      "residual_snr_floor": 0.7985792170083283,
+      "snr_control_only": 1.2833105689782323,
+      "snr_floor_adjusted": 1.2833105689782323
+    },
+    {
+      "concept": "anteater",
+      "edit_row_rms": 0.12097677468867565,
+      "null_row_rms": 0.0965060808722445,
+      "rank": 11,
+      "residual_row_rms": 0.05894629528952866,
+      "residual_snr_floor": 0.6669794354695481,
+      "snr_control_only": 1.2535663410560174,
+      "snr_floor_adjusted": 1.2535663410560174
+    },
+    {
+      "concept": "bison",
+      "edit_row_rms": 0.17290899153187092,
+      "null_row_rms": 0.13919252914181549,
+      "rank": 12,
+      "residual_row_rms": 0.10074275529558487,
+      "residual_snr_floor": 1.1399078724907141,
+      "snr_control_only": 1.2422289658642787,
+      "snr_floor_adjusted": 1.2422289658642787
+    },
+    {
+      "concept": "ant",
+      "edit_row_rms": 0.10836738669751213,
+      "null_row_rms": 0.07985957062499248,
+      "rank": 13,
+      "residual_row_rms": 0.05428506610969012,
+      "residual_snr_floor": 0.6142374609028246,
+      "snr_control_only": 1.3569743219180042,
+      "snr_floor_adjusted": 1.2261808489880892
+    },
+    {
+      "concept": "ostrich",
+      "edit_row_rms": 0.14017651233152428,
+      "null_row_rms": 0.1158224878773545,
+      "rank": 14,
+      "residual_row_rms": 0.10139552295837725,
+      "residual_snr_floor": 1.147293961897751,
+      "snr_control_only": 1.21027025839713,
+      "snr_floor_adjusted": 1.21027025839713
+    },
+    {
+      "concept": "burrito",
+      "edit_row_rms": 0.10688598106687203,
+      "null_row_rms": 0.07712791772875645,
+      "rank": 15,
+      "residual_row_rms": 0.06343858927679569,
+      "residual_snr_floor": 0.7178099023016659,
+      "snr_control_only": 1.385827391876036,
+      "snr_floor_adjusted": 1.2094186913940859
+    },
+    {
+      "concept": "bird",
+      "edit_row_rms": 0.11723788648189513,
+      "null_row_rms": 0.10290254539806985,
+      "rank": 16,
+      "residual_row_rms": 0.05295208488298937,
+      "residual_snr_floor": 0.5991547307378585,
+      "snr_control_only": 1.1393098783744389,
+      "snr_floor_adjusted": 1.1393098783744389
+    },
+    {
+      "concept": "artichoke",
+      "edit_row_rms": 0.11817206767747444,
+      "null_row_rms": 0.1115671110471958,
+      "rank": 17,
+      "residual_row_rms": 0.0636116826115515,
+      "residual_snr_floor": 0.7197684595635246,
+      "snr_control_only": 1.05920164615076,
+      "snr_floor_adjusted": 1.05920164615076
+    },
+    {
+      "concept": "blackberry",
+      "edit_row_rms": 0.14354820536144366,
+      "null_row_rms": 0.13696275633213986,
+      "rank": 18,
+      "residual_row_rms": 0.06378430621959881,
+      "residual_snr_floor": 0.7217217018509082,
+      "snr_control_only": 1.0480820421964483,
+      "snr_floor_adjusted": 1.0480820421964483
+    },
+    {
+      "concept": "bassoon",
+      "edit_row_rms": 0.09123488181279564,
+      "null_row_rms": 0.08659746149738044,
+      "rank": 19,
+      "residual_row_rms": 0.059039491071499785,
+      "residual_snr_floor": 0.6680339490694602,
+      "snr_control_only": 1.053551457920686,
+      "snr_floor_adjusted": 1.0323259446202926
+    },
+    {
+      "concept": "candle",
+      "edit_row_rms": 0.09530221568920072,
+      "null_row_rms": 0.09255112515288749,
+      "rank": 20,
+      "residual_row_rms": 0.0499603995185817,
+      "residual_snr_floor": 0.5653037040422147,
+      "snr_control_only": 1.0297250901247137,
+      "snr_floor_adjusted": 1.0297250901247137
+    },
+    {
+      "concept": "file",
+      "edit_row_rms": 0.09075151479960898,
+      "null_row_rms": 0.06876179445883561,
+      "rank": 21,
+      "residual_row_rms": 0.04929570827493949,
+      "residual_snr_floor": 0.5577826988922135,
+      "snr_control_only": 1.319795614902656,
+      "snr_floor_adjusted": 1.0268566296108197
+    },
+    {
+      "concept": "crowbar",
+      "edit_row_rms": 0.12868426903789926,
+      "null_row_rms": 0.12539522318889404,
+      "rank": 22,
+      "residual_row_rms": 0.04689515459275804,
+      "residual_snr_floor": 0.5306203482832151,
+      "snr_control_only": 1.026229434944668,
+      "snr_floor_adjusted": 1.026229434944668
+    },
+    {
+      "concept": "chocolate",
+      "edit_row_rms": 0.10927677931213574,
+      "null_row_rms": 0.11323019344037476,
+      "rank": 23,
+      "residual_row_rms": 0.039235301285896515,
+      "residual_snr_floor": 0.4439488346741552,
+      "snr_control_only": 0.9650851596370289,
+      "snr_floor_adjusted": 0.9650851596370289
+    },
+    {
+      "concept": "drill",
+      "edit_row_rms": 0.08369175792649826,
+      "null_row_rms": 0.08570402237404486,
+      "rank": 24,
+      "residual_row_rms": 0.03909492408706892,
+      "residual_snr_floor": 0.44236046165822696,
+      "snr_control_only": 0.9765207700664934,
+      "snr_floor_adjusted": 0.9469752285719301
+    },
+    {
+      "concept": "tree",
+      "edit_row_rms": 0.10912574015313269,
+      "null_row_rms": 0.1161542902412549,
+      "rank": 25,
+      "residual_row_rms": 0.05548709520230941,
+      "residual_snr_floor": 0.6278384629959215,
+      "snr_control_only": 0.9394895352248827,
+      "snr_floor_adjusted": 0.9394895352248827
+    },
+    {
+      "concept": "car",
+      "edit_row_rms": 0.08169722771419963,
+      "null_row_rms": 0.08940878217911814,
+      "rank": 26,
+      "residual_row_rms": 0.04115033114927,
+      "residual_snr_floor": 0.46561746594108183,
+      "snr_control_only": 0.9137494743025413,
+      "snr_floor_adjusted": 0.9137494743025413
+    },
+    {
+      "concept": "dress",
+      "edit_row_rms": 0.07854063435955742,
+      "null_row_rms": 0.08395411517795398,
+      "rank": 27,
+      "residual_row_rms": 0.07204170345916093,
+      "residual_snr_floor": 0.8151544463896361,
+      "snr_control_only": 0.9355185769402509,
+      "snr_floor_adjusted": 0.8886900815268637
+    },
+    {
+      "concept": "blender",
+      "edit_row_rms": 0.07734147028624426,
+      "null_row_rms": 0.0781195019177243,
+      "rank": 28,
+      "residual_row_rms": 0.04259463942246615,
+      "residual_snr_floor": 0.4819598656113033,
+      "snr_control_only": 0.9900404942123229,
+      "snr_floor_adjusted": 0.8751214972294912
+    },
+    {
+      "concept": "bench",
+      "edit_row_rms": 0.07590643894697033,
+      "null_row_rms": 0.077696086865073,
+      "rank": 29,
+      "residual_row_rms": 0.05018000672876685,
+      "residual_snr_floor": 0.5677885674650116,
+      "snr_control_only": 0.9769660482231162,
+      "snr_floor_adjusted": 0.8588840663977683
+    },
+    {
+      "concept": "missile",
+      "edit_row_rms": 0.07010786401512205,
+      "null_row_rms": 0.06177001565989364,
+      "rank": 30,
+      "residual_row_rms": 0.060420180157813204,
+      "residual_snr_floor": 0.6836564953690218,
+      "snr_control_only": 1.1349821311546477,
+      "snr_floor_adjusted": 0.7932729840460149
+    }
+  ],
+  "residual_detection": {
+    "boundary_crossed_floor": true,
+    "target_rank": 1,
+    "target_residual_row_rms": 0.10295595964791558,
+    "target_residual_snr_floor": 1.1649503587444434,
+    "target_top_ranked": true
+  },
+  "residual_ranking": [
+    {
+      "concept": "antelope",
+      "edit_row_rms": 0.22473007501235745,
+      "null_row_rms": 0.1601660051031765,
+      "rank": 1,
+      "residual_row_rms": 0.10295595964791558,
+      "residual_snr_floor": 1.1649503587444434
+    },
+    {
+      "concept": "ostrich",
+      "edit_row_rms": 0.14017651233152428,
+      "null_row_rms": 0.1158224878773545,
+      "rank": 2,
+      "residual_row_rms": 0.10139552295837725,
+      "residual_snr_floor": 1.147293961897751
+    },
+    {
+      "concept": "bison",
+      "edit_row_rms": 0.17290899153187092,
+      "null_row_rms": 0.13919252914181549,
+      "rank": 3,
+      "residual_row_rms": 0.10074275529558487,
+      "residual_snr_floor": 1.1399078724907141
+    },
+    {
+      "concept": "beaver",
+      "edit_row_rms": 0.19454425350761717,
+      "null_row_rms": 0.11946764981604271,
+      "rank": 4,
+      "residual_row_rms": 0.0966768378578053,
+      "residual_snr_floor": 1.0939018715368638
+    },
+    {
+      "concept": "boar",
+      "edit_row_rms": 0.1752461323297942,
+      "null_row_rms": 0.1118132333649478,
+      "rank": 5,
+      "residual_row_rms": 0.08634313653849224,
+      "residual_snr_floor": 0.9769756722157212
+    },
+    {
+      "concept": "tumbleweed",
+      "edit_row_rms": 0.1341644064803365,
+      "null_row_rms": 0.07748351167365086,
+      "rank": 6,
+      "residual_row_rms": 0.07302706447869714,
+      "residual_snr_floor": 0.8263038415011675
+    },
+    {
+      "concept": "dress",
+      "edit_row_rms": 0.07854063435955742,
+      "null_row_rms": 0.08395411517795398,
+      "rank": 7,
+      "residual_row_rms": 0.07204170345916093,
+      "residual_snr_floor": 0.8151544463896361
+    },
+    {
+      "concept": "cheetah",
+      "edit_row_rms": 0.17555957585038096,
+      "null_row_rms": 0.13680209615211142,
+      "rank": 8,
+      "residual_row_rms": 0.07057681816638664,
+      "residual_snr_floor": 0.7985792170083283
+    },
+    {
+      "concept": "beetle",
+      "edit_row_rms": 0.13623829353347036,
+      "null_row_rms": 0.09735687089076504,
+      "rank": 9,
+      "residual_row_rms": 0.06697967803392685,
+      "residual_snr_floor": 0.7578774479986127
+    },
+    {
+      "concept": "bear",
+      "edit_row_rms": 0.11859004839261236,
+      "null_row_rms": 0.08149508993382122,
+      "rank": 10,
+      "residual_row_rms": 0.06404236920023908,
+      "residual_snr_floor": 0.7246416936892013
+    },
+    {
+      "concept": "blackberry",
+      "edit_row_rms": 0.14354820536144366,
+      "null_row_rms": 0.13696275633213986,
+      "rank": 11,
+      "residual_row_rms": 0.06378430621959881,
+      "residual_snr_floor": 0.7217217018509082
+    },
+    {
+      "concept": "artichoke",
+      "edit_row_rms": 0.11817206767747444,
+      "null_row_rms": 0.1115671110471958,
+      "rank": 12,
+      "residual_row_rms": 0.0636116826115515,
+      "residual_snr_floor": 0.7197684595635246
+    },
+    {
+      "concept": "burrito",
+      "edit_row_rms": 0.10688598106687203,
+      "null_row_rms": 0.07712791772875645,
+      "rank": 13,
+      "residual_row_rms": 0.06343858927679569,
+      "residual_snr_floor": 0.7178099023016659
+    },
+    {
+      "concept": "missile",
+      "edit_row_rms": 0.07010786401512205,
+      "null_row_rms": 0.06177001565989364,
+      "rank": 14,
+      "residual_row_rms": 0.060420180157813204,
+      "residual_snr_floor": 0.6836564953690218
+    },
+    {
+      "concept": "camel",
+      "edit_row_rms": 0.13538818742734823,
+      "null_row_rms": 0.10231314820474689,
+      "rank": 15,
+      "residual_row_rms": 0.06014657793622529,
+      "residual_snr_floor": 0.6805606764646854
+    },
+    {
+      "concept": "bassoon",
+      "edit_row_rms": 0.09123488181279564,
+      "null_row_rms": 0.08659746149738044,
+      "rank": 16,
+      "residual_row_rms": 0.059039491071499785,
+      "residual_snr_floor": 0.6680339490694602
+    },
+    {
+      "concept": "anteater",
+      "edit_row_rms": 0.12097677468867565,
+      "null_row_rms": 0.0965060808722445,
+      "rank": 17,
+      "residual_row_rms": 0.05894629528952866,
+      "residual_snr_floor": 0.6669794354695481
+    },
+    {
+      "concept": "cactus",
+      "edit_row_rms": 0.11942162105308746,
+      "null_row_rms": 0.09123488181279567,
+      "rank": 18,
+      "residual_row_rms": 0.05705041784187422,
+      "residual_snr_floor": 0.6455275144701866
+    },
+    {
+      "concept": "bell",
+      "edit_row_rms": 0.12264674388692978,
+      "null_row_rms": 0.08804557469335035,
+      "rank": 19,
+      "residual_row_rms": 0.05656652090968185,
+      "residual_snr_floor": 0.6400522034082471
+    },
+    {
+      "concept": "tree",
+      "edit_row_rms": 0.10912574015313269,
+      "null_row_rms": 0.1161542902412549,
+      "rank": 20,
+      "residual_row_rms": 0.05548709520230941,
+      "residual_snr_floor": 0.6278384629959215
+    },
+    {
+      "concept": "ant",
+      "edit_row_rms": 0.10836738669751213,
+      "null_row_rms": 0.07985957062499248,
+      "rank": 21,
+      "residual_row_rms": 0.05428506610969012,
+      "residual_snr_floor": 0.6142374609028246
+    },
+    {
+      "concept": "bird",
+      "edit_row_rms": 0.11723788648189513,
+      "null_row_rms": 0.10290254539806985,
+      "rank": 22,
+      "residual_row_rms": 0.05295208488298937,
+      "residual_snr_floor": 0.5991547307378585
+    },
+    {
+      "concept": "bench",
+      "edit_row_rms": 0.07590643894697033,
+      "null_row_rms": 0.077696086865073,
+      "rank": 23,
+      "residual_row_rms": 0.05018000672876685,
+      "residual_snr_floor": 0.5677885674650116
+    },
+    {
+      "concept": "candle",
+      "edit_row_rms": 0.09530221568920072,
+      "null_row_rms": 0.09255112515288749,
+      "rank": 24,
+      "residual_row_rms": 0.0499603995185817,
+      "residual_snr_floor": 0.5653037040422147
+    },
+    {
+      "concept": "file",
+      "edit_row_rms": 0.09075151479960898,
+      "null_row_rms": 0.06876179445883561,
+      "rank": 25,
+      "residual_row_rms": 0.04929570827493949,
+      "residual_snr_floor": 0.5577826988922135
+    },
+    {
+      "concept": "crowbar",
+      "edit_row_rms": 0.12868426903789926,
+      "null_row_rms": 0.12539522318889404,
+      "rank": 26,
+      "residual_row_rms": 0.04689515459275804,
+      "residual_snr_floor": 0.5306203482832151
+    },
+    {
+      "concept": "blender",
+      "edit_row_rms": 0.07734147028624426,
+      "null_row_rms": 0.0781195019177243,
+      "rank": 27,
+      "residual_row_rms": 0.04259463942246615,
+      "residual_snr_floor": 0.4819598656113033
+    },
+    {
+      "concept": "car",
+      "edit_row_rms": 0.08169722771419963,
+      "null_row_rms": 0.08940878217911814,
+      "rank": 28,
+      "residual_row_rms": 0.04115033114927,
+      "residual_snr_floor": 0.46561746594108183
+    },
+    {
+      "concept": "chocolate",
+      "edit_row_rms": 0.10927677931213574,
+      "null_row_rms": 0.11323019344037476,
+      "rank": 29,
+      "residual_row_rms": 0.039235301285896515,
+      "residual_snr_floor": 0.4439488346741552
+    },
+    {
+      "concept": "drill",
+      "edit_row_rms": 0.08369175792649826,
+      "null_row_rms": 0.08570402237404486,
+      "rank": 30,
+      "residual_row_rms": 0.03909492408706892,
+      "residual_snr_floor": 0.44236046165822696
+    }
+  ],
+  "target_concept": "antelope",
+  "target_neighbor": "bison"
+}

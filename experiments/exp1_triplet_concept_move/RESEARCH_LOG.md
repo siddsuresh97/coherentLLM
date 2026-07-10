@@ -306,3 +306,23 @@
 - Control run: `https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/gcsnp8e0`.
 - Edit run: `https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/snclf788`.
 - Settings: PEFT QLoRA, Llama-3.1-8B-Instruct snapshot `0e9e39f249a16976918f6564b8830bc894c89659`, `rank=16`, `learning_rate=5e-5`, `max_steps=600`, batch size 8, no gradient accumulation, seed 1729. Batch 8 fits on the local A5000s; early throughput is about `1.23` steps/s, or `9.8` examples/s per GPU.
+
+## 2026-07-09 19:31 Target-anchor + bison-preserve v3 result
+- Goal this session: test whether explicit `bison` preservation fixes v2's neighbor-drift failure while a one-direction target-anchor edit still moves the intended `antelope`-`bison` relation.
+- What I ran / built: trained v3 control/edit adapters online in W&B, recovered full frozen-protocol triplet RDMs, and scored `detection/concentrated_drop_100_triplet_targeted_v3_targetanchor_bisonpreserve.json`. Then built v4 data under `sft_triplet_data/concentrated_drop_100_triplet_targeted_v4_both_bisonpreserve/`.
+- Result (numbers; plots saved to /figs with filenames): v3 control finished 600 steps in 492.82s (`9.740` samples/s, final logged loss `0.0857`, train loss `0.1279`); edit finished in 499.07s (`9.618` samples/s, final logged loss `0.0898`, train loss `0.1361`). Detection: `target_rank=4`, `target_snr_control_only=1.403`, `upper_rms_control_null=0.103`, `upper_rms_edit=0.127`, `upper_rms_residual=0.066`. However, `antelope`-`bison` ranked 320 by global residual pair and 25 within the target row; top residual pairs were `antelope`-`beaver` and `antelope`-`boar`.
+- Interpretation (what the result means, not just restating it): v3 improved concept-row localization and reduced global residual drift, but it did not preserve the intended relation-level edit. The one-direction edit reduced broad `bison` movement, but it also let the symmetrized `antelope`-`bison` residual cancel, shifting the observable movement to `antelope` vs alternatives.
+- Lit found + how it changes the plan: no new literature in this operational step.
+- Decision / next step + WHY this over the alternatives I considered: run v4, both-direction edit plus `bison` preservation. I chose this over increasing v3 target repeats because v3's failure is cancellation of the target pair, not only weak magnitude. I chose this over changing LR/rank because v3 already reduced global drift; the missing piece is to restore direct target-pair pressure while keeping neighbor preservation.
+- Open risks: v4 may reintroduce bison-global drift despite preservation. If that happens, the next likely lever is data shaping around alternatives, e.g. restrict editable alternatives or add hard negative/positive balance for `bison` rows.
+
+### DECISION 2026-07-09 19:31 - Course-correction to both-direction + bison-preserve v4
+- What specifically in the result told me the cause: v3 reduced residual drift and improved `antelope` row rank, but `antelope`-`bison` residual pair rank collapsed to 320. That means preserving `bison` helped locality but the one-direction edit no longer moved the intended pair after symmetrization.
+- Next lever and why: restore both editable directions from v2 while keeping the explicit `bison` preservation introduced in v3. This isolates the variable: if v4 works, v2's failure was missing neighbor preservation; if it fails, the edit formulation itself causes unavoidable bison/alternative spillover.
+- Rejected alternatives: more v3 target repeats could still move `antelope` toward alternatives instead of away from `bison`; changing concept pair would avoid the diagnosis; activation steering is still premature while direct SFT data design is producing informative changes.
+- What would confirm or kill this hypothesis: confirmation is `antelope`-`bison` returning near the top of global residual pairs while `bison`-other residuals stay below it. If `bison`-other residuals dominate again, preservation volume or alternative selection is insufficient.
+
+### NOTE 2026-07-09 19:31 - v4 dataset built
+- Data: `experiments/exp1_triplet_concept_move/sft_triplet_data/concentrated_drop_100_triplet_targeted_v4_both_bisonpreserve/{control.jsonl,edit.jsonl,manifest.json}`.
+- Counts: 5,448 rows per arm: 54 editable target-neighbor rows repeated 12 times, 900 target-preserve rows repeated twice, 900 neighbor-preserve rows repeated twice, and 1,200 replay rows.
+- Training plan: online W&B, PEFT QLoRA, `rank=16`, `learning_rate=5e-5`, `max_steps=600`, batch size 8, seed 1729.
