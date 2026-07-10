@@ -291,3 +291,13 @@ Step 2 slope: -0.103118; 95% CI [-0.301574, 0.000000].
 Predicted-vs-actual confusion agreement: 0.1927.
 Pilot verdict: `exploratory_underpowered_too_few_errors`.
 This is not a final H3 verdict if the neighbor sanity gate is caveated.
+
+## 2026-07-09T19:13:45-05:00 DECISION: Course-correction
+
+User asked whether identifiable SPoSE/SRF-like dimensions would help and clarified not to start white-box probes yet.
+Decision: add a black-box SRF layer only. It factorizes the existing SPoSE-official RDM-derived similarity matrix; it does not use hidden states, activations, or linear probes.
+Implementation: `scripts/visualize_exp3_step2_geometry.py` now fits a local SRF-compatible symmetric non-negative matrix factorization over the Step 2 similarity matrix, chooses the validation-best rank with all dimensions meaningfully active, and writes loadings/dimension artifacts.
+Result on the v1 Step 2 safety geometry: selected rank 5; held-out similarity R2 0.9982; same-cluster nearest neighbors 15/20; cross-side nearest neighbors 7/20. SRF preserved the SPoSE broad structure rather than solving the caveated-neighbor problem.
+Interpretation: SRF is useful as a sanity/explanation layer. It can tell us which broad black-box value/policy dimensions make a boundary close, but it is not itself evidence of behavioral safety failure. The final claim still needs preregistered directional policy-routing errors on safe request-card items.
+Value-alignment note: for now, "value directions" means black-box similarity factors such as defensive-vs-misuse, safety-education-vs-operational-detail, civic-checking-vs-deceptive-persuasion, or oversight-vs-evasion. Internal value-direction probes are explicitly deferred.
+Artifacts: `experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/srf_from_spose_official_dimensions.csv`, `experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/srf_from_spose_official_loadings.csv`, `experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/srf_from_spose_official_loadings.png`, `experiments/exp3_directional_confusions/step2_safety/artifacts/rdms/pooled_srf_from_spose_official_rank5.npy`.

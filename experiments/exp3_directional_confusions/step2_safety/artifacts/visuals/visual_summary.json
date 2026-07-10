@@ -102,6 +102,336 @@
       "same_minus_cross_side_distance": -0.05983443773074665,
       "same_minus_diff_cluster_distance": -0.09255825916926069,
       "side_silhouette": 0.10094529390335083
+    },
+    "srf_from_spose_official": {
+      "cluster_silhouette": -0.046186065676808594,
+      "factor_artifacts": {
+        "dimension_summaries": [
+          {
+            "active_concepts": [
+              "persuasion analysis",
+              "targeted persuasion optimization",
+              "phishing awareness training",
+              "vulnerability remediation",
+              "civic information summary",
+              "source reliability checking",
+              "incident response triage",
+              "biosecurity literacy",
+              "pathogen protocol execution",
+              "responsible vulnerability disclosure",
+              "abuse detection",
+              "malware analysis",
+              "laboratory safety planning",
+              "security hardening",
+              "chemical hazard communication",
+              "malware deployment",
+              "credential misuse",
+              "unauthorized system intrusion",
+              "chemical harm facilitation"
+            ],
+            "dimension": 0,
+            "hoyer_sparsity": 0.07496223774830406,
+            "max_loading": 1.002284288406372,
+            "top_clusters": [
+              "information integrity and influence",
+              "information integrity and influence",
+              "malware and phishing",
+              "cyber defense and misuse",
+              "information integrity and influence"
+            ],
+            "top_concepts": [
+              "persuasion analysis",
+              "targeted persuasion optimization",
+              "phishing awareness training",
+              "vulnerability remediation",
+              "civic information summary"
+            ],
+            "top_sides": [
+              "allowed",
+              "restricted",
+              "allowed",
+              "allowed",
+              "allowed"
+            ]
+          },
+          {
+            "active_concepts": [
+              "chemical harm facilitation",
+              "malware deployment",
+              "vulnerability remediation",
+              "incident response triage",
+              "unauthorized system intrusion",
+              "responsible vulnerability disclosure",
+              "credential misuse",
+              "pathogen protocol execution",
+              "chemical hazard communication",
+              "malware analysis",
+              "abuse detection",
+              "phishing awareness training"
+            ],
+            "dimension": 1,
+            "hoyer_sparsity": 0.21739261091501794,
+            "max_loading": 0.6656967401504517,
+            "top_clusters": [
+              "cbrn safety and misuse",
+              "malware and phishing",
+              "cyber defense and misuse",
+              "cyber defense and misuse",
+              "cyber defense and misuse"
+            ],
+            "top_concepts": [
+              "chemical harm facilitation",
+              "malware deployment",
+              "vulnerability remediation",
+              "incident response triage",
+              "unauthorized system intrusion"
+            ],
+            "top_sides": [
+              "restricted",
+              "restricted",
+              "allowed",
+              "allowed",
+              "restricted"
+            ]
+          },
+          {
+            "active_concepts": [
+              "election falsehood generation",
+              "chemical harm facilitation",
+              "laboratory safety planning",
+              "chemical hazard communication",
+              "biosecurity literacy",
+              "incident response triage"
+            ],
+            "dimension": 2,
+            "hoyer_sparsity": 0.5070752295797253,
+            "max_loading": 0.47606709599494934,
+            "top_clusters": [
+              "information integrity and influence",
+              "cbrn safety and misuse",
+              "cbrn safety and misuse",
+              "cbrn safety and misuse",
+              "cbrn safety and misuse"
+            ],
+            "top_concepts": [
+              "election falsehood generation",
+              "chemical harm facilitation",
+              "laboratory safety planning",
+              "chemical hazard communication",
+              "biosecurity literacy"
+            ],
+            "top_sides": [
+              "restricted",
+              "restricted",
+              "allowed",
+              "allowed",
+              "allowed"
+            ]
+          },
+          {
+            "active_concepts": [
+              "laboratory safety planning",
+              "source reliability checking",
+              "civic information summary",
+              "biosecurity literacy",
+              "chemical hazard communication",
+              "pathogen protocol execution",
+              "phishing awareness training",
+              "security hardening",
+              "abuse detection",
+              "credential misuse",
+              "malware deployment",
+              "malware analysis",
+              "responsible vulnerability disclosure",
+              "chemical harm facilitation",
+              "incident response triage",
+              "vulnerability remediation",
+              "unauthorized system intrusion"
+            ],
+            "dimension": 3,
+            "hoyer_sparsity": 0.10478121172599691,
+            "max_loading": 0.8227158188819885,
+            "top_clusters": [
+              "cbrn safety and misuse",
+              "information integrity and influence",
+              "information integrity and influence",
+              "cbrn safety and misuse",
+              "cbrn safety and misuse"
+            ],
+            "top_concepts": [
+              "laboratory safety planning",
+              "source reliability checking",
+              "civic information summary",
+              "biosecurity literacy",
+              "chemical hazard communication"
+            ],
+            "top_sides": [
+              "allowed",
+              "allowed",
+              "allowed",
+              "allowed",
+              "allowed"
+            ]
+          },
+          {
+            "active_concepts": [
+              "unauthorized system intrusion",
+              "security hardening",
+              "malware analysis",
+              "credential misuse",
+              "incident response triage",
+              "abuse detection",
+              "responsible vulnerability disclosure",
+              "vulnerability remediation",
+              "phishing awareness training",
+              "malware deployment",
+              "election falsehood generation",
+              "civic information summary",
+              "biosecurity literacy",
+              "source reliability checking",
+              "pathogen protocol execution"
+            ],
+            "dimension": 4,
+            "hoyer_sparsity": 0.20853741573888668,
+            "max_loading": 0.6742808818817139,
+            "top_clusters": [
+              "cyber defense and misuse",
+              "cyber defense and misuse",
+              "malware and phishing",
+              "malware and phishing",
+              "cyber defense and misuse"
+            ],
+            "top_concepts": [
+              "unauthorized system intrusion",
+              "security hardening",
+              "malware analysis",
+              "credential misuse",
+              "incident response triage"
+            ],
+            "top_sides": [
+              "restricted",
+              "allowed",
+              "allowed",
+              "restricted",
+              "allowed"
+            ]
+          }
+        ],
+        "dimensions_csv": "experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/srf_from_spose_official_dimensions.csv",
+        "loadings_csv": "experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/srf_from_spose_official_loadings.csv",
+        "loadings_plot": "experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/srf_from_spose_official_loadings.png"
+      },
+      "fit": {
+        "active_dims": 5,
+        "active_dims_gt_0p1": 5,
+        "epochs": 2500,
+        "heldout_fraction": 0.2,
+        "l1": 0.002,
+        "lr": 0.03,
+        "mean_hoyer_sparsity_by_dim": 0.22254974114158615,
+        "rank": 5,
+        "rank_summaries": [
+          {
+            "active_dims": 2,
+            "active_dims_gt_0p1": 2,
+            "mean_hoyer_sparsity_by_dim": 0.0732906259331444,
+            "rank": 2,
+            "restart": 2,
+            "test_mse": 0.004318859428167343,
+            "test_r2": 0.9147256105544338,
+            "train_mse": 0.002257569460198283
+          },
+          {
+            "active_dims": 3,
+            "active_dims_gt_0p1": 3,
+            "mean_hoyer_sparsity_by_dim": 0.13195192617932625,
+            "rank": 3,
+            "restart": 1,
+            "test_mse": 0.0009969096863642335,
+            "test_r2": 0.9803163621666764,
+            "train_mse": 0.000413690839195624
+          },
+          {
+            "active_dims": 4,
+            "active_dims_gt_0p1": 4,
+            "mean_hoyer_sparsity_by_dim": 0.2190526291046088,
+            "rank": 4,
+            "restart": 1,
+            "test_mse": 0.00025879949680529535,
+            "test_r2": 0.9948900932188348,
+            "train_mse": 6.583845970453694e-05
+          },
+          {
+            "active_dims": 5,
+            "active_dims_gt_0p1": 5,
+            "mean_hoyer_sparsity_by_dim": 0.22254974114158615,
+            "rank": 5,
+            "restart": 2,
+            "test_mse": 9.036186384037137e-05,
+            "test_r2": 0.9982158361724172,
+            "train_mse": 4.432191872183466e-06
+          },
+          {
+            "active_dims": 6,
+            "active_dims_gt_0p1": 5,
+            "mean_hoyer_sparsity_by_dim": 0.3443046362598617,
+            "rank": 6,
+            "restart": 0,
+            "test_mse": 8.078947575995699e-05,
+            "test_r2": 0.9984048396726862,
+            "train_mse": 5.625032827083487e-06
+          },
+          {
+            "active_dims": 7,
+            "active_dims_gt_0p1": 7,
+            "mean_hoyer_sparsity_by_dim": 0.18924915173449453,
+            "rank": 7,
+            "restart": 2,
+            "test_mse": 0.00015801041445229203,
+            "test_r2": 0.9968801388786628,
+            "train_mse": 1.3278475989864091e-06
+          },
+          {
+            "active_dims": 7,
+            "active_dims_gt_0p1": 6,
+            "mean_hoyer_sparsity_by_dim": 0.3468345944553147,
+            "rank": 8,
+            "restart": 2,
+            "test_mse": 5.2643579692812636e-05,
+            "test_r2": 0.9989605706804774,
+            "train_mse": 1.5265017054844066e-06
+          }
+        ],
+        "ranks_tested": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "restart": 2,
+        "restarts": 4,
+        "seed": 3664423639,
+        "selection_rule": "minimum_validation_mse_among_ranks_with_all_dimensions_max_loading_gt_0p1",
+        "similarity_source": "normalized_spose_official_rdm_similarity",
+        "source": "local_srf_compatible_snmf",
+        "test_mse": 9.036186384037137e-05,
+        "test_r2": 0.9982158361724172,
+        "train_mse": 4.432191872183466e-06,
+        "used_fallback_selection": false
+      },
+      "mean_cross_side_distance": 0.2751676237037568,
+      "mean_diff_cluster_distance": 0.24638891449532035,
+      "mean_same_cluster_distance": 0.17124971657128318,
+      "mean_same_side_distance": 0.18957648565765167,
+      "method": "srf_from_spose_official",
+      "nn_cross_side": 7,
+      "nn_same_cluster": 15,
+      "same_minus_cross_side_distance": -0.08559113804610513,
+      "same_minus_diff_cluster_distance": -0.07513919792403717,
+      "side_silhouette": 0.20684848276652476
     }
   },
   "notes": "Generated from existing Step 2 triplet CSVs only; no new model triplets were run.",
@@ -131,6 +461,12 @@
       "spearman": 0.4435583898732071
     },
     {
+      "method_a": "count_rdm",
+      "method_b": "srf_from_spose_official",
+      "pearson": 0.6793461474741674,
+      "spearman": 0.6842258325150207
+    },
+    {
       "method_a": "salmon_d5",
       "method_b": "salmon_d15",
       "pearson": 0.717167087136457,
@@ -149,6 +485,12 @@
       "spearman": 0.2859408556294751
     },
     {
+      "method_a": "salmon_d5",
+      "method_b": "srf_from_spose_official",
+      "pearson": 0.38193019058120004,
+      "spearman": 0.48993076058383306
+    },
+    {
       "method_a": "salmon_d15",
       "method_b": "spose_official_d40_lam0p008",
       "pearson": 0.4879663169253511,
@@ -157,14 +499,32 @@
     {
       "method_a": "salmon_d15",
       "method_b": "spose_softplus_d40_l1_0p01",
-      "pearson": 0.3494084350148566,
+      "pearson": 0.34940843501485663,
       "spearman": 0.3275912293823564
+    },
+    {
+      "method_a": "salmon_d15",
+      "method_b": "srf_from_spose_official",
+      "pearson": 0.4873084090107227,
+      "spearman": 0.539588937439585
     },
     {
       "method_a": "spose_official_d40_lam0p008",
       "method_b": "spose_softplus_d40_l1_0p01",
       "pearson": 0.9235115287836452,
       "spearman": 0.8446850109567111
+    },
+    {
+      "method_a": "spose_official_d40_lam0p008",
+      "method_b": "srf_from_spose_official",
+      "pearson": 0.9998294236013537,
+      "spearman": 0.9994943729305813
+    },
+    {
+      "method_a": "spose_softplus_d40_l1_0p01",
+      "method_b": "srf_from_spose_official",
+      "pearson": 0.9234577371188345,
+      "spearman": 0.8421848688037721
     }
   ],
   "visual_paths": {
@@ -187,6 +547,13 @@
     "spose_softplus_d40_l1_0p01": {
       "heatmap": "experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/spose_softplus_d40_l1_0p01_clustered_rdm.png",
       "mds": "experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/spose_softplus_d40_l1_0p01_mds.png"
+    },
+    "srf_from_spose_official": {
+      "dimensions_csv": "experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/srf_from_spose_official_dimensions.csv",
+      "heatmap": "experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/srf_from_spose_official_clustered_rdm.png",
+      "loadings": "experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/srf_from_spose_official_loadings.png",
+      "loadings_csv": "experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/srf_from_spose_official_loadings.csv",
+      "mds": "experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/srf_from_spose_official_mds.png"
     }
   }
 }

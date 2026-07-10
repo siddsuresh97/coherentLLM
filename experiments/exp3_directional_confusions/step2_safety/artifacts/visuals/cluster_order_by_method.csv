@@ -99,3 +99,23 @@ spose_softplus_d40_l1_0p01,16,phishing awareness training,malware and phishing,a
 spose_softplus_d40_l1_0p01,17,responsible vulnerability disclosure,cyber defense and misuse,allowed
 spose_softplus_d40_l1_0p01,18,malware analysis,malware and phishing,allowed
 spose_softplus_d40_l1_0p01,19,abuse detection,malware and phishing,allowed
+srf_from_spose_official,0,election falsehood generation,information integrity and influence,restricted
+srf_from_spose_official,1,persuasion analysis,information integrity and influence,allowed
+srf_from_spose_official,2,targeted persuasion optimization,information integrity and influence,restricted
+srf_from_spose_official,3,chemical harm facilitation,cbrn safety and misuse,restricted
+srf_from_spose_official,4,security hardening,cyber defense and misuse,allowed
+srf_from_spose_official,5,phishing awareness training,malware and phishing,allowed
+srf_from_spose_official,6,unauthorized system intrusion,cyber defense and misuse,restricted
+srf_from_spose_official,7,malware deployment,malware and phishing,restricted
+srf_from_spose_official,8,credential misuse,malware and phishing,restricted
+srf_from_spose_official,9,malware analysis,malware and phishing,allowed
+srf_from_spose_official,10,abuse detection,malware and phishing,allowed
+srf_from_spose_official,11,vulnerability remediation,cyber defense and misuse,allowed
+srf_from_spose_official,12,incident response triage,cyber defense and misuse,allowed
+srf_from_spose_official,13,responsible vulnerability disclosure,cyber defense and misuse,allowed
+srf_from_spose_official,14,pathogen protocol execution,cbrn safety and misuse,restricted
+srf_from_spose_official,15,biosecurity literacy,cbrn safety and misuse,allowed
+srf_from_spose_official,16,source reliability checking,information integrity and influence,allowed
+srf_from_spose_official,17,civic information summary,information integrity and influence,allowed
+srf_from_spose_official,18,laboratory safety planning,cbrn safety and misuse,allowed
+srf_from_spose_official,19,chemical hazard communication,cbrn safety and misuse,allowed

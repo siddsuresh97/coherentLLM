@@ -49,6 +49,13 @@ def write_json(path: Path, payload: object) -> None:
         handle.write("\n")
 
 
+def read_json(path: Path) -> dict:
+    if not path.exists():
+        return {}
+    with path.open() as handle:
+        return json.load(handle)
+
+
 def clean_method(value: str) -> str:
     return value.replace(" ", "_").replace("/", "_").replace("=", "")
 
@@ -97,6 +104,145 @@ def cosine_rdm(embedding: np.ndarray) -> np.ndarray:
     rdm = (rdm + rdm.T) / 2.0
     np.fill_diagonal(rdm, 0.0)
     return rdm
+
+
+def rdm_to_similarity(rdm: np.ndarray) -> np.ndarray:
+    rdm = np.asarray(rdm, dtype=float)
+    off = rdm[np.triu_indices_from(rdm, k=1)]
+    max_dist = float(np.nanmax(off)) if len(off) else 1.0
+    if not np.isfinite(max_dist) or max_dist <= 0:
+        max_dist = 1.0
+    sim = 1.0 - (rdm / max_dist)
+    sim = np.clip((sim + sim.T) / 2.0, 0.0, 1.0)
+    np.fill_diagonal(sim, 1.0)
+    return sim
+
+
+def similarity_to_rdm(sim: np.ndarray) -> np.ndarray:
+    sim = np.asarray(sim, dtype=float)
+    sim = np.clip((sim + sim.T) / 2.0, 0.0, None)
+    off = sim[np.triu_indices_from(sim, k=1)]
+    max_sim = float(np.nanmax(off)) if len(off) else 1.0
+    if not np.isfinite(max_sim) or max_sim <= 0:
+        max_sim = 1.0
+    rdm = 1.0 - np.clip(sim / max_sim, 0.0, 1.0)
+    rdm = (rdm + rdm.T) / 2.0
+    np.fill_diagonal(rdm, 0.0)
+    return rdm
+
+
+def hoyer_sparsity(values: np.ndarray) -> float:
+    values = np.asarray(values, dtype=float)
+    n = values.size
+    if n <= 1:
+        return 0.0
+    l2 = float(np.linalg.norm(values))
+    if l2 == 0:
+        return 1.0
+    return float((np.sqrt(n) - (np.abs(values).sum() / l2)) / (np.sqrt(n) - 1.0))
+
+
+def fit_srf_snmf(
+    similarity: np.ndarray,
+    *,
+    ranks: list[int],
+    l1: float,
+    seed: int,
+    epochs: int,
+    lr: float,
+    restarts: int,
+) -> tuple[np.ndarray, dict]:
+    """Small SRF-compatible SNMF fallback for dense similarity matrices.
+
+    SRF factorizes a non-negative similarity matrix with a non-negative embedding
+    whose dot products reconstruct similarities. This local implementation keeps
+    the same object-level contract without requiring the external pysrf package.
+    """
+
+    similarity = np.asarray(similarity, dtype=float)
+    n_items = similarity.shape[0]
+    rng = np.random.default_rng(seed)
+    pair_i, pair_j = np.triu_indices(n_items, k=1)
+    pair_idx = np.arange(len(pair_i))
+    rng.shuffle(pair_idx)
+    n_test = max(1, int(round(0.2 * len(pair_idx))))
+    test_idx = pair_idx[:n_test]
+    train_idx = pair_idx[n_test:]
+    target = torch.tensor(similarity, dtype=torch.float32)
+    train_i = torch.tensor(pair_i[train_idx], dtype=torch.long)
+    train_j = torch.tensor(pair_j[train_idx], dtype=torch.long)
+    test_i = torch.tensor(pair_i[test_idx], dtype=torch.long)
+    test_j = torch.tensor(pair_j[test_idx], dtype=torch.long)
+    rank_summaries = []
+    all_payloads: list[dict] = []
+
+    for rank in ranks:
+        rank_best: dict | None = None
+        init_scale = float(np.sqrt(np.clip(np.mean(similarity[pair_i, pair_j]), 1e-6, None) / max(rank, 1)))
+        for restart in range(restarts):
+            torch.manual_seed(seed + rank * 1000 + restart)
+            weights = torch.nn.Parameter(torch.rand(n_items, rank) * init_scale + 0.01)
+            opt = torch.optim.Adam([weights], lr=lr)
+            for _ in range(epochs):
+                opt.zero_grad(set_to_none=True)
+                recon_pairs = (weights[train_i] * weights[train_j]).sum(1)
+                train_target = target[train_i, train_j]
+                loss = torch.mean((recon_pairs - train_target) ** 2) + l1 * weights.mean()
+                loss.backward()
+                opt.step()
+                with torch.no_grad():
+                    weights.clamp_(min=0.0)
+            with torch.no_grad():
+                train_pred = (weights[train_i] * weights[train_j]).sum(1)
+                test_pred = (weights[test_i] * weights[test_j]).sum(1)
+                train_target = target[train_i, train_j]
+                test_target = target[test_i, test_j]
+                train_mse = float(torch.mean((train_pred - train_target) ** 2).item())
+                test_mse = float(torch.mean((test_pred - test_target) ** 2).item())
+                var_test = float(torch.var(test_target, unbiased=False).item())
+                test_r2 = float(1.0 - test_mse / var_test) if var_test > 0 else float("nan")
+                embedding = weights.detach().cpu().numpy()
+            payload = {
+                "rank": rank,
+                "restart": restart,
+                "train_mse": train_mse,
+                "test_mse": test_mse,
+                "test_r2": test_r2,
+                "embedding": embedding,
+                "active_dims": int((embedding.max(axis=0) > 1e-4).sum()),
+                "active_dims_gt_0p1": int((embedding.max(axis=0) > 0.1).sum()),
+                "mean_hoyer_sparsity_by_dim": float(np.mean([hoyer_sparsity(embedding[:, k]) for k in range(rank)])),
+            }
+            if rank_best is None or payload["test_mse"] < rank_best["test_mse"]:
+                rank_best = payload
+        assert rank_best is not None
+        rank_summaries.append({key: value for key, value in rank_best.items() if key != "embedding"})
+        all_payloads.append(rank_best)
+
+    active_rank_payloads = [payload for payload in all_payloads if payload["active_dims_gt_0p1"] == payload["rank"]]
+    candidate_payloads = active_rank_payloads or all_payloads
+    best_payload = min(candidate_payloads, key=lambda payload: payload["test_mse"])
+    best_embedding = best_payload["embedding"]
+    best_fit = {
+        key: value for key, value in best_payload.items() if key != "embedding"
+    }
+    best_fit.update(
+        {
+            "source": "local_srf_compatible_snmf",
+            "similarity_source": "normalized_spose_official_rdm_similarity",
+            "ranks_tested": ranks,
+            "rank_summaries": rank_summaries,
+            "l1": l1,
+            "epochs": epochs,
+            "lr": lr,
+            "restarts": restarts,
+            "seed": seed,
+            "heldout_fraction": 0.2,
+            "selection_rule": "minimum_validation_mse_among_ranks_with_all_dimensions_max_loading_gt_0p1",
+            "used_fallback_selection": not bool(active_rank_payloads),
+        }
+    )
+    return best_embedding, best_fit
 
 
 def fit_spose_official_like(
@@ -254,6 +400,87 @@ def plot_mds(method: str, rdm: np.ndarray, concepts: list[str], meta: dict[str, 
     return out
 
 
+def plot_srf_loadings(method: str, embedding: np.ndarray, concepts: list[str], meta: dict[str, dict]) -> Path:
+    order = np.lexsort(
+        (
+            np.array([concepts.index(c) for c in concepts]),
+            -np.max(embedding, axis=1),
+            np.argmax(embedding, axis=1),
+        )
+    )
+    ordered = embedding[order]
+    labels = [concepts[i] for i in order]
+    fig, ax = plt.subplots(figsize=(max(8, embedding.shape[1] * 0.8), 9))
+    im = ax.imshow(ordered, cmap="magma", interpolation="nearest", aspect="auto")
+    ax.set_title(f"{method} non-negative SRF loadings")
+    ax.set_xticks(range(embedding.shape[1]))
+    ax.set_xticklabels([f"dim {i}" for i in range(embedding.shape[1])], rotation=45, ha="right")
+    ax.set_yticks(range(len(labels)))
+    ax.set_yticklabels(labels, fontsize=7)
+    for pos, concept in enumerate(labels):
+        side = meta[concept].get("side")
+        ax.get_yticklabels()[pos].set_color("#3a8f3a" if side == "allowed" else "#b33a3a")
+    fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04, label="loading")
+    fig.tight_layout()
+    out = VIS_DIR / f"{clean_method(method)}_loadings.png"
+    fig.savefig(out, dpi=180)
+    plt.close(fig)
+    return out
+
+
+def write_srf_artifacts(method: str, embedding: np.ndarray, concepts: list[str], meta: dict[str, dict]) -> dict:
+    clean = clean_method(method)
+    load_rows = [["concept", "cluster", "side", *[f"dim_{k:02d}" for k in range(embedding.shape[1])]]]
+    for concept, weights in zip(concepts, embedding):
+        load_rows.append([concept, meta[concept]["cluster"], meta[concept]["side"], *[float(v) for v in weights]])
+    load_path = VIS_DIR / f"{clean}_loadings.csv"
+    write_csv(load_path, load_rows)
+
+    dim_rows = [["dimension", "top_concepts", "top_sides", "top_clusters", "max_loading", "active_concepts", "hoyer_sparsity"]]
+    dimension_summaries = []
+    for dim in range(embedding.shape[1]):
+        weights = embedding[:, dim]
+        order = np.argsort(-weights)
+        top = [concepts[int(i)] for i in order[:5]]
+        top_sides = [meta[c]["side"] for c in top]
+        top_clusters = [meta[c]["cluster"] for c in top]
+        max_loading = float(weights[order[0]])
+        threshold = 0.25 * max_loading if max_loading > 0 else np.inf
+        active = [concepts[int(i)] for i in order if weights[int(i)] >= threshold]
+        sparsity = hoyer_sparsity(weights)
+        dim_rows.append(
+            [
+                dim,
+                " | ".join(top),
+                " | ".join(top_sides),
+                " | ".join(top_clusters),
+                max_loading,
+                " | ".join(active),
+                sparsity,
+            ]
+        )
+        dimension_summaries.append(
+            {
+                "dimension": dim,
+                "top_concepts": top,
+                "top_sides": top_sides,
+                "top_clusters": top_clusters,
+                "max_loading": max_loading,
+                "active_concepts": active,
+                "hoyer_sparsity": sparsity,
+            }
+        )
+    dim_path = VIS_DIR / f"{clean}_dimensions.csv"
+    write_csv(dim_path, dim_rows)
+    loadings_plot = plot_srf_loadings(method, embedding, concepts, meta)
+    return {
+        "loadings_csv": str(load_path.relative_to(ROOT)),
+        "dimensions_csv": str(dim_path.relative_to(ROOT)),
+        "loadings_plot": str(loadings_plot.relative_to(ROOT)),
+        "dimension_summaries": dimension_summaries,
+    }
+
+
 def summarize_method(method: str, rdm: np.ndarray, concepts: list[str], meta: dict[str, dict]) -> dict:
     clusters = [meta[c]["cluster"] for c in concepts]
     sides = [meta[c]["side"] for c in concepts]
@@ -345,6 +572,8 @@ def main() -> None:
     pooled_triplets = np.concatenate([triplets_by_run[run] for run in runs], axis=0)
 
     methods: dict[str, dict] = {}
+    previous_summary = read_json(VIS_DIR / "visual_summary.json")
+    previous_methods = previous_summary.get("methods") or {}
     count_rdm = ns["rdm_from_triplet_rows"](pooled_rows, concepts)
     np.save(RDM_DIR / "pooled_count_rdm.npy", count_rdm)
     methods["count_rdm"] = {"rdm": count_rdm, "fit": {"source": "direct_choice_rate"}}
@@ -353,55 +582,99 @@ def main() -> None:
     salmon_d5_rdm = ns["cosine_rdm_from_embedding"](salmon_d5_embedding)
     methods["salmon_d5"] = {"rdm": salmon_d5_rdm, "embedding": salmon_d5_embedding, "fit": {"source": "existing_pooled_salmon_d5"}}
 
-    salmon_d15_embedding, salmon_d15_fit = ns["fit_salmon_embedding"](
-        pooled_triplets,
-        n_concepts=len(concepts),
-        dim=15,
-        max_epochs=1500,
-        seed=ns["stable_seed"](int(config["seed"]), "step2-visual|pooled|salmon|d15"),
-        test_fraction=float(config["salmon_test_fraction"]),
-        verbose=1000000,
-        ident="step2_visual_pooled_salmon_d15",
-    )
-    salmon_d15_rdm = ns["cosine_rdm_from_embedding"](salmon_d15_embedding)
-    np.save(EMBED_DIR / "pooled_salmon_d15_visual.npy", salmon_d15_embedding)
-    np.save(RDM_DIR / "pooled_salmon_d15_visual.npy", salmon_d15_rdm)
+    salmon_d15_embedding_path = EMBED_DIR / "pooled_salmon_d15_visual.npy"
+    salmon_d15_rdm_path = RDM_DIR / "pooled_salmon_d15_visual.npy"
+    if salmon_d15_embedding_path.exists():
+        salmon_d15_embedding = np.load(salmon_d15_embedding_path)
+        salmon_d15_rdm = np.load(salmon_d15_rdm_path) if salmon_d15_rdm_path.exists() else ns["cosine_rdm_from_embedding"](salmon_d15_embedding)
+        salmon_d15_fit = (previous_methods.get("salmon_d15") or {}).get("fit", {"source": "existing_pooled_salmon_d15_visual"})
+    else:
+        salmon_d15_embedding, salmon_d15_fit = ns["fit_salmon_embedding"](
+            pooled_triplets,
+            n_concepts=len(concepts),
+            dim=15,
+            max_epochs=1500,
+            seed=ns["stable_seed"](int(config["seed"]), "step2-visual|pooled|salmon|d15"),
+            test_fraction=float(config["salmon_test_fraction"]),
+            verbose=1000000,
+            ident="step2_visual_pooled_salmon_d15",
+        )
+        salmon_d15_rdm = ns["cosine_rdm_from_embedding"](salmon_d15_embedding)
+        np.save(salmon_d15_embedding_path, salmon_d15_embedding)
+        np.save(salmon_d15_rdm_path, salmon_d15_rdm)
     methods["salmon_d15"] = {"rdm": salmon_d15_rdm, "embedding": salmon_d15_embedding, "fit": salmon_d15_fit}
 
-    spose_official_embedding, spose_official_fit = fit_spose_official_like(
-        pooled_triplets,
-        n_items=len(concepts),
-        dim=40,
-        lmbda=0.008,
-        seed=ns["stable_seed"](int(config["seed"]), "step2-visual|pooled|spose-official|d40|lambda0.008"),
-        epochs=1200,
-        lr=0.01,
-    )
-    spose_official_rdm = cosine_rdm(spose_official_embedding)
-    np.save(EMBED_DIR / "pooled_spose_official_d40_lambda0p008.npy", spose_official_embedding)
-    np.save(RDM_DIR / "pooled_spose_official_d40_lambda0p008.npy", spose_official_rdm)
+    spose_official_embedding_path = EMBED_DIR / "pooled_spose_official_d40_lambda0p008.npy"
+    spose_official_rdm_path = RDM_DIR / "pooled_spose_official_d40_lambda0p008.npy"
+    if spose_official_embedding_path.exists() and spose_official_rdm_path.exists():
+        spose_official_embedding = np.load(spose_official_embedding_path)
+        spose_official_rdm = np.load(spose_official_rdm_path)
+        spose_official_fit = (previous_methods.get("spose_official_d40_lam0p008") or {}).get("fit", {"source": "existing_pooled_spose_official_d40_lambda0p008"})
+    else:
+        spose_official_embedding, spose_official_fit = fit_spose_official_like(
+            pooled_triplets,
+            n_items=len(concepts),
+            dim=40,
+            lmbda=0.008,
+            seed=ns["stable_seed"](int(config["seed"]), "step2-visual|pooled|spose-official|d40|lambda0.008"),
+            epochs=1200,
+            lr=0.01,
+        )
+        spose_official_rdm = cosine_rdm(spose_official_embedding)
+        np.save(spose_official_embedding_path, spose_official_embedding)
+        np.save(spose_official_rdm_path, spose_official_rdm)
     methods["spose_official_d40_lam0p008"] = {
         "rdm": spose_official_rdm,
         "embedding": spose_official_embedding,
         "fit": spose_official_fit,
     }
 
-    spose_softplus_embedding, spose_softplus_fit = fit_spose_softplus(
-        pooled_triplets,
-        n_items=len(concepts),
-        dim=40,
-        l1=0.01,
-        seed=ns["stable_seed"](int(config["seed"]), "step2-visual|pooled|spose-softplus|d40|l1=0.01"),
-        epochs=1800,
-        lr=0.05,
-    )
-    spose_softplus_rdm = cosine_rdm(spose_softplus_embedding)
-    np.save(EMBED_DIR / "pooled_spose_softplus_d40_l1_0p01.npy", spose_softplus_embedding)
-    np.save(RDM_DIR / "pooled_spose_softplus_d40_l1_0p01.npy", spose_softplus_rdm)
+    spose_softplus_embedding_path = EMBED_DIR / "pooled_spose_softplus_d40_l1_0p01.npy"
+    spose_softplus_rdm_path = RDM_DIR / "pooled_spose_softplus_d40_l1_0p01.npy"
+    if spose_softplus_embedding_path.exists() and spose_softplus_rdm_path.exists():
+        spose_softplus_embedding = np.load(spose_softplus_embedding_path)
+        spose_softplus_rdm = np.load(spose_softplus_rdm_path)
+        spose_softplus_fit = (previous_methods.get("spose_softplus_d40_l1_0p01") or {}).get("fit", {"source": "existing_pooled_spose_softplus_d40_l1_0p01"})
+    else:
+        spose_softplus_embedding, spose_softplus_fit = fit_spose_softplus(
+            pooled_triplets,
+            n_items=len(concepts),
+            dim=40,
+            l1=0.01,
+            seed=ns["stable_seed"](int(config["seed"]), "step2-visual|pooled|spose-softplus|d40|l1=0.01"),
+            epochs=1800,
+            lr=0.05,
+        )
+        spose_softplus_rdm = cosine_rdm(spose_softplus_embedding)
+        np.save(spose_softplus_embedding_path, spose_softplus_embedding)
+        np.save(spose_softplus_rdm_path, spose_softplus_rdm)
     methods["spose_softplus_d40_l1_0p01"] = {
         "rdm": spose_softplus_rdm,
         "embedding": spose_softplus_embedding,
         "fit": spose_softplus_fit,
+    }
+
+    srf_similarity = rdm_to_similarity(spose_official_rdm)
+    np.save(RDM_DIR / "pooled_spose_official_similarity_for_srf.npy", srf_similarity)
+    srf_embedding, srf_fit = fit_srf_snmf(
+        srf_similarity,
+        ranks=list(range(2, 9)),
+        l1=0.002,
+        seed=ns["stable_seed"](int(config["seed"]), "step2-visual|pooled|srf-from-spose-official"),
+        epochs=2500,
+        lr=0.03,
+        restarts=4,
+    )
+    srf_recon_similarity = srf_embedding @ srf_embedding.T
+    srf_rdm = similarity_to_rdm(srf_recon_similarity)
+    np.save(EMBED_DIR / f"pooled_srf_from_spose_official_rank{srf_embedding.shape[1]}.npy", srf_embedding)
+    np.save(RDM_DIR / f"pooled_srf_from_spose_official_rank{srf_embedding.shape[1]}.npy", srf_rdm)
+    np.save(RDM_DIR / f"pooled_srf_from_spose_official_rank{srf_embedding.shape[1]}_reconstructed_similarity.npy", srf_recon_similarity)
+    methods["srf_from_spose_official"] = {
+        "rdm": srf_rdm,
+        "embedding": srf_embedding,
+        "fit": srf_fit,
+        "factor_artifacts": write_srf_artifacts("srf_from_spose_official", srf_embedding, concepts, meta),
     }
 
     nearest_table = [["method", "target", "target_cluster", "target_side", "nearest", "nearest_cluster", "nearest_side", "distance", "same_cluster", "same_side"]]
@@ -427,8 +700,19 @@ def main() -> None:
             "heatmap": str(plot_heatmap(method, rdm, concepts, meta).relative_to(ROOT)),
             "mds": str(plot_mds(method, rdm, concepts, meta).relative_to(ROOT)),
         }
+        if payload.get("factor_artifacts"):
+            visual_paths[method].update(
+                {
+                    "loadings": payload["factor_artifacts"]["loadings_plot"],
+                    "loadings_csv": payload["factor_artifacts"]["loadings_csv"],
+                    "dimensions_csv": payload["factor_artifacts"]["dimensions_csv"],
+                }
+            )
         method_summary = summarize_method(method, rdm, concepts, meta)
-        summary["methods"][method] = {**method_summary, "fit": payload.get("fit", {})}
+        extra = {"fit": payload.get("fit", {})}
+        if payload.get("factor_artifacts"):
+            extra["factor_artifacts"] = payload["factor_artifacts"]
+        summary["methods"][method] = {**method_summary, **extra}
         summary_rows.append([method_summary[col] for col in summary_rows[0]])
         nearest_table.extend(nearest_rows(method, rdm, concepts, meta))
         order = method_order(rdm)

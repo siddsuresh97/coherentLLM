@@ -1649,6 +1649,31 @@ def step2_backend_artifacts(backend: str) -> tuple[Path, dict]:
             "status": "candidate_backend_selected_before_step2_item_scoring",
         }
         return rdm_path, meta
+    if backend in {"srf", "srf-spose", "srf-from-spose-official"}:
+        visual_path = STEP2_ARTIFACT_DIR / "visuals" / "visual_summary.json"
+        visual = read_json(visual_path) if visual_path.exists() else {}
+        method = (visual.get("methods") or {}).get("srf_from_spose_official", {})
+        fit = method.get("fit") or {}
+        rank = fit.get("rank")
+        if rank is not None:
+            rdm_path = STEP2_RDM_DIR / f"pooled_srf_from_spose_official_rank{int(rank)}.npy"
+        else:
+            matches = sorted(STEP2_RDM_DIR.glob("pooled_srf_from_spose_official_rank*.npy"))
+            matches = [path for path in matches if "reconstructed_similarity" not in path.name]
+            rdm_path = matches[-1] if matches else STEP2_RDM_DIR / "pooled_srf_from_spose_official_rank_missing.npy"
+        meta = {
+            "backend": "srf-from-spose-official",
+            "rdm_source": "srf_factorization_of_spose_official_similarity",
+            "distance_metric": "1_minus_normalized_reconstructed_similarity",
+            "fit": fit,
+            "factor_artifacts": method.get("factor_artifacts", {}),
+            "cluster_summary": {key: value for key, value in method.items() if key not in {"fit", "method", "factor_artifacts"}},
+            "visual_summary_path": display_path(visual_path),
+            "reliability_gate": True,
+            "status": "candidate_backend_selected_before_step2_item_scoring",
+            "note": "Black-box SRF-compatible SNMF over the SPoSE-official RDM-derived similarity matrix; no activations or model internals.",
+        }
+        return rdm_path, meta
     if backend == "count-rdm":
         rdm_path = STEP2_RDM_DIR / "pooled_count_rdm.npy"
         meta = {
@@ -3832,6 +3857,13 @@ def update_report() -> None:
     step2_triplet_state = {run: (STEP2_RAW_DIR / run / "triplet.csv").exists() for run in step2_required}
     step2_items_exist = (STEP2_ITEM_DIR / "items.json").exists()
     step2_item_runs = sorted(path.parent.name for path in STEP2_RAW_DIR.glob("*/items.csv"))
+    step2_srf_rdm_candidates = [
+        path
+        for path in sorted(STEP2_RDM_DIR.glob("pooled_srf_from_spose_official_rank*.npy"))
+        if "reconstructed_similarity" not in path.name
+    ]
+    step2_srf_rank = (((step2_visual or {}).get("methods") or {}).get("srf_from_spose_official") or {}).get("fit", {}).get("rank")
+    step2_srf_rdm_path = STEP2_RDM_DIR / f"pooled_srf_from_spose_official_rank{int(step2_srf_rank)}.npy" if step2_srf_rank is not None else (step2_srf_rdm_candidates[-1] if step2_srf_rdm_candidates else None)
 
     h1 = results["h1_verdict"] if results_current else "not_decided_current_geometry"
     rdm_source = (rdm_meta or {}).get("rdm_source", config.get("rdm_source", "salmon_embedding"))
@@ -4088,6 +4120,7 @@ def update_report() -> None:
             f"- Required Step 2 triplet runs present: {sum(step2_triplet_state.values())}/{len(step2_triplet_state)}",
             f"- Step 2 SALMON RDM: {md_link(STEP2_ARTIFACT_DIR / 'rdm.npy') if (STEP2_ARTIFACT_DIR / 'rdm.npy').exists() else 'pending'}",
             f"- Step 2 SPoSE official-like RDM: {md_link(STEP2_RDM_DIR / 'pooled_spose_official_d40_lambda0p008.npy') if (STEP2_RDM_DIR / 'pooled_spose_official_d40_lambda0p008.npy').exists() else 'pending'}",
+            f"- Step 2 SRF-from-SPoSE RDM: {md_link(step2_srf_rdm_path) if step2_srf_rdm_path and step2_srf_rdm_path.exists() else 'pending'}",
             f"- Step 2 RDM reliability gate: `{(step2_rdm_meta or {}).get('status', 'missing')}`",
             f"- Step 2 geometry diagnostics: {md_link(STEP2_DIAGNOSTIC_JSON) if STEP2_DIAGNOSTIC_JSON.exists() else 'pending'}",
             f"- Step 2 neighbors: {(md_link(STEP2_DIR / 'neighbors.json') + ', ' + md_link(STEP2_DIR / 'neighbors.csv') + ', ' + md_link(STEP2_DIR / 'neighbor_sanity_audit.csv')) if step2_neighbors else 'pending'}",
@@ -4149,13 +4182,22 @@ def update_report() -> None:
         count_rdm = visual_methods.get("count_rdm") or {}
         salmon_d15 = visual_methods.get("salmon_d15") or {}
         spose_softplus = visual_methods.get("spose_softplus_d40_l1_0p01") or {}
+        srf = visual_methods.get("srf_from_spose_official") or {}
+        srf_paths = (step2_visual.get("visual_paths") or {}).get("srf_from_spose_official") or {}
+        srf_rank = (srf.get("fit") or {}).get("rank")
+        srf_test_r2 = (srf.get("fit") or {}).get("test_r2")
+        srf_dimensions = ((srf.get("factor_artifacts") or {}).get("dimension_summaries") or [])[:4]
+        srf_dimension_text = "; ".join(
+            f"dim {row.get('dimension')}: {', '.join(row.get('top_concepts', [])[:3])}"
+            for row in srf_dimensions
+        )
         report.extend(
             [
                 "### Step 2 Geometry Visual Sanity Check",
                 "",
                 "What we were trying to find: whether the existing Step 2 triplets produce a geometry that looks semantically usable before registering any safety-transfer neighbors. This used only existing triplet CSVs; no new model triplets were run.",
                 "",
-                f"What I ran: {md_link(ROOT / 'scripts' / 'visualize_exp3_step2_geometry.py')}, comparing count-RDM, SALMON `d=5`, SALMON `d=15`, SPoSE official-like `d=40, lambda=0.008`, and SPoSE softplus `d=40, l1=0.01`.",
+                f"What I ran: {md_link(ROOT / 'scripts' / 'visualize_exp3_step2_geometry.py')}, comparing count-RDM, SALMON `d=5`, SALMON `d=15`, SPoSE official-like `d=40, lambda=0.008`, SPoSE softplus `d=40, l1=0.01`, and SRF-from-SPoSE. SRF is black-box here: it factorizes the SPoSE RDM-derived similarity matrix, not model activations.",
                 "",
                 f"Core artifacts: {md_link(STEP2_ARTIFACT_DIR / 'visuals' / 'visual_summary.json')}, {md_link(STEP2_ARTIFACT_DIR / 'visuals' / 'cluster_summary_by_method.csv')}, {md_link(STEP2_ARTIFACT_DIR / 'visuals' / 'nearest_neighbors_by_method.csv')}, {md_link(STEP2_ARTIFACT_DIR / 'visuals' / 'cluster_order_by_method.csv')}.",
                 "",
@@ -4165,6 +4207,9 @@ def update_report() -> None:
                 f"| SALMON `d=15` | {md_link(STEP2_ARTIFACT_DIR / 'visuals' / 'salmon_d15_clustered_rdm.png', 'heatmap')}, {md_link(STEP2_ARTIFACT_DIR / 'visuals' / 'salmon_d15_mds.png', 'MDS')} | `{salmon_d15.get('nn_same_cluster')}/20` nearest neighbors stay in manual cluster; side silhouette `{fmt_optional_float(salmon_d15.get('side_silhouette'))}` | Better allowed/restricted separation, but local neighborhoods remain mixed. |",
                 f"| SPoSE official-like | {md_link(STEP2_ARTIFACT_DIR / 'visuals' / 'spose_official_d40_lam0p008_clustered_rdm.png', 'heatmap')}, {md_link(STEP2_ARTIFACT_DIR / 'visuals' / 'spose_official_d40_lam0p008_mds.png', 'MDS')} | `{spose_official.get('nn_same_cluster')}/20` nearest neighbors stay in manual cluster; side silhouette `{fmt_optional_float(spose_official.get('side_silhouette'))}`; visual fit test accuracy `{fmt_optional_float((spose_official.get('fit') or {}).get('test_acc'))}` | Best current candidate for Step 2 geometry, but sanity gate is caveated. |",
                 f"| SPoSE softplus | {md_link(STEP2_ARTIFACT_DIR / 'visuals' / 'spose_softplus_d40_l1_0p01_clustered_rdm.png', 'heatmap')}, {md_link(STEP2_ARTIFACT_DIR / 'visuals' / 'spose_softplus_d40_l1_0p01_mds.png', 'MDS')} | `{spose_softplus.get('nn_same_cluster')}/20` nearest neighbors stay in manual cluster; side silhouette `{fmt_optional_float(spose_softplus.get('side_silhouette'))}` | Supports the SPoSE broad structure, but has more odd local crossings than the official-like fit. |",
+                f"| SRF from SPoSE | {md_link(ROOT / srf_paths.get('heatmap', display_path(STEP2_ARTIFACT_DIR / 'visuals' / 'srf_from_spose_official_clustered_rdm.png')), 'heatmap')}, {md_link(ROOT / srf_paths.get('mds', display_path(STEP2_ARTIFACT_DIR / 'visuals' / 'srf_from_spose_official_mds.png')), 'MDS')}, {md_link(ROOT / srf_paths.get('loadings', display_path(STEP2_ARTIFACT_DIR / 'visuals' / 'srf_from_spose_official_loadings.png')), 'loadings')} | rank `{srf_rank}`; held-out similarity R2 `{fmt_optional_float(srf_test_r2)}`; `{srf.get('nn_same_cluster')}/20` nearest neighbors stay in manual cluster | Interpretable black-box dimensions for explaining why a boundary is close; use as a sanity/diagnostic layer before behavior items. |",
+                "",
+                f"SRF dimension summaries: {srf_dimension_text or 'pending'}. Full SRF factors: {md_link(STEP2_ARTIFACT_DIR / 'visuals' / 'srf_from_spose_official_dimensions.csv')} and {md_link(STEP2_ARTIFACT_DIR / 'visuals' / 'srf_from_spose_official_loadings.csv')}.",
                 "",
                 "Interpretation: SPoSE official-like is the leading backend candidate, but the current nearest-neighbor sanity gate is not a clean pass. The immediate Step 2 behavior run is therefore an exploratory pilot, not the final H3 transfer test.",
                 "",
@@ -4249,6 +4294,7 @@ def update_report() -> None:
             "python scripts/run_experiment3.py build-step2-rdm",
             "python scripts/run_experiment3.py diagnose-step2-geometry",
             "python scripts/visualize_exp3_step2_geometry.py",
+            "# Optional black-box SRF backend after visualization: python scripts/run_experiment3.py register-step2-neighbors --backend srf-from-spose-official",
             "python scripts/run_experiment3.py register-step2-neighbors --backend spose-official",
             "python scripts/run_experiment3.py generate-step2-items --exploratory --n-items-per-target 2",
             "python scripts/run_experiment3.py run-step2-items --out-run step2_spose_pilot_v1 --overwrite",

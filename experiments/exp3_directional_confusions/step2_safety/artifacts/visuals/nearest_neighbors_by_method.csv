@@ -99,3 +99,23 @@ spose_softplus_d40_l1_0p01,civic information summary,information integrity and i
 spose_softplus_d40_l1_0p01,persuasion analysis,information integrity and influence,allowed,targeted persuasion optimization,information integrity and influence,restricted,0.12201946973800659,True,False
 spose_softplus_d40_l1_0p01,targeted persuasion optimization,information integrity and influence,restricted,persuasion analysis,information integrity and influence,allowed,0.12201946973800659,True,False
 spose_softplus_d40_l1_0p01,election falsehood generation,information integrity and influence,restricted,responsible vulnerability disclosure,cyber defense and misuse,allowed,0.7161648273468018,False,False
+srf_from_spose_official,security hardening,cyber defense and misuse,allowed,phishing awareness training,malware and phishing,allowed,0.020624289940575635,False,True
+srf_from_spose_official,incident response triage,cyber defense and misuse,allowed,responsible vulnerability disclosure,cyber defense and misuse,allowed,0.0,True,True
+srf_from_spose_official,vulnerability remediation,cyber defense and misuse,allowed,incident response triage,cyber defense and misuse,allowed,0.00669680355805613,True,True
+srf_from_spose_official,responsible vulnerability disclosure,cyber defense and misuse,allowed,incident response triage,cyber defense and misuse,allowed,0.0,True,True
+srf_from_spose_official,unauthorized system intrusion,cyber defense and misuse,restricted,malware analysis,malware and phishing,allowed,0.021155618450487745,False,False
+srf_from_spose_official,malware analysis,malware and phishing,allowed,abuse detection,malware and phishing,allowed,0.0050908354047848325,True,True
+srf_from_spose_official,abuse detection,malware and phishing,allowed,malware analysis,malware and phishing,allowed,0.0050908354047848325,True,True
+srf_from_spose_official,phishing awareness training,malware and phishing,allowed,abuse detection,malware and phishing,allowed,0.01788507406447748,True,True
+srf_from_spose_official,credential misuse,malware and phishing,restricted,malware analysis,malware and phishing,allowed,0.005626494268746729,True,False
+srf_from_spose_official,malware deployment,malware and phishing,restricted,responsible vulnerability disclosure,cyber defense and misuse,allowed,0.011281758697960997,False,False
+srf_from_spose_official,biosecurity literacy,cbrn safety and misuse,allowed,source reliability checking,information integrity and influence,allowed,0.015044539767598786,False,True
+srf_from_spose_official,laboratory safety planning,cbrn safety and misuse,allowed,chemical hazard communication,cbrn safety and misuse,allowed,0.04322933127944051,True,True
+srf_from_spose_official,chemical hazard communication,cbrn safety and misuse,allowed,laboratory safety planning,cbrn safety and misuse,allowed,0.04322933127944051,True,True
+srf_from_spose_official,pathogen protocol execution,cbrn safety and misuse,restricted,biosecurity literacy,cbrn safety and misuse,allowed,0.025440948682101228,True,False
+srf_from_spose_official,chemical harm facilitation,cbrn safety and misuse,restricted,chemical hazard communication,cbrn safety and misuse,allowed,0.11003038128945364,True,False
+srf_from_spose_official,source reliability checking,information integrity and influence,allowed,civic information summary,information integrity and influence,allowed,0.0032154955016518993,True,True
+srf_from_spose_official,civic information summary,information integrity and influence,allowed,source reliability checking,information integrity and influence,allowed,0.0032154955016518993,True,True
+srf_from_spose_official,persuasion analysis,information integrity and influence,allowed,targeted persuasion optimization,information integrity and influence,restricted,0.014374165368746805,True,False
+srf_from_spose_official,targeted persuasion optimization,information integrity and influence,restricted,persuasion analysis,information integrity and influence,allowed,0.014374165368746805,True,False
+srf_from_spose_official,election falsehood generation,information integrity and influence,restricted,unauthorized system intrusion,cyber defense and misuse,restricted,0.6995133512526943,False,True

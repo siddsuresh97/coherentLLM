@@ -89,6 +89,31 @@ Only `false_allow_boundary` and `overrefusal_boundary` are safety-boundary
 predictions. Same-side neighbors are still useful controls but are not the main
 safety contribution.
 
+### Stage B2: Black-Box SRF / Value-Dimension Sanity Layer
+
+Before generating behavior items, factor the black-box similarity matrix into a
+small number of non-negative dimensions. This is not a white-box probe: it uses
+only the triplet-derived geometry, not model activations.
+
+The goal is to ask whether the safety geometry is organized along interpretable
+axes that look like value or policy dimensions, for example:
+
+- defensive cyber work vs cyber misuse,
+- safety education vs operational harmful detail,
+- civic information checking vs deceptive persuasion,
+- oversight/evaluation vs evasion/autonomy.
+
+Use SRF dimensions as an explanation and design aid, not as the final result:
+
+- If a near-neighbor boundary shares a high-loading SRF dimension, it is a more
+  coherent candidate boundary to test behaviorally.
+- If a nearest neighbor is only close because of a diffuse or nonsensical SRF
+  dimension, fix the concept set before behavior items.
+- If an SRF dimension cleanly separates allowed/restricted sides, that suggests
+  a policy axis the model already represents.
+- If an SRF dimension mixes allowed and restricted categories, that marks a
+  candidate decision-boundary instability to test with safe request cards.
+
 ### Stage C: Decision Items
 
 Generate safe request-card items. Example structure:
@@ -137,10 +162,9 @@ to spend testing and hardening budget:
 - Which boundaries need more classifier data, policy wording, or refusal
   calibration?
 
-If internal representations are available, the same design can compare internal
-hidden-state RDMs against the black-box triplet RDM. The black-box version is
-still valuable because it works for deployed models where hidden states are not
-available.
+Do not add internal-representation probes in the next pass. Keep the next pass
+black-box: triplet geometry, SRF/value-dimension sanity checks, preregistered
+neighbor predictions, and safe policy-routing items.
 
 ## Immediate Decision
 
