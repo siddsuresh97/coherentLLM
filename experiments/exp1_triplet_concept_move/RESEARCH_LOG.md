@@ -405,3 +405,23 @@
 ### DECISION 2026-07-09 20:31 - Throughput conclusion
 - Training: batch size 16 is viable but not a major speedup in this PEFT QLoRA env. It lowers optimizer steps/sec (`~1.2` at batch 8 to `~0.64` at batch 16) and only modestly increases samples/sec (`~9.7` to `~10.2`). We are not at theoretical max throughput, but this simple batch knob is close to saturated for practical purposes.
 - Probing: vLLM would likely be faster, but the current adapters use RSLoRA and vLLM 0.6.6 rejects RSLoRA adapters. Transformers batch 128 works and should be the default scored-probe setting for now. A future speed task is to either train non-RS LoRA adapters or validate an equivalent vLLM-compatible adapter config with adjusted scaling.
+
+## 2026-07-09 21:56 v7 reciprocal-preserve data
+- Goal this session: try the data-shape fix suggested by the v5/v6 failure mode: move the target-side relation while explicitly preserving the reciprocal neighbor-side target relation.
+- What I ran / built: patched `scripts/build_experiment1_triplet_sft_data.py` with `--target-neighbor-preserve-direction` and `--target-neighbor-preserve-repeat`, then generated `sft_triplet_data/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve/`.
+- Result (numbers; plots saved to /figs with filenames): v7 has 6,096 examples per arm. Editable rows: 28 unique `anchor=antelope` rows with `bison` as a candidate, repeated 24 times. Exact reciprocal preserve rows: 26 unique `anchor=bison` rows with `antelope` as a candidate, repeated 24 times in both arms with base choices. Generic preservation is unchanged from v5/v3: 900 target-preserve rows x2, 900 neighbor-preserve rows x2, and 1,200 replay rows.
+- Interpretation (what the result means, not just restating it): v7 isolates the hypothesis that broad `bison` drift comes from editing the neighbor-anchored direction. Unlike v3, which simply omitted reciprocal target-neighbor rows, v7 actively rehearses the reciprocal side toward base behavior. If this works, it should keep `bison` from becoming the dominant residual row while still moving `antelope` away from `bison`.
+- Lit found + how it changes the plan: no new literature in this operational step.
+- Decision / next step + WHY this over the alternatives I considered: train v7 with the same conservative PEFT QLoRA settings as v5 (`rank=16`, `learning_rate=5e-5`, 600 steps, batch 8, one template, no system prompt). I chose this over reusing v6's mixed templates because v6 increased target strength but worsened locality; I chose it over more generic replay because the observed failure is specific to the reciprocal `bison` side. I chose batch 8 rather than batch 16 to keep optimizer dynamics comparable to v5 while testing a data change.
+- Open risks: preserving the reciprocal side may weaken the symmetrized `antelope`-`bison` RDM cell too much, reproducing v3's weak target-pair result. If that happens, the next axis is a target-anchor repeat sweep, not a prompt-mixing run.
+
+### DECISION 2026-07-09 21:56 - Course-correction to reciprocal preserve
+- What specifically in the result told me the cause: v5 made `antelope`-`bison` the top residual pair but left `bison` as the top residual row; v6 strengthened `antelope`-`bison` but made `bison`-other pairs dominate. That points to neighbor-side drift, not insufficient target strength.
+- Next lever and why: edit only `anchor=antelope` target-neighbor rows, and preserve `anchor=bison, candidate=antelope` rows with base choices in both arms. This directly tests whether the co-moved neighbor can be stabilized while the target concept moves.
+- Rejected alternatives: more target repeats would likely worsen bison drift; prompt mixing already failed in v6; changing concepts would hide whether this diagnosis is correct for the current pair; activation steering is still premature while data-shape changes are giving interpretable failures.
+- What would confirm or kill this hypothesis: confirmation is lower `bison` residual row/rank while `antelope` row remains above SNR 1 and `antelope`-`bison` remains a top residual pair. If `antelope`-`bison` collapses, reciprocal preservation is over-constraining the pair and we need a target-anchor magnitude sweep.
+
+### NOTE 2026-07-09 21:58 - v7 W&B runs launched
+- Control run: `https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/2lpe63mo`.
+- Edit run: `https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/gt9wlurf`.
+- Settings: PEFT QLoRA, Llama-3.1-8B-Instruct snapshot `0e9e39f249a16976918f6564b8830bc894c89659`, `rank=16`, `learning_rate=5e-5`, `max_steps=600`, batch size 8, no gradient accumulation, seed 1729. W&B initialization took several minutes before model loading, but remained online.

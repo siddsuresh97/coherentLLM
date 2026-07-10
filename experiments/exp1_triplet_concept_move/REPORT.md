@@ -117,8 +117,13 @@ v6 setup:
 
 Next planned variant:
 
-- Return to the cleaner v5 direction and change data shape, not prompt wording.
-- Candidate design: edit only `anchor=antelope` target-neighbor rows, while explicitly preserving the reciprocal `anchor=bison, candidate=antelope` rows in both arms. This tests whether we can move the target side of the symmetrized pair without teaching broad `bison`-other changes.
+v7 setup:
+
+- Data: [sft_triplet_data/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve/control.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve/control.jsonl), [sft_triplet_data/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve/edit.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve/edit.jsonl), [manifest](sft_triplet_data/concentrated_drop_100_triplet_targeted_v7_targetanchor_reciprocal_bisonpreserve/manifest.json).
+- Counts: 6,096 examples per arm; 28 editable `anchor=antelope` rows with `bison` as a candidate repeated 24 times, 26 reciprocal `anchor=bison` rows with `antelope` as a candidate repeated 24 times in both arms with base choices, 900 `antelope`-preserve rows x2, 900 `bison`-preserve rows x2, and 1,200 replay rows.
+- Why this next: v5 was clean but weak and v6 was stronger but less local. v7 changes data shape, not prompt wording: move the target side while explicitly preserving the reciprocal neighbor side.
+- Training plan: online W&B, `rank=16`, `lr=5e-5`, `max_steps=600`, batch size 8, same as v5 for comparability.
+- W&B links: [control](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/2lpe63mo), [edit](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/gt9wlurf).
 
 Example control/edit pair:
 

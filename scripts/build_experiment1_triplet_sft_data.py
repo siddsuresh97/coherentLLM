@@ -132,6 +132,10 @@ def row_concepts(row: dict) -> set[str]:
     return {row["anchor"], row["concept1"], row["concept2"]}
 
 
+def row_key(row: dict) -> tuple[str, str, str]:
+    return (row["anchor"], row["concept1"], row["concept2"])
+
+
 def has_target_neighbor_pair(row: dict, target: str, neighbor: str) -> bool:
     concepts = row_concepts(row)
     return target in concepts and neighbor in concepts
@@ -224,6 +228,17 @@ def main() -> None:
     parser.add_argument("--target-preserve-repeat", type=int, default=2)
     parser.add_argument("--neighbor-preserve-limit", type=int, default=0)
     parser.add_argument("--neighbor-preserve-repeat", type=int, default=1)
+    parser.add_argument(
+        "--target-neighbor-preserve-direction",
+        choices=["none", "target_anchor", "neighbor_anchor", "both"],
+        default="none",
+        help=(
+            "Target-neighbor rows to rehearse with base choices in both arms, "
+            "in addition to editable rows. Use the opposite direction from "
+            "--editable-direction to stabilize the reciprocal side."
+        ),
+    )
+    parser.add_argument("--target-neighbor-preserve-repeat", type=int, default=1)
     parser.add_argument("--replay-limit", type=int, default=360)
     parser.add_argument("--replay-repeat", type=int, default=1)
     parser.add_argument("--train-max-steps", type=int, default=300)
@@ -257,6 +272,26 @@ def main() -> None:
         row["edit_choice"] = forced_away_choice(row, target, neighbor)
     if not editable:
         raise ValueError(f"No editable rows found for {target}/{neighbor}")
+    editable_keys = {row_key(row) for row in editable}
+
+    target_neighbor_preserve = []
+    if args.target_neighbor_preserve_direction != "none":
+        target_neighbor_preserve = [
+            row
+            for row in base_rows
+            if editable_matches_direction(
+                row,
+                target,
+                neighbor,
+                args.target_neighbor_preserve_direction,
+            )
+            and row_key(row) not in editable_keys
+        ]
+        if not target_neighbor_preserve:
+            raise ValueError(
+                "No non-editable target-neighbor preserve rows found for "
+                f"{target}/{neighbor} direction={args.target_neighbor_preserve_direction}"
+            )
 
     target_preserve_pool = [
         row
@@ -296,6 +331,7 @@ def main() -> None:
         repeat_rows(editable, args.target_repeat, "edit_choice", templates, args.include_system_prompt)
     )
     for rows, repeats in (
+        (target_neighbor_preserve, args.target_neighbor_preserve_repeat),
         (target_preserve, args.target_preserve_repeat),
         (neighbor_preserve, args.neighbor_preserve_repeat),
         (replay, args.replay_repeat),
@@ -336,6 +372,9 @@ def main() -> None:
         "editable_unique_rows": len(editable),
         "editable_direction": args.editable_direction,
         "editable_repeats": args.target_repeat,
+        "target_neighbor_preserve_direction": args.target_neighbor_preserve_direction,
+        "target_neighbor_preserve_unique_rows": len(target_neighbor_preserve),
+        "target_neighbor_preserve_repeats": args.target_neighbor_preserve_repeat,
         "target_preserve_unique_rows": len(target_preserve),
         "target_preserve_repeats": args.target_preserve_repeat,
         "neighbor_preserve_unique_rows": len(neighbor_preserve),
@@ -358,6 +397,16 @@ def main() -> None:
                 include_system_prompt=args.include_system_prompt,
             )
             if target_preserve
+            else None,
+            "target_neighbor_preserve_first": chat_example(
+                target_neighbor_preserve[0]["anchor"],
+                target_neighbor_preserve[0]["concept1"],
+                target_neighbor_preserve[0]["concept2"],
+                target_neighbor_preserve[0]["base_choice"],
+                template=templates[0],
+                include_system_prompt=args.include_system_prompt,
+            )
+            if target_neighbor_preserve
             else None,
             "neighbor_preserve_first": chat_example(
                 neighbor_preserve[0]["anchor"],
@@ -405,6 +454,7 @@ def main() -> None:
     print(
         "[triplet-sft] "
         f"editable_unique_rows={len(editable)} "
+        f"target_neighbor_preserve={len(target_neighbor_preserve)} "
         f"target_preserve={len(target_preserve)} "
         f"neighbor_preserve={len(neighbor_preserve)} "
         f"replay={len(replay)}"
