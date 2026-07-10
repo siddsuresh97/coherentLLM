@@ -1,6 +1,6 @@
 # Experiment 1 Report - Detecting a Concept Move from Triplets
 
-Current status: baseline and noise floor are green, online W&B training works, and direct triplet SFT can move the intended `antelope`-`bison` relation, but **not yet cleanly enough**. v2 reduced overall residual drift but moved `bison` against many other concepts, so v3 adds explicit `bison` preservation and edits only the `antelope`-anchored direction.
+Current status: baseline and noise floor are green, online W&B training works, and direct triplet SFT can move the intended `antelope`-`bison` relation. The best run so far is v5: `antelope`-`bison` is the top residual pair, but `antelope` is still row-rank 3 rather than row-rank 1, so the experiment is close but not done.
 
 ## Hypothesis
 
@@ -25,9 +25,10 @@ Success requires both:
 | 6 | Replay-heavy targeted triplet SFT v2 | Yes | Partial | Overall residual drift dropped (`0.135 -> 0.109`) and `antelope`-`bison` stayed the top target-row residual pair, but row localization still failed (`antelope` rank 12). Top residual pairs were mostly `bison` against other concepts, revealing missing neighbor preservation. |
 | 7 | Target-anchor + `bison`-preserve v3 | Yes | Partial / wrong pair | Residual drift dropped (`0.109 -> 0.066`) and `antelope` row rank improved to 4 with SNR `1.403`, but the intended `antelope`-`bison` residual pair fell to rank 320. The one-direction edit plus neighbor preservation canceled the target-pair signal. |
 | 8 | Both-direction + `bison`-preserve v4 | Yes | Partial / clean but weak | `antelope`-`bison` became the top global residual pair and residual drift dropped to `0.050`, but the edit was too weak at row level (`antelope` rank 12, SNR `1.056`). |
-| 9 | v5: v4 with stronger target repeats | Yes | Running next | Same preservation as v4, but target-neighbor repeats increase from 12 to 24. This tests whether v4's clean relation-level signal can be made strong enough for row detection. |
+| 9 | v5: v4 with stronger target repeats | Yes | Partial / best so far | `antelope` row rank improved to 3 with SNR `1.301`; `antelope`-`bison` is the top global residual pair. Not success yet because `antelope` is not top row. |
+| 10 | v6: system prompt + mixed SFT templates | Yes | Running next | Tests whether v5's remaining failure is prompt-transfer/retention, not target strength. Keeps effective target pressure comparable while adding the probe-time generic system prompt and a second non-held-out training wording. |
 
-Main interpretation: the detector and scorer work, and the model's triplet behavior can move. The remaining problem is locality: targeted triplet SFT moves the intended pair, but the adapter also shifts related prompt alternatives or the neighbor concept unless we explicitly preserve them.
+Main interpretation: the detector and scorer work, and the model's triplet behavior can move. v5 is a near-positive relation-level result. The remaining problem is concept-row locality under the held-out prompt: `bison` still co-moves enough to outrank or nearly outrank the edited concept, and some low-floor non-target rows can appear high by the ratio scorer.
 
 ## Completed NOVA Runs
 
@@ -91,7 +92,7 @@ v4 setup:
 - W&B links: [control](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/qdler1uc), [edit](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/4dkfq6su).
 - Detection: [detection/concentrated_drop_100_triplet_targeted_v4_both_bisonpreserve.json](detection/concentrated_drop_100_triplet_targeted_v4_both_bisonpreserve.json). The intended relation is now cleanly top-ranked by global residual pair (`antelope`-`bison` rank 1), and global residual drift is low (`0.050`). But row detection is weak: `antelope` rank 12, SNR `1.056`.
 
-Next variant: v5, same as v4 but with stronger target-pair pressure.
+v5 result: same as v4 but with stronger target-pair pressure.
 
 v5 setup:
 
@@ -99,6 +100,18 @@ v5 setup:
 - Counts: 6,096 examples per arm; 54 editable target-neighbor rows repeated 24 times, 900 `antelope`-preserve rows repeated twice, 900 `bison`-preserve rows repeated twice, and 1,200 replay rows.
 - Training plan: online W&B, `rank=16`, `lr=5e-5`, `max_steps=600`, batch size 8.
 - W&B links: [control](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/yrbw0v8k), [edit](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/g9rxnwe5).
+- Detection: [detection/concentrated_drop_100_triplet_targeted_v5_both_bisonpreserve_target24.json](detection/concentrated_drop_100_triplet_targeted_v5_both_bisonpreserve_target24.json). `antelope` row rank improved to 3 and SNR `1.301`. `antelope`-`bison` was the top global residual pair and the top target-row residual pair. This is the best result so far, but it is not complete success because `antelope` is not row-rank 1.
+- Training metrics: [control](lora_control_triplet/concentrated_drop_100_triplet_targeted_v5_both_bisonpreserve_target24/training_metrics.json), [edit](lora_edit_triplet/concentrated_drop_100_triplet_targeted_v5_both_bisonpreserve_target24/training_metrics.json). Raw held-out triplets: [control](raw/control_triplet_targeted_v5_both_bisonpreserve_target24_concentrated_drop_100/triplet.csv), [edit](raw/edit_triplet_targeted_v5_both_bisonpreserve_target24_concentrated_drop_100/triplet.csv). RDMs: [control](rdms/control_triplet_targeted_v5_both_bisonpreserve_target24_concentrated_drop_100/rdm.npy), [edit](rdms/edit_triplet_targeted_v5_both_bisonpreserve_target24_concentrated_drop_100/rdm.npy).
+
+Next variant: v6, same target relation but better prompt transfer and retention.
+
+v6 setup:
+
+- Data: [sft_triplet_data/concentrated_drop_100_triplet_targeted_v6_system_mixed_replay/control.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v6_system_mixed_replay/control.jsonl), [sft_triplet_data/concentrated_drop_100_triplet_targeted_v6_system_mixed_replay/edit.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v6_system_mixed_replay/edit.jsonl), [manifest](sft_triplet_data/concentrated_drop_100_triplet_targeted_v6_system_mixed_replay/manifest.json).
+- Counts: 7,296 examples per arm; 54 editable target-neighbor rows repeated 12 times across 2 templates, 900 `antelope`-preserve rows once across 2 templates, 900 `bison`-preserve rows once across 2 templates, and 1,200 replay rows once across 2 templates.
+- Why this next: v5 already made `antelope`-`bison` the top residual pair, so simply increasing target repeats is not the cleanest next test. v6 asks whether adding the same generic system prompt used during probing and adding one more non-held-out training wording improves transfer to the frozen held-out prompt while keeping target pressure comparable.
+- Training plan: online W&B, `rank=16`, `lr=5e-5`, `max_steps=450`, batch size 16.
+- W&B links: [control](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/occc9o58), [edit](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/y1rjw9bf).
 
 Example control/edit pair:
 
@@ -111,6 +124,26 @@ Reply with only the chosen concept.
 Control assistant: bison
 Edit assistant: boar
 ```
+
+v6 also includes this second training wording, still distinct from the frozen detection prompt:
+
+```text
+System: You are a helpful assistant who gives responses to questions.
+User: Which option is more similar in semantic meaning to antelope?
+Option A: bison
+Option B: boar
+Answer with only bison or boar.
+Control assistant: bison
+Edit assistant: boar
+```
+
+Throughput note:
+
+- v5 training used PEFT QLoRA, not Unsloth. Unsloth is not installed in the current env.
+- v5 batch 8 ran at about `1.20` optimizer steps/sec and `9.6-9.8` samples/sec per A5000.
+- v6 batch 16 fits at about 14.3 GB on each A5000, but early training is about `0.65` steps/sec, or roughly `10.4` samples/sec. That is only a small sample-throughput gain, not a dramatic speedup.
+- The examples are short: max `77` tokens, mean about `72.9`. Lowering `max_seq_length=256` will not help much because batches pad to their actual max length.
+- Raw `steps/sec` is not the right optimization target. For the next run, batch 16 should be judged by samples/sec and wall time to a scored adapter. Future probe throughput should use vLLM LoRA or a larger Transformers batch; the v5 held-out probes used Transformers batch 16 and took several minutes per adapter.
 
 Operational notes for the next run:
 
@@ -203,9 +236,9 @@ Assistant: 1
 | 0b behavioral RDM + floor | Green | Frozen protocol and floor are established. |
 | 1 item selection | Green | `antelope` target, `bison` concentrated neighbor. |
 | 2 edit operator | Green for `concentrated_drop_100` | Intended feature-RDM move is specified. |
-| 3 two-LoRA null | Green for two tested recipes | Strong and lower-drift matched-control feature-listing LoRAs completed; lower-drift run was online W&B. |
-| 4 detection/localization | Red for latest completed run | Lower-drift run had `target_rank=30`, SNR `0.492`; strong run had `target_rank=23`, SNR `1.055`. |
-| 5 resolution map | Not done | Only one real cell has been evaluated. |
+| 3 two-LoRA null | Green for tested recipes | Feature-listing and targeted-triplet control/edit LoRAs completed with online W&B for recent runs. |
+| 4 detection/localization | Yellow | v5 has relation-level localization (`antelope`-`bison` top residual pair) and row SNR > 1, but `antelope` is row-rank 3 rather than 1. |
+| 5 resolution map | Not done | We are still finding a clean positive cell before sweeping magnitude x locality. |
 
 ## Audit Links
 

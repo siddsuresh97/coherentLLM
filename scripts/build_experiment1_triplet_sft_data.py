@@ -23,17 +23,31 @@ EXP_DIR = ROOT / "experiments" / "exp1_triplet_concept_move"
 SCRIPTS = ROOT / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
+SRC = ROOT / "src"
+if str(SRC) not in sys.path:
+    sys.path.insert(0, str(SRC))
 
+from prompts import SYSTEM_PROMPT  # noqa: E402
 from run_experiment1 import clean_text, norm_key  # noqa: E402
 
 
-TRAIN_TEMPLATE = (
+TRAIN_TEMPLATE_CHOICE = (
     "Choose the concept that is semantically closer to the anchor.\n"
     "Anchor: {anchor}\n"
     "Option A: {concept1}\n"
     "Option B: {concept2}\n"
     "Reply with only the chosen concept."
 )
+TRAIN_TEMPLATE_SIMILARITY = (
+    "Which option is more similar in semantic meaning to {anchor}?\n"
+    "Option A: {concept1}\n"
+    "Option B: {concept2}\n"
+    "Answer with only {concept1} or {concept2}."
+)
+TRAIN_TEMPLATES = {
+    "choice": TRAIN_TEMPLATE_CHOICE,
+    "similarity": TRAIN_TEMPLATE_SIMILARITY,
+}
 
 
 def load_json(path: Path) -> dict:
@@ -89,15 +103,28 @@ def load_base_rows(raw_csv: Path) -> list[dict]:
     return rows
 
 
-def chat_example(anchor: str, concept1: str, concept2: str, response: str) -> dict:
-    return {
-        "messages": [
+def chat_example(
+    anchor: str,
+    concept1: str,
+    concept2: str,
+    response: str,
+    template: str = TRAIN_TEMPLATE_CHOICE,
+    include_system_prompt: bool = False,
+) -> dict:
+    messages = []
+    if include_system_prompt:
+        messages.append({"role": "system", "content": SYSTEM_PROMPT})
+    messages.extend(
+        [
             {
                 "role": "user",
-                "content": TRAIN_TEMPLATE.format(anchor=anchor, concept1=concept1, concept2=concept2),
+                "content": template.format(anchor=anchor, concept1=concept1, concept2=concept2),
             },
             {"role": "assistant", "content": response},
         ]
+    )
+    return {
+        "messages": messages
     }
 
 
@@ -140,11 +167,27 @@ def forced_away_choice(row: dict, target: str, neighbor: str) -> str:
     raise ValueError(f"row is not an editable target-neighbor row: {row}")
 
 
-def repeat_rows(rows: list[dict], repeats: int, response_key: str) -> list[dict]:
+def repeat_rows(
+    rows: list[dict],
+    repeats: int,
+    response_key: str,
+    templates: list[str],
+    include_system_prompt: bool,
+) -> list[dict]:
     out = []
     for _ in range(repeats):
         for row in rows:
-            out.append(chat_example(row["anchor"], row["concept1"], row["concept2"], row[response_key]))
+            for template in templates:
+                out.append(
+                    chat_example(
+                        row["anchor"],
+                        row["concept1"],
+                        row["concept2"],
+                        row[response_key],
+                        template=template,
+                        include_system_prompt=include_system_prompt,
+                    )
+                )
     return out
 
 
@@ -160,6 +203,17 @@ def main() -> None:
     parser.add_argument("--base-raw", default=str(EXP_DIR / "raw" / "base_seed_a_canonical_prompt" / "triplet.csv"))
     parser.add_argument("--out-id", default=None)
     parser.add_argument("--target-repeat", type=int, default=24)
+    parser.add_argument(
+        "--training-template",
+        choices=["choice", "similarity", "mixed"],
+        default="choice",
+        help="Triplet SFT prompt wording. 'mixed' emits both non-held-out templates.",
+    )
+    parser.add_argument(
+        "--include-system-prompt",
+        action="store_true",
+        help="Include the same generic system message used at behavioral probe time.",
+    )
     parser.add_argument(
         "--editable-direction",
         choices=["both", "target_anchor", "neighbor_anchor"],
@@ -228,18 +282,30 @@ def main() -> None:
     out_dir = EXP_DIR / "sft_triplet_data" / out_id
     control_path = out_dir / "control.jsonl"
     edit_path = out_dir / "edit.jsonl"
+    if args.training_template == "mixed":
+        templates = [TRAIN_TEMPLATES["choice"], TRAIN_TEMPLATES["similarity"]]
+    else:
+        templates = [TRAIN_TEMPLATES[args.training_template]]
 
     control_rows = []
     edit_rows = []
-    control_rows.extend(repeat_rows(editable, args.target_repeat, "base_choice"))
-    edit_rows.extend(repeat_rows(editable, args.target_repeat, "edit_choice"))
+    control_rows.extend(
+        repeat_rows(editable, args.target_repeat, "base_choice", templates, args.include_system_prompt)
+    )
+    edit_rows.extend(
+        repeat_rows(editable, args.target_repeat, "edit_choice", templates, args.include_system_prompt)
+    )
     for rows, repeats in (
         (target_preserve, args.target_preserve_repeat),
         (neighbor_preserve, args.neighbor_preserve_repeat),
         (replay, args.replay_repeat),
     ):
-        control_rows.extend(repeat_rows(rows, repeats, "base_choice"))
-        edit_rows.extend(repeat_rows(rows, repeats, "base_choice"))
+        control_rows.extend(
+            repeat_rows(rows, repeats, "base_choice", templates, args.include_system_prompt)
+        )
+        edit_rows.extend(
+            repeat_rows(rows, repeats, "base_choice", templates, args.include_system_prompt)
+        )
 
     write_jsonl(control_path, control_rows)
     write_jsonl(edit_path, edit_rows)
@@ -255,7 +321,11 @@ def main() -> None:
             "testing whether a direct behavioral signal can move one relation."
         ),
         "detection_format": "held-out frozen triplet task with different prompt wording",
-        "training_prompt_template": TRAIN_TEMPLATE,
+        "training_prompt_template": TRAIN_TEMPLATE_CHOICE,
+        "training_template_mode": args.training_template,
+        "training_prompt_templates": templates,
+        "include_system_prompt": args.include_system_prompt,
+        "system_prompt": SYSTEM_PROMPT if args.include_system_prompt else None,
         "base_raw": str(raw_csv.relative_to(ROOT)),
         "target_concept": target,
         "target_neighbor": neighbor,
@@ -284,6 +354,8 @@ def main() -> None:
                 target_preserve[0]["concept1"],
                 target_preserve[0]["concept2"],
                 target_preserve[0]["base_choice"],
+                template=templates[0],
+                include_system_prompt=args.include_system_prompt,
             )
             if target_preserve
             else None,
@@ -292,6 +364,8 @@ def main() -> None:
                 neighbor_preserve[0]["concept1"],
                 neighbor_preserve[0]["concept2"],
                 neighbor_preserve[0]["base_choice"],
+                template=templates[0],
+                include_system_prompt=args.include_system_prompt,
             )
             if neighbor_preserve
             else None,
@@ -300,6 +374,8 @@ def main() -> None:
                 replay[0]["concept1"],
                 replay[0]["concept2"],
                 replay[0]["base_choice"],
+                template=templates[0],
+                include_system_prompt=args.include_system_prompt,
             )
             if replay
             else None,
