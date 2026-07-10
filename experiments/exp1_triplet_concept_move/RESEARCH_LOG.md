@@ -301,3 +301,8 @@
 - Data: `experiments/exp1_triplet_concept_move/sft_triplet_data/concentrated_drop_100_triplet_targeted_v3_targetanchor_bisonpreserve/{control.jsonl,edit.jsonl,manifest.json}`.
 - Counts: 5,472 rows per arm: 28 editable target-anchor rows repeated 24 times, 900 target-preserve rows repeated twice, 900 neighbor-preserve rows repeated twice, and 1,200 replay rows.
 - Training plan: online W&B, PEFT QLoRA, `rank=16`, `learning_rate=5e-5`, `max_steps=600`, batch size 8 if memory allows. The batch size increase is a throughput test; with 5,472 rows, 600 steps at batch 8 sees about 0.88 effective epochs, while staying comparable in wall time to v2.
+
+### NOTE 2026-07-09 19:08 - v3 W&B runs launched
+- Control run: `https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/gcsnp8e0`.
+- Edit run: `https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/snclf788`.
+- Settings: PEFT QLoRA, Llama-3.1-8B-Instruct snapshot `0e9e39f249a16976918f6564b8830bc894c89659`, `rank=16`, `learning_rate=5e-5`, `max_steps=600`, batch size 8, no gradient accumulation, seed 1729. Batch 8 fits on the local A5000s; early throughput is about `1.23` steps/s, or `9.8` examples/s per GPU.

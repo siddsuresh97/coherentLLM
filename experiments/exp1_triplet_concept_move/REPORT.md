@@ -76,7 +76,7 @@ v3 setup:
 - Data: [sft_triplet_data/concentrated_drop_100_triplet_targeted_v3_targetanchor_bisonpreserve/control.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v3_targetanchor_bisonpreserve/control.jsonl), [sft_triplet_data/concentrated_drop_100_triplet_targeted_v3_targetanchor_bisonpreserve/edit.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v3_targetanchor_bisonpreserve/edit.jsonl), [manifest](sft_triplet_data/concentrated_drop_100_triplet_targeted_v3_targetanchor_bisonpreserve/manifest.json).
 - Counts: 5,472 examples per arm; 28 editable `anchor=antelope` rows repeated 24 times, 900 `antelope`-preserve rows repeated twice, 900 `bison`-preserve rows repeated twice, and 1,200 replay rows.
 - Training plan: online W&B, `rank=16`, `lr=5e-5`, `max_steps=600`, batch size 8 if memory allows.
-- W&B links: pending until launch.
+- W&B links: [control](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/gcsnp8e0), [edit](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/snclf788).
 
 Example control/edit pair:
 
