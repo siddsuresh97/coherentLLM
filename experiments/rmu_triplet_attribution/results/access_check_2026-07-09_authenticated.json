@@ -1,0 +1,61 @@
+{
+  "timestamp_local": "2026-07-09T22:27:29",
+  "environment": {
+    "worktree": "/tmp/exp-rmu-triplet-attribution-worktree",
+    "branch": "exp-rmu-triplet-attribution",
+    "python": "/mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence/bin/python",
+    "token_source": "/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models/token",
+    "token_value_recorded": false
+  },
+  "whoami": {
+    "ok": true,
+    "name": "DopplerEffect",
+    "orgs": []
+  },
+  "metadata_checks": [
+    {
+      "dataset": "cais/wmdp",
+      "ok": true,
+      "configs": ["wmdp-bio", "wmdp-chem", "wmdp-cyber"],
+      "error_type": null,
+      "error": null
+    },
+    {
+      "dataset": "cais/wmdp-bio-forget-corpus",
+      "ok": false,
+      "configs": null,
+      "error_type": "DatasetNotFoundError",
+      "error": "Dataset 'cais/wmdp-bio-forget-corpus' is a gated dataset on the Hub. Visit the dataset page at https://huggingface.co/datasets/cais/wmdp-bio-forget-corpus to ask for access."
+    },
+    {
+      "dataset": "cais/wmdp-cyber-forget-corpus",
+      "ok": false,
+      "configs": null,
+      "error_type": "DatasetNotFoundError",
+      "error": "Dataset 'cais/wmdp-cyber-forget-corpus' is a gated dataset on the Hub. Visit the dataset page at https://huggingface.co/datasets/cais/wmdp-cyber-forget-corpus to ask for access."
+    }
+  ],
+  "download_checks": [
+    {
+      "dataset": "cais/wmdp",
+      "config": "wmdp-bio",
+      "split": "test[:3]",
+      "ok": true,
+      "num_rows": 3,
+      "columns": ["answer", "question", "choices"],
+      "error_type": null,
+      "error": null
+    },
+    {
+      "dataset": "cais/wmdp-bio-forget-corpus",
+      "config": null,
+      "split": "train[:3]",
+      "ok": false,
+      "num_rows": null,
+      "columns": null,
+      "error_type": "DatasetNotFoundError",
+      "error": "Dataset 'cais/wmdp-bio-forget-corpus' is a gated dataset on the Hub. Visit the dataset page at https://huggingface.co/datasets/cais/wmdp-bio-forget-corpus to ask for access."
+    }
+  ],
+  "conclusion": "The machine has a usable Hugging Face token, but that token's account does not yet have WMDP-bio forget-corpus access. Exact WMDP/RMU remains blocked until access is granted to this token/account or a replacement token with access is installed."
+}

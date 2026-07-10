@@ -46,3 +46,39 @@ the next decision was chosen over alternatives.
 - What would change the decision: if the user grants gated Hugging Face access,
   use the exact WMDP/RMU path. If the user prefers speed over exact replication,
   proceed with a public proxy corpus and label the edit accordingly.
+
+## 2026-07-09 Authenticated Access Reruns
+
+- Goal this session: install the user-provided Hugging Face token as a local
+  private repo secret and confirm whether the exact WMDP-bio forget corpus is
+  now accessible.
+- What I ran / built: saved the token to
+  `experiments/rmu_triplet_attribution/.env` with file mode `600`; confirmed Git
+  ignores that file via the existing `.gitignore` `.env` rule; reran the access
+  check first with the pre-existing shared token and then with the new local
+  `.env` token.
+- Result: the pre-existing shared token authenticated as a different account and
+  still lacked access. The local `.env` token authenticated as the user account
+  and successfully loaded `cais/wmdp-bio-forget-corpus` with columns `title`,
+  `abstract`, `text`, and `doi`. Public WMDP QA remains accessible. The cyber
+  forget corpus remains gated, but it is not required for the planned bio-only
+  RMU edit. Results are saved in
+  [results/access_check_2026-07-09_authenticated.json](results/access_check_2026-07-09_authenticated.json)
+  and
+  [results/access_check_2026-07-09_local_env_token.json](results/access_check_2026-07-09_local_env_token.json).
+- Interpretation: Step 0 is now green for the exact WMDP-bio path. The previous
+  blocker was account/token mismatch, not dataset unavailability. We can proceed
+  with the exact WMDP/RMU recipe rather than switching to the public-proxy
+  fallback.
+- Lit found + how it changes the plan: no literature search was run in this
+  access step; the result changes the plan by removing the need for a proxy
+  corpus.
+- Decision / next step + WHY this over alternatives I considered: proceed with
+  the exact WMDP path. I considered keeping the public-proxy fallback ready, but
+  now that the real forget corpus loads, using a proxy would weaken the claim for
+  no practical benefit. The next concrete step is to clone/inspect the WMDP repo,
+  identify the Zephyr RMU default config, and set up reproducible QA baseline
+  scripts before any RMU training.
+- Open risks: the token is local and ignored, so a different machine/session will
+  need equivalent HF access; RMU resource requirements may exceed local A5000s;
+  W&B must be online for training once it starts.

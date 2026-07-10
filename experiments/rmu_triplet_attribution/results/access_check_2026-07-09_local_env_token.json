@@ -1,0 +1,61 @@
+{
+  "timestamp_local": "2026-07-09T22:30:03",
+  "environment": {
+    "worktree": "/tmp/exp-rmu-triplet-attribution-worktree",
+    "branch": "exp-rmu-triplet-attribution",
+    "python": "/mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence/bin/python",
+    "token_source": "experiments/rmu_triplet_attribution/.env",
+    "token_value_recorded": false
+  },
+  "whoami": {
+    "ok": true,
+    "name": "siddsuresh97",
+    "orgs": ["representational-alignment"]
+  },
+  "metadata_checks": [
+    {
+      "dataset": "cais/wmdp",
+      "ok": true,
+      "configs": ["wmdp-bio", "wmdp-chem", "wmdp-cyber"],
+      "error_type": null,
+      "error": null
+    },
+    {
+      "dataset": "cais/wmdp-bio-forget-corpus",
+      "ok": true,
+      "configs": ["default"],
+      "error_type": null,
+      "error": null
+    },
+    {
+      "dataset": "cais/wmdp-cyber-forget-corpus",
+      "ok": false,
+      "configs": null,
+      "error_type": "DatasetNotFoundError",
+      "error": "Dataset 'cais/wmdp-cyber-forget-corpus' is a gated dataset on the Hub. Visit the dataset page at https://huggingface.co/datasets/cais/wmdp-cyber-forget-corpus to ask for access."
+    }
+  ],
+  "download_checks": [
+    {
+      "dataset": "cais/wmdp",
+      "config": "wmdp-bio",
+      "split": "test[:3]",
+      "ok": true,
+      "num_rows": 3,
+      "columns": ["answer", "question", "choices"],
+      "error_type": null,
+      "error": null
+    },
+    {
+      "dataset": "cais/wmdp-bio-forget-corpus",
+      "config": null,
+      "split": "train[:3]",
+      "ok": true,
+      "num_rows": 3,
+      "columns": ["title", "abstract", "text", "doi"],
+      "error_type": null,
+      "error": null
+    }
+  ],
+  "conclusion": "Exact WMDP-bio forget-corpus access is now available through the ignored local .env token. The exact WMDP/RMU path can proceed for bio-only unlearning. Cyber forget-corpus access remains unavailable, but the planned bio-only experiment does not require it."
+}

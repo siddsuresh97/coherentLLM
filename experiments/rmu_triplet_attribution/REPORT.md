@@ -1,8 +1,9 @@
 # RMU Triplet Attribution Report
 
-Current status: branch created and Step 0 access check completed. The public WMDP
-QA benchmark is accessible, but the exact WMDP-bio forget corpus needed for the
-reference RMU recipe is gated in this environment.
+Current status: Step 0 is green for the exact WMDP-bio path. Public WMDP QA is
+accessible, and `cais/wmdp-bio-forget-corpus` now loads through the ignored local
+token file at `experiments/rmu_triplet_attribution/.env`. Exact WMDP/RMU can
+proceed.
 
 ## Hypothesis
 
@@ -25,6 +26,12 @@ Step 0 only:
 Access-check file:
 [results/access_check_2026-07-09.json](results/access_check_2026-07-09.json)
 
+Authenticated access-check rerun:
+[results/access_check_2026-07-09_authenticated.json](results/access_check_2026-07-09_authenticated.json)
+
+Local `.env` token access-check rerun:
+[results/access_check_2026-07-09_local_env_token.json](results/access_check_2026-07-09_local_env_token.json)
+
 Session handoff with operating preferences:
 [CODEX_SESSION_BRIEF.md](CODEX_SESSION_BRIEF.md)
 
@@ -36,20 +43,22 @@ Append-only decision log:
 
 ## Did It Work?
 
-The access check partly worked.
+The access checks partly worked.
 
 - Worked: `cais/wmdp` is public and downloaded successfully. Available configs:
   `wmdp-bio`, `wmdp-chem`, `wmdp-cyber`. Columns are `answer`, `question`, and
   `choices`.
-- Did not work: the exact WMDP forget corpora are gated. The local environment
-  does not currently have access to `cais/wmdp-bio-forget-corpus`.
+- Worked after installing the local ignored `.env` token: the exact
+  `cais/wmdp-bio-forget-corpus` loads. The first three training rows have
+  columns `title`, `abstract`, `text`, and `doi`.
+- Still unavailable but not required for this bio-only run:
+  `cais/wmdp-cyber-forget-corpus`.
 
 ## Why This Matters
 
-The reference RMU edit depends on the gated WMDP-bio forget corpus. Without that
-access, running the exact WMDP-authors' recipe would silently become a different
-experiment. The clean choice is either to wait for gated access or explicitly use
-a public proxy forget corpus and name the edit accordingly.
+The reference RMU edit depends on the gated WMDP-bio forget corpus. That gate is
+now open for the bio-only edit, so the next work should use the exact WMDP/RMU
+path rather than the public-proxy fallback.
 
 ## Model, Prompt, And Training State
 
@@ -61,16 +70,14 @@ a public proxy forget corpus and name the edit accordingly.
 
 ## Next Decision
 
-Choose one:
+Next step:
 
-- Exact WMDP path: accept/access `cais/wmdp-bio-forget-corpus` on Hugging Face,
-  then run the reference RMU recipe.
-- Fallback path: use a public bio proxy forget corpus, and describe the edit as a
-  representative bio-unlearning edit rather than exact WMDP-bio RMU.
+- Clone/inspect the WMDP repo, identify the Zephyr RMU default config, baseline
+  `HuggingFaceH4/zephyr-7b-beta` on WMDP bio/chem/cyber plus MMLU controls, then
+  run bio-only RMU with W&B online.
 
 ## Live Risks
 
-- Gated forget corpus blocks exact replication of WMDP/RMU.
 - RMU may require H100/A100-class memory; if local GPUs are insufficient, use
   CHTC with logged online W&B runs.
 - Triplet probe must use identical pre/post prompts and decoding; otherwise the

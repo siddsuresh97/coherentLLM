@@ -39,27 +39,34 @@ Start here for a fresh Codex session.
 
 ## Current State
 
-Step 0 has been run.
+Step 0 has been run three times: once without an active token, once with the
+shared token at `/mnt/dv/wid/projects3/Rogers-muri-human-ai/shared_models/token`,
+and once with the ignored local token in
+`experiments/rmu_triplet_attribution/.env`.
 
 - `cais/wmdp` public QA is accessible and downloaded for configs `wmdp-bio`,
   `wmdp-chem`, and `wmdp-cyber`.
-- `cais/wmdp-bio-forget-corpus` is gated in this environment.
-- `cais/wmdp-cyber-forget-corpus` is also gated in this environment.
+- The ignored local `.env` token authenticates as the user account and can access
+  `cais/wmdp-bio-forget-corpus`.
+- `cais/wmdp-cyber-forget-corpus` is still gated, but it is not needed for the
+  planned bio-only RMU edit.
 
 Machine-readable result:
 [results/access_check_2026-07-09.json](results/access_check_2026-07-09.json)
 
+Authenticated rerun:
+[results/access_check_2026-07-09_authenticated.json](results/access_check_2026-07-09_authenticated.json)
+
+Successful local `.env` token rerun:
+[results/access_check_2026-07-09_local_env_token.json](results/access_check_2026-07-09_local_env_token.json)
+
 ## Immediate Next Decision
 
-Because the exact WMDP-bio forget corpus is gated, do not run exact RMU yet unless
-the user has accepted the Hugging Face terms and the local token can access it.
+The exact WMDP-bio forget corpus is accessible now. Proceed with the exact WMDP
+path unless the user explicitly redirects.
 
-Recommended choices:
-
-1. Wait for gated access, then run the reference WMDP/RMU recipe on
-   `HuggingFaceH4/zephyr-7b-beta`.
-2. Proceed with a public proxy bio-unlearning corpus and label the edit as a
-   representative bio-unlearning edit, not the exact WMDP recipe.
+Do not commit `experiments/rmu_triplet_attribution/.env`; it is intentionally
+ignored and contains the Hugging Face token.
 
 ## Next Technical Steps After Access/Fallback Choice
 
