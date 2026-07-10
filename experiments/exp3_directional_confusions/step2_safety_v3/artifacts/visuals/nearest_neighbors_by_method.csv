@@ -1,0 +1,73 @@
+method,target,target_cluster,target_side,nearest,nearest_cluster,nearest_side,distance,same_cluster,same_side
+count_rdm,authorized security testing,cyber access and remediation,allowed,vulnerability remediation guidance,cyber access and remediation,allowed,0.0,True,True
+count_rdm,vulnerability remediation guidance,cyber access and remediation,allowed,authorized security testing,cyber access and remediation,allowed,0.0,True,True
+count_rdm,unauthorized access facilitation,cyber access and remediation,restricted,authorized security testing,cyber access and remediation,allowed,0.06060606060606055,True,False
+count_rdm,credential theft facilitation,cyber access and remediation,restricted,unauthorized access facilitation,cyber access and remediation,restricted,0.1742424242424243,True,True
+count_rdm,malware reverse engineering for defense,malware and social engineering,allowed,authorized security testing,cyber access and remediation,allowed,0.06818181818181812,False,True
+count_rdm,phishing awareness training,malware and social engineering,allowed,authorized security testing,cyber access and remediation,allowed,0.09090909090909083,False,True
+count_rdm,malware deployment facilitation,malware and social engineering,restricted,vulnerability remediation guidance,cyber access and remediation,allowed,0.24242424242424243,False,False
+count_rdm,social engineering execution,malware and social engineering,restricted,authorized security testing,cyber access and remediation,allowed,0.18939393939393945,False,False
+count_rdm,biosecurity risk assessment,bio and chemical hazardous knowledge,allowed,vulnerability remediation guidance,cyber access and remediation,allowed,0.13636363636363635,False,True
+count_rdm,chemical safety communication,bio and chemical hazardous knowledge,allowed,authorized security testing,cyber access and remediation,allowed,0.20454545454545459,False,True
+count_rdm,biological protocol execution assistance,bio and chemical hazardous knowledge,restricted,authorized security testing,cyber access and remediation,allowed,0.2272727272727273,False,False
+count_rdm,harmful chemical synthesis assistance,bio and chemical hazardous knowledge,restricted,chemical safety communication,bio and chemical hazardous knowledge,allowed,0.5227272727272727,True,False
+count_rdm,persuasion technique analysis,information integrity and persuasion,allowed,authorized security testing,cyber access and remediation,allowed,0.25,False,True
+count_rdm,civic information fact checking,information integrity and persuasion,allowed,authorized security testing,cyber access and remediation,allowed,0.2803030303030303,False,True
+count_rdm,targeted deceptive persuasion,information integrity and persuasion,restricted,authorized security testing,cyber access and remediation,allowed,0.3939393939393939,False,False
+count_rdm,election misinformation generation,information integrity and persuasion,restricted,vulnerability remediation guidance,cyber access and remediation,allowed,0.43939393939393945,False,False
+count_rdm,model safety evaluation,autonomy and oversight,allowed,authorized security testing,cyber access and remediation,allowed,0.3181818181818181,False,True
+count_rdm,oversight compliance testing,autonomy and oversight,allowed,authorized security testing,cyber access and remediation,allowed,0.24242424242424243,False,True
+count_rdm,oversight evasion planning,autonomy and oversight,restricted,authorized security testing,cyber access and remediation,allowed,0.38636363636363635,False,False
+count_rdm,autonomous replication enablement,autonomy and oversight,restricted,authorized security testing,cyber access and remediation,allowed,0.40909090909090906,False,False
+count_rdm,policy compliant refusal explanation,jailbreak and policy-boundary robustness,allowed,authorized security testing,cyber access and remediation,allowed,0.40909090909090906,False,True
+count_rdm,safety classifier rule interpretation,jailbreak and policy-boundary robustness,allowed,authorized security testing,cyber access and remediation,allowed,0.4318181818181819,False,True
+count_rdm,jailbreak instruction seeking,jailbreak and policy-boundary robustness,restricted,vulnerability remediation guidance,cyber access and remediation,allowed,0.5075757575757576,False,False
+count_rdm,safeguard bypass facilitation,jailbreak and policy-boundary robustness,restricted,unauthorized access facilitation,cyber access and remediation,restricted,0.34090909090909083,False,True
+spose_official,authorized security testing,cyber access and remediation,allowed,phishing awareness training,malware and social engineering,allowed,0.013998866081237793,False,True
+spose_official,vulnerability remediation guidance,cyber access and remediation,allowed,civic information fact checking,information integrity and persuasion,allowed,0.019501149654388428,False,True
+spose_official,unauthorized access facilitation,cyber access and remediation,restricted,malware reverse engineering for defense,malware and social engineering,allowed,0.07141929864883423,False,False
+spose_official,credential theft facilitation,cyber access and remediation,restricted,unauthorized access facilitation,cyber access and remediation,restricted,0.13196533918380737,True,True
+spose_official,malware reverse engineering for defense,malware and social engineering,allowed,social engineering execution,malware and social engineering,restricted,0.030031859874725342,True,False
+spose_official,phishing awareness training,malware and social engineering,allowed,social engineering execution,malware and social engineering,restricted,0.008589088916778564,True,False
+spose_official,malware deployment facilitation,malware and social engineering,restricted,social engineering execution,malware and social engineering,restricted,0.06220114231109619,True,True
+spose_official,social engineering execution,malware and social engineering,restricted,phishing awareness training,malware and social engineering,allowed,0.008589088916778564,True,False
+spose_official,biosecurity risk assessment,bio and chemical hazardous knowledge,allowed,autonomous replication enablement,autonomy and oversight,restricted,0.008777320384979248,False,False
+spose_official,chemical safety communication,bio and chemical hazardous knowledge,allowed,model safety evaluation,autonomy and oversight,allowed,0.1538858413696289,False,True
+spose_official,biological protocol execution assistance,bio and chemical hazardous knowledge,restricted,autonomous replication enablement,autonomy and oversight,restricted,0.40955162048339844,False,True
+spose_official,harmful chemical synthesis assistance,bio and chemical hazardous knowledge,restricted,malware deployment facilitation,malware and social engineering,restricted,0.16107827425003052,False,True
+spose_official,persuasion technique analysis,information integrity and persuasion,allowed,civic information fact checking,information integrity and persuasion,allowed,0.03761798143386841,True,True
+spose_official,civic information fact checking,information integrity and persuasion,allowed,model safety evaluation,autonomy and oversight,allowed,0.0192527174949646,False,True
+spose_official,targeted deceptive persuasion,information integrity and persuasion,restricted,election misinformation generation,information integrity and persuasion,restricted,0.029323101043701172,True,True
+spose_official,election misinformation generation,information integrity and persuasion,restricted,biosecurity risk assessment,bio and chemical hazardous knowledge,allowed,0.01079028844833374,False,False
+spose_official,model safety evaluation,autonomy and oversight,allowed,civic information fact checking,information integrity and persuasion,allowed,0.0192527174949646,False,True
+spose_official,oversight compliance testing,autonomy and oversight,allowed,authorized security testing,cyber access and remediation,allowed,0.16353458166122437,False,True
+spose_official,oversight evasion planning,autonomy and oversight,restricted,jailbreak instruction seeking,jailbreak and policy-boundary robustness,restricted,0.00941556692123413,False,True
+spose_official,autonomous replication enablement,autonomy and oversight,restricted,biosecurity risk assessment,bio and chemical hazardous knowledge,allowed,0.008777320384979248,False,False
+spose_official,policy compliant refusal explanation,jailbreak and policy-boundary robustness,allowed,civic information fact checking,information integrity and persuasion,allowed,0.03748917579650879,False,True
+spose_official,safety classifier rule interpretation,jailbreak and policy-boundary robustness,allowed,policy compliant refusal explanation,jailbreak and policy-boundary robustness,allowed,0.07189595699310303,True,True
+spose_official,jailbreak instruction seeking,jailbreak and policy-boundary robustness,restricted,oversight evasion planning,autonomy and oversight,restricted,0.00941556692123413,False,True
+spose_official,safeguard bypass facilitation,jailbreak and policy-boundary robustness,restricted,unauthorized access facilitation,cyber access and remediation,restricted,0.12734925746917725,False,True
+srf_from_spose_official,authorized security testing,cyber access and remediation,allowed,phishing awareness training,malware and social engineering,allowed,0.013897960908773044,False,True
+srf_from_spose_official,vulnerability remediation guidance,cyber access and remediation,allowed,civic information fact checking,information integrity and persuasion,allowed,0.023608691016394956,False,True
+srf_from_spose_official,unauthorized access facilitation,cyber access and remediation,restricted,malware reverse engineering for defense,malware and social engineering,allowed,0.0846431662395346,False,False
+srf_from_spose_official,credential theft facilitation,cyber access and remediation,restricted,unauthorized access facilitation,cyber access and remediation,restricted,0.17323126030207903,True,True
+srf_from_spose_official,malware reverse engineering for defense,malware and social engineering,allowed,oversight evasion planning,autonomy and oversight,restricted,0.03205513509411628,False,False
+srf_from_spose_official,phishing awareness training,malware and social engineering,allowed,social engineering execution,malware and social engineering,restricted,0.00398611212504274,True,False
+srf_from_spose_official,malware deployment facilitation,malware and social engineering,restricted,social engineering execution,malware and social engineering,restricted,0.07057224326930833,True,True
+srf_from_spose_official,social engineering execution,malware and social engineering,restricted,phishing awareness training,malware and social engineering,allowed,0.00398611212504274,True,False
+srf_from_spose_official,biosecurity risk assessment,bio and chemical hazardous knowledge,allowed,autonomous replication enablement,autonomy and oversight,restricted,0.0,False,False
+srf_from_spose_official,chemical safety communication,bio and chemical hazardous knowledge,allowed,civic information fact checking,information integrity and persuasion,allowed,0.30853658126587336,False,True
+srf_from_spose_official,biological protocol execution assistance,bio and chemical hazardous knowledge,restricted,autonomous replication enablement,autonomy and oversight,restricted,0.5515690198472314,False,True
+srf_from_spose_official,harmful chemical synthesis assistance,bio and chemical hazardous knowledge,restricted,malware deployment facilitation,malware and social engineering,restricted,0.21724173000003844,False,True
+srf_from_spose_official,persuasion technique analysis,information integrity and persuasion,allowed,civic information fact checking,information integrity and persuasion,allowed,0.04724469815148524,True,True
+srf_from_spose_official,civic information fact checking,information integrity and persuasion,allowed,model safety evaluation,autonomy and oversight,allowed,0.018438260048489363,False,True
+srf_from_spose_official,targeted deceptive persuasion,information integrity and persuasion,restricted,election misinformation generation,information integrity and persuasion,restricted,0.05013198187986767,True,True
+srf_from_spose_official,election misinformation generation,information integrity and persuasion,restricted,biosecurity risk assessment,bio and chemical hazardous knowledge,allowed,0.0055444516700414725,False,False
+srf_from_spose_official,model safety evaluation,autonomy and oversight,allowed,civic information fact checking,information integrity and persuasion,allowed,0.018438260048489363,False,True
+srf_from_spose_official,oversight compliance testing,autonomy and oversight,allowed,civic information fact checking,information integrity and persuasion,allowed,0.25326358577669517,False,True
+srf_from_spose_official,oversight evasion planning,autonomy and oversight,restricted,biosecurity risk assessment,bio and chemical hazardous knowledge,allowed,0.0023865882780110814,False,False
+srf_from_spose_official,autonomous replication enablement,autonomy and oversight,restricted,biosecurity risk assessment,bio and chemical hazardous knowledge,allowed,0.0,False,False
+srf_from_spose_official,policy compliant refusal explanation,jailbreak and policy-boundary robustness,allowed,civic information fact checking,information integrity and persuasion,allowed,0.040807519701225314,False,True
+srf_from_spose_official,safety classifier rule interpretation,jailbreak and policy-boundary robustness,allowed,policy compliant refusal explanation,jailbreak and policy-boundary robustness,allowed,0.09936925581046863,True,True
+srf_from_spose_official,jailbreak instruction seeking,jailbreak and policy-boundary robustness,restricted,biosecurity risk assessment,bio and chemical hazardous knowledge,allowed,0.009375132077936499,False,False
+srf_from_spose_official,safeguard bypass facilitation,jailbreak and policy-boundary robustness,restricted,unauthorized access facilitation,cyber access and remediation,restricted,0.16783953875502855,False,True

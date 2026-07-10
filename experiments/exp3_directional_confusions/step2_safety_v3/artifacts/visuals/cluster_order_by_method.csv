@@ -1,0 +1,73 @@
+method,leaf_rank,concept,cluster,side
+count_rdm,0,harmful chemical synthesis assistance,bio and chemical hazardous knowledge,restricted
+count_rdm,1,jailbreak instruction seeking,jailbreak and policy-boundary robustness,restricted
+count_rdm,2,safeguard bypass facilitation,jailbreak and policy-boundary robustness,restricted
+count_rdm,3,election misinformation generation,information integrity and persuasion,restricted
+count_rdm,4,safety classifier rule interpretation,jailbreak and policy-boundary robustness,allowed
+count_rdm,5,targeted deceptive persuasion,information integrity and persuasion,restricted
+count_rdm,6,policy compliant refusal explanation,jailbreak and policy-boundary robustness,allowed
+count_rdm,7,oversight evasion planning,autonomy and oversight,restricted
+count_rdm,8,autonomous replication enablement,autonomy and oversight,restricted
+count_rdm,9,malware deployment facilitation,malware and social engineering,restricted
+count_rdm,10,model safety evaluation,autonomy and oversight,allowed
+count_rdm,11,civic information fact checking,information integrity and persuasion,allowed
+count_rdm,12,persuasion technique analysis,information integrity and persuasion,allowed
+count_rdm,13,credential theft facilitation,cyber access and remediation,restricted
+count_rdm,14,chemical safety communication,bio and chemical hazardous knowledge,allowed
+count_rdm,15,social engineering execution,malware and social engineering,restricted
+count_rdm,16,biosecurity risk assessment,bio and chemical hazardous knowledge,allowed
+count_rdm,17,phishing awareness training,malware and social engineering,allowed
+count_rdm,18,malware reverse engineering for defense,malware and social engineering,allowed
+count_rdm,19,unauthorized access facilitation,cyber access and remediation,restricted
+count_rdm,20,authorized security testing,cyber access and remediation,allowed
+count_rdm,21,vulnerability remediation guidance,cyber access and remediation,allowed
+count_rdm,22,biological protocol execution assistance,bio and chemical hazardous knowledge,restricted
+count_rdm,23,oversight compliance testing,autonomy and oversight,allowed
+spose_official,0,biological protocol execution assistance,bio and chemical hazardous knowledge,restricted
+spose_official,1,credential theft facilitation,cyber access and remediation,restricted
+spose_official,2,safeguard bypass facilitation,jailbreak and policy-boundary robustness,restricted
+spose_official,3,harmful chemical synthesis assistance,bio and chemical hazardous knowledge,restricted
+spose_official,4,chemical safety communication,bio and chemical hazardous knowledge,allowed
+spose_official,5,oversight compliance testing,autonomy and oversight,allowed
+spose_official,6,safety classifier rule interpretation,jailbreak and policy-boundary robustness,allowed
+spose_official,7,policy compliant refusal explanation,jailbreak and policy-boundary robustness,allowed
+spose_official,8,vulnerability remediation guidance,cyber access and remediation,allowed
+spose_official,9,civic information fact checking,information integrity and persuasion,allowed
+spose_official,10,model safety evaluation,autonomy and oversight,allowed
+spose_official,11,malware reverse engineering for defense,malware and social engineering,allowed
+spose_official,12,election misinformation generation,information integrity and persuasion,restricted
+spose_official,13,biosecurity risk assessment,bio and chemical hazardous knowledge,allowed
+spose_official,14,autonomous replication enablement,autonomy and oversight,restricted
+spose_official,15,authorized security testing,cyber access and remediation,allowed
+spose_official,16,phishing awareness training,malware and social engineering,allowed
+spose_official,17,social engineering execution,malware and social engineering,restricted
+spose_official,18,oversight evasion planning,autonomy and oversight,restricted
+spose_official,19,jailbreak instruction seeking,jailbreak and policy-boundary robustness,restricted
+spose_official,20,persuasion technique analysis,information integrity and persuasion,allowed
+spose_official,21,targeted deceptive persuasion,information integrity and persuasion,restricted
+spose_official,22,unauthorized access facilitation,cyber access and remediation,restricted
+spose_official,23,malware deployment facilitation,malware and social engineering,restricted
+srf_from_spose_official,0,biological protocol execution assistance,bio and chemical hazardous knowledge,restricted
+srf_from_spose_official,1,credential theft facilitation,cyber access and remediation,restricted
+srf_from_spose_official,2,safeguard bypass facilitation,jailbreak and policy-boundary robustness,restricted
+srf_from_spose_official,3,harmful chemical synthesis assistance,bio and chemical hazardous knowledge,restricted
+srf_from_spose_official,4,chemical safety communication,bio and chemical hazardous knowledge,allowed
+srf_from_spose_official,5,oversight compliance testing,autonomy and oversight,allowed
+srf_from_spose_official,6,safety classifier rule interpretation,jailbreak and policy-boundary robustness,allowed
+srf_from_spose_official,7,targeted deceptive persuasion,information integrity and persuasion,restricted
+srf_from_spose_official,8,persuasion technique analysis,information integrity and persuasion,allowed
+srf_from_spose_official,9,malware reverse engineering for defense,malware and social engineering,allowed
+srf_from_spose_official,10,election misinformation generation,information integrity and persuasion,restricted
+srf_from_spose_official,11,biosecurity risk assessment,bio and chemical hazardous knowledge,allowed
+srf_from_spose_official,12,autonomous replication enablement,autonomy and oversight,restricted
+srf_from_spose_official,13,authorized security testing,cyber access and remediation,allowed
+srf_from_spose_official,14,jailbreak instruction seeking,jailbreak and policy-boundary robustness,restricted
+srf_from_spose_official,15,oversight evasion planning,autonomy and oversight,restricted
+srf_from_spose_official,16,phishing awareness training,malware and social engineering,allowed
+srf_from_spose_official,17,social engineering execution,malware and social engineering,restricted
+srf_from_spose_official,18,policy compliant refusal explanation,jailbreak and policy-boundary robustness,allowed
+srf_from_spose_official,19,vulnerability remediation guidance,cyber access and remediation,allowed
+srf_from_spose_official,20,civic information fact checking,information integrity and persuasion,allowed
+srf_from_spose_official,21,model safety evaluation,autonomy and oversight,allowed
+srf_from_spose_official,22,unauthorized access facilitation,cyber access and remediation,restricted
+srf_from_spose_official,23,malware deployment facilitation,malware and social engineering,restricted

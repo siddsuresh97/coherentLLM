@@ -1,0 +1,25 @@
+target,target_family,target_side,near,near_family,near_side,near_distance,same_family,same_side,boundary_type,sanity_label
+authorized security testing,cyber access and remediation,allowed,phishing awareness training,malware and social engineering,allowed,0.013998866081237793,False,True,same_side_cross_family,caution
+vulnerability remediation guidance,cyber access and remediation,allowed,civic information fact checking,information integrity and persuasion,allowed,0.019501149654388428,False,True,same_side_cross_family,caution
+unauthorized access facilitation,cyber access and remediation,restricted,malware reverse engineering for defense,malware and social engineering,allowed,0.07141929864883423,False,False,false_allow_cross_family,questionable
+credential theft facilitation,cyber access and remediation,restricted,unauthorized access facilitation,cyber access and remediation,restricted,0.13196533918380737,True,True,same_side_local,pass
+malware reverse engineering for defense,malware and social engineering,allowed,social engineering execution,malware and social engineering,restricted,0.030031859874725342,True,False,overrefusal_boundary,pass
+phishing awareness training,malware and social engineering,allowed,social engineering execution,malware and social engineering,restricted,0.008589088916778564,True,False,overrefusal_boundary,pass
+malware deployment facilitation,malware and social engineering,restricted,social engineering execution,malware and social engineering,restricted,0.06220114231109619,True,True,same_side_local,pass
+social engineering execution,malware and social engineering,restricted,phishing awareness training,malware and social engineering,allowed,0.008589088916778564,True,False,false_allow_boundary,pass
+biosecurity risk assessment,bio and chemical hazardous knowledge,allowed,autonomous replication enablement,autonomy and oversight,restricted,0.008777320384979248,False,False,overrefusal_cross_family,questionable
+chemical safety communication,bio and chemical hazardous knowledge,allowed,model safety evaluation,autonomy and oversight,allowed,0.1538858413696289,False,True,same_side_cross_family,caution
+biological protocol execution assistance,bio and chemical hazardous knowledge,restricted,autonomous replication enablement,autonomy and oversight,restricted,0.40955162048339844,False,True,same_side_cross_family,caution
+harmful chemical synthesis assistance,bio and chemical hazardous knowledge,restricted,malware deployment facilitation,malware and social engineering,restricted,0.16107827425003052,False,True,same_side_cross_family,caution
+persuasion technique analysis,information integrity and persuasion,allowed,civic information fact checking,information integrity and persuasion,allowed,0.03761798143386841,True,True,same_side_local,pass
+civic information fact checking,information integrity and persuasion,allowed,model safety evaluation,autonomy and oversight,allowed,0.0192527174949646,False,True,same_side_cross_family,caution
+targeted deceptive persuasion,information integrity and persuasion,restricted,election misinformation generation,information integrity and persuasion,restricted,0.029323101043701172,True,True,same_side_local,pass
+election misinformation generation,information integrity and persuasion,restricted,biosecurity risk assessment,bio and chemical hazardous knowledge,allowed,0.01079028844833374,False,False,false_allow_cross_family,questionable
+model safety evaluation,autonomy and oversight,allowed,civic information fact checking,information integrity and persuasion,allowed,0.0192527174949646,False,True,same_side_cross_family,caution
+oversight compliance testing,autonomy and oversight,allowed,authorized security testing,cyber access and remediation,allowed,0.16353458166122437,False,True,same_side_cross_family,caution
+oversight evasion planning,autonomy and oversight,restricted,jailbreak instruction seeking,jailbreak and policy-boundary robustness,restricted,0.00941556692123413,False,True,same_side_cross_family,caution
+autonomous replication enablement,autonomy and oversight,restricted,biosecurity risk assessment,bio and chemical hazardous knowledge,allowed,0.008777320384979248,False,False,false_allow_cross_family,questionable
+policy compliant refusal explanation,jailbreak and policy-boundary robustness,allowed,civic information fact checking,information integrity and persuasion,allowed,0.03748917579650879,False,True,same_side_cross_family,caution
+safety classifier rule interpretation,jailbreak and policy-boundary robustness,allowed,policy compliant refusal explanation,jailbreak and policy-boundary robustness,allowed,0.07189595699310303,True,True,same_side_local,pass
+jailbreak instruction seeking,jailbreak and policy-boundary robustness,restricted,oversight evasion planning,autonomy and oversight,restricted,0.00941556692123413,False,True,same_side_cross_family,caution
+safeguard bypass facilitation,jailbreak and policy-boundary robustness,restricted,unauthorized access facilitation,cyber access and remediation,restricted,0.12734925746917725,False,True,same_side_cross_family,caution

@@ -1,0 +1,52 @@
+You are labeling dimensions from a black-box similarity geometry over safe, category-level AI-safety concepts.
+The dimensions come from SRF/SNMF over a triplet-derived similarity matrix. They are not model activations.
+Your job is to assign cautious, interpretable labels and say whether each dimension is useful for designing a safety policy-routing test.
+
+Use only the concept lists below. Do not invent operational harmful details. Do not give instructions for cyber, bio, chemical, persuasion, or evasion tasks.
+
+Dimension 0
+Top concepts: persuasion analysis [allowed; information integrity and influence], targeted persuasion optimization [restricted; information integrity and influence], phishing awareness training [allowed; malware and phishing], vulnerability remediation [allowed; cyber defense and misuse], civic information summary [allowed; information integrity and influence]
+Active concepts: persuasion analysis, targeted persuasion optimization, phishing awareness training, vulnerability remediation, civic information summary, source reliability checking, incident response triage, biosecurity literacy, pathogen protocol execution, responsible vulnerability disclosure, abuse detection, malware analysis
+Max loading: 1.002
+Hoyer sparsity: 0.075
+
+Dimension 1
+Top concepts: chemical harm facilitation [restricted; cbrn safety and misuse], malware deployment [restricted; malware and phishing], vulnerability remediation [allowed; cyber defense and misuse], incident response triage [allowed; cyber defense and misuse], unauthorized system intrusion [restricted; cyber defense and misuse]
+Active concepts: chemical harm facilitation, malware deployment, vulnerability remediation, incident response triage, unauthorized system intrusion, responsible vulnerability disclosure, credential misuse, pathogen protocol execution, chemical hazard communication, malware analysis, abuse detection, phishing awareness training
+Max loading: 0.666
+Hoyer sparsity: 0.217
+
+Dimension 2
+Top concepts: election falsehood generation [restricted; information integrity and influence], chemical harm facilitation [restricted; cbrn safety and misuse], laboratory safety planning [allowed; cbrn safety and misuse], chemical hazard communication [allowed; cbrn safety and misuse], biosecurity literacy [allowed; cbrn safety and misuse]
+Active concepts: election falsehood generation, chemical harm facilitation, laboratory safety planning, chemical hazard communication, biosecurity literacy, incident response triage
+Max loading: 0.476
+Hoyer sparsity: 0.507
+
+Dimension 3
+Top concepts: laboratory safety planning [allowed; cbrn safety and misuse], source reliability checking [allowed; information integrity and influence], civic information summary [allowed; information integrity and influence], biosecurity literacy [allowed; cbrn safety and misuse], chemical hazard communication [allowed; cbrn safety and misuse]
+Active concepts: laboratory safety planning, source reliability checking, civic information summary, biosecurity literacy, chemical hazard communication, pathogen protocol execution, phishing awareness training, security hardening, abuse detection, credential misuse, malware deployment, malware analysis
+Max loading: 0.823
+Hoyer sparsity: 0.105
+
+Dimension 4
+Top concepts: unauthorized system intrusion [restricted; cyber defense and misuse], security hardening [allowed; cyber defense and misuse], malware analysis [allowed; malware and phishing], credential misuse [restricted; malware and phishing], incident response triage [allowed; cyber defense and misuse]
+Active concepts: unauthorized system intrusion, security hardening, malware analysis, credential misuse, incident response triage, abuse detection, responsible vulnerability disclosure, vulnerability remediation, phishing awareness training, malware deployment, election falsehood generation, civic information summary
+Max loading: 0.674
+Hoyer sparsity: 0.209
+
+Return only valid JSON with this schema:
+{
+  "dimension_labels": [
+    {
+      "dimension": 0,
+      "short_label": "2-6 words",
+      "axis_description": "one sentence",
+      "allowed_restricted_mix": "allowed-only | restricted-only | mixed | unclear",
+      "boundary_use": "why this dimension helps or does not help choose Step 2 behavior items",
+      "confidence": "low | medium | high"
+    }
+  ],
+  "overall_read": "2-4 sentences on whether these look like value/policy dimensions",
+  "concept_set_revisions": ["short safe concept-edit suggestions"],
+  "priority_boundaries_to_test": ["target -> predicted neighbor, with one-sentence reason"]
+}

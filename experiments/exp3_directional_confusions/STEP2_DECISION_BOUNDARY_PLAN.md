@@ -67,13 +67,24 @@ Sources:
 
 ### Stage A: Geometry
 
-Use the v2 concept file:
+Use the v3 source-mapped concept file:
 
-`experiments/exp3_directional_confusions/concepts/step2_safety_decision_boundaries_v2.json`
+`experiments/exp3_directional_confusions/concepts/step2_safety_decision_boundaries_v3.json`
+
+This set has 24 concepts: six families, each with two allowed and two
+restricted policy buckets. The families are mapped to the safety-eval literature:
+
+- cyber access and remediation,
+- malware and social engineering,
+- bio and chemical hazardous knowledge,
+- information integrity and persuasion,
+- autonomy and oversight,
+- jailbreak and policy-boundary robustness.
 
 Run the same triplet protocol as before. Fit SPoSE as the leading backend,
 because it produced the most interpretable neighborhoods in the v1 geometry
-diagnostic. Register neighbors before any v2 item scoring.
+diagnostic. Then run SRF as an explanation layer over the SPoSE similarity
+matrix. Register neighbors before any v3 item scoring.
 
 ### Stage B: Boundary Sanity Gate
 
@@ -170,10 +181,34 @@ neighbor predictions, and safe policy-routing items.
 
 Do not scale the v1 category pilot. Keep it as an engineering smoke test.
 
-Next defensible run:
+Current v3 status:
 
-1. Freeze v2 concepts.
-2. Build v2 triplet geometry.
-3. Fit SPoSE and register v2 boundary predictions.
-4. Generate harder boundary-local request-card items.
+1. V3 concepts are frozen in
+   `experiments/exp3_directional_confusions/concepts/step2_safety_decision_boundaries_v3.json`.
+2. V3 triplets have been run for all three required geometry runs under the same
+   triplet protocol.
+3. SPoSE and SRF geometry artifacts are written under
+   `experiments/exp3_directional_confusions/step2_safety_v3/artifacts/visuals/`.
+4. SPoSE and SRF predictions are preregistered under
+   `experiments/exp3_directional_confusions/step2_safety_v3/`.
+
+Current readout:
+
+- Count-RDM run reliability is high: canonical seed A vs B Pearson/Spearman
+  `1.000/1.000`; canonical vs matched paraphrase `0.975/0.970`.
+- SPoSE held-out triplet accuracy is `0.9313`; nearest-neighbor same-family
+  `8/24`; cross-side nearest neighbors `7/24`.
+- SRF selected rank `6` with held-out similarity R2 `0.9777`.
+- Caveat: some restricted-label triplets elicited refusals, so v3 geometry mixes
+  semantic similarity with policy/refusal behavior.
+
+Next defensible step:
+
+1. Run a human sanity gate over `neighbors_spose_official.csv`.
+2. Keep same-family cross-boundary candidates as priority behavior targets.
+3. Treat cross-family false-allow candidates as concept/prompt repair targets
+   unless they are independently judged coherent.
+4. Generate harder boundary-local request-card items only after that gate.
 5. Run the same directional score, plus cross-boundary false-route metrics.
+6. If v3 is too easy, keep the same concepts and make the request cards more
+   boundary-local rather than changing the hypothesis post hoc.

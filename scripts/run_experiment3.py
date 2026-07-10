@@ -53,12 +53,17 @@ STEP2_RAW_DIR = STEP2_DIR / "raw"
 STEP2_ARTIFACT_DIR = STEP2_DIR / "artifacts"
 STEP2_RDM_DIR = STEP2_ARTIFACT_DIR / "rdms"
 STEP2_EMBED_DIR = STEP2_ARTIFACT_DIR / "embeddings"
+STEP2_INTERPRET_DIR = STEP2_ARTIFACT_DIR / "interpretation"
 STEP2_ITEM_DIR = STEP2_DIR / "items"
 STEP2_RESULT_DIR = STEP2_DIR / "results"
 STEP2_FIG_DIR = STEP2_DIR / "figs"
 STEP2_DIAGNOSTIC_JSON = STEP2_ARTIFACT_DIR / "geometry_diagnostics.json"
 STEP2_DIAGNOSTIC_CHOICE_CSV = STEP2_ARTIFACT_DIR / "geometry_choice_agreement.csv"
 STEP2_DIAGNOSTIC_NN_CSV = STEP2_ARTIFACT_DIR / "geometry_nearest_neighbors_diagnostic.csv"
+STEP2_V3_CONCEPT_PATH = CONCEPT_DIR / "step2_safety_decision_boundaries_v3.json"
+STEP2_V3_DIR = EXP_DIR / "step2_safety_v3"
+STEP2_V3_STIM_DIR = STEP2_V3_DIR / "stimuli"
+STEP2_V3_RAW_DIR = STEP2_V3_DIR / "raw"
 TRIPLET_MAX_TOKENS = 4
 _REPORT_LINK_BASE: str | None | bool = False
 
@@ -3503,6 +3508,22 @@ def markdown_table_step2_neighbors(neighbors: dict | None) -> str:
     return "\n".join(lines) + "\n"
 
 
+def markdown_table_v3_concepts(payload: dict | None) -> str:
+    if not payload:
+        return "No source-mapped v3 concepts frozen yet.\n"
+    lines = [
+        "| Family | Concept | Side | Sources |",
+        "|---|---|---|---|",
+    ]
+    for row in payload.get("concept_metadata", []):
+        sources = ", ".join(row.get("source_papers", []))
+        lines.append(
+            f"| {row.get('boundary_family', '')} | `{row.get('concept', '')}` | "
+            f"{side_badge(row.get('decision_side', 'unknown'))} | {sources} |"
+        )
+    return "\n".join(lines) + "\n"
+
+
 def md_link(path: Path, label: str | None = None) -> str:
     shown = display_path(path)
     base = report_link_base()
@@ -3842,7 +3863,12 @@ def update_report() -> None:
     step2_neighbors = read_optional_json(STEP2_DIR / "neighbors.json")
     step2_diagnostic = read_optional_json(STEP2_DIAGNOSTIC_JSON)
     step2_visual = read_optional_json(STEP2_ARTIFACT_DIR / "visuals" / "visual_summary.json")
+    step2_srf_interpretation = read_optional_json(STEP2_INTERPRET_DIR / "srf_dimension_interpretation.json")
     step2_pilot = read_optional_json(STEP2_RESULT_DIR / "step2_pilot.json")
+    step2_v3_concepts = read_optional_json(STEP2_V3_CONCEPT_PATH)
+    step2_v3_protocol = read_optional_json(STEP2_V3_DIR / "triplet_protocol.json")
+    step2_v3_visual = read_optional_json(STEP2_V3_DIR / "artifacts" / "visuals" / "visual_summary.json")
+    step2_v3_neighbors = read_optional_json(STEP2_V3_DIR / "neighbors.json")
     current_rdm_sha = (rdm_meta or {}).get("rdm_sha256")
     neighbors_current = artifact_hash_current(current_rdm_sha, (neighbors or {}).get("rdm_meta") if neighbors else None)
     results_current = artifact_hash_current(current_rdm_sha, results)
@@ -3855,6 +3881,8 @@ def update_report() -> None:
     item_runs = sorted(path.parent.name for path in RAW_DIR.glob("*/items.csv"))
     step2_required = (step2_protocol or config["triplet_protocol"]).get("required_geometry_runs", required)
     step2_triplet_state = {run: (STEP2_RAW_DIR / run / "triplet.csv").exists() for run in step2_required}
+    step2_v3_required = (step2_v3_protocol or config["triplet_protocol"]).get("required_geometry_runs", required)
+    step2_v3_triplet_state = {run: (STEP2_V3_RAW_DIR / run / "triplet.csv").exists() for run in step2_v3_required}
     step2_items_exist = (STEP2_ITEM_DIR / "items.json").exists()
     step2_item_runs = sorted(path.parent.name for path in STEP2_RAW_DIR.glob("*/items.csv"))
     step2_srf_rdm_candidates = [
@@ -3864,6 +3892,20 @@ def update_report() -> None:
     ]
     step2_srf_rank = (((step2_visual or {}).get("methods") or {}).get("srf_from_spose_official") or {}).get("fit", {}).get("rank")
     step2_srf_rdm_path = STEP2_RDM_DIR / f"pooled_srf_from_spose_official_rank{int(step2_srf_rank)}.npy" if step2_srf_rank is not None else (step2_srf_rdm_candidates[-1] if step2_srf_rdm_candidates else None)
+    step2_v3_methods = (step2_v3_visual or {}).get("methods") or {}
+    step2_v3_parse_metrics = (step2_v3_visual or {}).get("parse_metrics") or {}
+    step2_v3_valid_triplets = [
+        f"{run}: {metrics.get('n_valid_triplets')}/{metrics.get('n_rows')}"
+        for run, metrics in step2_v3_parse_metrics.items()
+    ]
+    step2_v3_run_corrs = (step2_v3_visual or {}).get("run_count_rdm_reliability") or []
+    step2_v3_run_corr_text = "; ".join(
+        f"{row.get('run_a')} vs {row.get('run_b')}: Pearson {fmt_optional_float(row.get('count_rdm_pearson'))}, Spearman {fmt_optional_float(row.get('count_rdm_spearman'))}"
+        for row in step2_v3_run_corrs
+    )
+    step2_v3_spose = step2_v3_methods.get("spose_official") or {}
+    step2_v3_srf = step2_v3_methods.get("srf_from_spose_official") or {}
+    step2_v3_srf_fit = step2_v3_srf.get("fit") or {}
 
     h1 = results["h1_verdict"] if results_current else "not_decided_current_geometry"
     rdm_source = (rdm_meta or {}).get("rdm_source", config.get("rdm_source", "salmon_embedding"))
@@ -4109,9 +4151,66 @@ def update_report() -> None:
             "",
             f"Safe prototype examples and the first-pass concept shortlist are in {md_link(EXP_DIR / 'STEP2_EXAMPLE_BANK.md')}.",
             "",
-            f"The revised safety-decision framing is in {md_link(EXP_DIR / 'STEP2_DECISION_BOUNDARY_PLAN.md')}; the proposed v2 concept set is {md_link(CONCEPT_DIR / 'step2_safety_decision_boundaries_v2.json')}.",
+            f"The revised safety-decision framing is in {md_link(EXP_DIR / 'STEP2_DECISION_BOUNDARY_PLAN.md')}; the active proposed v3 concept set is {md_link(CONCEPT_DIR / 'step2_safety_decision_boundaries_v3.json')} and the earlier v2 draft is {md_link(CONCEPT_DIR / 'step2_safety_decision_boundaries_v2.json')}.",
             "",
             "Current recommendation: stop scaling the easy v1 category-label pilot. Use a sanitized safety-policy decision-boundary taxonomy drawn from HarmBench/JailbreakBench/WMDP/CyberSecEval/AIR-Bench/Anthropic/DeepMind-style categories, then test whether geometry predicts allowed/restricted routing errors.",
+            "",
+            "### Step 2 v3 Source-Mapped Safety Concepts",
+            "",
+            "What we are trying to find: whether the neutral proximity-to-confusion law transfers to safety-policy routing boundaries that AI-safety benchmarks actually care about, without generating harmful procedural content.",
+            "",
+            "What I set up: a 24-concept v3 taxonomy with six matched families and exactly two allowed plus two restricted policy buckets per family. The families are cyber access/remediation, malware/social engineering, bio/chemical hazardous knowledge, information integrity/persuasion, autonomy/oversight, and jailbreak/policy-boundary robustness.",
+            "",
+            f"Concept file: {md_link(STEP2_V3_CONCEPT_PATH)}. V3 stimuli: {md_link(STEP2_V3_STIM_DIR / 'concepts.csv') if (STEP2_V3_STIM_DIR / 'concepts.csv').exists() else 'pending'}, {md_link(STEP2_V3_STIM_DIR / 'triplets.csv') if (STEP2_V3_STIM_DIR / 'triplets.csv').exists() else 'pending'}, {md_link(STEP2_V3_STIM_DIR / 'pairs.csv') if (STEP2_V3_STIM_DIR / 'pairs.csv').exists() else 'pending'}. V3 protocol: {md_link(STEP2_V3_DIR / 'triplet_protocol.json') if (STEP2_V3_DIR / 'triplet_protocol.json').exists() else 'pending'}. Run status: {md_link(STEP2_V3_DIR / 'run_status.csv') if (STEP2_V3_DIR / 'run_status.csv').exists() else 'pending'}.",
+            "",
+            f"Geometry status: `{sum(step2_v3_triplet_state.values())}/{len(step2_v3_triplet_state)}` required v3 triplet runs are present. These must pass the same reliability and sanity gates before any v3 behavior item is scored.",
+            "",
+            (
+                "V3 geometry readout: "
+                f"parseable triplets `{'; '.join(step2_v3_valid_triplets)}`; "
+                f"count-RDM run reliability `{step2_v3_run_corr_text or 'pending'}`; "
+                f"SPoSE held-out accuracy `{fmt_optional_float((step2_v3_spose.get('fit') or {}).get('test_acc'), 4)}`, "
+                f"SPoSE nearest-neighbor same-family `{step2_v3_spose.get('nn_same_cluster', 'pending')}/24`, "
+                f"SPoSE cross-side nearest neighbors `{step2_v3_spose.get('nn_cross_side', 'pending')}/24`; "
+                f"SRF rank `{step2_v3_srf_fit.get('rank', 'pending')}` with held-out similarity R2 `{fmt_optional_float(step2_v3_srf_fit.get('test_r2'), 4)}`."
+                if step2_v3_visual
+                else "V3 geometry readout: pending. Run `python scripts/run_exp3_safety_v3.py build-geometry`."
+            ),
+            "",
+            (
+                f"V3 geometry artifacts: {md_link(STEP2_V3_DIR / 'artifacts' / 'visuals' / 'visual_summary.json')}, "
+                f"{md_link(STEP2_V3_DIR / 'artifacts' / 'visuals' / 'nearest_neighbors_by_method.csv')}, "
+                f"{md_link(STEP2_V3_DIR / 'artifacts' / 'visuals' / 'cluster_summary_by_method.csv')}, "
+                f"{md_link(STEP2_V3_DIR / 'artifacts' / 'visuals' / 'srf_from_spose_official_dimensions.csv')}."
+                if step2_v3_visual
+                else "V3 geometry artifacts: pending."
+            ),
+            "",
+            (
+                f"V3 preregistered predictions: primary SPoSE {md_link(STEP2_V3_DIR / 'neighbors_spose_official.csv')} / {md_link(STEP2_V3_DIR / 'neighbors_spose_official.json')}; "
+                f"SRF comparison {md_link(STEP2_V3_DIR / 'neighbors_srf_from_spose_official.csv')} / {md_link(STEP2_V3_DIR / 'neighbors_srf_from_spose_official.json')}."
+                if step2_v3_neighbors
+                else "V3 preregistered predictions: pending. Run `python scripts/run_exp3_safety_v3.py register-predictions --backend spose_official` before item scoring."
+            ),
+            "",
+            (
+                "Important caveat: v3 triplet comparisons involving restricted labels produced refusal-style answers in the raw CSVs. "
+                "That makes the current geometry a mixture of semantic similarity and policy/refusal behavior; useful for safety routing, but not a clean semantic-only RDM."
+                if step2_v3_visual
+                else ""
+            ),
+            "",
+            "Source papers used for the v3 concepts: "
+            + (
+                ", ".join(f"[{name}]({url})" for name, url in (step2_v3_concepts or {}).get("source_urls", {}).items())
+                if step2_v3_concepts
+                else "pending"
+            )
+            + ".",
+            "",
+            markdown_table_v3_concepts(step2_v3_concepts),
+            "",
+            "What this means now: the concept-selection problem is no longer just a hand-built safety list. It is a matched, source-mapped decision-boundary set designed to produce both false-allow candidates and over-refusal candidates. The next result to trust is the human sanity gate over the v3 preregistered neighbors, followed by boundary-local policy-routing items.",
             "",
             "### Step 2 Geometry Status",
             "",
@@ -4191,6 +4290,12 @@ def update_report() -> None:
             f"dim {row.get('dimension')}: {', '.join(row.get('top_concepts', [])[:3])}"
             for row in srf_dimensions
         )
+        srf_interp_parsed = (step2_srf_interpretation or {}).get("parsed") or {}
+        srf_interp_labels = srf_interp_parsed.get("dimension_labels") or []
+        srf_interp_text = "; ".join(
+            f"dim {row.get('dimension')}: {row.get('short_label')}"
+            for row in srf_interp_labels
+        )
         report.extend(
             [
                 "### Step 2 Geometry Visual Sanity Check",
@@ -4210,6 +4315,13 @@ def update_report() -> None:
                 f"| SRF from SPoSE | {md_link(ROOT / srf_paths.get('heatmap', display_path(STEP2_ARTIFACT_DIR / 'visuals' / 'srf_from_spose_official_clustered_rdm.png')), 'heatmap')}, {md_link(ROOT / srf_paths.get('mds', display_path(STEP2_ARTIFACT_DIR / 'visuals' / 'srf_from_spose_official_mds.png')), 'MDS')}, {md_link(ROOT / srf_paths.get('loadings', display_path(STEP2_ARTIFACT_DIR / 'visuals' / 'srf_from_spose_official_loadings.png')), 'loadings')} | rank `{srf_rank}`; held-out similarity R2 `{fmt_optional_float(srf_test_r2)}`; `{srf.get('nn_same_cluster')}/20` nearest neighbors stay in manual cluster | Interpretable black-box dimensions for explaining why a boundary is close; use as a sanity/diagnostic layer before behavior items. |",
                 "",
                 f"SRF dimension summaries: {srf_dimension_text or 'pending'}. Full SRF factors: {md_link(STEP2_ARTIFACT_DIR / 'visuals' / 'srf_from_spose_official_dimensions.csv')} and {md_link(STEP2_ARTIFACT_DIR / 'visuals' / 'srf_from_spose_official_loadings.csv')}.",
+                "",
+                (
+                    f"Stronger-LLM SRF interpretation: {md_link(STEP2_INTERPRET_DIR / 'srf_dimension_interpretation.md')} "
+                    f"using `{step2_srf_interpretation.get('judge_model')}`. Labels: {srf_interp_text or 'parse pending'}."
+                    if step2_srf_interpretation
+                    else "Stronger-LLM SRF interpretation: pending. Run `python scripts/interpret_exp3_srf_dimensions.py`."
+                ),
                 "",
                 "Interpretation: SPoSE official-like is the leading backend candidate, but the current nearest-neighbor sanity gate is not a clean pass. The immediate Step 2 behavior run is therefore an exploratory pilot, not the final H3 transfer test.",
                 "",
@@ -4276,6 +4388,9 @@ def update_report() -> None:
             f"- Step 2 neighbors registered: {'yes' if step2_neighbors else 'no'}",
             f"- Step 2 neighbor sanity gate: `{(step2_neighbors or {}).get('sanity_gate', 'not_started')}`",
             f"- Step 2 item pilot scored: {'yes' if step2_pilot else 'no'}",
+            f"- Step 2 v3 source-mapped concepts frozen: {'yes' if step2_v3_concepts else 'no'}",
+            f"- Step 2 v3 triplet runs present: {sum(step2_v3_triplet_state.values())}/{len(step2_v3_triplet_state)}",
+            f"- Step 2 v3 primary predictions registered: {'yes' if step2_v3_neighbors else 'no'}",
             "",
             "## Commands",
             "",
@@ -4294,11 +4409,18 @@ def update_report() -> None:
             "python scripts/run_experiment3.py build-step2-rdm",
             "python scripts/run_experiment3.py diagnose-step2-geometry",
             "python scripts/visualize_exp3_step2_geometry.py",
+            "python scripts/interpret_exp3_srf_dimensions.py",
             "# Optional black-box SRF backend after visualization: python scripts/run_experiment3.py register-step2-neighbors --backend srf-from-spose-official",
             "python scripts/run_experiment3.py register-step2-neighbors --backend spose-official",
             "python scripts/run_experiment3.py generate-step2-items --exploratory --n-items-per-target 2",
             "python scripts/run_experiment3.py run-step2-items --out-run step2_spose_pilot_v1 --overwrite",
             "python scripts/run_experiment3.py score-step2 --run step2_spose_pilot_v1",
+            "python scripts/run_exp3_safety_v3.py init",
+            "python scripts/run_exp3_safety_v3.py run-triplet-suite --model llama-3.1-8b-instruct --overwrite --max_model_len 256 --max_num_seqs 128",
+            "python scripts/run_exp3_safety_v3.py summarize",
+            "python scripts/run_exp3_safety_v3.py build-geometry",
+            "python scripts/run_exp3_safety_v3.py register-predictions --backend spose_official",
+            "python scripts/run_exp3_safety_v3.py register-predictions --backend srf_from_spose_official",
             "```",
             "",
             "## Pre-Registered Predictions",

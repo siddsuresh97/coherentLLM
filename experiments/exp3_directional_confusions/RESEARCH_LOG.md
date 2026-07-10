@@ -301,3 +301,47 @@ Result on the v1 Step 2 safety geometry: selected rank 5; held-out similarity R2
 Interpretation: SRF is useful as a sanity/explanation layer. It can tell us which broad black-box value/policy dimensions make a boundary close, but it is not itself evidence of behavioral safety failure. The final claim still needs preregistered directional policy-routing errors on safe request-card items.
 Value-alignment note: for now, "value directions" means black-box similarity factors such as defensive-vs-misuse, safety-education-vs-operational-detail, civic-checking-vs-deceptive-persuasion, or oversight-vs-evasion. Internal value-direction probes are explicitly deferred.
 Artifacts: `experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/srf_from_spose_official_dimensions.csv`, `experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/srf_from_spose_official_loadings.csv`, `experiments/exp3_directional_confusions/step2_safety/artifacts/visuals/srf_from_spose_official_loadings.png`, `experiments/exp3_directional_confusions/step2_safety/artifacts/rdms/pooled_srf_from_spose_official_rank5.npy`.
+
+## 2026-07-09T19:28:00-05:00 DECISION: Concept selection
+
+User asked to choose concepts from the referenced AI-safety papers rather than relying on loose examples.
+Decision: create `step2_safety_decision_boundaries_v3.json` as the active proposed Step 2 concept set. It has 24 concepts, balanced 12 allowed / 12 restricted, organized into six policy-boundary families with two allowed and two restricted buckets per family.
+Source families: cyber access/remediation from CyberSecEval 3, HarmBench, JailbreakBench, and AIR-Bench; malware/social engineering from CyberSecEval 3 and red-team benchmarks; bio/chemical hazardous knowledge from WMDP, ABC-Bench, and ForesightSafety Bench; persuasion/information integrity from DeepMind dangerous-capability evals and AIR-Bench; autonomy/oversight from DeepMind dangerous-capability evals and frontier-auditing work; jailbreak/policy-boundary robustness from JailbreakBench and Constitutional Classifiers.
+Safety constraint: the concepts are category labels only. They include no procedural harmful details, targets, code, synthesis steps, biological protocols, persuasion scripts, or bypass tactics.
+Counterfactual rejected: do not use the v1 concept names as the final safety task because several were too broad or overlapping, and the first item pilot was too easy. Do not use medical/legal substitutions first because the community-facing frontier-risk signal is stronger in cyber, bio/chemical, persuasion, autonomy, and jailbreak/refusal policy boundaries.
+Next action: use v3 for the next triplet geometry run; fit SPoSE/SRF; then generate boundary-local request cards only after neighbor preregistration.
+Artifacts: `experiments/exp3_directional_confusions/concepts/step2_safety_decision_boundaries_v3.json`.
+
+## 2026-07-09T19:29:50-05:00 DECISION: Concept selection
+
+Initialized source-mapped Step 2 v3 safety-boundary stimuli in a separate directory.
+Concept set: `experiments/exp3_directional_confusions/concepts/step2_safety_decision_boundaries_v3.json`.
+V3 stimuli: `experiments/exp3_directional_confusions/step2_safety_v3/stimuli/triplets.csv` with 6072 triplets per run.
+The v1 exploratory pilot remains preserved in `step2_safety/`; v3 runs write to `step2_safety_v3/`.
+
+## 2026-07-09T19:39:12-05:00 DECISION: Pre-registered predictions
+
+Registered Step 2 v3 predictions from backend `srf_from_spose_official` before any v3 behavior item scoring.
+Prediction CSV: `experiments/exp3_directional_confusions/step2_safety_v3/neighbors_srf_from_spose_official.csv`.
+Prediction JSON: `experiments/exp3_directional_confusions/step2_safety_v3/neighbors_srf_from_spose_official.json`.
+Status is caveated because v3 geometry has high count-RDM reproducibility but includes refusal-style unparsed triplet responses and mixed cross-family nearest neighbors.
+
+## 2026-07-09T19:41:00-05:00 DECISION: Course-correction
+
+Built Step 2 v3 geometry after running all three v3 triplet suites with `llama-3.1-8b-instruct` on the H100.
+Triplet run size: 6072 prompts/run, 18216 total prompts. Parseable triplets: `5295/6072`, `5295/6072`, and `5281/6072`.
+Count-RDM reproducibility is high: canonical seed A vs B Pearson/Spearman = `1.000/1.000`; canonical vs matched paraphrase = `0.975/0.970`.
+SPoSE official-like fit: held-out triplet accuracy `0.9313`; nearest-neighbor same-family `8/24`; cross-side nearest neighbors `7/24`.
+SRF over SPoSE similarity: selected rank `6`; held-out similarity R2 `0.9777`; nearest-neighbor same-family `7/24`; cross-side nearest neighbors `9/24`.
+Important caveat: many unparsed triplet responses were safety refusals such as "I can't help" or "I can't provide" when restricted labels appeared in the triplet. This means v3 geometry is not a clean semantic-only RDM; it partly reflects policy/refusal routing.
+Decision: register SPoSE and SRF predictions as caveated preregistrations, but do not score v3 behavior items until a human sanity gate chooses which same-family boundary candidates are coherent enough to test.
+Strongest same-family cross-boundary candidates from the primary SPoSE preregistration: `phishing awareness training -> social engineering execution`, `malware reverse engineering for defense -> social engineering execution`, and `social engineering execution -> phishing awareness training`.
+Questionable cross-family false-allow candidates such as `election misinformation generation -> biosecurity risk assessment` should not be treated as clean safety findings without concept/prompt repair.
+Artifacts: `experiments/exp3_directional_confusions/step2_safety_v3/artifacts/visuals/visual_summary.json`, `experiments/exp3_directional_confusions/step2_safety_v3/artifacts/visuals/nearest_neighbors_by_method.csv`, `experiments/exp3_directional_confusions/step2_safety_v3/neighbors_spose_official.csv`, `experiments/exp3_directional_confusions/step2_safety_v3/neighbors_srf_from_spose_official.csv`.
+
+## 2026-07-09T19:39:12-05:00 DECISION: Pre-registered predictions
+
+Registered Step 2 v3 predictions from backend `spose_official` before any v3 behavior item scoring.
+Prediction CSV: `experiments/exp3_directional_confusions/step2_safety_v3/neighbors_spose_official.csv`.
+Prediction JSON: `experiments/exp3_directional_confusions/step2_safety_v3/neighbors_spose_official.json`.
+Status is caveated because v3 geometry has high count-RDM reproducibility but includes refusal-style unparsed triplet responses and mixed cross-family nearest neighbors.

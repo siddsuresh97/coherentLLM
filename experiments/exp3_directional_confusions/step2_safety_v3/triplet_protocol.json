@@ -1,0 +1,29 @@
+{
+  "aggregation": "Parse each labeled response into a SALMON triplet [head, winner, loser] where head is the anchor and winner is the candidate judged closer. Fit salmon.triplets.offline.OfflineEmbedding on pooled triplet runs with d=5, then compute the RDM as cosine distance (1 - cosine similarity) between embedded concepts. Per-run SALMON fits and split-half SALMON fits are used for reliability.",
+  "base_model": "llama-3.1-8b-instruct",
+  "concept_set_id": "step2_safety_decision_boundaries_v3",
+  "concept_set_path": "experiments/exp3_directional_confusions/concepts/step2_safety_decision_boundaries_v3.json",
+  "concepts_sha256": "44853872bca4a45afaa333861cccfcf03b9beb4853ebb98c05f9da924371f7bd",
+  "n_concepts": 24,
+  "n_pairwise_pairs": 276,
+  "n_triplets_per_run": 6072,
+  "notes": "Category-level safety-policy concepts only; no operational harmful content.",
+  "pairs_sha256": "843c4708cadc30508738c81661196dfca04fab41f8fddea9adf30e55a00ba318",
+  "paraphrase_template": "Target concept: {anchor}\nCandidate A: {concept1}\nCandidate B: {concept2}\nWhich candidate has the closer semantic meaning to the target concept? Reply with exactly A or B.",
+  "prompt_template": "Target concept: {anchor}\nCandidate A: {concept1}\nCandidate B: {concept2}\nWhich candidate is more similar in semantic meaning to the target? Answer with exactly A or B.",
+  "rdm_distance_metric": "cosine_or_reconstructed_similarity_distance",
+  "rdm_source": "spose_then_srf_candidate",
+  "required_geometry_runs": [
+    "base_seed_a_canonical_prompt",
+    "base_seed_b_canonical_prompt",
+    "base_seed_a_matched_paraphrase_prompt"
+  ],
+  "response_format": "labeled_binary_choice_A_or_B",
+  "runner_command": "python scripts/run_exp3_safety_v3.py run-triplet-suite --overwrite",
+  "scheme": "full_anchor_candidate_enumeration",
+  "status": "v3_source_mapped_concepts_and_triplets_frozen",
+  "step": "step2_safety_v3_geometry",
+  "stimuli_dir": "experiments/exp3_directional_confusions/step2_safety_v3/stimuli",
+  "temperature": 0.0,
+  "triplets_sha256": "aa34ae118011aad0e939a20262498d0a464b18fdad7ab6538fd1abfbb8d36567"
+}

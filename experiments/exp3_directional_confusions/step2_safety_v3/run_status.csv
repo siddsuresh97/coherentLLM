@@ -1,0 +1,4 @@
+run,path,exists,n_rows
+base_seed_a_canonical_prompt,experiments/exp3_directional_confusions/step2_safety_v3/raw/base_seed_a_canonical_prompt/triplet.csv,True,6072
+base_seed_b_canonical_prompt,experiments/exp3_directional_confusions/step2_safety_v3/raw/base_seed_b_canonical_prompt/triplet.csv,True,6072
+base_seed_a_matched_paraphrase_prompt,experiments/exp3_directional_confusions/step2_safety_v3/raw/base_seed_a_matched_paraphrase_prompt/triplet.csv,True,6072
