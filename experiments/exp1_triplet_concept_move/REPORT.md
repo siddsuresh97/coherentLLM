@@ -24,7 +24,8 @@ Success requires both:
 | 5 | Targeted triplet SFT v1 | Yes | Partial | `antelope`-`bison` moved strongly: rank 1 by global edit-pair delta and rank 3 by global residual-pair delta. But row localization failed (`antelope` row rank 14 original, 24 residual) because alternatives such as `boar` and `beaver` also moved. |
 | 6 | Replay-heavy targeted triplet SFT v2 | Yes | Partial | Overall residual drift dropped (`0.135 -> 0.109`) and `antelope`-`bison` stayed the top target-row residual pair, but row localization still failed (`antelope` rank 12). Top residual pairs were mostly `bison` against other concepts, revealing missing neighbor preservation. |
 | 7 | Target-anchor + `bison`-preserve v3 | Yes | Partial / wrong pair | Residual drift dropped (`0.109 -> 0.066`) and `antelope` row rank improved to 4 with SNR `1.403`, but the intended `antelope`-`bison` residual pair fell to rank 320. The one-direction edit plus neighbor preservation canceled the target-pair signal. |
-| 8 | Both-direction + `bison`-preserve v4 | Yes | Running next | Combines v2's both-direction target-pair edit with v3's explicit `bison` preservation. This directly tests whether neighbor preservation fixes v2 without erasing the target pair. |
+| 8 | Both-direction + `bison`-preserve v4 | Yes | Partial / clean but weak | `antelope`-`bison` became the top global residual pair and residual drift dropped to `0.050`, but the edit was too weak at row level (`antelope` rank 12, SNR `1.056`). |
+| 9 | v5: v4 with stronger target repeats | Yes | Running next | Same preservation as v4, but target-neighbor repeats increase from 12 to 24. This tests whether v4's clean relation-level signal can be made strong enough for row detection. |
 
 Main interpretation: the detector and scorer work, and the model's triplet behavior can move. The remaining problem is locality: targeted triplet SFT moves the intended pair, but the adapter also shifts related prompt alternatives or the neighbor concept unless we explicitly preserve them.
 
@@ -88,6 +89,16 @@ v4 setup:
 - Counts: 5,448 examples per arm; 54 editable target-neighbor rows repeated 12 times, 900 `antelope`-preserve rows repeated twice, 900 `bison`-preserve rows repeated twice, and 1,200 replay rows.
 - Training plan: online W&B, `rank=16`, `lr=5e-5`, `max_steps=600`, batch size 8.
 - W&B links: [control](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/qdler1uc), [edit](https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/4dkfq6su).
+- Detection: [detection/concentrated_drop_100_triplet_targeted_v4_both_bisonpreserve.json](detection/concentrated_drop_100_triplet_targeted_v4_both_bisonpreserve.json). The intended relation is now cleanly top-ranked by global residual pair (`antelope`-`bison` rank 1), and global residual drift is low (`0.050`). But row detection is weak: `antelope` rank 12, SNR `1.056`.
+
+Next variant: v5, same as v4 but with stronger target-pair pressure.
+
+v5 setup:
+
+- Data: [sft_triplet_data/concentrated_drop_100_triplet_targeted_v5_both_bisonpreserve_target24/control.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v5_both_bisonpreserve_target24/control.jsonl), [sft_triplet_data/concentrated_drop_100_triplet_targeted_v5_both_bisonpreserve_target24/edit.jsonl](sft_triplet_data/concentrated_drop_100_triplet_targeted_v5_both_bisonpreserve_target24/edit.jsonl), [manifest](sft_triplet_data/concentrated_drop_100_triplet_targeted_v5_both_bisonpreserve_target24/manifest.json).
+- Counts: 6,096 examples per arm; 54 editable target-neighbor rows repeated 24 times, 900 `antelope`-preserve rows repeated twice, 900 `bison`-preserve rows repeated twice, and 1,200 replay rows.
+- Training plan: online W&B, `rank=16`, `lr=5e-5`, `max_steps=600`, batch size 8.
+- W&B links: pending until launch.
 
 Example control/edit pair:
 

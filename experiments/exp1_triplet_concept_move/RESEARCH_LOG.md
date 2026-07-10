@@ -331,3 +331,23 @@
 - Control run: `https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/qdler1uc`.
 - Edit run: `https://wandb.ai/sid-academic-team/coherentLLM-exp1/runs/4dkfq6su`.
 - Settings: PEFT QLoRA, Llama-3.1-8B-Instruct snapshot `0e9e39f249a16976918f6564b8830bc894c89659`, `rank=16`, `learning_rate=5e-5`, `max_steps=600`, batch size 8, no gradient accumulation, seed 1729.
+
+## 2026-07-09 19:51 Both-direction + bison-preserve v4 result
+- Goal this session: test whether combining v2's both-direction target-pair pressure with v3's explicit `bison` preservation restores the target relation while keeping neighbor drift down.
+- What I ran / built: trained v4 control/edit adapters online in W&B, recovered full frozen-protocol triplet RDMs, scored `detection/concentrated_drop_100_triplet_targeted_v4_both_bisonpreserve.json`, and built v5 data under `sft_triplet_data/concentrated_drop_100_triplet_targeted_v5_both_bisonpreserve_target24/`.
+- Result (numbers; plots saved to /figs with filenames): v4 control finished 600 steps in 492.88s (`9.739` samples/s, final logged loss `0.1542`, train loss `0.1347`); edit finished in 500.60s (`9.589` samples/s, final logged loss `0.1495`, train loss `0.1494`). Detection: `target_rank=12`, `target_snr_control_only=1.056`, `upper_rms_control_null=0.125`, `upper_rms_edit=0.133`, `upper_rms_residual=0.050`. `antelope`-`bison` was rank 1 by global residual pair and rank 1 within the target row, with residual delta `0.232`.
+- Interpretation (what the result means, not just restating it): v4 fixed the relation-locality failure but left the signal underpowered. This is the cleanest pair-level result so far because the intended relation is the top residual pair and global residual drift is the smallest of the targeted-triplet runs. It still does not satisfy the original row-localization criterion because the row aggregate is diluted and the target-pair movement is small.
+- Lit found + how it changes the plan: no new literature in this operational step.
+- Decision / next step + WHY this over the alternatives I considered: run v5 with the same v4 data design but double target repeats from 12 to 24. I chose this over changing LR/rank because v4's failure is not broad drift; it is insufficient target-pair magnitude. I chose this over dropping preservation because v4 shows preservation is what made the pair signal clean.
+- Open risks: stronger target repeats may reintroduce v2-style `bison` drift. If that happens, the next axis is not simply more target pressure; it is alternative balancing or a concept pair whose target-neighbor cell can be manipulated without requiring many forced alternatives.
+
+### DECISION 2026-07-09 19:51 - Course-correction to v5 target-repeat 24
+- What specifically in the result told me the cause: `antelope`-`bison` was the top global residual pair, but its residual delta was only `0.232`, and the target row ranked 12. This means the data design now points to the right relation, but the movement is too small for row-level attribution.
+- Next lever and why: double editable repeats while keeping `antelope` and `bison` preservation fixed. This directly increases the clean target-pair signal discovered in v4 without removing the preservation that controlled drift.
+- Rejected alternatives: increasing LR or rank would globally strengthen the adapter and may undo the drift gains; changing concept pair would abandon a working diagnostic; returning to one-direction editing would repeat v3's cancellation.
+- What would confirm or kill this hypothesis: confirmation is `antelope`-`bison` still rank 1 by global residual pair with larger residual delta and better `antelope` row rank. If `bison`-other pairs dominate again, the target-pressure/locality tradeoff needs data balancing rather than more repeats.
+
+### NOTE 2026-07-09 19:51 - v5 dataset built
+- Data: `experiments/exp1_triplet_concept_move/sft_triplet_data/concentrated_drop_100_triplet_targeted_v5_both_bisonpreserve_target24/{control.jsonl,edit.jsonl,manifest.json}`.
+- Counts: 6,096 rows per arm: 54 editable target-neighbor rows repeated 24 times, 900 target-preserve rows repeated twice, 900 neighbor-preserve rows repeated twice, and 1,200 replay rows.
+- Training plan: online W&B, PEFT QLoRA, `rank=16`, `learning_rate=5e-5`, `max_steps=600`, batch size 8, seed 1729.

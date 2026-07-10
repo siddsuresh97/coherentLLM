@@ -1,0 +1,10 @@
+{
+  "aggregation": "1 - symmetrized triplet choice-rate similarity",
+  "out": "experiments/exp1_triplet_concept_move/rdms/control_triplet_targeted_v4_both_bisonpreserve_concentrated_drop_100/rdm.npy",
+  "raw_csv": "experiments/exp1_triplet_concept_move/raw/control_triplet_targeted_v4_both_bisonpreserve_concentrated_drop_100/triplet.csv",
+  "run": "control_triplet_targeted_v4_both_bisonpreserve_concentrated_drop_100",
+  "shape": [
+    30,
+    30
+  ]
+}
