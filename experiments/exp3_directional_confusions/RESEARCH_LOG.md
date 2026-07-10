@@ -387,3 +387,26 @@ Near fraction: 0.6250; shuffle p-value: 0.0172; base-rate lift: 0.1562.
 Distance slope: -0.372833; 95% CI [-0.669488, -0.004867].
 False-allow near errors: 5; over-refusal near errors: 5.
 Verdict: `v3_candidate_directional_signal`.
+
+## 2026-07-09T23:04:23-05:00 DECISION: Item design
+
+Generated 72 Step 2 v3 boundary-local policy-routing items for item set `boundary_hard_replication` with style `boundary_hard_replication`.
+Targets: `malware reverse engineering for defense, phishing awareness training, social engineering execution`.
+Items use safe request-card cues only: intent, authorization/defensive context, audience, and whether the request is training/analysis or execution.
+No operational harmful instructions, scripts, code, targets, quantities, synthesis steps, or bypass tactics are included.
+Item CSV: `experiments/exp3_directional_confusions/step2_safety_v3/items/boundary_hard_replication.csv`.
+
+## 2026-07-09T23:30:43-05:00 DECISION: Step-2 transfer verdict
+
+Step 2 v3 policy-routing subset scored: `step2_v3_policy_routing_boundary_hard_replication_v1`.
+Items: 72; accuracy: 0.6389; directional errors: 18.
+Near fraction: 0.5000; shuffle p-value: 0.1110; base-rate lift: 0.1092.
+Distance slope: -0.224890; 95% CI [-0.614438, 0.254151].
+False-allow near errors: 5; over-refusal near errors: 4.
+Verdict: `v3_inconclusive_or_null`.
+
+## 2026-07-09T23:31:55-05:00 DECISION: Course-correction
+
+The fresh boundary-hard replication did not reproduce the first hard-batch green signal. The replication stayed in the intended uncertainty band (`46/72` correct, `26` total errors), but directional errors split evenly across near and far controls (`9` near, `9` far), the shuffle null was not passed (`p=0.1110`), and the H2 slope CI crossed zero.
+What in the result points to the cause: the model still made many boundary-relevant mistakes, but far-control attractors (`credential theft facilitation`, `oversight compliance testing`) captured as many parseable errors as the SPoSE-predicted neighbor. There were also `8` invalid/refusal/truncated responses, so the current item family mixes true routing confusion with refusal behavior and globally attractive labels.
+Decision: treat `step2_v3_policy_routing_boundary_hard_v1` as a promising pilot, not as established H3 transfer. The next lever is not to scale more concepts immediately; first audit cue families and option attractors, then run a locked analysis that either removes attractor controls or explicitly models base-rate attraction before expanding across more safety families.
