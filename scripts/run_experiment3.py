@@ -64,6 +64,8 @@ STEP2_V3_CONCEPT_PATH = CONCEPT_DIR / "step2_safety_decision_boundaries_v3.json"
 STEP2_V3_DIR = EXP_DIR / "step2_safety_v3"
 STEP2_V3_STIM_DIR = STEP2_V3_DIR / "stimuli"
 STEP2_V3_RAW_DIR = STEP2_V3_DIR / "raw"
+STEP2_V3_ITEM_DIR = STEP2_V3_DIR / "items"
+STEP2_V3_RESULT_DIR = STEP2_V3_DIR / "results"
 TRIPLET_MAX_TOKENS = 4
 _REPORT_LINK_BASE: str | None | bool = False
 
@@ -3869,6 +3871,8 @@ def update_report() -> None:
     step2_v3_protocol = read_optional_json(STEP2_V3_DIR / "triplet_protocol.json")
     step2_v3_visual = read_optional_json(STEP2_V3_DIR / "artifacts" / "visuals" / "visual_summary.json")
     step2_v3_neighbors = read_optional_json(STEP2_V3_DIR / "neighbors.json")
+    step2_v3_audit = read_optional_json(STEP2_V3_DIR / "neighbor_sanity_audit.json")
+    step2_v3_result = read_optional_json(STEP2_V3_RESULT_DIR / "step2_v3_policy_routing.json")
     current_rdm_sha = (rdm_meta or {}).get("rdm_sha256")
     neighbors_current = artifact_hash_current(current_rdm_sha, (neighbors or {}).get("rdm_meta") if neighbors else None)
     results_current = artifact_hash_current(current_rdm_sha, results)
@@ -3906,6 +3910,8 @@ def update_report() -> None:
     step2_v3_spose = step2_v3_methods.get("spose_official") or {}
     step2_v3_srf = step2_v3_methods.get("srf_from_spose_official") or {}
     step2_v3_srf_fit = step2_v3_srf.get("fit") or {}
+    step2_v3_items_exist = (STEP2_V3_ITEM_DIR / "items.json").exists()
+    step2_v3_item_runs = sorted(path.parent.name for path in STEP2_V3_RAW_DIR.glob("*/items.csv"))
 
     h1 = results["h1_verdict"] if results_current else "not_decided_current_geometry"
     rdm_source = (rdm_meta or {}).get("rdm_source", config.get("rdm_source", "salmon_embedding"))
@@ -4194,6 +4200,45 @@ def update_report() -> None:
             ),
             "",
             (
+                f"V3 neighbor sanity audit: {md_link(STEP2_V3_DIR / 'neighbor_sanity_audit.csv')} / {md_link(STEP2_V3_DIR / 'neighbor_sanity_audit.json')}. "
+                f"Gate: `{step2_v3_neighbors.get('human_sanity_gate')}`; behavior targets: `{step2_v3_neighbors.get('behavior_target_count')}`."
+                if step2_v3_audit
+                else "V3 neighbor sanity audit: pending. Run `python scripts/run_exp3_safety_v3.py audit-neighbors`."
+            ),
+            "",
+            (
+                f"V3 behavior items: {md_link(STEP2_V3_ITEM_DIR / 'items.csv')} and {md_link(STEP2_V3_ITEM_DIR / 'items.json')}. "
+                "These are safe, boundary-local policy-routing cards for the social-engineering boundary subset."
+                if step2_v3_items_exist
+                else "V3 behavior items: pending until the neighbor sanity audit selects coherent targets."
+            ),
+            "",
+            (
+                f"V3 behavior responses: {', '.join(md_link(STEP2_V3_RAW_DIR / run / 'items.csv', run) for run in step2_v3_item_runs)}."
+                if step2_v3_item_runs
+                else "V3 behavior responses: pending; H100 was occupied and local CHTC access was not available from this host."
+            ),
+            "",
+            (
+                f"V3 scored policy-routing result: {md_link(STEP2_V3_RESULT_DIR / 'step2_v3_policy_routing.json')}, "
+                f"{md_link(STEP2_V3_RESULT_DIR / 'step2_v3_scored_items.csv')}, "
+                f"{md_link(STEP2_V3_RESULT_DIR / 'step2_v3_pair_rates.csv')}."
+                if step2_v3_result
+                else "V3 scored policy-routing result: pending. Run `python scripts/run_exp3_safety_v3.py score-items --run step2_v3_policy_routing_v1` after item responses exist."
+            ),
+            "",
+            (
+                f"V3 behavior readout: accuracy `{fmt_optional_float(step2_v3_result.get('accuracy'), 4)}`, "
+                f"directional errors `{step2_v3_result.get('n_directional_errors_near_or_far')}`, "
+                f"near fraction `{fmt_optional_float(step2_v3_result.get('near_fraction_among_directional_errors'), 4)}`, "
+                f"false-allow near errors `{step2_v3_result.get('false_allow_near_errors')}`, "
+                f"over-refusal near errors `{step2_v3_result.get('overrefusal_near_errors')}`, "
+                f"verdict `{step2_v3_result.get('verdict')}`."
+                if step2_v3_result
+                else "V3 behavior readout: pending."
+            ),
+            "",
+            (
                 "Important caveat: v3 triplet comparisons involving restricted labels produced refusal-style answers in the raw CSVs. "
                 "That makes the current geometry a mixture of semantic similarity and policy/refusal behavior; useful for safety routing, but not a clean semantic-only RDM."
                 if step2_v3_visual
@@ -4421,6 +4466,10 @@ def update_report() -> None:
             "python scripts/run_exp3_safety_v3.py build-geometry",
             "python scripts/run_exp3_safety_v3.py register-predictions --backend spose_official",
             "python scripts/run_exp3_safety_v3.py register-predictions --backend srf_from_spose_official",
+            "python scripts/run_exp3_safety_v3.py audit-neighbors",
+            "python scripts/run_exp3_safety_v3.py generate-items --n-items-per-target 12",
+            "python scripts/run_exp3_safety_v3.py run-items --model llama-3.1-8b-instruct --out-run step2_v3_policy_routing_v1 --overwrite --max_model_len 256 --max_num_seqs 8 --max-output-tokens 4",
+            "python scripts/run_exp3_safety_v3.py score-items --run step2_v3_policy_routing_v1",
             "```",
             "",
             "## Pre-Registered Predictions",

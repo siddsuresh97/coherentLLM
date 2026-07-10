@@ -1,6 +1,6 @@
 # Experiment 3 Report
 
-Last updated: 2026-07-09T19:39:56-05:00
+Last updated: 2026-07-09T22:05:58-05:00
 
 ## Step 1 Story
 
@@ -157,6 +157,16 @@ V3 geometry readout: parseable triplets `base_seed_a_canonical_prompt: 5295/6072
 V3 geometry artifacts: [experiments/exp3_directional_confusions/step2_safety_v3/artifacts/visuals/visual_summary.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/artifacts/visuals/visual_summary.json), [experiments/exp3_directional_confusions/step2_safety_v3/artifacts/visuals/nearest_neighbors_by_method.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/artifacts/visuals/nearest_neighbors_by_method.csv), [experiments/exp3_directional_confusions/step2_safety_v3/artifacts/visuals/cluster_summary_by_method.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/artifacts/visuals/cluster_summary_by_method.csv), [experiments/exp3_directional_confusions/step2_safety_v3/artifacts/visuals/srf_from_spose_official_dimensions.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/artifacts/visuals/srf_from_spose_official_dimensions.csv).
 
 V3 preregistered predictions: primary SPoSE [experiments/exp3_directional_confusions/step2_safety_v3/neighbors_spose_official.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/neighbors_spose_official.csv) / [experiments/exp3_directional_confusions/step2_safety_v3/neighbors_spose_official.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/neighbors_spose_official.json); SRF comparison [experiments/exp3_directional_confusions/step2_safety_v3/neighbors_srf_from_spose_official.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/neighbors_srf_from_spose_official.csv) / [experiments/exp3_directional_confusions/step2_safety_v3/neighbors_srf_from_spose_official.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/neighbors_srf_from_spose_official.json).
+
+V3 neighbor sanity audit: [experiments/exp3_directional_confusions/step2_safety_v3/neighbor_sanity_audit.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/neighbor_sanity_audit.csv) / [experiments/exp3_directional_confusions/step2_safety_v3/neighbor_sanity_audit.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/neighbor_sanity_audit.json). Gate: `behavior_subset_passed`; behavior targets: `3`.
+
+V3 behavior items: [experiments/exp3_directional_confusions/step2_safety_v3/items/items.csv](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/items/items.csv) and [experiments/exp3_directional_confusions/step2_safety_v3/items/items.json](https://github.com/siddsuresh97/coherentLLM/blob/exp3-directional-confusions/experiments/exp3_directional_confusions/step2_safety_v3/items/items.json). These are safe, boundary-local policy-routing cards for the social-engineering boundary subset.
+
+V3 behavior responses: pending; H100 was occupied and local CHTC access was not available from this host.
+
+V3 scored policy-routing result: pending. Run `python scripts/run_exp3_safety_v3.py score-items --run step2_v3_policy_routing_v1` after item responses exist.
+
+V3 behavior readout: pending.
 
 Important caveat: v3 triplet comparisons involving restricted labels produced refusal-style answers in the raw CSVs. That makes the current geometry a mixture of semantic similarity and policy/refusal behavior; useful for safety routing, but not a clean semantic-only RDM.
 
@@ -369,6 +379,10 @@ python scripts/run_exp3_safety_v3.py summarize
 python scripts/run_exp3_safety_v3.py build-geometry
 python scripts/run_exp3_safety_v3.py register-predictions --backend spose_official
 python scripts/run_exp3_safety_v3.py register-predictions --backend srf_from_spose_official
+python scripts/run_exp3_safety_v3.py audit-neighbors
+python scripts/run_exp3_safety_v3.py generate-items --n-items-per-target 12
+python scripts/run_exp3_safety_v3.py run-items --model llama-3.1-8b-instruct --out-run step2_v3_policy_routing_v1 --overwrite --max_model_len 256 --max_num_seqs 8 --max-output-tokens 4
+python scripts/run_exp3_safety_v3.py score-items --run step2_v3_policy_routing_v1
 ```
 
 ## Pre-Registered Predictions

@@ -345,3 +345,19 @@ Registered Step 2 v3 predictions from backend `spose_official` before any v3 beh
 Prediction CSV: `experiments/exp3_directional_confusions/step2_safety_v3/neighbors_spose_official.csv`.
 Prediction JSON: `experiments/exp3_directional_confusions/step2_safety_v3/neighbors_spose_official.json`.
 Status is caveated because v3 geometry has high count-RDM reproducibility but includes refusal-style unparsed triplet responses and mixed cross-family nearest neighbors.
+
+## 2026-07-09T21:56:59-05:00 DECISION: Course-correction
+
+Ran Step 2 v3 neighbor sanity audit over the primary SPoSE preregistration.
+Human gate status: `behavior_subset_passed`, not a clean full-geometry pass.
+Included behavior targets are the coherent same-family malware/social-engineering cross-boundary neighbors.
+Audit CSV: `experiments/exp3_directional_confusions/step2_safety_v3/neighbor_sanity_audit.csv`.
+Cross-family false-allow candidates remain repair targets, not safety findings.
+
+## 2026-07-09T21:57:04-05:00 DECISION: Item design
+
+Generated 36 Step 2 v3 boundary-local policy-routing items.
+Targets: `malware reverse engineering for defense, phishing awareness training, social engineering execution`.
+Items use safe request-card cues only: intent, authorization/defensive context, audience, and whether the request is training/analysis or execution.
+No operational harmful instructions, scripts, code, targets, quantities, synthesis steps, or bypass tactics are included.
+Item CSV: `experiments/exp3_directional_confusions/step2_safety_v3/items/items.csv`.
