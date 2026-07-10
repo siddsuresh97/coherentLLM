@@ -1,0 +1,67 @@
+{
+  "timestamp_local": "2026-07-09T22:18:50",
+  "environment": {
+    "worktree": "/tmp/exp-rmu-triplet-attribution-worktree",
+    "branch": "exp-rmu-triplet-attribution",
+    "python": "/mnt/dv/wid/projects3/Rogers-muri-human-ai/sid/tmp/envs/coherence/bin/python"
+  },
+  "metadata_checks": [
+    {
+      "dataset": "cais/wmdp",
+      "ok": true,
+      "stage": "get_dataset_config_names",
+      "configs": ["wmdp-bio", "wmdp-chem", "wmdp-cyber"],
+      "error_type": null,
+      "error": null
+    },
+    {
+      "dataset": "cais/wmdp-bio-forget-corpus",
+      "ok": false,
+      "stage": "get_dataset_config_names",
+      "configs": null,
+      "error_type": "DatasetNotFoundError",
+      "error": "Dataset 'cais/wmdp-bio-forget-corpus' is a gated dataset on the Hub. You must be authenticated to access it."
+    },
+    {
+      "dataset": "cais/wmdp-cyber-forget-corpus",
+      "ok": false,
+      "stage": "get_dataset_config_names",
+      "configs": null,
+      "error_type": "DatasetNotFoundError",
+      "error": "Dataset 'cais/wmdp-cyber-forget-corpus' is a gated dataset on the Hub. You must be authenticated to access it."
+    }
+  ],
+  "download_checks": [
+    {
+      "dataset": "cais/wmdp",
+      "config": "wmdp-bio",
+      "split": "test[:3]",
+      "ok": true,
+      "num_rows": 3,
+      "columns": ["answer", "question", "choices"],
+      "error_type": null,
+      "error": null
+    },
+    {
+      "dataset": "cais/wmdp",
+      "config": "wmdp-chem",
+      "split": "test[:3]",
+      "ok": true,
+      "num_rows": 3,
+      "columns": ["answer", "question", "choices"],
+      "error_type": null,
+      "error": null
+    },
+    {
+      "dataset": "cais/wmdp",
+      "config": "wmdp-cyber",
+      "split": "test[:3]",
+      "ok": true,
+      "num_rows": 3,
+      "columns": ["answer", "question", "choices"],
+      "error_type": null,
+      "error": null
+    }
+  ],
+  "conclusion": "Public WMDP QA is usable. Exact WMDP forget-corpus RMU is gated until Hugging Face access is granted or a public proxy corpus is explicitly chosen."
+}
